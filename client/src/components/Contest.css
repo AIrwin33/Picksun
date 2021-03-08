@@ -1,0 +1,44 @@
+#contestContainer {
+    background-color: #215975;
+}
+
+.list-group-item {
+    background-color: transparent;
+    border: 0px;
+}
+
+.headerRow {
+    background-color: #D4382E;
+}
+
+.scoreboard {
+    border: 1px solid black;
+    border-radius: 5px; 
+    padding:0.1em;
+    margin:0.25em;
+}
+
+
+.rowBar {
+    margin-top:1em; 
+}
+
+.whiteText {
+    color:white;
+}
+
+.greyText {
+    color:grey;
+}
+
+.fontBold {
+    font-weight:bold;
+}
+
+.rowCard{
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin: 5px 40px 5px 40px;
+    padding:5px;
+    background-color: lightgrey;
+}

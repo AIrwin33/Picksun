@@ -1,0 +1,22 @@
+.lobbyContainer {
+    background-color:#262626;
+}
+.LobbyCard {
+    margin: 1em;
+}
+
+.LobbyCard .btnRed {
+    width:250px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.whiteText {
+    color:white;
+}
+
+.greyText {
+    color:grey;
+}

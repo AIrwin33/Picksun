@@ -1,24 +1,128 @@
-import logo from './logo.svg';
+import React , {Fragment, useState, useEffect} from "react";
 import './App.css';
+import Login from './components/Login'; 
+import Register from './components/Register'; 
+import Lobby from './components/Lobby';
+import Profile from './components/Profile';
+import Contests from './components/Contests';
+import Contest from './components/Contest';
+import Questions from './components/Questions';
+import TopPanel from './components/TopPanel';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
+
+
+
+
 
 function App() {
+
+  const checkAuthenticated = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/auth/verify", {
+        method: "POST",
+        headers: { jwt_token: localStorage.token }
+      });
+
+      const parseRes = await res.json();
+      console.log('check auth' + parseRes);
+      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  useEffect(() => {
+    checkAuthenticated();
+  }, []);
+
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+
+  const setAuth = boolean => {
+    setIsAuthenticated(boolean);
+  };
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+
+      <Router>
+        <div className="container">
+
+          <div >
+           <TopPanel/>
+         </div>
+         
+          <Switch>
+            <Route exact path="/Login"
+              render={props =>
+                  <Login {...props} setAuth={setAuth} />
+              }
+            />
+            <Route exact path="/Register"
+              render={props =>
+                  <Register {...props} setAuth={setAuth} />
+              }
+            />
+            <Route exact path="/Lobby"
+              render={props =>
+                isAuthenticated ? (
+                  <Lobby {...props}  />
+                ) : (
+                  <Redirect to="/Login" />
+                )
+              }
+            />
+            <Route exact path="/Contests"
+              render={props =>
+                isAuthenticated ? (
+                  <Contests {...props}  />
+                ) : (
+                  <Redirect to="/Login" />
+                )
+              }
+            />
+            <Route exact path="/Profile"
+              render={props =>
+                isAuthenticated ? (
+                  <Profile {...props} setAuth={setAuth} />
+                ) : (
+                  <Redirect to="/Login" />
+                )
+              }
+            />
+            <Route exact path="/Contest/:id"
+              render={props =>
+                isAuthenticated ? (
+                  <Contest 
+                  {...props} 
+                  setAuth={setAuth} />
+                ) : (
+                  <Redirect to="/Login" />
+                )
+              }
+            />
+             <Route exact path="/Questions/:contestid"
+              render={props =>
+                isAuthenticated ? (
+                  <Questions 
+                  {...props} 
+                  />
+                ) : (
+                  <Redirect to="/Login" />
+                )
+              }
+            />
+          </Switch>
+
+        </div>
+      </Router>
+    </Fragment>
   );
 }
 

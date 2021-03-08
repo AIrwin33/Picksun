@@ -1,0 +1,37 @@
+#contestsContainer {
+    background-color: #215975;
+}
+
+#Hero {
+    background-color: #215975;
+}
+
+.bodyRow {
+    background-color: #EFEFEF;
+    padding-bottom:1em;
+}
+
+.bodyCol {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.gamesInProgress {
+    padding:0.25em;
+    background-color:grey;
+}
+
+.gamesInProgress.red{
+    background-color: #D4382E;
+   
+}
+
+.gamesToday {
+    background-color: grey;
+    padding:0.25em;
+}
+
+.gamesTomorrow {
+    background-color: grey;
+    padding:0.25em;
+}

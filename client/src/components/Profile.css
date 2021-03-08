@@ -1,0 +1,74 @@
+.profileContainer {
+    background-color: #215975;
+    padding-bottom:1em;
+}
+
+.logoutBtn {
+    border-radius:0px;
+    background-color: #215975;
+    border: 1px solid white;
+    color:white;
+    font-size:10px;
+}
+
+.logoutBtn:hover {
+    border-radius:0px;
+    background-color: white;
+    color:#215975;
+}
+
+ul {
+    list-style-type:none;
+    padding-inline-start: 0px;
+}
+
+li {
+    display: block;
+}
+
+.whiteText {
+    color:white;
+}
+
+.greyText {
+    color:grey;
+}
+
+.card-link:hover {
+    color:black;
+}
+
+.card {
+    border-top-right-radius:20px;
+}
+.nav-tabs {
+    border-bottom:0px;
+}
+
+.nav-tabs .nav-item {
+    color:white;  
+    border-radius: 20px 20px 0px 0px;
+    border:1px solid white;
+}
+
+.nav-tabs .nav-item:active {
+    color:#495057;
+}
+
+.inviteBtn {
+    background-color: #215975;
+    color: white;
+    margin: 20px;
+    padding:5px;
+    border: 1px solid white;
+    border-radius:5px;
+}
+
+.inviteBtn:hover {
+    background-color: white;
+    color: #215975;
+    margin: 20px;
+    padding:5px;
+    border: 1px solid white;
+    border-radius:5px;
+}

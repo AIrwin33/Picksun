@@ -1,0 +1,18 @@
+#MainContainer {
+    background-color: #215975;
+    height:100%;
+}
+
+.textWhite {
+    color:white
+}
+
+.btnRed {
+    background-color: #d4392ea9;
+    border: #d4392ea9;
+}
+
+.form-group {
+    padding-bottom: 1rem;
+    margin-bottom:0.5rem;
+}
