@@ -234,6 +234,7 @@ app.post("/answers", async(req, res) => {
 });
 
 
-app.listen(5000, () => {
-    console.log("server has started on port 5000");
-});
+var server = app.listen(process.env.PORT || 5000, function () {
+    var port = server.address().port;
+    console.log("Express is working on port " + port);
+  });
