@@ -111,22 +111,6 @@ app.get("/contest/:id/", async(req,res) => {
     }
 });
 
-//update contest info
-
-app.put("/contest/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { description } = req.body;
-    const updateCon = await pool.query(
-      "UPDATE contests SET description = $1 WHERE salesforce.contest__c = $2",
-      [description, id]
-    );
-
-    res.json("Contest was updated!");
-  } catch (err) {
-    console.error(err.message);
-  }
-});
 
 //create participation (when a contest is selected)
 
@@ -149,7 +133,7 @@ app.post("/participations", authorization, async(req, res) => {
         //once participations are created, send update back to SF?
         
       const newParticipation = await pool.query(
-          "INSERT INTO salesforce.participation__c (contest__c, external_participant__c,status__c) VALUES($1,$2,$3) RETURNING *", 
+          "INSERT INTO salesforce.participation__c (contest__c, external_participant__c,status__c, ExternalId__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *", 
       [contest_id, req.user.id, 'Active']
       );
       
@@ -201,23 +185,6 @@ app.get("/participations/:id", async(req,res) => {
 });
 
 
-//update participation
-
-app.put("/participations/:id", async(req, res) => {
-  try {
-
-      const {id} = req.params;
-      const {first_name} = req.body;
-
-      const updatePart = await pool.query(
-          "UPDATE salesforce.participation__c SET first_name = $1 WHERE id = $2", 
-      [first_name, id]
-      );
-      res.json('participant was updated');
-  }catch(err){
-      console.log('err' + err.message);
-  }
-});
 
 //get contest questions
 
@@ -257,27 +224,10 @@ app.post("/answers", async(req, res) => {
       const {partid, question_id, eventVal} = req.body;
 
       const newParticipationAnswer = await pool.query(
-          "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, status__c) VALUES($1,$2,$3,$4) RETURNING *", 
+          "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, status__c, ExternalId__c) VALUES($1,$2,$3,$4, gen_random_uuid()) RETURNING *", 
       [partid, question_id, eventVal, 'Submitted']
       );
       res.json(newParticipationAnswer.rows[0]);
-  }catch(err){
-      console.log('err' + err.message);
-  }
-});
-
-//update participation answers?
-app.post("/answers/:id", async(req, res) => {
-  try {
-
-      console.log(req.body);
-      const {first_name} = req.body;
-
-      const newParticipationAnswer = await pool.query(
-          "UPDATE participation_answers SET first_name = $1 WHERE participant_id = $2", 
-      [first_name]
-      );
-      res.json(newParticipationAnswer);
   }catch(err){
       console.log('err' + err.message);
   }
