@@ -24,9 +24,7 @@ if (process.env.NODE_ENV === "production") {
 app.use("/auth", require("./routes/jwtAuth"));
 //GET ALL PARTICIPANTS
 
-app.get('/', function (req, res) {
-    res.render('index', {});
-  });
+
 
 app.get("/participants", async(req,res) => {
     try{
@@ -247,6 +245,10 @@ app.post("/answers", async(req, res) => {
       console.log('err' + err.message);
   }
 });
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client/build/index.html"));
+  });
 
 
 app.listen(PORT, () => {
