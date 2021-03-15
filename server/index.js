@@ -24,6 +24,10 @@ if (process.env.NODE_ENV === "production") {
 app.use("/auth", require("./routes/jwtAuth"));
 //GET ALL PARTICIPANTS
 
+app.get('/', function (req, res) {
+    res.render('index', {});
+  });
+
 app.get("/participants", async(req,res) => {
     try{
         const allParticipants = await pool.query("SELECT * FROM salesforce.participant__c");
