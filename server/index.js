@@ -249,7 +249,7 @@ app.post("/answers", async(req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.render(path.join(__dirname, "../clientpublic/index.html"));
+    res.render(path.join(__dirname, "../client/public/index.html"));
   });
 
 
