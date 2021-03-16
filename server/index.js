@@ -249,7 +249,8 @@ app.post("/answers", async(req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.render(path.join(__dirname, "../client/public/index.html"));
+    console.log(__dirname);
+    res.sendFile(path.join(__dirname, "../client/public/index.html"));
   });
 
 
