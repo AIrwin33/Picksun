@@ -249,7 +249,7 @@ app.post("/answers", async(req, res) => {
 });
 
 app.route('/*').get(function(req, res) { 
-    return res.sendFile(path.join(__dirname, '/client/public/index.html')); 
+    return res.sendFile(path.join(__dirname, '../client/public/index.html')); 
 });
 
 app.listen(PORT, () => {
