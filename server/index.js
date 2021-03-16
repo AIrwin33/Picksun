@@ -248,11 +248,9 @@ app.post("/answers", async(req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
-    console.log(__dirname);
-    res.sendFile(path.join(__dirname, "../client/public/index.html"));
-  });
-
+app.route('/*').get(function(req, res) { 
+    return res.sendFile(path.join(__dirname, '/client/public/index.html')); 
+});
 
 app.listen(PORT, () => {
     console.log(`Server is starting on port ${PORT}`);
