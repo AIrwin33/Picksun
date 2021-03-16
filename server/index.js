@@ -19,6 +19,8 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("./client/build"));
   }
 
+
+  console.log('dirName' + __dirname);
 // ROUTES
 
 app.use("/auth", require("./routes/jwtAuth"));
@@ -247,7 +249,7 @@ app.post("/answers", async(req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    res.render(path.join(__dirname, "../clientpublic/index.html"));
   });
 
 
