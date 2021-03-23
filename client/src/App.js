@@ -12,7 +12,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
 
@@ -59,17 +58,17 @@ function App() {
          </div>
          
           <Switch>
-            <Route exact path="/Login"
+            <Route path="/Login"
               render={props =>
                   <Login {...props} setAuth={setAuth} />
               }
             />
-            <Route exact path="/Register"
+            <Route path="/Register"
               render={props =>
                   <Register {...props} setAuth={setAuth} />
               }
             />
-            <Route exact path="/Lobby"
+            <Route path="/Lobby"
               // render={props =>
               //   isAuthenticated ? (
               //     <Lobby {...props}  />
@@ -78,7 +77,7 @@ function App() {
               //   )
               // }
             />
-            <Route exact path="/Contests"
+            <Route path="/Contests"
               render={props =>
                 isAuthenticated ? (
                   <Contests {...props}  />
@@ -87,7 +86,7 @@ function App() {
                 )
               }
             />
-            <Route exact path="/Profile"
+            <Route  path="/Profile"
               render={props =>
                 isAuthenticated ? (
                   <Profile {...props} setAuth={setAuth} />
@@ -96,7 +95,7 @@ function App() {
                 )
               }
             />
-            <Route exact path="/Contest/:id"
+            <Route  path="/Contest/:id"
               render={props =>
                 isAuthenticated ? (
                   <Contest 
@@ -107,7 +106,7 @@ function App() {
                 )
               }
             />
-             <Route exact path="/Questions/:contestid"
+             <Route  path="/Questions/:contestid"
               render={props =>
                 isAuthenticated ? (
                   <Questions 
