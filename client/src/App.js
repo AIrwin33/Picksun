@@ -70,13 +70,13 @@ function App() {
               }
             />
             <Route exact path="/Lobby"
-              render={props =>
-                isAuthenticated ? (
-                  <Lobby {...props}  />
-                ) : (
-                  <Redirect to="/Login" />
-                )
-              }
+              // render={props =>
+              //   isAuthenticated ? (
+              //     <Lobby {...props}  />
+              //   ) : (
+              //     <Redirect to="/Login" />
+              //   )
+              // }
             />
             <Route exact path="/Contests"
               render={props =>
