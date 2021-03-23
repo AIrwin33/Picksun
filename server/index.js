@@ -315,7 +315,7 @@ app.post("/knockout", async(req, res) => {
 
 });
 
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
     console.log('hi from react app');
     console.log(req);
     console.log(res);
