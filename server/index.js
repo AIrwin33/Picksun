@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 const authorization = require("./middleware/authorize");
 const PORT = process.env.PORT || 5000;
-const path = require("path");
+var path = require("path");
 
 //process.env.PORT = 
 // process.env.NODE_ENV
