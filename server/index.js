@@ -315,9 +315,9 @@ app.post("/knockout", async(req, res) => {
 
 });
 
-app.route('/*').get(function(req, res) { 
-    return res.sendFile(path.join(__dirname, '../client/public/index.html')); 
-});
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/client/build/index.html'));
+  });
 
 app.listen(PORT, () => {
     console.log(`Server is starting on port ${PORT}`);
