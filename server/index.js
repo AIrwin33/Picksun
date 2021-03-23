@@ -319,7 +319,8 @@ app.get('/*', (req, res) => {
     console.log('hi from react app');
     console.log(req);
     console.log(res);
-    res.sendFile(path.resolve(__dirname, '/client/build/index.html'));
+    const index = path.join(__dirname, 'build', 'index.html');
+    res.sendFile(index);
   });
 
 app.listen(PORT, () => {
