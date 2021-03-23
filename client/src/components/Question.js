@@ -85,6 +85,86 @@ const Question = (props) => {
 
   }
 
+  const handleKnockout = async () => {
+        
+    //TODO : get place finish when knocked out
+    try {
+      const placefinish = 2;
+      const partid = props.participation_id;
+      const body = {partid};
+      const response = await fetch(
+        "http://localhost:5000/knockout",
+        {
+          method: "POST",
+            headers: { jwt_token: localStorage.token,
+              "Content-type": "application/json"
+          },
+          body: JSON.stringify(body)
+        }
+      );
+      
+      const parseRes = await response.json();
+      console.log('created parse res' + JSON.stringify(parseRes));
+        console.log("You've been knocked out");
+    } catch (err) {
+      console.error(err.message);
+    }
+
+  }
+
+  const handleWrongAnswer = async () => {
+        
+    //insert participation answer
+    try {
+      const partid = props.participation_id;
+      const body = {partid};
+      const response = await fetch(
+        "http://localhost:5000/wronganswer",
+        {
+          method: "POST",
+          headers: { jwt_token: localStorage.token,
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(body)
+        }
+      );
+      
+      const parseRes = await response.json();
+      console.log('created parse res' + JSON.stringify(parseRes));
+        console.log("You've been knocked out");
+        // TODO :: return number of wrong answers?
+    } catch (err) {
+      console.error(err.message);
+    }
+
+  }
+
+  const handleContestWon = async () => {
+        // TODO :: move this up to contest?
+    try {
+      const contestid = props.ques.Contest__c;
+      const partid = props.participation_id;
+      const body = {contestid, partid};
+      const response = await fetch(
+        "http://localhost:5000/contestwon",
+        {
+          method: "POST",
+          headers: { jwt_token: localStorage.token,
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(body)
+        }
+      );
+      
+      const parseRes = await response.json();
+      console.log('created parse res' + JSON.stringify(parseRes));
+        console.log("You've been knocked out");
+    } catch (err) {
+      console.error(err.message);
+    }
+
+  }
+
   useEffect(() => {
     setQuest(props.ques);
 

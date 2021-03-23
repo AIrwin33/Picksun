@@ -178,7 +178,7 @@ app.get("/contestparticipations/:contest_id", authorization, async(req,res) => {
 app.get("/participationbycontest/:contest_id", authorization, async(req,res) => {
     try{
         const {contest_id} = req.params;
-        const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND external_participant__c = $2", [contest_id,req.user.id]);
+        const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND ExternalId__c = $2", [contest_id,req.user.id]);
         res.json(part.rows[0]);
     }catch(err) {
         console.log('err part by contest' + err);
@@ -246,6 +246,73 @@ app.post("/answers", async(req, res) => {
   }catch(err){
       console.log('err' + err.message);
   }
+});
+
+app.post("/wronganswer", async(req, res) => {
+    try {
+        const {partid} = req.body;
+
+        const knockedoutpart = await pool.query(
+          "UPDATE salesforce.participation__c SET Wrong_Answers__c = $1 WHERE ExternalId__c = $2", 
+      [wronganswercount, partid]
+      );
+      res.json(knockedoutpart.rows[0]);
+    }catch(err){
+        console.log('wrong answer error ' + err);
+    }
+
+});
+
+
+
+//add win
+
+app.post("/contestwon", authorization, async(req, res) => {
+    try {
+        //update contests won number and win rate number, place finish
+        const {contestid, partid} = req.body;
+
+        //run calcs based on previous numbers
+
+        const wonparticipation = await pool.query(
+            "UPDATE salesforce.participation__c SET PlaceFinish__c = 1, Status__c = 'Inactive' WHERE ExternalId__c = $1", 
+        [partid]
+        );
+
+        const wonparticipant = await pool.query(
+            "UPDATE salesforce.participant__c SET Contests_Won__c = $1, Win_Rate__c = $2 WHERE sfid = $3", 
+        [req.user.id]
+        );
+
+        const woncontest = await pool.query(
+            "UPDATE salesforce.contest__c SET Status__c = 'Finished' WHERE sfid = $1", 
+        [contestid]
+        );
+    }catch(err){
+        console.log('contest won error ' + err); 
+    }
+
+});
+
+
+
+//knockout
+
+//update status Status__c to Knocked Out is wrong answers on participation are equal to or greater than Wrong_Answers_Allowed__c on contest. 
+
+app.post("/knockout", async(req, res) => {
+    try {
+        const {partid} = req.body;
+
+      const knockedoutpart = await pool.query(
+          "UPDATE salesforce.participation__c SET Status__c = 'Knocked Out', PlaceFinish__c = $1 WHERE ExternalId__c = $2", 
+      [placefinish, partid]
+      );
+      res.json(knockedoutpart.rows[0]);
+    }catch(err){
+        console.log('knock out error ' + err);
+    }
+
 });
 
 app.route('/*').get(function(req, res) { 
