@@ -321,7 +321,7 @@ app.post("/knockout", async(req, res) => {
 //   });
 
   app.get('*', function (req, res) {
-    res.sendFile('../client/build/index.html');
+    res.sendFile('../client/build/index.html' , { root: __dirname });
   });
 
 app.listen(PORT, () => {
