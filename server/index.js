@@ -313,11 +313,16 @@ app.post("/knockout", async(req, res) => {
 
 });
 
-app.get('/*', (req, res) => {
-    console.log('hi from react app');
-    console.log(req);
-    console.log(res);
-    res.sendFile('/client/build/index.html');
+// app.get('/*', (req, res) => {
+//     console.log('hi from react app');
+//     console.log(req);
+//     console.log(res);
+//     res.sendFile('/build/index.html');
+//   });
+
+  app.get('*', function (req, res) {
+    const index = path.join(__dirname, 'build', 'index.html');
+    res.sendFile(index);
   });
 
 app.listen(PORT, () => {
