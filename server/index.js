@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
     //server static content
     //npm run build
     console.log('here');
-    app.use(express.static("./client/build"));
+    app.use(express.static("../client/build"));
   }
 // ROUTES
 
@@ -324,7 +324,7 @@ app.post("/knockout", async(req, res) => {
     console.log('hi from react app');
     console.log(req);
     console.log(res);
-    res.sendFile('./client/build/index.html' , { root: '/' });
+    res.sendFile('../client/build/index.html' , { root: '/' });
   });
 
 app.listen(PORT, () => {
