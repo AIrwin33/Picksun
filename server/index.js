@@ -320,7 +320,10 @@ app.post("/knockout", async(req, res) => {
 //     res.sendFile('/build/index.html');
 //   });
 
-  app.get('*', function (req, res) {
+  app.get('/*', function (req, res) {
+    console.log('hi from react app');
+    console.log(req);
+    console.log(res);
     res.sendFile('../client/build/index.html' , { root: './' });
   });
 
