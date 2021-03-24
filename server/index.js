@@ -16,11 +16,9 @@ const path = require("path");
 if (process.env.NODE_ENV === "production") {
     //server static content
     //npm run build
+    console.log('here');
     app.use(express.static("./client/build"));
   }
-
-
-  console.log('dirName' + __dirname);
 // ROUTES
 
 app.use("/auth", require("./routes/jwtAuth"));
