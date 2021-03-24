@@ -326,7 +326,7 @@ if (process.env.NODE_ENV === "production") {
         console.log('hi from react app');
         console.log(req);
         console.log(res);
-        res.sendFile(path.join('..', 'client', 'build', 'index.html'));
+        res.sendFile(path.resolve(__dirname, '..', 'client', 'build', 'index.html'));
     });
 }
     
