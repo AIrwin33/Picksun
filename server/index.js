@@ -324,7 +324,7 @@ app.post("/knockout", async(req, res) => {
     console.log('hi from react app');
     console.log(req);
     console.log(res);
-    res.sendFile('../client/build/index.html' , { root: '/' });
+    res.sendFile('../client/build/index.html');
   });
 
 app.listen(PORT, () => {
