@@ -8,6 +8,7 @@
     "npm": "7.5.4"
   },
   "scripts": {
+    "build": "cd client && npm run build",
     "start": "node server/index.js",
     "server": "nodemon server/index.js",
     "client": "npm start --prefix client",
