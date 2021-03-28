@@ -30,7 +30,7 @@ const TopPanel = ({setAuth}) => {
   
     const getProfile = async () => {
       try {
-        const res = await fetch("http://localhost:8080/profile", {
+        const res = await fetch("/profile", {
           method: "POST",
           headers: { jwt_token: localStorage.token }
         });

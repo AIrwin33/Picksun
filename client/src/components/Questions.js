@@ -23,7 +23,7 @@ const Questions = (props) => {
 
     const getQuestions = async () => {
         try {
-            const res = await fetch(`http://localhost:8080/questions/${props.contestid}`, {
+            const res = await fetch(`/questions/${props.contestid}`, {
               method: "GET",
               headers: { jwt_token: localStorage.token }
             });
@@ -47,7 +47,7 @@ const Questions = (props) => {
       const disableQuestions = async (questionids) => {
           try {
             const body = {questionids};
-            const res = await fetch(`http://localhost:8080/disableQuestions/`, {
+            const res = await fetch(`/disableQuestions/`, {
               method: "POST",
               headers: { jwt_token: localStorage.token,
                 "Content-type": "application/json" 

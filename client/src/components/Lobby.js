@@ -19,7 +19,7 @@ const Lobby = ({ setAuth }) => {
      const [isAuthenticated, setIsAuthenticated] = useState(false);
      const getProfile = async () => {
       try {
-        const res = await fetch("http://localhost:8080/profile", {
+        const res = await fetch("/profile", {
           method: "POST",
           headers: { jwt_token: localStorage.token }
         });
@@ -34,7 +34,7 @@ const Lobby = ({ setAuth }) => {
      const getContests = async () => {
          try {
            console.log('get contests before fetch');
-             const res = await fetch("http://localhost:8080/contests", {
+             const res = await fetch("/contests", {
                method: "GET",
                headers: { jwt_token: localStorage.token }
              });
@@ -52,7 +52,7 @@ const Lobby = ({ setAuth }) => {
           const body = {contest_id};
           console.log('body' + JSON.stringify(body));
           const response = await fetch(
-            "http://localhost:8080/participations",
+            "/participations",
             {
               method: "POST",
               headers: {
