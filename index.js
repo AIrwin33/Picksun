@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const pool = require("./db");
+const pool = require("./server/db");
 require("dotenv").config();
 //middleware
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
-const authorization = require("./middleware/authorize");
+const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 const path = require("path");
 
@@ -16,7 +16,7 @@ const path = require("path");
 
 // ROUTES
 app.use(express.static(path.join(__dirname, "/public")));
-app.use("/auth", require("./routes/jwtAuth"));
+app.use("/auth", require("./server/routes/jwtAuth"));
 //GET ALL PARTICIPANTS
 
 
@@ -314,9 +314,8 @@ app.post("/knockout", async(req, res) => {
 //     console.log(res);
 //     res.sendFile('/build/index.html');
 //   });
-
-if (process.env.NODE_ENV == 'production') {
-    app.use(express.static(path.join(__dirname, 'client','build')));
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
   
     app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')) // relative path
