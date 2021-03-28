@@ -32,7 +32,7 @@ const Contests = ({setAuth}) => {
 
     const getContests = async () => {
         try {
-            const res = await fetch("http://localhost:5000/mycontests", {
+            const res = await fetch("http://localhost:8080/mycontests", {
               method: "GET",
               headers: { jwt_token: localStorage.token }
             });
@@ -56,7 +56,7 @@ const Contests = ({setAuth}) => {
         try {
             console.log('id' + id);
             const res = await fetch(
-              "http://localhost:5000/participationbycontest/" + id,
+              "http://localhost:8080/participationbycontest/" + id,
               {
                 method: "GET",
                 headers: {

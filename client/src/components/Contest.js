@@ -39,7 +39,7 @@ const Contest = ({ match }) => {
 
     const getContest = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/contest/${match.params.id}`, {
+            const res = await fetch(`http://localhost:8080/contest/${match.params.id}`, {
               method: "GET",
               headers: { jwt_token: localStorage.token }
             });
@@ -58,7 +58,7 @@ const Contest = ({ match }) => {
       const getEvent = async (contestRec) => {
         try {
 
-            const res = await fetch(`http://localhost:5000/event/` + contestRec.event__c, {
+            const res = await fetch(`http://localhost:8080/event/` + contestRec.event__c, {
               method: "GET",
               headers: { jwt_token: localStorage.token }
             });
@@ -76,7 +76,7 @@ const Contest = ({ match }) => {
     const getContestParticipations = async (contestRec) => {
         try {
             console.log('get all contest participations');
-            const res = await fetch(`http://localhost:5000/contestparticipations/` + contestRec.sfid ,{
+            const res = await fetch(`http://localhost:8080/contestparticipations/` + contestRec.sfid ,{
                 method: "GET",
                 headers: { jwt_token: localStorage.token }
             });
@@ -99,7 +99,7 @@ const Contest = ({ match }) => {
     const getParticipationByContest = async (contestRec) => {
         try {
             console.log('getting participation by cotnest');
-            const res = await fetch(`http://localhost:5000/participationbycontest/` + contestRec.sfid ,{
+            const res = await fetch(`http://localhost:8080/participationbycontest/` + contestRec.sfid ,{
               method: "GET",
               headers: { jwt_token: localStorage.token }
             });
