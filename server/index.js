@@ -315,21 +315,14 @@ app.post("/knockout", async(req, res) => {
 //     res.sendFile('/build/index.html');
 //   });
 
-if (process.env.NODE_ENV === "production") {
-    //server static content
-    //npm run build
-    console.log('here');
-    app.use(express.static("../client/build"));
-    
-    console.log('after app use')
-    app.get('*', function (req, res) {
-        console.log('hi from react app');
-        console.log(req);
-        console.log(res);
-        res.sendFile(path.resolve(__dirname, '..', 'client', 'build', 'index.html'));
-    });
-}
-    
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')) // relative path
+    })
+  }
+
 app.listen(PORT, () => {
     console.log(`Server is starting on port ${PORT}`);
   });
