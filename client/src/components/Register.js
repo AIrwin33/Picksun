@@ -28,6 +28,7 @@ const Register = ({ setAuth }) => {
     e.preventDefault();
     try {
       const body = { email, password, name };
+
       const response = await fetch(
         "/auth/register",
         {
@@ -40,7 +41,7 @@ const Register = ({ setAuth }) => {
       );
       const parseRes = await response.json();
 
-      console.log(JSON.stringify(parseRes));
+      console.log("JSON.stringify(parseRes)",JSON.stringify(parseRes));
       if (parseRes.token) {
         localStorage.setItem("token", parseRes.token);
         setAuth(true);

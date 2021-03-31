@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const pool = require("./server/db");
+var bodyParser = require('body-parser')
 require("dotenv").config();
 //middleware
 const cors = require("cors");
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use("/auth", require("./server/routes/jwtAuth"));
 //GET ALL PARTICIPANTS
 
+app.use(bodyParser.json());   
 
 
 app.get("/participants", async(req,res) => {

@@ -7,12 +7,14 @@ const validInfo = require("../middleware/validinfo");
 const authorization = require("../middleware/authorize");
 
 router.post("/register", validInfo, async (req, res) =>{
-    console.log('working')
+ 
     try {
-
+        const body = JSON.parse(JSON.stringify(req.body))
+        console.log(body);
         //step one: desturcture req.body (name email password)
-        console.log('register req' + req.body);
-        const {name, email, password} = req.body;
+        console.log('register req' + body);
+        const {name, email, password} = body;
+        console.log(name)
         //step two: does the user already exist? throw error
 
         const user = await pool.query("SELECT * from salesforce.participant__c where email__c = $1 ", [email]);
@@ -50,7 +52,11 @@ router.post('/login', validInfo ,async (req, res) => {
     try {
         // destructure req.body
 
-        const {email, password} = req.body
+        const body = JSON.parse(JSON.stringify(req.body))
+
+        const {email, password} = body;
+
+
         console.log('email' + email);
         //check if participant exists
 
