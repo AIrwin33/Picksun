@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const pool = require("./db");
+const pool = require("./server/db");
 require("dotenv").config();
 //middleware
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
-const authorization = require("./middleware/authorize");
+const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 const path = require("path");
 
@@ -15,8 +15,8 @@ const path = require("path");
 
 
 // ROUTES
-
-app.use("/auth", require("./routes/jwtAuth"));
+app.use(express.static(path.join(__dirname, "/public")));
+app.use("/auth", require("./server/routes/jwtAuth"));
 //GET ALL PARTICIPANTS
 
 
@@ -315,20 +315,13 @@ app.post("/knockout", async(req, res) => {
 //     res.sendFile('/build/index.html');
 //   });
 
-if (process.env.NODE_ENV === "production") {
-    //server static content
-    //npm run build
-    console.log('here');
-    app.use(express.static("../client/build"));
-    
-    console.log('after app use')
-    app.get('*', function (req, res) {
-        console.log('hi from react app');
-        console.log(req);
-        console.log(res);
-        res.sendFile(path.resolve(__dirname, '..', 'client', 'build', 'index.html'));
-    });
-}
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')) // relative path
+    })
+  }
     
 app.listen(PORT, () => {
     console.log(`Server is starting on port ${PORT}`);

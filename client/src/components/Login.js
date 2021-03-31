@@ -33,7 +33,7 @@ const Login = ({ setAuth }) => {
         const body = { email,password };
         console.log('body' + JSON.stringify(body));
         const response = await fetch(
-          "http://localhost:5000/auth/login",
+          "http://localhost:8080/auth/login",
           {
             method: "POST",
             headers: {

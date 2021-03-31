@@ -37,7 +37,7 @@ const Question = (props) => {
         questionids.push(questionid);
         console.log(questionids);
           const body = {questionids};
-          const res = await fetch(`http://localhost:5000/disableQuestions/`, {
+          const res = await fetch(`http://localhost:8080/disableQuestions/`, {
             method: "POST",
             headers: { jwt_token: localStorage.token,
               "Content-type": "application/json" 
@@ -63,7 +63,7 @@ const Question = (props) => {
         const question_sfid = props.ques.sfid;
         const body = {partid, question_id, eventVal};
         const response = await fetch(
-          "http://localhost:5000/answers",
+          "http://localhost:8080/answers",
           {
             method: "POST",
             headers: {
@@ -93,7 +93,7 @@ const Question = (props) => {
       const partid = props.participation_id;
       const body = {partid};
       const response = await fetch(
-        "http://localhost:5000/knockout",
+        "http://localhost:8080/knockout",
         {
           method: "POST",
             headers: { jwt_token: localStorage.token,
@@ -119,7 +119,7 @@ const Question = (props) => {
       const partid = props.participation_id;
       const body = {partid};
       const response = await fetch(
-        "http://localhost:5000/wronganswer",
+        "http://localhost:8080/wronganswer",
         {
           method: "POST",
           headers: { jwt_token: localStorage.token,
@@ -146,7 +146,7 @@ const Question = (props) => {
       const partid = props.participation_id;
       const body = {contestid, partid};
       const response = await fetch(
-        "http://localhost:5000/contestwon",
+        "http://localhost:8080/contestwon",
         {
           method: "POST",
           headers: { jwt_token: localStorage.token,
