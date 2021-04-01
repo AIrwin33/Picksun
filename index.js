@@ -20,7 +20,8 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use("/auth", require("./server/routes/jwtAuth"));
 //GET ALL PARTICIPANTS
 
-app.use(bodyParser.json());   
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get("/participants", async(req,res) => {
