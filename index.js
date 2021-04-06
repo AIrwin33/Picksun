@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const pool = require("./server/db");
+
 var bodyParser = require('body-parser')
 require("dotenv").config();
 //middleware
@@ -317,6 +318,7 @@ app.post("/knockout", async(req, res) => {
 //     console.log(res);
 //     res.sendFile('/build/index.html');
 //   });
+
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
   

@@ -39,6 +39,7 @@ const Contest = ({ match }) => {
 
     const getContest = async () => {
         try {
+
             const res = await fetch(`/contest/${match.params.id}`, {
               method: "GET",
               headers: { jwt_token: localStorage.token }

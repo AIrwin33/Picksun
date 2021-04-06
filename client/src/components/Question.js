@@ -118,6 +118,7 @@ const Question = (props) => {
       const partid = props.participation_id;
       const body = {partid};
       const response = await fetch(
+
         "/wronganswer",
         {
           method: "POST",

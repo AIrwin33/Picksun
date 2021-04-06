@@ -67,6 +67,7 @@ const Profile = ({setAuth}) => {
         try {
             const body = {favorite_team, favorite_sport, favorite_player };
             console.log(body);
+
             const res = await fetch("/participant/" + id, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },

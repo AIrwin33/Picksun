@@ -52,6 +52,7 @@ const Lobby = ({ setAuth }) => {
           const body = {contest_id};
           console.log('body' + JSON.stringify(body));
           const response = await fetch(
+
             "/participations",
             {
               method: "POST",
