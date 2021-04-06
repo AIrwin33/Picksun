@@ -36,7 +36,7 @@ router.post("/register", validInfo, async (req, res) =>{
         //step five: generate token
         console.log('generating new participant');
         console.log('part id' + newParticipant.rows[0]);
-        const token = jwtGenerator(newParticipant.rows[0].participant_id);
+        const token = jwtGenerator(newParticipant.rows[0].ExternalId__c);
 
         return res.json({ token });
 
