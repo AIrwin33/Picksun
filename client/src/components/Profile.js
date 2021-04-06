@@ -37,7 +37,7 @@ const Profile = ({setAuth}) => {
 
     const getProfile = async () => {
       try {
-        const res = await fetch("http://localhost:8080/profile", {
+        const res = await fetch("/profile", {
           method: "POST",
           headers: { jwt_token: localStorage.token }
         });
@@ -67,7 +67,8 @@ const Profile = ({setAuth}) => {
         try {
             const body = {favorite_team, favorite_sport, favorite_player };
             console.log(body);
-            const res = await fetch("http://localhost:8080/participant/" + id, {
+
+            const res = await fetch("/participant/" + id, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)

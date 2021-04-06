@@ -7,11 +7,14 @@ const validInfo = require("../middleware/validinfo");
 const authorization = require("../middleware/authorize");
 
 router.post("/register", validInfo, async (req, res) =>{
+ 
     try {
-
+        const body = JSON.parse(JSON.stringify(req.body))
+        console.log(body);
         //step one: desturcture req.body (name email password)
-        console.log('register req' + req.body);
-        const {name, email, password} = req.body;
+        console.log('register req' + body);
+        const {name, email, password} = body;
+        console.log(name)
         //step two: does the user already exist? throw error
 
         const user = await pool.query("SELECT * from salesforce.participant__c where email__c = $1 ", [email]);
@@ -29,7 +32,7 @@ router.post("/register", validInfo, async (req, res) =>{
         console.log('after bcrypt');
 
         let newParticipant = await pool.query
-        ("Insert INTO salesforce.participant__c (name, email__c, participant_password, ExternalId__c) Values ($1,$2,$, gen_random_uuid()) RETURNING *", [name, email, bcryptPassword]);
+        ("Insert INTO salesforce.participant__c (name, email__c, participant_password, ExternalId__c) Values ($1,$2,$3, gen_random_uuid()) RETURNING *", [name, email, bcryptPassword]);
         //step five: generate token
         console.log('generating new participant');
         console.log('part id' + newParticipant.rows[0]);
@@ -49,7 +52,11 @@ router.post('/login', validInfo ,async (req, res) => {
     try {
         // destructure req.body
 
-        const {email, password} = req.body
+        const body = JSON.parse(JSON.stringify(req.body))
+
+        const {email, password} = body;
+
+
         console.log('email' + email);
         //check if participant exists
 

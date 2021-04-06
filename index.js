@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const pool = require("./server/db");
+
+var bodyParser = require('body-parser')
 require("dotenv").config();
 //middleware
 const cors = require("cors");
@@ -19,6 +21,8 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use("/auth", require("./server/routes/jwtAuth"));
 //GET ALL PARTICIPANTS
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get("/participants", async(req,res) => {
@@ -322,7 +326,7 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')) // relative path
     })
   }
-    
+
 app.listen(PORT, () => {
     console.log(`Server is starting on port ${PORT}`);
   });

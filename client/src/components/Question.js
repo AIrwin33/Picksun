@@ -20,7 +20,6 @@ import Timer from 'react-compound-timer'
 
 
 const Question = (props) => {
-
     const [radioValue, setRadioValue] = useState('');
     const [counter, setCounter] = useState();
     const [quest, setQuest] = useState([]);
@@ -37,7 +36,7 @@ const Question = (props) => {
         questionids.push(questionid);
         console.log(questionids);
           const body = {questionids};
-          const res = await fetch(`http://localhost:8080/disableQuestions/`, {
+          const res = await fetch(`/disableQuestions/`, {
             method: "POST",
             headers: { jwt_token: localStorage.token,
               "Content-type": "application/json" 
@@ -63,7 +62,7 @@ const Question = (props) => {
         const question_sfid = props.ques.sfid;
         const body = {partid, question_id, eventVal};
         const response = await fetch(
-          "http://localhost:8080/answers",
+          "/answers",
           {
             method: "POST",
             headers: {
@@ -93,7 +92,7 @@ const Question = (props) => {
       const partid = props.participation_id;
       const body = {partid};
       const response = await fetch(
-        "http://localhost:8080/knockout",
+        "/knockout",
         {
           method: "POST",
             headers: { jwt_token: localStorage.token,
@@ -119,7 +118,8 @@ const Question = (props) => {
       const partid = props.participation_id;
       const body = {partid};
       const response = await fetch(
-        "http://localhost:8080/wronganswer",
+
+        "/wronganswer",
         {
           method: "POST",
           headers: { jwt_token: localStorage.token,
@@ -146,7 +146,7 @@ const Question = (props) => {
       const partid = props.participation_id;
       const body = {contestid, partid};
       const response = await fetch(
-        "http://localhost:8080/contestwon",
+        "/contestwon",
         {
           method: "POST",
           headers: { jwt_token: localStorage.token,
