@@ -131,7 +131,7 @@ app.post("/participations", authorization, async(req, res) => {
       //request user expires, find another way
       const {contest_id} = req.body;
         const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND external_participant__c = $2", [contest_id,req.user.id]);
-        
+        console.log(part.rows.length);
 
         if(part.rows.length != 0){
             res.json(part.rows[0]);
@@ -143,7 +143,7 @@ app.post("/participations", authorization, async(req, res) => {
         //figure how to pass dynamic participant id here
 
         //once participations are created, send update back to SF?
-        
+        console.log('user id' + req.user.id);
       const newParticipation = await pool.query(
           "INSERT INTO salesforce.participation__c (contest__c, Participant__r__ExternalId__c,status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *", 
       [contest_id, req.user.id, 'Active']
