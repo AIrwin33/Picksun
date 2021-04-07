@@ -31,12 +31,12 @@ router.post("/register", validInfo, async (req, res) =>{
         //step four: enter new user in db
         console.log('after bcrypt');
 
-        let newParticipant = await pool.query
-        ("Insert INTO salesforce.participant__c (name, email__c, participant_password__c, ExternalId__c) Values ($1,$2,$3, gen_random_uuid()) RETURNING *", [name, email, bcryptPassword]);
+        const newParticipant = await pool.query
+        ("Insert INTO salesforce.participant__c (name, email__c, participant_password__c, externalid__c) Values ($1,$2,$3, gen_random_uuid()) RETURNING *", [name, email, bcryptPassword]);
         //step five: generate token
         console.log('generating new participant');
-        console.log('part id' + JSON.stringify(newParticipant.rows[0].ExternalId__c));
-        const token = jwtGenerator(newParticipant.rows[0].ExternalId__c);
+        console.log('part id' + JSON.stringify(newParticipant.rows[0].externalid__c));
+        const token = jwtGenerator(newParticipant.rows[0].externalid__c);
 
         return res.json({ token });
 
