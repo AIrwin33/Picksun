@@ -35,7 +35,7 @@ router.post("/register", validInfo, async (req, res) =>{
         ("Insert INTO salesforce.participant__c (name, email__c, participant_password__c, ExternalId__c) Values ($1,$2,$3, gen_random_uuid()) RETURNING *", [name, email, bcryptPassword]);
         //step five: generate token
         console.log('generating new participant');
-        console.log('part id' + newParticipant.rows[0]);
+        console.log('part id' + JSON.stringify(newParticipant.rows[0]));
         const token = jwtGenerator(newParticipant.rows[0].ExternalId__c);
 
         return res.json({ token });
