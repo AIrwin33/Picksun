@@ -145,7 +145,7 @@ app.post("/participations", authorization, async(req, res) => {
         //once participations are created, send update back to SF?
         
       const newParticipation = await pool.query(
-          "INSERT INTO salesforce.participation__c (contest__c, external_participant__c,status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *", 
+          "INSERT INTO salesforce.participation__c (contest__c, Participant__r__ExternalId__c,status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *", 
       [contest_id, req.user.id, 'Active']
       );
       
