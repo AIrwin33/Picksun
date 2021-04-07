@@ -148,7 +148,7 @@ app.post("/participations", authorization, async(req, res) => {
           "INSERT INTO salesforce.participation__c (contest__c, Participant__r__ExternalId__c,status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *", 
       [contest_id, req.user.id, 'Active']
       );
-      
+      console.log(JSON.stringify(newParticipation.rows[0]));
       res.json(newParticipation.rows[0]);
   }catch(err){
       console.log('error participations' + err.message);
