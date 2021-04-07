@@ -71,7 +71,7 @@ router.post('/login', validInfo ,async (req, res) => {
         //check if password is the same as database password
 
 
-        const validPassword = await bcrypt.compare(password, participant.rows[0].participant_password);
+        const validPassword = await bcrypt.compare(password, participant.rows[0].participant_password__c);
         
 
         if(!validPassword) {
