@@ -3,6 +3,7 @@ require("dotenv").config();
 
 function jwtGenerator(participant_id) {
     console.log('jwt generator' + participant_id);
+    console.log('secret key ' + process.env.jwtSecret)
     const payload = {
         user: {
             id: participant_id
