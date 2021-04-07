@@ -147,7 +147,7 @@ app.post("/participations", authorization, async(req, res) => {
         console.log('contest id' + contest_id);
         console.log('contest id' + contest_id.length);
       const newParticipation = await pool.query(
-          "INSERT INTO salesforce.participation__c (contest__c, Participant__r__ExternalId__c,status__c, externalid__c) VALUES($1,$2,$3) RETURNING *", 
+          "INSERT INTO salesforce.participation__c (contest__c, Participant__r__ExternalId__c,status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *", 
       [contest_id, req.user.id, 'Active']
       );
       console.log(JSON.stringify(newParticipation.rows[0]));
