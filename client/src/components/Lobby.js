@@ -48,7 +48,8 @@ const Lobby = ({ setAuth }) => {
 
        const enterContest = async (id, contest_id) => {
         try {
-          console.log('contest_id' + contest_id);
+          console.log('entering contest');
+          console.log('contest sfid' + contest_id);
           const body = {contest_id};
           console.log('body' + JSON.stringify(body));
           const response = await fetch(
