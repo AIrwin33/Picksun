@@ -32,6 +32,7 @@ const Contests = ({setAuth}) => {
 
     const getContests = async () => {
         try {
+            console.log('getting my contests');
             const res = await fetch("/mycontests", {
               method: "GET",
               headers: { jwt_token: localStorage.token }
