@@ -151,7 +151,7 @@ const Profile = ({setAuth}) => {
                     <Card>  
                     <Card.Header className="text-center">Profile</Card.Header>
                     <ListGroup variant="flush">
-                        <ListGroup.Item>Member Since: {moment(profile.createddate).year()}</ListGroup.Item>
+                        <ListGroup.Item>Member Since: {profile.member_since__c}</ListGroup.Item>
                         <ListGroup.Item>Favorite Team: {profile.favorite_team__c}</ListGroup.Item>
                         <ListGroup.Item>Favorite Sport: {profile.favorite_sport__c}</ListGroup.Item>
                         <ListGroup.Item>Favorite Player: {profile.favorite_player__c}</ListGroup.Item>
