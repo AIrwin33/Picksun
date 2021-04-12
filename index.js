@@ -85,6 +85,7 @@ app.get("/mycontests", authorization, async(req, res) => {
 
 app.get("/contests", async(req,res) => {
   try{
+      console.log('hello');
       //gets all contests in the future
       console.log(CURRENT_TIMESTAMP);
     const allContests = await pool.query("SELECT * FROM salesforce.contest__c WHERE start_time__c > CURRENT_TIMESTAMP");
@@ -93,7 +94,7 @@ app.get("/contests", async(req,res) => {
     res.json(allContests.rows);
 
 }catch(err){
-    console.log('eerrr' + err.message);
+    console.log('eerrr contests' + err.message);
 }
 });
 
