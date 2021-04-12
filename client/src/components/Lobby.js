@@ -34,7 +34,7 @@ const Lobby = ({ setAuth }) => {
      const getAllContests = async () => {
          try {
            console.log('get contests before fetch');
-             const res = await fetch("/contests", {
+             const res = await fetch("/allcontests", {
                method: "GET",
                headers: { jwt_token: localStorage.token }
              });
