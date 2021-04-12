@@ -67,6 +67,7 @@ app.put("/participant/:id", async(req,res) => {
 app.get("/mycontests", authorization, async(req, res) => {
     try{
         //get all participations based on external ID
+        console.log('in my contests');
         const mycontests = await pool.query("SELECT * FROM salesforce.participation__c AS participation, salesforce.contest__c AS contest WHERE external_participant__c = $1 AND contest.sfid = participation.contest__c",
         [req.user.id]);
         //get all contests based on participations?
@@ -83,10 +84,9 @@ app.get("/mycontests", authorization, async(req, res) => {
 
 app.get("/contests", async(req,res) => {
   try{
-      console.log('hello');
+      console.log('in all contests');
       //gets all contests in the future
     const allContests = await pool.query("SELECT * FROM salesforce.contest__c WHERE start_time__c > now()");
-    console.log(allContests.rows);
     
     res.json(allContests.rows);
 
