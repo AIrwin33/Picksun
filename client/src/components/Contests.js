@@ -30,7 +30,7 @@ const Contests = ({setAuth}) => {
     });
 
 
-    const getContests = async () => {
+    const getMyContests = async () => {
         try {
             console.log('getting my contests');
             const res = await fetch("/mycontests", {
@@ -47,7 +47,7 @@ const Contests = ({setAuth}) => {
           }
       };
     useEffect(() => {
-        getContests();
+        getMyContests();
         
       }, []);
     
