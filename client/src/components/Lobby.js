@@ -31,7 +31,7 @@ const Lobby = ({ setAuth }) => {
         console.error(err.message);
       }
     };
-     const getContests = async () => {
+     const getAllContests = async () => {
          try {
            console.log('get contests before fetch');
              const res = await fetch("/contests", {
@@ -75,7 +75,7 @@ const Lobby = ({ setAuth }) => {
        };
      useEffect(() => {
        getProfile();
-         getContests();
+       getAllContests();
        }, []);
      
      
