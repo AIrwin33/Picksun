@@ -69,9 +69,7 @@ app.get("/mycontests", authorization, async(req, res) => {
         //get all participations based on external ID
         const mycontests = await pool.query("SELECT * FROM salesforce.participation__c AS participation, salesforce.contest__c AS contest WHERE external_participant__c = $1 AND contest.sfid = participation.contest__c",
         [req.user.id]);
-
-        console.log(JSON.stringify(mycontests.rows));
-        //get all contests based on participations
+        //get all contests based on participations?
         //const allContests = await pool.query("SELECT * FROM salesforce.contest__c WHERE id = ANY(allParticipations.map(part => part.contest_id)");
         
         res.json(mycontests.rows);
