@@ -80,7 +80,7 @@ router.post('/login', validInfo ,async (req, res) => {
 
         //give them JWT token
 
-        const token = jwtGenerator(participant.rows[0].ExternalId__c);
+        const token = jwtGenerator(participant.rows[0].externalid__c);
         return res.json({ token });
 
     } catch(error) {
