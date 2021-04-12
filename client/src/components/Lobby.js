@@ -8,7 +8,7 @@ import {
     ResponsiveEmbed
 } from "react-bootstrap";
 
-import redbull from '../assets/redbull.png';
+import fullGame from '../assets/full_game_img.png';
 
 
 import "./Lobby.css";
@@ -92,7 +92,7 @@ const Lobby = ({ setAuth }) => {
                     {contests.map(contest => (
                         <div key={contest.id} className="LobbyCard">
                             <div>
-                                <img width="250" src={redbull}/>
+                                <img width="250" src={fullGame}/>
                             </div>
                             <p className="whiteText">{contest.name}</p>
                             <Button className="btnRed" onClick={() => enterContest(contest.id, contest.sfid, )}>Start Picking</Button>
