@@ -111,12 +111,13 @@ app.get("/event/:id/", async(req,res) => {
 
 //get specific contest
 
-app.get("/contest/:id", async(req,res) => {
+app.get("/contest/id", async(req,res) => {
     try{
         const {id} = req.params;
         console.log('contest id ' + id);
 
         const contest = await pool.query("SELECT * FROM salesforce.contest__c WHERE sfid = $1", [id]);
+        console.log(JSON.stringify(contest.rows[0]));
         res.json(contest.rows[0]);
         console.log('after response');
     }catch(err) {
