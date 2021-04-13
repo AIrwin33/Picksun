@@ -51,23 +51,23 @@ const Lobby = ({ setAuth }) => {
           console.log('entering contest');
           console.log('contest id ' + id);
           console.log('contest sfid' + contest_id);
-          // const body = {contest_id};
-          // console.log('body' + JSON.stringify(body));
-          // const response = await fetch(
+          const body = {contest_id};
+          console.log('body' + JSON.stringify(body));
+          const response = await fetch(
 
-          //   "/participations",
-          //   {
-          //     method: "POST",
-          //     headers: {
-          //       "Content-type": "application/json",
-          //       jwt_token: localStorage.token
-          //     },
-          //     body: JSON.stringify(body)
-          //   }
-          // );
-          // const parseRes = await response.json();
-          //   console.log("Participation Created Successfully");
-          //   window.location = "/Contest/" + id;
+            "/participations",
+            {
+              method: "POST",
+              headers: {
+                "Content-type": "application/json",
+                jwt_token: localStorage.token
+              },
+              body: JSON.stringify(body)
+            }
+          );
+          const parseRes = await response.json();
+            console.log("Participation Created Successfully");
+            window.location = "/Contest/" + contest_id;
           
         } catch (err) {
           console.error(err.message);
