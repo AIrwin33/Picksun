@@ -111,7 +111,7 @@ app.get("/event/:id/", async(req,res) => {
 
 //get specific contest
 
-app.get("/contest/:id/", async(req,res) => {
+app.get("/contest/id/", async(req,res) => {
     try{
         const {id} = req.params;
         console.log('contest sf id ' + id);
@@ -157,7 +157,7 @@ app.post("/participations", authorization, async(req, res) => {
 
 //get all participations for a contest
 
-app.get("/contestparticipations/:contest_id", authorization, async(req,res) => {
+app.get("/contestparticipations/contest_id", authorization, async(req,res) => {
     try{
         const {contest_id} = req.params;
 
@@ -184,7 +184,7 @@ app.get("/participationbycontest/:contest_id", authorization, async(req,res) => 
 
 //get participation
 
-app.get("/participations/:id", async(req,res) => {
+app.get("/participations/id", async(req,res) => {
     try{
         const {id} = req.params;
         console.log(id);
@@ -200,7 +200,7 @@ app.get("/participations/:id", async(req,res) => {
 
 //get contest questions
 
-app.get("/questions/:contest_id", authorization, async(req,res) => {
+app.get("/questions/contest_id", authorization, async(req,res) => {
   try {
       const { contest_id } = req.params;
       console.log('contest id for questions' + contest_id);
