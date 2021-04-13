@@ -87,7 +87,7 @@ app.get("/allcontests", authorization,async(req,res) => {
       console.log('in all contests');
       //gets all contests in the future
     const allContests = await pool.query("SELECT * FROM salesforce.contest__c WHERE start_time__c > now()");
-    
+    console.log(JSON.stringify(allContests.rows));
     res.json(allContests.rows);
 
 }catch(err){
@@ -118,7 +118,7 @@ app.get("/contest/:id/", async(req,res) => {
 
         const contest = await pool.query("SELECT * FROM salesforce.contest__c WHERE id = $1", [id]);
         res.json(contest.rows[0]);
-        
+        console.log('after response');
     }catch(err) {
         console.log('error get contest: ' + err);
     }
