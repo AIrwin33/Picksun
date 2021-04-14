@@ -66,6 +66,7 @@ const Lobby = ({ setAuth }) => {
             }
           );
           const parseRes = await response.json();
+            console.log('part created' + parseRes);
             console.log("Participation Created Successfully");
             window.location = "/Contest/" + contest_id;
           

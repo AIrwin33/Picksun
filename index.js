@@ -97,7 +97,7 @@ app.get("/allcontests", authorization,async(req,res) => {
 
 //get event
 
-app.get("/event/:id/", async(req,res) => {
+app.get("/event/:id", async(req,res) => {
     try{
         const {id} = req.params;
         const event = await pool.query("SELECT * FROM salesforce.event__c AS event, salesforce.team__c AS team WHERE event.sfid = $1 AND (event.home_team__c = team.sfid OR event.away_team__c = team.sfid)", [id]);
@@ -149,7 +149,7 @@ app.post("/participations", authorization, async(req, res) => {
           "INSERT INTO salesforce.participation__c (Contest__c, Participant__r__ExternalId__c,Status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *", 
       [contest_id, req.user.id, 'Active']
       );
-      console.log(JSON.stringify(newParticipation.rows[0]));
+      console.log('new participation' + JSON.stringify(newParticipation.rows[0]));
       res.json(newParticipation.rows[0]);
   }catch(err){
       console.log('error participations' + err.message);
@@ -176,6 +176,7 @@ app.get("/contestparticipations/contest_id", authorization, async(req,res) => {
 app.get("/participationbycontest/:contest_id", authorization, async(req,res) => {
     try{
         const {contest_id} = req.params;
+        console.log('parts by contest id' + contest_id);
         const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND ExternalId__c = $2", [contest_id,req.user.id]);
         res.json(part.rows[0]);
     }catch(err) {
