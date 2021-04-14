@@ -46,8 +46,9 @@ const Contest = ({ match }) => {
             });
       
             const parseData = await res.json();
+            console.log('parse data' + json.stringify(parseData));
             setContest(parseData);
-            // console.log('after contest set');
+            console.log('after contest set');
             // setLoaded(true);
             // getParticipationByContest(parseData);
             // console.log('after getting participation set');
