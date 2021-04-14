@@ -111,7 +111,7 @@ app.get("/event/:id/", async(req,res) => {
 
 //get specific contest
 
-app.get("/contest/id", async(req,res) => {
+app.get("/Contest/id", async(req,res) => {
     try{
         const {id} = req.params;
         console.log('contest id ' + id);
