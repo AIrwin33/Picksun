@@ -51,9 +51,7 @@ const Contest = ({ match }) => {
             console.log('after contest set');
             setLoaded(true);
             getParticipationByContest(parseData);
-            console.log('after getting participation set');
             getEvent(parseData);
-            console.log('after getting event');
             getContestParticipations(parseData);
           } catch (err) {
             console.error(err.message);
