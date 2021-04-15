@@ -203,7 +203,7 @@ app.get("/participations/id", async(req,res) => {
 
 //get contest questions
 
-app.get("/questions/contest_id", authorization, async(req,res) => {
+app.get("/questions/:contest_id", authorization, async(req,res) => {
   try {
       const { contest_id } = req.params;
       console.log('contest id for questions' + contest_id);
