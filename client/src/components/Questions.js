@@ -23,7 +23,7 @@ const Questions = (props) => {
 
     const getQuestions = async () => {
         try {
-            console.log('get questions')
+            console.log('get questions');
             const res = await fetch(`/questions/${props.contestid}`, {
               method: "GET",
               headers: { jwt_token: localStorage.token }
