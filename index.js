@@ -137,7 +137,7 @@ app.post("/participations", authorization, async(req, res) => {
 
         if(part.rows.length != 0){
             res.json(part.rows[0]);
-            //return res.status(401).send("Already Exists");
+            return res.status(401).send("Already Exists");
         }
 
       //in production org, - include sfid for participant__c, for now, just include external_participant__c;
@@ -158,7 +158,7 @@ app.post("/participations", authorization, async(req, res) => {
 
 //get all participations for a contest
 
-app.get("/contestparticipations/contest_id", authorization, async(req,res) => {
+app.get("/contestparticipations/:contest_id", authorization, async(req,res) => {
     try{
         const {contest_id} = req.params;
         console.log('all contest participations');
