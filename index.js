@@ -251,10 +251,7 @@ app.post("/answers", async(req, res) => {
 app.post("/participationswronganswer", async(req, res) => {
     try {
         const {partid} = req.body;
-        console.log('in getting wrong answers');
-        console.log(partid);
         const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE id = $1", [partid]);
-        console.log(participationWrongAnswer.rows[0]);
       res.json(participationWrongAnswer.rows[0]);
     }catch(err){
         console.log('wrong answer error ' + err);
@@ -266,11 +263,11 @@ app.post("/wronganswer", async(req, res) => {
     try {
         const {partid} = req.body;
 
-        const knockedoutpart = await pool.query(
-          "UPDATE salesforce.participation__c SET Wrong_Answers__c = $1 WHERE ExternalId__c = $2", 
+        const wronganswerpart = await pool.query(
+          "UPDATE salesforce.participation__c SET Wrong_Answers__c = $1 WHERE id = $2", 
       [wronganswercount, partid]
       );
-      res.json(knockedoutpart.rows[0]);
+      res.json(wronganswerpart.rows[0]);
     }catch(err){
         console.log('wrong answer error ' + err);
     }
@@ -319,7 +316,7 @@ app.post("/knockout", async(req, res) => {
         const {partid} = req.body;
 
       const knockedoutpart = await pool.query(
-          "UPDATE salesforce.participation__c SET Status__c = 'Knocked Out', PlaceFinish__c = $1 WHERE ExternalId__c = $2", 
+          "UPDATE salesforce.participation__c SET Status__c = 'Knocked Out', PlaceFinish__c = $1 WHERE id = $2", 
       [placefinish, partid]
       );
       res.json(knockedoutpart.rows[0]);
