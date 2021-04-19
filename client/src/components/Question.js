@@ -31,7 +31,7 @@ const Question = (props) => {
         setRadioValue(event.target.value);
     }
 
-    const getParticipationWrongAnswers = async () => {
+    const doGetParticipationWrongAnswers = async () => {
       try {
         const partid = props.participation_id;
         console.log('getting particiation wrong answers allwoed');
@@ -192,7 +192,7 @@ const Question = (props) => {
 
   useEffect(() => {
     setQuest(props.ques);
-    getParticipationWrongAnswers();
+    doGetParticipationWrongAnswers();
 
     //props.ques.publish_time__c
     var pubtime = moment(props.ques.publish_time__c);
