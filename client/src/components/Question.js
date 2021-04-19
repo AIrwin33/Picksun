@@ -47,7 +47,7 @@ const Question = (props) => {
           }
         );
         
-        const parseData = await res.json();
+        const parseData = await response.json();
         setPartWrongAnswer(parseData);
       } catch (err) {
         console.error(err.message);
