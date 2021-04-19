@@ -102,7 +102,7 @@ const Question = (props) => {
         const parseRes = await response.json();
         console.log('created parse res' + JSON.stringify(parseRes));
           console.log("answer submitted Successfully");
-        disableQuestion(question_sfid);
+        disableQuestion(question_sfid); 
         
         
       } catch (err) {
