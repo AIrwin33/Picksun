@@ -79,6 +79,8 @@ const Question = (props) => {
         }
     }
 
+    
+
     const handleUpdateQuestionValue = async (eventVal) => {
         
       //insert participation answer
@@ -100,14 +102,25 @@ const Question = (props) => {
         );
         
         const parseRes = await response.json();
-        console.log('created parse res' + JSON.stringify(parseRes));
-          console.log("answer submitted Successfully");
+        console.log('created part answer' + JSON.stringify(parseRes));
+
+        checkAnswer(question_sfid, eventVal);
         disableQuestion(question_sfid); 
         
         
       } catch (err) {
         console.error(err.message);
       }
+
+  }
+
+  const checkAnswer = async (question_sfid, answerval) => {
+    try{
+      console.log(question_sfid);
+      console.log(answerval);
+    }catch (err) {
+      console.log('err' + err.message)
+    }
 
   }
 
