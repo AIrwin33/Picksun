@@ -162,6 +162,7 @@ const Question = (props) => {
         
     //insert participation answer
     try {
+      console.log('handle wrong answer');
       const partid = props.participation_id;
       const body = {partid};
       const response = await fetch(
