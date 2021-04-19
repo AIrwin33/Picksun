@@ -252,7 +252,7 @@ app.post("/participationswronganswer", authorization, async(req, res) => {
     try {
         const {partid} = req.body;
         console.log('in getting wrong answers');
-        const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE ExternalId__c = $1", [partid]);
+        const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid]);
         console.log(participationWrongAnswer.rows[0]);
       res.json(participationWrongAnswer.rows[0]);
     }catch(err){
