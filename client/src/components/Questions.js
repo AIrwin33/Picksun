@@ -78,7 +78,7 @@ const Questions = (props) => {
                     <Carousel>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                <Question ques={question} participation_id={props.participation_id}></Question>
+                                <Question ques={question} participation_id={props.participation_id} partsfid={props.partsfid}></Question>
                             </Carousel.Item>
                         })}
                     </Carousel>

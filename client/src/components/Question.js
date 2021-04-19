@@ -84,7 +84,7 @@ const Question = (props) => {
       //insert participation answer
       try {
         console.log('event val' + eventVal);
-        const partid = props.participation_id;
+        const partid = props.partsfid;
         const question_id = props.ques.id;
         const question_sfid = props.ques.sfid;
         const body = {partid, question_sfid, eventVal};
