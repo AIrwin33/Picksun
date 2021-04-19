@@ -104,7 +104,7 @@ const Question = (props) => {
         const parseRes = await response.json();
         console.log('created part answer' + JSON.stringify(parseRes));
 
-        checkAnswer(question_sfid, eventVal);
+        checkAnswer(question_sfid, eventVal, props.ques.correct_answer__c);
         disableQuestion(question_sfid); 
         
         
@@ -114,10 +114,16 @@ const Question = (props) => {
 
   }
 
-  const checkAnswer = async (question_sfid, answerval) => {
+  const checkAnswer = async (question_sfid, answerval, correctval) => {
     try{
       console.log(question_sfid);
       console.log(answerval);
+      if(correctval === answerval){
+        console.log('answer was correct');
+      }else{
+        console.log('answer was wrong');
+        handleWrongAnswer();
+      }
     }catch (err) {
       console.log('err' + err.message)
     }
