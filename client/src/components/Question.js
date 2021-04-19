@@ -244,7 +244,7 @@ const Question = (props) => {
               </Timer>
             </Col>
             <Col>
-              {/* Outs left: {partWrongAnswer.Wrong_Answers__c} / {partWrongAnswer.Wrong_Answers_Allowed__c} */}
+              Outs left: {partWrongAnswer.Wrong_Answers__c} / {partWrongAnswer.Wrong_Answers_Allowed__c}
             </Col>
 
             </Row>
