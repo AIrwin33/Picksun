@@ -191,6 +191,7 @@ const Question = (props) => {
 
   useEffect(() => {
     setQuest(props.ques);
+    getParticipationWrongAnswers();
 
     //props.ques.publish_time__c
     var pubtime = moment(props.ques.publish_time__c);
