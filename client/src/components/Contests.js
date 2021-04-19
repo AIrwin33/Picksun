@@ -61,7 +61,8 @@ const Contests = ({setAuth}) => {
               {
                 method: "GET",
                 headers: {
-                  "Content-type": "application/json"
+                    "Content-type": "application/json",
+                    jwt_token: localStorage.token
                 }
               }
             );
