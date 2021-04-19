@@ -22,12 +22,36 @@ import Timer from 'react-compound-timer'
 const Question = (props) => {
     const [radioValue, setRadioValue] = useState('');
     const [counter, setCounter] = useState();
+    const [partWrongAnswer, setPartWrongAnswer] = useState();
     const [quest, setQuest] = useState([]);
     const [showanswer, setShowAnswer] = useState([false]);
 
     const handleRadioChange = async (event) => {
         console.log(event.target.value);
         setRadioValue(event.target.value);
+    }
+
+    const getParticipationWrongAnswers = async () => {
+      try {
+        const partid = props.participation_id;
+        const body = {partid};
+        const response = await fetch(
+  
+          "/participationswronganswer",
+          {
+            method: "POST",
+            headers: { jwt_token: localStorage.token,
+              "Content-type": "application/json"
+            },
+            body: JSON.stringify(body)
+          }
+        );
+        
+        const parseData = await res.json();
+        setPartWrongAnswer(parseData);
+      } catch (err) {
+        console.error(err.message);
+      }
     }
 
     const disableQuestion = async (questionid) => {
@@ -219,7 +243,7 @@ const Question = (props) => {
               </Timer>
             </Col>
             <Col>
-              {/* Outs left: {participation.Wrong_Answers__c} / {contest.Wrong_Answers_Allowed__c} */}
+              {/* Outs left: {partWrongAnswer.Wrong_Answers__c} / {partWrongAnswer.Wrong_Answers_Allowed__c} */}
             </Col>
 
             </Row>
