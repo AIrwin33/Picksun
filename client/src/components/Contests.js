@@ -69,7 +69,7 @@ const Contests = ({setAuth}) => {
             const parseRes = await res.json();
             console.log('now redirect');
             
-              //window.location = "/Contest/" + sfid;
+              window.location = "/Contest/" + sfid;
             
           } catch (err) {
             console.error(err.message);
