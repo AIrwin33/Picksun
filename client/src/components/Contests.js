@@ -51,13 +51,13 @@ const Contests = ({setAuth}) => {
         
       }, []);
     
-    const contestRedirect = async id => {
+    const contestRedirect = async sfid => {
 
         //get existing contest and participation
         try {
-            console.log('id' + id);
+            console.log('id' + sfid);
             const res = await fetch(
-              "/participationbycontest/" + id,
+              "/participationbycontest/" + sfid,
               {
                 method: "GET",
                 headers: {
@@ -68,7 +68,7 @@ const Contests = ({setAuth}) => {
             const parseRes = await res.json();
             console.log('created participation id ' + parseRes)
               console.log("Register Successfully");
-              window.location = "/Contest/" + id;
+              window.location = "/Contest/" + sfid;
             
           } catch (err) {
             console.error(err.message);
@@ -100,7 +100,7 @@ const Contests = ({setAuth}) => {
                                 </h5>
                             </div>
                             <div>
-                                <a onClick={() => contestRedirect(contest.id)}>
+                                <a onClick={() => contestRedirect(contest.sfid)}>
                                     {contest.name}
                                 </a>
                             </div>
