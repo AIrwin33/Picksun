@@ -22,7 +22,7 @@ import Timer from 'react-compound-timer'
 const Question = (props) => {
     const [radioValue, setRadioValue] = useState('');
     const [counter, setCounter] = useState();
-    const [partWrongAnswer, setPartWrongAnswer] = useState();
+    const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [quest, setQuest] = useState([]);
     const [showanswer, setShowAnswer] = useState([false]);
 
