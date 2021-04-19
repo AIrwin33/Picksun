@@ -201,11 +201,14 @@ const Question = (props) => {
         <>
 
         <div className="questionRow m-3 justify-content-center timer p-3">
+            <Row>
+              <Col>
+
             <Timer initialTime={counter}
             direction="backward"
             lastUnit="s">
                 {({ start, resume, pause, stop, reset, getTimerState, getTime }) => (
-                    <React.Fragment>
+                  <React.Fragment>
 
                         {/* on timer state of stopped, call the disable function and show answer*/}
                     <div>
@@ -214,6 +217,12 @@ const Question = (props) => {
                     </React.Fragment>
                 )}
             </Timer>
+            </Col>
+            <Col>
+              Outs left: {participation.Wrong_Answers__c} / {contest.Wrong_Answers_Allowed__c}
+            </Col>
+
+            </Row>
         </div>
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>

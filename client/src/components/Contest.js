@@ -132,24 +132,10 @@ const Contest = ({ match }) => {
                     <div className="scoreboard">
                         <Row>
                             <Col>
-                                <h5 className="ml-3">{home.name}  </h5>
+                                <h5 className="ml-3">{home.name} vs.</h5>
                             </Col>
                             <Col>
-                                <h5>{home.home_score__c}</h5>
-                            </Col>
-                            <Col>
-                                <h5>{home.playing_period__c}</h5>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <h5 className="ml-3">{away.name}</h5>
-                            </Col>
-                            <Col>
-                                <h5>{away.away_score__c}</h5>
-                            </Col>
-                            <Col>
-                                <h5>{away.time__c}</h5>
+                                <h5>{away.name}</h5>
                             </Col>
                         </Row>
                     </div>
