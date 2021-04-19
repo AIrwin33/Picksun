@@ -29,6 +29,7 @@ const Question = (props) => {
     const handleRadioChange = async (event) => {
         console.log(event.target.value);
         setRadioValue(event.target.value);
+        handleUpdateQuestionValue(event.target.value);
     }
 
     const doGetParticipationWrongAnswers = async () => {
@@ -82,10 +83,11 @@ const Question = (props) => {
         
       //insert participation answer
       try {
+        console.log('event val' + eventVal);
         const partid = props.participation_id;
         const question_id = props.ques.id;
         const question_sfid = props.ques.sfid;
-        const body = {partid, question_id, eventVal};
+        const body = {partid, question_sfid, eventVal};
         const response = await fetch(
           "/answers",
           {
