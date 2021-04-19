@@ -118,6 +118,7 @@ const Question = (props) => {
     try{
       console.log(question_sfid);
       console.log(answerval);
+      console.log(correctval);
       if(correctval === answerval){
         console.log('answer was correct');
       }else{
