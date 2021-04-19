@@ -66,9 +66,9 @@ const Contests = ({setAuth}) => {
               }
             );
             const parseRes = await res.json();
-            console.log('created participation id ' + parseRes)
-              console.log("Register Successfully");
-              window.location = "/Contest/" + sfid;
+            console.log('now redirect');
+            
+              //window.location = "/Contest/" + sfid;
             
           } catch (err) {
             console.error(err.message);
@@ -115,7 +115,7 @@ const Contests = ({setAuth}) => {
                                 </h5>
                             </div>
                             <div>
-                                <a onClick={() => contestRedirect(contest.id)}>
+                                <a onClick={() => contestRedirect(contest.sfid)}>
                                     {contest.name}
                                 </a>
                             </div>
@@ -130,7 +130,7 @@ const Contests = ({setAuth}) => {
                                 </h5>
                             </div>
                             <div>
-                                <a onClick={() => contestRedirect(contest.id)}>
+                                <a onClick={() => contestRedirect(contest.sfid)}>
                                     {contest.name}
                                 </a>
                             </div>
@@ -148,7 +148,7 @@ const Contests = ({setAuth}) => {
                                 </h5>
                             </div>
                             <div>
-                                <a onClick={() => contestRedirect(contest.id)}>
+                                <a onClick={() => contestRedirect(contest.sfid)}>
                                     {contest.name}
                                 </a>
                             </div>
