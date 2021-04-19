@@ -34,14 +34,14 @@ const Question = (props) => {
     const doGetParticipationWrongAnswers = async () => {
       try {
         const partid = props.participation_id;
-        console.log('getting particiation wrong answers allwoed');
+        console.log('getting particiation wrong answers allwoed' + partid);
         const body = {partid};
         const response = await fetch(
   
           "/participationswronganswer",
           {
             method: "POST",
-            headers: { jwt_token: localStorage.token,
+            headers: {
               "Content-type": "application/json"
             },
             body: JSON.stringify(body)

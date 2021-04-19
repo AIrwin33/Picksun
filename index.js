@@ -248,7 +248,7 @@ app.post("/answers", async(req, res) => {
   }
 });
 
-app.post("/participationswronganswer", authorization, async(req, res) => {
+app.post("/participationswronganswer", async(req, res) => {
     try {
         const {partid} = req.body;
         console.log('in getting wrong answers');
