@@ -262,7 +262,7 @@ app.post("/participationswronganswer", async(req, res) => {
 app.post("/wronganswer", async(req, res) => {
     try {
         const {partid} = req.body;
-
+        const wronganswercount = 1;
         const wronganswerpart = await pool.query(
           "UPDATE salesforce.participation__c SET Wrong_Answers__c = $1 WHERE externalid__c = $2", 
       [wronganswercount, partid]

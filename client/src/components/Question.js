@@ -177,8 +177,8 @@ const Question = (props) => {
       );
       
       const parseRes = await response.json();
-      console.log('created parse res' + JSON.stringify(parseRes));
-        console.log("You've been knocked out");
+      
+
         // TODO :: return number of wrong answers?
     } catch (err) {
       console.error(err.message);
