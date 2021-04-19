@@ -34,6 +34,7 @@ const Question = (props) => {
     const getParticipationWrongAnswers = async () => {
       try {
         const partid = props.participation_id;
+        console.log('getting particiation wrong answers allwoed');
         const body = {partid};
         const response = await fetch(
   
@@ -244,7 +245,7 @@ const Question = (props) => {
               </Timer>
             </Col>
             <Col>
-              Outs left: {partWrongAnswer.Wrong_Answers__c} / {partWrongAnswer.Wrong_Answers_Allowed__c}
+              Outs left: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
             </Col>
 
             </Row>
