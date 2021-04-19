@@ -192,7 +192,7 @@ app.get("/participations/id", async(req,res) => {
         const {id} = req.params;
         console.log(id);
 
-        const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE id = $1", [id]);
+        const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [id]);
         res.json(part.rows[0]);
     }catch(err) {
         console.log('err' + err);
@@ -251,7 +251,7 @@ app.post("/answers", async(req, res) => {
 app.post("/participationswronganswer", async(req, res) => {
     try {
         const {partid} = req.body;
-        const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE id = $1", [partid]);
+        const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid]);
       res.json(participationWrongAnswer.rows[0]);
     }catch(err){
         console.log('wrong answer error ' + err);
@@ -264,7 +264,7 @@ app.post("/wronganswer", async(req, res) => {
         const {partid} = req.body;
 
         const wronganswerpart = await pool.query(
-          "UPDATE salesforce.participation__c SET Wrong_Answers__c = $1 WHERE id = $2", 
+          "UPDATE salesforce.participation__c SET Wrong_Answers__c = $1 WHERE externalid__c = $2", 
       [wronganswercount, partid]
       );
       res.json(wronganswerpart.rows[0]);

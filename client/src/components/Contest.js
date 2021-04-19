@@ -155,7 +155,7 @@ const Contest = ({ match }) => {
                         <Row>
                             <Col>
                             {isloaded &&
-                                <Questions contestid={contest.sfid} participation_id={participation.id}/> 
+                                <Questions contestid={contest.sfid} participation_id={participation.externalid__c}/> 
                             }  
                             </Col>
                         </Row>
