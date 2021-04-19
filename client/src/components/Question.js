@@ -204,19 +204,19 @@ const Question = (props) => {
             <Row>
               <Col>
 
-            <Timer initialTime={counter}
-            direction="backward"
-            lastUnit="s">
-                {({ start, resume, pause, stop, reset, getTimerState, getTime }) => (
-                  <React.Fragment>
+              <Timer initialTime={counter}
+              direction="backward"
+              lastUnit="s">
+                  {({ start, resume, pause, stop, reset, getTimerState, getTime }) => (
+                    <React.Fragment>
 
-                        {/* on timer state of stopped, call the disable function and show answer*/}
-                    <div>
-                        <Timer.Seconds /> Seconds
-                    </div>              
-                    </React.Fragment>
-                )}
-            </Timer>
+                          {/* on timer state of stopped, call the disable function and show answer*/}
+                      <div>
+                          <Timer.Seconds /> Seconds
+                      </div>              
+                      </React.Fragment>
+                  )}
+              </Timer>
             </Col>
             <Col>
               {/* Outs left: {participation.Wrong_Answers__c} / {contest.Wrong_Answers_Allowed__c} */}
