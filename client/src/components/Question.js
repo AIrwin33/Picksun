@@ -219,7 +219,7 @@ const Question = (props) => {
             </Timer>
             </Col>
             <Col>
-              Outs left: {participation.Wrong_Answers__c} / {contest.Wrong_Answers_Allowed__c}
+              {/* Outs left: {participation.Wrong_Answers__c} / {contest.Wrong_Answers_Allowed__c} */}
             </Col>
 
             </Row>
