@@ -68,7 +68,7 @@ app.get("/mycontests", authorization, async(req, res) => {
     try{
         //get all participations based on external ID
         console.log('in my contests');
-        const mycontests = await pool.query("SELECT * FROM salesforce.participation__c AS participation, salesforce.contest__c AS contest WHERE external_participant__c = $1 AND contest.sfid = participation.contest__c",
+        const mycontests = await pool.query("SELECT * FROM salesforce.participation__c AS participation, salesforce.contest__c AS contest WHERE participation.participant__r__externalid__c = $1 AND contest.sfid = participation.contest__c",
         [req.user.id]);
         //get all contests based on participations?
         //const allContests = await pool.query("SELECT * FROM salesforce.contest__c WHERE id = ANY(allParticipations.map(part => part.contest_id)");
@@ -207,7 +207,7 @@ app.get("/questions/:contest_id", authorization, async(req,res) => {
   try {
       const { contest_id } = req.params;
       console.log('contest id for questions' + contest_id);
-      const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true", [contest_id]);
+      const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true AND IsLocked__c = false", [contest_id]);
         res.json(allContestQuestions.rows)
 
   }catch(error){
@@ -246,6 +246,19 @@ app.post("/answers", async(req, res) => {
   }catch(err){
       console.log('err' + err.message);
   }
+});
+
+app.post("/participationswronganswer", async(req, res) => {
+    try {
+        const {partid} = req.body;
+
+        const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE ExternalId__c = $1", [partid]);
+    
+      res.json(participationWrongAnswer.rows[0]);
+    }catch(err){
+        console.log('wrong answer error ' + err);
+    }
+
 });
 
 app.post("/wronganswer", async(req, res) => {
