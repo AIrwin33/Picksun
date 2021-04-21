@@ -23,6 +23,7 @@ const Question = (props) => {
     const [radioValue, setRadioValue] = useState('');
     const [counter, setCounter] = useState();
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
+    const [partAnswer, setPartAnswer] = useState([]);
     const [quest, setQuest] = useState([]);
     const [showanswer, setShowAnswer] = useState([false]);
 
@@ -103,7 +104,7 @@ const Question = (props) => {
         
         const parseRes = await response.json();
         console.log('created part answer' + JSON.stringify(parseRes));
-
+        setPartAnswer(parseRes);
         checkAnswer(question_sfid, eventVal, props.ques.correct_answer__c);
         disableQuestion(question_sfid); 
         
@@ -313,7 +314,14 @@ const Question = (props) => {
 
         {showanswer == true &&
         <div>
-            <span>Correct Answer: {props.ques.correct_answer__c}</span>
+            <Row>
+              <Col>
+                <span>Your Answer: {partAnswer.selection__c}</span>
+              </Col>
+              <Col>
+                <span>Correct Answer: {props.ques.correct_answer__c}</span>
+              </Col>
+            </Row>
         </div>
         }
         </>

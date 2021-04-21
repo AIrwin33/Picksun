@@ -75,13 +75,22 @@ const Questions = (props) => {
             <Container>
                 <Row className="questionRow m-3 p-3 justify-content-center">
                     {/* slide for questions */}
-                    <Carousel>
+
+                    {questions.length > 0 &&
+                    <Carousel slide="false">
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
                                 <Question ques={question} participation_id={props.participation_id} partsfid={props.partsfid}></Question>
                             </Carousel.Item>
                         })}
                     </Carousel>
+                    }
+
+                    {questions.length === 0 && 
+                        <div>
+                            {props.contestQuestionText}
+                        </div>
+                    }
                 </Row>
             </Container>
 

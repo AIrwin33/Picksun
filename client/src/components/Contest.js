@@ -155,7 +155,7 @@ const Contest = ({ match }) => {
                         <Row>
                             <Col>
                             {isloaded &&
-                                <Questions contestid={contest.sfid} participation_id={participation.externalid__c} partsfid={participation.sfid}/> 
+                                <Questions contestid={contest.sfid} contestQuestionText={contest.No_Questions_Text__c} participation_id={participation.externalid__c} partsfid={participation.sfid}/> 
                             }  
                             </Col>
                         </Row>
@@ -184,16 +184,10 @@ const Contest = ({ match }) => {
                                 </Row> 
                                 <Row>
                                     <Col>
-                                        Contests Won: {part.contests_won__c}
+                                        Wrong Answers: {part.wrong_answers__c}
                                     </Col>
                                     <Col>
-                                        Win Rate: {part.win_rate__c}
-                                    </Col>
-                                    <Col>
-                                        Win Rate: {part.wrong_answers__c}
-                                    </Col>
-                                    <Col>
-                                        Win Rate: {part.win_rate__c}
+                                        Wrong Answers Allowed: {part.wrong_answers_allowed__c}
                                     </Col>
                                 </Row>
                             </Col>
