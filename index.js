@@ -207,7 +207,7 @@ app.get("/questions/:contest_id", authorization, async(req,res) => {
   try {
       const { contest_id } = req.params;
       console.log('contest id for questions' + contest_id);
-      const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true AND IsLocked__c = false", [contest_id]);
+      const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true", [contest_id]);
         res.json(allContestQuestions.rows)
 
   }catch(error){
