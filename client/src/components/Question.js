@@ -250,7 +250,7 @@ const Question = (props) => {
     return (
         <>
 
-        <div className="questionRow m-3 justify-content-center timer p-3">
+        <div className={`questionRow m-3 justify-content-center timer p-3 questionDivWrapper ${quest.IsLocked__c ? "locked" : "open" }`}> 
             <Row>
               <Col>
 
@@ -273,7 +273,7 @@ const Question = (props) => {
             </Col>
 
             </Row>
-        </div>
+
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
         </div>
@@ -315,15 +315,34 @@ const Question = (props) => {
         {showanswer == true &&
         <div>
             <Row>
+              
               <Col>
-                <span>Your Answer: {partAnswer.selection__c}</span>
+                <div>  
+                  <span>Your Answer: {partAnswer.selection__c}</span>
+                </div>
               </Col>
+              {partAnswer.selection__c === props.ques.correct_answer__c &&
               <Col>
-                <span>Correct Answer: {props.ques.correct_answer__c}</span>
+                <div>
+                  <span>Correct Answer: {props.ques.correct_answer__c}</span>
+                </div>
               </Col>
+              }
+
+              {partAnswer.selection__c !== props.ques.correct_answer__c  && props.ques.correct_answer__c !== null &&
+              <Col>
+                <div
+                  className={`answerBanner ${partAnswer.selection__c !== props.ques.correct_answer__c ? "red" : "green" }`}
+                  >
+                  <span>Correct Answer: {props.ques.correct_answer__c}</span>
+                </div>
+              </Col>
+              }
             </Row>
         </div>
         }
+        </div>
+        {/* end div wrapper */}
         </>
     )
 }

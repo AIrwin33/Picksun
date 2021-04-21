@@ -58,3 +58,12 @@
 .carousel-indicators li {
     background-color:grey;
 }
+
+
+.questionDivWrapper .open {
+   background-color:  #d4d4d4;
+}
+
+.questionDivWrapper .locked {
+    background-color:  grey;
+ }
