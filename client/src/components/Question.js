@@ -26,9 +26,10 @@ const Question = (props) => {
     const [partAnswer, setPartAnswer] = useState([]);
     const [quest, setQuest] = useState([]);
     const [showanswer, setShowAnswer] = useState([false]);
+    const [showKnockOut, setKnockOut] = useState([false]);
+    const [contestKnockoutText, setContestKnockoutText] = useState([]);
 
     const handleRadioChange = async (event) => {
-        console.log(event.target.value);
         setRadioValue(event.target.value);
         handleUpdateQuestionValue(event.target.value);
     }
@@ -88,7 +89,6 @@ const Question = (props) => {
       try {
         console.log('event val' + eventVal);
         const partid = props.partsfid;
-        const question_id = props.ques.id;
         const question_sfid = props.ques.sfid;
         const body = {partid, question_sfid, eventVal};
         const response = await fetch(
@@ -136,7 +136,6 @@ const Question = (props) => {
         
     //TODO : get place finish when knocked out
     try {
-      const placefinish = 2;
       const partid = props.participation_id;
       const body = {partid};
       const response = await fetch(
@@ -152,7 +151,9 @@ const Question = (props) => {
       
       const parseRes = await response.json();
       console.log('created parse res' + JSON.stringify(parseRes));
-        console.log("You've been knocked out");
+      console.log("You've been knocked out");
+      setKnockOut(true);
+      setContestKnockoutText(parseRes.Knockout_Text__c);
     } catch (err) {
       console.error(err.message);
     }
@@ -180,8 +181,16 @@ const Question = (props) => {
       
       const parseRes = await response.json();
       
-
+        
         // TODO :: return number of wrong answers?
+
+        // TODO :: if wrong answers is greater, then call handle knockout
+
+        if( ){
+          handleKnockout();
+        }else {
+          console.log('still in the game');
+        }
     } catch (err) {
       console.error(err.message);
     }
@@ -251,29 +260,35 @@ const Question = (props) => {
         <>
 
         <div className={`questionRow m-3 justify-content-center timer p-3 questionDivWrapper ${quest.IsLocked__c ? "locked" : "open" }`}> 
-            <Row>
-              <Col>
+          {showKnockOut && 
+          <Row>
+            <div>
+              {contestKnockoutText}
+            </div>
+          </Row>
+          }
+          <Row>
+            <Col>
 
-              <Timer initialTime={counter}
-              direction="backward"
-              lastUnit="s">
-                  {({ start, resume, pause, stop, reset, getTimerState, getTime }) => (
-                    <React.Fragment>
+            <Timer initialTime={counter}
+            direction="backward"
+            lastUnit="s">
+                {({ start, resume, pause, stop, reset, getTimerState, getTime }) => (
+                  <React.Fragment>
 
-                          {/* on timer state of stopped, call the disable function and show answer*/}
-                      <div>
-                          <Timer.Seconds /> Seconds
-                      </div>              
-                      </React.Fragment>
-                  )}
-              </Timer>
+                        {/* on timer state of stopped, call the disable function and show answer*/}
+                    <div>
+                        <Timer.Seconds /> Seconds
+                    </div>              
+                    </React.Fragment>
+                )}
+            </Timer>
             </Col>
             <Col>
               Outs left: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
             </Col>
 
-            </Row>
-
+          </Row>
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
         </div>

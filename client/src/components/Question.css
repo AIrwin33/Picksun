@@ -67,3 +67,11 @@
 .questionDivWrapper .locked {
     background-color:  grey;
  }
+
+ .answerBanner .red {
+    background-color:  red;
+ }
+ 
+ .answerBanner .green {
+     background-color:  green;
+  }

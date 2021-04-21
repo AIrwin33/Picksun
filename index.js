@@ -315,12 +315,16 @@ app.post("/contestwon", authorization, async(req, res) => {
 app.post("/knockout", async(req, res) => {
     try {
         const {partid} = req.body;
-
+        
       const knockedoutpart = await pool.query(
           "UPDATE salesforce.participation__c SET Status__c = 'Knocked Out', PlaceFinish__c = $1 WHERE id = $2", 
-      [placefinish, partid]
+      [partid]
       );
-      res.json(knockedoutpart.rows[0]);
+        const contestId = knockedoutpart.rows[0].Contest__c;
+      const contestText = await pool.query("SELECT * FROM salesforce.contest__c WHERE sfid = $1", [contestId]);
+
+      )
+      res.json(contestText);
     }catch(err){
         console.log('knock out error ' + err);
     }
