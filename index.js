@@ -323,7 +323,7 @@ app.post("/knockout", async(req, res) => {
         const contestId = knockedoutpart.rows[0].Contest__c;
       const contestText = await pool.query("SELECT * FROM salesforce.contest__c WHERE sfid = $1", [contestId]);
 
-      )
+      
       res.json(contestText);
     }catch(err){
         console.log('knock out error ' + err);

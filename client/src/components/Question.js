@@ -186,11 +186,11 @@ const Question = (props) => {
 
         // TODO :: if wrong answers is greater, then call handle knockout
 
-        if( ){
-          handleKnockout();
-        }else {
-          console.log('still in the game');
-        }
+        // if( ){
+        //   handleKnockout();
+        // }else {
+        //   console.log('still in the game');
+        // }
     } catch (err) {
       console.error(err.message);
     }
