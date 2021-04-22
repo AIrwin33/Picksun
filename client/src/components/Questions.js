@@ -171,7 +171,7 @@ const Questions = (props) => {
                             </div>
                         </Col>
                         <Col>
-                            Outs left: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
+                            Wrong / Allowed Wrong: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
                         </Col>
 
 

@@ -289,7 +289,13 @@ const Question = (props) => {
               
               <Col>
                 <div>  
+                  {partAnswer.selection__c !== null &&
                   <span>Your Answer: {partAnswer.selection__c}</span>
+                  }
+
+                  {partAnswer.selection__c == null &&
+                  <span>Your Answer: Did Not Answer</span>
+                  }
                 </div>
               </Col>
               {partAnswer.selection__c === props.ques.correct_answer__c &&
