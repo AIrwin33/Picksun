@@ -120,7 +120,7 @@ const Questions = (props) => {
 
                         <Col>
 
-                        <Timer initialTime={180000}
+                        <Timer initialTime={counter}
                         direction="backward"
                         lastUnit="s"
                         checkpoints={[
@@ -148,6 +148,7 @@ const Questions = (props) => {
                     
                 </Row>
                 <Row>
+                    <Col>
                     {questions.length > 0 &&
                     <Carousel slide="false">
                         {questions.map(question => {
@@ -163,6 +164,7 @@ const Questions = (props) => {
                             {props.contestQuestionText}
                         </div>
                     }
+                    </Col>
                 </Row>
             </Container>
 
