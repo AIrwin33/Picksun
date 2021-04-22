@@ -118,9 +118,9 @@ const Questions = (props) => {
                     {/* slide for questions */}
 
                         <Col>
-                            {/* <div key={counter}> */}
+                            <div key={counter}>
 
-                                <Timer initialTime={180000}
+                                <Timer initialTime={counter}
                                 direction="backward"
                                 lastUnit="s"
                                 checkpoints={[
@@ -141,7 +141,7 @@ const Questions = (props) => {
                                         </React.Fragment>
                                     )}
                                 </Timer>
-                            {/* </div> */}
+                            </div>
                         </Col>
                         <Col>
                             Outs left: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
