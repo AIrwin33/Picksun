@@ -71,6 +71,7 @@ const Questions = (props) => {
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
                 console.log(timeVal);
+                setCounter(timeVal);
             }else{
                 console.log('no available questions');
             }
