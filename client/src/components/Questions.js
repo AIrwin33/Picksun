@@ -50,14 +50,13 @@ const Questions = (props) => {
     const getQuestions = async () => {
         try {
             console.log('get questions');
-            console.log(props.questiontime);
+
             const res = await fetch(`/questions/${props.contestid}`, {
               method: "GET",
               headers: { jwt_token: localStorage.token }
             });
       
             const parseData = await res.json();
-            console.log('questions' + JSON.stringify(parseData));
             var questionIdArr = [];
             var nonLockedQuestionsArr = [];
             var i = 0;
@@ -70,8 +69,8 @@ const Questions = (props) => {
 
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
-                console.log(props.questiontime);
-                setCounter(props.questiontime);
+                // console.log(props.questiontime);
+                // setCounter(props.questiontime);
             }else{
                 console.log('no available questions');
             }
@@ -107,7 +106,7 @@ const Questions = (props) => {
         getQuestions(props.questiontime);
         console.log(props.questiontime);
         setCounter(props.questiontime);
-        
+        console.log(counter);
         }, [props.questiontime]);
 
         return ( 
@@ -119,7 +118,7 @@ const Questions = (props) => {
                     {/* slide for questions */}
 
                         <Col>
-
+                        counter: {counter}
                         <Timer initialTime={counter}
                         direction="backward"
                         lastUnit="s"
