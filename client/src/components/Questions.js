@@ -50,6 +50,7 @@ const Questions = (props) => {
     const getQuestions = async (timeVal) => {
         try {
             console.log('get questions');
+            console.log(props.questiontime);
             const res = await fetch(`/questions/${props.contestid}`, {
               method: "GET",
               headers: { jwt_token: localStorage.token }
@@ -105,7 +106,7 @@ const Questions = (props) => {
         getQuestions(props.questiontime);
        
         
-        }, []);
+        }, [props.questiontime]);
 
         return ( 
             <>
