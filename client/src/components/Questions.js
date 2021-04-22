@@ -18,8 +18,33 @@ import "./Questions.css";
 
 const Questions = (props) => {
     const [questions, setQuestions] = useState([]);
-    
+    const [partWrongAnswer, setPartWrongAnswer] = useState([]);
+    const [counter, setCounter] = useState();
     const [questionids, setQuestionIds] = useState([]);
+
+    const doGetParticipationWrongAnswers = async () => {
+        try {
+          const partid = props.participation_id;
+          console.log('getting particiation wrong answers allwoed' + partid);
+          const body = {partid};
+          const response = await fetch(
+    
+            "/participationswronganswer",
+            {
+              method: "POST",
+              headers: {
+                "Content-type": "application/json"
+              },
+              body: JSON.stringify(body)
+            }
+          );
+          
+          const parseData = await response.json();
+          setPartWrongAnswer(parseData);
+        } catch (err) {
+          console.error(err.message);
+        }
+      }
 
     const getQuestions = async () => {
         try {
@@ -32,13 +57,25 @@ const Questions = (props) => {
             const parseData = await res.json();
             console.log('questions' + JSON.stringify(parseData));
             var questionIdArr = [];
+            var nonLockedQuestionsArr = [];
             var i = 0;
             for(i=0; parseData.length > i; i++){
-                console.log(parseData[i].sfid);
                 questionIdArr.push(parseData[i].sfid);
+                if(parseData[i].IsLocked__c !== true){
+                    nonLockedQuestionsArr.push(parseData[i]);
+                }
             };
+
+            //if there are questions that aren't locked, then set the timing
+            if(nonLockedQuestionsArr.length > 0){
+                console.log(props.questiontime);
+            }else{
+                console.log('no available questions');
+            }
+            //setCounter(props.questiontime);
             setQuestionIds(questionIdArr);
             setQuestions(parseData);
+            
 
           } catch (err) {
             console.error('get questions error' + err.message);
@@ -66,6 +103,8 @@ const Questions = (props) => {
 
       useEffect(() => {
         getQuestions();
+        doGetParticipationWrongAnswers();
+        
         }, []);
 
         return ( 
@@ -75,6 +114,28 @@ const Questions = (props) => {
             <Container>
                 <Row className="questionRow m-3 p-3 justify-content-center">
                     {/* slide for questions */}
+                    <Row>
+                        <Col>
+
+                        <Timer initialTime={counter}
+                        direction="backward"
+                        lastUnit="s">
+                            {({ start, resume, pause, stop, reset, getTimerState, getTime }) => (
+                            <React.Fragment>
+
+                                    {/* on timer state of stopped, call the disable function and show answer*/}
+                                <div>
+                                    <Timer.Seconds /> Seconds
+                                </div>              
+                                </React.Fragment>
+                            )}
+                        </Timer>
+                        </Col>
+                        <Col>
+                            Outs left: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
+                        </Col>
+
+                    </Row>
 
                     {questions.length > 0 &&
                     <Carousel slide="false">

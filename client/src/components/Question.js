@@ -21,8 +21,8 @@ import Timer from 'react-compound-timer'
 
 const Question = (props) => {
     const [radioValue, setRadioValue] = useState('');
-    const [counter, setCounter] = useState();
-    const [partWrongAnswer, setPartWrongAnswer] = useState([]);
+    
+    
     const [partAnswer, setPartAnswer] = useState([]);
     const [quest, setQuest] = useState([]);
     const [showanswer, setShowAnswer] = useState([false]);
@@ -34,29 +34,7 @@ const Question = (props) => {
         handleUpdateQuestionValue(event.target.value);
     }
 
-    const doGetParticipationWrongAnswers = async () => {
-      try {
-        const partid = props.participation_id;
-        console.log('getting particiation wrong answers allwoed' + partid);
-        const body = {partid};
-        const response = await fetch(
-  
-          "/participationswronganswer",
-          {
-            method: "POST",
-            headers: {
-              "Content-type": "application/json"
-            },
-            body: JSON.stringify(body)
-          }
-        );
-        
-        const parseData = await response.json();
-        setPartWrongAnswer(parseData);
-      } catch (err) {
-        console.error(err.message);
-      }
-    }
+    
 
     const disableQuestion = async (questionid) => {
         try {
@@ -225,7 +203,6 @@ const Question = (props) => {
 
   useEffect(() => {
     setQuest(props.ques);
-    doGetParticipationWrongAnswers();
 
     //props.ques.publish_time__c
     var pubtime = moment(props.ques.publish_time__c);
@@ -267,28 +244,7 @@ const Question = (props) => {
             </div>
           </Row>
           }
-          <Row>
-            <Col>
-
-            <Timer initialTime={counter}
-            direction="backward"
-            lastUnit="s">
-                {({ start, resume, pause, stop, reset, getTimerState, getTime }) => (
-                  <React.Fragment>
-
-                        {/* on timer state of stopped, call the disable function and show answer*/}
-                    <div>
-                        <Timer.Seconds /> Seconds
-                    </div>              
-                    </React.Fragment>
-                )}
-            </Timer>
-            </Col>
-            <Col>
-              Outs left: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
-            </Col>
-
-          </Row>
+          
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
         </div>
