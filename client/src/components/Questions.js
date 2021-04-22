@@ -70,7 +70,7 @@ const Questions = (props) => {
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
                 // console.log(props.questiontime);
-                // setCounter(props.questiontime);
+                setCounter(props.questiontime);
             }else{
                 console.log('no available questions');
             }
@@ -104,9 +104,6 @@ const Questions = (props) => {
 
       useEffect(() => {
         getQuestions(props.questiontime);
-        console.log(props.questiontime);
-        setCounter(props.questiontime);
-        console.log(counter);
         }, [props.questiontime]);
 
         return ( 
@@ -118,7 +115,7 @@ const Questions = (props) => {
                     {/* slide for questions */}
 
                         <Col>
-                            <div key={counter}>
+                            {/* <div key={counter}> */}
 
                                 <Timer initialTime={counter}
                                 direction="backward"
@@ -141,7 +138,7 @@ const Questions = (props) => {
                                         </React.Fragment>
                                     )}
                                 </Timer>
-                            </div>
+                            {/* </div> */}
                         </Col>
                         <Col>
                             Outs left: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
