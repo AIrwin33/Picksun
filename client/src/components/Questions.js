@@ -24,7 +24,7 @@ const Questions = (props) => {
     const [counter, setCounter] = useState();
     const [questionids, setQuestionIds] = useState([]);
 
-    const doGetParticipationWrongAnswers = async () => {
+    const doGetParticipationWrongAnswers = async (props) => {
         try {
           const partid = props.participation_id;
           console.log('getting particiation wrong answers allwoed' + partid);
@@ -70,8 +70,10 @@ const Questions = (props) => {
 
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
-                var millival = timeVal *1000;
+                const millival = timeVal *1000;
+                console.log(millival);
                 setCounter(millival);
+                console.log(counter);
             }else{
                 console.log('no available questions');
             }
