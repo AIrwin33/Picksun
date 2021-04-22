@@ -118,8 +118,7 @@ const Questions = (props) => {
                     {/* slide for questions */}
 
                         <Col>
-                        counter: {counter}
-                        <Timer initialTime={this.counter}
+                        <Timer initialTime={180000}
                         direction="backward"
                         lastUnit="s"
                         checkpoints={[
@@ -127,8 +126,10 @@ const Questions = (props) => {
                                 time: 0,
                                 callback: () => disableQuestions(),
                             },
-                        ]}>
-                            {({ start, resume, pause, stop, reset, getTimerState, getTime }) => (
+                        ]}
+                        >
+                            {({ start, resume, pause, stop, reset, getTimerState, getTime, setTime }) => (
+                                
                             <React.Fragment>
 
                                     {/* on timer state of stopped, call the disable function and show answer*/}
