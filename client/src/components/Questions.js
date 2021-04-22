@@ -75,6 +75,7 @@ const Questions = (props) => {
                 if(props.contest.opened_time__c !== null){
                     var currtime = moment();
                     var counttime = moment.duration(currtime.diff(props.contest.Opened_Time__c));
+                    console.log(counttime)
                     setCounter(counttime);
                 }else{
                     var millival = props.questiontime *1000;
