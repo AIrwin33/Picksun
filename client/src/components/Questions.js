@@ -24,7 +24,7 @@ const Questions = (props) => {
     const [counter, setCounter] = useState(0);
     const [questionids, setQuestionIds] = useState([]);
 
-    const doGetParticipationWrongAnswers = async (props) => {
+    const doGetParticipationWrongAnswers = async () => {
         try {
           const partid = props.participation_id;
           console.log('getting particiation wrong answers allwoed' + partid);
