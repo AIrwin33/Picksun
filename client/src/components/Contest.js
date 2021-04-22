@@ -49,10 +49,11 @@ const Contest = ({ match }) => {
             console.log('parse data' + parseData);
             setContest(parseData);
             console.log('after contest set');
-            setLoaded(true);
+            
             getParticipationByContest(parseData);
             getEvent(parseData);
             getContestParticipations(parseData);
+            setLoaded(true);
           } catch (err) {
             console.error(err.message);
           }
