@@ -118,27 +118,30 @@ const Questions = (props) => {
                     {/* slide for questions */}
 
                         <Col>
-                        <Timer initialTime={180000}
-                        direction="backward"
-                        lastUnit="s"
-                        checkpoints={[
-                            {
-                                time: 0,
-                                callback: () => disableQuestions(),
-                            },
-                        ]}
-                        >
-                            {({ start, resume, pause, stop, reset, getTimerState, getTime, setTime }) => (
-                                
-                            <React.Fragment>
+                            <div key={counter}>
+                            
+                                <Timer initialTime={counter}
+                                direction="backward"
+                                lastUnit="s"
+                                checkpoints={[
+                                    {
+                                        time: 0,
+                                        callback: () => disableQuestions(),
+                                    },
+                                ]}
+                                >
+                                    {({ start, resume, pause, stop, reset, getTimerState, getTime, setTime }) => (
+                                        
+                                        <React.Fragment>
 
-                                    {/* on timer state of stopped, call the disable function and show answer*/}
-                                <div>
-                                    <Timer.Seconds /> Seconds
-                                </div>              
-                                </React.Fragment>
-                            )}
-                        </Timer>
+                                            {/* on timer state of stopped, call the disable function and show answer*/}
+                                        <div>
+                                            <Timer.Seconds /> Seconds
+                                        </div>              
+                                        </React.Fragment>
+                                    )}
+                                </Timer>
+                            </div>
                         </Col>
                         <Col>
                             Outs left: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
