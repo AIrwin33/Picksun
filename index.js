@@ -276,7 +276,20 @@ app.post("/wronganswer", async(req, res) => {
 
 });
 
+app.post("updateOpenedTime", authorization, async(req, res) => {
+    try {
+        const {now} = req.body;
+        const { contest_id } = req.params;
+        const openedtime = await pool.query(
+          "UPDATE salesforce.contest__c SET Opened_Time__c = $1 WHERE externalid__c = $2", 
+      [now, contest_id]
+      );
+      console.log(openedtime);
+    }catch(err){
+        console.log('wrong answer error ' + err);
+    }
 
+});
 
 //add win
 

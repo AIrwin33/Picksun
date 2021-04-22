@@ -69,11 +69,17 @@ const Questions = (props) => {
 
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
-                console.log(props.questiontime);
-                var millival = props.questiontime *1000;
-                console.log(millival);
-                setCounter(millival);
-                console.log(counter);
+                if(contest.Opened_Time__c !== null){
+                    var currtime = moment();
+                    var counttime = moment.duration(currtime.diff(cutofftime));
+                    setCounter(counttime);
+                }else{
+                    var millival = props.questiontime *1000;
+                    console.log(millival);
+                    setCounter(millival);
+                    handleUpdateOpenedTime();
+                }
+                
             }else{
                 console.log('no available questions');
             }
@@ -85,6 +91,23 @@ const Questions = (props) => {
             console.error('get questions error' + err.message);
           }
       };
+
+      const handleUpdateOpenedTime = async () => {
+        try {
+            const now = moment();
+          const body = {now};
+          const res = await fetch(`/updateOpenedTime/${props.contestid}`, {
+            method: "POST",
+            headers: { jwt_token: localStorage.token,
+              "Content-type": "application/json" 
+          },
+            body: JSON.stringify(body)
+          });
+          console.log('success');
+        }catch (err) {
+            console.log('disable questions err : '+ err.message);
+        }
+    }
 
       const disableQuestions = async (questionids) => {
           try {
@@ -106,8 +129,8 @@ const Questions = (props) => {
       }
 
       useEffect(() => {
-        getQuestions(props.questiontime);
-        }, [props.questiontime]);
+        getQuestions(props.contest.question_timer__c);
+        }, [props.contest.question_timer__c]);
 
         return ( 
             <>
