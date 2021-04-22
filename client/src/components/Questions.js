@@ -21,7 +21,7 @@ import Timer from 'react-compound-timer'
 const Questions = (props) => {
     const [questions, setQuestions] = useState([]);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
-    const [counter, setCounter] = useState(null);
+    const [counter, setCounter] = useState(props.questiontime);
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -119,7 +119,7 @@ const Questions = (props) => {
 
                         <Col>
                             <div key={counter}>
-                            
+
                                 <Timer initialTime={counter}
                                 direction="backward"
                                 lastUnit="s"
