@@ -69,7 +69,6 @@ const Questions = (props) => {
 
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
-                counter = 1000;
                 const millival = timeVal *1000;
                 console.log(millival);
                 setCounter(millival);
