@@ -16,6 +16,8 @@ import Question from './Question.js';
 
 import "./Questions.css";
 
+import Timer from 'react-compound-timer'
+
 const Questions = (props) => {
     const [questions, setQuestions] = useState([]);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
