@@ -14,6 +14,8 @@ import {
 
 import Question from './Question.js';
 
+import moment from 'moment';
+
 import "./Questions.css";
 
 import Timer from 'react-compound-timer'
@@ -69,9 +71,9 @@ const Questions = (props) => {
 
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
-                if(contest.Opened_Time__c !== null){
+                if(props.contest.Opened_Time__c !== null){
                     var currtime = moment();
-                    var counttime = moment.duration(currtime.diff(cutofftime));
+                    var counttime = moment.duration(currtime.diff(props.contest.Opened_Time__c));
                     setCounter(counttime);
                 }else{
                     var millival = props.questiontime *1000;
