@@ -16,7 +16,7 @@ import "./Question.css";
 
 import moment from 'moment';
 
-import Timer from 'react-compound-timer'
+
 
 
 const Question = (props) => {
@@ -205,29 +205,29 @@ const Question = (props) => {
     setQuest(props.ques);
 
     //props.ques.publish_time__c
-    var pubtime = moment(props.ques.publish_time__c);
-    console.log(pubtime);
+    // var pubtime = moment(props.ques.publish_time__c);
+    // console.log(pubtime);
 
-    //get current time
+    // //get current time
 
-    var currtime = moment();
+    // var currtime = moment();
 
-    console.log(currtime);
-    //moment current time
+    // console.log(currtime);
+    // //moment current time
 
-    var cutofftime = moment(props.ques.publish_time__c).add(120,'seconds');
+    // var cutofftime = moment(props.ques.publish_time__c).add(120,'seconds');
 
-    if(moment(currtime).isBefore(cutofftime)){
-        //get time between current time and cutofftime
+    // if(moment(currtime).isBefore(cutofftime)){
+    //     //get time between current time and cutofftime
 
-        var counttime = moment.duration(currtime.diff(cutofftime));
+    //     var counttime = moment.duration(currtime.diff(cutofftime));
 
-        setCounter(counttime);
-    }else{
+    //     setCounter(counttime);
+    // }else{
         
-      console.log('else disable?');
-      //disableQuestion(props.ques.sfid)
-    }
+    //   console.log('else disable?');
+    //   //disableQuestion(props.ques.sfid)
+    // }
 
 
   }, [props.ques]);
