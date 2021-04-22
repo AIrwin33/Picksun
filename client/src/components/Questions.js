@@ -21,8 +21,7 @@ import Timer from 'react-compound-timer'
 const Questions = (props) => {
     const [questions, setQuestions] = useState([]);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
-    const [counter, setCounter] = useState(0);
-    const [questionids, setQuestionIds] = useState([]);
+    const [counter, setCounter] = useState([]);
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -78,7 +77,7 @@ const Questions = (props) => {
                 console.log('no available questions');
             }
             setQuestions(parseData);
-            doGetParticipationWrongAnswers();
+            //doGetParticipationWrongAnswers();
             
 
           } catch (err) {
