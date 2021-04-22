@@ -48,7 +48,7 @@ const Questions = (props) => {
         }
       }
 
-    const getQuestions = async () => {
+    const getQuestions = async (timeVal) => {
         try {
             console.log('get questions');
             const res = await fetch(`/questions/${props.contestid}`, {
@@ -70,7 +70,7 @@ const Questions = (props) => {
 
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
-                console.log(props.questiontime);
+                console.log(timeVal);
             }else{
                 console.log('no available questions');
             }
@@ -104,7 +104,7 @@ const Questions = (props) => {
       }
 
       useEffect(() => {
-        getQuestions();
+        getQuestions(props.questiontime);
         doGetParticipationWrongAnswers();
         
         }, []);
