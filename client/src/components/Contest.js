@@ -49,7 +49,7 @@ const Contest = ({ match }) => {
             console.log('parse data contest' + JSON.stringify(parseData));
             setContest(parseData);
             console.log('after contest set');
-            setLoaded(true);
+            
             getParticipationByContest(parseData);
             getEvent(parseData);
             getContestParticipations(parseData);
@@ -111,6 +111,7 @@ const Contest = ({ match }) => {
             const parseData = await res.json();
             console.log('participation' + JSON.stringify(parseData));
             setParticipation(parseData);
+            setLoaded(true);
           } catch (err) {
             console.error(err.message);
           }
