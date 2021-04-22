@@ -279,9 +279,11 @@ app.post("/wronganswer", async(req, res) => {
 app.post("/updateOpenedTime/:contest_id", authorization, async(req, res) => {
     try {
         const {now} = req.body;
+        console.log(now);
+
         const { contest_id } = req.params;
         const openedtime = await pool.query(
-          "UPDATE salesforce.contest__c SET Opened_Time__c = $1 WHERE externalid__c = $2", 
+          "UPDATE salesforce.contest__c SET Opened_Time__c = $1 WHERE sfid = $2", 
       [now, contest_id]
       );
       console.log(openedtime);

@@ -108,7 +108,6 @@ const Questions = (props) => {
           },
             body: JSON.stringify(body)
           });
-          console.log('success');
         }catch (err) {
             console.log('disable questions err : '+ err.message);
         }
