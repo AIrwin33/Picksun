@@ -70,7 +70,8 @@ const Questions = (props) => {
 
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
-                setCounter(timeVal);
+                var millival = timeVal *1000;
+                setCounter(millival);
             }else{
                 console.log('no available questions');
             }
@@ -120,7 +121,13 @@ const Questions = (props) => {
 
                         <Timer initialTime={counter}
                         direction="backward"
-                        lastUnit="s">
+                        lastUnit="s"
+                        checkpoints={[
+                            {
+                                time: 0,
+                                callback: () => disableQuestions(),
+                            },
+                        ]}>
                             {({ start, resume, pause, stop, reset, getTimerState, getTime }) => (
                             <React.Fragment>
 
