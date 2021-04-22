@@ -78,7 +78,7 @@ const Questions = (props) => {
                     console.log(counttime)
                     setCounter(counttime);
                 }else{
-                    var millival = props.questiontime *1000;
+                    var millival = props.contest.question_time__c *1000;
                     console.log(millival);
                     setCounter(millival);
                     handleUpdateOpenedTime();

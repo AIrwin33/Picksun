@@ -276,7 +276,7 @@ app.post("/wronganswer", async(req, res) => {
 
 });
 
-app.post("updateOpenedTime", authorization, async(req, res) => {
+app.post("/updateOpenedTime/:contest_id", authorization, async(req, res) => {
     try {
         const {now} = req.body;
         const { contest_id } = req.params;
