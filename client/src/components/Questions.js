@@ -21,7 +21,7 @@ import Timer from 'react-compound-timer'
 const Questions = (props) => {
     const [questions, setQuestions] = useState([]);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
-    const [counter, setCounter] = useState();
+    const [counter, setCounter] = useState(300000);
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -69,10 +69,7 @@ const Questions = (props) => {
 
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
-                const millival = timeVal *1000;
-                console.log(millival);
-                setCounter(millival);
-                console.log(counter);
+                setCounter(timeVal);
             }else{
                 console.log('no available questions');
             }
@@ -120,7 +117,7 @@ const Questions = (props) => {
 
                         <Col>
 
-                        <Timer initialTime={props.questiontime}
+                        <Timer initialTime={counter}
                         direction="backward"
                         lastUnit="s"
                         checkpoints={[
