@@ -47,7 +47,7 @@ const Questions = (props) => {
         }
       }
 
-    const getQuestions = async (timeVal) => {
+    const getQuestions = async () => {
         try {
             console.log('get questions');
             console.log(props.questiontime);
@@ -70,7 +70,7 @@ const Questions = (props) => {
 
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
-                setCounter(timeVal);
+                setCounter(props.questiontime);
             }else{
                 console.log('no available questions');
             }
