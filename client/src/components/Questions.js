@@ -117,7 +117,7 @@ const Questions = (props) => {
             <Container>
                 <Row className="questionRow m-3 p-3 justify-content-center">
                     {/* slide for questions */}
-                    <Row>
+
                         <Col>
 
                         <Timer initialTime={180000}
@@ -144,8 +144,10 @@ const Questions = (props) => {
                             Outs left: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
                         </Col>
 
-                    </Row>
 
+                    
+                </Row>
+                <Row>
                     {questions.length > 0 &&
                     <Carousel slide="false">
                         {questions.map(question => {
