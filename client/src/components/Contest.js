@@ -185,9 +185,6 @@ const Contest = ({ match }) => {
                             <Col xs={9}> 
                                 <Row>
                                     <span className="fontBold">{part.name}</span>
-                                    <span>
-                                        {part.sfid} and {participation.sfid}
-                                    </span>
                                     {part.sfid === participation.sfid &&
                                     <div className="yourpart">
                                         You
