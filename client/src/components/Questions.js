@@ -25,6 +25,12 @@ const Questions = (props) => {
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [counter, setCounter] = useState(props.questiontime);
 
+    const [index, setIndex] = useState(0);
+
+    const handleCarouselSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+    };
+
     const doGetParticipationWrongAnswers = async () => {
         try {
           const partid = props.participation_id;
@@ -180,7 +186,7 @@ const Questions = (props) => {
                 <Row>
                     <Col>
                     {questions.length > 0 &&
-                    <Carousel slide="false">
+                    <Carousel activeIndex={index} onSelect={handleCarouselSelect}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
                                 <Question ques={question} participation_id={props.participation_id} partsfid={props.partsfid}></Question>
