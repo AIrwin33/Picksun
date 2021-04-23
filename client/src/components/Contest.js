@@ -18,6 +18,7 @@ import avatar from '../assets/blue_avatar_200.png';
 import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
 
 import "./Contest.css";
+import { JsonWebTokenError } from 'jsonwebtoken';
 
 
 const twitterRedirect = () => {
@@ -86,6 +87,7 @@ const Contest = ({ match }) => {
             });
       
             const parseData = await res.json();
+            console.log('participations list '+ Json.stringify(parseData));
             setAllParts(parseData.length);
             var i;
             var activeParts;
