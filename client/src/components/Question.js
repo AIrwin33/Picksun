@@ -42,7 +42,7 @@ const Question = (props) => {
         questionids.push(questionid);
         console.log(questionids);
           const body = {questionids};
-          const res = await fetch(`/disableQuestions/`, {
+          const res = await fetch(`/disableQuestions`, {
             method: "POST",
             headers: { jwt_token: localStorage.token,
               "Content-type": "application/json" 
