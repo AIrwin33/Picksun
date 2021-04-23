@@ -219,7 +219,7 @@ app.get("/questions/:contest_id", authorization, async(req,res) => {
 
 //disable questions on times up or locked
 
-app.post("/disablequestions/", async(req,res) => {
+app.post("/disablequestions/", authorization, async(req,res) => {
     try {
         const { questionids } = req.body;
         console.log('question ids' + questionids);
