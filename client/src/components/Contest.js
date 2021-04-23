@@ -95,7 +95,6 @@ const Contest = ({ match }) => {
                     activeParts.push(parseData[i]);
                 }
               }
-              console.log('active parts::' + JSON.stringify(activeParts));
             setActiveParts(activeParts.length);
             setParticipations(activeParts);
         }catch (err) {

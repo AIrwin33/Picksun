@@ -131,7 +131,8 @@ const Questions = (props) => {
             });
       
             const parseData = await res.json();
-            setQuestions(parseData);
+            console.log('disabled questions' + JSON.stringify(parseData));
+            //setQuestions(parseData);
 
           }catch (err) {
               console.log('disable questions err : '+ err.message);
