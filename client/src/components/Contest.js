@@ -87,16 +87,17 @@ const Contest = ({ match }) => {
             });
       
             const parseData = await res.json();
-            console.log('participations list '+ JSON.stringify(parseData));
             setAllParts(parseData.length);
             var i;
             var activeParts;
             for (i = 0; i < parseData.length; i++) {
-                if(parseData[i].status__c = 'Active')
-                activeParts += parseData[i];
+                if(parseData[i].status__c = 'Active'){
+                    activeParts += parseData[i];
+                }
               }
-            setActiveParts(parseData.length);
-            setParticipations(parseData);
+              console.log('active parts::' + JSON.stringify(activeParts));
+            setActiveParts(activeParts.length);
+            setParticipations(activeParts);
         }catch (err) {
             console.error(err.message);
         }
@@ -111,7 +112,6 @@ const Contest = ({ match }) => {
             });
       
             const parseData = await res.json();
-            console.log('participation' + JSON.stringify(parseData));
             setParticipation(parseData);
             setLoaded(true);
           } catch (err) {
@@ -186,7 +186,7 @@ const Contest = ({ match }) => {
                                 <Row>
                                     <span className="fontBold">{part.participant_name__c}</span>
                                     {part.sfid === participation.sfid &&
-                                    <div className="yourpart">
+                                    <div className="yourpart ml-3">
                                         You
                                     </div>
                                     }
