@@ -60,11 +60,11 @@
 }
 
 
-.questionDivWrapper .open {
+.questionRow .open {
    background-color:  #d4d4d4;
 }
 
-.questionDivWrapper .locked {
+.questionRow .locked {
     background-color:  grey;
  }
 

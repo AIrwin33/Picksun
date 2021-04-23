@@ -110,6 +110,42 @@ const Question = (props) => {
 
   }
 
+  
+
+  const handleWrongAnswer = async () => {
+        
+    //insert participation answer
+    try {
+      console.log('handle wrong answer');
+      const partid = props.participation_id;
+      const body = {partid};
+      const response = await fetch(
+
+        "/wronganswer",
+        {
+          method: "POST",
+          headers: { jwt_token: localStorage.token,
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(body)
+        }
+      );
+      
+      const parseRes = await response.json();
+        console.log(parseRes);
+        const participationwrong = parseRes;
+
+        if(participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c){
+          handleKnockout();
+        }else {
+          console.log('still in the game');
+        }
+    } catch (err) {
+      console.error(err.message);
+    }
+
+  }
+
   const handleKnockout = async () => {
         
     //TODO : get place finish when knocked out
@@ -138,43 +174,6 @@ const Question = (props) => {
 
   }
 
-  const handleWrongAnswer = async () => {
-        
-    //insert participation answer
-    try {
-      console.log('handle wrong answer');
-      const partid = props.participation_id;
-      const body = {partid};
-      const response = await fetch(
-
-        "/wronganswer",
-        {
-          method: "POST",
-          headers: { jwt_token: localStorage.token,
-            "Content-type": "application/json"
-          },
-          body: JSON.stringify(body)
-        }
-      );
-      
-      const parseRes = await response.json();
-      
-        
-        // TODO :: return number of wrong answers?
-
-        // TODO :: if wrong answers is greater, then call handle knockout
-
-        // if( ){
-        //   handleKnockout();
-        // }else {
-        //   console.log('still in the game');
-        // }
-    } catch (err) {
-      console.error(err.message);
-    }
-
-  }
-
   const handleContestWon = async () => {
         // TODO :: move this up to contest?
     try {
@@ -195,6 +194,8 @@ const Question = (props) => {
       const parseRes = await response.json();
       console.log('created parse res' + JSON.stringify(parseRes));
         console.log("You've been knocked out");
+        // TODO check number of questions in contest
+        console.log(props.contestquestions);
     } catch (err) {
       console.error(err.message);
     }
@@ -236,7 +237,7 @@ const Question = (props) => {
     return (
         <>
 
-        <div className={`questionRow m-3 justify-content-center timer p-3 questionDivWrapper ${quest.IsLocked__c ? "locked" : "open" }`}> 
+        <div className={`questionRow m-3 justify-content-center timer p-3  ${quest.IsLocked__c ? "locked" : "open" }`}> 
           {showKnockOut && 
           <Row>
             <div>
