@@ -95,7 +95,7 @@ const Questions = (props) => {
                 console.log('no available questions');
             }
             setQuestions(parseData);
-            //doGetParticipationWrongAnswers();
+            doGetParticipationWrongAnswers();
             
 
           } catch (err) {

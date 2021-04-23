@@ -162,7 +162,7 @@ app.get("/contestparticipations/:contest_id", authorization, async(req,res) => {
     try{
         const {contest_id} = req.params;
         console.log('all contest participations');
-        const part = await pool.query("SELECT * FROM salesforce.participant__c AS participant AND salesforce.participation__c AS participation  WHERE participation.contest__c = $1 AND participation.participant__r__externalid__c = participant.externalid__c::text;", [contest_id]);
+        const part = await pool.query("SELECT * FROM salesforce.participant__c AS participant, salesforce.participation__c AS participation  WHERE participation.contest__c = $1 AND participation.participant__r__externalid__c = participant.externalid__c::text;", [contest_id]);
         res.json(part.rows);
         console.log(part.rows.length);
         console.log('all parts in contest' + JSON.stringify(part.rows));
