@@ -153,7 +153,7 @@ const Questions = (props) => {
                         <Col>
                             <div key={counter}>
 
-                                <Timer initialTime={30}
+                                <Timer initialTime={30000}
                                 direction="backward"
                                 lastUnit="s"
                                 checkpoints={[
