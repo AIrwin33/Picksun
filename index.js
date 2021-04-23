@@ -327,18 +327,18 @@ app.post("/contestwon", authorization, async(req, res) => {
 
 //knockout
 
-//update status Status__c to Knocked Out is wrong answers on participation are equal to or greater than Wrong_Answers_Allowed__c on contest. 
-
 app.post("/knockout", async(req, res) => {
     try {
         const {partid} = req.body;
         
-      const knockedoutpart = await pool.query(
-          "UPDATE salesforce.participation__c SET Status__c = 'Knocked Out' WHERE ExternalId__c = $2", 
-      [partid]
-      );
+        const knockedoutpart = await pool.query(
+            "UPDATE salesforce.participation__c SET Status__c = 'Knocked Out' WHERE ExternalId__c = $2", 
+        [partid]
+        );
         const contestId = knockedoutpart.rows[0].Contest__c;
-      const contestText = await pool.query("SELECT * FROM salesforce.contest__c WHERE sfid = $1", [contestId]);
+        const contestText = await pool.query("SELECT * FROM salesforce.contest__c WHERE sfid = $1", [contestId]);
+
+        //TODO lock all questions
 
       
       res.json(contestText);

@@ -159,7 +159,7 @@ const Contest = ({ match }) => {
                         <Row>
                             <Col>
                             {isloaded &&
-                                <Questions contestid={contest.sfid} contestQuestionText={contest.No_Questions_Text__c} contest={contest} participation_id={participation.externalid__c} partsfid={participation.sfid}/> 
+                                <Questions contestid={contest.sfid} contestQuestionText={contest.no_questions_text__c} contest={contest} participation_id={participation.externalid__c} partsfid={participation.sfid}/> 
                             }  
                             </Col>
                         </Row>
