@@ -49,8 +49,8 @@ const Question = (props) => {
           },
             body: JSON.stringify(body)
           });
-          console.log('here in disable questions');
           const parseData = await res.json();
+          console.log('here in disable question' + JSON.stringify(parseData));
           setQuest(parseData);
           setShowAnswer(true);  
 
@@ -95,9 +95,6 @@ const Question = (props) => {
 
   const checkAnswer = async (question_sfid, answerval, correctval) => {
     try{
-      console.log(question_sfid);
-      console.log(answerval);
-      console.log(correctval);
       if(correctval === answerval){
         console.log('answer was correct');
       }else{
@@ -237,7 +234,7 @@ const Question = (props) => {
     return (
         <>
 
-        <div className={`questionRow m-3 justify-content-center timer p-3  ${quest.IsLocked__c ? "locked" : "open" }`}> 
+        <div className={`questionRow m-3 justify-content-center timer p-3  ${quest.islocked__c ? "locked" : "open" }`}> 
           {showKnockOut && 
           <Row>
             <div>
