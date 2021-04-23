@@ -249,30 +249,30 @@ const Question = (props) => {
             <span>true</span>
             }
         </div>
-        <ToggleButtonGroup   name="radioValue" value={radioValue} className="mb-2">
+        <ToggleButtonGroup   name="radioValue" value={radioValue} className={`m-3  ${quest.islocked__c ? "disabled" : "" }`}>
             <ToggleButton
-                disabled={quest.islocked__c}
+                
                 className="questionButton"
                 value="A"
                 type="radio"
                 onClick={(e) => handleRadioChange(e)}
                 >{quest.answer_a__c}</ToggleButton>
             <ToggleButton
-                disabled={quest.islocked__c}
+                
                 className="questionButton"
                 value="B"
                 type="radio"
                 onClick={(e) => handleRadioChange(e)}
                 >{quest.answer_b__c}</ToggleButton>
             <ToggleButton
-                disabled={quest.islocked__c}
+                
                 className="questionButton"
                 value="C"
                 type="radio"
                 onClick={(e) => handleRadioChange(e)}
                 >{quest.answer_c__c}</ToggleButton>
             <ToggleButton
-                disabled={quest.islocked__c}    
+                    
                 className="questionButton"
                 value="D"
                 type="radio"
