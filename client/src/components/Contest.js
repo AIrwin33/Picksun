@@ -87,13 +87,13 @@ const Contest = ({ match }) => {
       
             const parseData = await res.json();
             setAllParts(parseData.length);
-            // var i;
-            // var activeParts;
-            // for (i = 0; i < parseData.length; i++) {
-            //     if(parseData[i].status__c = 'Active')
-            //     activeParts += parseData[i];
-            //   }
-            // setActiveParts(parseData.length);
+            var i;
+            var activeParts;
+            for (i = 0; i < parseData.length; i++) {
+                if(parseData[i].status__c = 'Active')
+                activeParts += parseData[i];
+              }
+            setActiveParts(parseData.length);
             setParticipations(parseData);
         }catch (err) {
             console.error(err.message);
