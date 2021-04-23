@@ -89,10 +89,10 @@ const Contest = ({ match }) => {
             const parseData = await res.json();
             setAllParts(parseData.length);
             var i;
-            var activeParts;
+            var activeParts = [];
             for (i = 0; i < parseData.length; i++) {
                 if(parseData[i].status__c = 'Active'){
-                    activeParts += parseData[i];
+                    activeParts.push(parseData[i]);
                 }
               }
               console.log('active parts::' + JSON.stringify(activeParts));
