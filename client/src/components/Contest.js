@@ -184,7 +184,7 @@ const Contest = ({ match }) => {
                             <Col xs={3}className="text-right"> <Image src={avatar} roundedCircle height="50"></Image>  </Col>
                             <Col xs={9}> 
                                 <Row>
-                                    <span className="fontBold">{part.name}</span>
+                                    <span className="fontBold">{part.participant_name__c}</span>
                                     {part.sfid === participation.sfid &&
                                     <div className="yourpart">
                                         You
