@@ -247,7 +247,7 @@ const Question = (props) => {
             <h3>{quest.question_text__c}</h3>
             <span>{quest.islocked__c}</span>
         </div>
-        <ToggleButtonGroup   name="radioValue" value={radioValue} className="mb-2" onChange={(e) => handleUpdateQuestionValue(e)}>
+        <ToggleButtonGroup   name="radioValue" value={radioValue} className="mb-2">
             <ToggleButton
                 disabled={quest.islocked__c}
                 className="questionButton"
