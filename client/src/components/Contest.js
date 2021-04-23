@@ -87,7 +87,7 @@ const Contest = ({ match }) => {
             });
       
             const parseData = await res.json();
-            console.log('participations list '+ Json.stringify(parseData));
+            console.log('participations list '+ JSON.stringify(parseData));
             setAllParts(parseData.length);
             var i;
             var activeParts;
