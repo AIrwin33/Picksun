@@ -248,31 +248,32 @@ const Question = (props) => {
           
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
+            <span>{quest.islocked__c}</span>
         </div>
         <ToggleButtonGroup   name="radioValue" value={radioValue} className="mb-2" onChange={(e) => handleUpdateQuestionValue(e)}>
             <ToggleButton
-                disabled={quest.IsLocked__c}
+                disabled={quest.islocked__c}
                 className="questionButton"
                 value="A"
                 type="radio"
                 onClick={(e) => handleRadioChange(e)}
                 >{quest.answer_a__c}</ToggleButton>
             <ToggleButton
-                disabled={quest.IsLocked__c}
+                disabled={quest.islocked__c}
                 className="questionButton"
                 value="B"
                 type="radio"
                 onClick={(e) => handleRadioChange(e)}
                 >{quest.answer_b__c}</ToggleButton>
             <ToggleButton
-                disabled={quest.IsLocked__c}
+                disabled={quest.islocked__c}
                 className="questionButton"
                 value="C"
                 type="radio"
                 onClick={(e) => handleRadioChange(e)}
                 >{quest.answer_c__c}</ToggleButton>
             <ToggleButton
-                disabled={quest.IsLocked__c}    
+                disabled={quest.islocked__c}    
                 className="questionButton"
                 value="D"
                 type="radio"

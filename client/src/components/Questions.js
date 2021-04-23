@@ -22,6 +22,7 @@ import Timer from 'react-compound-timer'
 
 const Questions = (props) => {
     const [questions, setQuestions] = useState([]);
+    const [questionids, setQuestionIds] = useState([]);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [counter, setCounter] = useState(props.questiontime);
 
@@ -74,6 +75,7 @@ const Questions = (props) => {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
             };
+            setQuestionIds(questionIdArr);
 
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
@@ -160,7 +162,7 @@ const Questions = (props) => {
                                 checkpoints={[
                                     {
                                         time: 0,
-                                        callback: () => disableQuestions(),
+                                        callback: () => disableQuestions(questionids),
                                     },
                                 ]}
                                 >
