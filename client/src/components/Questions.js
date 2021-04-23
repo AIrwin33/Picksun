@@ -189,7 +189,7 @@ const Questions = (props) => {
                     <Carousel activeIndex={index} onSelect={handleCarouselSelect}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                <Question ques={question} participation_id={props.participation_id} contestquestions={contest.number_of_questions__c} partsfid={props.partsfid}></Question>
+                                <Question ques={question} participation_id={props.participation_id} contestquestions={props.contest.number_of_questions__c} partsfid={props.partsfid}></Question>
                             </Carousel.Item>
                         })}
                     </Carousel>
