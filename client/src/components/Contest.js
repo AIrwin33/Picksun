@@ -183,13 +183,18 @@ const Contest = ({ match }) => {
                             <Col xs={9}> 
                                 <Row>
                                     <span className="fontBold">{part.name}</span>
+                                    {part.sfid === participation.sfid &&
+                                    <div className="yourpart">
+                                        You
+                                    </div>
+                                    }
                                 </Row> 
                                 <Row>
                                     <Col>
                                         Wrong Answers: {part.wrong_answers__c}
                                     </Col>
                                     <Col>
-                                        Wrong Answers Allowed: {part.wrong_answers_allowed__c}
+                                        Answers Allowed: {part.wrong_answers_allowed__c}
                                     </Col>
                                 </Row>
                             </Col>

@@ -38,7 +38,14 @@
 .rowCard{
     border: 1px solid grey;
     border-radius: 5px;
-    margin: 5px 40px 5px 40px;
+    margin: 5px 30px 5px 30px;
     padding:5px;
     background-color: lightgrey;
+}
+
+.yourpart {
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color:#215975;
+    color:white;
 }
