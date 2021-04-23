@@ -201,7 +201,7 @@ const Question = (props) => {
 
   useEffect(() => {
     setQuest(props.ques);
-
+    console.log('is question locked' + props.ques.islocked__c);
     //props.ques.publish_time__c
     // var pubtime = moment(props.ques.publish_time__c);
     // console.log(pubtime);
@@ -245,7 +245,7 @@ const Question = (props) => {
           
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
-            <span>{quest.islocked__c}</span>
+            <span>{props.ques.islocked__c}</span>
         </div>
         <ToggleButtonGroup   name="radioValue" value={radioValue} className="mb-2">
             <ToggleButton
