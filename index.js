@@ -238,7 +238,7 @@ app.post("/answers", async(req, res) => {
   try {
 
       const {partid, question_sfid, eventVal} = req.body;
-
+        console.log('partid in creating answer');
       const newParticipationAnswer = await pool.query(
           "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, status__c, ExternalId__c) VALUES($1,$2,$3,$4, gen_random_uuid()) RETURNING *", 
       [partid, question_sfid, eventVal, 'Submitted']
@@ -265,7 +265,7 @@ app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(
     try {
         const {partsfid, questid} = req.params;
         console.log('part id' + partsfid);
-        console.log('part id' + questid);
+        console.log('questionid' + questid);
         const participationExistAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE sfid = $1 AND question__c = $2", [partsfid, questid]);
         console.log(JSON.stringify(participationExistAnswer.rows[0]));
         res.json('existing answers' + participationExistAnswer.rows[0]);
