@@ -28,6 +28,8 @@ const Question = (props) => {
     const [showanswer, setShowAnswer] = useState([false]);
     const [showKnockOut, setKnockOut] = useState([false]);
     const [contestKnockoutText, setContestKnockoutText] = useState([]);
+    const [showContestWon, setContestWon] = useState([false]);
+    const [contestWonText, setContestWonText] = useState([]);
 
     const handleRadioChange = async (event) => {
         setRadioValue(event.target.value);
@@ -218,9 +220,9 @@ const Question = (props) => {
   const handleContestWon = async () => {
         // TODO :: move this up to contest?
     try {
-      const contestid = props.ques.Contest__c;
-      const partid = props.participation_id;
-      const body = {contestid, partid};
+      const contestid = props.ques.contest__c;
+      const partsfid = props.partsfid;
+      const body = {contestid, partsfid};
       const response = await fetch(
         "/contestwon",
         {
@@ -234,9 +236,10 @@ const Question = (props) => {
       
       const parseRes = await response.json();
       console.log('created parse res' + JSON.stringify(parseRes));
+      console.log('You won');
+      setContestWon(true);
+      setContestWonText("Congratulations, You Won");
 
-        // TODO check number of questions in contest
-        console.log(props.contestquestions);
     } catch (err) {
       console.error(err.message);
     }
@@ -294,6 +297,14 @@ const Question = (props) => {
             </div>
           </Row>
           }
+
+          {showContestWon && 
+            <Row>
+              <div>
+                {contestWonText}
+              </div>
+            </Row>
+            }
           
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>

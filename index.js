@@ -322,13 +322,13 @@ app.post("/updateOpenedTime/:contest_id", authorization, async(req, res) => {
 app.post("/contestwon", authorization, async(req, res) => {
     try {
         //update contests won number and win rate number, place finish
-        const {contestid, partid} = req.body;
+        const {contestid, partsfid} = req.body;
 
         //run calcs based on previous numbers
 
         const wonparticipation = await pool.query(
-            "UPDATE salesforce.participation__c SET PlaceFinish__c = 1, Status__c = 'Inactive' WHERE ExternalId__c = $1", 
-        [partid]
+            "UPDATE salesforce.participation__c SET PlaceFinish__c = 1, Status__c = 'Inactive' WHERE sfid = $1", 
+        [partsfid]
         );
 
         const wonparticipant = await pool.query(
