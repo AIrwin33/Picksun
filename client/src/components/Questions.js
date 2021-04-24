@@ -86,8 +86,8 @@ const Questions = (props) => {
                     console.log(counttime)
                     setCounter(counttime);
                 }else{
-                    console.log(typeof props.contest.question_time__c);
-                    var millival = 180 * 1000;
+                    var questime = props.contest.question_time__c
+                    var millival = questime * 1000;
                     console.log(millival);
                     setCounter(millival);
                     handleUpdateOpenedTime();
@@ -121,6 +121,28 @@ const Questions = (props) => {
         }
     }
 
+    const clearCounter = async () => {
+        try{
+            console.log('clearing counter');
+            const conid = props.contest.sfid;
+            const body = {conid};
+            const response = await fetch(
+
+                "/clearcounter",
+                {
+                  method: "POST",
+                  headers: { jwt_token: localStorage.token,
+                    "Content-type": "application/json"
+                  },
+                  body: JSON.stringify(body)
+                }
+              );
+              
+        }catch(err){
+            console.log(err.message);
+        }
+    }
+
       const disableQuestions = async (questionids) => {
           try {
             const body = {questionids};
@@ -134,7 +156,8 @@ const Questions = (props) => {
       
             const parseData = await res.json();
             console.log('disabled questions' + JSON.stringify(parseData));
-            //setQuestions(parseData);
+            setQuestions(parseData);
+            clearCounter()
 
           }catch (err) {
               console.log('disable questions err : '+ err.message);
@@ -156,7 +179,7 @@ const Questions = (props) => {
                         <Col>
                             <div key={counter}>
 
-                                <Timer initialTime={30000}
+                                <Timer initialTime={counter}
                                 direction="backward"
                                 lastUnit="s"
                                 checkpoints={[

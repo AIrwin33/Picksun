@@ -261,6 +261,17 @@ app.post("/participationswronganswer", async(req, res) => {
 
 });
 
+app.post("/existingpartanswer", authorization, async(req, res) => {
+    try {
+        const {partsfid, questid} = req.body;
+        const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE externalid__c = $1 && question__c = $2", [partsfid, questid]);
+      res.json(participationWrongAnswer.rows[0]);
+    }catch(err){
+        console.log('wrong answer error ' + err);
+    }
+
+});
+
 app.post("/wronganswer", async(req, res) => {
     try {
         const {partid} = req.body;
@@ -277,6 +288,18 @@ app.post("/wronganswer", async(req, res) => {
 
 });
 
+app.post("/clearcounter", authorization, async(req, res) => {
+    try {
+        const {conid} = req.body;
+        const clearcounter = await pool.query( "UPDATE salesforce.contest__c SET Opened_Time__c = null WHERE sfid = $1 RETURNING *", 
+        [conid]);
+        res.json(clearcounter.rows[0]);
+    }catch(err){
+        console.log('wrong answer error ' + err);
+    }
+
+});
+
 app.post("/updateOpenedTime/:contest_id", authorization, async(req, res) => {
     try {
         const {now} = req.body;
@@ -284,7 +307,7 @@ app.post("/updateOpenedTime/:contest_id", authorization, async(req, res) => {
 
         const { contest_id } = req.params;
         const openedtime = await pool.query(
-          "UPDATE salesforce.contest__c SET Opened_Time__c = $1 WHERE sfid = $2", 
+          "UPDATE salesforce.contest__c SET Opened_Time__c = $1 WHERE sfid = $2 RETURNING *", 
       [now, contest_id]
       );
       console.log(openedtime);

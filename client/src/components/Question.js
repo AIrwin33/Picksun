@@ -52,7 +52,11 @@ const Question = (props) => {
           const parseData = await res.json();
           console.log('here in disable question' + JSON.stringify(parseData));
           setQuest(parseData);
-          setShowAnswer(true);  
+
+          //only show answer if it exists
+          if(parseData.correct_answer__c !== null){
+            setShowAnswer(true);  
+          }
 
         }catch (err) {
             console.log('disable questions err : '+ err.message);
@@ -107,7 +111,33 @@ const Question = (props) => {
 
   }
 
-  
+  const handleExistingPartAnswer = async () => {
+    try {
+      console.log('handle existing answer');
+      const partsfid = props.partsfid;
+      const questid = props.ques.sfid;
+      const body = {partsfid, questid};
+      const response = await fetch(
+
+        "/existingpartanswer",
+        {
+          method: "GET",
+          headers: { jwt_token: localStorage.token,
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(body)
+        }
+      );
+      
+      const parseRes = await response.json();
+      checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c);
+      disableQuestion(questid); 
+       
+    } catch (err) {
+      console.error(err.message);
+    }
+
+  }
 
   const handleWrongAnswer = async () => {
         
@@ -202,6 +232,14 @@ const Question = (props) => {
   useEffect(() => {
     setQuest(props.ques);
     console.log('is question locked' + props.ques.islocked__c);
+    //show answer on reload
+
+    if(props.ques.correct_answer__c !== null){
+
+      //get existing answer
+      handleExistingPartAnswer();
+
+    }
     //props.ques.publish_time__c
     // var pubtime = moment(props.ques.publish_time__c);
     // console.log(pubtime);
