@@ -35,7 +35,7 @@ const Question = (props) => {
 
     const handleRadioChange = async (event) => {
         setRadioValue(event.target.value);
-        const el = findDOMNode(this.refs.btnGroup);
+        const el = findDOMNode(refs.btnGroup);
         console.log(el);
         $(el).attr('disabled','disabled');
         handleUpdateQuestionValue(event.target.value);
