@@ -86,8 +86,7 @@ const Questions = (props) => {
                     console.log(counttime)
                     setCounter(counttime);
                 }else{
-                    var questime = props.contest.question_time__c;
-                    console.log(typeof questime);
+                    var questime = props.contest.question_timer__c;
                     var millival = questime * 1000;
                     console.log(millival);
                     setCounter(millival);
