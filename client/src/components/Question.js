@@ -73,24 +73,25 @@ const Question = (props) => {
       try {
         console.log('event val' + eventVal);
         const partid = props.partsfid;
+        console.log('in set answer part Id' + partid);
         const question_sfid = props.ques.sfid;
-        const body = {partid, question_sfid, eventVal};
-        const response = await fetch(
-          "/answers",
-          {
-            method: "POST",
-            headers: {
-              "Content-type": "application/json"
-            },
-            body: JSON.stringify(body)
-          }
-        );
+        //const body = {partid, question_sfid, eventVal};
+        // const response = await fetch(
+        //   "/answers",
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-type": "application/json"
+        //     },
+        //     body: JSON.stringify(body)
+        //   }
+        // );
         
-        const parseRes = await response.json();
-        console.log('created part answer' + JSON.stringify(parseRes));
-        setPartAnswer(parseRes);
-        checkAnswer(question_sfid, eventVal, props.ques.correct_answer__c);
-        disableQuestion(question_sfid); 
+        // const parseRes = await response.json();
+        // console.log('created part answer' + JSON.stringify(parseRes));
+        // setPartAnswer(parseRes);
+        // checkAnswer(question_sfid, eventVal, props.ques.correct_answer__c);
+        // disableQuestion(question_sfid); 
         
         
       } catch (err) {
