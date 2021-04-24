@@ -101,6 +101,7 @@ const Question = (props) => {
     try{
       if(correctval === answerval){
         console.log('answer was correct');
+        handleCorrectAnswer();
       }else{
         console.log('answer was wrong');
         handleWrongAnswer();
@@ -137,6 +138,19 @@ const Question = (props) => {
       console.error(err.message);
     }
 
+  }
+
+  const handleCorrectAnswer = async () => {
+    try {
+      if(props.publishedquestionscount === props.contestquestions){
+        handleContestWon();
+      }else{
+        console.log('continue playing');
+      }
+
+    }catch(err){
+
+    }
   }
 
   const handleWrongAnswer = async () => {
@@ -220,7 +234,7 @@ const Question = (props) => {
       
       const parseRes = await response.json();
       console.log('created parse res' + JSON.stringify(parseRes));
-        console.log("You've been knocked out");
+
         // TODO check number of questions in contest
         console.log(props.contestquestions);
     } catch (err) {
