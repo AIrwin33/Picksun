@@ -117,6 +117,9 @@ const Question = (props) => {
   const handleExistingPartAnswer = async () => {
     try {
       console.log('handle existing answer');
+      const partsfid = props.partsfid;
+      const questid = props.ques.sfid;
+
       const response = await fetch(
         `/existingpartanswer/` + partsfid + `/question/`+ questid,
         {
@@ -124,6 +127,7 @@ const Question = (props) => {
           headers: { jwt_token: localStorage.token,
             "Content-type": "application/json"
           }
+
         }
       );
       
