@@ -117,17 +117,13 @@ const Question = (props) => {
   const handleExistingPartAnswer = async () => {
     try {
       console.log('handle existing answer');
-      const partsfid = props.partsfid;
-      const questid = props.ques.sfid;
-      const body = {partsfid, questid};
       const response = await fetch(
-        "/existingpartanswer",
+        `/existingpartanswer/` + partsfid + `/question/`+ questid,
         {
           method: "GET",
           headers: { jwt_token: localStorage.token,
             "Content-type": "application/json"
-          },
-          body: JSON.stringify(body)
+          }
         }
       );
       
@@ -254,7 +250,7 @@ const Question = (props) => {
     if(props.ques.correct_answer__c !== null){
 
       //get existing answer
-      //handleExistingPartAnswer();
+      handleExistingPartAnswer();
 
     }
     //props.ques.publish_time__c
