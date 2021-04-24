@@ -35,9 +35,9 @@ const Question = (props) => {
 
     const handleRadioChange = async (event) => {
         setRadioValue(event.target.value);
-        const el = findDOMNode(refs.btnGroup);
-        console.log(el);
-        $(el).attr('disabled','disabled');
+        // const el = findDOMNode(refs.btnGroup);
+        // console.log(el);
+        // $(el).attr('disabled','disabled');
         handleUpdateQuestionValue(event.target.value);
     }
 
@@ -312,7 +312,7 @@ const Question = (props) => {
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
         </div>
-        <ToggleButtonGroup   name="radioValue" value={radioValue} className="m-3 " refs="btnGroup">
+        <ToggleButtonGroup   name="radioValue" value={radioValue} className="m-3 ">
             <ToggleButton
                 disabled={props.ques.islocked__c}
                 className="questionButton"
