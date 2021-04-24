@@ -124,10 +124,7 @@ const Question = (props) => {
         `/existingpartanswer/` + partsfid + `/question/`+ questid,
         {
           method: "GET",
-          headers: { jwt_token: localStorage.token,
-            "Content-type": "application/json"
-          }
-
+          headers: { jwt_token: localStorage.token}
         }
       );
       

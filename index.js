@@ -263,6 +263,7 @@ app.post("/participationswronganswer", async(req, res) => {
 
 app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(req, res) => {
     try {
+        const {partsfid, questid} = req.params;
         const participationExistAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE externalid__c = $1 && question__c = $2", [partsfid, questid]);
         console.log(JSON.stringify(participationExistAnswer.rows));
         res.json(participationExistAnswer.rows[0]);
