@@ -15,6 +15,8 @@ import {
 import "./Question.css";
 
 import moment from 'moment';
+import { findDOMNode } from 'react-dom';
+import $ from 'jquery';
 
 
 
@@ -33,6 +35,9 @@ const Question = (props) => {
 
     const handleRadioChange = async (event) => {
         setRadioValue(event.target.value);
+        const el = findDOMNode(this.refs.btnGroup);
+        console.log(el);
+        $(el).attr('disabled','disabled');
         handleUpdateQuestionValue(event.target.value);
     }
 
@@ -307,7 +312,7 @@ const Question = (props) => {
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
         </div>
-        <ToggleButtonGroup   name="radioValue" value={radioValue} className={`m-3  ${props.ques.islocked__c ? "disabled" : "" }`}>
+        <ToggleButtonGroup   name="radioValue" value={radioValue} className="m-3 " refs="btnGroup">
             <ToggleButton
                 disabled={props.ques.islocked__c}
                 className="questionButton"
