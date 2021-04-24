@@ -218,7 +218,6 @@ const Question = (props) => {
   }
 
   const handleContestWon = async () => {
-        // TODO :: move this up to contest?
     try {
       const contestid = props.ques.contest__c;
       const partsfid = props.partsfid;
@@ -237,6 +236,8 @@ const Question = (props) => {
       const parseRes = await response.json();
       console.log('created parse res' + JSON.stringify(parseRes));
       console.log('You won');
+
+      //also disable questions
       setContestWon(true);
       setContestWonText("Congratulations, You Won");
 
@@ -312,7 +313,7 @@ const Question = (props) => {
             <span>true</span>
             }
         </div>
-        <ToggleButtonGroup   name="radioValue" value={radioValue} className={`m-3  ${quest.islocked__c ? "disabled" : "" }`}>
+        <ToggleButtonGroup   name="radioValue" value={radioValue} className={`m-3  ${props.ques.islocked__c ? "disabled" : "" }`}>
             <ToggleButton
                 
                 className="questionButton"
