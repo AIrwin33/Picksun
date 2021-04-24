@@ -351,7 +351,7 @@ const Question = (props) => {
                   <span>Your Answer: {partAnswer.selection__c}</span>
                   }
 
-                  {partAnswer.selection__c == null &&
+                  {partAnswer.selection__c === null &&
                   <span>Your Answer: Did Not Answer</span>
                   }
                 </div>
