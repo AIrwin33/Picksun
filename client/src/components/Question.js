@@ -254,7 +254,7 @@ const Question = (props) => {
     if(props.ques.correct_answer__c !== null){
 
       //get existing answer
-      handleExistingPartAnswer();
+      //handleExistingPartAnswer();
 
     }
     //props.ques.publish_time__c
