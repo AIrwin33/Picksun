@@ -86,8 +86,9 @@ const Questions = (props) => {
                     console.log(counttime)
                     setCounter(counttime);
                 }else{
-                    var questime = props.contest.question_time__c
-                    var millival = parseInt(questime) * 1000;
+                    var questime = props.contest.question_time__c;
+                    console.log(typeof questime);
+                    var millival = questime * 1000;
                     console.log(millival);
                     setCounter(millival);
                     handleUpdateOpenedTime();
@@ -215,7 +216,7 @@ const Questions = (props) => {
                     <Carousel activeIndex={index} onSelect={handleCarouselSelect}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                <Question ques={question} participation_id={props.participation_id} publishedquestionscount={questions.length} contestquestions={props.contest.number_of_questions__c} partsfid={props.partsfid}></Question>
+                                <Question ques={question} participation_id={props.participation_id} publishedquestionscount={questions} contestquestions={props.contest.number_of_questions__c} partsfid={props.partsfid}></Question>
                             </Carousel.Item>
                         })}
                     </Carousel>
