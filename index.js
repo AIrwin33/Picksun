@@ -264,10 +264,11 @@ app.post("/participationswronganswer", async(req, res) => {
 app.post("/existingpartanswer", authorization, async(req, res) => {
     try {
         const {partsfid, questid} = req.body;
-        const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE externalid__c = $1 && question__c = $2", [partsfid, questid]);
-      res.json(participationWrongAnswer.rows[0]);
+        const participationExistAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE externalid__c = $1 && question__c = $2", [partsfid, questid]);
+        console.log(JSON.stringify(participationExistAnswer.rows));
+        res.json(participationExistAnswer.rows[0]);
     }catch(err){
-        console.log('wrong answer error ' + err);
+        console.log('existing answer error ' + err);
     }
 
 });

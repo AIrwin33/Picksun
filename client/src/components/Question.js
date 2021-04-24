@@ -121,7 +121,6 @@ const Question = (props) => {
       const questid = props.ques.sfid;
       const body = {partsfid, questid};
       const response = await fetch(
-
         "/existingpartanswer",
         {
           method: "GET",
