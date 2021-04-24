@@ -305,9 +305,6 @@ const Question = (props) => {
           
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
-            {props.ques.islocked__c &&
-            <span>true</span>
-            }
         </div>
         <ToggleButtonGroup   name="radioValue" value={radioValue} className={`m-3  ${props.ques.islocked__c ? "disabled" : "" }`}>
             <ToggleButton
