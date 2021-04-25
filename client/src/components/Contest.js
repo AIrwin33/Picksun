@@ -211,10 +211,6 @@ const Contest = ({ match }) => {
                             options={{height: 400}}
                             />
                             </Col>
-                            <Col>
-                                <TwitterMentionButton
-                                screenName={'playpickfun'}/>
-                            </Col>
                         </Row>
                     </Tab>
                 </Tabs>
