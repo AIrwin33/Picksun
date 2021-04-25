@@ -97,9 +97,10 @@ app.get("/allcontests", authorization,async(req,res) => {
 
 //get event
 
-app.get("/event/:id", async(req,res) => {
+app.get("/event/:id", authorization, async(req,res) => {
     try{
         const {id} = req.params;
+        console.log('id' + id);
         const event = await pool.query("SELECT * FROM salesforce.event__c AS event, salesforce.team__c AS team WHERE event.sfid = $1 AND (event.home_team__c = team.sfid OR event.away_team__c = team.sfid)", [id]);
         res.json(event.rows);
         console.log(event.rows);
