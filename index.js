@@ -310,11 +310,11 @@ app.post("/updateOpenedTime/:contest_id", authorization, async(req, res) => {
         console.log(now);
 
         const { contest_id } = req.params;
+        console.log('update opened time' + contest_id);
         const openedtime = await pool.query(
-          "UPDATE salesforce.contest__c SET Opened_Time__c = $1 WHERE sfid = $2 RETURNING *", 
+          "UPDATE salesforce.contest__c SET Opened_Time__c = $1 WHERE sfid = $2", 
       [now, contest_id]
       );
-      console.log(openedtime);
     }catch(err){
         console.log('wrong answer error ' + err);
     }
