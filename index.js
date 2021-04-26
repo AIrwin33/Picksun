@@ -223,11 +223,10 @@ app.get("/questions/:contest_id", authorization, async(req,res) => {
 app.post("/disablequestions/", authorization, async(req,res) => {
     try {
         const { questionids } = req.body;
-        console.log('question ids' + questionids);
         const allContestQuestions = await pool.query( "UPDATE salesforce.question__c SET islocked__c = true WHERE sfid = ANY ($1) RETURNING *", [questionids]
         );
           res.json(allContestQuestions.rows)
-            console.log('updated disable all questions' + JSON.stringify(allContestQuestions.rows));
+            
     }catch(error){
       console.log('message :: ' + error.message);
     }
@@ -265,6 +264,7 @@ app.post("/participationswronganswer", async(req, res) => {
 app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(req, res) => {
     try {
         const {partsfid, questid} = req.params;
+        console.log('starting existing answers');
         console.log('part id' + partsfid);
         console.log('questionid' + questid);
         const participationExistAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE sfid = $1 AND question__c = $2", [partsfid, questid]);

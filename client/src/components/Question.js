@@ -141,7 +141,6 @@ const Question = (props) => {
       
       const parseRes = await response.json();
       checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c);
-      disableQuestion(questid); 
        
     } catch (err) {
       console.error(err.message);
