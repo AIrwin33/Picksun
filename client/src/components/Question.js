@@ -34,6 +34,7 @@ const Question = (props) => {
     const [contestWonText, setContestWonText] = useState([]);
 
     const handleRadioChange = async (event) => {
+      console.log(event.target.value);
         setRadioValue(event.target.value);
         // const el = findDOMNode(refs.btnGroup);
         // console.log(el);
@@ -313,15 +314,27 @@ const Question = (props) => {
             <h3>{quest.question_text__c}</h3>
         </div>
 
-        <div className="btn-group m-3" role="group" aria-label="Basic example">
-          <button type="radio" className="btn btn-primary questionButton">{quest.answer_a__c}</button>
-          <button type="radio" className="btn btn-primary questionButton">{quest.answer_b__c}</button>
+        <div className="btn-group m-3" role="group" aria-label="Basic example" onChange={(e) => handleRadioChange(e)}>
+          <button type="radio" value="A" className="btn btn-primary questionButton">{quest.answer_a__c}</button>
+          <button type="radio" value="B" className="btn btn-primary questionButton">{quest.answer_b__c}</button>
           {quest.answer_c__c !== null &&
-            <button type="radio" className="btn btn-primary questionButton">{quest.answer_c__c}</button>
+            <button type="radio" value="C" className="btn btn-primary questionButton">{quest.answer_c__c}</button>
           }
           {quest.answer_d__c !== null &&
-            <button type="radio" className="btn btn-primary questionButton">{quest.answer_d__c}</button>
+            <button type="radio" value="D" className="btn btn-primary questionButton">{quest.answer_d__c}</button>
           }
+{/* 
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"/>
+          <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"/>
+          <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"/>
+          <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"/>
+          <label class="btn btn-outline-primary" for="btnradio4">Radio 3</label> */}
         </div>
         {/* <ToggleButtonGroup   name="radioValue" value={radioValue} className="m-3 ">
             <ToggleButton
