@@ -312,7 +312,7 @@ const Question = (props) => {
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
         </div>
-        <ToggleButtonGroup   name="radioValue" value={radioValue} className="m-3 ">
+        {/* <ToggleButtonGroup   name="radioValue" value={radioValue} className="m-3 ">
             <ToggleButton
 
                 className="questionButton"
@@ -341,7 +341,7 @@ const Question = (props) => {
                 type="radio"
                 onClick={(e) => handleRadioChange(e)}
                 >{quest.answer_d__c}</ToggleButton>
-        </ToggleButtonGroup>
+        </ToggleButtonGroup> */}
         
         <div>
             <span>Current Stat: {props.ques.live_stat__c}</span>
