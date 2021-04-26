@@ -326,49 +326,7 @@ const Question = (props) => {
           {quest.answer_d__c !== null &&
             <button type="radio" value="D" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_d__c}</button>
           }
-
-          {/* <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"/>
-          <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
-
-          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"/>
-          <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
-
-          <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"/>
-          <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
-
-          <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"/>
-          <label class="btn btn-outline-primary" for="btnradio4">Radio 3</label> */}
         </div>
-        {/* <ToggleButtonGroup   name="radioValue" value={radioValue} className="m-3 ">
-            <ToggleButton
-
-                className="questionButton"
-                value="A"
-                type="radio"
-                onClick={(e) => handleRadioChange(e)}
-                >{quest.answer_a__c}</ToggleButton>
-            <ToggleButton
-
-                className="questionButton"
-                value="B"
-                type="radio"
-                onClick={(e) => handleRadioChange(e)}
-                >{quest.answer_b__c}</ToggleButton>
-            <ToggleButton
-
-                className="questionButton"
-                value="C"
-                type="radio"
-                onClick={(e) => handleRadioChange(e)}
-                >{quest.answer_c__c}</ToggleButton>
-            <ToggleButton
-
-                className="questionButton"
-                value="D"
-                type="radio"
-                onClick={(e) => handleRadioChange(e)}
-                >{quest.answer_d__c}</ToggleButton>
-        </ToggleButtonGroup> */}
         
         <div>
             <span>Current Stat: {props.ques.live_stat__c}</span>
