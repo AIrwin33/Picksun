@@ -278,9 +278,16 @@ app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(
 
 app.post("/wronganswer", async(req, res) => {
     try {
-        const {partid} = req.body;
-        const wronganswercount = 1;
-        console.log(partid);
+        const {partid,} = req.body;
+        const wronganswercounter = await pool.query(
+            "SELECT * salesforce.participation__c WHERE externalid__c = $1", 
+        [partid]
+        );
+        const wronganswercount = wronganswercounter.rows[0].Wrong_Answers__c;
+        if(wronganswercount === null){
+            wronganswercount = 1;
+        }
+        console.log(wronganswercount);
         const wronganswerpart = await pool.query(
           "UPDATE salesforce.participation__c SET Wrong_Answers__c = $1 WHERE externalid__c = $2 RETURNING *", 
       [wronganswercount, partid]
