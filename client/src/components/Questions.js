@@ -158,7 +158,6 @@ const Questions = (props) => {
             });
       
             const parseData = await res.json();
-            console.log('disabled questions' + JSON.stringify(parseData));
             setQuestions(parseData);
             clearCounter()
 
