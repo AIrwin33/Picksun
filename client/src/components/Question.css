@@ -75,3 +75,8 @@
  .answerBanner .green {
      background-color:  green;
   }
+
+  .disabledBtnGroup {
+    pointer-events: none;
+
+  }
