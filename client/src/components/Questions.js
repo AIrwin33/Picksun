@@ -116,6 +116,8 @@ const Questions = (props) => {
           },
             body: JSON.stringify(body)
           });
+          const parseData = await res.json();
+          console.log(parseData);
         }catch (err) {
             console.log('disable questions err : '+ err.message);
         }
