@@ -314,7 +314,7 @@ const Question = (props) => {
             <h3>{quest.question_text__c}</h3>
         </div>
 
-        <div className="btn-group m-3" role="group" aria-label="Basic example" >
+        <div className="btn-group m-3" role="group" aria-label="Basic example" data-toggle="buttons">
           <button type="radio" value="A" className="btn btn-primary questionButton" disabled="disabled" onClick={handleRadioChange}>{quest.answer_a__c}</button>
           <button type="radio" value="B" className="btn btn-primary questionButton" disabled="disabled" onClick={handleRadioChange}>{quest.answer_b__c}</button>
           {quest.answer_c__c !== null &&
