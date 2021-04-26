@@ -312,6 +312,17 @@ const Question = (props) => {
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
         </div>
+
+        <div className="btn-group m-3" role="group" aria-label="Basic example">
+          <button type="radio" className="btn btn-primary questionButton">{quest.answer_a__c}</button>
+          <button type="radio" className="btn btn-primary questionButton">{quest.answer_b__c}</button>
+          {quest.answer_c__c !== null &&
+            <button type="radio" className="btn btn-primary questionButton">{quest.answer_c__c}</button>
+          }
+          {quest.answer_d__c !== null &&
+            <button type="radio" className="btn btn-primary questionButton">{quest.answer_d__c}</button>
+          }
+        </div>
         {/* <ToggleButtonGroup   name="radioValue" value={radioValue} className="m-3 ">
             <ToggleButton
 
