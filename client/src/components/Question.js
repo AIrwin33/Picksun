@@ -39,9 +39,9 @@ const Question = (props) => {
       var parent = $(event.target).parent();
       console.log(parent);
       $(parent).addClass('disabledBtnGroup');
-        // setRadioValue(event.target.value);
+        setRadioValue(event.target.value);
 
-        // handleUpdateQuestionValue(event.target.value);
+        handleUpdateQuestionValue(event.target.value);
     }
 
     
