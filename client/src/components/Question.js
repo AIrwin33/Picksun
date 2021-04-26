@@ -315,26 +315,23 @@ const Question = (props) => {
         </div>
 
         <div className="btn-group m-3" role="group" aria-label="Basic example" data-toggle="buttons">
-          <button type="radio" value="A" className="btn btn-primary questionButton" disabled="disabled" onClick={handleRadioChange}>{quest.answer_a__c}</button>
-          <button type="radio" value="B" className="btn btn-primary questionButton" disabled="disabled" onClick={handleRadioChange}>{quest.answer_b__c}</button>
+          <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="A" onClick={handleRadioChange}/>
+          <label className="btn btn-outline-primary questionButton" for="btnradio1" >{quest.answer_a__c}</label>
+
+          <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="B" onClick={handleRadioChange}/>
+          <label className="btn btn-outline-primary questionButton" for="btnradio2">{quest.answer_b__c}</label>
           {quest.answer_c__c !== null &&
-            <button type="radio" value="C" className="btn btn-primary questionButton" disabled="disabled" onClick={handleRadioChange}>{quest.answer_c__c}</button>
+          <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="C" onClick={handleRadioChange}/>
+          }
+          {quest.answer_c__c !== null &&
+          <label className="btn btn-outline-primary questionButton" for="btnradio3">{quest.answer_c__c}</label>
           }
           {quest.answer_d__c !== null &&
-            <button type="radio" value="D" className="btn btn-primary questionButton" disabled="disabled" onClick={handleRadioChange}>{quest.answer_d__c}</button>
+          <input type="radio" className="btn-check" name="btnradio" id="btnradio4" autocomplete="off" value="D" onClick={handleRadioChange}/>
           }
-{/* 
-          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"/>
-          <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
-
-          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"/>
-          <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
-
-          <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"/>
-          <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
-
-          <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"/>
-          <label class="btn btn-outline-primary" for="btnradio4">Radio 3</label> */}
+          {quest.answer_d__c !== null &&
+          <label className="btn btn-outline-primary questionButton" for="btnradio4">{quest.answer_d__c}</label>
+          }
         </div>
         {/* <ToggleButtonGroup   name="radioValue" value={radioValue} className="m-3 ">
             <ToggleButton
