@@ -107,6 +107,7 @@ const Questions = (props) => {
 
       const handleUpdateOpenedTime = async () => {
         try {
+          console.log('handling update opened time');
             const now = moment();
           const body = {now};
           const res = await fetch(`/updateOpenedTime/${props.contestid}`, {
