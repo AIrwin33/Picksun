@@ -36,6 +36,7 @@ const Question = (props) => {
     const handleRadioChange = async (event) => {
       console.log(event.target.value);
         setRadioValue(event.target.value);
+
         handleUpdateQuestionValue(event.target.value);
     }
 
@@ -312,13 +313,13 @@ const Question = (props) => {
         </div>
 
         <div className="btn-group m-3" role="group" aria-label="Basic example" >
-          <button type="radio" value="A" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_a__c}</button>
-          <button type="radio" value="B" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_b__c}</button>
+          <button type="radio" value="A" className={`btn btn-primary questionButton ${quest.islocked__c ? "disabled" : "" }`} onClick={handleRadioChange}>{quest.answer_a__c}</button>
+          <button type="radio" value="B" className={`btn btn-primary questionButton ${quest.islocked__c ? "disabled" : "" }`} onClick={handleRadioChange}>{quest.answer_b__c}</button>
           {quest.answer_c__c !== null &&
-            <button type="radio" value="C" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_c__c}</button>
+            <button type="radio" value="C" className={`btn btn-primary questionButton ${quest.islocked__c ? "disabled" : "" }`} onClick={handleRadioChange}>{quest.answer_c__c}</button>
           }
           {quest.answer_d__c !== null &&
-            <button type="radio" value="D" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_d__c}</button>
+            <button type="radio" value="D" className={`btn btn-primary questionButton ${quest.islocked__c ? "disabled" : "" }`} onClick={handleRadioChange}>{quest.answer_d__c}</button>
           }
 {/* 
           <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"/>
