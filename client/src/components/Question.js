@@ -94,7 +94,9 @@ const Question = (props) => {
         const parseRes = await response.json();
         console.log('created part answer' + JSON.stringify(parseRes));
         setPartAnswer(parseRes);
-        checkAnswer(question_sfid, eventVal, props.ques.correct_answer__c);
+        if(props.ques.correct_answer__c !== null){
+          checkAnswer(question_sfid, eventVal, props.ques.correct_answer__c);
+        }
         disableQuestion(question_sfid); 
         
         
