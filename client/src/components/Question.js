@@ -315,13 +315,13 @@ const Question = (props) => {
         </div>
 
         <div className="btn-group m-3" role="group" aria-label="Basic example" >
-          <button type="radio" value="A" className="btn btn-primary questionButton" onChange={(e) => handleRadioChange(e)}>{quest.answer_a__c}</button>
-          <button type="radio" value="B" className="btn btn-primary questionButton" onChange={(e) => handleRadioChange(e)}>{quest.answer_b__c}</button>
+          <Button type="radio" value="A" className="btn btn-primary questionButton" onClick={() => handleRadioChange('A')}>{quest.answer_a__c}</button>
+          <Button type="radio" value="B" className="btn btn-primary questionButton" onClick={() => handleRadioChange('B')}>{quest.answer_b__c}</button>
           {quest.answer_c__c !== null &&
-            <button type="radio" value="C" className="btn btn-primary questionButton" onChange={(e) => handleRadioChange(e)}>{quest.answer_c__c}</button>
+            <Button type="radio" value="C" className="btn btn-primary questionButton" onClick={() => handleRadioChange('C')}>{quest.answer_c__c}</button>
           }
           {quest.answer_d__c !== null &&
-            <button type="radio" value="D" className="btn btn-primary questionButton" onChange={(e) => handleRadioChange(e)}>{quest.answer_d__c}</button>
+            <Button type="radio" value="D" className="btn btn-primary questionButton" onClick={() => handleRadioChange('D')}>{quest.answer_d__c}</button>
           }
 {/* 
           <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"/>
