@@ -85,4 +85,6 @@
     
     background-color: #d4d4d4;
     color:black;
+    border-radius: 5px;
+    border: 1px solid black;
   }
