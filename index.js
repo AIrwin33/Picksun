@@ -283,7 +283,7 @@ app.post("/wronganswer", async(req, res) => {
             "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", 
         [partid]
         );
-        const wronganswercount = wronganswercounter.rows[0].Wrong_Answers__c;
+        var wronganswercount = wronganswercounter.rows[0].Wrong_Answers__c;
         if(wronganswercount === null){
             wronganswercount = 1;
         }else{
