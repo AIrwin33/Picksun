@@ -280,11 +280,12 @@ app.post("/wronganswer", async(req, res) => {
     try {
         console.log('in wrong answers');
         const {partid} = req.body;
+        console.log('external id' + partid);
         const wronganswercounter = await pool.query(
             "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", 
         [partid]
         );
-        console.log('part answer' + wronganswercounter.rows[0]);
+        console.log('part answer' + JSON.stringify(wronganswercounter.rows[0]));
         var wronganswercount = 0;
         console.log('logs' + parseInt(wronganswercounter.rows[0].Wrong_Answers__c));
         if(wronganswercounter.rows[0].wrong_answers__c === null){
