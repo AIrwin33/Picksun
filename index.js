@@ -288,20 +288,20 @@ app.post("/wronganswer", authorization, async(req, res) => {
         console.log('part answer' + JSON.stringify(wronganswercounter.rows));
         var wronganswercount = 0;
         console.log('logs' + wronganswercounter.rows[0].wrong_answers__c);
-    //     if(wronganswercounter.rows[0].wrong_answers__c === null){
-    //         wronganswercount = 1;
-    //         console.log('number of wrong answers null' + wronganswercount);
-    //     }else{
-    //         wronganswercount = wronganswercounter.rows[0].wrong_answers__c;
-    //         wronganswercount += 1;
-    //         console.log('number of wrong answers' + wronganswercount);
-    //     }
-    //     console.log('number of wrong answers' + wronganswercount);
-    //     const wronganswerpart = await pool.query(
-    //       "UPDATE salesforce.participation__c SET wrong_answers__c = $1 WHERE externalid__c = $2 RETURNING *", 
-    //   [wronganswercount, partid]
-    //   );
-    //   res.json(wronganswerpart.rows[0]);
+        if(wronganswercounter.rows[0].wrong_answers__c === null || wronganswercounter.rows[0].wrong_answers__c === 0){
+            wronganswercount = 1;
+            console.log('number of wrong answers null' + wronganswercount);
+        }else{
+            wronganswercount = wronganswercounter.rows[0].wrong_answers__c;
+            wronganswercount += 1;
+            console.log('number of wrong answers' + wronganswercount);
+        }
+        console.log('number of wrong answers' + wronganswercount);
+        const wronganswerpart = await pool.query(
+          "UPDATE salesforce.participation__c SET wrong_answers__c = $1 WHERE externalid__c = $2 RETURNING *", 
+      [wronganswercount, partid]
+      );
+      res.json(wronganswerpart.rows[0]);
     }catch(err){
         console.log('wrong answer error ' + err);
     }
