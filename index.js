@@ -284,12 +284,15 @@ app.post("/wronganswer", async(req, res) => {
         [partid]
         );
         var wronganswercount = 0;
+        console.log('logs' + wronganswercounter.rows[0].wrong_answers__c);
         if(wronganswercounter.rows[0].wrong_answers__c === null){
             wronganswercount = 1;
+            console.log('number of wrong answers' + wronganswercount);
         }else{
             wronganswercount += 1;
+            console.log('number of wrong answers' + wronganswercount);
         }
-        console.log(wronganswercount);
+        console.log('number of wrong answers' + wronganswercount);
         const wronganswerpart = await pool.query(
           "UPDATE salesforce.participation__c SET Wrong_Answers__c = $1 WHERE externalid__c = $2 RETURNING *", 
       [wronganswercount, partid]
