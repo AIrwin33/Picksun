@@ -276,7 +276,7 @@ app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(
 
 });
 
-app.post("/wronganswer", async(req, res) => {
+app.post("/wronganswer", authorization, async(req, res) => {
     try {
         console.log('in wrong answers');
         const {partid} = req.body;
@@ -285,9 +285,9 @@ app.post("/wronganswer", async(req, res) => {
             "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", 
         [partid]
         );
-        console.log('part answer' + JSON.stringify(wronganswercounter.rows[0]));
+        console.log('part answer' + JSON.stringify(wronganswercounter.rows));
         var wronganswercount = 0;
-        console.log('logs' + parseInt(wronganswercounter.rows[0].wrong_answers__c));
+        console.log('logs' + wronganswercounter.rows[0].wrong_answers__c);
     //     if(wronganswercounter.rows[0].wrong_answers__c === null){
     //         wronganswercount = 1;
     //         console.log('number of wrong answers null' + wronganswercount);
