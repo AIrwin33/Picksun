@@ -287,18 +287,18 @@ app.post("/wronganswer", async(req, res) => {
         );
         console.log('part answer' + JSON.stringify(wronganswercounter.rows[0]));
         var wronganswercount = 0;
-        console.log('logs' + parseInt(wronganswercounter.rows[0].Wrong_Answers__c));
+        console.log('logs' + parseInt(wronganswercounter.rows[0].wrong_answers__c));
         if(wronganswercounter.rows[0].wrong_answers__c === null){
             wronganswercount = 1;
             console.log('number of wrong answers null' + wronganswercount);
         }else{
-            wronganswercount = wronganswercounter.rows[0].Wrong_Answers__c;
+            wronganswercount = wronganswercounter.rows[0].wrong_answers__c;
             wronganswercount += 1;
             console.log('number of wrong answers' + wronganswercount);
         }
         console.log('number of wrong answers' + wronganswercount);
         const wronganswerpart = await pool.query(
-          "UPDATE salesforce.participation__c SET Wrong_Answers__c = $1 WHERE externalid__c = $2 RETURNING *", 
+          "UPDATE salesforce.participation__c SET wrong_answers__c = $1 WHERE externalid__c = $2 RETURNING *", 
       [wronganswercount, partid]
       );
       res.json(wronganswerpart.rows[0]);
