@@ -140,6 +140,7 @@ const Question = (props) => {
       );
       
       const parseRes = await response.json();
+      setPartAnswer(parseRes);
       checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c);
        
     } catch (err) {
