@@ -141,6 +141,8 @@ const Question = (props) => {
       
       const parseRes = await response.json();
       setPartAnswer(parseRes);
+
+      //answer validated? if not
       checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c);
        
     } catch (err) {
@@ -318,7 +320,7 @@ const Question = (props) => {
             <h3>{quest.question_text__c}</h3>
         </div>
 
-        <div className={`btn-group m-3 ${quest.islocked__c ? "disabledBtnGroup" : "" }`} role="group" aria-label="Basic example"  data-toggle="buttons">
+        <div className={`btn-group m-3 ${partAnswer.status__c ? "disabledBtnGroup" : "" }`} role="group" aria-label="Basic example"  data-toggle="buttons">
           <button type="radio" value="A" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_a__c}</button>
           <button type="radio" value="B" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_b__c}</button>
           {quest.answer_c__c !== null &&
