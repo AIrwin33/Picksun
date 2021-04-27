@@ -81,7 +81,7 @@ const Login = ({ setAuth }) => {
                 <Form onSubmit={onSubmitForm}>
 
                     <Form.Group>
-                        <Form.Label className="textWhite">Username</Form.Label>
+                        <Form.Label className="textWhite">Email</Form.Label>
                         <Form.Control type="text" name="email" placeholder="email" onChange={e => onChange(e)} />
                     </Form.Group>
 
