@@ -278,11 +278,12 @@ app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(
 
 app.post("/wronganswer", async(req, res) => {
     try {
-        const {partid,} = req.body;
+        const {partid} = req.body;
         const wronganswercounter = await pool.query(
             "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", 
         [partid]
         );
+        console.log(wronganswercounter.rows[0]);
         var wronganswercount = 0;
         console.log('logs' + parseInt(wronganswercounter.rows[0].Wrong_Answers__c));
         if(wronganswercounter.rows[0].wrong_answers__c === null){
