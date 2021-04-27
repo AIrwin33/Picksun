@@ -286,6 +286,8 @@ app.post("/wronganswer", async(req, res) => {
         const wronganswercount = wronganswercounter.rows[0].Wrong_Answers__c;
         if(wronganswercount === null){
             wronganswercount = 1;
+        }else{
+            wronganswercount += 1;
         }
         console.log(wronganswercount);
         const wronganswerpart = await pool.query(
