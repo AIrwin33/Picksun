@@ -96,6 +96,7 @@ const Question = (props) => {
         console.log('created part answer' + JSON.stringify(parseRes));
         setPartAnswer(parseRes);
         console.log('show correct answer' + quest.correct_answer__c);
+        console.log('status on part answer' + partAnswer.status__c);
         if(quest.correct_answer__c !== null){
           checkAnswer(question_sfid, eventVal, quest.correct_answer__c, parseRes.sfid);
         }
