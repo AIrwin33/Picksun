@@ -260,7 +260,7 @@ app.post("/validatepartanswer", async(req, res) => {
             "UPDATE salesforce.participation_answers__c SET validated__c = true WHERE sfid = $1 RETURNING *", 
         [partanswerid]
         );
-        console.log(validParticipationAnswer.rows);
+        console.log('validated answer' +validParticipationAnswer.rows[0]);
         res.json(validParticipationAnswer.rows[0]);
     }catch(err){
         console.log('err' + err.message);
