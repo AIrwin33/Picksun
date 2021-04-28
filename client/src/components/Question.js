@@ -95,8 +95,9 @@ const Question = (props) => {
         const parseRes = await response.json();
         console.log('created part answer' + JSON.stringify(parseRes));
         setPartAnswer(parseRes);
-        if(props.ques.correct_answer__c !== null){
-          checkAnswer(question_sfid, eventVal, props.ques.correct_answer__c, parseRes.sfid);
+        console.log('show correct answer' + quest.correct_answer__c);
+        if(quest.correct_answer__c !== null){
+          checkAnswer(question_sfid, eventVal, quest.correct_answer__c, parseRes.sfid);
         }
         
       } catch (err) {
@@ -359,7 +360,7 @@ const Question = (props) => {
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
         </div>
-            
+
         <div className={`btn-group m-3 ${partAnswer.status__c === 'Submitted' ? "disabledBtnGroup" : "" }`} role="group" aria-label="Basic example"  data-toggle="buttons">
           <button type="radio" value="A" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_a__c}</button>
           <button type="radio" value="B" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_b__c}</button>
