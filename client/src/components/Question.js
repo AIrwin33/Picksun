@@ -240,7 +240,7 @@ const Question = (props) => {
     try{
       //check if there are other participations active
       const response = await fetch(
-        `/allendingparticipations/` + ques.contest__c,
+        `/allendingparticipations/` + quest.contest__c,
         {
           method: "GET",
             headers: { jwt_token: localStorage.token,
