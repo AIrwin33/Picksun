@@ -99,10 +99,8 @@ const Question = (props) => {
         console.log('created part answer' + JSON.stringify(parseRes));
         setPartAnswer(parseRes);
         if(props.ques.correct_answer__c !== null){
-          checkAnswer(question_sfid, eventVal, props.ques.correct_answer__c);
+          checkAnswer(question_sfid, eventVal, props.ques.correct_answer__c, parseRes.sfid);
         }
-        //disableQuestion(question_sfid); 
-        
         
       } catch (err) {
         console.error(err.message);
@@ -110,8 +108,19 @@ const Question = (props) => {
 
   }
 
-  const checkAnswer = async (question_sfid, answerval, correctval) => {
+  const checkAnswer = async (question_sfid, answerval, correctval, partanswerid) => {
     try{
+      const body = {partanswerid};
+      const response = await fetch(
+        "/validatepartanswer",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(body)
+        }
+      );
       if(correctval === answerval){
         console.log('answer was correct');
         handleCorrectAnswer();
@@ -143,7 +152,9 @@ const Question = (props) => {
       setPartAnswer(parseRes);
 
       //answer validated? if not
-      checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c);
+      if(!parseRes.validated__c){
+        checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c, parseRes.sfid);
+      }
        
     } catch (err) {
       console.error(err.message);

@@ -250,6 +250,23 @@ app.post("/answers", async(req, res) => {
   }
 });
 
+
+app.post("/validatepartanswer", async(req, res) => {
+    try {
+  
+        const {partanswerid} = req.body;
+          console.log('partid in creating answer');
+        const validParticipationAnswer = await pool.query(
+            "UPDATE salesforce.participation_answers__c SET validated__c = true WHERE sfid = $1 RETURNING *", 
+        [partanswerid]
+        );
+        console.log(validParticipationAnswer.rows);
+        res.json(validParticipationAnswer.rows[0]);
+    }catch(err){
+        console.log('err' + err.message);
+    }
+  });
+
 app.post("/participationswronganswer", async(req, res) => {
     try {
         const {partid} = req.body;
