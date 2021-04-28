@@ -194,7 +194,7 @@ const Question = (props) => {
       const parseRes = await response.json();
         console.log(parseRes);
         const participationwrong = parseRes;
-        this.props.parentCallback();
+        props.parentCallback();
         if(participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c){
           handleKnockout();
         }else {
