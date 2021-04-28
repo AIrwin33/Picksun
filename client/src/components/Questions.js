@@ -169,6 +169,7 @@ const Questions = (props) => {
       const callbackFunction = async (childData) => {
         try{
           console.log('log child data ' + childData);
+          doGetParticipationWrongAnswers();
         }catch(err){
           console.log('err' + err.message);
         }
