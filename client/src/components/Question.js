@@ -154,7 +154,6 @@ const Question = (props) => {
       const parseRes = await response.json();
       setPartAnswer(parseRes);
 
-      //answer validated? if not
       console.log('existing part answer' + partAnswer.status__c);
       if(!parseRes.validated__c){
         checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c, parseRes.sfid);
@@ -365,6 +364,7 @@ const Question = (props) => {
           
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
+            <span>{partAnswer.status__c}</span>
         </div>
 
         <div className={`btn-group m-3 ${partAnswer.status__c === 'Submitted' ? "disabledBtnGroup" : "" }`} role="group" aria-label="Basic example"  data-toggle="buttons">
