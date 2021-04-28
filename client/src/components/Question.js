@@ -120,6 +120,10 @@ const Question = (props) => {
           body: JSON.stringify(body)
         }
       );
+      const parseRes = await response.json();
+      setPartAnswer(parseRes);
+      console.log('correct answer' + correctval);
+      console.log('answer value' + answerval);
       if(correctval === answerval){
         console.log('answer was correct');
         handleCorrectAnswer();
@@ -151,6 +155,7 @@ const Question = (props) => {
       setPartAnswer(parseRes);
 
       //answer validated? if not
+      console.log('existing part answer' + partAnswer.status__c);
       if(!parseRes.validated__c){
         checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c, parseRes.sfid);
       }
