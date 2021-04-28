@@ -255,7 +255,7 @@ app.post("/validatepartanswer", async(req, res) => {
     try {
   
         const {partanswerid} = req.body;
-          console.log('partid in creating answer');
+          console.log('partid in creating answer' +partanswerid);
         const validParticipationAnswer = await pool.query(
             "UPDATE salesforce.participation_answers__c SET validated__c = true WHERE sfid = $1 RETURNING *", 
         [partanswerid]
