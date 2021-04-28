@@ -166,6 +166,14 @@ const Questions = (props) => {
           }
       }
 
+      const callbackFunction = async (childData) => {
+        try{
+          console.log('log child data ' + childData);
+        }catch(err){
+          console.log('err' + err.message);
+        }
+      }
+
       useEffect(() => {
         getQuestions(props.contest.question_timer__c);
         }, [props.contest.question_timer__c]);
@@ -217,7 +225,7 @@ const Questions = (props) => {
                     <Carousel activeIndex={index} onSelect={handleCarouselSelect}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                <Question ques={question} participation_id={props.participation_id} publishedquestionscount={questions} contestquestions={props.contest.number_of_questions__c} partsfid={props.partsfid}></Question>
+                                <Question parentCallback={callbackFunction} ques={question} participation_id={props.participation_id} publishedquestionscount={questions} contestquestions={props.contest.number_of_questions__c} partsfid={props.partsfid}></Question>
                             </Carousel.Item>
                         })}
                     </Carousel>

@@ -34,10 +34,7 @@ const Question = (props) => {
     const [contestWonText, setContestWonText] = useState([]);
 
     const handleRadioChange = async (event) => {
-      console.log(event.target.value);
-      console.log(event.target);
       var parent = $(event.target).parent();
-      console.log(parent);
       $(parent).addClass('disabledBtnGroup');
         setRadioValue(event.target.value);
 
@@ -197,7 +194,7 @@ const Question = (props) => {
       const parseRes = await response.json();
         console.log(parseRes);
         const participationwrong = parseRes;
-
+        this.props.parentCallback();
         if(participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c){
           handleKnockout();
         }else {
