@@ -355,7 +355,20 @@ app.post("/updateOpenedTime/:contest_id", authorization, async(req, res) => {
 
 });
 
-//add win
+//check winning participant
+
+app.get("/allendingparticipations/:contest_id", authorization, async(req, res) => {
+    try{
+        const contestwoncount = await pool.query(
+            "SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND status__c = 'Active' SORT BY wrong_answers__c ASC", 
+        [contest_id]
+        );
+        console.logs('rows remaining parts:' + contestwoncount.rows);
+        res.json(contestwoncount.rows);
+    }catch(err){
+        console.log('all remaining parts error::' + err);
+    }
+});
 
 app.post("/contestwon", authorization, async(req, res) => {
     try {

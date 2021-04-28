@@ -162,7 +162,8 @@ const Question = (props) => {
   const handleCorrectAnswer = async () => {
     try {
       if(props.publishedquestionscount === props.contestquestions){
-        handleContestWon();
+        
+        handleContestEnd();
       }else{
         console.log('continue playing');
       }
@@ -233,6 +234,36 @@ const Question = (props) => {
       console.error(err.message);
     }
 
+  }
+
+  const handleContestEnd = async () => {
+    try{
+      //check if there are other participations active
+      const response = await fetch(
+        `/allendingparticipations/` + ques.contest__c,
+        {
+          method: "GET",
+            headers: { jwt_token: localStorage.token,
+              "Content-type": "application/json"
+          }
+        }
+      );
+
+      const parseRes = await response.json();
+      //sort by number of answers wrong
+        console.log('winning part '+ parseRes[0]);
+      //loop through and set place finish
+
+
+
+      //if you have the least amount of wrong answers, set contest won
+      if(props.partsfid === parseRes[0].sfid){
+        handleContestWon()
+      }
+
+    }catch(err) {
+      console.log('err on contest end' + err.message);
+    }
   }
 
   const handleContestWon = async () => {
