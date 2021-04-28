@@ -82,7 +82,7 @@ app.get("/mycontests", authorization, async(req, res) => {
 
 //get contests
 
-app.get("/allcontests", authorization,async(req,res) => {
+app.get("/allcontests", authorization, async(req,res) => {
   try{
       console.log('in all contests');
       //gets all contests in the future

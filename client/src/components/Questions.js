@@ -50,6 +50,7 @@ const Questions = (props) => {
           );
           
           const parseData = await response.json();
+          console.log('wrong answer count' + parseData);
           setPartWrongAnswer(parseData);
         } catch (err) {
           console.error(err.message);
