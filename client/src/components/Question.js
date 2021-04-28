@@ -154,7 +154,7 @@ const Question = (props) => {
       const parseRes = await response.json();
       setPartAnswer(parseRes);
 
-      console.log('existing part answer' + partAnswer.status__c);
+      console.log('existing part answer' + parseRes.status__c);
       if(!parseRes.validated__c){
         checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c, parseRes.sfid);
       }
