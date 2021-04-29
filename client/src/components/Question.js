@@ -62,7 +62,7 @@ const Question = (props) => {
 
           //only show answer if it exists
           if(parseData.correct_answer__c !== null){
-            setShowAnswer(true);  
+            
           }
 
         }catch (err) {
@@ -124,6 +124,7 @@ const Question = (props) => {
       setPartAnswer(parseRes);
       console.log('correct answer' + correctval);
       console.log('answer value' + answerval);
+      setShowAnswer(true);  
       if(correctval === answerval){
         console.log('answer was correct');
         handleCorrectAnswer();
@@ -156,9 +157,9 @@ const Question = (props) => {
       setPartAnswer(parseRes);
 
       console.log('existing part answer' + parseRes.status__c);
-      // if(!parseRes.validated__c){
-      //   checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c, parseRes.sfid);
-      // }
+      if(!parseRes.validated__c){
+        checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c, parseRes.sfid);
+      }
        
     } catch (err) {
       console.error(err.message);
@@ -365,7 +366,6 @@ const Question = (props) => {
           
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
-            <span>{partAnswer.status__c}</span>
         </div>
 
         <div className={`btn-group m-3 ${partAnswer.status__c === 'Submitted' ? "disabledBtnGroup" : "" }`} role="group" aria-label="Basic example"  data-toggle="buttons">
