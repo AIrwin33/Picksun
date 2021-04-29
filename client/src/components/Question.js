@@ -125,7 +125,7 @@ const Question = (props) => {
       console.log('validated part answer' + JSON.stringify(parseRes))
       console.log('correct answer' + correctval);
       console.log('answer value' + answerval);
-      setShowAnswer(true);  
+      
       if(correctval === answerval){
         console.log('answer was correct');
         handleCorrectAnswer();
@@ -161,6 +161,8 @@ const Question = (props) => {
       if(!parseRes.validated__c){
         console.log('checking existing answer');
         checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c, parseRes.sfid);
+      }else{
+        setShowAnswer(true);  
       }
        
     } catch (err) {
