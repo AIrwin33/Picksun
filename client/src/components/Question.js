@@ -156,7 +156,7 @@ const Question = (props) => {
       const parseRes = await response.json();
       console.log(JSON.stringify(parseRes));
       setPartAnswer(parseRes);
-
+      console.log('existing part answer' + parseRes.Name);
       console.log('existing part answer' + parseRes.status__c);
       if(!parseRes.validated__c){
         console.log('checking existing answer');
