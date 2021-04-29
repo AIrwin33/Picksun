@@ -159,6 +159,7 @@ const Question = (props) => {
 
       console.log('existing part answer' + parseRes.status__c);
       if(!parseRes.validated__c){
+        console.log('checking existing answer');
         checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c, parseRes.sfid);
       }
        
