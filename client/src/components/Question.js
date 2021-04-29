@@ -122,6 +122,7 @@ const Question = (props) => {
       );
       const parseRes = await response.json();
       setPartAnswer(parseRes);
+      console.log('validated part answer' + JSON.stringify(parseRes))
       console.log('correct answer' + correctval);
       console.log('answer value' + answerval);
       setShowAnswer(true);  
