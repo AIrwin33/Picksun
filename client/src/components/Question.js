@@ -311,12 +311,12 @@ const Question = (props) => {
     console.log('is question locked' + props.ques.islocked__c);
     //show answer on reload
 
-    if(props.ques.correct_answer__c !== null){
+    // if(props.ques.correct_answer__c !== null){
 
-      //get existing answer
-      handleExistingPartAnswer();
+    //   //get existing answer
+    //   handleExistingPartAnswer();
 
-    }
+    // }
     //props.ques.publish_time__c
     // var pubtime = moment(props.ques.publish_time__c);
     // console.log(pubtime);
