@@ -312,13 +312,7 @@ const Question = (props) => {
     setQuest(props.ques);
     console.log('is question locked' + props.ques.islocked__c);
     handleExistingPartAnswer();
-    //show answer on reload
-
-    // if(props.ques.correct_answer__c !== null){
-
-    //   //get existing answer
-    //   
-
+    
     // }
     //props.ques.publish_time__c
     // var pubtime = moment(props.ques.publish_time__c);
