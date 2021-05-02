@@ -194,6 +194,20 @@ const Questions = (props) => {
             // console.log('set new ')
             // map.set(quest.sfid, event.target.value);
             // setAnswerMap(map);
+            
+              // const body = {partsfid, answerMap};
+              // const res = await fetch(`/postanswers`, {
+              //   method: "POST",
+              //   headers: { jwt_token: localStorage.token,
+              //     "Content-type": "application/json" 
+              // },
+              //   body: JSON.stringify(body)
+              // });
+        
+              //const parseData = await res.json();
+
+
+
         }catch(err){
           console.log('err' + err.message);
         }

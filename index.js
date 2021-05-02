@@ -355,6 +355,29 @@ app.post("/updateOpenedTime/:contest_id", authorization, async(req, res) => {
 
 });
 
+app.post("/postanswers", authorization, async(req,res) => {
+    try{
+        const {answersmap} = req.body;
+        console.log('answer map' + answersmap);
+        // const newParticipationAnswers = await pool.query(
+        //     "INSERT INTO salesforce.participation_answers__c (participation__c, status__c, question__c, selection__c, , ExternalId__c) VALUES($1,$2,$3,$4, gen_random_uuid()) RETURNING *", 
+        // [partid, 'Submitted', answersmap]
+        // );
+        // console.logs('rows remaining parts:' + newParticipationAnswers.rows);
+        // res.json(newParticipationAnswers.rows);
+
+        // db.none('INSERT INTO salesforce.participation_answers__c(participation__c, status__c, question__c, selection__c, ExternalId__c) VALUES($1,$2,$3,$4, gen_random_uuid())', [partid, 'Submitted', Inserts('$1, $2', answersmap)])
+        //     .then(data => {
+        //         // OK, all records have been inserted
+        //     })
+        //     .catch(error => {
+        //         // Error, no records inserted
+        //     });
+    }catch(err){
+        console.log('submit answers' + err);
+    }
+});
+
 //check winning participant
 
 app.get("/allendingparticipations/:contest_id", authorization, async(req, res) => {
