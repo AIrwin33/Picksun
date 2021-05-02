@@ -32,13 +32,16 @@ const Question = (props) => {
     const [contestKnockoutText, setContestKnockoutText] = useState([]);
     const [showContestWon, setContestWon] = useState([false]);
     const [contestWonText, setContestWonText] = useState([]);
+    
 
     const handleRadioChange = async (event) => {
       var parent = $(event.target).parent();
       $(parent).addClass('disabledBtnGroup');
-        setRadioValue(event.target.value);
-
-        handleUpdateQuestionValue(event.target.value);
+        setRadioValue(event.target.value);        
+        console.log(quest.sfid);
+        console.log(event.target.value)
+        props.callbackMap(quest.sfid, event.target.value);
+        //handleUpdateQuestionValue(event.target.value);
     }
 
     
