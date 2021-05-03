@@ -158,7 +158,9 @@ const Contest = ({ match }) => {
                     <Col xs={6} sm={6} className="text-center ">
                         <h4 className="whiteText fontBold">{contest.name}</h4>
                     </Col>
-                    <Col xs={3} sm={3}></Col>
+                    <Col xs={3} sm={3}>
+                    {hasWonContest}
+                    </Col>
                 </Row>
                 <Tabs fill>
                     <Tab eventKey="Questions" title="Questions">
