@@ -33,7 +33,7 @@ const Contest = ({ match }) => {
     const [away, setAwayTeam] = useState([]);
     const [participation, setParticipation] = useState([]);
     const [participations, setParticipations] = useState([]);
-    const [allParts, setAllParts] = useState([]);
+    const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
     const [hasWonContest, setContestWon] = useState(false);
 
@@ -99,9 +99,7 @@ const Contest = ({ match }) => {
               }
             setActiveParts(activeParts.length);
             console.log('before check');
-            console.log(activeParts.length);
-            console.log(allParts);
-            if(allParts > 1 && activeParts.length === 1){
+            if(parseData.length > 1 && activeParts.length === 1){
                 console.log('youre the last person in the contest');
                 setContestWon(true);
             }
