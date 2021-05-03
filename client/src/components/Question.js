@@ -135,7 +135,7 @@ const Question = (props) => {
       console.log('existing part answer' + parseRes.Name);
       console.log('existing part answer' + parseRes.status__c);
 
-      if(partAnswer.status__c === 'Submitted'){
+      if(parseRes.status__c === 'Submitted'){
         setDisabledQuestion(true);
       }
       if(!parseRes.validated__c && props.ques.correct_answer__c !== null){
