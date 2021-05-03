@@ -21,6 +21,8 @@ import $ from 'jquery';
 
 
 
+
+
 const Question = (props) => {
     const [radioValue, setRadioValue] = useState('');
     
@@ -32,12 +34,16 @@ const Question = (props) => {
     const [contestKnockoutText, setContestKnockoutText] = useState([]);
     const [showContestWon, setContestWon] = useState([false]);
     const [contestWonText, setContestWonText] = useState([]);
+    const [disabledQuestion, setDisabledQuestion] = useState([false]);
+    
 
     const handleRadioChange = async (event) => {
       var parent = $(event.target).parent();
       $(parent).addClass('disabledBtnGroup');
-        setRadioValue(event.target.value);
-
+        setRadioValue(event.target.value);        
+        // console.log(quest.sfid);
+        // console.log(event.target.value)
+        // props.callbackMap(quest.sfid, event.target.value);
         handleUpdateQuestionValue(event.target.value);
     }
 
@@ -95,8 +101,7 @@ const Question = (props) => {
         const parseRes = await response.json();
         console.log('created part answer' + JSON.stringify(parseRes));
         setPartAnswer(parseRes);
-        console.log('show correct answer' + quest.correct_answer__c);
-        console.log('status on part answer' + partAnswer.status__c);
+
         if(quest.correct_answer__c !== null){
           checkAnswer(question_sfid, eventVal, quest.correct_answer__c, parseRes.sfid);
         }
@@ -125,6 +130,9 @@ const Question = (props) => {
       console.log('validated part answer' + JSON.stringify(parseRes))
       console.log('correct answer' + correctval);
       console.log('answer value' + answerval);
+      if(partAnswer.status__c === 'Submitted'){
+        setDisabledQuestion(true);
+      }
       
       if(correctval === answerval){
         console.log('answer was correct');
@@ -158,6 +166,10 @@ const Question = (props) => {
       setPartAnswer(parseRes);
       console.log('existing part answer' + parseRes.Name);
       console.log('existing part answer' + parseRes.status__c);
+
+      if(partAnswer.status__c === 'Submitted'){
+        setDisabledQuestion(true);
+      }
       if(!parseRes.validated__c && props.ques.correct_answer__c !== null){
         console.log('checking existing answer');
         checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c, parseRes.sfid);
@@ -311,6 +323,9 @@ const Question = (props) => {
   useEffect(() => {
     setQuest(props.ques);
     console.log('is question locked' + props.ques.islocked__c);
+    if(props.ques.islocked__c){
+      setDisabledQuestion(true);
+    }
     handleExistingPartAnswer();
     
     // }
@@ -367,7 +382,7 @@ const Question = (props) => {
             <h3>{quest.question_text__c}</h3>
         </div>
 
-        <div className={`btn-group m-3 ${partAnswer.status__c === 'Submitted' ? "disabledBtnGroup" : "" }`} role="group" aria-label="Basic example"  data-toggle="buttons">
+        <div className={`btn-group m-3 ${disabledQuestion ? "disabledBtnGroup" : "" }`} role="group" aria-label="Basic example"  data-toggle="buttons">
           <button type="radio" value="A" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_a__c}</button>
           <button type="radio" value="B" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_b__c}</button>
           {quest.answer_c__c !== null &&
