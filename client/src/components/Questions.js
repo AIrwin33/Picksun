@@ -81,7 +81,7 @@ const Questions = (props) => {
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
                 console.log(props.contest.opened_timer__c);
-                if(props.contest.opened_timer__c === undefined){
+                if(props.contest.opened_timer__c === undefined || props.contest.opened_timer__c === null){
                   var questime = props.contest.question_timer__c;
                   var millival = questime * 1000;
                   console.log(millival);
