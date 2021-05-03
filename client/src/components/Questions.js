@@ -25,8 +25,8 @@ const Questions = (props) => {
     const [questionids, setQuestionIds] = useState([]);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [counter, setCounter] = useState(props.questiontime);
-    const [knockedOut, setKnockedOut] = useState([false]);
-    const [contestWon, setContestWon] = useState([false]);
+    const [knockedOut, setKnockedOut] = useState(false);
+    const [contestWon, setContestWon] = useState(false);
     
 
     const [index, setIndex] = useState(0);
