@@ -134,12 +134,14 @@ const Question = (props) => {
       setPartAnswer(parseRes);
       console.log('existing part answer' + parseRes.Name);
       console.log('existing part answer' + parseRes.status__c);
-
+      
       if(parseRes.status__c === 'Submitted'){
         setDisabledQuestion(true);
       }
       if(!parseRes.validated__c && props.ques.correct_answer__c !== null){
         console.log('checking existing answer');
+        console.log(props.ques.correct_answer__c);
+        console.log(questid);
         checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c, parseRes.sfid);
       }else{
         setShowAnswer(true);  
