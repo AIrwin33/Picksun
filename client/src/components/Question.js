@@ -302,8 +302,13 @@ const Question = (props) => {
   useEffect(() => {
     setQuest(props.ques);
     console.log('is question locked' + props.ques.islocked__c);
-    if(props.ques.islocked__c || props.isKnockedOut){
+    if(props.ques.islocked__c || ){
       setDisabledQuestion(true);
+    }
+
+    if(props.isKnockedOut){
+      setKnockOut(true);
+      setContestKnockoutText("youve been knocked out");
     }
     handleExistingPartAnswer();
     
