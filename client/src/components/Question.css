@@ -88,3 +88,7 @@
     border-radius: 5px;
     border: 1px solid black;
   }
+
+  .centerText {
+      text-align: center;
+  }
