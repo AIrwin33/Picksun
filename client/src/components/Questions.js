@@ -191,7 +191,6 @@ const Questions = (props) => {
 
       useEffect(() => {
         getQuestions(props.contest.question_timer__c);
-        console.log(knockedOut);
         }, [props.contest.question_timer__c]);
 
         return ( 
