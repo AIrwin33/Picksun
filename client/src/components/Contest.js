@@ -159,7 +159,7 @@ const Contest = ({ match }) => {
                         <h4 className="whiteText fontBold">{contest.name}</h4>
                     </Col>
                     <Col xs={3} sm={3}>
-                    {hasWonContest}
+                    {contestWon}
                     </Col>
                 </Row>
                 <Tabs fill>
