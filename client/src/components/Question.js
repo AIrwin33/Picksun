@@ -345,6 +345,8 @@ const Question = (props) => {
           <Row>
             <div className="centerText">
               <span>you are knocked out</span>
+              <span>{props.isKnockedOut}</span>
+              <span>{showKnockOut}</span>
             </div>
           </Row>
           }
