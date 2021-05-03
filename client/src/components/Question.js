@@ -305,12 +305,12 @@ const Question = (props) => {
     if(props.ques.islocked__c === true){
       setDisabledQuestion(true);
     }
-    console.log('props knocked out' + props.isKnockedOut);
-    var knocked = props.isKnockedOut;
-    if(knocked === true){
-      setKnockOut(true);
-      setContestKnockoutText("youve been knocked out");
-    }
+    // console.log('props knocked out' + props.isKnockedOut);
+    // var knocked = props.isKnockedOut;
+    // if(knocked === true){
+    //   setKnockOut(true);
+    //   setContestKnockoutText("youve been knocked out");
+    // }
     handleExistingPartAnswer();
     
     // }
@@ -347,10 +347,10 @@ const Question = (props) => {
         <>
 
         <div className={`questionRow m-3 justify-content-center timer p-3  ${quest.islocked__c ? "locked" : "open" }`}> 
-          {showKnockOut && 
+          {props.isKnockedOut && 
           <Row>
             <div className="centerText">
-              {contestKnockoutText}
+              <span>you are knocked out</span>
             </div>
           </Row>
           }
