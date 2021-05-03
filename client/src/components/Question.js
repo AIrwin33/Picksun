@@ -355,7 +355,7 @@ const Question = (props) => {
           {(props.isContestWon == true || showContestWon == true) && 
             <Row>
               <div className="centerText">
-                {contestWonText}
+                contest won text
               </div>
             </Row>
             }
