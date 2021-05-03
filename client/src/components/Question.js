@@ -46,38 +46,6 @@ const Question = (props) => {
         // props.callbackMap(quest.sfid, event.target.value);
         handleUpdateQuestionValue(event.target.value);
     }
-
-    
-
-    const disableQuestion = async (questionid) => {
-        try {
-        const questionids = [];
-        questionids.push(questionid);
-        console.log(questionids);
-          const body = {questionids};
-          const res = await fetch(`/disableQuestions`, {
-            method: "POST",
-            headers: { jwt_token: localStorage.token,
-              "Content-type": "application/json" 
-          },
-            body: JSON.stringify(body)
-          });
-          const parseData = await res.json();
-          console.log('here in disable question' + JSON.stringify(parseData));
-          setQuest(parseData);
-
-          //only show answer if it exists
-          if(parseData.correct_answer__c !== null){
-            
-          }
-
-        }catch (err) {
-            console.log('disable questions err : '+ err.message);
-        }
-    }
-
-    
-
     const handleUpdateQuestionValue = async (eventVal) => {
         
       //insert participation answer
