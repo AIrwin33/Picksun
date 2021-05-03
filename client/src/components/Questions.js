@@ -242,11 +242,11 @@ const Questions = (props) => {
                     }
                     </Col>
                 </Row>
-                <Row>
+                {/* <Row>
                   <Col>
                     <button className="btn btn-primary submitButton" onClick={handleSubmitAnswers}>submit answers</button>
                   </Col>
-                </Row>
+                </Row> */}
             </Container>
 
             </>
