@@ -140,7 +140,9 @@ const Question = (props) => {
       if(parseRes.status__c === 'Submitted'){
         setDisabledQuestion(true);
       }
-      if(!parseRes.validated__c && props.ques.correct_answer__c !== null){
+      console.log(parseRes.validated__c);
+      console.log(props.ques.correct_answer__c);
+      if(parseRes.validated__c === false && props.ques.correct_answer__c !== null){
         console.log('checking existing answer');
         console.log(props.ques.correct_answer__c);
         console.log(questid);
