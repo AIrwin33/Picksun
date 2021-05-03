@@ -228,6 +228,8 @@ const Question = (props) => {
       console.log("You've been knocked out");
       setKnockOut(true);
       setContestKnockoutText(parseRes.Knockout_Text__c);
+
+      //pass disable all questions?
     } catch (err) {
       console.error(err.message);
     }
