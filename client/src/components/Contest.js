@@ -35,7 +35,7 @@ const Contest = ({ match }) => {
     const [participations, setParticipations] = useState([]);
     const [allParts, setAllParts] = useState([]);
     const [activeParts, setActiveParts] = useState([]);
-    const [contestWon, setContestWon] = useState([false]);
+    const [hasWonContest, setContestWon] = useState([false]);
 
     
 
@@ -101,6 +101,7 @@ const Contest = ({ match }) => {
             console.log('before check');
             if(allParts.length > 1 && activeParts.length === 1){
                 console.log('youre the last person in the contest');
+                setContestWon(true);
             }
             setParticipations(activeParts);
         }catch (err) {
@@ -164,7 +165,7 @@ const Contest = ({ match }) => {
                         <Row>
                             <Col>
                             {isloaded &&
-                                <Questions contestid={contest.sfid} contestQuestionText={contest.no_questions_text__c} contest={contest} participation_id={participation.externalid__c} partsfid={participation.sfid}/> 
+                                <Questions contestid={contest.sfid} contestQuestionText={contest.no_questions_text__c} contest={contest} participation_id={participation.externalid__c} contestWon={hasWonContest} partsfid={participation.sfid}/> 
                             }  
                             </Col>
                         </Row>
