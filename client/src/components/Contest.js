@@ -35,7 +35,7 @@ const Contest = ({ match }) => {
     const [participations, setParticipations] = useState([]);
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
-    const [hasWonContest, setContestWon] = useState(false);
+    const [contestWon, setContestWon] = useState(false);
 
     
 
@@ -167,7 +167,7 @@ const Contest = ({ match }) => {
                         <Row>
                             <Col>
                             {isloaded &&
-                                <Questions contestid={contest.sfid} contestQuestionText={contest.no_questions_text__c} contest={contest} participation_id={participation.externalid__c} contestWon={hasWonContest} partsfid={participation.sfid}/> 
+                                <Questions contestid={contest.sfid} contestQuestionText={contest.no_questions_text__c} contest={contest} participation_id={participation.externalid__c} hasContestWon={contestWon} partsfid={participation.sfid}/> 
                             }  
                             </Col>
                         </Row>

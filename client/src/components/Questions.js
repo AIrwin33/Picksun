@@ -191,6 +191,7 @@ const Questions = (props) => {
 
       useEffect(() => {
         getQuestions(props.contest.question_timer__c);
+        console.log(props.hasContestWon);
         }, [props.contest.question_timer__c]);
 
         return ( 
@@ -198,7 +199,7 @@ const Questions = (props) => {
 
             {/* Main Body */}
             <Container>
-              {props.contestWon}
+              {props.hasContestWon}
                 <Row className="questionRow m-3 p-3 justify-content-center">
                     {/* slide for questions */}
 
