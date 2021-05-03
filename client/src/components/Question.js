@@ -302,11 +302,11 @@ const Question = (props) => {
   useEffect(() => {
     setQuest(props.ques);
     console.log('is question locked' + props.ques.islocked__c);
-    if(props.ques.islocked__c){
+    if(props.ques.islocked__c === true){
       setDisabledQuestion(true);
     }
     console.log(props.isKnockedOut);
-    if(props.isKnockedOut){
+    if(props.isKnockedOut === true){
       setKnockOut(true);
       setContestKnockoutText("youve been knocked out");
     }
