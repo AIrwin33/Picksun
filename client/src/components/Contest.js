@@ -35,7 +35,7 @@ const Contest = ({ match }) => {
     const [participations, setParticipations] = useState([]);
     const [allParts, setAllParts] = useState([]);
     const [activeParts, setActiveParts] = useState([]);
-    const [hasWonContest, setContestWon] = useState([false]);
+    const [hasWonContest, setContestWon] = useState(false);
 
     
 
@@ -100,7 +100,7 @@ const Contest = ({ match }) => {
             setActiveParts(activeParts.length);
             console.log('before check');
             console.log(activeParts.length);
-            console.log(allParts.length);
+            console.log(JSON.stringify(allParts));
             if(allParts.length > 1 && activeParts.length === 1){
                 console.log('youre the last person in the contest');
                 setContestWon(true);
