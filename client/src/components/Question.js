@@ -32,9 +32,9 @@ const Question = (props) => {
     const [showanswer, setShowAnswer] = useState([false]);
     const [showKnockOut, setKnockOut] = useState(false);
     const [contestKnockoutText, setContestKnockoutText] = useState([]);
-    const [showContestWon, setContestWon] = useState([false]);
+    const [showContestWon, setShowContestWon] = useState(false);
     const [contestWonText, setContestWonText] = useState([]);
-    const [disabledQuestion, setDisabledQuestion] = useState([false]);
+    const [disabledQuestion, setDisabledQuestion] = useState(false);
     
 
     const handleRadioChange = async (event) => {
@@ -290,7 +290,7 @@ const Question = (props) => {
       console.log('You won');
 
       //also disable questions
-      setContestWon(true);
+      setShowContestWon(true);
       setContestWonText("Congratulations, You Won");
 
     } catch (err) {
