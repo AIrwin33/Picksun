@@ -53,7 +53,8 @@ const Questions = (props) => {
           
           const parseData = await response.json();
           console.log('wrong answer count' + JSON.stringify(parseData));
-          if(parseData.status__c == 'Knocked Out'){
+          console.log('test checking knocked out' + parseData.status__c);
+          if(parseData.status__c === 'Knocked Out'){
             console.log('player is knocked out');
             setKnockedOut(true);
           }
