@@ -81,7 +81,7 @@ const Questions = (props) => {
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
                 console.log(props.contest.opened_timer__c);
-                if(props.contest.opened_timer__c !== null){
+                if(props.contest.opened_timer__c !== undefined){
                     var currtime = moment();
                     var counttime = moment.duration(currtime.diff(props.contest.opened_timer__c));
                     console.log(counttime)

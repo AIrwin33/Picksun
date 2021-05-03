@@ -351,9 +351,10 @@ const Question = (props) => {
           
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
+            <span>{disabledQuestion}</span>
         </div>
 
-        <div className={`btn-group m-3 ${disabledQuestion ? "disabledBtnGroup" : "" }`} role="group" aria-label="Basic example"  data-toggle="buttons">
+        <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : "" }`} role="group" aria-label="Basic example"  data-toggle="buttons">
           <button type="radio" value="A" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_a__c}</button>
           <button type="radio" value="B" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_b__c}</button>
           {quest.answer_c__c !== null &&
