@@ -245,7 +245,10 @@ const Question = (props) => {
       //sort by number of answers wrong
         console.log('winning part '+ parseRes[0]);
       //loop through and set place finish
-
+      for(i=0;i< parseRes.length; i++ ){
+        console.log(parseRes[i]);
+        console.log(parseRes[i].wrong_answers__c);
+      }
 
 
       //if you have the least amount of wrong answers, set contest won
