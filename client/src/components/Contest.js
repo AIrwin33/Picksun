@@ -162,7 +162,7 @@ const Contest = ({ match }) => {
                     </Col>
                 </Row>
 
-                <Row>
+                <Row className="rowBar">
                     <Col>
                     {contestWon &&
                                 <div> You Won</div>
