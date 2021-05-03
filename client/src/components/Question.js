@@ -305,7 +305,7 @@ const Question = (props) => {
     if(props.ques.islocked__c){
       setDisabledQuestion(true);
     }
-
+    console.log(props.isKnockedOut);
     if(props.isKnockedOut){
       setKnockOut(true);
       setContestKnockoutText("youve been knocked out");
