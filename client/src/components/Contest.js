@@ -92,6 +92,7 @@ const Contest = ({ match }) => {
             var activeParts = [];
             for (i = 0; i < parseData.length; i++) {
                 if(parseData[i].status__c = 'Active'){
+                    console.log('active' + parseData[i]);
                     activeParts.push(parseData[i]);
                 }
               }
