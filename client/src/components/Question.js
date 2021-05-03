@@ -302,6 +302,7 @@ const Question = (props) => {
   useEffect(() => {
     setQuest(props.ques);
     console.log('is question locked' + props.ques.islocked__c);
+    console.log(props.isContestWon);
     if(props.ques.islocked__c === true){
       setDisabledQuestion(true);
     }
