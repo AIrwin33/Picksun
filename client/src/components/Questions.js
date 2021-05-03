@@ -87,9 +87,9 @@ const Questions = (props) => {
                   console.log(millival);
                   setCounter(millival);
                   handleUpdateOpenedTime();
-                }else if(props.contest.opened_timer__c === null){
-                  setCounter(0);
-                  console.log(counter);
+                // }else if(props.contest.opened_timer__c === null){
+                //   setCounter(0);
+                //   console.log(counter);
                 }else{
                   var currtime = moment();
                   var counttime = moment.duration(currtime.diff(props.contest.opened_timer__c));
