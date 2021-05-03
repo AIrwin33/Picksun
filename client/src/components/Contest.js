@@ -99,6 +99,8 @@ const Contest = ({ match }) => {
               }
             setActiveParts(activeParts.length);
             console.log('before check');
+            console.log(activeParts.length);
+            console.log(allParts.length);
             if(allParts.length > 1 && activeParts.length === 1){
                 console.log('youre the last person in the contest');
                 setContestWon(true);
