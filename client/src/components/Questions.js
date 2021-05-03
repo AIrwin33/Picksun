@@ -26,6 +26,7 @@ const Questions = (props) => {
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [counter, setCounter] = useState(props.questiontime);
     const [knockedOut, setKnockedOut] = useState([false]);
+    
 
     const [index, setIndex] = useState(0);
 

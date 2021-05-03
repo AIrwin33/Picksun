@@ -35,6 +35,7 @@ const Contest = ({ match }) => {
     const [participations, setParticipations] = useState([]);
     const [allParts, setAllParts] = useState([]);
     const [activeParts, setActiveParts] = useState([]);
+    const [contestWon, setContestWon] = useState([false]);
 
     
 
@@ -97,6 +98,9 @@ const Contest = ({ match }) => {
                 }
               }
             setActiveParts(activeParts.length);
+            if(allParts.length > 1 && activeParts.length === 1){
+                console.log('youre the last person in the contest');
+            }
             setParticipations(activeParts);
         }catch (err) {
             console.error(err.message);
