@@ -161,13 +161,19 @@ const Contest = ({ match }) => {
                     <Col xs={3} sm={3}>
                     </Col>
                 </Row>
+
+                <Row>
+                    <Col>
+                    {contestWon &&
+                                <div> You Won</div>
+                            }
+                    </Col>
+                </Row>
                 <Tabs fill>
                     <Tab eventKey="Questions" title="Questions">
                         <Row>
                             <Col>
-                            {contestWon &&
-                                <div> You Won</div>
-                            }
+                            
 
                             {isloaded &&
                                 <Questions contestid={contest.sfid} contestQuestionText={contest.no_questions_text__c} contest={contest} participation_id={participation.externalid__c} partsfid={participation.sfid}/> 
