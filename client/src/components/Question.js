@@ -305,12 +305,6 @@ const Question = (props) => {
     if(props.ques.islocked__c === true){
       setDisabledQuestion(true);
     }
-    // console.log('props knocked out' + props.isKnockedOut);
-    // var knocked = props.isKnockedOut;
-    // if(knocked === true){
-    //   setKnockOut(true);
-    //   setContestKnockoutText("youve been knocked out");
-    // }
     handleExistingPartAnswer();
     
     // }
