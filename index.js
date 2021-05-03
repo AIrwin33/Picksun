@@ -237,11 +237,16 @@ app.post("/disablequestions/", authorization, async(req,res) => {
 app.post("/answers", async(req, res) => {
   try {
 
-      const {partid, question_sfid, eventVal} = req.body;
+      const {partid, question_sfid, eventVal, expartid} = req.body;
+      const participation = await pool.query(
+        "SELECT * FROM salesforce.participation__c WHERE external_id__c = $1", 
+    [expartid]
+    );
+        console.log(participation.id);
         console.log('partid in creating answer');
       const newParticipationAnswer = await pool.query(
           "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, status__c, ExternalId__c) VALUES($1,$2,$3,$4, gen_random_uuid()) RETURNING *", 
-      [partid, question_sfid, eventVal, 'Submitted']
+      [participation.id, question_sfid, eventVal, 'Submitted']
       );
       console.log(newParticipationAnswer.rows);
       res.json(newParticipationAnswer.rows[0]);

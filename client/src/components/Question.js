@@ -54,8 +54,9 @@ const Question = (props) => {
         const partid = props.partsfid;
         console.log('external id : use isntead?' + props.participation_id);
         console.log('in set answer part Id' + partid);
+        const expartid = props.participation_id;
         const question_sfid = props.ques.sfid;
-        const body = {partid, question_sfid, eventVal};
+        const body = {partid, question_sfid, eventVal, expartid};
         const response = await fetch(
           "/answers",
           {
