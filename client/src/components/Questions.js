@@ -199,7 +199,7 @@ const Questions = (props) => {
 
             {/* Main Body */}
             <Container>
-            {knockedOut}
+              {props.contestWon}
                 <Row className="questionRow m-3 p-3 justify-content-center">
                     {/* slide for questions */}
 
