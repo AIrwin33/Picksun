@@ -52,6 +52,7 @@ const Question = (props) => {
       try {
         console.log('event val' + eventVal);
         const partid = props.partsfid;
+        console.log('external id : use isntead?' + props.participation_id);
         console.log('in set answer part Id' + partid);
         const question_sfid = props.ques.sfid;
         const body = {partid, question_sfid, eventVal};
