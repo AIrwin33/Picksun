@@ -248,7 +248,7 @@ app.post("/answers", async(req, res) => {
         console.log('partid in creating answer');
       const newParticipationAnswer = await pool.query(
           "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, status__c, ExternalId__c) VALUES($1,$2,$3,$4, gen_random_uuid()) RETURNING *", 
-      [participation.sfid, question_sfid, eventVal, 'Submitted']
+      [participation.rows[0].sfid, question_sfid, eventVal, 'Submitted']
       );
       console.log(newParticipationAnswer.rows);
       res.json(newParticipationAnswer.rows[0]);
