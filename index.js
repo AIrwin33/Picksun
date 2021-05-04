@@ -242,6 +242,7 @@ app.post("/answers", async(req, res) => {
         "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", 
     [expartid]
     );
+        console.log(expartid);
         console.log(participation.id);
         console.log('partid in creating answer');
       const newParticipationAnswer = await pool.query(
