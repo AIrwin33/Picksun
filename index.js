@@ -239,7 +239,7 @@ app.post("/answers", async(req, res) => {
 
       const {partid, question_sfid, eventVal, expartid} = req.body;
       const participation = await pool.query(
-        "SELECT * FROM salesforce.participation__c WHERE external_id__c = $1", 
+        "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", 
     [expartid]
     );
         console.log(participation.id);
