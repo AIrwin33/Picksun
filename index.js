@@ -243,7 +243,7 @@ app.post("/answers", async(req, res) => {
     [expartid]
     );
         console.log(expartid);
-        console.log(participation.id);
+        console.log(participation.sfid);
         console.log('partid in creating answer');
       const newParticipationAnswer = await pool.query(
           "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, status__c, ExternalId__c) VALUES($1,$2,$3,$4, gen_random_uuid()) RETURNING *", 
