@@ -360,7 +360,9 @@ const Question = (props) => {
           
         <div className="questionTextDiv">
             <h3>{quest.question_text__c}</h3>
-            <span>{disabledQuestion}</span>
+            <div>
+              <span>Current Stat: {props.ques.live_stat__c}</span>
+            </div>
         </div>
 
         <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : "" }`} role="group" aria-label="Basic example"  data-toggle="buttons">
@@ -374,9 +376,7 @@ const Question = (props) => {
           }
         </div>
         
-        <div>
-            <span>Current Stat: {props.ques.live_stat__c}</span>
-        </div>
+        
 
         {showanswer == true &&
         <div>
