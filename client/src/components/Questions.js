@@ -238,7 +238,7 @@ const Questions = (props) => {
                 <Row>
                     <Col>
                     {questions.length > 0 &&
-                    <Carousel activeIndex={index} onSelect={handleCarouselSelect}>
+                    <Carousel activeIndex={index} interval={null} onSelect={handleCarouselSelect}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
                                 <Question parentCallback={callbackFunction} ques={question} isKnockedOut={knockedOut} participation_id={props.participation_id} publishedquestionscount={questions.length} contestquestions={props.contest.number_of_questions__c} partsfid={props.partsfid}></Question>
