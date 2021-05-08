@@ -55,6 +55,6 @@
     bottom:-100px;
 }
 
-.carousel-indicators li {
-    background-color:grey;
+.carousel-indicators {
+    visibility: hidden;
 }
