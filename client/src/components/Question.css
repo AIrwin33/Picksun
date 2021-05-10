@@ -27,6 +27,14 @@
     padding-right: 2em;
 }
 
+.questionButton.active{
+    background-color: #215975;
+    border: #d4d4d4;
+    color:white;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
 .timer {
     border-radius: 10px;
 }

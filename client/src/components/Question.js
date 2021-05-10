@@ -39,12 +39,17 @@ const Question = (props) => {
 
     const handleRadioChange = async (event) => {
       var parent = $(event.target).parent();
-      $(parent).addClass('disabledBtnGroup');
-        setRadioValue(event.target.value);        
+      //REFACTOR check if this works or I should wait
+      //$(parent).addClass('disabledBtnGroup');
+        setRadioValue(event.target.value);    
+        
+        
         // console.log(quest.sfid);
         // console.log(event.target.value)
         // props.callbackMap(quest.sfid, event.target.value);
-        handleUpdateQuestionValue(event.target.value);
+
+        console.log('event label' + event.target.labels[0]);
+        //handleUpdateQuestionValue(event.target.value);
     }
     const handleUpdateQuestionValue = async (eventVal) => {
         
@@ -56,7 +61,8 @@ const Question = (props) => {
         console.log('in set answer part Id' + partid);
         const expartid = props.participation_id;
         const question_sfid = props.ques.sfid;
-        const body = {partid, question_sfid, eventVal, expartid};
+        const eventLabel = 'label';
+        const body = {partid, question_sfid, eventVal, eventLabel, expartid};
         const response = await fetch(
           "/answers",
           {
@@ -407,6 +413,7 @@ const Question = (props) => {
                 <div
                   className={`answerBanner ${partAnswer.selection__c !== props.ques.correct_answer__c ? "red" : "green" }`}
                   >
+                    {partAnswer.selection__c !== props.ques.correct_answer__c}
                   <span>Correct Answer: {props.ques.correct_answer__c}</span>
                 </div>
               </Col>
