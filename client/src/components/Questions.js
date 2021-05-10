@@ -79,26 +79,18 @@ const Questions = (props) => {
                 }
             };
             setQuestionIds(questionIdArr);
-            //REFACTOR:
+
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
+
+                //opened_timer updated via process builder on published update
                 console.log(props.contest.opened_timer__c);
-                if(props.contest.opened_timer__c === undefined || props.contest.opened_timer__c === null){
-                  var questime = props.contest.question_timer__c;
-                  var millival = questime * 1000;
-                  console.log(millival);
-                  setCounter(millival);
-                  handleUpdateOpenedTime();
-                // }else if(props.contest.opened_timer__c === null){
-                //   setCounter(0);
-                //   console.log(counter);
-                }else{
-                  var currtime = moment();
-                  var counttime = moment.duration(currtime.diff(props.contest.opened_timer__c));
-                  console.log(counttime)
-                  setCounter(counttime);
-                }
-                
+                var questime = props.contest.question_timer__c;
+                var millival = questime * 1000;
+                var currtime = moment();
+                var closedTimer = millival + props.contest.opened_timer__c;
+                var counttime = moment.duration(currtime.diff(closedTimer));
+                setCounter(counttime);
             }else{
                 console.log('no available questions');
             }

@@ -348,25 +348,25 @@ app.post("/clearcounter", authorization, async(req, res) => {
 
 });
 
-//REFACTOR - keep this?
+//REFACTOR - keep this? I dont think so since we're just doing math off of salesforce logic
 
-app.post("/updateOpenedTime/:contest_id", authorization, async(req, res) => {
-    try {
-        const {now} = req.body;
-        console.log(now);
+// app.post("/updateOpenedTime/:contest_id", authorization, async(req, res) => {
+//     try {
+//         const {now} = req.body;
+//         console.log(now);
 
-        const { contest_id } = req.params;
-        console.log('update opened time' + contest_id);
-        const openedtime = await pool.query(
-          "UPDATE salesforce.contest__c SET Opened_Timer__c = $1 WHERE sfid = $2 RETURNING *", 
-      [now, contest_id]
-      );
-      res.json(openedtime.rows[0]);
-    }catch(err){
-        console.log('wrong answer error ' + err);
-    }
+//         const { contest_id } = req.params;
+//         console.log('update opened time' + contest_id);
+//         const openedtime = await pool.query(
+//           "UPDATE salesforce.contest__c SET Opened_Timer__c = $1 WHERE sfid = $2 RETURNING *", 
+//       [now, contest_id]
+//       );
+//       res.json(openedtime.rows[0]);
+//     }catch(err){
+//         console.log('wrong answer error ' + err);
+//     }
 
-});
+// });
 
 //Get Remaining participations at end of contest
 

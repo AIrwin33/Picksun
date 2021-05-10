@@ -66,51 +66,46 @@ const Question = (props) => {
         const parseRes = await response.json();
         console.log('created part answer' + JSON.stringify(parseRes));
         setPartAnswer(parseRes);
-
-        if(quest.correct_answer__c !== null){
-          checkAnswer(question_sfid, eventVal, quest.correct_answer__c, parseRes.sfid);
-        }
-        
       } catch (err) {
         console.error(err.message);
       }
 
   }
 
-  const checkAnswer = async (question_sfid, answerval, correctval, partanswerid) => {
-    try{
-      const body = {partanswerid};
-      const response = await fetch(
-        "/validatepartanswer",
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json"
-          },
-          body: JSON.stringify(body)
-        }
-      );
-      const parseRes = await response.json();
-      setPartAnswer(parseRes);
-      console.log('validated part answer' + JSON.stringify(parseRes))
-      console.log('correct answer' + correctval);
-      console.log('answer value' + answerval);
-      if(partAnswer.status__c === 'Submitted'){
-        setDisabledQuestion(true);
-      }
+  // const checkAnswer = async (question_sfid, answerval, correctval, partanswerid) => {
+  //   try{
+  //     const body = {partanswerid};
+  //     const response = await fetch(
+  //       "/validatepartanswer",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-type": "application/json"
+  //         },
+  //         body: JSON.stringify(body)
+  //       }
+  //     );
+  //     const parseRes = await response.json();
+  //     setPartAnswer(parseRes);
+  //     console.log('validated part answer' + JSON.stringify(parseRes))
+  //     console.log('correct answer' + correctval);
+  //     console.log('answer value' + answerval);
+  //     if(partAnswer.status__c === 'Submitted'){
+  //       setDisabledQuestion(true);
+  //     }
       
-      if(correctval === answerval){
-        console.log('answer was correct');
-        handleCorrectAnswer();
-      }else{
-        console.log('answer was wrong');
-        handleWrongAnswer();
-      }
-    }catch (err) {
-      console.log('err' + err.message)
-    }
+  //     if(correctval === answerval){
+  //       console.log('answer was correct');
+  //       handleCorrectAnswer();
+  //     }else{
+  //       console.log('answer was wrong');
+  //       handleWrongAnswer();
+  //     }
+  //   }catch (err) {
+  //     console.log('err' + err.message)
+  //   }
 
-  }
+  // }
 
   const handleExistingPartAnswer = async () => {
     try {
@@ -135,16 +130,8 @@ const Question = (props) => {
       if(parseRes.status__c === 'Submitted'){
         setDisabledQuestion(true);
       }
-      console.log(parseRes.validated__c);
-      console.log(props.ques.correct_answer__c);
-      if(parseRes.validated__c === false && props.ques.correct_answer__c !== null){
-        console.log('checking existing answer');
-        console.log(props.ques.correct_answer__c);
-        console.log(questid);
-        checkAnswer(questid, parseRes.selection__c, props.ques.correct_answer__c, parseRes.sfid);
-      }else{
-        setShowAnswer(true);  
-      }
+
+      setShowAnswer(true);  
        
     } catch (err) {
       console.error(err.message);
