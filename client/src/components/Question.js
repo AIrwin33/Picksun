@@ -1,21 +1,10 @@
-import React, {Component, useState,useEffect} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
-    ButtonGroup,
-    ToggleButton,
-    Container, 
     Row,
     Col,
-    Image,
-    Carousel,
-    Button,
-    ToggleButtonGroup,
-    ResponsiveEmbed
 } from "react-bootstrap";
 
 import "./Question.css";
-
-import moment from 'moment';
-import { findDOMNode } from 'react-dom';
 import $ from 'jquery';
 
 
@@ -24,7 +13,7 @@ import $ from 'jquery';
 
 
 const Question = (props) => {
-    const [radioValue, setRadioValue] = useState('');
+    //const [radioValue, setRadioValue] = useState('');
     
     
     const [partAnswer, setPartAnswer] = useState([]);
@@ -41,7 +30,7 @@ const Question = (props) => {
       var parent = $(event.target).parent();
       //REFACTOR check if this works or I should wait
       //$(parent).addClass('disabledBtnGroup');
-        setRadioValue(event.target.value);    
+        //setRadioValue(event.target.value);    
         
         
         // console.log(quest.sfid);
@@ -234,8 +223,6 @@ const Question = (props) => {
       console.log("You've been knocked out");
       setKnockOut(true);
       setContestKnockoutText(parseRes.Knockout_Text__c);
-
-      //pass disable all questions?
     } catch (err) {
       console.error(err.message);
     }
@@ -352,6 +339,7 @@ const Question = (props) => {
               <span>you are knocked out</span>
               <span>{props.isKnockedOut}</span>
               <span>{showKnockOut}</span>
+              <span>{contestKnockoutText}</span>
             </div>
           </Row>
           }
@@ -359,7 +347,7 @@ const Question = (props) => {
           {(props.isContestWon == true || showContestWon == true) && 
             <Row>
               <div className="centerText">
-                contest won text
+              <span>{contestWonText}</span>
               </div>
             </Row>
             }
@@ -381,9 +369,6 @@ const Question = (props) => {
             <button type="radio" value="D" className="btn btn-primary questionButton" onClick={handleRadioChange}>{quest.answer_d__c}</button>
           }
         </div>
-        
-        
-
         {showanswer == true &&
         <div>
             <Row>
@@ -391,30 +376,30 @@ const Question = (props) => {
               <Col>
                 <div>  
                   {partAnswer.selection__c !== null &&
-                  <span>Your Answer: {partAnswer.selection__c}</span>
+                  <span>Your Answer: {partAnswer.selection_value__c}</span>
                   }
                   
 
                   {partAnswer.selection__c === null &&
-                  <span>Your Answer: Did Not Answer {partAnswer.selection__c}</span>
+                  <span>Your Answer: Did Not Answer </span>
                   }
                 </div>
               </Col>
-              {partAnswer.selection__c === props.ques.correct_answer__c &&
+              {/* {partAnswer.selection__c === props.ques.correct_answer__c &&
               <Col>
                 <div>
-                  <span>Correct Answer: {props.ques.correct_answer__c}</span>
+                  <span>Correct Answer: {props.ques.correct_answer_value__c}</span>
                 </div>
               </Col>
-              }
+              } */}
 
-              {partAnswer.selection__c !== props.ques.correct_answer__c  && props.ques.correct_answer__c !== null &&
+              {props.ques.correct_answer__c !== null &&
               <Col>
                 <div
                   className={`answerBanner ${partAnswer.selection__c !== props.ques.correct_answer__c ? "red" : "green" }`}
                   >
                     {partAnswer.selection__c !== props.ques.correct_answer__c}
-                  <span>Correct Answer: {props.ques.correct_answer__c}</span>
+                  <span>Correct Answer: {props.ques.correct_answer_value__c}</span>
                 </div>
               </Col>
               }

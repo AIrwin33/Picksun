@@ -1,15 +1,9 @@
-import React, {Component, useState,useEffect} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
-    ButtonGroup,
-    ToggleButton,
     Container, 
     Row,
     Col,
-    Image,
-    Carousel,
-    Button,
-    ToggleButtonGroup,
-    ResponsiveEmbed
+    Carousel
 } from "react-bootstrap";
 
 import Question from './Question.js';
@@ -85,7 +79,7 @@ const Questions = (props) => {
                 }
             };
             setQuestionIds(questionIdArr);
-
+            //REFACTOR:
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
                 console.log(props.contest.opened_timer__c);
@@ -110,8 +104,6 @@ const Questions = (props) => {
             }
             setQuestions(parseData);
             doGetParticipationWrongAnswers();
-            
-
           } catch (err) {
             console.error('get questions error' + err.message);
           }
@@ -180,18 +172,14 @@ const Questions = (props) => {
 
       const callbackFunction = async (childData) => {
         try{
-          console.log('log child data ' + childData);
           doGetParticipationWrongAnswers();
         }catch(err){
           console.log('err' + err.message);
         }
       }
 
-
-
       useEffect(() => {
         getQuestions(props.contest.question_timer__c);
-        console.log(props.hasContestWon);
         }, [props.contest.question_timer__c]);
 
         return ( 

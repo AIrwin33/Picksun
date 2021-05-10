@@ -24,6 +24,8 @@ app.use("/auth", require("./server/routes/jwtAuth"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//GET ALL PARTICIPANTS
+
 
 app.get("/participants", async(req,res) => {
     try{
@@ -45,7 +47,7 @@ app.post("/profile", authorization, async(req,res) => {
   }
 });
 
-//update participant
+//UPDATE participant
 
 app.put("/participant/:id", async(req,res) => {
     try {
@@ -62,7 +64,7 @@ app.put("/participant/:id", async(req,res) => {
     }
 });
 
-//get my contests
+//GET my contests
 
 app.get("/mycontests", authorization, async(req, res) => {
     try{
@@ -80,7 +82,7 @@ app.get("/mycontests", authorization, async(req, res) => {
   }
   });
 
-//get contests
+//GET ALL contests
 
 app.get("/allcontests", authorization, async(req,res) => {
   try{
@@ -95,7 +97,7 @@ app.get("/allcontests", authorization, async(req,res) => {
 }
 });
 
-//get event
+//GET event
 
 app.get("/event/:id", authorization, async(req,res) => {
     try{
@@ -110,7 +112,7 @@ app.get("/event/:id", authorization, async(req,res) => {
 });
 
 
-//get specific contest
+//GET A Contest by Id
 
 app.get("/contestdetail/:id", async(req,res) => {
     try{
@@ -127,7 +129,7 @@ app.get("/contestdetail/:id", async(req,res) => {
 });
 
 
-//create participation (when a contest is selected)
+//CREATE participation (when a contest is selected)
 
 app.post("/participations", authorization, async(req, res) => {
   try {
@@ -141,11 +143,6 @@ app.post("/participations", authorization, async(req, res) => {
             return res.status(401).send("Already Exists");
         }
 
-      //in production org, - include sfid for participant__c, for now, just include external_participant__c;
-       
-        //figure how to pass dynamic participant id here
-
-        //once participations are created, send update back to SF?
       const newParticipation = await pool.query(
           "INSERT INTO salesforce.participation__c (Contest__c, Participant__r__ExternalId__c,Status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *", 
       [contest_id, req.user.id, 'Active']
@@ -157,7 +154,7 @@ app.post("/participations", authorization, async(req, res) => {
   }
 });
 
-//get all participations for a contest
+//GET All Participations for a contest
 
 app.get("/contestparticipations/:contest_id", authorization, async(req,res) => {
     try{
@@ -165,15 +162,13 @@ app.get("/contestparticipations/:contest_id", authorization, async(req,res) => {
         console.log('all contest participations');
         const part = await pool.query("SELECT * FROM salesforce.participant__c AS participant, salesforce.participation__c AS participation WHERE participation.contest__c = $1 AND participation.participant__r__externalid__c = participant.externalid__c::text;", [contest_id]);
         res.json(part.rows);
-        console.log(part.rows.length);
-        console.log('all parts in contest' + JSON.stringify(part.rows));
     }catch(err) {
         console.log('err' + err);
     }
 });
 
 
-//get participation by contest Id and participant
+//get participation by contest Id
 
 app.get("/participationbycontest/:contest_id", authorization, async(req,res) => {
     try{
@@ -187,7 +182,7 @@ app.get("/participationbycontest/:contest_id", authorization, async(req,res) => 
     }
 });
 
-//get participation
+//GET participation
 
 app.get("/participations/id", async(req,res) => {
     try{
@@ -203,7 +198,7 @@ app.get("/participations/id", async(req,res) => {
 
 
 
-//get contest questions
+//GET contest questions
 
 app.get("/questions/:contest_id", authorization, async(req,res) => {
   try {
@@ -250,12 +245,13 @@ app.post("/answers", async(req, res) => {
           "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES($1,$2,$3,$4,$5, gen_random_uuid()) RETURNING *", 
       [participation.rows[0].sfid, question_sfid, eventVal, eventLabel, 'Submitted']
       );
-      console.log(newParticipationAnswer.rows);
       res.json(newParticipationAnswer.rows[0]);
   }catch(err){
       console.log('err' + err.message);
   }
 });
+
+//SET validated answer
 
 
 app.post("/validatepartanswer", async(req, res) => {
@@ -274,6 +270,8 @@ app.post("/validatepartanswer", async(req, res) => {
     }
   });
 
+//Get Participation for wrong answer count
+
 app.post("/participationswronganswer", async(req, res) => {
     try {
         const {partid} = req.body;
@@ -284,6 +282,8 @@ app.post("/participationswronganswer", async(req, res) => {
     }
 
 });
+
+//REFACTOR - keep this?
 
 app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(req, res) => {
     try {
@@ -299,6 +299,8 @@ app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(
     }
 
 });
+
+//REFACTOR - keep this?
 
 app.post("/wronganswer", authorization, async(req, res) => {
     try {
@@ -332,6 +334,8 @@ app.post("/wronganswer", authorization, async(req, res) => {
 
 });
 
+//REFACTOR - keep this?
+
 app.post("/clearcounter", authorization, async(req, res) => {
     try {
         const {conid} = req.body;
@@ -343,6 +347,8 @@ app.post("/clearcounter", authorization, async(req, res) => {
     }
 
 });
+
+//REFACTOR - keep this?
 
 app.post("/updateOpenedTime/:contest_id", authorization, async(req, res) => {
     try {
@@ -362,7 +368,7 @@ app.post("/updateOpenedTime/:contest_id", authorization, async(req, res) => {
 
 });
 
-//check winning participant
+//Get Remaining participations at end of contest
 
 app.get("/allendingparticipations/:contest_id", authorization, async(req, res) => {
     try{
@@ -435,12 +441,6 @@ app.post("/knockout", async(req, res) => {
 
 });
 
-// app.get('/*', (req, res) => {
-//     console.log('hi from react app');
-//     console.log(req);
-//     console.log(res);
-//     res.sendFile('/build/index.html');
-//   });
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
