@@ -4,16 +4,16 @@
 }
 
 .questionButton {
-    background-color: #D4382E;
-    border: #D4382E;
+    background-color: #215975;
+    border: #d4d4d4;
     color:white;
     padding-left: 2em;
     padding-right: 2em;
 }
 
 .questionButton:hover{
-    background-color: #D4382E;
-    border: #D4382E;
+    background-color: #215975;
+    border: #d4d4d4;
     color:white;
     padding-left: 2em;
     padding-right: 2em;
@@ -22,7 +22,7 @@
 .questionButton.focus{
     background-color: white;
     border: white;
-    color:#D4382E;
+    color:#215975;
     padding-left: 2em;
     padding-right: 2em;
 }
@@ -57,22 +57,15 @@
 
 .carousel-indicators li {
     background-color:grey;
+    visibility: hidden;
 }
 
 
-.questionRow .open {
-   background-color:  #d4d4d4;
-}
-
-.questionRow .locked {
-    background-color:  grey;
- }
-
- .answerBanner .red {
-    background-color:  red;
+ .red {
+    background-color:  #d4382e;
  }
  
- .answerBanner .green {
+.green {
      background-color:  green;
   }
 
