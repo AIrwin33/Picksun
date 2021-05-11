@@ -89,7 +89,7 @@ const Questions = (props) => {
                 console.log(currtime);
                 var closedTimerInt = millival + props.contest.opened_timer__c;
                 console.log(closedTimerInt);
-                var counttime = moment.duration(currtime.diff(closedTimer));
+                var counttime = moment.duration(currtime.diff(closedTimerInt.format("DD MMM YYYY hh:mm a")));
                 console.log('count time' + counttime);
                 setCounter(counttime);
               
