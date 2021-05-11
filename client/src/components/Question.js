@@ -37,7 +37,8 @@ const Question = (props) => {
         // console.log(event.target.value)
         // props.callbackMap(quest.sfid, event.target.value);
 
-        console.log('event label' + event.target.labels[0]);
+        label = next(event.target, "label");
+        console.log('label ' + label);
         //handleUpdateQuestionValue(event.target.value);
     }
     const handleUpdateQuestionValue = async (eventVal) => {
