@@ -367,7 +367,7 @@ app.post("/contestwon", authorization, async(req, res) => {
         [req.user.id]
         );
         
-        var contestwonnewcount = contestwoncount + 1;
+        var contestwonnewcount = contestwoncount.Contests_Won__c + 1;
         const wonparticipant = await pool.query(
             "UPDATE salesforce.participant__c SET Contests_Won__c = $1 WHERE sfid = $2", 
         [contestwonnewcount, req.user.id]
