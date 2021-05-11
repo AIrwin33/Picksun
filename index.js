@@ -343,7 +343,7 @@ app.get("/allendingparticipations/:contest_id", authorization, async(req, res) =
             "SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND status__c = $2 ORDER BY wrong_answers__c ASC", 
         [contest_id, 'Active']
         );
-        console.logs('rows remaining parts:' + contestwoncount.rows);
+        console.log('rows remaining parts:' + contestwoncount.rows);
         res.json(contestwoncount.rows);
     }catch(err){
         console.log('all remaining parts error::' + err);
