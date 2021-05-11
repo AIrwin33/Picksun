@@ -207,9 +207,10 @@ const Question = (props) => {
         console.log(parseRes[i].wrong_answers__c);
       }
 
-
+      var winningPart = parseRes[0];
+      console.log('winning part' + winningPart);
       //if you have the least amount of wrong answers, set contest won
-      if(props.partsfid === parseRes[0].sfid){
+      if(props.partsfid === parseRes[0].sfid && parseRes !== undefined){
         handleContestWon()
       }
 
