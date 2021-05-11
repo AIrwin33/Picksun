@@ -103,7 +103,7 @@ const Question = (props) => {
       console.log('existing part answer' + partRes.Name);
       console.log('existing part answer' + partRes.status__c);
       
-      if(parseRes.status__c === 'Submitted'){
+      if(partRes.status__c === 'Submitted'){
         console.log('submitted');
         setDisabledQuestion(true);
       }
@@ -127,28 +127,28 @@ const Question = (props) => {
     //insert participation answer
     try {
       console.log('handle wrong answer');
-      // const partid = props.participation_id;
-      // const body = {partid};
-      // const response = await fetch(
+      const partid = props.participation_id;
+      const body = {partid};
+      const response = await fetch(
 
-      //   "/wronganswer",
-      //   {
-      //     method: "POST",
-      //     headers: { jwt_token: localStorage.token,
-      //       "Content-type": "application/json"
-      //     },
-      //     body: JSON.stringify(body)
-      //   }
-      // );
+        "/wronganswer",
+        {
+          method: "POST",
+          headers: { jwt_token: localStorage.token,
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(body)
+        }
+      );
       
-      // const parseRes = await response.json();
-      //   console.log(parseRes);
-      //   const participationwrong = parseRes;
-      //   if(participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c){
-      //     handleKnockout();
-      //   }else {
-      //     console.log('still in the game');
-      //   }
+      const parseRes = await response.json();
+        console.log(parseRes);
+        const participationwrong = parseRes;
+        if(participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c){
+          handleKnockout();
+        }else {
+          console.log('still in the game');
+        }
     } catch (err) {
       console.error(err.message);
     }
