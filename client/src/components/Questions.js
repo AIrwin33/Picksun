@@ -89,7 +89,8 @@ const Questions = (props) => {
                 console.log(closedTimerFormat);
                 console.log(currtime);
                 console.log(currtime > closedTimerFormat);
-                var counttime = moment.duration(currtime.diff(closedTimerFormat));
+                console.log(closedTimerFormat.diff(currtime));
+                var counttime = moment.duration(closedTimerFormat.diff(currtime));
                 console.log('count time' + counttime);
 
                 if(counttime < 0){
