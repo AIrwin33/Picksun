@@ -46,8 +46,6 @@ const Question = (props) => {
       try {
         console.log('event val' + eventVal);
         const partid = props.partsfid;
-        console.log('external id : use isntead?' + props.participation_id);
-        console.log('in set answer part Id' + partid);
         const expartid = props.participation_id;
         const question_sfid = props.ques.sfid;
         const eventLabel = 'label';
@@ -132,6 +130,15 @@ const Question = (props) => {
       }
 
       setShowAnswer(true);  
+
+      if(props.publishedquestionscount === props.contestquestions){
+        handleContestEnd();
+      }
+      if(parseRes.wrong_answers_allowed__c === parseRes.wrong_answers__c){
+        handleKnockout();
+      }
+
+      
        
     } catch (err) {
       console.error(err.message);
@@ -139,53 +146,52 @@ const Question = (props) => {
 
   }
 
-  const handleCorrectAnswer = async () => {
-    try {
-      if(props.publishedquestionscount === props.contestquestions){
+  //keep for now, might delete later
+
+  // const handleCorrectAnswer = async () => {
+  //   try {
+  //     else{
+  //       console.log('continue playing');
+  //     }
+
+  //   }catch(err){
+
+  //   }
+  // }
+
+  // const handleWrongAnswer = async () => {
         
-        handleContestEnd();
-      }else{
-        console.log('continue playing');
-      }
+  //   //insert participation answer
+  //   try {
+  //     console.log('handle wrong answer');
+  //     const partid = props.participation_id;
+  //     const body = {partid};
+  //     const response = await fetch(
 
-    }catch(err){
-
-    }
-  }
-
-  const handleWrongAnswer = async () => {
-        
-    //insert participation answer
-    try {
-      console.log('handle wrong answer');
-      const partid = props.participation_id;
-      const body = {partid};
-      const response = await fetch(
-
-        "/wronganswer",
-        {
-          method: "POST",
-          headers: { jwt_token: localStorage.token,
-            "Content-type": "application/json"
-          },
-          body: JSON.stringify(body)
-        }
-      );
+  //       "/wronganswer",
+  //       {
+  //         method: "POST",
+  //         headers: { jwt_token: localStorage.token,
+  //           "Content-type": "application/json"
+  //         },
+  //         body: JSON.stringify(body)
+  //       }
+  //     );
       
-      const parseRes = await response.json();
-        console.log(parseRes);
-        const participationwrong = parseRes;
-        props.parentCallback();
-        if(participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c){
-          handleKnockout();
-        }else {
-          console.log('still in the game');
-        }
-    } catch (err) {
-      console.error(err.message);
-    }
+  //     const parseRes = await response.json();
+  //       console.log(parseRes);
+  //       const participationwrong = parseRes;
+  //       props.parentCallback();
+  //       if(participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c){
+  //         handleKnockout();
+  //       }else {
+  //         console.log('still in the game');
+  //       }
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
 
-  }
+  // }
 
   const handleKnockout = async () => {
         
