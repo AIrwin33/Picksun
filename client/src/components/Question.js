@@ -99,10 +99,12 @@ const Question = (props) => {
       const parseRes = await response.json();
       console.log(JSON.stringify(parseRes));
       setPartAnswer(parseRes);
-      console.log('existing part answer' + parseRes.Name);
-      console.log('existing part answer' + parseRes.status__c);
+      var partRes = parseRes
+      console.log('existing part answer' + partRes.Name);
+      console.log('existing part answer' + partRes.status__c);
       
       if(parseRes.status__c === 'Submitted'){
+        console.log('submitted');
         setDisabledQuestion(true);
       }
 
