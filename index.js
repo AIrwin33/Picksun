@@ -345,7 +345,6 @@ app.get("/allendingparticipations/:contest_id", authorization, async(req, res) =
         );
         console.log('rows remaining parts:' + contestwoncount.rows[0]);
         if(contestwoncount.rows.length === 0){
-            res.json('no response');
         }else{
             res.json(contestwoncount.rows);
         }
