@@ -20,8 +20,6 @@ const Questions = (props) => {
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [counter, setCounter] = useState(props.questiontime);
     const [knockedOut, setKnockedOut] = useState(false);
-    
-
     const [index, setIndex] = useState(0);
 
     const handleCarouselSelect = (selectedIndex, e) => {
@@ -82,17 +80,17 @@ const Questions = (props) => {
 
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0){
-
-                //opened_timer updated via process builder on published update
                 console.log(props.contest.opened_timer__c);
                 var questime = props.contest.question_timer__c;
                 var millival = questime * 1000;
                 var currtime = moment();
                 var closedTimer = millival + props.contest.opened_timer__c;
                 var counttime = moment.duration(currtime.diff(closedTimer));
+                console.log('count time' + counttime);
                 setCounter(counttime);
+              
             }else{
-                console.log('no available questions');
+                console.log('no available unlocked questions');
             }
             setQuestions(parseData);
             doGetParticipationWrongAnswers();
@@ -100,25 +98,6 @@ const Questions = (props) => {
             console.error('get questions error' + err.message);
           }
       };
-
-      const handleUpdateOpenedTime = async () => {
-        try {
-          console.log('handling update opened time');
-            const now = moment();
-          const body = {now};
-          const res = await fetch(`/updateOpenedTime/${props.contestid}`, {
-            method: "POST",
-            headers: { jwt_token: localStorage.token,
-              "Content-type": "application/json" 
-          },
-            body: JSON.stringify(body)
-          });
-          const parseData = await res.json();
-          console.log(parseData);
-        }catch (err) {
-            console.log('disable questions err : '+ err.message);
-        }
-    }
 
     const clearCounter = async () => {
         try{
@@ -155,7 +134,7 @@ const Questions = (props) => {
       
             const parseData = await res.json();
             setQuestions(parseData);
-            clearCounter()
+            clearCounter();
 
           }catch (err) {
               console.log('disable questions err : '+ err.message);
@@ -185,7 +164,7 @@ const Questions = (props) => {
                         <Col>
                             <div key={counter}>
 
-                                <Timer initialTime={180000}
+                                <Timer initialTime={counter}
                                 direction="backward"
                                 lastUnit="s"
                                 checkpoints={[
