@@ -79,7 +79,7 @@ const Questions = (props) => {
             setQuestionIds(questionIdArr);
 
             //if there are questions that aren't locked, then set the timing
-            if(nonLockedQuestionsArr.length > 0){
+            if(nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null){
                 var questime = props.contest.question_timer__c;
                 var millival = questime * 1000;
                 var currtime = moment();
@@ -100,6 +100,7 @@ const Questions = (props) => {
                 }
               
             }else{
+                setCounter(1);
                 console.log('no available unlocked questions');
             }
             setQuestions(parseData);
