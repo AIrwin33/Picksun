@@ -200,7 +200,7 @@ const Question = (props) => {
 
       const parseRes = await response.json();
       //sort by number of answers wrong
-        console.log('winning part '+ parseRes[0]);
+        console.log('winning part '+ JSON.stringify(parseRes[0]));
       //loop through and set place finish
       for(var i=0;i< parseRes.length; i++ ){
         console.log(parseRes[i]);
