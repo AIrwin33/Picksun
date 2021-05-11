@@ -82,9 +82,13 @@ const Questions = (props) => {
             if(nonLockedQuestionsArr.length > 0){
                 console.log(props.contest.opened_timer__c);
                 var questime = props.contest.question_timer__c;
+                console.log(questime);
                 var millival = questime * 1000;
+                console.log(millival);
                 var currtime = moment();
-                var closedTimer = millival + props.contest.opened_timer__c;
+                console.log(currtime);
+                var closedTimer = moment(millival + props.contest.opened_timer__c).format("DD MMM YYYY hh:mm a");
+                console.log(closedTimer);
                 var counttime = moment.duration(currtime.diff(closedTimer));
                 console.log('count time' + counttime);
                 setCounter(counttime);
