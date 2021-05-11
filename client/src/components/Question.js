@@ -70,41 +70,6 @@ const Question = (props) => {
 
   }
 
-  // const checkAnswer = async (question_sfid, answerval, correctval, partanswerid) => {
-  //   try{
-  //     const body = {partanswerid};
-  //     const response = await fetch(
-  //       "/validatepartanswer",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-type": "application/json"
-  //         },
-  //         body: JSON.stringify(body)
-  //       }
-  //     );
-  //     const parseRes = await response.json();
-  //     setPartAnswer(parseRes);
-  //     console.log('validated part answer' + JSON.stringify(parseRes))
-  //     console.log('correct answer' + correctval);
-  //     console.log('answer value' + answerval);
-  //     if(partAnswer.status__c === 'Submitted'){
-  //       setDisabledQuestion(true);
-  //     }
-      
-  //     if(correctval === answerval){
-  //       console.log('answer was correct');
-  //       handleCorrectAnswer();
-  //     }else{
-  //       console.log('answer was wrong');
-  //       handleWrongAnswer();
-  //     }
-  //   }catch (err) {
-  //     console.log('err' + err.message)
-  //   }
-
-  // }
-
   const handleExistingPartAnswer = async () => {
     try {
       console.log('handle existing answer');
@@ -136,10 +101,7 @@ const Question = (props) => {
       }
       if(parseRes.wrong_answers_allowed__c === parseRes.wrong_answers__c){
         handleKnockout();
-      }
-
-      
-       
+      }      
     } catch (err) {
       console.error(err.message);
     }
@@ -272,10 +234,6 @@ const Question = (props) => {
       );
       
       const parseRes = await response.json();
-      console.log('created parse res' + JSON.stringify(parseRes));
-      console.log('You won');
-
-      //also disable questions
       setShowContestWon(true);
       setContestWonText("Congratulations, You Won");
 
@@ -291,33 +249,6 @@ const Question = (props) => {
       setDisabledQuestion(true);
     }
     handleExistingPartAnswer();
-    
-    // }
-    //props.ques.publish_time__c
-    // var pubtime = moment(props.ques.publish_time__c);
-    // console.log(pubtime);
-
-    // //get current time
-
-    // var currtime = moment();
-
-    // console.log(currtime);
-    // //moment current time
-
-    // var cutofftime = moment(props.ques.publish_time__c).add(120,'seconds');
-
-    // if(moment(currtime).isBefore(cutofftime)){
-    //     //get time between current time and cutofftime
-
-    //     var counttime = moment.duration(currtime.diff(cutofftime));
-
-    //     setCounter(counttime);
-    // }else{
-        
-    //   console.log('else disable?');
-    //   //disableQuestion(props.ques.sfid)
-    // }
-
 
   }, [props.ques]);
 
