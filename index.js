@@ -340,8 +340,8 @@ app.get("/allendingparticipations/:contest_id", authorization, async(req, res) =
     try{
         const {contest_id} = req.params;
         const contestwoncount = await pool.query(
-            "SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND status__c = 'Active' SORT BY wrong_answers__c ASC", 
-        [contest_id]
+            "SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND status__c = $2 ORDER BY wrong_answers__c ASC", 
+        [contest_id, 'Active']
         );
         console.logs('rows remaining parts:' + contestwoncount.rows);
         res.json(contestwoncount.rows);
