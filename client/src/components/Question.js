@@ -29,7 +29,7 @@ const Question = (props) => {
     const handleRadioChange = async (event) => {
       var parent = $(event.target).parent();
       //REFACTOR check if this works or I should wait
-      //$(parent).addClass('disabledBtnGroup');
+      $(parent).addClass('disabledBtnGroup');
         //setRadioValue(event.target.value);    
         
         
