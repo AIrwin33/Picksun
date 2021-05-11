@@ -84,6 +84,7 @@ const Questions = (props) => {
                 var millival = questime * 1000;
                 var currtime = moment();
                 var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
+                console.log(props.contest.opened_timer__c);
                 var closedTimerFormat = moment(closedTimerInt);
                 console.log(closedTimerFormat);
                 console.log(currtime);
@@ -93,7 +94,7 @@ const Questions = (props) => {
 
                 if(counttime < 0){
                   disableQuestions(questionIdArr);
-                  setCounter(0);
+                  setCounter(1);
                 }else{
                   setCounter(counttime);
                 }
