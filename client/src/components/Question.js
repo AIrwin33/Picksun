@@ -37,8 +37,20 @@ const Question = (props) => {
         // console.log(event.target.value)
         // props.callbackMap(quest.sfid, event.target.value);
 
-        label = next(event.target, "label");
-        console.log('label ' + label);
+        var label = '';
+        if(event.target.value == 'A'){
+          label = quest.answer_a__c;
+        }
+        if(event.target.value == 'B'){
+          label = quest.answer_b__c;
+        }
+        if(event.target.value == 'C'){
+          label = quest.answer_c__c;
+        }
+        if(event.target.value == 'D'){
+          label = quest.answer_d__c;
+        }
+        console.log(label)
         //handleUpdateQuestionValue(event.target.value);
     }
     const handleUpdateQuestionValue = async (eventVal) => {
