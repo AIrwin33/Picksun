@@ -265,7 +265,7 @@ const Question = (props) => {
         <div className={`questionRow m-3 justify-content-center timer p-3  ${quest.islocked__c ? "locked" : "open" }`}> 
           {(props.isKnockedOut == true || showKnockOut == true) && 
           <Row>
-            <div className="centerText">
+            <div className="text-center">
               <span>you are knocked out</span>
               <span>{props.isKnockedOut}</span>
               <span>{showKnockOut}</span>
@@ -276,7 +276,7 @@ const Question = (props) => {
 
           {(props.isContestWon == true || showContestWon == true) && 
             <Row>
-              <div className="centerText">
+              <div className="text-center">
               <span>{contestWonText}</span>
               </div>
             </Row>
