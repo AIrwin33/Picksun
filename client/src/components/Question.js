@@ -109,7 +109,8 @@ const Question = (props) => {
       }
 
       setShowAnswer(true);  
-
+      console.log(props.publishedquestionscount);
+      console.log(props.contestquestions);
       if(props.publishedquestionscount === props.contestquestions){
         handleContestEnd();
       }else{
