@@ -51,9 +51,9 @@ const Question = (props) => {
           label = quest.answer_d__c;
         }
         console.log(label)
-        //handleUpdateQuestionValue(event.target.value);
+        handleUpdateQuestionValue(event.target.value, label);
     }
-    const handleUpdateQuestionValue = async (eventVal) => {
+    const handleUpdateQuestionValue = async (eventVal, eventLabel) => {
         
       //insert participation answer
       try {
@@ -61,7 +61,6 @@ const Question = (props) => {
         const partid = props.partsfid;
         const expartid = props.participation_id;
         const question_sfid = props.ques.sfid;
-        const eventLabel = 'label';
         const body = {partid, question_sfid, eventVal, eventLabel, expartid};
         const response = await fetch(
           "/answers",
