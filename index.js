@@ -377,9 +377,11 @@ app.post("/contestwon", authorization, async(req, res) => {
         );
 
         const woncontest = await pool.query(
-            "UPDATE salesforce.contest__c SET Status__c = 'Finished' WHERE sfid = $1", 
+            "UPDATE salesforce.contest__c SET Status__c = 'Finished' WHERE sfid = $1 RETURNING *", 
         [contestid]
         );
+        res.json(woncontest.rows);
+        
     }catch(err){
         console.log('contest won error ' + err); 
     }

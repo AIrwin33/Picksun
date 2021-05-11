@@ -187,6 +187,7 @@ const Question = (props) => {
 
   const handleContestEnd = async () => {
     try{
+      console.log('quest contest' + quest.contest__c);
       //check if there are other participations active
       const response = await fetch(
         `/allendingparticipations/` + quest.contest__c,
@@ -202,14 +203,15 @@ const Question = (props) => {
       //sort by number of answers wrong
         console.log('winning part '+ JSON.stringify(parseRes[0]));
       //loop through and set place finish
-      for(var i=0;i< parseRes.length; i++ ){
-        console.log(parseRes[i]);
-        console.log(parseRes[i].wrong_answers__c);
-      }
-
+      
       var winningPart = parseRes[0];
       //if you have the least amount of wrong answers, set contest won
       if(winningPart !== undefined){
+        for(var i=0;i< parseRes.length; i++ ){
+          console.log(parseRes[i]);
+          console.log(parseRes[i].wrong_answers__c);
+        }
+  
         if(props.partsfid === parseRes[0].sfid){
           console.log('handling contest won');
           handleContestWon()
