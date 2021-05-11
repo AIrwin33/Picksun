@@ -112,64 +112,48 @@ const Question = (props) => {
 
       if(props.publishedquestionscount === props.contestquestions){
         handleContestEnd();
-      }
-      if(parseRes.wrong_answers_allowed__c === parseRes.wrong_answers__c){
-        console.log(parseRes.wrong_answers_allowed__c);
-        console.log(parseRes.wrong_answers__c);
-        //handleKnockout();
-      }      
+      }else{
+        getParticipationWrongAnswerInfo()
+      } 
     } catch (err) {
       console.error(err.message);
     }
 
   }
 
-  //keep for now, might delete later
 
-  // const handleCorrectAnswer = async () => {
-  //   try {
-  //     else{
-  //       console.log('continue playing');
-  //     }
-
-  //   }catch(err){
-
-  //   }
-  // }
-
-  // const handleWrongAnswer = async () => {
+  const getParticipationWrongAnswerInfo = async () => {
         
-  //   //insert participation answer
-  //   try {
-  //     console.log('handle wrong answer');
-  //     const partid = props.participation_id;
-  //     const body = {partid};
-  //     const response = await fetch(
+    //insert participation answer
+    try {
+      console.log('handle wrong answer');
+      // const partid = props.participation_id;
+      // const body = {partid};
+      // const response = await fetch(
 
-  //       "/wronganswer",
-  //       {
-  //         method: "POST",
-  //         headers: { jwt_token: localStorage.token,
-  //           "Content-type": "application/json"
-  //         },
-  //         body: JSON.stringify(body)
-  //       }
-  //     );
+      //   "/wronganswer",
+      //   {
+      //     method: "POST",
+      //     headers: { jwt_token: localStorage.token,
+      //       "Content-type": "application/json"
+      //     },
+      //     body: JSON.stringify(body)
+      //   }
+      // );
       
-  //     const parseRes = await response.json();
-  //       console.log(parseRes);
-  //       const participationwrong = parseRes;
-  //       props.parentCallback();
-  //       if(participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c){
-  //         handleKnockout();
-  //       }else {
-  //         console.log('still in the game');
-  //       }
-  //   } catch (err) {
-  //     console.error(err.message);
-  //   }
+      // const parseRes = await response.json();
+      //   console.log(parseRes);
+      //   const participationwrong = parseRes;
+      //   if(participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c){
+      //     handleKnockout();
+      //   }else {
+      //     console.log('still in the game');
+      //   }
+    } catch (err) {
+      console.error(err.message);
+    }
 
-  // }
+  }
 
   const handleKnockout = async () => {
         
