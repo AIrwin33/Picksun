@@ -85,9 +85,14 @@ const Questions = (props) => {
                 var currtime = moment();
                 var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
                 var closedTimerFormat = moment(closedTimerInt);
-                var counttime = moment.duration(currtime.diff(closedTimerFormat));
+                var counttime = moment.duration(closedTimerFormat.diff(currtime));
                 console.log('count time' + counttime);
-                setCounter(counttime);
+
+                if(counttime < 0){
+                  disableQuestions(questionIdArr);
+                }else{
+                  setCounter(counttime);
+                }
               
             }else{
                 console.log('no available unlocked questions');
