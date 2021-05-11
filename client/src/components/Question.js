@@ -112,7 +112,9 @@ const Question = (props) => {
         handleContestEnd();
       }
       if(parseRes.wrong_answers_allowed__c === parseRes.wrong_answers__c){
-        handleKnockout();
+        console.log(parseRes.wrong_answers_allowed__c);
+        console.log(parseRes.wrong_answers__c);
+        //handleKnockout();
       }      
     } catch (err) {
       console.error(err.message);
