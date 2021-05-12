@@ -5,7 +5,7 @@
 
 .questionButton {
     background-color: #215975;
-    border: #d4d4d4;
+    border: 1px solid #d4d4d4;
     color:white;
     padding-left: 2em;
     padding-right: 2em;
@@ -13,7 +13,7 @@
 
 .questionButton:hover{
     background-color: #215975;
-    border: #d4d4d4;
+    border: 1px solid #d4d4d4;
     color:white;
     padding-left: 2em;
     padding-right: 2em;
@@ -21,7 +21,7 @@
 
 .questionButton.focus{
     background-color: white;
-    border: white;
+    border: 1px solid #d4d4d4;
     color:#215975;
     padding-left: 2em;
     padding-right: 2em;
@@ -29,7 +29,7 @@
 
 .questionButton.active{
     background-color: #215975;
-    border: #d4d4d4;
+    border: 1px solid #d4d4d4;
     color:white;
     padding-left: 2em;
     padding-right: 2em;
