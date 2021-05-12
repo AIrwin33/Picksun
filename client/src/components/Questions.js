@@ -21,6 +21,7 @@ const Questions = (props) => {
     const [counter, setCounter] = useState(props.questiontime);
     const [knockedOut, setKnockedOut] = useState(false);
     const [finished, setFinished] = useState(false);
+    const [inactive, setInactive] = useState(false);
     const [index, setIndex] = useState(0);
 
     const handleCarouselSelect = (selectedIndex, e) => {
@@ -52,6 +53,9 @@ const Questions = (props) => {
             setKnockedOut(true);
             console.log(knockedOut);
           }
+          if(partWrongAnswer.status__c != 'Active'){
+            setInactive(true);
+          }
           setPartWrongAnswer(parseData);
         } catch (err) {
           console.error(err.message);
@@ -77,17 +81,16 @@ const Questions = (props) => {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
             };
-
+            setQuestionIds(questionIdArr);
             if(questionIdArr.length === props.contest.number_of_questions__c && nonLockedQuestionsArr.length === 0){
               //set contest over
               console.log('no more questions, contest is over');
               setFinished(true);
               
             }
-            setQuestionIds(questionIdArr);
-
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null){
+                console.log('setting timer');
                 var questime = props.contest.question_timer__c;
                 var millival = questime * 1000;
                 var currtime = moment();
@@ -101,14 +104,12 @@ const Questions = (props) => {
                 console.log('count time' + counttime);
 
                 if(counttime < 0){
-                  disableQuestions(questionIdArr);
-                  setCounter(1);
+                  setCounter(0);
                 }else{
                   setCounter(counttime);
                 }
               
             }else{
-                setCounter(1);
                 console.log('no available unlocked questions');
             }
             setQuestions(parseData);
@@ -219,7 +220,7 @@ const Questions = (props) => {
                     <Carousel activeIndex={index} interval={null} onSelect={handleCarouselSelect}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                <Question parentCallback={callbackFunction} ques={question} isKnockedOut={knockedOut} participation_id={props.participation_id} contestfinsihed={finished} partsfid={props.partsfid}></Question>
+                                <Question parentCallback={callbackFunction} ques={question} isInactive={inactive} isKnockedOut={knockedOut} participation_id={props.participation_id} contestfinsihed={finished} partsfid={props.partsfid}></Question>
                             </Carousel.Item>
                         })}
                     </Carousel>
