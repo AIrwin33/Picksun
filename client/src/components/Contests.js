@@ -90,7 +90,7 @@ const Contests = ({setAuth}) => {
                     </Col>
                 </Row>
                 {contests.map(contest => (
-                <Row key={contest.sfid} className="bodyRow ">
+                <Row key={contest.sfid} className="bodyRow">
                     <Col className="bodyCol">
                         {/* if contest Start_Time__c  within 2 hours */}
                         {moment(contest.start_time__c).isSameOrAfter(time.today) && moment(contest.start_time__c).isSameOrBefore(time.twoHours) &&

@@ -35,7 +35,6 @@ const Contest = ({ match }) => {
     const [participations, setParticipations] = useState([]);
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
-    const [contestWon, setContestWon] = useState(false);
 
     
 
@@ -98,11 +97,6 @@ const Contest = ({ match }) => {
                 }
               }
             setActiveParts(activeParts.length);
-            console.log('before check');
-            if(parseData.length > 1 && activeParts.length === 1){
-                console.log('youre the last person in the contest');
-                setContestWon(true);
-            }
             setParticipations(activeParts);
         }catch (err) {
             console.error(err.message);
@@ -162,14 +156,6 @@ const Contest = ({ match }) => {
                         <h4 className="whiteText fontBold">{contest.name}</h4>
                     </Col>
                     <Col xs={3} sm={3}>
-                    </Col>
-                </Row>
-
-                <Row className="rowBar">
-                    <Col>
-                    {contestWon &&
-                                <div> You Won</div>
-                            }
                     </Col>
                 </Row>
                 <Tabs fill>

@@ -111,8 +111,13 @@ const Question = (props) => {
       setShowAnswer(true);  
       console.log(props.publishedquestionscount);
       console.log(props.contestquestions);
+
+      
+
       if(props.publishedquestionscount === props.contestquestions){
-        handleContestEnd();
+
+        //TODO - wait for correct count
+        //handleContestEnd();
       }else{
         getParticipationWrongAnswerInfo()
       } 
