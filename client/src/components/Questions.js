@@ -20,6 +20,7 @@ const Questions = (props) => {
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [counter, setCounter] = useState(props.questiontime);
     const [knockedOut, setKnockedOut] = useState(false);
+    const [finished, setFinished] = useState(false);
     const [index, setIndex] = useState(0);
 
     const handleCarouselSelect = (selectedIndex, e) => {
@@ -76,6 +77,13 @@ const Questions = (props) => {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
             };
+
+            if(questionIdArr.length === props.contest.number_of_questions__c && nonLockedQuestionsArr.length === 0){
+              //set contest over
+              console.log('no more questions, contest is over');
+              setFinished(true);
+              
+            }
             setQuestionIds(questionIdArr);
 
             //if there are questions that aren't locked, then set the timing
@@ -211,7 +219,7 @@ const Questions = (props) => {
                     <Carousel activeIndex={index} interval={null} onSelect={handleCarouselSelect}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                <Question parentCallback={callbackFunction} ques={question} isKnockedOut={knockedOut} participation_id={props.participation_id} publishedquestionscount={questions.length} contestquestions={props.contest.number_of_questions__c} partsfid={props.partsfid}></Question>
+                                <Question parentCallback={callbackFunction} ques={question} isKnockedOut={knockedOut} participation_id={props.participation_id} contestfinsihed={finished} partsfid={props.partsfid}></Question>
                             </Carousel.Item>
                         })}
                     </Carousel>

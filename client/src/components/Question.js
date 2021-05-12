@@ -74,7 +74,6 @@ const Question = (props) => {
         );
         
         const parseRes = await response.json();
-        console.log('created part answer' + JSON.stringify(parseRes));
         setPartAnswer(parseRes);
       } catch (err) {
         console.error(err.message);
@@ -100,8 +99,7 @@ const Question = (props) => {
       console.log(JSON.stringify(parseRes));
       setPartAnswer(parseRes);
       var partRes = parseRes
-      console.log('existing part answer' + partRes.Name);
-      console.log('existing part answer' + partRes.status__c);
+
       
       if(partRes.status__c === 'Submitted'){
         console.log('submitted');
@@ -109,15 +107,13 @@ const Question = (props) => {
       }
 
       setShowAnswer(true);  
-      console.log(props.publishedquestionscount);
-      console.log(props.contestquestions);
 
       
 
-      if(props.publishedquestionscount === props.contestquestions){
-
+      if(props.contestfinished == true){
+        console.log('contest finsihed, handle place finsihed');
         //TODO - wait for correct count
-        //handleContestEnd();
+        handleContestEnd();
       }else{
         getParticipationWrongAnswerInfo()
       } 
