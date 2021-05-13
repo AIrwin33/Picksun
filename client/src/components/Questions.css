@@ -43,3 +43,6 @@
 .carousel-indicators {
     visibility: hidden;
 }
+.disabledSubmit {
+    pointer-events: none;
+}
