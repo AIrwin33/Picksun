@@ -257,7 +257,7 @@ app.post("/answerslist", async(req, res) => {
     try {
 
         console.log('here');
-  
+        const {partid, question_sfid, expartid} = req.body;
     //     const {partid, question_sfid, eventVal, eventLabel, expartid} = req.body;
     //     const participation = await pool.query(
     //       "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", 

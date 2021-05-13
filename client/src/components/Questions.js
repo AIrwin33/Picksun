@@ -169,7 +169,7 @@ const Questions = (props) => {
           const partid = props.partsfid;
           const expartid = props.participation_id;
           const question_sfid = props.ques.sfid;
-          const body = {partid, question_sfid, eventVal, eventLabel, expartid};
+          const body = {partid, question_sfid, expartid};
           const res = await fetch(`/answerslist`, {
             method: "POST",
             headers: { jwt_token: localStorage.token,
