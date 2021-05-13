@@ -3,29 +3,13 @@
     border-radius: 10px;
 }
 
-/* .questionButton {
-    background-color: #D4382E;
-    border: #D4382E;
+.submitButton {
+    background-color: #215975;
+    border: 1px solid #d4d4d4;
     color:white;
     padding-left: 2em;
     padding-right: 2em;
 }
-
-.questionButton:hover{
-    background-color: #D4382E;
-    border: #D4382E;
-    color:white;
-    padding-left: 2em;
-    padding-right: 2em;
-}
-
-.questionButton.focus{
-    background-color: white;
-    border: white;
-    color:#D4382E;
-    padding-left: 2em;
-    padding-right: 2em;
-} */
 
 .timer {
     border-radius: 10px;
