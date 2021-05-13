@@ -19,6 +19,7 @@ const Questions = (props) => {
     const [questionids, setQuestionIds] = useState([]);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [counter, setCounter] = useState(props.questiontime);
+    const [answerList, setAnswerList] =useState([]);
     const [knockedOut, setKnockedOut] = useState(false);
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
@@ -161,9 +162,15 @@ const Questions = (props) => {
           }
       }
 
-      const callbackFunction = async (childData) => {
+      const handleSubmitAnswers = async() => {
+        console.log('handling submit answers');
+        console.log('answer list' + answerList);
+      }
+
+      const updateAnswerList = async (childData) => {
         try{
-          doGetParticipationWrongAnswers();
+          console.log('update answer list' + answerList);
+          console.log('child data' +childData);
         }catch(err){
           console.log('err' + err.message);
         }
@@ -220,7 +227,7 @@ const Questions = (props) => {
                     <Carousel activeIndex={index} interval={null} onSelect={handleCarouselSelect}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                <Question parentCallback={callbackFunction} ques={question} isInactive={inactive} isKnockedOut={knockedOut} participation_id={props.participation_id} contestfinsihed={finished} partsfid={props.partsfid}></Question>
+                                <Question addAnswer={updateAnswerList} ques={question} isInactive={inactive} isKnockedOut={knockedOut} participation_id={props.participation_id} contestfinsihed={finished} partsfid={props.partsfid}></Question>
                             </Carousel.Item>
                         })}
                     </Carousel>
@@ -233,11 +240,11 @@ const Questions = (props) => {
                     }
                     </Col>
                 </Row>
-                {/* <Row>
+                <Row>
                   <Col>
                     <button className="btn btn-primary submitButton" onClick={handleSubmitAnswers}>submit answers</button>
                   </Col>
-                </Row> */}
+                </Row>
             </Container>
 
             </>

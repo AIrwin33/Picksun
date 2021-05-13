@@ -29,13 +29,13 @@ const Question = (props) => {
     const handleRadioChange = async (event) => {
       var parent = $(event.target).parent();
       //REFACTOR check if this works or I should wait
-      $(parent).addClass('disabledBtnGroup');
+      //$(parent).addClass('disabledBtnGroup');
         //setRadioValue(event.target.value);    
         
         
-        // console.log(quest.sfid);
-        // console.log(event.target.value)
-        // props.callbackMap(quest.sfid, event.target.value);
+        console.log(quest.sfid);
+        console.log(event.target.value)
+        props.addAnswer(quest.sfid, event.target.value);
 
         var label = '';
         if(event.target.value == 'A'){
@@ -51,7 +51,7 @@ const Question = (props) => {
           label = quest.answer_d__c;
         }
         console.log(label)
-        handleUpdateQuestionValue(event.target.value, label);
+        //handleUpdateQuestionValue(event.target.value, label);
     }
     const handleUpdateQuestionValue = async (eventVal, eventLabel) => {
         
