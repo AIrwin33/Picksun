@@ -259,10 +259,14 @@ const Questions = (props) => {
                     </Col>
                 </Row>
                 {questions.length > 0 &&
-                <Row className="questionRow m-3 p-3 align-items-center">
+                <Row className="questionRow m-3 p-3 justify-content-md-center">
                     <Col >
+                    </Col>
+                    <Col className="align-items-center col-md-auto">
                       <button className="btn btn-primary submitButton" onClick={handleSubmitAnswers}>submit answers</button>
 
+                    </Col>
+                    <Col >
                     </Col>
                 </Row>
                 }
