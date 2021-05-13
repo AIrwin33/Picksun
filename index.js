@@ -251,6 +251,33 @@ app.post("/answers", async(req, res) => {
   }
 });
 
+//insert answers
+
+app.post("/answerslist", async(req, res) => {
+    try {
+
+        console.log('here');
+  
+    //     const {partid, question_sfid, eventVal, eventLabel, expartid} = req.body;
+    //     const participation = await pool.query(
+    //       "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", 
+    //   [expartid]
+    //   );
+    //       console.log(expartid);
+    //       console.log(participation.rows[0].sfid);
+    //       console.log(participation.rows);
+    //       console.log('partid in creating answer');
+    //     const newParticipationAnswer = await pool.query(
+    //         "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES($1,$2,$3,$4,$5, gen_random_uuid()) RETURNING *", 
+    //     [participation.rows[0].sfid, question_sfid, eventVal, eventLabel, 'Submitted']
+    //     );
+    //     res.json(newParticipationAnswer.rows[0]);
+    }catch(err){
+        console.log('err' + err.message);
+    }
+  });
+
+
 //Get Participation for wrong answer count
 
 app.post("/participationswronganswer", async(req, res) => {

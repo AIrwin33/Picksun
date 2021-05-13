@@ -165,6 +165,24 @@ const Questions = (props) => {
       const handleSubmitAnswers = async() => {
         console.log('handling submit answers');
         console.log('answer list' + answerList);
+        try {
+          const partid = props.partsfid;
+          const expartid = props.participation_id;
+          const question_sfid = props.ques.sfid;
+          const body = {partid, question_sfid, eventVal, eventLabel, expartid};
+          const res = await fetch(`/answerslist`, {
+            method: "POST",
+            headers: { jwt_token: localStorage.token,
+              "Content-type": "application/json" 
+          },
+            body: JSON.stringify(body)
+          });
+    
+          const parseData = await res.json();
+
+        }catch (err) {
+            console.log('handle submit answers err : '+ err.message);
+        }
       }
 
       const updateAnswerList = async (childData) => {
@@ -240,7 +258,7 @@ const Questions = (props) => {
                     }
                     </Col>
                 </Row>
-                <Row>
+                <Row className="questionRow m-3 p-3 justify-content-center">
                   <Col>
                     <button className="btn btn-primary submitButton" onClick={handleSubmitAnswers}>submit answers</button>
                   </Col>
