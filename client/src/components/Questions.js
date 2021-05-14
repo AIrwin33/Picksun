@@ -155,15 +155,13 @@ const Questions = (props) => {
           }
       }
 
-      const handleSubmitAnswers = async() => {
+      const handleSubmitAnswers = async () => {
         console.log('handling submit answers');
         console.log('answer list' + answerList);
         try {
-          const partid = props.partsfid;
-          const expartid = props.participation_id;
-          const question_sfid = props.ques.sfid;
-          const body = {partid, question_sfid, expartid};
-          const res = await fetch(`/answerslist`, {
+          const partanswers = answerList;
+          const body = {partanswers};
+          const res = await fetch(`/submitpartanswers`, {
             method: "POST",
             headers: { jwt_token: localStorage.token,
               "Content-type": "application/json" 
@@ -182,6 +180,18 @@ const Questions = (props) => {
         try{
           console.log('update answer list' + answerList);
           console.log('child data' +childData);
+          console.log(childData.questionid);
+          //if answer list contains a question, then replace it, otherwise add it
+          for(var i =0; i > answerList.length; i++){
+            console.log(answerList[i].questionid);
+            if(childData.questionid === answerList[i].questionid){
+              //replace existing question
+              answerList.splice(i,i, childData);
+            }else{
+              answerList.add(childData);
+            }
+          }
+          console.log(answerList);
         }catch(err){
           console.log('err' + err.message);
         }
@@ -235,7 +245,7 @@ const Questions = (props) => {
                 <Row>
                     <Col>
                     {questions.length > 0 &&
-                    <Carousel interval={null}>
+                    <Carousel interval={null} >
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
                                 <Question addAnswer={updateAnswerList} ques={question} isInactive={inactive} isKnockedOut={knockedOut} participation_id={props.participation_id} contestfinsihed={finished} partsfid={props.partsfid}></Question>

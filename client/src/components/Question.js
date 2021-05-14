@@ -43,7 +43,7 @@ const Question = (props) => {
           label = quest.answer_d__c;
         }
         console.log(label)
-        //handleUpdateQuestionValue(event.target.value, label);
+        handleUpdateQuestionValue(event.target.value, label);
     }
     const handleUpdateQuestionValue = async (eventVal, eventLabel) => {
         
@@ -53,20 +53,15 @@ const Question = (props) => {
         const partid = props.partsfid;
         const expartid = props.participation_id;
         const question_sfid = props.ques.sfid;
-        const body = {partid, question_sfid, eventVal, eventLabel, expartid};
-        const response = await fetch(
-          "/answers",
-          {
-            method: "POST",
-            headers: {
-              "Content-type": "application/json"
-            },
-            body: JSON.stringify(body)
-          }
-        );
-        
-        const parseRes = await response.json();
-        setPartAnswer(parseRes);
+        const answer = {
+          partid: partid, 
+          questionid: question_sfid,
+          value: eventVal,
+          label: eventLabel,
+          expartid: expartid,
+          status: 'Submitted'
+        }
+        props.addAnswer(answer);
       } catch (err) {
         console.error(err.message);
       }
