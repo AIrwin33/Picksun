@@ -12,6 +12,8 @@ const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 const path = require("path");
 
+const pgp = require('pg-promise')();
+
 
 // ROUTES
 app.use(express.static(path.join(__dirname, "/public")));
