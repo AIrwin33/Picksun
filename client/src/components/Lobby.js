@@ -19,7 +19,6 @@ const Lobby = () => {
         });
   
         const parseData = await res.json();
-        setIsAuthenticated(true);
         
       } catch (err) {
         console.error(err.message);
