@@ -21,6 +21,10 @@ const initOptions = {
 const pgp = require('pg-promise')(initOptions);
 
 
+const connection = process.env.DATABASE_URL;
+const db = pgp(connection); // database instance;
+
+
 // ROUTES
 app.use(express.static(path.join(__dirname, "/public")));
 app.use("/auth", require("./server/routes/jwtAuth"));
@@ -377,6 +381,30 @@ app.post("/knockout", async(req, res) => {
 
       
       res.json(contestText);
+    }catch(err){
+        console.log('knock out error ' + err);
+    }
+
+});
+
+
+// PG Promise to insert participation answers
+
+app.post("/submitpartanswers", async(req, res) => {
+    try {
+        var users = [{name: 'John', age: 23}, {name: 'Mike', age: 30}, {name: 'David', age: 18}];
+
+        var values = new Inserts('${name}, ${age}', users); // using Inserts as a type;
+        console.log('values' + values);
+
+        // db.none('INSERT INTO salesforce.participation_answer__c(name, age) VALUES $1', values)
+        //     .then(data => {
+        //         // OK, all records have been inserted
+        //         console.log('data' + data.rows);
+        //     })
+        //     .catch(error => {
+        //         // Error, no records inserted
+        //     });
     }catch(err){
         console.log('knock out error ' + err);
     }
