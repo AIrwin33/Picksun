@@ -392,19 +392,22 @@ app.post("/knockout", async(req, res) => {
 
 app.post("/submitpartanswers", async(req, res) => {
     try {
-        var users = [{name: 'John', age: 23}, {name: 'Mike', age: 30}, {name: 'David', age: 18}];
+        const {partanswers} = req.body;
 
-        var values = new Inserts('${name}, ${age}', users); // using Inserts as a type;
+        var values = new Inserts('${participation}, ${question},${selection}, ${selection_val}, ${status}, gen_random_uuid()', partanswers); // using Inserts as a type;
         console.log('values' + values);
 
-        // db.none('INSERT INTO salesforce.participation_answer__c(name, age) VALUES $1', values)
-        //     .then(data => {
-        //         // OK, all records have been inserted
-        //         console.log('data' + data.rows);
-        //     })
-        //     .catch(error => {
-        //         // Error, no records inserted
-        //     });
+        //participation.rows[0].sfid, question_sfid, eventVal, eventLabel, 'Submitted', gen_random_uuid()
+
+        db.none('INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES $1 RETURNING *', values)
+            .then(data => {
+                // OK, all records have been inserted
+                console.log('data' + data.rows);
+            })
+            .catch(error => {
+                // Error, no records inserted
+            });
+
     }catch(err){
         console.log('knock out error ' + err);
     }
