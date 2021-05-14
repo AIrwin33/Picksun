@@ -23,11 +23,6 @@ const Questions = (props) => {
     const [knockedOut, setKnockedOut] = useState(false);
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
-    const [index, setIndex] = useState(0);
-
-    const handleCarouselSelect = (selectedIndex, e) => {
-        setIndex(selectedIndex);
-    };
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -91,7 +86,6 @@ const Questions = (props) => {
             }
             //if there are questions that aren't locked, then set the timing
             if(nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null){
-                console.log('setting timer');
                 var questime = props.contest.question_timer__c;
                 var millival = questime * 1000;
                 var currtime = moment();
@@ -122,7 +116,6 @@ const Questions = (props) => {
 
     const clearCounter = async () => {
         try{
-            console.log('clearing counter');
             const conid = props.contest.sfid;
             const body = {conid};
             const response = await fetch(
@@ -242,7 +235,7 @@ const Questions = (props) => {
                 <Row>
                     <Col>
                     {questions.length > 0 &&
-                    <Carousel activeIndex={index} interval={null} onSelect={handleCarouselSelect}>
+                    <Carousel interval={null} onSelect={handleCarouselSelect}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
                                 <Question addAnswer={updateAnswerList} ques={question} isInactive={inactive} isKnockedOut={knockedOut} participation_id={props.participation_id} contestfinsihed={finished} partsfid={props.partsfid}></Question>

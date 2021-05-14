@@ -1,22 +1,16 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Container, 
     Row,
     Col,
-    Image,
     Button,
-    ResponsiveEmbed
 } from "react-bootstrap";
-
-import fullGame from '../assets/full_game_img.png';
-
 
 import "./Lobby.css";
 
-const Lobby = ({ setAuth }) => {
+const Lobby = () => {
      //get contests
      const [contests, setContests] = useState([]);
-     const [isAuthenticated, setIsAuthenticated] = useState(false);
      const getProfile = async () => {
       try {
         const res = await fetch("/profile", {
@@ -33,7 +27,6 @@ const Lobby = ({ setAuth }) => {
     };
      const getAllContests = async () => {
          try {
-           console.log('get contests before fetch');
              const res = await fetch("/allcontests", {
                method: "GET",
                headers: { jwt_token: localStorage.token }
@@ -48,11 +41,8 @@ const Lobby = ({ setAuth }) => {
 
        const enterContest = async (id, contest_id) => {
         try {
-          console.log('entering contest');
-          console.log('contest id ' + id);
-          console.log('contest sfid' + contest_id);
+
           const body = {contest_id};
-          console.log('body' + JSON.stringify(body));
           const response = await fetch(
 
             "/participations",
@@ -66,8 +56,6 @@ const Lobby = ({ setAuth }) => {
             }
           );
           const parseRes = await response.json();
-            console.log('part created' + parseRes);
-            console.log("Participation Created Successfully");
             window.location = "/Contest/" + contest_id;
           
         } catch (err) {

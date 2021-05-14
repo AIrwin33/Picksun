@@ -7,15 +7,7 @@ import {
 import "./Question.css";
 import $ from 'jquery';
 
-
-
-
-
-
 const Question = (props) => {
-    //const [radioValue, setRadioValue] = useState('');
-    
-    
     const [partAnswer, setPartAnswer] = useState([]);
     const [quest, setQuest] = useState([]);
     const [showanswer, setShowAnswer] = useState([false]);
@@ -128,7 +120,6 @@ const Question = (props) => {
         
     //insert participation answer
     try {
-      console.log('handle wrong answer');
       const partid = props.participation_id;
       const body = {partid};
       const response = await fetch(
@@ -144,7 +135,6 @@ const Question = (props) => {
       );
       
       const parseRes = await response.json();
-        console.log(parseRes);
         const participationwrong = parseRes;
         if(participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c){
           handleKnockout();
@@ -161,7 +151,6 @@ const Question = (props) => {
         
     //TODO : get place finish when knocked out
     try {
-      console.log('starting in knockout');
       const partid = props.participation_id;
       const body = {partid};
       const response = await fetch(
@@ -176,8 +165,6 @@ const Question = (props) => {
       );
       
       const parseRes = await response.json();
-      console.log('created parse res' + JSON.stringify(parseRes));
-      console.log("You've been knocked out");
       setKnockOut(true);
       setContestKnockoutText(parseRes.Knockout_Text__c);
     } catch (err) {
@@ -201,10 +188,6 @@ const Question = (props) => {
       );
 
       const parseRes = await response.json();
-      //sort by number of answers wrong
-        console.log('winning part '+ JSON.stringify(parseRes[0]));
-      //loop through and set place finish
-      
       var winningPart = parseRes[0];
       //if you have the least amount of wrong answers, set contest won
       if(winningPart !== undefined){
@@ -267,9 +250,6 @@ const Question = (props) => {
           {(props.isKnockedOut == true || showKnockOut == true) && 
           <Row>
             <div className="text-center">
-              <span>you are knocked out</span>
-              <span>{props.isKnockedOut}</span>
-              <span>{showKnockOut}</span>
               <span>{contestKnockoutText}</span>
             </div>
           </Row>

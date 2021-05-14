@@ -5,10 +5,7 @@ import {
     Col,
     Tab,
     Tabs,
-    ListGroup,
     Image,
-    Button,
-    ResponsiveEmbed
 } from "react-bootstrap";
 
 import Questions from './Questions.js';
@@ -18,13 +15,7 @@ import avatar from '../assets/blue_avatar_200.png';
 import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
 
 import "./Contest.css";
-import { JsonWebTokenError } from 'jsonwebtoken';
 
-
-const twitterRedirect = () => {
-    window.open('https://www.twitter.com');
-};
-    
 const Contest = ({ match }) => {     
         //get contest
     const [contest, setContest] = useState([]);
@@ -36,21 +27,15 @@ const Contest = ({ match }) => {
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
 
-    
-
     const getContest = async () => {
         try {
-            console.log('getting contest');
             const res = await fetch(`/contestdetail/${match.params.id}`, {
               method: "GET",
               headers: { jwt_token: localStorage.token }
             });
       
             const parseData = await res.json();
-            console.log('parse data contest' + JSON.stringify(parseData));
-            setContest(parseData);
-            console.log('after contest set');
-            
+            setContest(parseData); 
             getParticipationByContest(parseData);
             getEvent(parseData);
             getContestParticipations(parseData);
@@ -62,14 +47,12 @@ const Contest = ({ match }) => {
 
       const getEvent = async (contestRec) => {
         try {
-            console.log('event contest' + contestRec.event__c);
             const res = await fetch(`/event/` + contestRec.event__c, {
               method: "GET",
               headers: { jwt_token: localStorage.token }
             });
       
             const parseData = await res.json();
-            console.log(JSON.stringify(parseData));
             setHomeTeam(parseData[0]);
             setAwayTeam(parseData[1]);
             
@@ -80,7 +63,6 @@ const Contest = ({ match }) => {
 
     const getContestParticipations = async (contestRec) => {
         try {
-            console.log('get all contest participations');
             const res = await fetch(`/contestparticipations/` + contestRec.sfid ,{
                 method: "GET",
                 headers: { jwt_token: localStorage.token }
@@ -105,7 +87,6 @@ const Contest = ({ match }) => {
 
     const getParticipationByContest = async (contestRec) => {
         try {
-            console.log('getting participation by cotnest');
             const res = await fetch(`/participationbycontest/` + contestRec.sfid ,{
               method: "GET",
               headers: { jwt_token: localStorage.token }
