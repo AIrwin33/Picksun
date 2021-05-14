@@ -4,6 +4,8 @@ import {
     Col,
 } from "react-bootstrap";
 
+
+import {v4 as uuidv4} from 'uuid';
 import "./Question.css";
 import $ from 'jquery';
 
@@ -49,9 +51,11 @@ const Question = (props) => {
         
       //insert participation answer
       try {
+        let newuuid = uuidv4();
         console.log('event val' + eventVal);
         const partid = props.partsfid;
         const expartid = props.participation_id;
+        console.log('is blank? ' + props.partsfid);
         const question_sfid = props.ques.sfid;
         const answer = {
           partid: partid, 
@@ -59,6 +63,7 @@ const Question = (props) => {
           value: eventVal,
           label: eventLabel,
           expartid: expartid,
+          exid: newuuid,
           status: 'Submitted'
         }
         props.addAnswer(answer);

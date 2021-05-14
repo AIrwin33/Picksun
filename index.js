@@ -394,19 +394,29 @@ app.post("/submitpartanswers", async(req, res) => {
     try {
         const {partanswers} = req.body;
 
-        var values = new Inserts('${participation}, ${question},${selection}, ${selection_val}, ${status}, gen_random_uuid()', partanswers); // using Inserts as a type;
+        //check participation value
+        var values = new Inserts('${participation}, ${question},${selection}, ${selection_val}, $(exid), ${status} ', partanswers); // using Inserts as a type;
         console.log('values' + values);
 
         //participation.rows[0].sfid, question_sfid, eventVal, eventLabel, 'Submitted', gen_random_uuid()
+        const cs = new pgp.helpers.ColumnSet(['?participation__c', '?question__c','selection__c', 'selection_value__c','status__c', 'ExternalId__c'], {table: {table: 'participation_answers__c', schema: 'salesforce'}});
 
-        db.none('INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES $1 RETURNING *', values)
-            .then(data => {
-                // OK, all records have been inserted
-                console.log('data' + data.rows);
-            })
-            .catch(error => {
-                // Error, no records inserted
-            });
+        const update = pgp.helpers.update(partanswers, cs) + 'WHERE v.participation__c = t.participation AND v. question__c = t.question';
+        //=> UPDATE "fit_ratios" AS t SET "value"=v."value"
+        //   FROM (VALUES(1,1234),(2,5678),(3,91011))
+        //   AS v("id","value") WHERE v.id = t.id
+
+        // executing the query:
+        await db.none(update);
+
+        // db.none('UPDATE salesforce.participation_answers__c SET (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES $1 WHERE question__c = $2 AND participation__c = $3 RETURNING * ', values)
+        //     .then(data => {
+        //         // OK, all records have been inserted
+        //         console.log('data' + data.rows);
+        //     })
+        //     .catch(error => {
+        //         // Error, no records inserted
+        //     });
 
     }catch(err){
         console.log('knock out error ' + err);
