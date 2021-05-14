@@ -12,7 +12,13 @@ const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 const path = require("path");
 
-const pgp = require('pg-promise')();
+const promise = require('bluebird'); // or any other Promise/A+ compatible library;
+
+const initOptions = {
+    promiseLib: promise // overriding the default (ES6 Promise);
+};
+
+const pgp = require('pg-promise')(initOptions);
 
 
 // ROUTES
