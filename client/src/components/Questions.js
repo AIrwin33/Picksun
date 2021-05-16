@@ -179,8 +179,8 @@ const Questions = (props) => {
       const updateAnswerList = async (childData) => {
         try{
           console.log('update answer list' + answerList);
-          console.log('child data' +childData);
-          console.log(childData.questionid);
+          console.log('child data' + childData);
+          console.log(childData[questionid]);
           //if answer list contains a question, then replace it, otherwise add it
           for(var i =0; i > answerList.length; i++){
             console.log(answerList[i].questionid);

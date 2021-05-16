@@ -25,11 +25,6 @@ const Question = (props) => {
       //REFACTOR check if this works or I should wait
       //$(parent).addClass('disabledBtnGroup');
         //setRadioValue(event.target.value);    
-        
-        
-        console.log(quest.sfid);
-        console.log(event.target.value)
-        props.addAnswer(quest.sfid, event.target.value);
 
         var label = '';
         if(event.target.value == 'A'){
@@ -57,15 +52,15 @@ const Question = (props) => {
         const expartid = props.participation_id;
         console.log('is blank? ' + props.partsfid);
         const question_sfid = props.ques.sfid;
-        const answer = [
-          {partid: partid}, 
-          {questionid: question_sfid},
-          {value: eventVal},
-          {label: eventLabel},
-          {expartid: expartid},
-          {exid: newuuid},
-          {status: 'Submitted'}
-      ]
+        const answer = {
+          partid: partid, 
+          questionid: question_sfid,
+          value: eventVal,
+          label: eventLabel,
+          expartid: expartid,
+          exid: newuuid,
+          status: 'Submitted'
+        }
         props.addAnswer(answer);
       } catch (err) {
         console.error(err.message);
