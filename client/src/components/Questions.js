@@ -181,14 +181,13 @@ const Questions = (props) => {
           console.log('update answer list' + answerList);
           console.log('child data' + childData);
           console.log(childData.questionid);
+          answerList.add(childData);
           //if answer list contains a question, then replace it, otherwise add it
           for(var i =0; i > answerList.length; i++){
             console.log(answerList[i].questionid);
             if(childData.questionid === answerList[i].questionid){
               //replace existing question
               answerList.splice(i,i, childData);
-            }else{
-              answerList.add(childData);
             }
           }
           console.log(answerList);
