@@ -190,7 +190,7 @@ const Questions = (props) => {
             for(var i =0; i < answerList.length; i++){
               if(childData.questionid === answerList[i].questionid){
                 //replace existing question
-                answerList.splice(i,i, childData);
+                answerList.splice(0,i, childData);
                 console.log('here');
                 console.log('answer list' + answerList);
               }
