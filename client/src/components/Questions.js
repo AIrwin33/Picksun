@@ -184,12 +184,16 @@ const Questions = (props) => {
           if(answerList.length < 1){
             answerList.push(childData);
             console.log('answer list' + answerList);
-          }
-          //if answer list contains a question, then replace it, otherwise add it
-          for(var i =0; i < answerList.length; i++){
-            if(childData.questionid === answerList[i].questionid){
-              //replace existing question
-              answerList.splice(i,i, childData);
+          }else{
+
+            //if answer list contains a question, then replace it, otherwise add it
+            for(var i =0; i < answerList.length; i++){
+              if(childData.questionid === answerList[i].questionid){
+                //replace existing question
+                answerList.splice(i,i, childData);
+                console.log('here');
+                console.log('answer list' + answerList);
+              }
             }
           }
           console.log(answerList);
