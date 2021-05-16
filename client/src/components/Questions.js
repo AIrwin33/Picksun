@@ -183,6 +183,7 @@ const Questions = (props) => {
           console.log(childData.questionid);
           if(answerList.length < 1){
             answerList.push(childData);
+            console.log('answer list' + answerList);
           }
           //if answer list contains a question, then replace it, otherwise add it
           for(var i =0; i < answerList.length; i++){
