@@ -286,9 +286,9 @@ const Question = (props) => {
                   }
                   
 
-                  {partAnswer.selection__c === null &&
+                  {/* {partAnswer.selection__c === null &&
                   <span>Your Answer: Did Not Answer </span>
-                  }
+                  } */}
                 </div>
               </Col>
               {/* {partAnswer.selection__c === props.ques.correct_answer__c &&
