@@ -165,7 +165,9 @@ app.get("/contestparticipations/:contest_id", authorization, async(req,res) => {
 app.get("/participationbycontest/:contest_id", authorization, async(req,res) => {
     try{
         const {contest_id} = req.params;
+
         const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND participant__r__externalid__c = $2", [contest_id,req.user.id]);
+        console.log(JSON.stringify(part.rows));
         res.json(part.rows[0]);
     }catch(err) {
         console.log('err participation by contest' + err);
