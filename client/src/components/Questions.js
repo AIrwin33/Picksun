@@ -272,7 +272,7 @@ const Questions = (props) => {
                     <Col >
                     </Col>
                     <Col className="align-items-center col-md-auto">
-                      <button className={`btn btn-primary submitButton ${answerList.length === 0 ? "disabledSubmit" : "" }`} onClick={handleSubmitAnswers}>submit answers</button>
+                      <button className={`btn btn-primary submitButton ${answerList.length == 0 ? "disabledSubmit" : "" }`} onClick={handleSubmitAnswers}>submit answers</button>
 
                     </Col>
                     <Col >
