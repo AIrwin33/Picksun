@@ -197,7 +197,7 @@ const Questions = (props) => {
             }
           }
           console.log(answerList);
-          console.log('answer list length' + answerList.length)
+          console.log('answer list length' + answerList.length);
         }catch(err){
           console.log('err' + err.message);
         }
