@@ -23,6 +23,7 @@ const Questions = (props) => {
     const [knockedOut, setKnockedOut] = useState(false);
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
+    const [answerListShow, setAnswerListShow] = useState(false);
     
 
     const doGetParticipationWrongAnswers = async () => {
@@ -198,6 +199,7 @@ const Questions = (props) => {
               }
             }
           }
+          setAnswerListShow(true);
           setAnswerList(answerList);
           console.log(answerList);
           console.log('answer list length' + answerList.length);
@@ -275,7 +277,7 @@ const Questions = (props) => {
                     <Col >
                     </Col>
                     <Col className="align-items-center col-md-auto">
-                      <button className={`btn btn-primary submitButton ${answerList.length == 0 ? "disabledSubmit" : "" }`} onClick={handleSubmitAnswers}>submit answers</button>
+                      <button className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : "" }`} onClick={handleSubmitAnswers}>submit answers</button>
 
                     </Col>
                     <Col >
