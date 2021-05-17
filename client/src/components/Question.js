@@ -53,13 +53,12 @@ const Question = (props) => {
         console.log('is blank? ' + props.partsfid);
         const question_sfid = props.ques.sfid;
         const answer = {
-          partid: partid, 
-          questionid: question_sfid,
-          value: eventVal,
-          label: eventLabel,
-          expartid: expartid,
-          exid: newuuid,
-          status: 'Submitted'
+          participation__c: partid, 
+          question__c: question_sfid,
+          selection__c: eventVal,
+          selection_value__c: eventLabel,
+          ExternalId__c: newuuid,
+          status__c: 'Submitted'
         }
         props.addAnswer(answer);
       } catch (err) {
