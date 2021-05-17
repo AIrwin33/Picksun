@@ -23,6 +23,7 @@ const Questions = (props) => {
     const [knockedOut, setKnockedOut] = useState(false);
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
+    
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -179,6 +180,7 @@ const Questions = (props) => {
       const updateAnswerList = async (childData) => {
         try{
           console.log('update answer list' + answerList);
+          //var alist = [];
           console.log('child data' + childData);
           console.log(childData.questionid);
           if(answerList.length < 1){
@@ -196,6 +198,7 @@ const Questions = (props) => {
               }
             }
           }
+          setAnswerList(answerList);
           console.log(answerList);
           console.log('answer list length' + answerList.length);
         }catch(err){
