@@ -396,17 +396,12 @@ app.post("/submitpartanswers", async(req, res) => {
     try {
         const {partanswers} = req.body;
 
-        //check participation value
-        // var values = new Inserts('${participation}, ${question},${selection}, ${selection_val}, $(exid), ${status} ', partanswers); // using Inserts as a type;
-        // console.log('values' + values);
-
         console.log(partanswers);
 
-
         //participation.rows[0].sfid, question_sfid, eventVal, eventLabel, 'Submitted', gen_random_uuid()
-        const cs = new pgp.helpers.ColumnSet(['?participation__c', '?question__c','selection__c', 'selection_value__c','status__c', 'ExternalId__c'], {table: {table: 'participation_answers__c', schema: 'salesforce'}});
+        const cs = new pgp.helpers.ColumnSet(['?participation__c', '?question__c','selection__c', 'selection_value__c','status__c', 'ExternalId__c'], {table: 'participation_answers__c', schema: 'salesforce'});
         console.log(cs);
-        const update = pgp.helpers.update(partanswers, cs) + 'WHERE v.Participation = t.participation AND v.Question = t.question';
+        const update = pgp.helpers.update(partanswers, cs) + ' WHERE v.Participation__c = t.participation__c AND v.Question__c = t.question__c';
         // //=> UPDATE "fit_ratios" AS t SET "value"=v."value"
         // //   FROM (VALUES(1,1234),(2,5678),(3,91011))
         // //   AS v("id","value") WHERE v.id = t.id
