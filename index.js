@@ -397,8 +397,9 @@ app.post("/submitpartanswers", async(req, res) => {
         const {partanswers} = req.body;
 
         //check participation value
-        var values = new Inserts('${participation}, ${question},${selection}, ${selection_val}, $(exid), ${status} ', partanswers); // using Inserts as a type;
-        console.log('values' + values);
+        // var values = new Inserts('${participation}, ${question},${selection}, ${selection_val}, $(exid), ${status} ', partanswers); // using Inserts as a type;
+        // console.log('values' + values);
+        
 
         //participation.rows[0].sfid, question_sfid, eventVal, eventLabel, 'Submitted', gen_random_uuid()
         const cs = new pgp.helpers.ColumnSet(['?participation__c', '?question__c','selection__c', 'selection_value__c','status__c', 'ExternalId__c'], {table: {table: 'participation_answers__c', schema: 'salesforce'}});
@@ -421,7 +422,7 @@ app.post("/submitpartanswers", async(req, res) => {
         //     });
 
     }catch(err){
-        console.log('knock out error ' + err);
+        console.log(' ' + err);
     }
 
 });
