@@ -39,6 +39,17 @@ app.use("/auth", require("./server/routes/jwtAuth"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+//Whenever someone connects this gets executed
+io.on('connection', function(socket) {
+    console.log('A user connected');
+ 
+    //Whenever someone disconnects this piece of code executed
+    socket.on('disconnect', function () {
+       console.log('A user disconnected');
+    });
+ });
+
 //GET ALL PARTICIPANTS
 
 app.get("/participants", async(req,res) => {
@@ -180,11 +191,6 @@ app.get("/participationbycontest/:contest_id", authorization, async(req,res) => 
     }
 });
 
-//GET contest questions
-// io.on('connection', (socket) => {
-//     console.log("A new user just connected");
-//     socket.on('join', (params, callback) => {
-// }
 
 app.get("/questions/:contest_id", authorization, async(req,res) => {
   try {
