@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const http = require('http');
 const pool = require("./server/db");
 
 var bodyParser = require('body-parser')
@@ -11,6 +12,11 @@ app.use(express.json());
 const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 const path = require("path");
+
+const socketIO = require('socket.io');
+
+let server = http.createServer(app);
+let io = socketIO(server);
 
 const promise = require('bluebird'); // or any other Promise/A+ compatible library;
 
@@ -175,6 +181,10 @@ app.get("/participationbycontest/:contest_id", authorization, async(req,res) => 
 });
 
 //GET contest questions
+// io.on('connection', (socket) => {
+//     console.log("A new user just connected");
+//     socket.on('join', (params, callback) => {
+// }
 
 app.get("/questions/:contest_id", authorization, async(req,res) => {
   try {
