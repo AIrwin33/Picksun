@@ -424,11 +424,11 @@ app.post("/submitpartanswers", async(req, res) => {
         const update = pgp.helpers.update(partanswers, cs) + ' WHERE v.Participation__c = t.participation__c AND v.Question__c = t.question__c RETURNING *';
 
         // // executing the query:
-        db.any(update)
+        await db.any(update)
             .then(data => {
                 // OK, all records have been inserted
-                console.log('data' + data.rows);
-                res.json(data.rows);
+                console.log('data' + data);
+                res.json(data);
             })
             .catch(error => {
                 console.log('error');
