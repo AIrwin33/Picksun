@@ -33,7 +33,7 @@ pgp.pg.defaults.ssl = false;
 const connection = process.env.DATABASE_URL;
 
 const db = pgp(connection); // database instance;
-
+db.connect();
 
 // ROUTES
 app.use(express.static(path.join(__dirname, "/public")));
@@ -418,14 +418,13 @@ app.post("/submitpartanswers", async(req, res) => {
 
         console.log(partanswers);
 
-        //participation.rows[0].sfid, question_sfid, eventVal, eventLabel, 'Submitted', gen_random_uuid()
         const cs = new pgp.helpers.ColumnSet(['?participation__c', '?question__c','selection__c', 'selection_value__c','status__c', 'ExternalId__c'], {table: 'participation_answers__c'});
-        console.log(cs);
+        
         const update = pgp.helpers.update(partanswers, cs) + ' WHERE v.Participation__c = t.participation__c AND v.Question__c = t.question__c';
         // //=> UPDATE "fit_ratios" AS t SET "value"=v."value"
         // //   FROM (VALUES(1,1234),(2,5678),(3,91011))
         // //   AS v("id","value") WHERE v.id = t.id
-
+        console.log(update);
         // // executing the query:
         await db.any(update);
 
