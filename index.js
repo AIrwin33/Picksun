@@ -25,7 +25,7 @@ const initOptions = {
 };
 
 const pgp = require('pg-promise')(initOptions);
-pgp.pg.defaults.ssl = true;
+pgp.pg.defaults.ssl = false;
 
 
 const connection = process.env.DATABASE_URL;
