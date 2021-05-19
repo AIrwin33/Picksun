@@ -28,6 +28,15 @@ const pgp = require('pg-promise')(initOptions);
 
 
 const connection = process.env.DATABASE_URL;
+
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+  
+  client.connect();
 const db = pgp(connection); // database instance;
 
 
@@ -423,7 +432,7 @@ app.post("/submitpartanswers", async(req, res) => {
         // //   AS v("id","value") WHERE v.id = t.id
 
         // // executing the query:
-        await db.none(update);
+        await db.any(update);
 
         // db.none('UPDATE salesforce.participation_answers__c SET (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES $1 WHERE question__c = $2 AND participation__c = $3 RETURNING * ', values)
         //     .then(data => {
