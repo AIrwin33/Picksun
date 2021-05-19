@@ -13,6 +13,8 @@ const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 const path = require("path");
 
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+
 // const socketIO = require('socket.io');
 
 // let server = http.createServer(app);
