@@ -172,6 +172,7 @@ const Questions = (props) => {
           });
     
           const parseData = await res.json();
+          console.log(parseData);
 
         }catch (err) {
             console.log('handle submit answers err : '+ err.message);
