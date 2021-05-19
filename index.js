@@ -24,7 +24,7 @@ const promise = require('bluebird'); // or any other Promise/A+ compatible libra
 
 const initOptions = {
     promiseLib: promise, // overriding the default (ES6 Promise);
-    schema: 'salesforce'
+    schema: ['public', 'salesforce']
 };
 
 const pgp = require('pg-promise')(initOptions);
@@ -419,7 +419,7 @@ app.post("/submitpartanswers", async(req, res) => {
 
         console.log(partanswers);
 
-        const cs = new pgp.helpers.ColumnSet(['?participation__c', '?question__c','selection__c', 'selection_value__c','status__c', 'externalid__c'], {table: 'participation_answers__c'});
+        const cs = new pgp.helpers.ColumnSet(['?participation__c', '?question__c','selection__c', 'selection_value__c','status__c', 'externalid__c'], {table: 'participation_answers__c', schema: 'salesforce'});
         
         const update = pgp.helpers.update(partanswers, cs) + ' WHERE v.Participation__c = t.participation__c AND v.Question__c = t.question__c';
         // //=> UPDATE "fit_ratios" AS t SET "value"=v."value"
