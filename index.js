@@ -23,7 +23,8 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 const promise = require('bluebird'); // or any other Promise/A+ compatible library;
 
 const initOptions = {
-    promiseLib: promise // overriding the default (ES6 Promise);
+    promiseLib: promise, // overriding the default (ES6 Promise);
+    schema: 'salesforce'
 };
 
 const pgp = require('pg-promise')(initOptions);
