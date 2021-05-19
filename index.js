@@ -422,12 +422,17 @@ app.post("/submitpartanswers", async(req, res) => {
         const cs = new pgp.helpers.ColumnSet(['?participation__c', '?question__c','selection__c', 'selection_value__c','status__c', 'externalid__c'], {table:{table: 'participation_answers__c', schema: 'salesforce'}});
         
         const update = pgp.helpers.update(partanswers, cs) + ' WHERE v.Participation__c = t.participation__c AND v.Question__c = t.question__c';
-        // //=> UPDATE "fit_ratios" AS t SET "value"=v."value"
-        // //   FROM (VALUES(1,1234),(2,5678),(3,91011))
-        // //   AS v("id","value") WHERE v.id = t.id
-        console.log(update);
+
         // // executing the query:
-        await db.any(update);
+        await db.any(update)
+                .then(data => {
+                    // OK, all records have been inserted
+                    console.log('data' + data.rows);
+                })
+                .catch(error => {
+                    console.log('error');
+                    // Error, no records inserted
+                });
 
         // db.none('UPDATE salesforce.participation_answers__c SET (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES $1 WHERE question__c = $2 AND participation__c = $3 RETURNING * ', values)
         //     .then(data => {
