@@ -13,10 +13,10 @@ const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 const path = require("path");
 
-const socketIO = require('socket.io');
+// const socketIO = require('socket.io');
 
-let server = http.createServer(app);
-let io = socketIO(server);
+// let server = http.createServer(app);
+// let io = socketIO(server);
 
 const promise = require('bluebird'); // or any other Promise/A+ compatible library;
 
