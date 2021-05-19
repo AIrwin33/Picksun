@@ -424,16 +424,16 @@ app.post("/submitpartanswers", async(req, res) => {
         const update = pgp.helpers.update(partanswers, cs) + ' WHERE v.Participation__c = t.participation__c AND v.Question__c = t.question__c RETURNING *';
 
         // // executing the query:
-        await db.any(update)
-                .then(data => {
-                    // OK, all records have been inserted
-                    console.log('data' + data.rows);
-                    res.json(data.rows);
-                })
-                .catch(error => {
-                    console.log('error');
-                    // Error, no records inserted
-                });
+        db.any(update)
+            .then(data => {
+                // OK, all records have been inserted
+                console.log('data' + data.rows);
+                res.json(data.rows);
+            })
+            .catch(error => {
+                console.log('error');
+                // Error, no records inserted
+            });
 
         // db.none('UPDATE salesforce.participation_answers__c SET (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES $1 WHERE question__c = $2 AND participation__c = $3 RETURNING * ', values)
         //     .then(data => {
