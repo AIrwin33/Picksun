@@ -57,7 +57,7 @@ const Question = (props) => {
           question__c: question_sfid,
           selection__c: eventVal,
           selection_value__c: eventLabel,
-          ExternalId__c: newuuid,
+          externalid__c: newuuid,
           status__c: 'Submitted'
         }
         props.addAnswer(answer);
