@@ -34,7 +34,19 @@ pgp.pg.defaults.ssl = false;
 const connection = process.env.DATABASE_URL;
 
 const db = pgp(connection); // database instance;
-db.connect();
+var sco;
+
+db.connect({direct: true})
+    .then(sco => {
+        sco.client.on('notification', data => {
+            console.log('Received:', data);
+            // data.payload = 'my payload string'
+        });
+        return sco.none('LISTEN $1:name', 'my-channel');
+    })
+    .catch(error => {
+        console.log('Error:', error);
+    });
 
 // ROUTES
 app.use(express.static(path.join(__dirname, "/public")));
@@ -43,17 +55,6 @@ app.use("/auth", require("./server/routes/jwtAuth"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
-//Whenever someone connects this gets executed
-// io.on('connection', function(socket) {
-//     console.log('A user connected');
- 
-//     //Whenever someone disconnects this piece of code executed
-//     socket.on('disconnect', function () {
-//        console.log('A user disconnected');
-//     });
-//  });
 
 //GET ALL PARTICIPANTS
 
