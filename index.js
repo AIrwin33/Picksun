@@ -48,6 +48,14 @@ db.connect({direct: true})
         console.log('Error:', error);
     });
 
+db.none('NOTIFY $1:name, $2', ['my-channel', 'my payload string'])
+    .then(() => {
+        console.log('Notification sent.');
+    })
+    .catch(error => {
+        console.log('NOTIFY error:', error);
+    });
+
 // ROUTES
 app.use(express.static(path.join(__dirname, "/public")));
 app.use("/auth", require("./server/routes/jwtAuth"));
