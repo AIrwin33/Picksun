@@ -4,9 +4,6 @@ import {
     Col,
 } from "react-bootstrap";
 
-
-import { io } from "socket.io-client";
-
 import {v4 as uuidv4} from 'uuid';
 import "./Question.css";
 import $ from 'jquery';
@@ -21,11 +18,6 @@ const Question = (props) => {
     const [contestWonText, setContestWonText] = useState([]);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
 
-    
-
-    const initSocket = () => {
-      const socket = io();
-    }
 
     const handleRadioChange = async (event) => {
       var parent = $(event.target).parent();
