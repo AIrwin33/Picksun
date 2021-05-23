@@ -30,6 +30,16 @@ const initOptions = {
 const pgp = require('pg-promise')(initOptions);
 pgp.pg.defaults.ssl = false;
 
+const socketPort = 8000;
+const { emit } = require("process");
+const server = require("http").createServer(app);
+const io = require("socket.io")(server, {
+   cors: {
+      origin: "http://localhost:3001",
+      methods: ["GET", "POST"],
+   },
+});
+
 
 const connection = process.env.DATABASE_URL;
 
