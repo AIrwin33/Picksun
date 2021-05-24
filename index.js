@@ -463,7 +463,7 @@ app.post("/submitpartanswers", async(req, res) => {
 
 const emitPublishedQuestions = () => {
     db.getSocketQuestions()
-       .then((result) => io.emit("chat message", result))
+       .then((result) => io.emit("questionslist", result))
        .catch(console.log);
  };
 

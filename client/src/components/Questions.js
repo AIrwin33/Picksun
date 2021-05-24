@@ -219,17 +219,15 @@ const Questions = (props) => {
 
        //look at this example, need to move to other files
 
-    // const getSocketQuestions = (e) => {
-    //     socket.emit(
-    //        "chat message",
-    //        JSON.stringify({
-    //           text: this.state.result + " = " +
-    //           (eval(this.state.result) || 0) + "",
-    //           username: this.props.username,
-    //        })
-    //     );
-    //     setQuestion...
-    //  };
+    const getSocketQuestions = () => {
+      console.log('in socket questions');
+        socket.emit(
+           "contest_id",
+           JSON.stringify({
+              text: props.contestid
+           })
+        );
+     };
   
 
     //move to questions, look at setMessages section
@@ -242,14 +240,14 @@ const Questions = (props) => {
     useEffect(() => {
         if (socket) {
           socket.on("chat message", () => {
-            getQuestions(props.contest.question_timer__c);
+            getSocketQuestions();
           });
         }
     }, []);
 
       useEffect(() => {
-        getQuestions(props.contest.question_timer__c);
-        }, [props.contest.question_timer__c]);
+        getQuestions();
+        }, []);
 
         return ( 
             <>
