@@ -16,7 +16,7 @@ import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterH
 
 import "./Contest.css";
 
-import socketIOClient from "socket.io-client";
+
 
 const Contest = ({ match }) => {     
         //get contest
@@ -29,10 +29,7 @@ const Contest = ({ match }) => {
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
 
-    const socketEndpoint = "https://cryptic-citadel-94967.herokuapp.com";
-    //relative url?
-    //const fetchEndpoint = `${socketEndpoint}/contest`;
-    const socket = socketIOClient(socketEndpoint);
+    
 
     const getContest = async () => {
         try {
@@ -107,35 +104,7 @@ const Contest = ({ match }) => {
           }
     }
 
-    //look at this example, need to move to other files
-
-    // handleSubmit = (e) => {
-    //     socket.emit(
-    //        "chat message",
-    //        JSON.stringify({
-    //           text: this.state.result + " = " +
-    //           (eval(this.state.result) || 0) + "",
-    //           username: this.props.username,
-    //        })
-    //     );
-    //     setQuestion...
-    //  };
-  
-
-    //move to questions, look at setMessages section
-    useEffect(() => {
-        fetch(fetchEndpoint)
-        .then((res) => res.json())
-        .then(setMessages)
-        .catch(console.log);
-     }, []);
-     useEffect(() => {
-        if (socket) {
-           socket.on("chat message", (msgs) => {
-            getContest();
-           });
-        }
-     }, []);
+   
 
     useEffect(() => {
         getContest();

@@ -14,7 +14,7 @@ import "./Questions.css";
 
 import Timer from 'react-compound-timer';
 
-
+import socketIOClient from "socket.io-client";
 
 const Questions = (props) => {
   const [questions, setQuestions] = useState([]);
@@ -28,6 +28,10 @@ const Questions = (props) => {
   const [answerListShow, setAnswerListShow] = useState(false);
   
   
+  const socketEndpoint = "https://cryptic-citadel-94967.herokuapp.com";
+    //relative url?
+    const fetchEndpoint = `${socketEndpoint}/questions`;
+    const socket = socketIOClient(socketEndpoint);
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -212,6 +216,36 @@ const Questions = (props) => {
           console.log('err' + err.message);
         }
       }
+
+       //look at this example, need to move to other files
+
+    // const getSocketQuestions = (e) => {
+    //     socket.emit(
+    //        "chat message",
+    //        JSON.stringify({
+    //           text: this.state.result + " = " +
+    //           (eval(this.state.result) || 0) + "",
+    //           username: this.props.username,
+    //        })
+    //     );
+    //     setQuestion...
+    //  };
+  
+
+    //move to questions, look at setMessages section
+    useEffect(() => {
+      fetch(fetchEndpoint)
+      .then((res) => res.json())
+      .then(setQuestions)
+      .catch(console.log);
+    }, []);
+    useEffect(() => {
+        if (socket) {
+          socket.on("chat message", () => {
+            getQuestions(props.contest.question_timer__c);
+          });
+        }
+    }, []);
 
       useEffect(() => {
         getQuestions(props.contest.question_timer__c);
