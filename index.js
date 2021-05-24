@@ -13,6 +13,10 @@ const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 const path = require("path");
 
+const queries = require('./queries')
+
+
+
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 // const socketIO = require('socket.io');
@@ -44,27 +48,8 @@ const io = require("socket.io")(server, {
 const connection = process.env.DATABASE_URL;
 
 const db = pgp(connection); // database instance;
-var sco;
 
-db.connect({direct: true})
-    .then(sco => {
-        sco.client.on('notification', data => {
-            console.log('Received:', data);
-            // data.payload = 'my payload string'
-        });
-        return sco.none('LISTEN $1:name', 'my-channel');
-    })
-    .catch(error => {
-        console.log('Error:', error);
-    });
 
-db.none('NOTIFY $1:name, $2', ['my-channel', 'my payload string'])
-    .then(() => {
-        console.log('Notification sent.');
-    })
-    .catch(error => {
-        console.log('NOTIFY error:', error);
-    });
 
 // ROUTES
 app.use(express.static(path.join(__dirname, "/public")));
@@ -214,6 +199,22 @@ app.get("/participationbycontest/:contest_id", authorization, async(req,res) => 
         console.log('err participation by contest' + err);
     }
 });
+
+
+/* SOCKET DB */
+
+//get socket
+
+app.get("/contestquestions", queries.getSocketQuestions);
+app.get("/participationswronganswer", queries.getSocketParticipation());
+app.get("/submitpartanswers", queries.updateSocketAnswers());
+
+const emitSocketQuestions = () => {
+    queries.getSocketQuestions()
+       .then((result) => io.emit("socket questions", result))
+       .catch(console.log);
+ };
+
 
 
 app.get("/questions/:contest_id", authorization, async(req,res) => {
@@ -454,20 +455,17 @@ app.post("/submitpartanswers", async(req, res) => {
                 // Error, no records inserted
             });
 
-        // db.none('UPDATE salesforce.participation_answers__c SET (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES $1 WHERE question__c = $2 AND participation__c = $3 RETURNING * ', values)
-        //     .then(data => {
-        //         // OK, all records have been inserted
-        //         console.log('data' + data.rows);
-        //     })
-        //     .catch(error => {
-        //         // Error, no records inserted
-        //     });
-
     }catch(err){
         console.log('error on submit answer' + err);
     }
 
 });
+
+const emitPublishedQuestions = () => {
+    db.getSocketQuestions()
+       .then((result) => io.emit("chat message", result))
+       .catch(console.log);
+ };
 
 
 if (process.env.NODE_ENV === 'production') {
@@ -477,6 +475,26 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')) // relative path
     })
   }
+
+  io.on("connection", (socket) => {
+    console.log("a user connected");
+    socket.on("chat message", (msg) => {
+       console.log('in socket')
+          .then((_) => {
+            emitPublishedQuestions();
+          })
+          .catch((err) => io.emit(err));
+ });
+
+
+    socket.on("disconnect", () => {
+    console.log("user disconnected");
+ });
+});
+
+server.listen(socketPort, () => {
+    console.log(`listening on *:${socketPort}`);
+ });
 
 app.listen(PORT, () => {
     console.log(`Server is starting on port ${PORT}`);

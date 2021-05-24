@@ -12,19 +12,22 @@ import moment from 'moment';
 
 import "./Questions.css";
 
-import Timer from 'react-compound-timer'
+import Timer from 'react-compound-timer';
+
+
 
 const Questions = (props) => {
-    const [questions, setQuestions] = useState([]);
-    const [questionids, setQuestionIds] = useState([]);
-    const [partWrongAnswer, setPartWrongAnswer] = useState([]);
-    const [counter, setCounter] = useState(props.questiontime);
-    const [answerList, setAnswerList] =useState([]);
-    const [knockedOut, setKnockedOut] = useState(false);
-    const [finished, setFinished] = useState(false);
-    const [inactive, setInactive] = useState(false);
-    const [answerListShow, setAnswerListShow] = useState(false);
-    
+  const [questions, setQuestions] = useState([]);
+  const [questionids, setQuestionIds] = useState([]);
+  const [partWrongAnswer, setPartWrongAnswer] = useState([]);
+  const [counter, setCounter] = useState(props.questiontime);
+  const [answerList, setAnswerList] =useState([]);
+  const [knockedOut, setKnockedOut] = useState(false);
+  const [finished, setFinished] = useState(false);
+  const [inactive, setInactive] = useState(false);
+  const [answerListShow, setAnswerListShow] = useState(false);
+  
+  
 
     const doGetParticipationWrongAnswers = async () => {
         try {
