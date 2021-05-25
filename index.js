@@ -46,7 +46,7 @@ pgp.pg.defaults.ssl = false;
 
 //socket stuff
 
-const index = require("./routes/index");
+const index = require('./server/routes/index');
 
 const appsocket = express();
 appsocket.use(index);
