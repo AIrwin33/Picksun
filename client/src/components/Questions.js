@@ -30,12 +30,12 @@ const Questions = (props) => {
   
   const socketEndpoint = "https://cryptic-citadel-94967.herokuapp.com";
     //relative url?
-    const fetchContestEndpoint = `${socketEndpoint}/contestquestions`;
+    const fetchQuestionEndpoint = `${socketEndpoint}/contestquestions`;
 
     //do I need this?
     //const fetchParticipationEndpoint = `${socketEndpoint}/participationswronganswer`;
     //const fetchSubmitAnswerEndpoint = `${socketEndpoint}/submitpartanswers`;
-    const socket = socketIOClient(socketEndpoint);
+    const socket = socketIOClient(fetchQuestionEndpoint);
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -237,22 +237,17 @@ const Questions = (props) => {
 
     //move to questions, look at setMessages section
     useEffect(() => {
-      fetch(fetchContestEndpoint)
-      .then((res) => res.json())
-      .then(setQuestions)
-      .catch(console.log);
-    }, []);
-    useEffect(() => {
         if (socket) {
-          socket.on("contest_id", (quests) => {
-            getSocketQuestions(quests);
+          console.log('socket');
+          socket.on("getsocketquest", (quests) => {
+            setQuestions(quests);
           });
+        }else{
+          console.log('no socket');
+          getQuestions();
         }
     }, []);
 
-      useEffect(() => {
-        getQuestions();
-        }, []);
 
         return ( 
             <>
