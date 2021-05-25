@@ -209,13 +209,6 @@ app.get("/contestquestions", queries.createSocketMessage());
 // app.get("/participationswronganswer", queries.getSocketParticipation());
 // app.get("/submitpartanswers", queries.updateSocketAnswers());
 
-const emitSocketQuestions = () => {
-    queries.getSocketQuestions()
-       .then((result) => io.emit("socket questions", result))
-       .catch(console.log);
- };
-
-
 
 app.get("/questions/:contest_id", authorization, async(req,res) => {
   try {
@@ -462,7 +455,8 @@ app.post("/submitpartanswers", async(req, res) => {
 });
 
 const emitPublishedQuestions = () => {
-    db.getSocketQuestions()
+    console.log('emit call');
+    queries.createSocketMessage()
        .then((result) => io.emit("questionslist", result))
        .catch(console.log);
  };
