@@ -7,35 +7,33 @@ const pool = new Pool({
     },
  });
 
-const getSocketQuestions = (req,res) => {
+const getSocketQuestions = (req) => {
     return new Promise((resolve) => {
         const {contest_id}  = req.params;
         pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id],
           (error, results) => {
-             if (error) {
-                console.log(error);
-             }else{
+
                 resolve(results.rows);
-             }
+
            }
        );
     });
   };
 
-  const getSocketParticipation = (req,res) => {
-    return new Promise((resolve) => {
-        const { partid} = req.body;
-        pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid],
-          (error, results) => {
-             if (error) {
-                console.log(error);
-             }else{
-                resolve(results.rows);
-             }
-           }
-       );
-    });
-  };
+//   const getSocketParticipation = (req) => {
+//     return new Promise((resolve) => {
+//         const { partid} = req.body;
+//         pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid],
+//           (error, results) => {
+//              if (error) {
+//                 console.log(error);
+//              }else{
+//                 resolve(results.rows);
+//              }
+//            }
+//        );
+//     });
+//   };
 
 //   const updateSocketAnswers = (contest_id) => {
 //     return new Promise((resolve) => {
@@ -67,7 +65,6 @@ const getSocketQuestions = (req,res) => {
   
 
   module.exports = {
-    getSocketQuestions,
-    getSocketParticipation
+    getSocketQuestions
 
  };
