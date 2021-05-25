@@ -13,6 +13,7 @@ const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 const path = require("path");
 
+
 //const queries = require('./queries')
 
 
@@ -45,6 +46,7 @@ pgp.pg.defaults.ssl = false;
 // });
 
 //socket stuff
+const socketIo = require("socket.io");
 
 const index = require('./server/routes/index');
 
