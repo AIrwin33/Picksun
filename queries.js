@@ -7,24 +7,24 @@ const pool = new Pool({
     },
  });
 
- const createSocketMessage = () => {
-     console.log('socket message');
-    return new Promise((resolve) => {
-       console.log('message');
-        pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id],
-          (error, results) => {
-              console.log('error' + error);
-              console.log('results' + results);
-            //  if (error) {
-            //     throw error;
-            //  }else{
-            //      console.log('here');
+//  const createSocketMessage = () => {
+//      console.log('socket message');
+//     return new Promise((resolve) => {
+//        console.log('message');
+//         pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id],
+//           (error, results) => {
+//               console.log('error' + error);
+//               console.log('results' + results);
+//             //  if (error) {
+//             //     throw error;
+//             //  }else{
+//             //      console.log('here');
 
-            //  }
-           }
-       );
-    });
- };
+//             //  }
+//            }
+//        );
+//     });
+//  };
 
 // const getSocketQuestions = (req) => {
 //     return new Promise((resolve) => {
