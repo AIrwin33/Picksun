@@ -30,11 +30,16 @@ const Questions = (props) => {
   
   const socketEndpoint = "https://cryptic-citadel-94967.herokuapp.com";
     //relative url?
-    const fetchEndpoint = `${socketEndpoint}/questions`;
+    const fetchContestEndpoint = `${socketEndpoint}/contestquestions`;
+
+    //do I need this?
+    //const fetchParticipationEndpoint = `${socketEndpoint}/participationswronganswer`;
+    //const fetchSubmitAnswerEndpoint = `${socketEndpoint}/submitpartanswers`;
     const socket = socketIOClient(socketEndpoint);
 
     const doGetParticipationWrongAnswers = async () => {
         try {
+          console.log('getting participation answers');
           const partid = props.participation_id;
           console.log('getting particiation wrong answers allwoed' + partid);
           const body = {partid};
@@ -232,15 +237,15 @@ const Questions = (props) => {
 
     //move to questions, look at setMessages section
     useEffect(() => {
-      fetch(fetchEndpoint)
+      fetch(fetchContestEndpoint)
       .then((res) => res.json())
       .then(setQuestions)
       .catch(console.log);
     }, []);
     useEffect(() => {
         if (socket) {
-          socket.on("chat message", () => {
-            getSocketQuestions();
+          socket.on("contest_id", (quests) => {
+            getSocketQuestions(quests);
           });
         }
     }, []);
