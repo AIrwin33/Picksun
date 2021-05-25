@@ -8,8 +8,9 @@ const pool = new Pool({
  });
 
  const createSocketMessage = (message) => {
-     console.log('socket message')
+     console.log('socket message');
     return new Promise((resolve) => {
+       console.log('message' + message);
         pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id],
           [message.text, message.username],
           (error, results) => {
