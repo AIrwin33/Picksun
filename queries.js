@@ -13,12 +13,14 @@ const pool = new Pool({
         pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id],
           [message.text, message.username],
           (error, results) => {
-             if (error) {
-                throw error;
-             }else{
-                 resolve(results.rows);
+              console.log('error' + error);
+              console.log('results' + results);
+            //  if (error) {
+            //     throw error;
+            //  }else{
+            //      console.log('here');
 
-             }
+            //  }
            }
        );
     });
