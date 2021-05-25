@@ -1,6 +1,6 @@
 const express = require("express");
 var app = express()
-var http = require('http').createServer(app);
+
 var io = require('socket.io')(http);
 const pool = require("./server/db");
 
@@ -61,12 +61,14 @@ const db = pgp(connection); // database instance;
 
 
 // ROUTES
-http.use(express.static(path.join(__dirname, "/public")));
-http.use("/auth", require("./server/routes/jwtAuth"));
+app.use(express.static(path.join(__dirname, "/public")));
+app.use("/auth", require("./server/routes/jwtAuth"));
 //GET ALL PARTICIPANTS
 
-http.use(bodyParser.json());
-http.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+var http = require('http').createServer(app);
 
 //GET ALL PARTICIPANTS
 
