@@ -13,7 +13,7 @@ const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 const path = require("path");
 
-const queries = require('./queries')
+//const queries = require('./queries')
 
 
 
@@ -205,7 +205,7 @@ app.get("/participationbycontest/:contest_id", authorization, async(req,res) => 
 
 //get socket
 
-app.get("/contestquestions", queries.createSocketMessage());
+//app.get("/contestquestions", queries.createSocketMessage());
 // app.get("/participationswronganswer", queries.getSocketParticipation());
 // app.get("/submitpartanswers", queries.updateSocketAnswers());
 
@@ -456,9 +456,9 @@ app.post("/submitpartanswers", async(req, res) => {
 
 const emitPublishedQuestions = () => {
     console.log('emit call');
-    queries.createSocketMessage()
-       .then((result) => io.emit("questionslist", result))
-       .catch(console.log);
+    // queries.createSocketMessage()
+    //    .then((result) => io.emit("questionslist", result))
+    //    .catch(console.log);
  };
 
 
