@@ -205,9 +205,9 @@ app.get("/participationbycontest/:contest_id", authorization, async(req,res) => 
 
 //get socket
 
-app.get("/contestquestions", queries.getSocketQuestions);
-app.get("/participationswronganswer", queries.getSocketParticipation());
-app.get("/submitpartanswers", queries.updateSocketAnswers());
+app.get("/contestquestions", queries.getSocketQuestions());
+// app.get("/participationswronganswer", queries.getSocketParticipation());
+// app.get("/submitpartanswers", queries.updateSocketAnswers());
 
 const emitSocketQuestions = () => {
     queries.getSocketQuestions()

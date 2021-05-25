@@ -7,18 +7,33 @@ const pool = new Pool({
     },
  });
 
-const getSocketQuestions = (req) => {
+ const createSocketMessage = (message) => {
     return new Promise((resolve) => {
-        const {contest_id}  = req.params;
-        pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id],
+       pool.query(
+          "INSERT INTO messages (text, username) VALUES ($1, $2) RETURNING text, username, created_at",
+          [message.text, message.username],
           (error, results) => {
-
-                resolve(results.rows);
-
+             if (error) {
+                throw error;
+             }
+             resolve(results.rows);
            }
        );
     });
-  };
+ };
+
+// const getSocketQuestions = (req) => {
+//     return new Promise((resolve) => {
+//         const {contest_id}  = req.params;
+//         pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id],
+//           (error, results) => {
+
+//                 resolve(results.rows);
+
+//            }
+//        );
+//     });
+//   };
 
 //   const getSocketParticipation = (req) => {
 //     return new Promise((resolve) => {
@@ -65,6 +80,5 @@ const getSocketQuestions = (req) => {
   
 
   module.exports = {
-    getSocketQuestions
-
+    createSocketMessage
  };
