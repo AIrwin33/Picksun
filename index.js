@@ -488,11 +488,9 @@ io.on("connection", (socket) => {
 const getQuestionsAndEmit = socket => {
     console.log('socket ' + socket);
     pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [socket.contest_id],
-    (err ,res) => {
-        if(err) {
-            throw err;
-        }
-    socket.emit('socketquestsupdated', res.rows);
+    (err,res) => {
+        if(err) throw err
+        socket.emit('socketquestsupdated', res.rows);
     });
 }
 
