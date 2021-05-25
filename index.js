@@ -48,12 +48,12 @@ pgp.pg.defaults.ssl = false;
 //socket stuff
 const socketIo = require("socket.io");
 
-const index = require('./server/routes/index');
+// const index = require('./server/routes/index');
 
-const appsocket = express();
-appsocket.use(index);
+// const appsocket = express();
+// appsocket.use(index);
 
-const server = http.createServer(appsocket);
+// const server = http.createServer(appsocket);
 
 const io = socketIo(server);
 
@@ -493,10 +493,6 @@ const getQuestionsAndEmit = socket => {
         socket.emit('socketquestsupdated', res.rows);
     });
 }
-
-server.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
-});
 
 app.listen(PORT, () => {
     console.log(`Server is starting on port ${PORT}`);
