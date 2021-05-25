@@ -34,15 +34,26 @@ const initOptions = {
 const pgp = require('pg-promise')(initOptions);
 pgp.pg.defaults.ssl = false;
 
-const socketPort = 8000;
-const { emit } = require("process");
-const server = require("http").createServer(app);
-const io = require("socket.io")(server, {
-   cors: {
-      origin: "http://localhost:3001",
-      methods: ["GET", "POST"],
-   },
-});
+// const socketPort = 8000;
+// const { emit } = require("process");
+// const server = require("http").createServer(app);
+// const io = require("socket.io")(server, {
+//    cors: {
+//       origin: "http://localhost:8000",
+//       methods: ["GET", "POST"],
+//    },
+// });
+
+//socket stuff
+
+const index = require("./routes/index");
+
+const appsocket = express();
+appsocket.use(index);
+
+const server = http.createServer(appsocket);
+
+const io = socketIo(server);
 
 
 const connection = process.env.DATABASE_URL;
@@ -463,24 +474,25 @@ if (process.env.NODE_ENV === 'production') {
     })
   }
 
-  io.on("connection", (socket) => {
+io.on("connection", (socket) => {
     console.log("a user connected");
-    socket.on("getsocketquest", data =>{
-        console.log('in index getsocketquest');
-        pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [data.contest_id],
-        (err ,res) => {
-            if(err) {
-                throw err;
-            }
-        socket.emit('socketquestsupdated', res.rows);
-    });
- });
-
+    getQuestionsAndEmit(socket);
 
     socket.on("disconnect", () => {
     console.log("user disconnected");
- });
+    });
 });
+
+const getQuestionsAndEmit = socket => {
+    console.log('socket ' + socket);
+    pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [socket.contest_id],
+    (err ,res) => {
+        if(err) {
+            throw err;
+        }
+    socket.emit('socketquestsupdated', res.rows);
+    });
+}
 
 server.listen(socketPort, () => {
     console.log(`listening on *:${socketPort}`);

@@ -239,7 +239,7 @@ const Questions = (props) => {
     useEffect(() => {
         if (socket) {
           console.log('socket');
-          socket.on("getsocketquest", (quests) => {
+          socket.on("socketquestsupdated", (quests) => {
             setQuestions(quests);
           });
         }else{
