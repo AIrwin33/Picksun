@@ -55,7 +55,7 @@ const socketIo = require("socket.io");
 
 // const server = http.createServer(appsocket);
 
-const io = socketIo(server);
+const io = socketIo(app);
 
 
 const connection = process.env.DATABASE_URL;
