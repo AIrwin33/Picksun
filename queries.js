@@ -15,7 +15,7 @@ const getSocketQuestions = (req,res) => {
              if (error) {
                 throw error;
              }else{
-                 res.json(results.rows);
+                resolve(results.rows);
              }
            }
        );
@@ -30,7 +30,7 @@ const getSocketQuestions = (req,res) => {
              if (error) {
                 throw error;
              }else{
-                 res.json(results.rows);
+                resolve(results.rows);
              }
            }
        );
