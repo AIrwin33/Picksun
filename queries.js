@@ -15,8 +15,10 @@ const pool = new Pool({
           (error, results) => {
              if (error) {
                 throw error;
+             }else{
+                 resolve(results.rows);
+
              }
-             resolve(results.rows);
            }
        );
     });
