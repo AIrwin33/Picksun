@@ -70,7 +70,7 @@ const getSocketQuestions = (contest_id) => {
 //             console.log('error on submit answer' + err);
 //         }
 //     });
-  };
+  
 
   module.exports = {
     getSocketQuestions,
