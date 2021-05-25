@@ -1,24 +1,15 @@
 const Pool = require("pg").Pool;
-console.log('working from db')
-const devConfig = new Pool({
-  HOST: "localhost",
-  USER: "andrewirwin",
-  PASSWORD: "buster2k",
-  DB: "localtree",
-  dialect: "postgres"
-});
-
-const proConfig = process.env.DATABASE_URL; //heroku addons
-
+console.log('working from queries')
 const pool = new Pool({
-  client: 'postgresql',
-  connectionString:
-    process.env.NODE_ENV === "production" ? proConfig : devConfig,
-    ssl: { rejectUnauthorized: false }
-});
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+       rejectUnauthorized: false,
+    },
+ });
 
-const getSocketQuestions = (contest_id) => {
+const getSocketQuestions = (req,res) => {
     return new Promise((resolve) => {
+        const {contest_id}  = req.params;
         pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id],
           (error, results) => {
              if (error) {
@@ -30,8 +21,9 @@ const getSocketQuestions = (contest_id) => {
     });
   };
 
-  const getSocketParticipation = (partid) => {
+  const getSocketParticipation = (req,res) => {
     return new Promise((resolve) => {
+        const { partid} = req.body;
         pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid],
           (error, results) => {
              if (error) {
