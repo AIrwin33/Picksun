@@ -454,13 +454,6 @@ app.post("/submitpartanswers", async(req, res) => {
 
 });
 
-const emitPublishedQuestions = () => {
-    console.log('emit call');
-    // queries.createSocketMessage()
-    //    .then((result) => io.emit("questionslist", result))
-    //    .catch(console.log);
- };
-
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
@@ -472,12 +465,15 @@ if (process.env.NODE_ENV === 'production') {
 
   io.on("connection", (socket) => {
     console.log("a user connected");
-    socket.on("chat message", (msg) => {
-       console.log('in socket')
-          .then((_) => {
-            emitPublishedQuestions();
-          })
-          .catch((err) => io.emit(err));
+    socket.on("getsocketquest", data =>{
+        console.log('in index getsocketquest');
+        pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [data.contest_id],
+        (err ,res) => {
+            if(err) {
+                throw err;
+            }
+        socket.emit('socketquestsupdated', res.rows);
+    });
  });
 
 
