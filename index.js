@@ -496,9 +496,7 @@ const getQuestionsAndEmit = socket => {
     });
 }
 
-server.listen(socketPort, () => {
-    console.log(`listening on *:${socketPort}`);
- });
+server.listen(PORT, () => console.log(`Listening on port ${port}`));
 
 app.listen(PORT, () => {
     console.log(`Server is starting on port ${PORT}`);
