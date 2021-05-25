@@ -13,7 +13,7 @@ const getSocketQuestions = (req,res) => {
         pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id],
           (error, results) => {
              if (error) {
-                throw error;
+                console.log(error);
              }else{
                 resolve(results.rows);
              }
@@ -28,7 +28,7 @@ const getSocketQuestions = (req,res) => {
         pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid],
           (error, results) => {
              if (error) {
-                throw error;
+                console.log(error);
              }else{
                 resolve(results.rows);
              }
