@@ -1,14 +1,15 @@
 const express = require("express");
-const app = express();
-const http = require('http');
+var app = express()
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
 const pool = require("./server/db");
 
 var bodyParser = require('body-parser')
 require("dotenv").config();
 //middleware
 const cors = require("cors");
-app.use(cors());
-app.use(express.json());
+http.use(cors());
+http.use(express.json());
 const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 const path = require("path");
@@ -48,14 +49,9 @@ pgp.pg.defaults.ssl = false;
 //socket stuff
 const socketIo = require("socket.io");
 
-// const index = require('./server/routes/index');
+//const index = require('./server/routes/index');
 
-// const appsocket = express();
-// appsocket.use(index);
 
-// const server = http.createServer(appsocket);
-
-const io = socketIo(app);
 
 
 const connection = process.env.DATABASE_URL;
@@ -65,16 +61,16 @@ const db = pgp(connection); // database instance;
 
 
 // ROUTES
-app.use(express.static(path.join(__dirname, "/public")));
-app.use("/auth", require("./server/routes/jwtAuth"));
+http.use(express.static(path.join(__dirname, "/public")));
+http.use("/auth", require("./server/routes/jwtAuth"));
 //GET ALL PARTICIPANTS
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+http.use(bodyParser.json());
+http.use(bodyParser.urlencoded({ extended: true }));
 
 //GET ALL PARTICIPANTS
 
-app.get("/participants", async(req,res) => {
+http.get("/participants", async(req,res) => {
     try{
         const allParticipants = await pool.query("SELECT * FROM salesforce.participant__c");
         res.json(allParticipants.rows)
@@ -85,7 +81,7 @@ app.get("/participants", async(req,res) => {
 
 //GET  PARTICIPANT
 
-app.post("/profile", authorization, async(req,res) => {
+http.post("/profile", authorization, async(req,res) => {
   try{
     const participant = await pool.query("SELECT * FROM salesforce.participant__c WHERE ExternalId__c = $1", [req.user.id]);
     res.json(participant.rows[0]);
@@ -96,7 +92,7 @@ app.post("/profile", authorization, async(req,res) => {
 
 //UPDATE participant
 
-app.put("/participant/:id", async(req,res) => {
+http.put("/participant/:id", async(req,res) => {
     try {
 
         const {id} = req.params;
@@ -112,7 +108,7 @@ app.put("/participant/:id", async(req,res) => {
 
 //GET my contests
 
-app.get("/mycontests", authorization, async(req, res) => {
+http.get("/mycontests", authorization, async(req, res) => {
     try{
         //get all participations based on external ID
         const mycontests = await pool.query("SELECT * FROM salesforce.participation__c AS participation, salesforce.contest__c AS contest WHERE participation.participant__r__externalid__c = $1 AND contest.sfid = participation.contest__c",
@@ -126,7 +122,7 @@ app.get("/mycontests", authorization, async(req, res) => {
 
 //GET ALL contests
 
-app.get("/allcontests", authorization, async(req,res) => {
+http.get("/allcontests", authorization, async(req,res) => {
   try{
       //gets all contests in the future
     const allContests = await pool.query("SELECT * FROM salesforce.contest__c WHERE start_time__c > now()");
@@ -139,7 +135,7 @@ app.get("/allcontests", authorization, async(req,res) => {
 
 //GET event
 
-app.get("/event/:id", authorization, async(req,res) => {
+http.get("/event/:id", authorization, async(req,res) => {
     try{
         const {id} = req.params;
         const event = await pool.query("SELECT * FROM salesforce.event__c AS event, salesforce.team__c AS team WHERE event.sfid = $1 AND (event.home_team__c = team.sfid OR event.away_team__c = team.sfid)", [id]);
@@ -152,7 +148,7 @@ app.get("/event/:id", authorization, async(req,res) => {
 
 //GET A Contest by Id
 
-app.get("/contestdetail/:id", async(req,res) => {
+http.get("/contestdetail/:id", async(req,res) => {
     try{
         const {id} = req.params;
         const contest = await pool.query("SELECT * FROM salesforce.contest__c WHERE sfid = $1", [id]);
@@ -165,7 +161,7 @@ app.get("/contestdetail/:id", async(req,res) => {
 
 //CREATE participation (when a contest is selected)
 
-app.post("/participations", authorization, async(req, res) => {
+http.post("/participations", authorization, async(req, res) => {
   try {
       //request user expires, find another way
       const {contest_id} = req.body;
@@ -188,7 +184,7 @@ app.post("/participations", authorization, async(req, res) => {
 
 //GET All Participations for a contest
 
-app.get("/contestparticipations/:contest_id", authorization, async(req,res) => {
+http.get("/contestparticipations/:contest_id", authorization, async(req,res) => {
     try{
         const {contest_id} = req.params;
         const part = await pool.query("SELECT * FROM salesforce.participant__c AS participant, salesforce.participation__c AS participation WHERE participation.contest__c = $1 AND participation.participant__r__externalid__c = participant.externalid__c::text;", [contest_id]);
@@ -201,7 +197,7 @@ app.get("/contestparticipations/:contest_id", authorization, async(req,res) => {
 
 //get participation by contest Id
 
-app.get("/participationbycontest/:contest_id", authorization, async(req,res) => {
+http.get("/participationbycontest/:contest_id", authorization, async(req,res) => {
     try{
         const {contest_id} = req.params;
 
@@ -218,12 +214,12 @@ app.get("/participationbycontest/:contest_id", authorization, async(req,res) => 
 
 //get socket
 
-//app.get("/contestquestions", queries.createSocketMessage());
-// app.get("/participationswronganswer", queries.getSocketParticipation());
-// app.get("/submitpartanswers", queries.updateSocketAnswers());
+//http.get("/contestquestions", queries.createSocketMessage());
+// http.get("/participationswronganswer", queries.getSocketParticipation());
+// http.get("/submitpartanswers", queries.updateSocketAnswers());
 
 
-app.get("/questions/:contest_id", authorization, async(req,res) => {
+http.get("/questions/:contest_id", authorization, async(req,res) => {
   try {
       const { contest_id } = req.params;
       const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id]);
@@ -237,7 +233,7 @@ app.get("/questions/:contest_id", authorization, async(req,res) => {
 
 //disable questions on times up or locked
 
-app.post("/disablequestions/", authorization, async(req,res) => {
+http.post("/disablequestions/", authorization, async(req,res) => {
     try {
         const { questionids } = req.body;
         const allContestQuestions = await pool.query( "UPDATE salesforce.question__c SET islocked__c = true WHERE sfid = ANY ($1) RETURNING *", [questionids]
@@ -251,7 +247,7 @@ app.post("/disablequestions/", authorization, async(req,res) => {
 
 //create participation answers?
 
-app.post("/answers", async(req, res) => {
+http.post("/answers", async(req, res) => {
   try {
 
       const {partid, question_sfid, eventVal, eventLabel, expartid} = req.body;
@@ -275,7 +271,7 @@ app.post("/answers", async(req, res) => {
 
 //insert answers
 
-app.post("/answerslist", async(req, res) => {
+http.post("/answerslist", async(req, res) => {
     try {
 
         console.log('here');
@@ -302,7 +298,7 @@ app.post("/answerslist", async(req, res) => {
 
 //Get Participation for wrong answer count
 
-app.post("/participationswronganswer", async(req, res) => {
+http.post("/participationswronganswer", async(req, res) => {
     try {
         const {partid} = req.body;
         const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid]);
@@ -315,7 +311,7 @@ app.post("/participationswronganswer", async(req, res) => {
 
 //REFACTOR - keep this?
 
-app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(req, res) => {
+http.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(req, res) => {
     try {
         const {partsfid, questid} = req.params;
         const participationExistAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 AND question__c = $2 ", [partsfid, questid]);
@@ -328,7 +324,7 @@ app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(
 
 //REFACTOR - keep this?
 
-app.post("/wronganswer", authorization, async(req, res) => {
+http.post("/wronganswer", authorization, async(req, res) => {
     try {
         const {partid} = req.body;
         const wronganswercounter = await pool.query(
@@ -345,7 +341,7 @@ app.post("/wronganswer", authorization, async(req, res) => {
 
 //REFACTOR - keep this?
 
-app.post("/clearcounter", authorization, async(req, res) => {
+http.post("/clearcounter", authorization, async(req, res) => {
     try {
         const {conid} = req.body;
         const clearcounter = await pool.query( "UPDATE salesforce.contest__c SET Opened_Timer__c = null WHERE sfid = $1 RETURNING *", 
@@ -359,7 +355,7 @@ app.post("/clearcounter", authorization, async(req, res) => {
 
 //Get Remaining participations at end of contest
 
-app.get("/allendingparticipations/:contest_id", authorization, async(req, res) => {
+http.get("/allendingparticipations/:contest_id", authorization, async(req, res) => {
     try{
         const {contest_id} = req.params;
         const contestwoncount = await pool.query(
@@ -376,7 +372,7 @@ app.get("/allendingparticipations/:contest_id", authorization, async(req, res) =
     }
 });
 
-app.post("/contestwon", authorization, async(req, res) => {
+http.post("/contestwon", authorization, async(req, res) => {
     try {
         //update contests won number and win rate number, place finish
         const {contestid, partsfid} = req.body;
@@ -415,7 +411,7 @@ app.post("/contestwon", authorization, async(req, res) => {
 
 //knockout
 
-app.post("/knockout", async(req, res) => {
+http.post("/knockout", async(req, res) => {
     try {
         const {partid} = req.body;
         
@@ -439,7 +435,7 @@ app.post("/knockout", async(req, res) => {
 
 // PG Promise to insert participation answers
 
-app.post("/submitpartanswers", async(req, res) => {
+http.post("/submitpartanswers", async(req, res) => {
     try {
         const {partanswers} = req.body;
 
@@ -469,9 +465,9 @@ app.post("/submitpartanswers", async(req, res) => {
 
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'))
+    http.use(express.static('client/build'))
   
-    app.get('*', (req, res) => {
+    http.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')) // relative path
     })
   }
@@ -494,6 +490,8 @@ const getQuestionsAndEmit = socket => {
     });
 }
 
-app.listen(PORT, () => {
-    console.log(`Server is starting on port ${PORT}`);
-});
+http.listen(process.env.PORT || 3000, function() {
+    var host = http.address().address
+    var port = http.address().port
+    console.log('App listening at http://%s:%s', host, port)
+  });
