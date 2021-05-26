@@ -15,6 +15,7 @@ var WebSocketServer = require("ws").Server
 var http = require("http")
 var express = require("express")
 var app = express()
+const path = require("path");
 
 app.use(express.static(path.join(__dirname, "/public")));
 app.use("/auth", require("./server/routes/jwtAuth"));
@@ -23,7 +24,6 @@ app.use(cors());
 app.use(express.json());
 const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
-const path = require("path");
 
 var server = http.createServer(app)
 
