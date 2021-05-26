@@ -72,7 +72,7 @@ var http = require('http').createServer(app);
 
 //GET ALL PARTICIPANTS
 
-http.get("/participants", async(req,res) => {
+app.get("/participants", async(req,res) => {
     try{
         const allParticipants = await pool.query("SELECT * FROM salesforce.participant__c");
         res.json(allParticipants.rows)
@@ -83,7 +83,7 @@ http.get("/participants", async(req,res) => {
 
 //GET  PARTICIPANT
 
-http.post("/profile", authorization, async(req,res) => {
+app.post("/profile", authorization, async(req,res) => {
   try{
     const participant = await pool.query("SELECT * FROM salesforce.participant__c WHERE ExternalId__c = $1", [req.user.id]);
     res.json(participant.rows[0]);
@@ -94,7 +94,7 @@ http.post("/profile", authorization, async(req,res) => {
 
 //UPDATE participant
 
-http.put("/participant/:id", async(req,res) => {
+app.put("/participant/:id", async(req,res) => {
     try {
 
         const {id} = req.params;
@@ -110,7 +110,7 @@ http.put("/participant/:id", async(req,res) => {
 
 //GET my contests
 
-http.get("/mycontests", authorization, async(req, res) => {
+app.get("/mycontests", authorization, async(req, res) => {
     try{
         //get all participations based on external ID
         const mycontests = await pool.query("SELECT * FROM salesforce.participation__c AS participation, salesforce.contest__c AS contest WHERE participation.participant__r__externalid__c = $1 AND contest.sfid = participation.contest__c",
@@ -124,7 +124,7 @@ http.get("/mycontests", authorization, async(req, res) => {
 
 //GET ALL contests
 
-http.get("/allcontests", authorization, async(req,res) => {
+app.get("/allcontests", authorization, async(req,res) => {
   try{
       //gets all contests in the future
     const allContests = await pool.query("SELECT * FROM salesforce.contest__c WHERE start_time__c > now()");
@@ -137,7 +137,7 @@ http.get("/allcontests", authorization, async(req,res) => {
 
 //GET event
 
-http.get("/event/:id", authorization, async(req,res) => {
+app.get("/event/:id", authorization, async(req,res) => {
     try{
         const {id} = req.params;
         const event = await pool.query("SELECT * FROM salesforce.event__c AS event, salesforce.team__c AS team WHERE event.sfid = $1 AND (event.home_team__c = team.sfid OR event.away_team__c = team.sfid)", [id]);
@@ -150,7 +150,7 @@ http.get("/event/:id", authorization, async(req,res) => {
 
 //GET A Contest by Id
 
-http.get("/contestdetail/:id", async(req,res) => {
+app.get("/contestdetail/:id", async(req,res) => {
     try{
         const {id} = req.params;
         const contest = await pool.query("SELECT * FROM salesforce.contest__c WHERE sfid = $1", [id]);
@@ -163,7 +163,7 @@ http.get("/contestdetail/:id", async(req,res) => {
 
 //CREATE participation (when a contest is selected)
 
-http.post("/participations", authorization, async(req, res) => {
+app.post("/participations", authorization, async(req, res) => {
   try {
       //request user expires, find another way
       const {contest_id} = req.body;
@@ -186,7 +186,7 @@ http.post("/participations", authorization, async(req, res) => {
 
 //GET All Participations for a contest
 
-http.get("/contestparticipations/:contest_id", authorization, async(req,res) => {
+app.get("/contestparticipations/:contest_id", authorization, async(req,res) => {
     try{
         const {contest_id} = req.params;
         const part = await pool.query("SELECT * FROM salesforce.participant__c AS participant, salesforce.participation__c AS participation WHERE participation.contest__c = $1 AND participation.participant__r__externalid__c = participant.externalid__c::text;", [contest_id]);
@@ -199,7 +199,7 @@ http.get("/contestparticipations/:contest_id", authorization, async(req,res) => 
 
 //get participation by contest Id
 
-http.get("/participationbycontest/:contest_id", authorization, async(req,res) => {
+app.get("/participationbycontest/:contest_id", authorization, async(req,res) => {
     try{
         const {contest_id} = req.params;
 
@@ -216,12 +216,12 @@ http.get("/participationbycontest/:contest_id", authorization, async(req,res) =>
 
 //get socket
 
-//http.get("/contestquestions", queries.createSocketMessage());
-// http.get("/participationswronganswer", queries.getSocketParticipation());
-// http.get("/submitpartanswers", queries.updateSocketAnswers());
+//app.get("/contestquestions", queries.createSocketMessage());
+// app.get("/participationswronganswer", queries.getSocketParticipation());
+// app.get("/submitpartanswers", queries.updateSocketAnswers());
 
 
-http.get("/questions/:contest_id", authorization, async(req,res) => {
+app.get("/questions/:contest_id", authorization, async(req,res) => {
   try {
       const { contest_id } = req.params;
       const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id]);
@@ -235,7 +235,7 @@ http.get("/questions/:contest_id", authorization, async(req,res) => {
 
 //disable questions on times up or locked
 
-http.post("/disablequestions/", authorization, async(req,res) => {
+app.post("/disablequestions/", authorization, async(req,res) => {
     try {
         const { questionids } = req.body;
         const allContestQuestions = await pool.query( "UPDATE salesforce.question__c SET islocked__c = true WHERE sfid = ANY ($1) RETURNING *", [questionids]
@@ -249,7 +249,7 @@ http.post("/disablequestions/", authorization, async(req,res) => {
 
 //create participation answers?
 
-http.post("/answers", async(req, res) => {
+app.post("/answers", async(req, res) => {
   try {
 
       const {partid, question_sfid, eventVal, eventLabel, expartid} = req.body;
@@ -273,7 +273,7 @@ http.post("/answers", async(req, res) => {
 
 //insert answers
 
-http.post("/answerslist", async(req, res) => {
+app.post("/answerslist", async(req, res) => {
     try {
 
         console.log('here');
@@ -300,7 +300,7 @@ http.post("/answerslist", async(req, res) => {
 
 //Get Participation for wrong answer count
 
-http.post("/participationswronganswer", async(req, res) => {
+app.post("/participationswronganswer", async(req, res) => {
     try {
         const {partid} = req.body;
         const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid]);
@@ -313,7 +313,7 @@ http.post("/participationswronganswer", async(req, res) => {
 
 //REFACTOR - keep this?
 
-http.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(req, res) => {
+app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async(req, res) => {
     try {
         const {partsfid, questid} = req.params;
         const participationExistAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 AND question__c = $2 ", [partsfid, questid]);
@@ -326,7 +326,7 @@ http.get("/existingpartanswer/:partsfid/question/:questid", authorization, async
 
 //REFACTOR - keep this?
 
-http.post("/wronganswer", authorization, async(req, res) => {
+app.post("/wronganswer", authorization, async(req, res) => {
     try {
         const {partid} = req.body;
         const wronganswercounter = await pool.query(
@@ -343,7 +343,7 @@ http.post("/wronganswer", authorization, async(req, res) => {
 
 //REFACTOR - keep this?
 
-http.post("/clearcounter", authorization, async(req, res) => {
+app.post("/clearcounter", authorization, async(req, res) => {
     try {
         const {conid} = req.body;
         const clearcounter = await pool.query( "UPDATE salesforce.contest__c SET Opened_Timer__c = null WHERE sfid = $1 RETURNING *", 
@@ -357,7 +357,7 @@ http.post("/clearcounter", authorization, async(req, res) => {
 
 //Get Remaining participations at end of contest
 
-http.get("/allendingparticipations/:contest_id", authorization, async(req, res) => {
+app.get("/allendingparticipations/:contest_id", authorization, async(req, res) => {
     try{
         const {contest_id} = req.params;
         const contestwoncount = await pool.query(
@@ -374,7 +374,7 @@ http.get("/allendingparticipations/:contest_id", authorization, async(req, res) 
     }
 });
 
-http.post("/contestwon", authorization, async(req, res) => {
+app.post("/contestwon", authorization, async(req, res) => {
     try {
         //update contests won number and win rate number, place finish
         const {contestid, partsfid} = req.body;
@@ -413,7 +413,7 @@ http.post("/contestwon", authorization, async(req, res) => {
 
 //knockout
 
-http.post("/knockout", async(req, res) => {
+app.post("/knockout", async(req, res) => {
     try {
         const {partid} = req.body;
         
@@ -437,7 +437,7 @@ http.post("/knockout", async(req, res) => {
 
 // PG Promise to insert participation answers
 
-http.post("/submitpartanswers", async(req, res) => {
+app.post("/submitpartanswers", async(req, res) => {
     try {
         const {partanswers} = req.body;
 
@@ -467,9 +467,9 @@ http.post("/submitpartanswers", async(req, res) => {
 
 
 if (process.env.NODE_ENV === 'production') {
-    http.use(express.static('client/build'))
+    app.use(express.static('client/build'))
   
-    http.get('*', (req, res) => {
+    app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')) // relative path
     })
   }
