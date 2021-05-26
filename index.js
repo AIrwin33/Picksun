@@ -67,7 +67,6 @@ app.use("/auth", require("./server/routes/jwtAuth"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(index);
 
 var http = require('http').createServer(app);
 
