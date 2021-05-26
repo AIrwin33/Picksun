@@ -52,9 +52,6 @@ pgp.pg.defaults.ssl = false;
 const index = require('./server/routes/index');
 
 
-var server = app.listen(3000);
-
-var io = require('socket.io').listen(server);
 
 const connection = process.env.DATABASE_URL;
 
@@ -73,8 +70,12 @@ app.use(index);
 
 // var http = require('http').createServer(app);
 
+var http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
+
 // var io = require('socket.io')(http);
-// console.log('io' + io);
+console.log('io' + io);
 
 //GET ALL PARTICIPANTS
 
