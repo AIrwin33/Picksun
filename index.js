@@ -18,7 +18,7 @@ app.use(express.json());
 const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 
-var server = http.createServer();
+var server = http.createServer(app);
 
 
 server.listen(PORT)
