@@ -51,6 +51,7 @@ router.post("/register", validInfo, async (req, res) =>{
 router.post('/login', validInfo ,async (req, res) => {
     try {
         // destructure req.body
+        console.log('destructure' + JSON.stringify(req.body));
 
         const body = JSON.parse(JSON.stringify(req.body))
 
