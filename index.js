@@ -1,7 +1,7 @@
 const express = require("express");
 var app = express()
 
-var io = require('socket.io')(http);
+
 const pool = require("./server/db");
 
 var bodyParser = require('body-parser')
@@ -47,7 +47,7 @@ pgp.pg.defaults.ssl = false;
 // });
 
 //socket stuff
-const socketIo = require("socket.io");
+//const socketIo = require("socket.io");
 
 //const index = require('./server/routes/index');
 
@@ -69,6 +69,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var http = require('http').createServer(app);
+
+var io = require('socket.io')(http);
 
 //GET ALL PARTICIPANTS
 
