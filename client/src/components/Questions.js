@@ -219,28 +219,28 @@ const Questions = (props) => {
 
        //look at this example, need to move to other files
 
-    const getSocketQuestions = () => {
-      console.log('in socket questions');
-        socket.emit(
-           "contest_id",
-           JSON.stringify({
-              text: props.contestid
-           })
-        );
-     };
+    // const getSocketQuestions = () => {
+    //   console.log('in socket questions');
+    //     socket.emit(
+    //        "contest_id",
+    //        JSON.stringify({
+    //           text: props.contestid
+    //        })
+    //     );
+    //  };
   
     useEffect(() => {
-        if (socket) {
-          console.log('socket');
-          console.log(socket);
-          socket.on("socketquestsupdated", quests => {
-            console.log('quests' + quests);
-            setQuestions(quests);
-          });
-        }else{
-          console.log('no socket');
+        // if (socket) {
+        //   console.log('socket');
+        //   console.log(socket);
+        //   socket.on("socketquestsupdated", quests => {
+        //     console.log('quests' + quests);
+        //     setQuestions(quests);
+        //   });
+        // }else{
+        //   console.log('no socket');
           getQuestions();
-        }
+        
     }, []);
 
 
