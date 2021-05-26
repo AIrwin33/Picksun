@@ -8,8 +8,8 @@ var bodyParser = require('body-parser')
 require("dotenv").config();
 //middleware
 const cors = require("cors");
-http.use(cors());
-http.use(express.json());
+app.use(cors());
+app.use(express.json());
 const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 const path = require("path");
