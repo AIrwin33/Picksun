@@ -30,21 +30,7 @@ wss.on('connection', (ws) => {
 });
 
 
-
-
-
-
-
-//const queries = require('./queries')
-
-
-
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
-
-// const socketIO = require('socket.io');
-
-// let server = http.createServer(app);
-// let io = socketIO(server);
 
 const promise = require('bluebird'); // or any other Promise/A+ compatible library;
 
