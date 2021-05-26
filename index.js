@@ -1,20 +1,11 @@
-const express = require("express");
-var app = express()
-
-
 const pool = require("./server/db");
 
 var bodyParser = require('body-parser')
 require("dotenv").config();
 //middleware
-const cors = require("cors");
-app.use(cors());
-app.use(express.json());
-const authorization = require("./server/middleware/authorize");
-const PORT = process.env.PORT || 8080;
-const path = require("path");
 
-// WSS
+
+// WSS Setup
 
 const { Server } = require('ws');
 
@@ -23,6 +14,25 @@ const server = express()
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 const wss = new Server({ server });
+
+var WebSocketServer = require("ws").Server
+var http = require("http")
+var express = require("express")
+var app = express()
+var port = process.env.PORT || 5000
+
+app.use(express.static(path.join(__dirname, "/public")));
+app.use("/auth", require("./server/routes/jwtAuth"));
+const cors = require("cors");
+app.use(cors());
+app.use(express.json());
+const authorization = require("./server/middleware/authorize");
+const PORT = process.env.PORT || 8080;
+const path = require("path");
+
+var server = http.createServer(app)
+server.listen(port)
+
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
@@ -39,25 +49,11 @@ const initOptions = {
     schema: ['public', 'salesforce']
 };
 
+
+//PG Promise setup
+
 const pgp = require('pg-promise')(initOptions);
 pgp.pg.defaults.ssl = false;
-
-// const socketPort = 8000;
-// const { emit } = require("process");
-// const server = require("http").createServer(app);
-// const io = require("socket.io")(server, {
-//    cors: {
-//       origin: "http://localhost:8000",
-//       methods: ["GET", "POST"],
-//    },
-// });
-
-//socket stuff
-//const socketIo = require("socket.io");
-
-// const index = require('./server/routes/index');
-
-
 
 const connection = process.env.DATABASE_URL;
 
@@ -66,8 +62,7 @@ const db = pgp(connection); // database instance;
 
 
 // ROUTES
-app.use(express.static(path.join(__dirname, "/public")));
-app.use("/auth", require("./server/routes/jwtAuth"));
+
 //GET ALL PARTICIPANTS
 
 app.use(bodyParser.json());
