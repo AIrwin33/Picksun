@@ -36,8 +36,16 @@ console.log("websocket server created")
 
 
 wss.on('connection', (ws) => {
-  console.log('Client connected');
-  ws.on('close', () => console.log('Client disconnected'));
+    var id = setInterval(function() {
+        ws.send(JSON.stringify(new Date()), function() {  })
+      }, 1000)
+    
+      console.log("websocket connection open")
+    
+      ws.on("close", function() {
+        console.log("websocket connection close")
+        clearInterval(id)
+      })
 });
 
 
