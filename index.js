@@ -20,7 +20,8 @@ const { Server } = require('ws');
 
 const server = express()
   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
-  
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+
 const wss = new Server({ server });
 
 wss.on('connection', (ws) => {
@@ -506,5 +507,3 @@ const getQuestionsAndEmit = () => {
 //     var port = http.address().port
 //     console.log('App listening at http://%s:%s', host, port)
 //   });
-
-server.listen(PORT, () => console.log(`Listening on ${PORT}`));
