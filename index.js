@@ -472,24 +472,20 @@ if (process.env.NODE_ENV === 'production') {
   }
   
 console.log("before a user connected");
-io.on("connection", () => {
+io.on("connection", client => {
     console.log("before a user connected");
-    getQuestionsAndEmit(socket);
+    getQuestionsAndEmit();
 
-    
+    client.on('disconnect', () => { /* … */ });    
 });
 
-io.on("disconnect", () => {
-    console.log("user disconnected");
-    });
-
-const getQuestionsAndEmit = socket => {
-    console.log('socket ' + socket);
-    pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [socket.contest_id],
-    (err,res) => {
-        if(err) throw err
-        socket.emit('socketquestsupdated', res);
-    });
+const getQuestionsAndEmit = () => {
+    console.log('get questions and emit');
+    // pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [socket.contest_id],
+    // (err,res) => {
+    //     if(err) throw err
+    //     socket.emit('socketquestsupdated', res);
+    // });
 }
 
 http.listen(process.env.PORT || 3000, function() {
