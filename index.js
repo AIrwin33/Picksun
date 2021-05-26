@@ -502,7 +502,7 @@ const getQuestionsAndEmit = () => {
     // });
 }
 
-http.listen(process.env.PORT || 3000, function() {
+app.listen(process.env.PORT || 3000, function() {
     var host = http.address().address
     var port = http.address().port
     console.log('App listening at http://%s:%s', host, port)
