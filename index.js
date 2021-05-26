@@ -472,13 +472,13 @@ if (process.env.NODE_ENV === 'production') {
   }
   
 console.log("before a user connected");
-io.on("connection", (socket) => {
+io.on("connection", () => {
     console.log("before a user connected");
-    getQuestionsAndEmit(socket);
+    // getQuestionsAndEmit(socket);
 
-    socket.on("disconnect", () => {
-    console.log("user disconnected");
-    });
+    // socket.on("disconnect", () => {
+    // console.log("user disconnected");
+    // });
 });
 
 const getQuestionsAndEmit = socket => {
