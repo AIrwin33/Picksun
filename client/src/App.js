@@ -17,6 +17,12 @@ import {
 
 
 
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import {createStore} from "redux";
+
+
+  
 
 
 function App() {
@@ -47,12 +53,25 @@ function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(true);
 
+  const Initval = {
+    questions: []
+  }
+  function reducer(state = Initval, action) {
+    console.log(action);
+    return state;
+  }
+  const store = createStore(reducer);
+  store.dispatch({type: "INCREMENT!"});
+
   const setAuth = boolean => {
     setIsAuthenticated(boolean);
   };
 
 
   return (
+    <Provider store={store}>
+  
+
     <Fragment>
 
       <Router>
@@ -127,6 +146,7 @@ function App() {
         </div>
       </Router>
     </Fragment>
+    </Provider>
   );
 }
 
