@@ -49,7 +49,7 @@ pgp.pg.defaults.ssl = false;
 //socket stuff
 //const socketIo = require("socket.io");
 
-const index = require('./server/routes/index');
+// const index = require('./server/routes/index');
 
 
 
@@ -66,16 +66,11 @@ app.use("/auth", require("./server/routes/jwtAuth"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(index);
 
 // var http = require('http').createServer(app);
 
-var http = require('http').createServer(app);
-const io = require('socket.io')(http);
-
-
-// var io = require('socket.io')(http);
-console.log('io' + io);
+// var http = require('http').createServer(app);
+// const io = require('socket.io')(http);
 
 //GET ALL PARTICIPANTS
 
@@ -471,12 +466,12 @@ if (process.env.NODE_ENV === 'production') {
     })
   }
   
-io.on("connection", (socket) => {
-    console.log("before a user connected");
-    //getQuestionsAndEmit();
+// io.on("connection", (socket) => {
+//     console.log("before a user connected");
+//     //getQuestionsAndEmit();
 
-    socket.on('disconnect', () => { /* … */ });    
-});
+//     socket.on('disconnect', () => { /* … */ });    
+// });
 
 const getQuestionsAndEmit = () => {
     console.log('get questions and emit');

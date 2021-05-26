@@ -30,7 +30,7 @@ const Questions = (props) => {
   
   const socketEndpoint = "https://cryptic-citadel-94967.herokuapp.com";
     const fetchQuestionEndpoint = `${socketEndpoint}/contestquestions`;
-    const socket = socketIOClient(fetchQuestionEndpoint);
+    //const socket = socketIOClient(fetchQuestionEndpoint);
 
     const doGetParticipationWrongAnswers = async () => {
         try {
