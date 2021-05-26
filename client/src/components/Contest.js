@@ -8,6 +8,8 @@ import {
     Image,
 } from "react-bootstrap";
 
+import {connect} from "react-redux";
+
 import Questions from './Questions.js';
 
 import avatar from '../assets/blue_avatar_200.png';
@@ -104,7 +106,7 @@ const Contest = ({ match }) => {
           }
     }
 
-   
+    
 
     useEffect(() => {
         getContest();

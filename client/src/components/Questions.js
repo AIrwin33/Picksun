@@ -8,13 +8,13 @@ import {
 
 import Question from './Question.js';
 
+import {connect} from "react-redux";
+
 import moment from 'moment';
 
 import "./Questions.css";
 
 import Timer from 'react-compound-timer';
-
-import socketIOClient from "socket.io-client";
 
 const Questions = (props) => {
   const [questions, setQuestions] = useState([]);
@@ -216,30 +216,13 @@ const Questions = (props) => {
           console.log('err' + err.message);
         }
       }
-
-       //look at this example, need to move to other files
-
-    // const getSocketQuestions = () => {
-    //   console.log('in socket questions');
-    //     socket.emit(
-    //        "contest_id",
-    //        JSON.stringify({
-    //           text: props.contestid
-    //        })
-    //     );
-    //  };
+    const mapStateToProps = (state) => {
+      console.log(state.questions);
+      //setQuestions(state.questions);
+    }
   
     useEffect(() => {
-        // if (socket) {
-        //   console.log('socket');
-        //   console.log(socket);
-        //   socket.on("socketquestsupdated", quests => {
-        //     console.log('quests' + quests);
-        //     setQuestions(quests);
-        //   });
-        // }else{
-        //   console.log('no socket');
-          getQuestions();
+      getQuestions();
         
     }, []);
 
@@ -322,4 +305,4 @@ const Questions = (props) => {
         )
 }
 
-export default Questions;
+export default connect(mapStateToProps)(Questions);
