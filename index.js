@@ -471,11 +471,11 @@ if (process.env.NODE_ENV === 'production') {
     })
   }
   
-io.on("connection", client => {
+io.on("connection", (socket) => {
     console.log("before a user connected");
-    getQuestionsAndEmit();
+    //getQuestionsAndEmit();
 
-    client.on('disconnect', () => { /* … */ });    
+    socket.on('disconnect', () => { /* … */ });    
 });
 
 const getQuestionsAndEmit = () => {
