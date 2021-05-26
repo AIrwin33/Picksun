@@ -1,15 +1,8 @@
 const pool = require("./server/db");
-
 var bodyParser = require('body-parser')
 require("dotenv").config();
 //middleware
-
-
 // WSS Setup
-
-// const server = express()
-//   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
-//   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 var WebSocketServer = require("ws").Server
 var http = require("http")
@@ -25,7 +18,7 @@ app.use(express.json());
 const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
 
-var server = http.createServer(app)
+var server = http.createServer();
 
 
 server.listen(PORT)
