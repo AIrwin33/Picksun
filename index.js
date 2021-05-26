@@ -1,51 +1,18 @@
+const express = require("express");
+const app = express();
+const http = require('http');
 const pool = require("./server/db");
 var bodyParser = require('body-parser')
 require("dotenv").config();
 //middleware
-// WSS Setup
-
-var WebSocketServer = require("ws").Server
-var http = require("http")
-var express = require("express")
-var app = express()
-const path = require("path");
-
-app.use(express.static(path.join(__dirname, "/public")));
-app.use("/auth", require("./server/routes/jwtAuth"));
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 8080;
-
-var server = http.createServer(app);
-
-
-server.listen(PORT)
-
-var wss = new WebSocketServer({server: server})
-
-console.log("websocket server created")
-
-
-wss.on('connection', (ws) => {
-    var id = setInterval(function() {
-        ws.send(JSON.stringify(new Date()), function() {  })
-      }, 1000)
-    
-      console.log("websocket connection open")
-    
-      ws.on("close", function() {
-        console.log("websocket connection close")
-        clearInterval(id)
-      })
-});
-
+const path = require("path");
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
-
-
-
 
 //PG Promise setup
 
@@ -67,17 +34,13 @@ const db = pgp(connection); // database instance;
 
 
 
+
 // ROUTES
-
+app.use(express.static(path.join(__dirname, "/public")));
+app.use("/auth", require("./server/routes/jwtAuth"));
 //GET ALL PARTICIPANTS
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// var http = require('http').createServer(app);
-
-// var http = require('http').createServer(app);
-// const io = require('socket.io')(http);
 
 //GET ALL PARTICIPANTS
 
@@ -489,8 +452,6 @@ const getQuestionsAndEmit = () => {
     // });
 }
 
-// http.listen(process.env.PORT || 3000, function() {
-//     var host = http.address().address
-//     var port = http.address().port
-//     console.log('App listening at http://%s:%s', host, port)
-//   });
+app.listen(PORT, () => {
+    console.log(`Server is starting on port ${PORT}`);
+  });
