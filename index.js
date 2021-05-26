@@ -471,7 +471,6 @@ if (process.env.NODE_ENV === 'production') {
     })
   }
   
-console.log("before a user connected");
 io.on("connection", client => {
     console.log("before a user connected");
     getQuestionsAndEmit();
