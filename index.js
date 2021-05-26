@@ -29,7 +29,13 @@ const PORT = process.env.PORT || 8080;
 const path = require("path");
 
 var server = http.createServer(app)
+
+
 server.listen(port)
+
+var wss = new WebSocketServer({server: server})
+
+console.log("websocket server created")
 
 
 wss.on('connection', (ws) => {
