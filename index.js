@@ -11,8 +11,6 @@ require("dotenv").config();
 //   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
 //   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
-const wss = new Server({ server });
-
 var WebSocketServer = require("ws").Server
 var http = require("http")
 var express = require("express")
