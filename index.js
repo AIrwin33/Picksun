@@ -49,7 +49,7 @@ pgp.pg.defaults.ssl = false;
 //socket stuff
 //const socketIo = require("socket.io");
 
-//const index = require('./server/routes/index');
+const index = require('./server/routes/index');
 
 
 
@@ -67,6 +67,7 @@ app.use("/auth", require("./server/routes/jwtAuth"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(index);
 
 var http = require('http').createServer(app);
 
@@ -471,7 +472,7 @@ app.post("/submitpartanswers", async(req, res) => {
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
   
-    app.get('*', (req, res) => {
+    app.get('/', (req, res) => {
       res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')) // relative path
     })
   }
@@ -490,7 +491,7 @@ const getQuestionsAndEmit = socket => {
     pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [socket.contest_id],
     (err,res) => {
         if(err) throw err
-        socket.emit('socketquestsupdated', res.rows);
+        socket.emit('socketquestsupdated', res);
     });
 }
 
