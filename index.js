@@ -67,10 +67,12 @@ app.use("/auth", require("./server/routes/jwtAuth"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(index);
 
 var http = require('http').createServer(app);
 
 var io = require('socket.io')(http);
+console.log('io' + io);
 
 //GET ALL PARTICIPANTS
 
@@ -212,16 +214,6 @@ app.get("/participationbycontest/:contest_id", authorization, async(req,res) => 
         console.log('err participation by contest' + err);
     }
 });
-
-
-/* SOCKET DB */
-
-//get socket
-
-//app.get("/contestquestions", queries.createSocketMessage());
-// app.get("/participationswronganswer", queries.getSocketParticipation());
-// app.get("/submitpartanswers", queries.updateSocketAnswers());
-
 
 app.get("/questions/:contest_id", authorization, async(req,res) => {
   try {
@@ -475,9 +467,10 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')) // relative path
     })
   }
-
+  
+console.log("before a user connected");
 io.on("connection", (socket) => {
-    console.log("a user connected");
+    console.log("before a user connected");
     getQuestionsAndEmit(socket);
 
     socket.on("disconnect", () => {
