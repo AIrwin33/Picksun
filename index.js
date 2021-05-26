@@ -15,7 +15,6 @@ var WebSocketServer = require("ws").Server
 var http = require("http")
 var express = require("express")
 var app = express()
-var port = process.env.PORT || 5000
 
 app.use(express.static(path.join(__dirname, "/public")));
 app.use("/auth", require("./server/routes/jwtAuth"));
@@ -29,7 +28,7 @@ const path = require("path");
 var server = http.createServer(app)
 
 
-server.listen(port)
+server.listen(PORT)
 
 var wss = new WebSocketServer({server: server})
 
@@ -44,6 +43,11 @@ wss.on('connection', (ws) => {
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
+
+
+
+//PG Promise setup
+
 const promise = require('bluebird'); // or any other Promise/A+ compatible library;
 
 const initOptions = {
@@ -52,7 +56,6 @@ const initOptions = {
 };
 
 
-//PG Promise setup
 
 const pgp = require('pg-promise')(initOptions);
 pgp.pg.defaults.ssl = false;
