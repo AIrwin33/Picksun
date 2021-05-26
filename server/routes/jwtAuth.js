@@ -49,7 +49,9 @@ router.post("/register", validInfo, async (req, res) =>{
 //login route
 
 router.post('/login', validInfo ,async (req, res) => {
+    console.log('in login');
     try {
+        
         // destructure req.body
         console.log('destructure' + JSON.stringify(req.body));
 
