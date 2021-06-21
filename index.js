@@ -401,6 +401,7 @@ app.post("/submitpartanswers", async (req, res) => {
         const {partanswers} = req.body;
         const answer = partanswers[0];
         console.log(partanswers);
+        console.log(answer.question__c);
 
         const question = await pool.query("SELECT * FROM salesforce.question__c WHERE sfid = $1", [answer.question__c])
         if (question.rows[0].correct_answer__c === answer.selection__c) { //Test if answer is correct
@@ -409,10 +410,12 @@ app.post("/submitpartanswers", async (req, res) => {
             await pool.query("UPDATE salesforce.participation__c SET wrong_answers__c = wrong_answers__c+1 WHERE sfid = $1", [answer.participation__c])
             res.json(0) //incorrect
         }
-        await pool.query(
-            "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c, isdeleted, systemmodstamp, createddate) VALUES($1,$2,$3,$4,$5, gen_random_uuid(), false, NOW(), NOW()) RETURNING *",
-            [answer.participation__c, answer.question__c, answer.selection__c, answer.selection_value__c, 'Submitted']
-        );
+
+        console.log('hold for updating part answers');
+        // await pool.query(
+        //     "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c, isdeleted, systemmodstamp, createddate) VALUES($1,$2,$3,$4,$5, gen_random_uuid(), false, NOW(), NOW()) RETURNING *",
+        //     [answer.participation__c, answer.question__c, answer.selection__c, answer.selection_value__c, 'Submitted']
+        // );
     } catch (err) {
         console.log('error on submit answer' + err);
     }
