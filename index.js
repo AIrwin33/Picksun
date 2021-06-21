@@ -184,6 +184,7 @@ app.get("/participationbycontest/:contest_id", authorization, async (req, res) =
 app.get("/questions/:contest_id", authorization, async (req, res) => {
     try {
         const {contest_id} = req.params;
+        console.log('getting questions');
         const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id]);
         res.json(allContestQuestions.rows)
 
