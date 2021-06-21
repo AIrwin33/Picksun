@@ -1,7 +1,7 @@
 import React , {Fragment, useState, useEffect} from "react";
 import './App.css';
-import Login from './components/Login'; 
-import Register from './components/Register'; 
+import Login from './components/Login';
+import Register from './components/Register';
 import Lobby from './components/Lobby';
 import Profile from './components/Profile';
 import Contests from './components/Contests';
@@ -18,11 +18,10 @@ import {
 
 
 import { Provider } from "react-redux";
-import store from "./redux/store";
 import {createStore} from "redux";
 
 
-  
+
 
 
 function App() {
@@ -70,7 +69,7 @@ function App() {
 
   return (
     <Provider store={store}>
-  
+
 
     <Fragment>
 
@@ -80,7 +79,7 @@ function App() {
           <div >
            <TopPanel/>
          </div>
-         
+
           <Switch>
             <Route path="/Login"
               render={props =>
@@ -122,8 +121,8 @@ function App() {
             <Route  path="/Contest/:id"
               render={props =>
                 isAuthenticated ? (
-                  <Contest 
-                  {...props} 
+                  <Contest
+                  {...props}
                   setAuth={setAuth} />
                 ) : (
                   <Redirect to="/Login" />
@@ -133,8 +132,8 @@ function App() {
              <Route  path="/Questions/:contestid"
               render={props =>
                 isAuthenticated ? (
-                  <Questions 
-                  {...props} 
+                  <Questions
+                  {...props}
                   />
                 ) : (
                   <Redirect to="/Login" />
