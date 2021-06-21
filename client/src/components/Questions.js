@@ -23,9 +23,6 @@ const Questions = (props) => {
     const [answerListShow, setAnswerListShow] = useState(false);
 
     const carouselRef =  React.createRef()
-    const socketEndpoint = "https://cryptic-citadel-94967.herokuapp.com";
-    const fetchQuestionEndpoint = `${socketEndpoint}/contestquestions`;
-    //const socket = socketIOClient(fetchQuestionEndpoint);
 
     const doGetParticipationWrongAnswers = async () => {
         try {
