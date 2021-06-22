@@ -232,31 +232,6 @@ app.post("/answers", async (req, res) => {
     }
 });
 
-//insert answers
-
-app.post("/answerslist", async (req, res) => {
-    try {
-
-        console.log('here');
-        const {partid, question_sfid, expartid} = req.body;
-        //     const {partid, question_sfid, eventVal, eventLabel, expartid} = req.body;
-        //     const participation = await pool.query(
-        //       "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1",
-        //   [expartid]
-        //   );
-        //       console.log(expartid);
-        //       console.log(participation.rows[0].sfid);
-        //       console.log(participation.rows);
-        //       console.log('partid in creating answer');
-        //     const newParticipationAnswer = await pool.query(
-        //         "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES($1,$2,$3,$4,$5, gen_random_uuid()) RETURNING *",
-        //     [participation.rows[0].sfid, question_sfid, eventVal, eventLabel, 'Submitted']
-        //     );
-        //     res.json(newParticipationAnswer.rows[0]);
-    } catch (err) {
-        console.log('err' + err.message);
-    }
-});
 
 
 //Get Participation for wrong answer count
@@ -415,10 +390,8 @@ app.post("/submitpartanswers", async (req, res) => {
         }
 
         console.log('hold for updating part answers');
-        // await pool.query(
-        //     "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c, isdeleted, systemmodstamp, createddate) VALUES($1,$2,$3,$4,$5, gen_random_uuid(), false, NOW(), NOW()) RETURNING *",
-        //     [answer.participation__c, answer.question__c, answer.selection__c, answer.selection_value__c, 'Submitted']
-        // );
+        await pool.query("UPDATE salesforce.participation_answers__c SET ExternalId__c = gen_random_uuid(), selection__c = $1, selection_value__c = $2, status__c = $3 WHERE participation__c = $4 AND question__c = $5 RETURNING *", [answer.selection__c, answer.selection_value__c, 'Submitted', answer.participation__c, answer.question__c, , ])
+        
     } catch (err) {
         console.log('error on submit answer' + err);
     }
