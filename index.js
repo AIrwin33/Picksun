@@ -391,7 +391,7 @@ app.post("/submitpartanswers", async (req, res) => {
         }
 
         console.log('hold for updating part answers');
-        await pool.query("UPDATE salesforce.participation_answers__c SET ExternalId__c = gen_random_uuid(), selection__c = $1, selection_value__c = $2, status__c = $3 WHERE participation__c = $4 AND question__c = $5 RETURNING *", [answer.selection__c, answer.selection_value__c, 'Submitted', answer.participation__c, answer.question__c, , ])
+        await pool.query("UPDATE salesforce.participation_answers__c SET ExternalId__c = gen_random_uuid(), selection__c = $1, selection_value__c = $2, status__c = $3 WHERE participation__c = $4 AND question__c = $5 RETURNING *", [answer.selection__c, answer.selection_value__c, 'Submitted', answer.participation__c, answer.question__c])
         
     } catch (err) {
         console.log('error on submit answer' + err);
