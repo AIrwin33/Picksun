@@ -85,16 +85,16 @@ const Questions = (props) => {
 
             }
             //if there are questions that aren't locked, then set the timing
+            console.log(props.questiontime);
+            console.log(nonLockedQuestionsArr.length);
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
+              console.log('in non locked questions');
                 var questime = props.contest.question_timer__c;
                 var millival = questime * 1000;
                 var currtime = moment();
                 var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
                 console.log(props.contest.opened_timer__c);
                 var closedTimerFormat = moment(closedTimerInt);
-                console.log(closedTimerFormat);
-                console.log(currtime);
-                console.log(closedTimerFormat.diff(currtime));
                 var counttime = moment.duration(closedTimerFormat.diff(currtime));
                 console.log('count time' + counttime);
 
