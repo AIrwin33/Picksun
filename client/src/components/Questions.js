@@ -28,6 +28,8 @@ const Questions = (props) => {
         try {
             console.log('getting participation answers');
             const partid = props.participation_id;
+            const partsfid = props.partsfid;
+            console.log('sfid' + partsfid);
             console.log('getting particiation wrong answers allwoed' + partid);
             const body = {partid};
             const response = await fetch(
