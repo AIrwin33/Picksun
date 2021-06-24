@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 8080;
 const path = require("path");
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
-process.env.DATABASE_URL = "postgres://serox:" + encodeURIComponent('***REMOVED***') + "@localhost:5432/test"
+process.env.DATABASE_URL = "postgres://serox:" + encodeURIComponent('Macare2006?') + "@localhost:5432/test"
 //PG Promise setup
 
 const promise = require('bluebird'); // or any other Promise/A+ compatible library;
