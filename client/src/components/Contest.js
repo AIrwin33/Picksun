@@ -43,8 +43,7 @@ const Contest = ({ match }) => {
             const parseData = await res.json();
             setContest(parseData); 
             getEvent(parseData);
-            getContestParticipations(parseData);
-            getParticipationByContest(parseData);
+            
           } catch (err) {
             console.error(err.message);
           }
@@ -60,7 +59,8 @@ const Contest = ({ match }) => {
             const parseData = await res.json();
             setHomeTeam(parseData[0]);
             setAwayTeam(parseData[1]);
-            
+            getContestParticipations(parseData);
+            getParticipationByContest(parseData);
         }catch(error) {
             console.error(error.message);
         }
