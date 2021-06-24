@@ -73,6 +73,7 @@ const Questions = (props) => {
             var i = 0;
             for (i = 0; parseData.length > i; i++) {
                 questionIdArr.push(parseData[i].sfid);
+                console.log(parseData[i].IsLocked__c);
                 if (parseData[i].IsLocked__c !== true) {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
