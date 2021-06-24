@@ -59,8 +59,8 @@ const Contest = ({ match }) => {
             const parseData = await res.json();
             setHomeTeam(parseData[0]);
             setAwayTeam(parseData[1]);
-            getContestParticipations(contest.sfid);
-            getParticipationByContest(contest.sfid);
+            getContestParticipations(contestRec.sfid);
+            getParticipationByContest(contestRec.sfid);
         }catch(error) {
             console.error(error.message);
         }
