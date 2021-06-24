@@ -99,6 +99,7 @@ const Contest = ({ match }) => {
             });
       
             const parseData = await res.json();
+            
             setParticipation(parseData);
             setLoaded(true);
           } catch (err) {
