@@ -60,7 +60,6 @@ const Contest = ({ match }) => {
             setHomeTeam(parseData[0]);
             setAwayTeam(parseData[1]);
             getContestParticipations(contestRec);
-            getParticipationByContest(contestRec);
         }catch(error) {
             console.error(error.message);
         }
@@ -85,6 +84,7 @@ const Contest = ({ match }) => {
               }
             setActiveParts(activeParts.length);
             setParticipations(activeParts);
+            getParticipationByContest(contestRec);
         }catch (err) {
             console.error(err.message);
         }
