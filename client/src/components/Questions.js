@@ -86,8 +86,6 @@ const Questions = (props) => {
 
             }
             //if there are questions that aren't locked, then set the timing
-            console.log(props.questiontime);
-            console.log(nonLockedQuestionsArr.length);
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
               console.log('in non locked questions');
                 var questime = props.contest.question_timer__c;
