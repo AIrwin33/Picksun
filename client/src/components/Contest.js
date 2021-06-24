@@ -99,7 +99,8 @@ const Contest = ({ match }) => {
             });
       
             const parseData = await res.json();
-            
+            console.log('check here for sfid');
+            console.log(JSON.stringify(parseData));
             setParticipation(parseData);
             setLoaded(true);
           } catch (err) {
