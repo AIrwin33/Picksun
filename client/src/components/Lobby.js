@@ -57,7 +57,7 @@ const Lobby = () => {
           const parseRes = await response.json();
             console.log('check here for sfid');
             console.log(JSON.stringify(parseRes));
-            window.location = "/Contest/" + contest_id;
+            // window.location = "/Contest/" + contest_id;
           
         } catch (err) {
           console.error(err.message);
