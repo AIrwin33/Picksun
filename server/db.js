@@ -9,7 +9,6 @@ const devConfig = new Pool({
 });
 
 const proConfig = process.env.DATABASE_URL; //heroku addons
-
 const pool = new Pool({
   client: 'postgresql',
   connectionString:
@@ -17,8 +16,9 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false }
 });
 
+const createSubscriber = require("pg-listen")
+const pgListen = createSubscriber({ connectionString: proConfig})
 
 
 
-
-module.exports = pool;
+module.exports = {pool, pgListen};
