@@ -51,7 +51,7 @@ const Questions = (props) => {
                 setKnockedOut(true);
                 console.log(knockedOut);
             }
-            if (partWrongAnswer.status__c != 'Active') {
+            if (partWrongAnswer.status__c !== 'Active') {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
@@ -59,7 +59,23 @@ const Questions = (props) => {
             console.error(err.message);
         }
     }
+    const startTimer = () => {
+        console.log('in non locked questions');
+        var questime = props.contest.question_timer__c;
+        var millival = questime * 1000;
+        var currtime = moment();
+        var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
+        console.log(props.contest.opened_timer__c);
+        var closedTimerFormat = moment(closedTimerInt);
+        var counttime = moment.duration(closedTimerFormat.diff(currtime));
+        console.log('count time' + counttime);
 
+        if (counttime < 0) {
+            setCounter(0);
+        } else {
+            setCounter(counttime);
+        }
+    }
     const getQuestions = async () => {
         try {
             console.log('get questions');
@@ -89,22 +105,7 @@ const Questions = (props) => {
             }
             //if there are questions that aren't locked, then set the timing
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
-                console.log('in non locked questions');
-                var questime = props.contest.question_timer__c;
-                var millival = questime * 1000;
-                var currtime = moment();
-                var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
-                console.log(props.contest.opened_timer__c);
-                var closedTimerFormat = moment(closedTimerInt);
-                var counttime = moment.duration(closedTimerFormat.diff(currtime));
-                console.log('count time' + counttime);
-
-                if (counttime < 0) {
-                    setCounter(0);
-                } else {
-                    setCounter(counttime);
-                }
-
+                startTimer()
             } else {
                 console.log('no available unlocked questions');
             }
@@ -228,14 +229,26 @@ const Questions = (props) => {
         socket.emit("set_contest_room", props.contestid)
     }, []);
     socket.on("new_question", question => {
+        console.log("qqqq")
         const questionidsIndex = questionids.indexOf(question.sfid)
-        if(questionidsIndex === -1) {
+        if (questionidsIndex === -1) {
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
         } else {
             const tempQuestions = questions
             tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
             setQuestions(tempQuestions);
+        }
+        let nonLockedQuestions = 0
+        for (const questionElt of questions) {
+            if(!questionElt.islocked__c)
+                nonLockedQuestions++
+        }
+        if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
+            setFinished(true);
+        }
+        if(nonLockedQuestions > 0 && props.contest.opened_timer__c !== null) {
+            startTimer();
         }
     })
     return (
