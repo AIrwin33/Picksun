@@ -224,7 +224,7 @@ const Question = (props) => {
 
     useEffect((e) => {
         setQuest(props.ques);
-        if (props.ques.islocked__c === true || props.isInactive === true) {
+        if (props.ques.islocked__c === true/* || props.isInactive === true*/) {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();
@@ -277,33 +277,33 @@ const Question = (props) => {
                     }
                 </div>
                 {props.ques.selection__c || partAnswer.selection__c ?
-                <div>
-                    <Row>
+                    <div>
+                        <Row>
 
-                        <Col>
-                            <div>
-                                {
-                                    <span>Your Answer: {props.ques.selection_value__c} {partAnswer.selection_value__c}</span>
-                                }
+                            <Col>
+                                <div>
+                                    {
+                                        <span>Your Answer: {props.ques.selection_value__c} {partAnswer.selection_value__c}</span>
+                                    }
 
 
-                                {partAnswer.Status__c === 'Did Not Answer' &&
-                                <span>Your Answer: Did Not Answer </span>
-                                }
-                            </div>
-                        </Col>
-                        {props.ques.correct_answer__c !== null &&
-                        <Col>
-                            <div
-                                className={`answerBanner ${props.ques.selection__c !== props.ques.correct_answer__c ? "red" : "green"} ${partAnswer.selection__c !== props.ques.correct_answer__c ? "red" : "green"}`}
-                            >
-                                {props.ques.selection__c !== props.ques.correct_answer__c}
-                                <span>Correct Answer: {props.ques.correct_answer_value__c} {partAnswer.correct_answer_value__c}</span>
-                            </div>
-                        </Col>
-                        }
-                    </Row>
-                </div>:null
+                                    {partAnswer.Status__c === 'Did Not Answer' &&
+                                    <span>Your Answer: Did Not Answer </span>
+                                    }
+                                </div>
+                            </Col>
+                            {props.ques.correct_answer__c !== null &&
+                            <Col>
+                                <div
+                                    className={`answerBanner ${props.ques.selection__c !== props.ques.correct_answer__c ? "red" : "green"} ${partAnswer.selection__c !== props.ques.correct_answer__c ? "red" : "green"}`}
+                                >
+                                    {props.ques.selection__c !== props.ques.correct_answer__c}
+                                    <span>Correct Answer: {props.ques.correct_answer_value__c} {partAnswer.correct_answer_value__c}</span>
+                                </div>
+                            </Col>
+                            }
+                        </Row>
+                    </div> : null
                 }
             </div>
             {/* end div wrapper */}
