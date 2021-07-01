@@ -224,7 +224,7 @@ const Question = (props) => {
 
     useEffect((e) => {
         setQuest(props.ques);
-        if (props.ques.islocked__c === true/* || props.isInactive === true*/) {
+        if (props.ques.islocked__c === true || props.isInactive === true) {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();

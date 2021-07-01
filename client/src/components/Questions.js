@@ -110,7 +110,6 @@ const Questions = (props) => {
                 console.log('no available unlocked questions');
             }
             setQuestions(parseData);
-            doGetParticipationWrongAnswers();
         } catch (err) {
             console.error('get questions error' + err.message);
         }
@@ -238,6 +237,7 @@ const Questions = (props) => {
             tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
             setQuestions(tempQuestions);
         }
+        doGetParticipationWrongAnswers()
         let nonLockedQuestions = 0
         for (const questionElt of questions) {
             if(!questionElt.islocked__c)
