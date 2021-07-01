@@ -229,7 +229,6 @@ const Questions = (props) => {
         socket.emit("set_contest_room", props.contestid)
     }, []);
     socket.on("new_question", question => {
-        console.log("qqqq")
         const questionidsIndex = questionids.indexOf(question.sfid)
         if (questionidsIndex === -1) {
             setQuestionIds([...questionids, question.sfid]);
@@ -248,7 +247,7 @@ const Questions = (props) => {
             setFinished(true);
         }
         if(nonLockedQuestions > 0 && props.contest.opened_timer__c !== null) {
-            startTimer();
+            setCounter(180000)
         }
     })
     return (
