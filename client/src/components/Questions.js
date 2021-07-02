@@ -191,6 +191,12 @@ const Questions = (props) => {
             setQuestions(tempQuestions)
             console.log(carouselRef.current)
             setAnswerListShow(false);
+            console.log('before disabling questions')
+            disableQuestions(questionids);
+
+
+
+            //
         } catch (err) {
             console.log('handle submit answers err : ' + err.message);
         }
