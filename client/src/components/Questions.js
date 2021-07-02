@@ -109,6 +109,7 @@ const Questions = (props) => {
             }
             //if there are questions that aren't locked, then set the timing
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
+                console.log('starting timer here?');
                 //startTimer()
             } else {
                 console.log('no available unlocked questions');
@@ -254,12 +255,12 @@ const Questions = (props) => {
             setFinished(true);
         }
 
+        setCounter(180000);
         console.log('non locked question count' + nonLockedQuestions);
         console.log(props.contest.opened_timer__c);
         //don't check opened tiemr since it hasn't made it down yet from SF DB
         if(nonLockedQuestions > 0) {
           console.log('starting 180 sec timer');
-            setCounter(180000);
             //startTimer();
         }
         doGetParticipationWrongAnswers();
