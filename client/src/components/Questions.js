@@ -241,7 +241,7 @@ const Questions = (props) => {
             tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
             setQuestions(tempQuestions);
         }
-        doGetParticipationWrongAnswers()
+        
         let nonLockedQuestions = 0
         for (const questionElt of questions) {
             if(!questionElt.islocked__c)
@@ -251,8 +251,10 @@ const Questions = (props) => {
             setFinished(true);
         }
         if(nonLockedQuestions > 0 && props.contest.opened_timer__c !== null) {
-            setCounter(180000)
+          console.log('here');
+            setCounter(180000);
         }
+        doGetParticipationWrongAnswers();
     })
     return (
         <>
