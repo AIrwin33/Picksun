@@ -51,7 +51,7 @@ const Questions = (props) => {
                 setKnockedOut(true);
                 console.log(knockedOut);
             }
-            if (partWrongAnswer.status__c !== 'Active') {
+            if (parseData.status__c !== 'Active') {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
