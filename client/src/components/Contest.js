@@ -75,8 +75,12 @@ const Contest = ({match}) => {
             }
             setActiveParts(activeParts.length);
             setParticipations(activeParts);
-
-            setTimeout(getParticipationByContest(contestRec), 1000);
+            setTimeout(
+                function() {
+                    getParticipationByContest(contestRec);
+                },
+                1000
+            );
 
             
         } catch (err) {
