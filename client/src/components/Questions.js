@@ -55,6 +55,9 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
+            console.log(partWrongAnswer.wrong_answers__c);
+            console.log(partWrongAnswer.wrong_answers_allowed__c);
+
         } catch (err) {
             console.error(err.message);
         }
