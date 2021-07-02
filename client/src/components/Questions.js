@@ -113,6 +113,7 @@ const Questions = (props) => {
                 console.log('no available unlocked questions');
             }
             setQuestions(parseData);
+            doGetParticipationWrongAnswers()
         } catch (err) {
             console.error('get questions error' + err.message);
         }
