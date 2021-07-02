@@ -283,7 +283,7 @@ const Question = (props) => {
                             <Col>
                                 <div>
                                     {
-                                        <span>Your Answer: {props.ques.selection_value__c} {partAnswer.selection_value__c}</span>
+                                        <span>Your Answer: {props.ques.selection_value__c}</span>
                                     }
 
 
