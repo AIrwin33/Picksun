@@ -254,7 +254,8 @@ const Questions = (props) => {
 
         console.log(nonLockedQuestions);
         console.log(props.contest.opened_timer__c);
-        if(nonLockedQuestions > 0 && props.contest.opened_timer__c !== null) {
+        //don't check opened tiemr since it hasn't made it down yet from SF DB
+        if(nonLockedQuestions > 0) {
           console.log('starting 180 sec timer');
             setCounter(180000);
             //startTimer();
