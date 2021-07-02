@@ -252,7 +252,7 @@ const Questions = (props) => {
             setFinished(true);
         }
 
-        console.log(nonLockedQuestions);
+        console.log('non locked question count' + nonLockedQuestions);
         console.log(props.contest.opened_timer__c);
         //don't check opened tiemr since it hasn't made it down yet from SF DB
         if(nonLockedQuestions > 0) {
