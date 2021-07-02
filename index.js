@@ -373,12 +373,11 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
         console.log(partanswers);
         console.log(answer.question__c);
         console.log(answer.participation__c);
-        //selection__c = $1, selection_value__c = $2, 
-        //answer.selection__c, answer.selection_value__c, 
-        const part = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 AND question__c = $2", [answer.participation__c, answer.question__c]);
-        // const part = await pool.query(
-        //     "UPDATE salesforce.Participation_Answers__c SET Status__c = $1 WHERE Participation__c = $2 AND Question__c = $3 RETURNING *", ['Submitted', answer.participation__c, answer.question__c]
-        //     );
+
+        //const part = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 AND question__c = $2", [answer.participation__c, answer.question__c]);
+        const part = await pool.query(
+            "UPDATE salesforce.Participation_Answers__c SET selection__c = $1, selection_value__c = $2, Status__c = $3 WHERE Participation__c = $4 AND Question__c = $5 RETURNING *", [answer.selection__c, answer.selection_value__c, 'Submitted', answer.participation__c, answer.question__c]
+            );
         //const question = await pool.query("SELECT * FROM salesforce.question__c WHERE sfid = $1", [answer.question__c])
         // if (question.rows[0].correct_answer__c !== answer.selection__c && question.rows[0].correct_answer__c !== null) {
         //     res.json(0) //incorrect
@@ -388,7 +387,6 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
         //     console.log('correct');
         //     res.json(1) //correct
         // }
-        console.log('part' + JSON.stringify(part));
         res.json(part.rows[0]);
     } catch (err) {
         console.log('error on submit answer' + err);
