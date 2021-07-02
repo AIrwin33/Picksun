@@ -366,7 +366,7 @@ app.post("/knockout", async (req, res) => {
 
 // PG Promise to insert participation answers
 
-app.post("/submitpartanswers", async (req, res) => {
+app.post("/submitpartanswers", authorization, async (req, res) => {
     try {
         const {partanswers} = req.body;
         const answer = partanswers[0];
