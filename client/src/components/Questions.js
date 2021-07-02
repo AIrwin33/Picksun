@@ -252,6 +252,7 @@ const Questions = (props) => {
             setFinished(true);
         }
         if(nonLockedQuestions > 0 && props.contest.opened_timer__c !== null) {
+          console.log('starting 180 sec timer');
             setCounter(180000);
             //startTimer();
         }
