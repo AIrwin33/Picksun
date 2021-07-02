@@ -245,7 +245,9 @@ const Questions = (props) => {
         
         let nonLockedQuestions = 0
         for (const questionElt of questions) {
+            console.log(questionElt);
             if(!questionElt.islocked__c)
+                console.log(nonLockedQuestions);
                 nonLockedQuestions++
         }
         if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {

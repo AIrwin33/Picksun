@@ -276,14 +276,14 @@ const Question = (props) => {
                             onClick={handleRadioChange}>{quest.answer_d__c}</button>
                     }
                 </div>
-                {props.ques.selection__c || partAnswer.selection__c ?
+                {partAnswer.selection__c ?
                     <div>
                         <Row>
 
                             <Col>
                                 <div>
                                     {
-                                        <span>Your Answer: {props.ques.selection_value__c}</span>
+                                        <span>Your Answer: {partAnswer.selection_value__c}</span>
                                     }
 
 
