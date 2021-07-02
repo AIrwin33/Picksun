@@ -375,7 +375,7 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
         console.log(answer.participation__c);
         //selection__c = $1, selection_value__c = $2, 
         //answer.selection__c, answer.selection_value__c, 
-        const part = await pool.query("SELECT * FROM salesforce.Participation_Answers__c WHERE participation__c = $1 AND question__c = $2", [answer.participation__c, answer.question__c]);
+        const part = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1", [answer.participation__c]);
         // const part = await pool.query(
         //     "UPDATE salesforce.Participation_Answers__c SET Status__c = $1 WHERE Participation__c = $2 AND Question__c = $3 RETURNING *", ['Submitted', answer.participation__c, answer.question__c]
         //     );
@@ -388,7 +388,7 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
         //     console.log('correct');
         //     res.json(1) //correct
         // }
-        console.log('part' + JSON.stringify(part.rows[0]));
+        console.log('part' + JSON.stringify(part));
         res.json(part.rows[0]);
     } catch (err) {
         console.log('error on submit answer' + err);
