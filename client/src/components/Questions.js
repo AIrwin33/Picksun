@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Carousel, Col, Container, Row} from "react-bootstrap";
 
 import Question from './Question.js';
@@ -8,7 +8,7 @@ import {connect} from "react-redux";
 import moment from 'moment';
 
 import "./Questions.css";
-
+import {SocketContext} from '../socket';
 import Timer from 'react-compound-timer';
 
 const Questions = (props) => {
@@ -21,8 +21,8 @@ const Questions = (props) => {
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
-
-    const carouselRef =  React.createRef()
+    const carouselRef = React.createRef()
+    const socket = React.useContext(SocketContext)
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -51,7 +51,7 @@ const Questions = (props) => {
                 setKnockedOut(true);
                 console.log(knockedOut);
             }
-            if (partWrongAnswer.status__c != 'Active') {
+            if (partWrongAnswer.status__c !== 'Active') {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
@@ -59,7 +59,23 @@ const Questions = (props) => {
             console.error(err.message);
         }
     }
+    const startTimer = () => {
+        console.log('in non locked questions');
+        var questime = props.contest.question_timer__c;
+        var millival = questime * 1000;
+        var currtime = moment();
+        var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
+        console.log(props.contest.opened_timer__c);
+        var closedTimerFormat = moment(closedTimerInt);
+        var counttime = moment.duration(closedTimerFormat.diff(currtime));
+        console.log('count time' + counttime);
 
+        if (counttime < 0) {
+            setCounter(0);
+        } else {
+            setCounter(counttime);
+        }
+    }
     const getQuestions = async () => {
         try {
             console.log('get questions');
@@ -89,27 +105,11 @@ const Questions = (props) => {
             }
             //if there are questions that aren't locked, then set the timing
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
-              console.log('in non locked questions');
-                var questime = props.contest.question_timer__c;
-                var millival = questime * 1000;
-                var currtime = moment();
-                var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
-                console.log(props.contest.opened_timer__c);
-                var closedTimerFormat = moment(closedTimerInt);
-                var counttime = moment.duration(closedTimerFormat.diff(currtime));
-                console.log('count time' + counttime);
-
-                if (counttime < 0) {
-                    setCounter(0);
-                } else {
-                    setCounter(counttime);
-                }
-
+                startTimer()
             } else {
                 console.log('no available unlocked questions');
             }
             setQuestions(parseData);
-            doGetParticipationWrongAnswers();
         } catch (err) {
             console.error('get questions error' + err.message);
         }
@@ -176,7 +176,9 @@ const Questions = (props) => {
             if (!parseData) {
                 setPartWrongAnswer({...partWrongAnswer, wrong_answers__c: ++partWrongAnswer.wrong_answers__c})
             }
-            const questionIndex = questions.map(r => {return r.sfid}).indexOf(partanswers[0].question__c)
+            const questionIndex = questions.map(r => {
+                return r.sfid
+            }).indexOf(partanswers[0].question__c)
             const tempQuestions = questions
             tempQuestions[questionIndex].selection__c = partanswers[0].selection__c
             tempQuestions[questionIndex].selection_value__c = partanswers[0].selection_value__c
@@ -223,8 +225,31 @@ const Questions = (props) => {
     }
     useEffect(() => {
         getQuestions();
+        socket.emit("set_contest_room", props.contestid)
     }, []);
-
+    socket.on("new_question", question => {
+        const questionidsIndex = questionids.indexOf(question.sfid)
+        if (questionidsIndex === -1) {
+            setQuestionIds([...questionids, question.sfid]);
+            setQuestions([...questions, question]);
+        } else {
+            const tempQuestions = questions
+            tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+            setQuestions(tempQuestions);
+        }
+        doGetParticipationWrongAnswers()
+        let nonLockedQuestions = 0
+        for (const questionElt of questions) {
+            if(!questionElt.islocked__c)
+                nonLockedQuestions++
+        }
+        if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
+            setFinished(true);
+        }
+        if(nonLockedQuestions > 0 && props.contest.opened_timer__c !== null) {
+            setCounter(180000)
+        }
+    })
     return (
         <>
 

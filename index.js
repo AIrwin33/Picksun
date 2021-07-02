@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const http = require('http').createServer(app);
 const io = require("socket.io")(http);
-const pool = require("./server/db");
+const {pool, pgListen} = require("./server/db");
 const bodyParser = require('body-parser');
 require("dotenv").config();
 //middleware
@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 8080;
 const path = require("path");
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
-process.env.DATABASE_URL = "postgres://serox:" + encodeURIComponent('Macare2006?') + "@localhost:5432/test"
+
 //PG Promise setup
 
 const promise = require('bluebird'); // or any other Promise/A+ compatible library;
@@ -27,11 +27,6 @@ const initOptions = {
 
 const pgp = require('pg-promise')(initOptions);
 pgp.pg.defaults.ssl = false;
-
-const connection = process.env.DATABASE_URL;
-
-const db = pgp(connection); // database instance;
-
 
 // ROUTES
 app.use(express.static(path.join(__dirname, "/public")));
@@ -233,7 +228,6 @@ app.post("/answers", async (req, res) => {
 });
 
 
-
 //Get Participation for wrong answer count
 
 app.post("/participationswronganswer", async (req, res) => {
@@ -403,15 +397,27 @@ app.post("/submitpartanswers", async (req, res) => {
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
 
-
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')) // relative path
     })
 }
+pgListen.notifications.on("new_question", e => {
+    if (e !== undefined && e.published__c) {
+        io.to(e.contest__c).emit("new_question", e)
+    }
+})
+pgListen.events.on("error", (error) => {
+    console.error("Fatal database connection error:", error)
+    process.exit(1)
+})
+pgListen.connect()
+pgListen.listenTo("new_question")
 
 io.on("connection", (socket) => {
-    console.log("before a user connected");
-    getQuestionsAndEmit();
+    socket.on("set_contest_room", e => {
+        socket.join(e)
+    })
+    //getQuestionsAndEmit();
 });
 
 const getQuestionsAndEmit = () => {

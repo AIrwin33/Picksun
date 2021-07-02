@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-const pool = require("../db");
+const {pool} = require("../db");
 const jwtGenerator = require("../utils/jwtGenerator");
 const validInfo = require("../middleware/validinfo");
 const authorization = require("../middleware/authorize");
 
 router.post("/register", validInfo, async (req, res) =>{
- 
+
     try {
         const body = JSON.parse(JSON.stringify(req.body))
         console.log(body);
@@ -51,7 +51,7 @@ router.post("/register", validInfo, async (req, res) =>{
 router.post('/login', validInfo ,async (req, res) => {
     console.log('in login');
     try {
-        
+
         // destructure req.body
         console.log('destructure' + JSON.stringify(req.body));
 
@@ -75,7 +75,7 @@ router.post('/login', validInfo ,async (req, res) => {
 
 
         const validPassword = await bcrypt.compare(password, participant.rows[0].participant_password__c);
-        
+
 
         if(!validPassword) {
             return res.status(401).json("Password or Email is incorrect");
