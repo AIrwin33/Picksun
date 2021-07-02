@@ -294,10 +294,12 @@ const Questions = (props) => {
                             </Timer>
                         </div>
                     </Col>
+                    {partWrongAnswer.wrong_answers_allowed__c &&
                     <Col>
                         Wrong / Allowed
                         Wrong: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
                     </Col>
+                    }
                 </Row>
                 <Row>
                     <Col>
