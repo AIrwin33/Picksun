@@ -255,7 +255,8 @@ const Questions = (props) => {
         console.log(props.contest.opened_timer__c);
         if(nonLockedQuestions > 0 && props.contest.opened_timer__c !== null) {
           console.log('here');
-            setCounter(180000);
+            //setCounter(180000);
+            startTimer();
         }
         doGetParticipationWrongAnswers();
     })
