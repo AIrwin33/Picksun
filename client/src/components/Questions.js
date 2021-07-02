@@ -268,10 +268,9 @@ const Questions = (props) => {
             <Container>
                 <Row className="questionRow m-3 p-3 justify-content-center">
                     {/* slide for questions */}
-                    {questionids.length === 0 &&
+                    {questionids.length !== 0 &&
                     <Col>
                         <div key={counter}>
-                        {questionids.length}
 
                             <Timer initialTime={counter}
                                    direction="backward"
