@@ -268,8 +268,9 @@ const Questions = (props) => {
             <Container>
                 <Row className="questionRow m-3 p-3 justify-content-center">
                     {/* slide for questions */}
-                    {questionids.length !== 0 &&
+                    
                     <Col>
+                    {questionids.length !== 0 &&
                         <div key={counter}>
 
                             <Timer initialTime={counter}
@@ -294,8 +295,8 @@ const Questions = (props) => {
                                 )}
                             </Timer>
                         </div>
+                      }  
                     </Col>
-                    }  
                     {partWrongAnswer.wrong_answers_allowed__c &&
                     <Col>
                         Wrong / Allowed
