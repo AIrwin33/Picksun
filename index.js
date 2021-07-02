@@ -373,16 +373,18 @@ app.post("/submitpartanswers", async (req, res) => {
         console.log(partanswers);
         console.log(answer.question__c);
         console.log(answer.participation__c);
-        const part = await pool.query("UPDATE salesforce.participation_answers__c SET externalid__c = gen_random_uuid(), selection__c = $1, selection_value__c = $2, status__c = $3 WHERE participation__c = $4 AND question__c = $5 RETURNING *", [answer.selection__c, answer.selection_value__c, 'Submitted', answer.participation__c, answer.question__c])
-        const question = await pool.query("SELECT * FROM salesforce.question__c WHERE sfid = $1", [answer.question__c])
-        if (question.rows[0].correct_answer__c !== answer.selection__c && question.rows[0].correct_answer__c !== null) {
-            res.json(0) //incorrect
-            console.log('incorrect');
-            await pool.query("UPDATE salesforce.participation__c SET wrong_answers__c = wrong_answers__c+1 WHERE sfid = $1", [answer.participation__c])
-        } else {
-            console.log('correct');
-            res.json(1) //correct
-        }
+        //selection__c = $1, selection_value__c = $2, 
+        //answer.selection__c, answer.selection_value__c, 
+        const part = await pool.query("UPDATE salesforce.participation_answers__c SET status__c = $1 WHERE participation__c = $2 AND question__c = $3 RETURNING *", ['Submitted', answer.participation__c, answer.question__c])
+        //const question = await pool.query("SELECT * FROM salesforce.question__c WHERE sfid = $1", [answer.question__c])
+        // if (question.rows[0].correct_answer__c !== answer.selection__c && question.rows[0].correct_answer__c !== null) {
+        //     res.json(0) //incorrect
+        //     console.log('incorrect');
+        //     await pool.query("UPDATE salesforce.participation__c SET wrong_answers__c = wrong_answers__c+1 WHERE sfid = $1", [answer.participation__c])
+        // } else {
+        //     console.log('correct');
+        //     res.json(1) //correct
+        // }
         
         console.log('part' + JSON.stringify(part));
     } catch (err) {
