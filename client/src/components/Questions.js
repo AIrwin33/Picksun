@@ -71,7 +71,7 @@ const Questions = (props) => {
         console.log(props.contest.opened_timer__c);
         var closedTimerFormat = moment(closedTimerInt);
         console.log(closedTimerInt);
-        var counttime = moment.duration(currtime.diff(closedTimerFormat));
+        var counttime = moment.duration(closedTimerFormat.diff(currtime));
         console.log('count time' + counttime);
 
         if (counttime < 0) {
@@ -251,13 +251,9 @@ const Questions = (props) => {
         if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
             setFinished(true);
         }
-        console.log('in socket');
-        console.log(nonLockedQuestions);
-        console.log(props.contest.opened_timer__c);
         if(nonLockedQuestions > 0 && props.contest.opened_timer__c !== null) {
-          console.log('here');
-            //setCounter(180000);
-            startTimer();
+            setCounter(180000);
+            //startTimer();
         }
         doGetParticipationWrongAnswers();
     })
