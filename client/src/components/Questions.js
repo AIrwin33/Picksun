@@ -271,6 +271,7 @@ const Questions = (props) => {
                     {questionids.length < 1 &&
                     <Col>
                         <div key={counter}>
+                        {questionids.length}
 
                             <Timer initialTime={counter}
                                    direction="backward"
