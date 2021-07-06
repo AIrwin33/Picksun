@@ -262,7 +262,7 @@ const Questions = (props) => {
             //startTimer();
             setCounter(180000);
         }
-        doGetParticipationWrongAnswers();
+        //doGetParticipationWrongAnswers();
     })
     return (
         <>
