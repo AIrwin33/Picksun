@@ -237,7 +237,7 @@ const Questions = (props) => {
         socket.emit("set_contest_room", props.contestid)
     }, []);
     socket.on("new_question", question => {
-        console.log('question ' + question);
+        console.log('question ' + question.islocked__c);
         const questionidsIndex = questionids.indexOf(question.sfid)
         if (questionidsIndex === -1) {
             setQuestionIds([...questionids, question.sfid]);
@@ -250,6 +250,7 @@ const Questions = (props) => {
         
         let nonLockedQuestions = 0
         for (const questionElt of questions) {
+            console.log(questionElt.islocked__c);
             if(!questionElt.islocked__c)
                 nonLockedQuestions++
         }
