@@ -155,7 +155,7 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
-
+            console.log('before set questions');
             setQuestions(parseData);
             setCounter(0);
             clearCounter();
@@ -166,8 +166,6 @@ const Questions = (props) => {
     }
 
     const handleSubmitAnswers = async () => {
-        console.log('handling submit answers');
-        console.log('answer list' + answerList);
         try {
             const partanswers = answerList;
             const body = {partanswers};
