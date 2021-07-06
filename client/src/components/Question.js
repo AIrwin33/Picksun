@@ -225,7 +225,6 @@ const Question = (props) => {
         if (props.ques.islocked__c === true || props.isInactive === true) {
             setDisabledQuestion(true);
         }else{
-            console.log('handling');
             handleExistingPartAnswer();
         }
 

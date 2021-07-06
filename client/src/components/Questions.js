@@ -239,6 +239,7 @@ const Questions = (props) => {
         socket.emit("set_contest_room", props.contestid)
     }, []);
     socket.on("new_question", question => {
+        console.log('question ' + question);
         const questionidsIndex = questionids.indexOf(question.sfid)
         if (questionidsIndex === -1) {
             setQuestionIds([...questionids, question.sfid]);
@@ -257,13 +258,12 @@ const Questions = (props) => {
         if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
             setFinished(true);
         }
-        //don't check opened tiemr since it hasn't made it down yet from SF DB
         if(nonLockedQuestions > 0) {
           console.log('starting 180 sec timer');
             //startTimer();
             setCounter(180000);
         }
-        //doGetParticipationWrongAnswers();
+        doGetParticipationWrongAnswers();
     })
     return (
         <>
