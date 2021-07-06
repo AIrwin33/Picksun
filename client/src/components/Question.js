@@ -224,9 +224,10 @@ const Question = (props) => {
         setQuest(props.ques);
         if (props.ques.islocked__c === true || props.isInactive === true) {
             setDisabledQuestion(true);
+        }else{
+            console.log('handling');
+            handleExistingPartAnswer();
         }
-        console.log('before handle');
-        handleExistingPartAnswer();
 
     }, [props.ques]);
 
