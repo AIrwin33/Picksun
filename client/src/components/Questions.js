@@ -155,6 +155,7 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
+
             setQuestions(parseData);
             setCounter(0);
             clearCounter();
@@ -232,10 +233,7 @@ const Questions = (props) => {
             console.log('err' + err.message);
         }
     }
-    const mapStateToProps = (state) => {
-        console.log(state.questions);
-        //setQuestions(state.questions);
-    }
+
     useEffect(() => {
         getQuestions();
         socket.emit("set_contest_room", props.contestid)
@@ -253,9 +251,7 @@ const Questions = (props) => {
         
         let nonLockedQuestions = 0
         for (const questionElt of questions) {
-            console.log(questionElt);
             if(!questionElt.islocked__c)
-                console.log(nonLockedQuestions);
                 nonLockedQuestions++
         }
         if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
@@ -267,7 +263,7 @@ const Questions = (props) => {
             //startTimer();
             setCounter(180000);
         }
-        doGetParticipationWrongAnswers();
+        //doGetParticipationWrongAnswers();
     })
     return (
         <>
