@@ -62,7 +62,6 @@ const Question = (props) => {
 
     const handleExistingPartAnswer = async () => {
         try {
-            console.log('handle existing answer');
             const partsfid = props.partsfid;
             const questid = props.ques.sfid;
 
@@ -75,7 +74,6 @@ const Question = (props) => {
             );
 
             const parseRes = await response.json();
-            console.log("RESSS", JSON.stringify(parseRes));
             setPartAnswer(parseRes);
             var partRes = parseRes
 
@@ -227,6 +225,7 @@ const Question = (props) => {
         if (props.ques.islocked__c === true || props.isInactive === true) {
             setDisabledQuestion(true);
         }
+        console.log('before handle');
         handleExistingPartAnswer();
 
     }, [props.ques]);
