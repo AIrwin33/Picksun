@@ -261,14 +261,11 @@ const Questions = (props) => {
         if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
             setFinished(true);
         }
-
-        setCounter(180000);
-        console.log('non locked question count' + nonLockedQuestions);
-        console.log(props.contest.opened_timer__c);
         //don't check opened tiemr since it hasn't made it down yet from SF DB
         if(nonLockedQuestions > 0) {
           console.log('starting 180 sec timer');
             //startTimer();
+            setCounter(180000);
         }
         doGetParticipationWrongAnswers();
     })
