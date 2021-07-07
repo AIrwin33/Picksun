@@ -261,8 +261,8 @@ const Questions = (props) => {
           console.log('starting 180 sec timer');
             //startTimer();
             setCounter(180000);
+            doGetParticipationWrongAnswers();
         }
-        doGetParticipationWrongAnswers();
     })
     return (
         <>
