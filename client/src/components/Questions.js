@@ -189,10 +189,9 @@ const Questions = (props) => {
             tempQuestions[questionIndex].selection__c = partanswers[0].selection__c
             tempQuestions[questionIndex].selection_value__c = partanswers[0].selection_value__c
             setQuestions(tempQuestions)
-            console.log(carouselRef.current)
             setAnswerListShow(false);
             console.log('before disabling questions')
-            //disableQuestions(questionids);
+            disableQuestions(questionids);
 
 
 
@@ -263,7 +262,7 @@ const Questions = (props) => {
             //startTimer();
             setCounter(180000);
         }
-        //doGetParticipationWrongAnswers();
+        doGetParticipationWrongAnswers();
     })
     return (
         <>
