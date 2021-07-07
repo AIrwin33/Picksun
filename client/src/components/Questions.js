@@ -238,6 +238,7 @@ const Questions = (props) => {
     socket.on("new_question", question => {
         console.log('question ' + question.islocked__c);
         const questionidsIndex = questionids.indexOf(question.sfid)
+        console.log(questionidsIndex);
         if (questionidsIndex === -1) {
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
