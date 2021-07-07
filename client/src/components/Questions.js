@@ -249,7 +249,7 @@ const Questions = (props) => {
         
         let nonLockedQuestions = 0
         for (const questionElt of questions) {
-            console.log(questionElt.islocked__c);
+            console.log(questionElt);
             if(!questionElt.islocked__c)
                 nonLockedQuestions++
         }
