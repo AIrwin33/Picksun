@@ -236,7 +236,7 @@ const Questions = (props) => {
         socket.emit("set_contest_room", props.contestid)
     }, []);
     socket.on("new_question", question => {
-        console.log('question ' + question.islocked__c);
+        console.log('question ' + question.sfid);
         const questionidsIndex = questionids.indexOf(question.sfid)
         console.log(questionidsIndex);
         if (questionidsIndex === -1) {
