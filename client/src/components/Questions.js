@@ -247,6 +247,7 @@ const Questions = (props) => {
             setQuestions(tempQuestions);
         }
         console.log(questions);
+        doGetParticipationWrongAnswers();
         let nonLockedQuestions = 0
         for (const questionElt of questions) {
             console.log(questionElt);
@@ -262,7 +263,7 @@ const Questions = (props) => {
             //startTimer();
             setCounter(180000);
         }
-        doGetParticipationWrongAnswers();
+        
     })
     return (
         <>

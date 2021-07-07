@@ -74,6 +74,7 @@ const Question = (props) => {
             );
 
             const parseRes = await response.json();
+            console.log(parseRes);
             setPartAnswer(parseRes);
             var partRes = parseRes
 
