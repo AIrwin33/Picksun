@@ -246,7 +246,7 @@ const Questions = (props) => {
             tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
             setQuestions(tempQuestions);
         }
-        
+        console.log(questions);
         let nonLockedQuestions = 0
         for (const questionElt of questions) {
             console.log(questionElt);
