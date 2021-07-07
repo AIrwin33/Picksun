@@ -192,7 +192,7 @@ const Questions = (props) => {
             console.log(carouselRef.current)
             setAnswerListShow(false);
             console.log('before disabling questions')
-            disableQuestions(questionids);
+            //disableQuestions(questionids);
 
 
 
