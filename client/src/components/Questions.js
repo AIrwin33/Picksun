@@ -255,9 +255,9 @@ const Questions = (props) => {
 
         const questionidsIndex = questionids.indexOf(question.sfid)
 
-        console.log(question.islocked__c);
-        console.log(question.published__c);
-        // if(questions.indexOf(-1).islocked__c){
+        console.log(questions.indexOf(-1).islocked__c);
+        console.log(questions.indexOf(-1).published__c);
+        // if(questions.indexOf(-1).islocked__c && questions.indexOf(-1).published__c){
         //     console.log('locked, dont continue');
         // }else{
         //     console.log('not locked, continue');
