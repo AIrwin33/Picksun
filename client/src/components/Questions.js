@@ -27,10 +27,9 @@ const Questions = (props) => {
     const doGetParticipationWrongAnswers = async () => {
         try {
             console.log('getting participation answers');
+            console.log('questions' + questions);
             const partid = props.participation_id;
             const partsfid = props.partsfid;
-            console.log('sfid' + partsfid);
-            console.log('getting particiation wrong answers allwoed' + partid);
             const body = {partid};
             const response = await fetch(
                 "/participationswronganswer",
@@ -65,7 +64,7 @@ const Questions = (props) => {
             if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
                 setFinished(true);
             }
-            console.log(nonLockedQuestions);
+            console.log('non locked questions' + nonLockedQuestions);
             if(nonLockedQuestions > 0) {
               console.log('starting 180 sec timer');
                 //startTimer();
@@ -262,8 +261,14 @@ const Questions = (props) => {
             tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
             setQuestions(tempQuestions);
         }
-        console.log(questions);
-        doGetParticipationWrongAnswers();
+        
+        setTimeout(
+            function() {
+                doGetParticipationWrongAnswers();
+            },
+            500
+        );
+        
 
        
         
