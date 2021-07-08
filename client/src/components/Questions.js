@@ -73,7 +73,7 @@ const Questions = (props) => {
             console.log(partWrongAnswer);
             if(nonLockedQuestions > 0) {
                 setCounter(180000);
-                setIndex(0);
+                setIndex(questions.length);
             }
 
         } catch (err) {
