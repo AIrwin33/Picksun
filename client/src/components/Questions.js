@@ -59,22 +59,28 @@ const Questions = (props) => {
             }
             setPartWrongAnswer(parseData);
 
+            setTimeout(
+                function() {
+                    let nonLockedQuestions = 0
+                    for (const questionElt of questions) {
+                        if(!questionElt.islocked__c)
+                            nonLockedQuestions++
+                        
+                    }
+                    if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
+                        setFinished(true);
+                    }
+                    if(nonLockedQuestions > 0) {
+                        setCounter(180000);
+                        setIndex(questions.length);
+                    }else{
+                        console.log('here');
+                    }
+                },
+                1000
+            );
             
-            let nonLockedQuestions = 0
-            for (const questionElt of questions) {
-                if(!questionElt.islocked__c)
-                    nonLockedQuestions++
-                   
-            }
-            if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
-                setFinished(true);
-            }
-            if(nonLockedQuestions > 0) {
-                setCounter(180000);
-                setIndex(questions.length);
-            }else{
-                console.log('here');
-            }
+            
 
         } catch (err) {
             console.error(err.message);
@@ -259,12 +265,9 @@ const Questions = (props) => {
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
     
-            setTimeout(
-                function() {
-                    doGetParticipationWrongAnswers();
-                },
-                1000
-            );
+
+            doGetParticipationWrongAnswers();
+
            
         } else {
             const tempQuestions = questions;
@@ -273,12 +276,8 @@ const Questions = (props) => {
             tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
             setQuestions(tempQuestions);
 
-            setTimeout(
-                function() {
-                    doGetParticipationWrongAnswers();
-                },
-                1000
-            );
+            doGetParticipationWrongAnswers();
+
            
         }
     })
