@@ -237,6 +237,7 @@ const Questions = (props) => {
     }, []);
     socket.on("new_question", question => {
         console.log('question ' + question.sfid);
+        console.log('questionids' + questionids);
         const questionidsIndex = questionids.indexOf(question.sfid)
         console.log(questionidsIndex);
         if (questionidsIndex === -1) {
