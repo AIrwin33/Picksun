@@ -54,6 +54,7 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
+            console.log(questions);
             let nonLockedQuestions = 0
             for (const questionElt of questions) {
                 console.log(questionElt);
