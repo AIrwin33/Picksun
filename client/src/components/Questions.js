@@ -27,7 +27,6 @@ const Questions = (props) => {
     const doGetParticipationWrongAnswers = async () => {
         try {
             console.log('getting participation answers');
-            console.log('questions' + questions);
             const partid = props.participation_id;
             const partsfid = props.partsfid;
             const body = {partid};
@@ -43,8 +42,6 @@ const Questions = (props) => {
             );
 
             const parseData = await response.json();
-            console.log('wrong answer count' + JSON.stringify(parseData));
-            console.log('test checking knocked out' + parseData.status__c);
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
                 setKnockedOut(true);
@@ -257,18 +254,20 @@ const Questions = (props) => {
         if (questionidsIndex === -1) {
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
+            doGetParticipationWrongAnswers();
         } else {
             const tempQuestions = questions
             tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
             setQuestions(tempQuestions);
+            doGetParticipationWrongAnswers();
         }
         
-        setTimeout(
-            function() {
-                doGetParticipationWrongAnswers();
-            },
-            1000
-        );
+        // setTimeout(
+        //     function() {
+        //         doGetParticipationWrongAnswers();
+        //     },
+        //     1000
+        // );
         
 
        
