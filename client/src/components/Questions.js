@@ -259,9 +259,8 @@ const Questions = (props) => {
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
             
-            if(questions.length > 0){
-                doGetParticipationWrongAnswers();
-            }
+            doGetParticipationWrongAnswers();
+    
             // setTimeout(
             //     function() {
             //         doGetParticipationWrongAnswers();
