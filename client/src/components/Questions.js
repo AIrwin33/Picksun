@@ -58,7 +58,7 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
-            setTimer();
+            
 
         } catch (err) {
             console.error(err.message);
@@ -68,6 +68,7 @@ const Questions = (props) => {
     const setTimer = () => {
         let nonLockedQuestions = 0;
         for (const questionElt of questions) {
+            console.log(questionElt);
             if(!questionElt.islocked__c)
                 nonLockedQuestions++
             
@@ -259,7 +260,7 @@ const Questions = (props) => {
     
 
             doGetParticipationWrongAnswers();
-
+            setTimer();
            
         } else {
             const tempQuestions = questions;
@@ -269,7 +270,7 @@ const Questions = (props) => {
             setQuestions(tempQuestions);
 
             doGetParticipationWrongAnswers();
-
+            setTimer();
            
         }
     })
