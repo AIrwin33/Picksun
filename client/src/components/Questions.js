@@ -63,6 +63,7 @@ const Questions = (props) => {
             }
             if(nonLockedQuestions > 0) {
                 setCounter(180000);
+                setIndex(-1);
             }
 
         } catch (err) {
@@ -246,14 +247,15 @@ const Questions = (props) => {
         if (questionidsIndex === -1) {
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
-            console.log('get index of');
-            console.log(questionids.indexOf(question.sfid));
+            
             doGetParticipationWrongAnswers();
 
         } else {
-            const tempQuestions = questions
+            const tempQuestions = questions;
+            
             tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
             setQuestions(tempQuestions);
+
             doGetParticipationWrongAnswers();
         }
     })
