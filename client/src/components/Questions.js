@@ -55,8 +55,23 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
-            console.log(partWrongAnswer.wrong_answers__c);
-            console.log(partWrongAnswer.wrong_answers_allowed__c);
+            let nonLockedQuestions = 0
+            for (const questionElt of questions) {
+                console.log(questionElt);
+                if(!questionElt.islocked__c)
+                    nonLockedQuestions++
+                   
+            }
+            if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
+                setFinished(true);
+            }
+            console.log(nonLockedQuestions);
+            if(nonLockedQuestions > 0) {
+              console.log('starting 180 sec timer');
+                //startTimer();
+                setCounter(180000);
+                
+            }
 
         } catch (err) {
             console.error(err.message);
@@ -250,21 +265,7 @@ const Questions = (props) => {
         }
         console.log(questions);
         doGetParticipationWrongAnswers();
-        let nonLockedQuestions = 0
-        for (const questionElt of questions) {
-            console.log(questionElt);
-            if(!questionElt.islocked__c)
-                nonLockedQuestions++
-        }
-        if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
-            setFinished(true);
-        }
-        console.log(nonLockedQuestions);
-        if(nonLockedQuestions > 0) {
-          console.log('starting 180 sec timer');
-            //startTimer();
-            setCounter(180000);
-        }
+       
         
     })
     return (
