@@ -26,6 +26,7 @@ const Questions = (props) => {
     const socket = React.useContext(SocketContext);
 
     const handleSelect = (selectedIndex, e) => {
+        console.log(selectedIndex);
         setIndex(selectedIndex);
       };
 
