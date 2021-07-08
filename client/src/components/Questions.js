@@ -13,6 +13,7 @@ import Timer from 'react-compound-timer';
 
 const Questions = (props) => {
     const [questions, setQuestions] = useState([]);
+    const [index, setIndex] = useState(0);
     const [questionids, setQuestionIds] = useState([]);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [counter, setCounter] = useState(props.questiontime);
@@ -51,10 +52,8 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
-            console.log(questions);
             let nonLockedQuestions = 0
             for (const questionElt of questions) {
-                console.log(questionElt);
                 if(!questionElt.islocked__c)
                     nonLockedQuestions++
                    
@@ -62,12 +61,8 @@ const Questions = (props) => {
             if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
                 setFinished(true);
             }
-            console.log('non locked questions' + nonLockedQuestions);
             if(nonLockedQuestions > 0) {
-              console.log('starting 180 sec timer');
-                //startTimer();
                 setCounter(180000);
-                
             }
 
         } catch (err) {
@@ -203,7 +198,6 @@ const Questions = (props) => {
             tempQuestions[questionIndex].selection_value__c = partanswers[0].selection_value__c
             setQuestions(tempQuestions)
             setAnswerListShow(false);
-            console.log('before disabling questions')
             disableQuestions(questionids);
 
 
@@ -237,8 +231,6 @@ const Questions = (props) => {
             }
             setAnswerListShow(true);
             setAnswerList(answerList);
-            console.log(answerList);
-            console.log('answer list length' + answerList.length);
         } catch (err) {
             console.log('err' + err.message);
         }
@@ -254,24 +246,16 @@ const Questions = (props) => {
         if (questionidsIndex === -1) {
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
+            console.log('get index of');
+            console.log(questionids.indexOf(question.sfid));
             doGetParticipationWrongAnswers();
+
         } else {
             const tempQuestions = questions
             tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
             setQuestions(tempQuestions);
             doGetParticipationWrongAnswers();
         }
-        
-        // setTimeout(
-        //     function() {
-        //         doGetParticipationWrongAnswers();
-        //     },
-        //     1000
-        // );
-        
-
-       
-        
     })
     return (
         <>
@@ -319,7 +303,7 @@ const Questions = (props) => {
                 <Row>
                     <Col>
                         {questions.length > 0 &&
-                        <Carousel ref={carouselRef} interval={null}>
+                        <Carousel ref={carouselRef} activeIndex={index} interval={null}>
                             {questions.map((question, index) => {
                                 return <Carousel.Item key={question.id} className="text-center">
                                     <Question addAnswer={updateAnswerList} ques={question} isInactive={inactive}
