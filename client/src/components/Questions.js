@@ -65,7 +65,7 @@ const Questions = (props) => {
             console.log('non locked' + nonLockedQuestions);
             if(nonLockedQuestions > 0) {
                 setCounter(180000);
-                setIndex(-1);
+                setIndex(0);
             }
 
         } catch (err) {
