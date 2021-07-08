@@ -125,6 +125,7 @@ const Questions = (props) => {
             //if there are questions that aren't locked, then set the timing
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
                 console.log('starting timer here?');
+                setCounter(180000);
                 //startTimer()
             } else {
                 console.log('no available unlocked questions');
