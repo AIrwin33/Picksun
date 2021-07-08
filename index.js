@@ -398,7 +398,7 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 pgListen.notifications.on("new_question", e => {
-    if (e !== undefined && e.published__c) {
+    if (e !== undefined && e.published__c && !e.islocked__c) {
         io.to(e.contest__c).emit("new_question", e)
     }
 })

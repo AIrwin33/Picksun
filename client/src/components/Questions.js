@@ -254,23 +254,17 @@ const Questions = (props) => {
     socket.on("new_question", question => {
 
         const questionidsIndex = questionids.indexOf(question.sfid)
-
-        if(!question.islocked__c && question.published__c){
-            console.log('do it');
-            if (questionidsIndex === -1) {
-                setQuestionIds([...questionids, question.sfid]);
-                setQuestions([...questions, question]);
-            } else {
-                const tempQuestions = questions
-                tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-                setQuestions(tempQuestions);
-            }
-            console.log(questions);
-            doGetParticipationWrongAnswers();
-        }else {
-            console.log('dont show');
-            socket.off();
+        if (questionidsIndex === -1) {
+            setQuestionIds([...questionids, question.sfid]);
+            setQuestions([...questions, question]);
+        } else {
+            const tempQuestions = questions
+            tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+            setQuestions(tempQuestions);
         }
+        console.log(questions);
+        doGetParticipationWrongAnswers();
+
        
         
     })
