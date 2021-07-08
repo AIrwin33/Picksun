@@ -256,16 +256,22 @@ const Questions = (props) => {
         console.log('questionids' + questionids);
         const questionidsIndex = questionids.indexOf(question.sfid)
         console.log(questionidsIndex);
-        if (questionidsIndex === -1) {
-            setQuestionIds([...questionids, question.sfid]);
-            setQuestions([...questions, question]);
-        } else {
-            const tempQuestions = questions
-            tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-            setQuestions(tempQuestions);
+        if(question.indexOf(-1).islocked__c){
+            console.log('locked, dont continue');
+        }else{
+            console.log('not locked, continue');
+            
+            if (questionidsIndex === -1) {
+                setQuestionIds([...questionids, question.sfid]);
+                setQuestions([...questions, question]);
+            } else {
+                const tempQuestions = questions
+                tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+                setQuestions(tempQuestions);
+            }
+            console.log(questions);
+            doGetParticipationWrongAnswers();
         }
-        console.log(questions);
-        doGetParticipationWrongAnswers();
        
         
     })
