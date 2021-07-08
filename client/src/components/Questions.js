@@ -66,7 +66,13 @@ const Questions = (props) => {
     }
 
     const setTimer = () => {
-       
+        let nonLockedQuestions = 0;
+            for (const questionElt of questions) {
+                console.log(questionElt);
+                if(!questionElt.islocked__c)
+                    nonLockedQuestions++
+                
+            }
         if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
             setFinished(true);
         }
@@ -135,7 +141,7 @@ const Questions = (props) => {
                 
             }
             if(nonLockedQuestions > 0){
-                setTimer();
+                setTimer()
             }
             doGetParticipationWrongAnswers();
         } catch (err) {
