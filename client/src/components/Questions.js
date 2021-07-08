@@ -28,6 +28,7 @@ const Questions = (props) => {
     const doGetParticipationWrongAnswers = async () => {
         try {
             console.log('getting participation answers');
+            console.log(questions.length);
             const partid = props.participation_id;
             const partsfid = props.partsfid;
             const body = {partid};
@@ -248,16 +249,28 @@ const Questions = (props) => {
         if (questionidsIndex === -1) {
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
-            console.log(questions.length);
-            doGetParticipationWrongAnswers();
-
+            
+            
+            setTimeout(
+                function() {
+                    doGetParticipationWrongAnswers();
+                },
+                1000
+            );
+           
         } else {
             const tempQuestions = questions;
             
             tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
             setQuestions(tempQuestions);
 
-            doGetParticipationWrongAnswers();
+            setTimeout(
+                function() {
+                    doGetParticipationWrongAnswers();
+                },
+                1000
+            );
+           
         }
     })
     return (
