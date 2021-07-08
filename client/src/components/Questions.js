@@ -269,6 +269,7 @@ const Questions = (props) => {
             doGetParticipationWrongAnswers();
         }else {
             console.log('dont show');
+            socket.disconnect();
         }
        
         
