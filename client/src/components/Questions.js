@@ -74,7 +74,7 @@ const Questions = (props) => {
     }
 
     const setTimer = () => {
-        let nonLockedQuestions = 0
+        let nonLockedQuestions = 0;
         for (const questionElt of questions) {
             if(!questionElt.islocked__c)
                 nonLockedQuestions++
@@ -83,12 +83,9 @@ const Questions = (props) => {
         if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
             setFinished(true);
         }
-        if(nonLockedQuestions > 0) {
+        console.log(nonLockedQuestions);
             setCounter(180000);
             setIndex(questions.length);
-        }else{
-            console.log('here');
-        }
     }
     const startTimer = () => {
         console.log('in non locked questions');
