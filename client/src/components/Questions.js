@@ -61,29 +61,33 @@ const Questions = (props) => {
 
             setTimeout(
                 function() {
-                    let nonLockedQuestions = 0
-                    for (const questionElt of questions) {
-                        if(!questionElt.islocked__c)
-                            nonLockedQuestions++
-                        
-                    }
-                    if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
-                        setFinished(true);
-                    }
-                    if(nonLockedQuestions > 0) {
-                        setCounter(180000);
-                        setIndex(questions.length);
-                    }else{
-                        console.log('here');
-                    }
+                    setTimer();
                 },
-                1000
+                2000
             );
             
             
 
         } catch (err) {
             console.error(err.message);
+        }
+    }
+
+    const setTimer = () => {
+        let nonLockedQuestions = 0
+        for (const questionElt of questions) {
+            if(!questionElt.islocked__c)
+                nonLockedQuestions++
+            
+        }
+        if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
+            setFinished(true);
+        }
+        if(nonLockedQuestions > 0) {
+            setCounter(180000);
+            setIndex(questions.length);
+        }else{
+            console.log('here');
         }
     }
     const startTimer = () => {
