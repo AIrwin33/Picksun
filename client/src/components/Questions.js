@@ -256,7 +256,7 @@ const Questions = (props) => {
         console.log('questionids' + questionids);
         const questionidsIndex = questionids.indexOf(question.sfid)
         console.log(questionidsIndex);
-        if(question.indexOf(-1).islocked__c){
+        if(questions.indexOf(-1).islocked__c){
             console.log('locked, dont continue');
         }else{
             console.log('not locked, continue');
