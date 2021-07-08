@@ -252,26 +252,27 @@ const Questions = (props) => {
         socket.emit("set_contest_room", props.contestid)
     }, []);
     socket.on("new_question", question => {
-        console.log('question ' + question.sfid);
-        console.log('questionids' + questionids);
+
         const questionidsIndex = questionids.indexOf(question.sfid)
-        console.log(questionidsIndex);
-        if(questions.indexOf(-1).islocked__c){
-            console.log('locked, dont continue');
-        }else{
-            console.log('not locked, continue');
+
+        console.log(question.islocked__c);
+        console.log(question.published__c);
+        // if(questions.indexOf(-1).islocked__c){
+        //     console.log('locked, dont continue');
+        // }else{
+        //     console.log('not locked, continue');
             
-            if (questionidsIndex === -1) {
-                setQuestionIds([...questionids, question.sfid]);
-                setQuestions([...questions, question]);
-            } else {
-                const tempQuestions = questions
-                tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-                setQuestions(tempQuestions);
-            }
-            console.log(questions);
-            doGetParticipationWrongAnswers();
-        }
+        //     if (questionidsIndex === -1) {
+        //         setQuestionIds([...questionids, question.sfid]);
+        //         setQuestions([...questions, question]);
+        //     } else {
+        //         const tempQuestions = questions
+        //         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+        //         setQuestions(tempQuestions);
+        //     }
+        //     console.log(questions);
+        //     doGetParticipationWrongAnswers();
+        // }
        
         
     })
