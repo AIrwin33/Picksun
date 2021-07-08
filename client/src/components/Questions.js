@@ -58,15 +58,7 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
-
-            setTimeout(
-                function() {
-                    setTimer();
-                },
-                2000
-            );
-            
-            
+            setTimer();
 
         } catch (err) {
             console.error(err.message);
@@ -83,8 +75,6 @@ const Questions = (props) => {
         if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
             setFinished(true);
         }
-            console.log(nonLockedQuestions);
-            console.log(questions.length);
             setCounter(180000);
             setIndex(questions.length);
     }
