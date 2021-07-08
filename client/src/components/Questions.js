@@ -69,11 +69,11 @@ const Questions = (props) => {
             if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
                 setFinished(true);
             }
-            console.log('non locked' + nonLockedQuestions);
-            console.log(partWrongAnswer);
             if(nonLockedQuestions > 0) {
                 setCounter(180000);
                 setIndex(questions.length);
+            }else{
+                console.log('here');
             }
 
         } catch (err) {
