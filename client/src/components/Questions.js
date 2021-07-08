@@ -256,22 +256,20 @@ const Questions = (props) => {
         const questionidsIndex = questionids.indexOf(question.sfid)
 
         console.log(questions.indexOf(-1) === undefined);
-        // if(questions.indexOf(-1).islocked__c && questions.indexOf(-1).published__c){
-        //     console.log('locked, dont continue');
-        // }else{
-        //     console.log('not locked, continue');
-            
-        //     if (questionidsIndex === -1) {
-        //         setQuestionIds([...questionids, question.sfid]);
-        //         setQuestions([...questions, question]);
-        //     } else {
-        //         const tempQuestions = questions
-        //         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-        //         setQuestions(tempQuestions);
-        //     }
-        //     console.log(questions);
-        //     doGetParticipationWrongAnswers();
-        // }
+        if(questions.indexOf(-1) === undefined){
+
+        }else {
+            if (questionidsIndex === -1) {
+                setQuestionIds([...questionids, question.sfid]);
+                setQuestions([...questions, question]);
+            } else {
+                const tempQuestions = questions
+                tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+                setQuestions(tempQuestions);
+            }
+            console.log(questions);
+            doGetParticipationWrongAnswers();
+        }
        
         
     })
