@@ -258,15 +258,13 @@ const Questions = (props) => {
             console.log('not temp questions');
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
-            
-            doGetParticipationWrongAnswers();
     
-            // setTimeout(
-            //     function() {
-            //         doGetParticipationWrongAnswers();
-            //     },
-            //     1000
-            // );
+            setTimeout(
+                function() {
+                    doGetParticipationWrongAnswers();
+                },
+                1000
+            );
            
         } else {
             const tempQuestions = questions;
