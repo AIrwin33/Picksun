@@ -28,7 +28,7 @@ const Questions = (props) => {
     const doGetParticipationWrongAnswers = async () => {
         try {
             console.log('getting participation answers');
-            console.log(questions.length);
+            console.log('lenght of questions' + questions.length);
             const partid = props.participation_id;
             const partsfid = props.partsfid;
             const body = {partid};
@@ -62,7 +62,7 @@ const Questions = (props) => {
             if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
                 setFinished(true);
             }
-            console.log(nonLockedQuestions);
+            console.log('non locked' + nonLockedQuestions);
             if(nonLockedQuestions > 0) {
                 setCounter(180000);
                 setIndex(-1);
@@ -250,13 +250,15 @@ const Questions = (props) => {
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
             
-            
-            setTimeout(
-                function() {
-                    doGetParticipationWrongAnswers();
-                },
-                1000
-            );
+            if(questions.length > 0){
+                doGetParticipationWrongAnswers();
+            }
+            // setTimeout(
+            //     function() {
+            //         doGetParticipationWrongAnswers();
+            //     },
+            //     1000
+            // );
            
         } else {
             const tempQuestions = questions;
