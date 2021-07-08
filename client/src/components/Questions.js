@@ -244,11 +244,11 @@ const Questions = (props) => {
     }, []);
     socket.on("new_question", question => {
 
-        const questionidsIndex = questionids.indexOf(question.sfid)
+        const questionidsIndex = questionids.indexOf(question.sfid);
         if (questionidsIndex === -1) {
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
-            
+            console.log(questions.length);
             doGetParticipationWrongAnswers();
 
         } else {
