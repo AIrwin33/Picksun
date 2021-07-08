@@ -267,7 +267,7 @@ const Questions = (props) => {
             function() {
                 doGetParticipationWrongAnswers();
             },
-            500
+            1000
         );
         
 
