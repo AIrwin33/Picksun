@@ -23,7 +23,11 @@ const Questions = (props) => {
     const [inactive, setInactive] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
     const carouselRef = React.createRef()
-    const socket = React.useContext(SocketContext)
+    const socket = React.useContext(SocketContext);
+
+    const handleSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+      };
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -321,7 +325,7 @@ const Questions = (props) => {
                 <Row>
                     <Col>
                         {questions.length > 0 &&
-                        <Carousel ref={carouselRef} activeIndex={index} interval={null}>
+                        <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                             {questions.map((question, index) => {
                                 return <Carousel.Item key={question.id} className="text-center">
                                     <Question addAnswer={updateAnswerList} ques={question} isInactive={inactive}
