@@ -58,6 +58,8 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
+
+            
             let nonLockedQuestions = 0
             for (const questionElt of questions) {
                 if(!questionElt.islocked__c)
@@ -68,6 +70,7 @@ const Questions = (props) => {
                 setFinished(true);
             }
             console.log('non locked' + nonLockedQuestions);
+            console.log(partWrongAnswer);
             if(nonLockedQuestions > 0) {
                 setCounter(180000);
                 setIndex(0);
@@ -131,7 +134,7 @@ const Questions = (props) => {
                 console.log('no available unlocked questions');
             }
             setQuestions(parseData);
-            doGetParticipationWrongAnswers()
+            doGetParticipationWrongAnswers();
         } catch (err) {
             console.error('get questions error' + err.message);
         }
@@ -252,6 +255,7 @@ const Questions = (props) => {
 
         const questionidsIndex = questionids.indexOf(question.sfid);
         if (questionidsIndex === -1) {
+            console.log('not temp questions');
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
             
@@ -267,6 +271,7 @@ const Questions = (props) => {
            
         } else {
             const tempQuestions = questions;
+            console.log('temp questions');
             
             tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
             setQuestions(tempQuestions);
