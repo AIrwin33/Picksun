@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Carousel, Col, Container, Row} from "react-bootstrap";
+import {Carousel, Col, Container, Modal, Row} from "react-bootstrap";
 
 import Question from './Question.js';
 
@@ -22,6 +22,7 @@ const Questions = (props) => {
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
+    const [showInfo, setShowInfo] = useState(false);
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
 
@@ -258,6 +259,12 @@ const Questions = (props) => {
 
     const handleInfoShow = async () => {
         console.log('hanlding modal');
+        setShowInfo(true);
+    }
+
+    const handleInfoClose = async () => {
+        console.log('close');
+        setShowInfo(false);
     }
 
     useEffect(() => {
@@ -337,6 +344,20 @@ const Questions = (props) => {
                             <a src="#" onClick={handleInfoShow} >
                                 info
                             </a>
+                            <Modal show={showInfo} onHide={handleInfoClose}>
+                                <Modal.Header closeButton>
+                                <Modal.Title>Modal heading</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                                <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Close
+                                </Button>
+                                <Button variant="primary" onClick={handleClose}>
+                                    Save Changes
+                                </Button>
+                                </Modal.Footer>
+                            </Modal>
                         </div>
                     </Col>
                     <Col>
