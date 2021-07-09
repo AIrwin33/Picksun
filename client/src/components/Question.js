@@ -18,6 +18,7 @@ const Question = (props) => {
 
     const handleRadioChange = async (event) => {
         var parent = $(event.target).parent();
+        console.log(parent);
 
         var label = '';
         if (event.target.value == 'A') {
@@ -32,7 +33,7 @@ const Question = (props) => {
         if (event.target.value == 'D') {
             label = quest.answer_d__c;
         }
-        console.log(label)
+        console.log(label);
         handleUpdateQuestionValue(event.target.value, label);
     }
     const handleUpdateQuestionValue = async (eventVal, eventLabel) => {
