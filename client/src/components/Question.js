@@ -40,6 +40,9 @@ const Question = (props) => {
             label = quest.answer_d__c;
         }
         console.log(label);
+        console.log(tgt);
+        console.log(children);
+
         handleUpdateQuestionValue(event.target.value, label);
     }
     const handleUpdateQuestionValue = async (eventVal, eventLabel) => {
