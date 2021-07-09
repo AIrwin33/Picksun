@@ -256,6 +256,10 @@ const Questions = (props) => {
         }
     }
 
+    const handleInfoShow = async () => {
+        console.log('hanlding modal');
+    }
+
     useEffect(() => {
         getQuestions();
         socket.emit("set_contest_room", props.contestid)
@@ -330,7 +334,9 @@ const Questions = (props) => {
                 <Row>
                     <Col>
                         <div class="infoDiv">
-                            info
+                            <a src="#" onClick={handleInfoShow} >
+                                info
+                            </a>
                         </div>
                     </Col>
                     <Col>
