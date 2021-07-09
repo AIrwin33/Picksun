@@ -23,8 +23,8 @@ const Question = (props) => {
         console.log(tgt);
         console.log(children);
 
-        $(children).removeClass('.sel');
-        $(tgt).addClass('.sel');
+        $(children).removeClass('sel');
+        $(tgt).addClass('sel');
 
         var label = '';
         if (event.target.value == 'A') {
