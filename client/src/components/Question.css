@@ -27,6 +27,14 @@
     padding-right: 2em;
 }
 
+.sel {
+    background-color: #215975;
+    border: 1px solid #d4d4d4;
+    color:white;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
 .timer {
     border-radius: 10px;
 }
