@@ -17,8 +17,11 @@ const Question = (props) => {
 
 
     const handleRadioChange = async (event) => {
-        var parent = $(event.target).parent();
-        console.log(parent);
+        var tgt = $(event.target);
+        var children = $(event.target).parent().children();
+
+        console.log(tgt);
+        console.log(children);
 
         var label = '';
         if (event.target.value == 'A') {
