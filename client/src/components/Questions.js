@@ -22,7 +22,7 @@ const Questions = (props) => {
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
-    const [showInfo, setShowInfo] = useState(false);
+    
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
 
@@ -257,15 +257,7 @@ const Questions = (props) => {
         }
     }
 
-    const handleInfoShow = async () => {
-        console.log('hanlding modal');
-        setShowInfo(true);
-    }
-
-    const handleInfoClose = async () => {
-        console.log('close');
-        setShowInfo(false);
-    }
+    
 
     useEffect(() => {
         getQuestions();
@@ -343,27 +335,6 @@ const Questions = (props) => {
                         
                     
                     <Col>
-                        {questions.length > 0 &&
-                        <div class="infoDiv">
-                            <a src="#" onClick={handleInfoShow} >
-                                info
-                            </a>
-                            <Modal show={showInfo} onHide={handleInfoClose}>
-                                <Modal.Header closeButton>
-                                <Modal.Title>Modal heading</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                                <Modal.Footer>
-                                <Button variant="secondary" onClick={handleInfoClose}>
-                                    Close
-                                </Button>
-                                <Button variant="primary" onClick={handleInfoClose}>
-                                    Save Changes
-                                </Button>
-                                </Modal.Footer>
-                            </Modal>
-                        </div>
-                        }
                         {questions.length > 0 &&
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                             {questions.map((question, index) => {
