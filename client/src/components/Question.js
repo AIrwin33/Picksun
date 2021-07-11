@@ -344,6 +344,14 @@ const Question = (props) => {
                                 </div>
                             </Col>
                             }
+
+                            {props.ques.correct_answer__c !== null &&
+                             <Col>
+                                <div>
+                                    <span>Correct Answer: Stay Tuned</span>
+                                </div>
+                            </Col>
+                            }
                         </Row>
                     </div> : null
                 }
