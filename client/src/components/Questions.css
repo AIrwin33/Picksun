@@ -16,8 +16,15 @@
     border-radius: 10px;
 }
 
+.timerdiv {
+    padding-left: 10px;
+    
+}
+
 .warning {
     background-color: red;
+    border-radius: 5px;
+    width: 100px;
 }
 
 .questionTextDiv {
