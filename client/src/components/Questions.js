@@ -343,6 +343,7 @@ const Questions = (props) => {
                         
                     
                     <Col>
+                        {questions.length > 0 &&
                         <div class="infoDiv">
                             <a src="#" onClick={handleInfoShow} >
                                 info
@@ -362,6 +363,7 @@ const Questions = (props) => {
                                 </Modal.Footer>
                             </Modal>
                         </div>
+                        }
                         {questions.length > 0 &&
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                             {questions.map((question, index) => {

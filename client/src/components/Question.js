@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Col, Row,} from "react-bootstrap";
+import {Col, Row, Button, Modal} from "react-bootstrap";
 
 import {v4 as uuidv4} from 'uuid';
 import "./Question.css";
@@ -8,6 +8,7 @@ import $ from 'jquery';
 const Question = (props) => {
     const [partAnswer, setPartAnswer] = useState([]);
     const [quest, setQuest] = useState([]);
+    const [showInfo, setShowInfo] = useState(false);
     const [showanswer, setShowAnswer] = useState([false]);
     const [showKnockOut, setKnockOut] = useState(false);
     const [contestKnockoutText, setContestKnockoutText] = useState([]);
@@ -231,6 +232,16 @@ const Question = (props) => {
 
     }
 
+    const handleInfoShow = async () => {
+        console.log('hanlding modal');
+        setShowInfo(true);
+    }
+
+    const handleInfoClose = async () => {
+        console.log('close');
+        setShowInfo(false);
+    }
+
     useEffect((e) => {
         console.log(props.ques.islocked__c);
         setQuest(props.ques);
@@ -264,6 +275,25 @@ const Question = (props) => {
                     </div>
                 </Row>
                 }
+                <div class="infoDiv">
+                    <a src="#" onClick={handleInfoShow} >
+                        info
+                    </a>
+                    <Modal show={showInfo} onHide={handleInfoClose}>
+                        <Modal.Header closeButton>
+                        <Modal.Title>Modal heading</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                        <Modal.Footer>
+                        <Button variant="secondary" onClick={handleInfoClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={handleInfoClose}>
+                            Save Changes
+                        </Button>
+                        </Modal.Footer>
+                    </Modal>
+                </div>
 
                 <div className="questionTextDiv">
                     <h3>{quest.question_text__c}</h3>
