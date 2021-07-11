@@ -11,6 +11,8 @@ import "./Questions.css";
 import {SocketContext} from '../socket';
 import Timer from 'react-compound-timer';
 
+import $ from 'jquery';
+
 const Questions = (props) => {
     const [questions, setQuestions] = useState([]);
     const [index, setIndex] = useState(0);
