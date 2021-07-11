@@ -275,8 +275,8 @@ const Question = (props) => {
                     </div>
                 </Row>
                 }
-                <div class="infoDiv">
-                    <a src="#" onClick={handleInfoShow} >
+                <div className="infoDiv">
+                    <a src="#" className="float-right" onClick={handleInfoShow} >
                         info
                     </a>
                     <Modal show={showInfo} onHide={handleInfoClose}>
