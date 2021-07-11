@@ -257,7 +257,10 @@ const Questions = (props) => {
         }
     }
 
-    
+    const warningText = async () => {
+        console.log('warning, close to time up');
+        $('.timerdiv').addClass('warning');
+    }
 
     useEffect(() => {
         getQuestions();
@@ -307,6 +310,10 @@ const Questions = (props) => {
                                            time: 0,
                                            callback: () => disableQuestions(questionids),
                                        },
+                                       {
+                                           time: 10000,
+                                           callback: () => warningText(),
+                                       }
                                    ]}
                             >
                                 {({start, resume, pause, stop, reset, getTimerState, getTime, setTime}) => (
@@ -314,7 +321,7 @@ const Questions = (props) => {
                                     <React.Fragment>
 
                                         {/* on timer state of stopped, call the disable function and show answer*/}
-                                        <div>
+                                        <div className="timerdiv">
                                             <Timer.Seconds/> Seconds
                                         </div>
                                     </React.Fragment>

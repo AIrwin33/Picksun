@@ -16,6 +16,10 @@
     border-radius: 10px;
 }
 
+.warning {
+    background-color: red;
+}
+
 .questionTextDiv {
     height:15vh;
 }
