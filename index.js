@@ -399,15 +399,10 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 pgListen.notifications.on("new_question", e => {
+    console.log(e);
     if (e !== undefined && e.published__c && !e.islocked__c) {
         io.to(e.contest__c).emit("new_question", e)
     }
-})
-
-pgListen.notifications.on("new_participation", e => {
-    console.log('e' + e);
-    io.to(e.contest__c).emit("new_participation", e)
-    console.log('here');
 })
 pgListen.events.on("error", (error) => {
     console.error("Fatal database connection error:", error)
@@ -415,7 +410,6 @@ pgListen.events.on("error", (error) => {
 })
 pgListen.connect()
 pgListen.listenTo("new_question")
-pgListen.listenTo("new_participation");
 
 io.on("connection", (socket) => {
     socket.on("set_contest_room", e => {
