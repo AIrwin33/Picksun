@@ -221,4 +221,4 @@ const Contest = ({match}) => {
     )
 }
 
-export default Contest;
+export default connect()(Contest);
