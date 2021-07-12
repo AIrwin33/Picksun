@@ -191,7 +191,7 @@ const Questions = (props) => {
             console.log('before set questions');
 
             console.log(parseData);
-            //setQuestions(parseData);
+            setQuestions(parseData);
             clearCounter();
 
         } catch (err) {
@@ -303,7 +303,6 @@ const Questions = (props) => {
             <Container>
                 <Row className="questionRow m-3 p-3 justify-content-center">
                     {/* slide for questions */}
-                    {questionids}
                     <Col>
                     {questionids.length !== 0 &&
                         <div key={counter}>
