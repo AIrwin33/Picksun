@@ -9,6 +9,7 @@ import {TwitterTimelineEmbed} from 'react-twitter-embed';
 
 import "./Contest.css";
 import {SocketContext} from "../socket";
+import {connect} from "react-redux";
 
 
 const Contest = ({match}) => {
