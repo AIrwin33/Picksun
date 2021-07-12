@@ -80,7 +80,7 @@ const Questions = (props) => {
         if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
             setFinished(true);
         }
-            setCounter(180000);
+            setCounter(60000);
             setIndex(questions.length);
     }
     const startTimer = () => {
@@ -188,6 +188,8 @@ const Questions = (props) => {
 
             const parseData = await res.json();
             console.log('before set questions');
+
+            console.log(parseData);
             setQuestions(parseData);
             setCounter(0);
             clearCounter();
