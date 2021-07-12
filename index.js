@@ -406,6 +406,7 @@ pgListen.notifications.on("new_question", e => {
 
 pgListen.notifications.on("new_participation", e => {
     io.to(e.contest__c).emit("new_participation", e)
+    console.log('here');
 })
 pgListen.events.on("error", (error) => {
     console.error("Fatal database connection error:", error)
