@@ -403,12 +403,17 @@ pgListen.notifications.on("new_question", e => {
         io.to(e.contest__c).emit("new_question", e)
     }
 })
+
+pgListen.notifications.on("new_participation", e => {
+    io.to(e.contest__c).emit("new_participation", e)
+})
 pgListen.events.on("error", (error) => {
     console.error("Fatal database connection error:", error)
     process.exit(1)
 })
 pgListen.connect()
 pgListen.listenTo("new_question")
+pgListen.listenTo("new_participation");
 
 io.on("connection", (socket) => {
     socket.on("set_contest_room", e => {

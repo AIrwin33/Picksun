@@ -109,6 +109,10 @@ const Contest = ({match}) => {
     useEffect(() => {
         getContest();
     }, []);
+
+    socket.on("new_participation", participation => {
+        console.log(participation);
+    });
     return ((
             <>
 
