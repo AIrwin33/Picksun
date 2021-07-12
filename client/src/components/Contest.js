@@ -50,7 +50,15 @@ const Contest = ({match}) => {
             const parseData = await res.json();
             setHomeTeam(parseData[0]);
             setAwayTeam(parseData[1]);
-            getContestParticipations(contestRec);
+
+            setTimeout(
+                function() {
+                    getContestParticipations(contestRec);
+                    
+                },
+                2000
+            );
+           
         } catch (error) {
             console.error(error.message);
         }
@@ -76,12 +84,7 @@ const Contest = ({match}) => {
             }
             setActiveParts(activeParts.length);
             setParticipations(activeParts);
-            setTimeout(
-                function() {
-                    getParticipationByContest(contestRec);
-                },
-                1000
-            );
+            getParticipationByContest(contestRec);
 
             
         } catch (err) {

@@ -404,6 +404,13 @@ pgListen.notifications.on("new_question", e => {
         io.to(e.contest__c).emit("new_question", e)
     }
 })
+
+pgListen.notifications.on("new_participation", e => {
+    console.log('in new participation');
+    console.log(e);
+
+})
+
 pgListen.events.on("error", (error) => {
     console.error("Fatal database connection error:", error)
     process.exit(1)
@@ -415,17 +422,7 @@ io.on("connection", (socket) => {
     socket.on("set_contest_room", e => {
         socket.join(e)
     })
-    //getQuestionsAndEmit();
 });
-
-const getQuestionsAndEmit = () => {
-    console.log('get questions and emit');
-    // pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [socket.contest_id],
-    // (err,res) => {
-    //     if(err) throw err
-    //     socket.emit('socketquestsupdated', res);
-    // });
-}
 
 http.listen(PORT, () => {
     console.log(`Server is starting on port ${PORT}`);
