@@ -192,7 +192,6 @@ const Questions = (props) => {
 
             console.log(parseData);
             //setQuestions(parseData);
-            setCounter(0);
             clearCounter();
 
         } catch (err) {
