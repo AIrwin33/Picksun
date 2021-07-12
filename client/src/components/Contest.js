@@ -109,6 +109,7 @@ const Contest = ({match}) => {
 
     useEffect(() => {
         getContest();
+        socket.emit("set_contest_room", contest.id);
     }, []);
 
     socket.on("new_participation", participation => {
