@@ -53,6 +53,7 @@ const Questions = (props) => {
             );
 
             const parseData = await response.json();
+            console.log(parseData);
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
                 setKnockedOut(true);
