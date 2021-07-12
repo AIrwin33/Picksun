@@ -23,6 +23,7 @@ const Questions = (props) => {
     const [knockedOut, setKnockedOut] = useState(false);
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
     
     const carouselRef = React.createRef()
@@ -221,7 +222,8 @@ const Questions = (props) => {
             tempQuestions[questionIndex].selection_value__c = partanswers[0].selection_value__c
             setQuestions(tempQuestions)
             setAnswerListShow(false);
-            disableQuestions(questionids);
+            //disableQuestions(questionids);
+            setSubmitted(true);
 
 
 
@@ -349,7 +351,7 @@ const Questions = (props) => {
                                 return <Carousel.Item key={question.id} className="text-center">
                                     <Question addAnswer={updateAnswerList} ques={question} isInactive={inactive}
                                               isKnockedOut={knockedOut} participation_id={props.participation_id}
-                                              contestfinsihed={finished} partsfid={props.partsfid}/>
+                                              contestfinsihed={finished} partsfid={props.partsfid} issubmitted={submitted}/>
                                 </Carousel.Item>
                             })}
                         </Carousel>
