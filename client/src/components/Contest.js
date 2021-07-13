@@ -112,18 +112,18 @@ const Contest = ({match}) => {
     const updateparts = async (childData) => {
         console.log(childData);
         console.log('here in update parts in contest');
-        var partsList = [];
-        var i;
-        for (i = 0; i < participations.length; i++) {
-            console.log(participations[i]);
-            if (participations[i].externalid__c === childData.externalid__c) {
-                console.log('found');
-                //participations[i] = childData;
-            }
-        }
-        console.log(participations);
-        partsList = participations;
-        setParticipations(partsList);
+        // var partsList = [];
+        // var i;
+        // for (i = 0; i < participations.length; i++) {
+        //     console.log(participations[i]);
+        //     if (participations[i].externalid__c === childData.externalid__c) {
+        //         console.log('found');
+        //         //participations[i] = childData;
+        //     }
+        // }
+        // console.log(participations);
+        // partsList = participations;
+        // setParticipations(partsList);
     }
 
 
