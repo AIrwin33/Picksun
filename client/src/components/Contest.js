@@ -112,6 +112,13 @@ const Contest = ({match}) => {
     const updateparts = async (childData) => {
         console.log(childData);
         console.log('here in update parts in contest');
+        var partsList = [];
+        for (i = 0; i < participations.length; i++) {
+            if (participations[i].sfid === childData.sfid) {
+                participations[i] = childData;
+            }
+        }
+        console.log(participations);
     }
 
 
