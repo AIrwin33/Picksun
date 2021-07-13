@@ -118,12 +118,12 @@ const Contest = ({match}) => {
             console.log(participations[i]);
             if (participations[i].externalid__c === childData.externalid__c) {
                 console.log('found');
-                //participations[i] = childData;
+                participations[i] = childData;
             }
         }
-        // console.log(participations);
-        // partsList = participations;
-        // setParticipations(partsList);
+        console.log(participations);
+        partsList = participations;
+        setParticipations(partsList);
     }
 
 
