@@ -373,7 +373,7 @@ const Questions = (props) => {
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                             {questions.map((question, index) => {
                                 return <Carousel.Item key={question.id} className="text-center">
-                                    <Question addAnswer={updateAnswerList} ques={question} contest={contest} questionNum={questionNum} totalQuestions={props.contest.number_of_questions__c}
+                                    <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={props.contest.number_of_questions__c}
                                                 isInactive={inactive}
                                                 selectedCount={selectedCount}
                                                 getsubcount={handleSubsegmentCount}
