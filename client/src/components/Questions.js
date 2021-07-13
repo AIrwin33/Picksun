@@ -383,9 +383,6 @@ const Questions = (props) => {
                     }
                 </Row>
                 <Row>
-                    
-                {props.contest.number_of_questions__c}
-                    
                     <Col>
                         {questions.length > 0 &&
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
