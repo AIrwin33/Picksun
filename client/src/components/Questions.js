@@ -283,27 +283,7 @@ const Questions = (props) => {
         }
     }
 
-    const handleSubsegmentCount = async (subseg) => {
-        try {
-            var conid = props.contest.id
-            const body = {conid, subseg};
-            const res = await fetch(`/countsubsegment`, {
-                method: "POST",
-                headers: {
-                    jwt_token: localStorage.token,
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify(body)
-            });
-
-            const parseData = await res.json();
-            console.log(parseData);
-            setSubsegmentCount(parseData);
-        }
-        catch (err) {
-            console.log('err subsegment' + err.message);
-        }
-    }
+    
 
     const warningText = async () => {
         console.log('warning, close to time up');
@@ -321,10 +301,6 @@ const Questions = (props) => {
             console.log('not temp questions');
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
-    
-            console.log(question.SubSegment__c);
-            handleSubsegmentCount(question.SubSegment__c);
-            //do a callout to get the number of published questions in that subsegment
             doGetParticipationWrongAnswers();
             setTimer();
            
@@ -391,7 +367,7 @@ const Questions = (props) => {
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                             {questions.map((question, index) => {
                                 return <Carousel.Item key={question.id} className="text-center">
-                                    <Question addAnswer={updateAnswerList} ques={question} questionNum={questionNum} totalQuestions={props.contest.number_of_questions__c}
+                                    <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={props.contest.number_of_questions__c}
                                                 isInactive={inactive}
                                                 selectedCount={selectedCount}
                                                 subegementCount={subSegmentCount}

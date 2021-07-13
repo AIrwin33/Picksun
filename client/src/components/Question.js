@@ -232,6 +232,29 @@ const Question = (props) => {
 
     }
 
+    const handleSubsegmentCount = async (subseg) => {
+        try {
+            console.log('handle subsegment');
+            var conid = props.contest.sfid
+            const body = {conid, subseg};
+            const res = await fetch(`/countsubsegment`, {
+                method: "POST",
+                headers: {
+                    jwt_token: localStorage.token,
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+
+            const parseData = await res.json();
+            console.log(parseData);
+            setSubsegmentCount(parseData);
+        }
+        catch (err) {
+            console.log('err subsegment' + err.message);
+        }
+    }
+
     const handleInfoShow = async () => {
         console.log('hanlding modal');
         setShowInfo(true);
@@ -245,6 +268,7 @@ const Question = (props) => {
     useEffect((e) => {
         console.log(props.ques.islocked__c);
         setQuest(props.ques);
+        handleSubsegmentCount(props.ques.SubSegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true || props.issubmitted === true) {
             console.log(props.issubmitted);
             console.log('set disabled');
