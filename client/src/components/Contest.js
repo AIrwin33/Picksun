@@ -113,6 +113,7 @@ const Contest = ({match}) => {
         console.log(childData);
         console.log('here in update parts in contest');
         var partsList = [];
+        var i;
         for (i = 0; i < participations.length; i++) {
             if (participations[i].sfid === childData.sfid) {
                 participations[i] = childData;
