@@ -109,6 +109,11 @@ const Contest = ({match}) => {
         }
     }
 
+    const updateparts = async (childData) => {
+        console.log(childData);
+        console.log('here');
+    }
+
 
     useEffect(() => {
         getContest();
@@ -159,7 +164,7 @@ const Contest = ({match}) => {
 
 
                                     {isloaded &&
-                                    <Questions contestid={contest.sfid}
+                                    <Questions updatepart={updateparts} contestid={contest.sfid}
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}
                                                partsfid={participation.sfid}/>
