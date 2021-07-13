@@ -201,7 +201,7 @@ const Contest = ({match}) => {
                             </Row>
                             {participations.map(part => {
                                 return <Row key={part.id} className="rowCard ">
-                                    {part}
+                                    
                                     <Col xs={3} className="text-right"> <Image src={avatar} roundedCircle
                                                                                height="50"></Image> </Col>
                                     <Col xs={9}>
