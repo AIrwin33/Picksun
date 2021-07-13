@@ -394,7 +394,7 @@ const Questions = (props) => {
                                     <Question addAnswer={updateAnswerList} ques={question} questionNum={questionNum} totalQuestions={props.contest.number_of_questions__c}
                                                 isInactive={inactive}
                                                 selectedCount={selectedCount}
-                                                subegementCount={subSegementCount}
+                                                subegementCount={subSegmentCount}
                                               isKnockedOut={knockedOut} participation_id={props.participation_id}
                                               contestfinsihed={finished} partsfid={props.partsfid} issubmitted={submitted}/>
                                 </Carousel.Item>
