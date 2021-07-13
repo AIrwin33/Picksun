@@ -209,9 +209,11 @@ app.post("/disablequestions/", authorization, async (req, res) => {
 app.post("/countsubsegment/", authorization, async (req, res) => {
     try {
         const {conid, subseg} = req.body;
+        console.log(conid);
+        console.log(subseg);
         const subsegQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true AND SubSegment__c = $2", [conid, subseg]
         );
-        console.log(subsegQuestions.rows.length);
+        console.log(subsegQuestions.rows);
         res.json(subsegQuestions.rows.length);
 
     } catch (error) {
