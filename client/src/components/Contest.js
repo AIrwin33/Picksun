@@ -112,7 +112,7 @@ const Contest = ({match}) => {
     const updateparts = async (childData) => {
         console.log(childData);
         console.log('here in update parts in contest');
-        getContestParticipations();
+        getContestParticipations(contest);
         // var i;
         // for (i = 0; i < participations.length; i++) {
         //     console.log(participations[i]);
