@@ -275,6 +275,8 @@ const Questions = (props) => {
             //change this to only show when all available questions are submitted
             
             setAnswerList(answerList);
+            console.log(selectedCount);
+            console.log(subSegmentCount);
             if(selectedCount === subSegmentCount){
                 setAnswerListShow(true);
             }
