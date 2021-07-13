@@ -318,9 +318,6 @@ const Question = (props) => {
                         <Button variant="secondary" onClick={handleInfoClose}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={handleInfoClose}>
-                            Save Changes
-                        </Button>
                         </Modal.Footer>
                     </Modal>
                 </div>
