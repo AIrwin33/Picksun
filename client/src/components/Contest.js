@@ -113,15 +113,15 @@ const Contest = ({match}) => {
         console.log(childData);
         console.log('here in update parts in contest');
         getContestParticipations();
-        var i;
-        for (i = 0; i < participations.length; i++) {
-            console.log(participations[i]);
-            if (participations[i].externalid__c === childData.externalid__c) {
-                console.log('found');
-                participations[i] = childData;
-            }
-        }
-        console.log(participations);
+        // var i;
+        // for (i = 0; i < participations.length; i++) {
+        //     console.log(participations[i]);
+        //     if (participations[i].externalid__c === childData.externalid__c) {
+        //         console.log('found');
+        //         participations[i] = childData;
+        //     }
+        // }
+        // console.log(participations);
     }
 
 
@@ -204,8 +204,6 @@ const Contest = ({match}) => {
                                                                                height="50"></Image> </Col>
                                     <Col xs={9}>
                                         <Row>
-                                            {part.sfid}
-                                            {part.wrong_answers__c}
                                             <span className="fontBold">{part.participant_name__c}</span>
                                             {part.sfid === participation.sfid &&
                                             <div className="yourpart ml-3">
