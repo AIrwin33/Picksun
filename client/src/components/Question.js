@@ -270,6 +270,7 @@ const Question = (props) => {
     useEffect((e) => {
         console.log(props.ques.islocked__c);
         setQuest(props.ques);
+        console.log(props.ques.SubSegment__c);
         handleSubsegmentCount(props.ques.SubSegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true || props.issubmitted === true) {
             console.log(props.issubmitted);
