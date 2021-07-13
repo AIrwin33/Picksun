@@ -67,7 +67,14 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
-            props.updatepart(parseData);
+            setTimeout(
+                function() {
+                    props.updatepart(partWrongAnswer);
+                    
+                },
+                2000
+            );
+            
             
 
         } catch (err) {
