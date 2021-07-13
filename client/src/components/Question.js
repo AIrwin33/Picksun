@@ -249,6 +249,7 @@ const Question = (props) => {
 
             const parseData = await res.json();
             console.log(parseData);
+            props.getsubcount(parseData);
             setSubsegmentCount(parseData);
         }
         catch (err) {
