@@ -111,7 +111,7 @@ const Contest = ({match}) => {
 
     const updateparts = async (childData) => {
         console.log(childData);
-        console.log('here');
+        console.log('here in update parts in contest');
     }
 
 
