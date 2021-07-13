@@ -237,6 +237,8 @@ const Questions = (props) => {
             //disableQuestions(questionids);
             setSubmitted(true);
 
+            //reset count
+
 
 
             //
@@ -271,13 +273,10 @@ const Questions = (props) => {
 
             //update selected count
             setSelectedCount(selectedCount + 1);
-            console.log(answerList.length);
             //change this to only show when all available questions are submitted
             
             setAnswerList(answerList);
-            console.log(selectedCount);
-            console.log(subSegmentCount);
-            if(selectedCount === subSegmentCount){
+            if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
             }
         } catch (err) {
