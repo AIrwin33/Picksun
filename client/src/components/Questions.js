@@ -393,6 +393,8 @@ const Questions = (props) => {
                                 return <Carousel.Item key={question.id} className="text-center">
                                     <Question addAnswer={updateAnswerList} ques={question} questionNum={questionNum} totalQuestions={props.contest.number_of_questions__c}
                                                 isInactive={inactive}
+                                                selectedCount={selectedCount}
+                                                subegementCount={subSegementCount}
                                               isKnockedOut={knockedOut} participation_id={props.participation_id}
                                               contestfinsihed={finished} partsfid={props.partsfid} issubmitted={submitted}/>
                                 </Carousel.Item>
