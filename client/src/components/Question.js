@@ -305,7 +305,7 @@ const Question = (props) => {
                     </div>
                 </Row>
                 }
-                <div className="infoDiv">
+                <div className="infoDiv mb-3">
                     <a src="#" className="float-right" onClick={handleInfoShow} >
                         info
                     </a>
