@@ -67,7 +67,7 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
-            props.updatepart(partWrongAnswer);
+            props.updatepart(parseData);
             
 
         } catch (err) {
