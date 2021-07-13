@@ -115,7 +115,9 @@ const Contest = ({match}) => {
         var partsList = [];
         var i;
         for (i = 0; i < participations.length; i++) {
-            if (participations[i].sfid === childData.sfid) {
+            console.log(participations[i]);
+            if (participations[i].externalid__c === childData.externalid__c) {
+                console.log('found');
                 participations[i] = childData;
             }
         }
@@ -199,6 +201,7 @@ const Contest = ({match}) => {
                             </Row>
                             {participations.map(part => {
                                 return <Row key={part.id} className="rowCard ">
+                                    {part}
                                     <Col xs={3} className="text-right"> <Image src={avatar} roundedCircle
                                                                                height="50"></Image> </Col>
                                     <Col xs={9}>
