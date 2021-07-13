@@ -120,6 +120,7 @@ const Contest = ({match}) => {
             }
         }
         console.log(participations);
+        setParticipations(participations);
     }
 
 
