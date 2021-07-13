@@ -258,6 +258,8 @@ const Questions = (props) => {
                     }
                 }
             }
+            console.log(answerList.length);
+            //change this to only show when all available questions are submitted
             setAnswerListShow(true);
             setAnswerList(answerList);
         } catch (err) {

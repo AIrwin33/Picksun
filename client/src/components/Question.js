@@ -305,6 +305,14 @@ const Question = (props) => {
                     </div>
                     } */}
                 </div>
+                <div className="counterDiv">
+                    <div className="float-left">
+                        Selected: 1/3
+                    </div>
+                    <div className="float-right">
+                        Question: 2/4
+                    </div>
+                </div>
                 <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
                      aria-label="Basic example" data-toggle="buttons">
                     <button type="radio" value="A" className="btn btn-primary questionButton"
