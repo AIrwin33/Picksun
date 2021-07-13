@@ -307,10 +307,11 @@ const Question = (props) => {
                 </div>
                 <div className="counterDiv">
                     <div className="float-left">
-                        Selected: 1/3
+                        {/* Selected: {props.selectedCount} / {props.subsegementCount} */}
+                        Selected: 1 / 3
                     </div>
                     <div className="float-right">
-                        Question: 2/4
+                        Question: {props.questionNum} / {props.totalQuestions}
                     </div>
                 </div>
                 <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"

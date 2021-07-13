@@ -17,6 +17,9 @@ const Questions = (props) => {
     const [questions, setQuestions] = useState([]);
     const [index, setIndex] = useState(0);
     const [questionids, setQuestionIds] = useState([]);
+    const [questionNum, setQuestionNum] = useState(1);
+    const [selectedCount, setSelectedCount] = useState(0);
+    const [subSegmentCount, setSubsegmentCount] = useState(0);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [counter, setCounter] = useState(props.questiontime);
     const [answerList, setAnswerList] = useState([]);
@@ -32,6 +35,7 @@ const Questions = (props) => {
     const handleSelect = (selectedIndex, e) => {
         console.log(selectedIndex);
         setIndex(selectedIndex);
+        setQuestionNum(selectedIndex + 1);
       };
 
     const doGetParticipationWrongAnswers = async () => {
@@ -84,25 +88,26 @@ const Questions = (props) => {
         }
             setCounter(60000);
             setIndex(questions.length);
-    }
-    const startTimer = () => {
-        console.log('in non locked questions');
-        var questime = props.contest.question_timer__c;
-        var millival = questime * 1000;
-        var currtime = moment();
-        var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
-        console.log(props.contest.opened_timer__c);
-        var closedTimerFormat = moment(closedTimerInt);
-        console.log(closedTimerInt);
-        var counttime = moment.duration(closedTimerFormat.diff(currtime));
-        console.log('count time' + counttime);
 
-        if (counttime < 0) {
-            setCounter(0);
-        } else {
-            setCounter(counttime);
-        }
     }
+    // const startTimer = () => {
+    //     console.log('in non locked questions');
+    //     var questime = props.contest.question_timer__c;
+    //     var millival = questime * 1000;
+    //     var currtime = moment();
+    //     var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
+    //     console.log(props.contest.opened_timer__c);
+    //     var closedTimerFormat = moment(closedTimerInt);
+    //     console.log(closedTimerInt);
+    //     var counttime = moment.duration(closedTimerFormat.diff(currtime));
+    //     console.log('count time' + counttime);
+
+    //     if (counttime < 0) {
+    //         setCounter(0);
+    //     } else {
+    //         setCounter(counttime);
+    //     }
+    // }
     const getQuestions = async () => {
         try {
             console.log('get questions');
@@ -243,6 +248,8 @@ const Questions = (props) => {
             //var alist = [];
             console.log('child data' + childData);
             console.log(childData.questionid);
+
+
             if (answerList.length < 1) {
                 answerList.push(childData);
                 console.log('answer list' + answerList);
@@ -258,12 +265,40 @@ const Questions = (props) => {
                     }
                 }
             }
+
+            //update selected count
+            setSelectedCount(selectedCount + 1);
             console.log(answerList.length);
             //change this to only show when all available questions are submitted
-            setAnswerListShow(true);
+            
             setAnswerList(answerList);
+            if(selectedCount === subSegmentCount){
+                setAnswerListShow(true);
+            }
         } catch (err) {
             console.log('err' + err.message);
+        }
+    }
+
+    const handleSubsegmentCount = async (subseg) => {
+        try {
+            var conid = props.contest.id
+            const body = {conid, subseg};
+            const res = await fetch(`/countsubsegment`, {
+                method: "POST",
+                headers: {
+                    jwt_token: localStorage.token,
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+
+            const parseData = await res.json();
+            console.log(parseData);
+            setSubsegmentCount(parseData);
+        }
+        catch (err) {
+            console.log('err subsegment' + err.message);
         }
     }
 
@@ -284,7 +319,9 @@ const Questions = (props) => {
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
     
-
+            console.log(question.SubSegment__c);
+            handleSubsegmentCount(question.SubSegment__c);
+            //do a callout to get the number of published questions in that subsegment
             doGetParticipationWrongAnswers();
             setTimer();
            
@@ -354,7 +391,8 @@ const Questions = (props) => {
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                             {questions.map((question, index) => {
                                 return <Carousel.Item key={question.id} className="text-center">
-                                    <Question addAnswer={updateAnswerList} ques={question} isInactive={inactive}
+                                    <Question addAnswer={updateAnswerList} ques={question} questionNum={questionNum} totalQuestions={props.contest.Number_of_Questions__c}
+                                                isInactive={inactive}
                                               isKnockedOut={knockedOut} participation_id={props.participation_id}
                                               contestfinsihed={finished} partsfid={props.partsfid} issubmitted={submitted}/>
                                 </Carousel.Item>

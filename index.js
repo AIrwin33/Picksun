@@ -204,6 +204,21 @@ app.post("/disablequestions/", authorization, async (req, res) => {
     }
 });
 
+//get subsegment question count
+
+app.post("/countsubsegment/", authorization, async (req, res) => {
+    try {
+        const {conid, subseg} = req.body;
+        const subsegQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true AND SubSegment__c = $2", [conid, subseg]
+        );
+        console.log(subsegQuestions.rows.length);
+        res.json(subsegQuestions.rows.length);
+
+    } catch (error) {
+        console.log('error disable questions :: ' + error.message);
+    }
+});
+
 //create participation answers?
 
 app.post("/answers", async (req, res) => {
