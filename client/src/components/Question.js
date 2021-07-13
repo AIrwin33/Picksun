@@ -251,6 +251,7 @@ const Question = (props) => {
             console.log(parseData);
             props.getsubcount(parseData);
             setSubsegmentCount(parseData);
+            props.getsubcount(parseData);
         }
         catch (err) {
             console.log('err subsegment' + err.message);
