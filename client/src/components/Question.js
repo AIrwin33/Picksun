@@ -10,6 +10,7 @@ const Question = (props) => {
     const [quest, setQuest] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
     const [showanswer, setShowAnswer] = useState([false]);
+    const [subSegmentCount, setSubsegmentCount] = useState(0);
     const [showKnockOut, setKnockOut] = useState(false);
     const [contestKnockoutText, setContestKnockoutText] = useState([]);
     const [showContestWon, setShowContestWon] = useState(false);
@@ -331,7 +332,7 @@ const Question = (props) => {
                 </div>
                 <div className="counterDiv">
                     <div className="float-left">
-                        Selected: {props.selectedCount} / {props.subsegementCount}
+                        Selected: {props.selectedCount} / {subSegmentCount}
                     </div>
                     <div className="float-right">
                         Question: {props.questionNum} / {props.totalQuestions}

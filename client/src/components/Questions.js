@@ -19,7 +19,7 @@ const Questions = (props) => {
     const [questionids, setQuestionIds] = useState([]);
     const [questionNum, setQuestionNum] = useState(1);
     const [selectedCount, setSelectedCount] = useState(0);
-    const [subSegmentCount, setSubsegmentCount] = useState(0);
+   
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [counter, setCounter] = useState(props.questiontime);
     const [answerList, setAnswerList] = useState([]);
@@ -370,7 +370,6 @@ const Questions = (props) => {
                                     <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={props.contest.number_of_questions__c}
                                                 isInactive={inactive}
                                                 selectedCount={selectedCount}
-                                                subegementCount={subSegmentCount}
                                               isKnockedOut={knockedOut} participation_id={props.participation_id}
                                               contestfinsihed={finished} partsfid={props.partsfid} issubmitted={submitted}/>
                                 </Carousel.Item>
