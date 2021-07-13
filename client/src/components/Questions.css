@@ -44,11 +44,16 @@
 }
 
 .carousel-control-next {
-    bottom:-100px;
+
+    bottom: 110px;
+    height: 100px;
+    top: 120px;
 }
 
 .carousel-control-prev {
-    bottom:-100px;
+    bottom: 110px;
+    height: 100px;
+    top: 120px;
 }
 
 .carousel-indicators {
