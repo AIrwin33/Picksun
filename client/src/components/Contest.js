@@ -112,6 +112,7 @@ const Contest = ({match}) => {
     const updateparts = async (childData) => {
         console.log(childData);
         console.log('here in update parts in contest');
+        getContestParticipations();
         var i;
         for (i = 0; i < participations.length; i++) {
             console.log(participations[i]);
@@ -203,6 +204,8 @@ const Contest = ({match}) => {
                                                                                height="50"></Image> </Col>
                                     <Col xs={9}>
                                         <Row>
+                                            {part.sfid}
+                                            {part.wrong_answers__c}
                                             <span className="fontBold">{part.participant_name__c}</span>
                                             {part.sfid === participation.sfid &&
                                             <div className="yourpart ml-3">
