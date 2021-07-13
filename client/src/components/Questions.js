@@ -236,7 +236,7 @@ const Questions = (props) => {
             setAnswerListShow(false);
             //disableQuestions(questionids);
             setSubmitted(true);
-
+            setAnswerListShow(false);
             //reset count
 
 
