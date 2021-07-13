@@ -384,14 +384,14 @@ const Questions = (props) => {
                 </Row>
                 <Row>
                     
-                        
+                {props.contest.number_of_questions__c}
                     
                     <Col>
                         {questions.length > 0 &&
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                             {questions.map((question, index) => {
                                 return <Carousel.Item key={question.id} className="text-center">
-                                    <Question addAnswer={updateAnswerList} ques={question} questionNum={questionNum} totalQuestions={props.contest.Number_of_Questions__c}
+                                    <Question addAnswer={updateAnswerList} ques={question} questionNum={questionNum} totalQuestions={props.contest.number_of_questions__c}
                                                 isInactive={inactive}
                                               isKnockedOut={knockedOut} participation_id={props.participation_id}
                                               contestfinsihed={finished} partsfid={props.partsfid} issubmitted={submitted}/>
