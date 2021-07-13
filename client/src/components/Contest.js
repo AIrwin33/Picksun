@@ -120,7 +120,8 @@ const Contest = ({match}) => {
             }
         }
         console.log(participations);
-        setParticipations(participations);
+        partsList = participations;
+        setParticipations(partsList);
     }
 
 
