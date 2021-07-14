@@ -323,6 +323,7 @@ const Questions = (props) => {
         const questionidsIndex = questionids.indexOf(question.sfid);
         if (questionidsIndex === -1) {
             console.log('not temp questions');
+            console.log(question.sfid);
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
             //do a callout to get the number of published questions in that subsegment
