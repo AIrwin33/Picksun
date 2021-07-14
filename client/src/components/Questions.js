@@ -325,8 +325,10 @@ const Questions = (props) => {
             console.log('not temp questions');
             console.log(question.sfid);
             console.log(questionids);
-            var idlist = [];
+            var idlist = questionids;
+            console.log(idlist);
             idlist.push(question.sfid);
+            console.log(idlist);
             setQuestionIds(idlist);
             setQuestions([...questions, question]);
             doGetParticipationWrongAnswers();
