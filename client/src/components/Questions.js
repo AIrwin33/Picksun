@@ -41,6 +41,9 @@ const Questions = (props) => {
         if(questions[nextQues] === undefined){
             setShowNext(false);
         }
+        if(!questions[nextQues].islocked__c && questions[nextQues] !== undefined){
+            setShowNext(true);
+        }
       };
 
     const doGetParticipationWrongAnswers = async () => {
