@@ -37,6 +37,10 @@ const Questions = (props) => {
         console.log(selectedIndex);
         setIndex(selectedIndex);
         setQuestionNum(selectedIndex + 1);
+        var nextQues = selectedIndex + 1;
+        if(questions[nextQues] === undefined){
+            setShowNext(false);
+        }
       };
 
     const doGetParticipationWrongAnswers = async () => {
@@ -275,12 +279,8 @@ const Questions = (props) => {
             var numplus = index + 1;
             console.log('questions' + questions);
             for (var k = 0; k < questions.length; k++) {
-                console.log('in show next loop');
-                console.log(numplus);
-                console.log(questions[numplus]);
                 if(!questions[numplus].islocked__c && questions[numplus] !== undefined){
                     setShowNext(true);
-                    console.log('show next');
                 }
             }
 
