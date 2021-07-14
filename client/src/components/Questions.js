@@ -323,16 +323,15 @@ const Questions = (props) => {
 
         const questionidsIndex = questionids.indexOf(question.sfid);
         if (questionidsIndex === -1) {
-            setQuestions([...questions, question]);
             console.log('not temp questions');
-            console.log(question.sfid);
-            console.log(questionids);
-            var idlist = questionids;
-            console.log(idlist);
-            idlist.push(question.sfid);
-            console.log(idlist);
-            setQuestionIds(idlist);
             
+            var idlist = questionids;
+            idlist.push(question.sfid);
+            setQuestionIds(idlist);
+
+            var queslist = questions;
+            queslist.push(question);
+            setQuestions(queslist);
             doGetParticipationWrongAnswers();
             setTimer();
            
