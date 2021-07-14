@@ -329,8 +329,6 @@ const Questions = (props) => {
             idlist.push(question.sfid);
             setQuestionIds(idlist);
             setQuestions([...questions, question]);
-            //do a callout to get the number of published questions in that subsegment
-            
             doGetParticipationWrongAnswers();
             setTimer();
            
