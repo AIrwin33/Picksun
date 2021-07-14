@@ -209,7 +209,7 @@ const Questions = (props) => {
             console.log('before set questions');
 
             console.log(parseData);
-            setQuestions(parseData);
+            //setQuestions(parseData);
             props.doShowWaiting(false);
             clearCounter();
 
