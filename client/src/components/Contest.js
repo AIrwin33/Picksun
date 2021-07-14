@@ -107,6 +107,7 @@ const Contest = ({match}) => {
             setLoaded(true);
             console.log('set is loaded');
             console.log(isloaded);
+            console.log(isShowWaiting);
         } catch (err) {
             console.error(err.message);
         }
