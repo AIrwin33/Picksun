@@ -210,6 +210,7 @@ const Questions = (props) => {
 
             console.log(parseData);
             setQuestions(parseData);
+            props.doShowWaiting(false);
             clearCounter();
 
         } catch (err) {
