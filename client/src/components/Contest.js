@@ -105,6 +105,8 @@ const Contest = ({match}) => {
             console.log(JSON.stringify(parseData));
             setParticipation(parseData);
             setLoaded(true);
+            console.log('set is loaded');
+            console.log(isloaded);
         } catch (err) {
             console.error(err.message);
         }
