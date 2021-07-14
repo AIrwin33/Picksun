@@ -194,10 +194,11 @@ const Questions = (props) => {
         }
     }
 
-    const disableQuestions = async (questionids) => {
+    const disableQuestions = async (ids) => {
         try {
-            const body = {questionids};
-            console.log('questions' + questionids);
+            const body = {ids};
+            console.log('questions' + questions);
+            console.log('questionids' + ids);
             const res = await fetch(`/disableQuestions/`, {
                 method: "POST",
                 headers: {
