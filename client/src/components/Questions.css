@@ -46,14 +46,14 @@
 .carousel-control-next {
 
     bottom: 110px;
-    height: 100px;
-    top: 120px;
+    height: 75px;
+    top: 150px;
 }
 
 .carousel-control-prev {
     bottom: 110px;
-    height: 100px;
-    top: 120px;
+    height: 75px;
+    top: 150px;
 }
 
 .carousel-indicators {

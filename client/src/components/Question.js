@@ -353,7 +353,7 @@ const Question = (props) => {
                             onClick={handleRadioChange}>{quest.answer_d__c}</button>
                     }
                 </div>
-                <div className="nextQuestionDiv">
+                <div className="nextQuestionDiv pb-3">
                     <div className="float-right">
                         <span>Next Question!</span>
                     </div>
