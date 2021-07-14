@@ -245,9 +245,12 @@ const Questions = (props) => {
             //disableQuestions(questionids);
             setSubmitted(true);
             setAnswerListShow(false);
+
+
             //reset count
-
-
+            setSelectedCount(1);
+            setSubsegmentCount(1);
+            props.doShowWaiting(true);
 
             //
         } catch (err) {

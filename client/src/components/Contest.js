@@ -125,6 +125,10 @@ const Contest = ({match}) => {
         // console.log(participations);
     }
 
+    const handleShowWaiting = async (childData) => {
+        setShowWaiting(childData);
+    }
+
 
     useEffect(() => {
         getContest();
@@ -178,7 +182,8 @@ const Contest = ({match}) => {
                                     <Questions updatepart={updateparts} contestid={contest.sfid}
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}
-                                               partsfid={participation.sfid}/>
+                                               partsfid={participation.sfid}
+                                               doShowWaiting={handleShowWaiting}/>
                                     }
 
                                     {isShowWaiting &&
