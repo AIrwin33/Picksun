@@ -78,7 +78,8 @@ const Questions = (props) => {
 
             props.updatepart(parseData);
             console.log('question ids' + questionids);
-            console.log('questions' + questions);
+            console.log('questions' + questions[0].name);
+            console.log('questions' + questions[1].name);
             
             
 
