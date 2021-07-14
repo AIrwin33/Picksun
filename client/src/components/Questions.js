@@ -273,7 +273,7 @@ const Questions = (props) => {
             }
 
             var numplus = index + 1;
-            
+            console.log('questions' + questions);
             for (var k = 0; k < questions.length; k++) {
                 console.log('in show next loop');
                 console.log(numplus);
