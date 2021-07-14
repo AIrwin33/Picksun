@@ -77,7 +77,7 @@ const Questions = (props) => {
             setPartWrongAnswer(parseData);
 
             props.updatepart(parseData);
-
+            console.log('question ids' + questionids);
             
             
 
@@ -195,7 +195,7 @@ const Questions = (props) => {
     const disableQuestions = async (questionids) => {
         try {
             const body = {questionids};
-            console.log(questionids);
+            console.log('questions' + questionids);
             const res = await fetch(`/disableQuestions/`, {
                 method: "POST",
                 headers: {
@@ -325,8 +325,6 @@ const Questions = (props) => {
             console.log('not temp questions');
             setQuestionIds([...questionids, question.sfid]);
             setQuestions([...questions, question]);
-    
-            console.log(question.SubSegment__c);
             //do a callout to get the number of published questions in that subsegment
             
             doGetParticipationWrongAnswers();
