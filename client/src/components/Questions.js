@@ -283,8 +283,10 @@ const Questions = (props) => {
             var numplus = index + 1;
             console.log('questions' + questions);
             for (var k = 0; k < questions.length; k++) {
-                if(!questions[numplus].islocked__c && questions[numplus] !== undefined){
-                    setShowNext(true);
+                if(questions[numplus] !== undefined){
+                    if(!questions[numplus].islocked__c && questions[numplus] !== undefined){
+                        setShowNext(true);
+                    }
                 }
             }
 
