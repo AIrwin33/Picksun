@@ -178,7 +178,7 @@ const Contest = ({match}) => {
                                 <Col>
 
 
-                                    {isloaded &&
+                                    {isloaded && !isShowWaiting &&
                                     <Questions updatepart={updateparts} contestid={contest.sfid}
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}

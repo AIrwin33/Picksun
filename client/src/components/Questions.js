@@ -242,7 +242,6 @@ const Questions = (props) => {
             tempQuestions[questionIndex].selection_value__c = partanswers[0].selection_value__c
             setQuestions(tempQuestions)
             setAnswerListShow(false);
-            //disableQuestions(questionids);
             setSubmitted(true);
             setAnswerListShow(false);
 
@@ -251,8 +250,6 @@ const Questions = (props) => {
             setSelectedCount(1);
             setSubsegmentCount(1);
             props.doShowWaiting(true);
-
-            //
         } catch (err) {
             console.log('handle submit answers err : ' + err.message);
         }
