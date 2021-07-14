@@ -23,6 +23,7 @@ const Questions = (props) => {
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [counter, setCounter] = useState(props.questiontime);
     const [answerList, setAnswerList] = useState([]);
+    const [showNext, setShowNext] = useState(false);
     const [knockedOut, setKnockedOut] = useState(false);
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
@@ -271,6 +272,16 @@ const Questions = (props) => {
                 }
             }
 
+            var numplus = index + 1;
+            
+            for (var k = 0; k < questions.length; k++) {
+                if(!questions[numplus].islocked__c){
+                    setShowNext(true);
+                    console.log('show next');
+                }
+            }
+
+
             //update selected count
             setSelectedCount(selectedCount + 1);
             //change this to only show when all available questions are submitted
@@ -379,6 +390,7 @@ const Questions = (props) => {
                                                 isInactive={inactive}
                                                 selectedCount={selectedCount}
                                                 getsubcount={handleSubsegmentCount}
+                                                doShowNext={showNext}
                                               isKnockedOut={knockedOut} participation_id={props.participation_id}
                                               contestfinsihed={finished} partsfid={props.partsfid} issubmitted={submitted}/>
                                 </Carousel.Item>

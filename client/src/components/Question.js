@@ -41,9 +41,8 @@ const Question = (props) => {
         if (event.target.value == 'D') {
             label = quest.answer_d__c;
         }
-        console.log(label);
-        console.log(tgt);
-        console.log(children);
+        
+
 
         handleUpdateQuestionValue(event.target.value, label);
     }
@@ -51,6 +50,7 @@ const Question = (props) => {
 
         //insert participation answer
         try {
+
             let newuuid = uuidv4();
             console.log('event val' + eventVal);
             const partid = props.partsfid;
@@ -353,11 +353,13 @@ const Question = (props) => {
                             onClick={handleRadioChange}>{quest.answer_d__c}</button>
                     }
                 </div>
+                {props.doShowNext &&
                 <div className="nextQuestionDiv pb-3">
                     <div className="float-right">
                         <span>Next Question!</span>
                     </div>
                 </div>
+                }
                 {partAnswer.selection__c ?
                     <div>
                         <Row>
