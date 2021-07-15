@@ -248,9 +248,6 @@ const Questions = (props) => {
             setQuestions(tempQuestions)
             setAnswerListShow(false);
             setSubmitted(true);
-            setAnswerListShow(false);
-
-
             //reset count
             setSelectedCount(1);
             setSubsegmentCount(1);
@@ -398,9 +395,10 @@ const Questions = (props) => {
                     </Col>
                 </Row>
                 }
+                
                 <Row>
                     <Col>
-                        {questions.length > 0 &&
+                        {questions.length > 0 && !isShowWaiting &&
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                             {questions.map((question, index) => {
                                 return <Carousel.Item key={question.id} className="text-center">
@@ -423,7 +421,7 @@ const Questions = (props) => {
                         }
                     </Col>
                 </Row>
-                {questions.length > 0 &&
+                {questions.length > 0 && !isShowWaiting &&
                 <Row className="questionRow m-3 p-3 justify-content-md-center">
                     <Col>
                     </Col>
