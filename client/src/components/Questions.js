@@ -28,6 +28,7 @@ const Questions = (props) => {
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [isShowWaiting, setShowWaiting] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
     
     const carouselRef = React.createRef()
@@ -213,7 +214,7 @@ const Questions = (props) => {
 
             console.log(parseData);
             //setQuestions(parseData);
-            props.doShowWaiting(false);
+            setShowWaiting(false);
             clearCounter();
 
         } catch (err) {
@@ -253,7 +254,7 @@ const Questions = (props) => {
             //reset count
             setSelectedCount(1);
             setSubsegmentCount(1);
-            props.doShowWaiting(true);
+            setShowWaiting(true);
         } catch (err) {
             console.log('handle submit answers err : ' + err.message);
         }
@@ -388,6 +389,15 @@ const Questions = (props) => {
                     </Col>
                     }
                 </Row>
+                {isShowWaiting &&
+                <Row>
+                    <Col>
+                        <div>
+                            Wait for all other players to lock in their scores
+                        </div>
+                    </Col>
+                </Row>
+                }
                 <Row>
                     <Col>
                         {questions.length > 0 &&

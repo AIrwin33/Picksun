@@ -20,7 +20,7 @@ const Contest = ({match}) => {
     const [away, setAwayTeam] = useState([]);
     const [participation, setParticipation] = useState([]);
     const [participations, setParticipations] = useState([]);
-    const [isShowWaiting, setShowWaiting] = useState(false);
+    
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
     const socket = React.useContext(SocketContext)
@@ -125,10 +125,6 @@ const Contest = ({match}) => {
         // console.log(participations);
     }
 
-    const handleShowWaiting = async (childData) => {
-        setShowWaiting(childData);
-    }
-
 
     useEffect(() => {
         getContest();
@@ -183,14 +179,7 @@ const Contest = ({match}) => {
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}
                                                partsfid={participation.sfid}
-                                               doShowWaiting={handleShowWaiting}/>
-                                    }
-
-                                    {isShowWaiting &&
-                                        <div>
-                                            Wait for all other players to lock in their scores
-                                        </div>
-
+                                               />
                                     }
                                 </Col>
                             </Row>
