@@ -20,7 +20,6 @@ const Contest = ({match}) => {
     const [away, setAwayTeam] = useState([]);
     const [participation, setParticipation] = useState([]);
     const [participations, setParticipations] = useState([]);
-    
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
     const socket = React.useContext(SocketContext)
@@ -125,7 +124,6 @@ const Contest = ({match}) => {
         // console.log(participations);
     }
 
-
     useEffect(() => {
         getContest();
         socket.emit("set_contest_room", contest.id);
@@ -174,12 +172,12 @@ const Contest = ({match}) => {
                                 <Col>
 
 
-                                    {isloaded && !isShowWaiting &&
+                                    {isloaded &&
                                     <Questions updatepart={updateparts} contestid={contest.sfid}
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}
                                                partsfid={participation.sfid}
-                                               />
+                                               doShowWaiting={handleShowWaiting}/>
                                     }
                                 </Col>
                             </Row>
