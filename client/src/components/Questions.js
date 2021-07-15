@@ -41,9 +41,10 @@ const Questions = (props) => {
         var nextQues = selectedIndex + 1;
         if(questions[nextQues] === undefined){
             setShowNext(false);
-        }
-        if(!questions[nextQues].islocked__c && questions[nextQues] !== undefined){
-            setShowNext(true);
+        }else{
+            if(!questions[nextQues].islocked__c){
+                setShowNext(true);
+            }
         }
       };
 
