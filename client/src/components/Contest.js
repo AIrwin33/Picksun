@@ -177,7 +177,7 @@ const Contest = ({match}) => {
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}
                                                partsfid={participation.sfid}
-                                               doShowWaiting={handleShowWaiting}/>
+                                               />
                                     }
                                 </Col>
                             </Row>
