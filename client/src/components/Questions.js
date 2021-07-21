@@ -30,12 +30,10 @@ const Questions = (props) => {
     const [submitted, setSubmitted] = useState(false);
     const [isShowWaiting, setShowWaiting] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
-    
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
 
     const handleSelect = (selectedIndex, e) => {
-        console.log(selectedIndex);
         setIndex(selectedIndex);
         setQuestionNum(selectedIndex + 1);
         var nextQues = selectedIndex + 1;
@@ -51,7 +49,6 @@ const Questions = (props) => {
     const doGetParticipationWrongAnswers = async () => {
         try {
             console.log('getting participation answers');
-            console.log('lenght of questions' + questions.length);
             const partid = props.participation_id;
             const partsfid = props.partsfid;
             const body = {partid};
@@ -67,23 +64,18 @@ const Questions = (props) => {
             );
 
             const parseData = await response.json();
-            console.log(parseData);
+            console.log('participation answer return data' + parseData);
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
                 setKnockedOut(true);
-                console.log(knockedOut);
             }
             if (parseData.status__c !== 'Active') {
+                console.log('status active');
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
 
-            props.updatepart(parseData);
-            console.log('question ids' + questionids);
-            console.log('questions' + questions[0].name);
-            console.log('questions' + questions[1].name);
-            
-            
+            props.updatepart(parseData);  
 
         } catch (err) {
             console.error(err.message);
@@ -93,7 +85,6 @@ const Questions = (props) => {
     const setTimer = () => {
         let nonLockedQuestions = 0;
             for (const questionElt of questions) {
-                console.log(questionElt);
                 if(!questionElt.islocked__c)
                     nonLockedQuestions++
                 
@@ -105,24 +96,7 @@ const Questions = (props) => {
             setIndex(questions.length);
 
     }
-    // const startTimer = () => {
-    //     console.log('in non locked questions');
-    //     var questime = props.contest.question_timer__c;
-    //     var millival = questime * 1000;
-    //     var currtime = moment();
-    //     var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
-    //     console.log(props.contest.opened_timer__c);
-    //     var closedTimerFormat = moment(closedTimerInt);
-    //     console.log(closedTimerInt);
-    //     var counttime = moment.duration(closedTimerFormat.diff(currtime));
-    //     console.log('count time' + counttime);
 
-    //     if (counttime < 0) {
-    //         setCounter(0);
-    //     } else {
-    //         setCounter(counttime);
-    //     }
-    // }
     const getQuestions = async () => {
         try {
             console.log('get questions');
@@ -152,9 +126,8 @@ const Questions = (props) => {
             }
             //if there are questions that aren't locked, then set the timing
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
-                console.log('starting timer here?');
+                console.log('starting timer here in getQuestions');
                 setCounter(60000);
-                //startTimer()
             } else {
                 console.log('no available unlocked questions');
             }
@@ -167,7 +140,7 @@ const Questions = (props) => {
                 
             }
             if(nonLockedQuestions > 0){
-                setTimer()
+                setTimer();
             }
             doGetParticipationWrongAnswers();
         } catch (err) {
@@ -199,6 +172,7 @@ const Questions = (props) => {
     const disableQuestions = async (ids) => {
         try {
             const body = {ids};
+            console.log('disable questions');
             console.log('questions' + questions);
             console.log('questionids' + ids);
             const res = await fetch(`/disableQuestions/`, {
@@ -211,9 +185,6 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
-            console.log('before set questions');
-
-            console.log(parseData);
             setQuestions(parseData);
             setShowWaiting(false);
             clearCounter();
@@ -260,12 +231,8 @@ const Questions = (props) => {
 
     const updateAnswerList = async (childData) => {
         try {
-            console.log('update answer list' + answerList);
-            //var alist = [];
+            console.log('in update answer list' + answerList);
             console.log('child data' + childData);
-            console.log(childData.questionid);
-
-
             if (answerList.length < 1) {
                 answerList.push(childData);
                 console.log('answer list' + answerList);
@@ -283,7 +250,6 @@ const Questions = (props) => {
             }
 
             var numplus = index + 1;
-            console.log('questions' + questions);
             for (var k = 0; k < questions.length; k++) {
                 if(questions[numplus] !== undefined){
                     if(!questions[numplus].islocked__c && questions[numplus] !== undefined){
@@ -291,12 +257,7 @@ const Questions = (props) => {
                     }
                 }
             }
-
-
-            //update selected count
             setSelectedCount(selectedCount + 1);
-            //change this to only show when all available questions are submitted
-            
             setAnswerList(answerList);
             if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
@@ -307,7 +268,6 @@ const Questions = (props) => {
     }
 
     const handleSubsegmentCount = async (subseg) => {
-        console.log(subseg)
         setSubsegmentCount(subseg);
     }
 
@@ -333,10 +293,8 @@ const Questions = (props) => {
         } else {
             const tempQuestions = questions;
             console.log('temp questions');
-            
             tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
             setQuestions(tempQuestions);
-
             doGetParticipationWrongAnswers();
             setTimer();
            

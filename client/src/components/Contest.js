@@ -25,6 +25,7 @@ const Contest = ({match}) => {
     const socket = React.useContext(SocketContext)
 
     const getContest = async () => {
+        console.log('getting contest');
         try {
             const res = await fetch(`/contestdetail/${match.params.id}`, {
                 method: "GET",
@@ -53,6 +54,7 @@ const Contest = ({match}) => {
 
             setTimeout(
                 function() {
+                    console.log('end of timeout');
                     getContestParticipations(contestRec);
                     
                 },
@@ -65,6 +67,7 @@ const Contest = ({match}) => {
     }
 
     const getContestParticipations = async (contestRec) => {
+        console.log('getting contest participations');
         try {
             const res = await fetch(`/contestparticipations/` + contestRec.sfid, {
                 method: "GET",
@@ -93,6 +96,7 @@ const Contest = ({match}) => {
     }
 
     const getParticipationByContest = async (contestRec) => {
+        console.log('getting participation be contest');
         try {
             const res = await fetch(`/participationbycontest/` + contestRec.sfid, {
                 method: "GET",
@@ -110,8 +114,8 @@ const Contest = ({match}) => {
     }
 
     const updateparts = async (childData) => {
-        console.log(childData);
         console.log('here in update parts in contest');
+        console.log(childData);
         getContestParticipations(contest);
         // var i;
         // for (i = 0; i < participations.length; i++) {
@@ -126,6 +130,7 @@ const Contest = ({match}) => {
 
     useEffect(() => {
         getContest();
+
         socket.emit("set_contest_room", contest.id);
     }, []);
 

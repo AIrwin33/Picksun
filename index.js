@@ -290,8 +290,6 @@ app.post("/wronganswer", authorization, async (req, res) => {
 
 });
 
-//REFACTOR - keep this?
-
 app.post("/clearcounter", authorization, async (req, res) => {
     try {
         const {conid} = req.body;

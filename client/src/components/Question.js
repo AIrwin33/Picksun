@@ -22,9 +22,6 @@ const Question = (props) => {
         var tgt = $(event.target);
         var children = $(event.target).parent().children();
 
-        console.log(tgt);
-        console.log(children);
-
         $(children).removeClass('sel');
         $(tgt).addClass('sel');
 
@@ -42,20 +39,15 @@ const Question = (props) => {
             label = quest.answer_d__c;
         }
         
-
-
         handleUpdateQuestionValue(event.target.value, label);
     }
     const handleUpdateQuestionValue = async (eventVal, eventLabel) => {
 
-        //insert participation answer
         try {
 
             let newuuid = uuidv4();
-            console.log('event val' + eventVal);
             const partid = props.partsfid;
             const expartid = props.participation_id;
-            console.log('is blank? ' + props.partsfid);
             const question_sfid = props.ques.sfid;
             const answer = {
                 participation__c: partid,
@@ -74,6 +66,8 @@ const Question = (props) => {
 
     const handleExistingPartAnswer = async () => {
         try {
+            console.log('handle existing answer');
+            console.log('is this even needed?');
             const partsfid = props.partsfid;
             const questid = props.ques.sfid;
 
@@ -133,7 +127,9 @@ const Question = (props) => {
 
             const parseRes = await response.json();
             const participationwrong = parseRes;
+            console.log(participationwrong);
             if (participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c) {
+                console.log('knocked out');
                 handleKnockout();
             } else {
                 console.log('still in the game');
@@ -269,13 +265,9 @@ const Question = (props) => {
     }
 
     useEffect((e) => {
-        console.log(props.ques.islocked__c);
         setQuest(props.ques);
-        console.log(props.ques.subsegment__c);
         handleSubsegmentCount(props.ques.subsegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true || props.issubmitted === true) {
-            console.log(props.issubmitted);
-            console.log('set disabled');
             setDisabledQuestion(true);
         }else{
             handleExistingPartAnswer();
