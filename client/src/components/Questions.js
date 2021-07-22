@@ -186,7 +186,8 @@ const Questions = (props) => {
             console.log(parseData);
             setQuestions(parseData);
             console.log(isShowWaiting);
-            clearCounter();
+            console.log(questions.length);
+            //clearCounter();
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
