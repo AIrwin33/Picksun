@@ -164,7 +164,6 @@ const Questions = (props) => {
 
     const disableQuestions = async () => {
         try {
-            console.log(questions);
             var conid = props.contestid
             const body = {conid};
             const res = await fetch(`/disableQuestions/`, {
@@ -280,9 +279,6 @@ const Questions = (props) => {
         if(!socketUpdate){
             setSocketUpdate(true);
             if (questionidsIndex === -1) {
-                
-                console.log('socket update' + socketUpdate);   
-                console.log('not temp questions');
                 setQuestionIds([...questionids, question.sfid]);
                 setQuestions([...questions, question]);
                 doGetParticipationWrongAnswers();
