@@ -112,8 +112,6 @@ const Contest = ({match}) => {
     }
 
     const updateparts = async (childData) => {
-        console.log('here in update parts in contest');
-        console.log(childData);
         getContestParticipations(contest);
         // var i;
         // for (i = 0; i < participations.length; i++) {

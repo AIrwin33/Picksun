@@ -127,7 +127,6 @@ const Question = (props) => {
 
             const parseRes = await response.json();
             const participationwrong = parseRes;
-            console.log(participationwrong);
             if (participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c) {
                 console.log('knocked out');
                 handleKnockout();
@@ -231,7 +230,6 @@ const Question = (props) => {
 
     const handleSubsegmentCount = async (subseg) => {
         try {
-            console.log('handle subsegment');
             var conid = props.contest.sfid
             const body = {conid, subseg};
             const res = await fetch(`/countsubsegment`, {
@@ -244,7 +242,6 @@ const Question = (props) => {
             });
 
             const parseData = await res.json();
-            console.log(parseData);
             props.getsubcount(parseData);
             setSubsegmentCount(parseData);
             props.getsubcount(parseData);
