@@ -30,7 +30,7 @@ const Questions = (props) => {
     const [submitted, setSubmitted] = useState(false);
     const [isShowWaiting, setShowWaiting] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
-    const [socketupdate, setSocketUpdate] = useState(false);
+    const [socketUpdate, setSocketUpdate] = useState(false);
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
 
@@ -278,14 +278,14 @@ const Questions = (props) => {
         socket.emit("set_contest_room", props.contestid)
     }, []);
     socket.on("new_question", question => {
-        console.log('socket update' + socketupdate);    
+        console.log('socket update' + socketUpdate);    
         
         const questionidsIndex = questionids.indexOf(question.sfid);
-        if(!socketupdate){
+        if(!socketUpdate){
             setSocketUpdate(true);
             if (questionidsIndex === -1) {
                 
-                console.log('socket update' + socketupdate);   
+                console.log('socket update' + socketUpdate);   
                 console.log('not temp questions');
                 setQuestionIds([...questionids, question.sfid]);
                 setQuestions([...questions, question]);
