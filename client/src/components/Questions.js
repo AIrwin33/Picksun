@@ -172,6 +172,7 @@ const Questions = (props) => {
 
     const disableQuestions = async (ids) => {
         try {
+            console.log(questions);
             console.log(ids);
             const body = {ids};
             const res = await fetch(`/disableQuestions/`, {
@@ -184,11 +185,8 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
-            console.log(parseData);
+
             setQuestions(parseData);
-            console.log(isShowWaiting);
-            console.log(questions.length);
-            //clearCounter();
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
