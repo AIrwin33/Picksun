@@ -52,6 +52,8 @@ const Contest = ({match}) => {
             setHomeTeam(parseData[0]);
             setAwayTeam(parseData[1]);
 
+
+
             setTimeout(
                 function() {
                     console.log('end of timeout');
@@ -102,8 +104,6 @@ const Contest = ({match}) => {
             });
 
             const parseData = await res.json();
-            console.log('check here for sfid');
-            console.log(JSON.stringify(parseData));
             setParticipation(parseData);
             setLoaded(true);
         } catch (err) {
@@ -112,7 +112,15 @@ const Contest = ({match}) => {
     }
 
     const updateparts = async (childData) => {
-        getContestParticipations(contest);
+
+        //
+
+        if(isloaded){
+            console.log('loaded, do run');
+            getContestParticipations(contest);
+        }else{
+            console.log('log check');
+        }
         // var i;
         // for (i = 0; i < participations.length; i++) {
         //     console.log(participations[i]);
