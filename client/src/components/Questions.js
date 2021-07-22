@@ -171,6 +171,7 @@ const Questions = (props) => {
 
     const disableQuestions = async (ids) => {
         try {
+            console.log(ids);
             const body = {ids};
             const res = await fetch(`/disableQuestions/`, {
                 method: "POST",
@@ -182,8 +183,8 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
+            console.log(parseData);
             setQuestions(parseData);
-            setShowWaiting(false);
             clearCounter();
 
         } catch (err) {
