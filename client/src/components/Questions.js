@@ -76,6 +76,7 @@ const Questions = (props) => {
             setPartWrongAnswer(parseData);
             console.log('before update part');
             setSocketUpdate(false);
+            console.log('ids' + questionids);
             props.updatepart(parseData);  
 
         } catch (err) {
@@ -366,15 +367,11 @@ const Questions = (props) => {
                 }
                 
                 <Row>
-                    <div>
-                        {questionids}
-                    </div>
                     <Col>
                         {questions.length > 0 && !isShowWaiting &&
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                             {questions.map((question, index) => {
                                 return <Carousel.Item key={question.id} className="text-center">
-                                    {question.id}
                                     <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={props.contest.number_of_questions__c}
                                                 isInactive={inactive}
                                                 selectedCount={selectedCount}

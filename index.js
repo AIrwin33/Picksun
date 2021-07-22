@@ -194,10 +194,10 @@ app.get("/questions/:contest_id", authorization, async (req, res) => {
 app.post("/disablequestions/", authorization, async (req, res) => {
     try {
         const {ids} = req.body;
-        console.log('ids' + ids);
+        console.log('Disable questions ids' + ids);
         const allContestQuestions = await pool.query("UPDATE salesforce.question__c SET islocked__c = true WHERE sfid = ANY ($1) RETURNING *", [ids]
         );
-        console.log(allContestQuestions.rows);
+        console.log('disabled questions' + allContestQuestions.rows);
         res.json(allContestQuestions.rows)
 
     } catch (error) {
