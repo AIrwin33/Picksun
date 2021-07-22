@@ -165,20 +165,20 @@ const Questions = (props) => {
     const disableQuestions = async () => {
         try {
             console.log(questions);
-            // var ids = [];
-            // const body = {ids};
-            // const res = await fetch(`/disableQuestions/`, {
-            //     method: "POST",
-            //     headers: {
-            //         jwt_token: localStorage.token,
-            //         "Content-type": "application/json"
-            //     },
-            //     body: JSON.stringify(body)
-            // });
+            var conid = props.contestid
+            const body = {conid};
+            const res = await fetch(`/disableQuestions/`, {
+                method: "POST",
+                headers: {
+                    jwt_token: localStorage.token,
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
 
-            // const parseData = await res.json();
+            const parseData = await res.json();
 
-            // setQuestions(parseData);
+            setQuestions(parseData);
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
