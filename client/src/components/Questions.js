@@ -185,6 +185,7 @@ const Questions = (props) => {
             const parseData = await res.json();
             console.log(parseData);
             setQuestions(parseData);
+            console.log(isShowWaiting);
             clearCounter();
 
         } catch (err) {
