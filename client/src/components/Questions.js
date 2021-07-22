@@ -278,12 +278,12 @@ const Questions = (props) => {
         socket.emit("set_contest_room", props.contestid)
     }, []);
     socket.on("new_question", question => {
-
+        console.log('socket update' + socketupdate);
         const questionidsIndex = questionids.indexOf(question.sfid);
         if(!socketupdate){
 
             if (questionidsIndex === -1) {
-                console.log('socket update' + socketupdate);
+                
                 setSocketUpdate(true);
                 console.log('not temp questions');
                 setQuestionIds([...questionids, question.sfid]);
