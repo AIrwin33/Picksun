@@ -91,7 +91,7 @@ const Questions = (props) => {
                     nonLockedQuestions++
                 
             }
-        if (questionids.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
+        if (questions.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
             setFinished(true);
         }
             setCounter(60000);
@@ -128,21 +128,13 @@ const Questions = (props) => {
             //if there are questions that aren't locked, then set the timing
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
                 console.log('starting timer here in getQuestions');
+                console.log(props.contest.opened_timer__c);
                 setCounter(60000);
+                // add back in logic to get opened_timer
             } else {
                 console.log('no available unlocked questions');
             }
             setQuestions(parseData);
-            let nonLockedQuestions = 0;
-            for (const questionElt of questions) {
-                console.log(questionElt);
-                if(!questionElt.islocked__c)
-                    nonLockedQuestions++
-                
-            }
-            if(nonLockedQuestions > 0){
-                setTimer();
-            }
             doGetParticipationWrongAnswers();
         } catch (err) {
             console.error('get questions error' + err.message);
@@ -170,23 +162,23 @@ const Questions = (props) => {
         }
     }
 
-    const disableQuestions = async (ids) => {
+    const disableQuestions = async () => {
         try {
             console.log(questions);
-            console.log(ids);
-            const body = {ids};
-            const res = await fetch(`/disableQuestions/`, {
-                method: "POST",
-                headers: {
-                    jwt_token: localStorage.token,
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify(body)
-            });
+            // var ids = [];
+            // const body = {ids};
+            // const res = await fetch(`/disableQuestions/`, {
+            //     method: "POST",
+            //     headers: {
+            //         jwt_token: localStorage.token,
+            //         "Content-type": "application/json"
+            //     },
+            //     body: JSON.stringify(body)
+            // });
 
-            const parseData = await res.json();
+            // const parseData = await res.json();
 
-            setQuestions(parseData);
+            // setQuestions(parseData);
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
@@ -317,7 +309,7 @@ const Questions = (props) => {
                 <Row className="questionRow m-3 p-3 justify-content-center">
                     {/* slide for questions */}
                     <Col>
-                    {questionids.length !== 0 &&
+                    {questions.length !== 0 &&
                         <div key={counter}>
 
                             <Timer initialTime={counter}
@@ -326,7 +318,7 @@ const Questions = (props) => {
                                    checkpoints={[
                                        {
                                            time: 0,
-                                           callback: () => disableQuestions(questionids),
+                                           callback: () => disableQuestions(),
                                        },
                                        {
                                            time: 10000,
