@@ -366,6 +366,9 @@ const Questions = (props) => {
                 }
                 
                 <Row>
+                    <div>
+                        {questionids}
+                    </div>
                     <Col>
                         {questions.length > 0 && !isShowWaiting &&
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
