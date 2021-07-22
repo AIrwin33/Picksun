@@ -283,6 +283,7 @@ const Questions = (props) => {
         if(!socketupdate){
 
             if (questionidsIndex === -1) {
+                console.log('socket update' + socketupdate);
                 setSocketUpdate(true);
                 console.log('not temp questions');
                 setQuestionIds([...questionids, question.sfid]);
