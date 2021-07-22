@@ -278,7 +278,7 @@ const Questions = (props) => {
         console.log('load questions');
         socket.emit("set_contest_room", props.contestid)
     }, []);
-    socket.on("new_question", question => {
+    socket.once("new_question", question => {
         console.log('socket update' + socketUpdate);    
         
         const questionidsIndex = questionids.indexOf(question.sfid);
