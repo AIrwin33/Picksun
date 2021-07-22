@@ -279,32 +279,34 @@ const Questions = (props) => {
         socket.emit("set_contest_room", props.contestid)
     }, []);
     socket.once("new_question", question => {
-        console.log('socket update' + socketUpdate);    
+        console.log('question once' + question.sfid);
+    
+        // console.log('socket update' + socketUpdate);    
         
-        const questionidsIndex = questionids.indexOf(question.sfid);
-        if(!socketUpdate){
-            setSocketUpdate(true);
-            if (questionidsIndex === -1) {
+        // const questionidsIndex = questionids.indexOf(question.sfid);
+        // if(!socketUpdate){
+        //     setSocketUpdate(true);
+        //     if (questionidsIndex === -1) {
                 
-                console.log('socket update' + socketUpdate);   
-                console.log('not temp questions');
-                setQuestionIds([...questionids, question.sfid]);
-                setQuestions([...questions, question]);
-                doGetParticipationWrongAnswers();
-                setTimer();
+        //         console.log('socket update' + socketUpdate);   
+        //         console.log('not temp questions');
+        //         setQuestionIds([...questionids, question.sfid]);
+        //         setQuestions([...questions, question]);
+        //         doGetParticipationWrongAnswers();
+        //         setTimer();
                 
                 
                 
-            } else {
-                const tempQuestions = questions;
-                console.log('temp questions');
-                tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-                setQuestions(tempQuestions);
-                doGetParticipationWrongAnswers();
-                setTimer();
+        //     } else {
+        //         const tempQuestions = questions;
+        //         console.log('temp questions');
+        //         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+        //         setQuestions(tempQuestions);
+        //         doGetParticipationWrongAnswers();
+        //         setTimer();
                 
-            }
-        }
+        //     }
+        // }
     })
     return (
         <>
