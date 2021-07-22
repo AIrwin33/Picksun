@@ -341,7 +341,7 @@ const Questions = (props) => {
                     </Col>
                     {partWrongAnswer.wrong_answers_allowed__c &&
                     <Col>
-                        Wrong Answers/ Allowed: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
+                        Wrong Answers / Allowed: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
                     </Col>
                     }
                 </Row>

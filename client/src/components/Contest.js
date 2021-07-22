@@ -80,7 +80,6 @@ const Contest = ({match}) => {
             var activeParts = [];
             for (i = 0; i < parseData.length; i++) {
                 if (parseData[i].status__c === 'Active') {
-                    console.log('active' + parseData[i]);
                     activeParts.push(parseData[i]);
                 }
             }
@@ -132,10 +131,6 @@ const Contest = ({match}) => {
 
         socket.emit("set_contest_room", contest.id);
     }, []);
-
-    socket.on("new_participation", participation => {
-        console.log(participation);
-    });
     return ((
             <>
 
