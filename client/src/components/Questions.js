@@ -275,6 +275,7 @@ const Questions = (props) => {
 
     useEffect(() => {
         getQuestions();
+        console.log('load questions');
         socket.emit("set_contest_room", props.contestid)
     }, []);
     socket.on("new_question", question => {
