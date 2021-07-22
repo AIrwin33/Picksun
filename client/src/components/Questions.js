@@ -30,6 +30,7 @@ const Questions = (props) => {
     const [submitted, setSubmitted] = useState(false);
     const [isShowWaiting, setShowWaiting] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
+    const [socketupdate, setSocketUpdate] = useState(false);
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
 
@@ -74,6 +75,7 @@ const Questions = (props) => {
             }
             setPartWrongAnswer(parseData);
             console.log('before update part');
+            setSocketUpdate(false);
             props.updatepart(parseData);  
 
         } catch (err) {
@@ -278,21 +280,27 @@ const Questions = (props) => {
     socket.on("new_question", question => {
 
         const questionidsIndex = questionids.indexOf(question.sfid);
-        if (questionidsIndex === -1) {
-            console.log('not temp questions');
-            setQuestionIds([...questionids, question.sfid]);
-            setQuestions([...questions, question]);
-            doGetParticipationWrongAnswers();
-            setTimer();
-           
-        } else {
-            const tempQuestions = questions;
-            console.log('temp questions');
-            tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-            setQuestions(tempQuestions);
-            doGetParticipationWrongAnswers();
-            setTimer();
-           
+        if(!socketupdate){
+
+            if (questionidsIndex === -1) {
+                setSocketUpdate(true);
+                console.log('not temp questions');
+                setQuestionIds([...questionids, question.sfid]);
+                setQuestions([...questions, question]);
+                doGetParticipationWrongAnswers();
+                setTimer();
+                
+                
+                
+            } else {
+                const tempQuestions = questions;
+                console.log('temp questions');
+                tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+                setQuestions(tempQuestions);
+                doGetParticipationWrongAnswers();
+                setTimer();
+                
+            }
         }
     })
     return (

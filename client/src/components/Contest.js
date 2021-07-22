@@ -114,6 +114,7 @@ const Contest = ({match}) => {
     const updateparts = async (childData) => {
 
         //
+        
         console.log(childData);
         if(isloaded){
             console.log('loaded, do run');
