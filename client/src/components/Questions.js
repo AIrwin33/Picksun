@@ -129,8 +129,24 @@ const Questions = (props) => {
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
                 console.log('starting timer here in getQuestions');
                 console.log(props.contest.opened_timer__c);
-                setCounter(60000);
+                //setCounter(60000);
                 // add back in logic to get opened_timer
+                console.log('in non locked questions');
+                var questime = props.contest.question_timer__c;
+                var millival = questime * 1000;
+                var currtime = moment();
+                var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
+                console.log(props.contest.opened_timer__c);
+                var closedTimerFormat = moment(closedTimerInt);
+                console.log(closedTimerInt);
+                var counttime = moment.duration(closedTimerFormat.diff(currtime));
+                console.log('count time' + counttime);
+                
+                if (counttime < 0) {
+                    setCounter(0);
+                } else {
+                    setCounter(counttime);
+                }
             } else {
                 console.log('no available unlocked questions');
             }
