@@ -73,7 +73,7 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
-
+            console.log('before update part');
             props.updatepart(parseData);  
 
         } catch (err) {
@@ -111,7 +111,6 @@ const Questions = (props) => {
             var i = 0;
             for (i = 0; parseData.length > i; i++) {
                 questionIdArr.push(parseData[i].sfid);
-                console.log(parseData[i].islocked__c);
                 if (parseData[i].islocked__c !== true) {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
@@ -171,9 +170,6 @@ const Questions = (props) => {
     const disableQuestions = async (ids) => {
         try {
             const body = {ids};
-            console.log('disable questions');
-            console.log('questions' + questions);
-            console.log('questionids' + ids);
             const res = await fetch(`/disableQuestions/`, {
                 method: "POST",
                 headers: {
