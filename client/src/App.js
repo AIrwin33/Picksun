@@ -9,10 +9,6 @@ import Contest from './components/Contest';
 import Questions from './components/Questions';
 import TopPanel from './components/TopPanel';
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
-
-
-import footerImg from '../assets/footer.png';
-
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import {SocketContext, socket} from './socket';
