@@ -133,7 +133,7 @@ function App() {
                             </Switch>
 
                             <div className="footer">
-                                <Image src={backtotop}></Image>
+                                <Image  className="float-right" src={backtotop}></Image>
                                 <p> pickfun</p>
                             </div>
 
