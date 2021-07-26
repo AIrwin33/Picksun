@@ -10,7 +10,7 @@ import Questions from './components/Questions';
 import TopPanel from './components/TopPanel';
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 
-import backtotop from 'assets/backtotop.png';
+import backtotop from './assets/backtotop.png';
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import {SocketContext, socket} from './socket';
