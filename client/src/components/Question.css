@@ -93,3 +93,7 @@
   .centerText {
       text-align: center;
   }
+
+  .counterDiv {
+      border-bottom: 1px solid black;
+  }
