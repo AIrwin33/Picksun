@@ -97,3 +97,13 @@
   .counterDiv {
       border-bottom: 1px solid black;
   }
+
+  .proxima {
+    font-size: 12px;
+    font-family: proxima-reg;
+}
+
+.aptifer {
+    font-size: 12px;
+    font-family: aptifer-reg;
+}

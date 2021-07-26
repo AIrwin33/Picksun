@@ -300,11 +300,11 @@ const Question = (props) => {
                     </a>
                     <Modal show={showInfo} onHide={handleInfoClose}>
                         <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
+                        <Modal.Title className="aptifer">Modal heading</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                        <Modal.Body className="proxima">Woohoo, you're reading this text in a modal!</Modal.Body>
                         <Modal.Footer>
-                        <Button variant="secondary" onClick={handleInfoClose}>
+                        <Button className="aptifer" variant="secondary" onClick={handleInfoClose}>
                             Close
                         </Button>
                         </Modal.Footer>
