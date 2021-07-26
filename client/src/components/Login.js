@@ -117,7 +117,7 @@ const Login = ({ setAuth }) => {
                 <Col xs={3}>
                 </Col>
                 <Col xs={6} className="mt-3 mb-3 justify-content-center text-center">
-                    <Button className="btnRed" onClick={registerRedirect}>Sign Up</Button> <Button className="btnRed" onClick={forgotPassword}>Forgot Password</Button>
+                    <Button className="btnRed mt-3" onClick={registerRedirect}>Sign Up</Button> <Button className="btnRed mt-3" onClick={forgotPassword}>Forgot Password</Button>
                 </Col>
                 <Col xs={3}>
                 </Col>
