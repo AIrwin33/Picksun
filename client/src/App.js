@@ -9,6 +9,8 @@ import Contest from './components/Contest';
 import Questions from './components/Questions';
 import TopPanel from './components/TopPanel';
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+
+import backtotop from 'assets/backtotop.png';
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import {SocketContext, socket} from './socket';
@@ -131,6 +133,7 @@ function App() {
                             </Switch>
 
                             <div className="footer">
+                                <Image src={backtotop}></Image>
                                 <p> pickfun</p>
                             </div>
 
