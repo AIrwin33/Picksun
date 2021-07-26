@@ -29,7 +29,7 @@
 }
 
 .footer {
-  background-image: url("/assets/footer.png");
+  background-image: url("assets/footer.png");
 }
 
 @keyframes App-logo-spin {
