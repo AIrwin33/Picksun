@@ -28,6 +28,10 @@
   color: #61dafb;
 }
 
+.footer {
+  background-image: url("../assets/footer.png");
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

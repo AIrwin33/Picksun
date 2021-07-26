@@ -134,8 +134,8 @@ function App() {
                                 />
                             </Switch>
 
-                            <div>
-                                <Image src={footerImg} ></Image>
+                            <div className="footer">
+                                <p> pickfun</p>
                             </div>
 
                         </div>
