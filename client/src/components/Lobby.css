@@ -7,8 +7,8 @@
 
 .LobbyCard .btnRed {
     width:250px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
     border-top-right-radius: 0px;
     border-top-left-radius: 0px;
 }

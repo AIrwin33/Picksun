@@ -13,7 +13,7 @@
 
 .scoreboard {
     border: 1px solid black;
-    border-radius: 5px; 
+    border-radius: 1px; 
     padding:0.1em;
     margin:0.25em;
 }
@@ -37,7 +37,7 @@
 
 .rowCard{
     border: 1px solid grey;
-    border-radius: 5px;
+    border-radius: 1px;
     margin: 5px 30px 5px 30px;
     padding:5px;
     background-color: lightgrey;
@@ -45,7 +45,7 @@
 
 .yourpart {
     border: 1px solid grey;
-    border-radius: 5px;
+    border-radius: 1px;
     background-color:#215975;
     color:white;
 }
