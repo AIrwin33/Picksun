@@ -65,3 +65,13 @@
     border: 1px solid black;
     color: black;
 }
+
+.greyDiv {
+    background-color: #d4d4d4;
+    color: black;
+}
+
+.proxima {
+    font-size: 12px;
+    font-family: proxima-reg;
+}
