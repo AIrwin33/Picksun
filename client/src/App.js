@@ -139,7 +139,11 @@ function App() {
                             </Switch>
 
                             <div className="footer">
-                                <Image  className="float-right mt-3 mr-3" src={backtotop} onClick={handleBackToTop}></Image>
+                                <Row>
+                                    <Col>
+                                        <Image  className="float-right mt-3 mr-3" src={backtotop} onClick={handleBackToTop}></Image>
+                                    </Col>
+                                </Row>
                                 <Row className="justify-content-md-center p-3">
                                     <Col md="4">
                                     </Col>
