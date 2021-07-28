@@ -47,7 +47,10 @@
 }
 
 .footer {
+  height: 250px;
   background-image: url("assets/footer.png");
+  background-repeat:no-repeat;
+  background-position: center center;
 }
 
 @keyframes App-logo-spin {
