@@ -38,6 +38,10 @@ function App() {
         }
     };
 
+    const handleBackToTop = async () => {
+        console.log('back to top');
+    }
+
     useEffect(() => {
         checkAuthenticated();
     }, []);
@@ -67,7 +71,7 @@ function App() {
                     <Router>
                         <div className="container">
 
-                            <div>
+                            <div id="top">
                                 <TopPanel/>
                             </div>
 
@@ -134,7 +138,7 @@ function App() {
                             </Switch>
 
                             <div className="footer">
-                                <Image  className="float-right" src={backtotop}></Image>
+                                <Image  className="float-right" src={backtotop} onClick={handleBackToTop}></Image>
                                 <div className="justify-content-md-center proxima">
                                     <p> pickfun</p>
 
