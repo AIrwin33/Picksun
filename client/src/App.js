@@ -140,7 +140,7 @@ function App() {
 
                             <div className="footer">
                                 <Image  className="float-right mt-3 mr-3" src={backtotop} onClick={handleBackToTop}></Image>
-                                <Row>
+                                <Row className="justify-content-md-center">
                                     <Col lg="4">
                                     </Col>
                                     <Col md="auto">
