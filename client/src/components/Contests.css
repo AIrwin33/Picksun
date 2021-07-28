@@ -18,10 +18,12 @@
 .gamesInProgress {
     padding:0.25em;
     background-color:grey;
+    border: 1px solid white;
 }
 
 .gamesInProgress.red{
     background-color: #D4382E;
+    border: 1px solid white;
    
 }
 
