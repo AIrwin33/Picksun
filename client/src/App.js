@@ -144,10 +144,9 @@ function App() {
                                     <Col lg="4">
                                     </Col>
                                     <Col md="auto">
-                                        <div>
-                                            
                                             <Image src={whitePickfun}></Image>
-                                            <p className="proxima whiteText center-text">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
+                                        <div className="center-text">
+                                            <p className="proxima whiteText ">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
         sit amet, consectetur adipiscing elit. </p>
                                         </div>
                                     </Col>
