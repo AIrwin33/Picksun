@@ -12,6 +12,7 @@ import TopPanel from './components/TopPanel';
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 
 import backtotop from './assets/backtotop.png';
+import whitePickfun from './assets/pickfun.png';
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import {SocketContext, socket} from './socket';
@@ -139,8 +140,10 @@ function App() {
 
                             <div className="footer">
                                 <Image  className="float-right" src={backtotop} onClick={handleBackToTop}></Image>
-                                <div className="justify-content-md-center proxima">
-                                    <p> pickfun</p>
+                                <div className="justify-content-md-center ">
+                                    <Image src={whitePickfun}></Image>
+                                    <p className="proxima whiteText">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
+ sit amet, consectetur adipiscing elit. </p>
 
                                 </div>
                             </div>
