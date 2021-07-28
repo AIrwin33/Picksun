@@ -135,7 +135,10 @@ function App() {
 
                             <div className="footer">
                                 <Image  className="float-right" src={backtotop}></Image>
-                                <p> pickfun</p>
+                                <div className="justify-content-md-center proxima">
+                                    <p> pickfun</p>
+
+                                </div>
                             </div>
 
                         </div>
