@@ -77,7 +77,7 @@ const Lobby = () => {
                 <Row>
                     
                     {contests.map(contest => (
-                    <Col md="4">
+                    <Col xs={12} md={4}>
                         <div key={contest.id} className="LobbyCard">
                             <div>
                                 <img width="247" src={contest.image__c}/>
