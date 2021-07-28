@@ -20,10 +20,10 @@ import "./TopPanel.css";
 
 import headerIcon from "../assets/pickfun.png";
 import Login from './Login';
+import $ from 'jquery';
 
 
-
-const TopPanel = ({setAuth}) => {
+const TopPanel = (props) => {
 
     const [name, setName] = useState("");
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -46,7 +46,12 @@ const TopPanel = ({setAuth}) => {
 
     useEffect(() => {
         getProfile();
-    }, []);
+        console.log(props.profile);
+        if(props.profile){
+          $('.TopPanelCont').addClass('profile');
+        }
+
+    }, [props]);
         
     
     return (

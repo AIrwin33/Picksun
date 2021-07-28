@@ -85,7 +85,8 @@ const Profile = ({setAuth}) => {
 
     useEffect(() => {
         getProfile();
-    }, []);
+        props.setProfile(true);
+    }, [props]);
 
     
 

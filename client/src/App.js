@@ -20,6 +20,8 @@ import {SocketContext, socket} from './socket';
 
 function App() {
 
+    const [isProfile, setIsProfile] = useState(false);
+
     const checkAuthenticated = async () => {
         try {
             const header = {
@@ -61,6 +63,10 @@ function App() {
     const store = createStore(reducer);
     store.dispatch({type: "INCREMENT!"});
 
+    const setProfile = boolean => {
+        setIsProfile(boolean);
+    }
+
     const setAuth = boolean => {
         setIsAuthenticated(boolean);
     };
@@ -73,7 +79,7 @@ function App() {
                         <div className="container">
 
                             <div id="top">
-                                <TopPanel/>
+                                <TopPanel profile={isProfile}/>
                             </div>
 
                             <Switch>
@@ -108,7 +114,7 @@ function App() {
                                 <Route path="/Profile"
                                        render={props =>
                                            isAuthenticated ? (
-                                               <Profile {...props} setAuth={setAuth}/>
+                                               <Profile {...props} setProfile={setProfile} setAuth={setAuth}/>
                                            ) : (
                                                <Redirect to="/Login"/>
                                            )
