@@ -61,8 +61,8 @@ const Register = ({ setAuth }) => {
             {/* Main Body */}
             <Container fluid id="MainContainer">
             <Row>
-                <Col >
-                    <h4 className="text-center mt-3 textWhite">Register</h4>
+                <Col className="mt-3">
+                    <h4 className="text-center mt-3 textWhite aptifer font20">Register</h4>
                 </Col>
             </Row>
             <Row>
@@ -70,34 +70,34 @@ const Register = ({ setAuth }) => {
                   
                     <Form onSubmit={onSubmitForm}>
                         <Form.Group>
-                            <Form.Label className="textWhite">Name</Form.Label>
+                            <Form.Label className="textWhite proxima font16">Name</Form.Label>
                             <Form.Control type="text" name="name" placeholder="Name" onChange={e => onChange(e)}/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label className="textWhite">Username</Form.Label>
+                            <Form.Label className="textWhite proxima font16">Username</Form.Label>
                             <Form.Control type="text" name="username" placeholder="Username" onChange={e => onChange(e)}/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label className="textWhite">Email</Form.Label>
+                            <Form.Label className="textWhite proxima font16">Email</Form.Label>
                             <Form.Control type="email" name="email" placeholder="Email address" onChange={e => onChange(e)}/>
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label className="textWhite">Password</Form.Label>
+                            <Form.Label className="textWhite proxima font16">Password</Form.Label>
                             <Form.Control type="password" name="password" placeholder="password" onChange={e => onChange(e)}/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label className="textWhite">Confirm Password</Form.Label>
+                            <Form.Label className="textWhite proxima font16">Confirm Password</Form.Label>
                             <Form.Control type="password" name="confirm" placeholder="confirm password" onChange={e => onChange(e)}/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Check className="textWhite" type="checkbox" label="I have read the Term and Conditions" />
+                            <Form.Check className="textWhite aptifer font20" type="checkbox" label="I have read the Term and Conditions" />
                         </Form.Group>
 						<Form.Group>
 							{/* include actual link */}
-							<Form.Label className="textWhite"><a href="#">Terms and Conditions</a></Form.Label>
+							<Form.Label className="textWhite proxima font16"><a href="#">Terms and Conditions</a></Form.Label>
 						</Form.Group>
-                        <Button variant="primary" type="submit" className="btnRed float-right mb-3">
+                        <Button variant="primary" type="submit" className="btnRed float-right mb-3 aptifer font20">
                             Sign Up
                         </Button>
                     </Form>
