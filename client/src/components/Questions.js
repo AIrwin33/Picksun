@@ -318,6 +318,7 @@ const Questions = (props) => {
 
             {/* Main Body */}
             <Container>
+                {questions.length > 0 &&
                 <Row className="questionRow m-3 p-3 justify-content-center">
                     {/* slide for questions */}
                     <Col>
@@ -352,12 +353,14 @@ const Questions = (props) => {
                         </div>
                       }  
                     </Col>
+                    
                     {partWrongAnswer.wrong_answers_allowed__c &&
                     <Col>
                         Wrong Answers / Allowed: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
                     </Col>
                     }
                 </Row>
+                }
                 {isShowWaiting &&
                 <Row>
                     <Col>
