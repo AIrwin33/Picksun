@@ -75,11 +75,9 @@ const Lobby = () => {
             {/* Main Body */}
             <Container className="lobbyContainer">
                 <Row>
-                    <Col sm={1} xs={1}>
-                    </Col>
-                    <Col sm={10} xs={10}>
                     
                     {contests.map(contest => (
+                    <Col md="4">
                         <div key={contest.id} className="LobbyCard">
                             <div>
                                 <img width="247" src={contest.image__c}/>
@@ -87,11 +85,8 @@ const Lobby = () => {
                             <p className="whiteText">{contest.name}</p>
                             <Button className="btnRed" onClick={() => enterContest(contest.id, contest.sfid, )}>Start Picking</Button>
                         </div>
+                      </Col>
                     ))}
-
-                    </Col>
-                    <Col sm={1} xs={1}>
-                    </Col>
                 </Row>
             </Container>
 
