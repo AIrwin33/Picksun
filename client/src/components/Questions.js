@@ -368,7 +368,7 @@ const Questions = (props) => {
                 </Row>
                 }
                 
-                <Row>
+                <Row className="questionRow m-3 p-3 justify-content-center">
                     <Col>
                         {questions.length > 0 && !isShowWaiting &&
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
@@ -387,7 +387,7 @@ const Questions = (props) => {
                         }
 
                         {questions.length === 0 &&
-                        <div className="greyDiv justify-content-md-center proxima">
+                        <div className="greyDiv text-center proxima font16">
                             {props.contestQuestionText}
                         </div>
                         }
