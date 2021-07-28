@@ -143,10 +143,13 @@ function App() {
                                 <Row>
                                     <Col>
                                     </Col>
-                                    <Col className="justify-content-md-center">
-                                    <Image src={whitePickfun}></Image>
-                                    <p className="proxima whiteText">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
- sit amet, consectetur adipiscing elit. </p>
+                                    <Col className="justify-content-center">
+                                        <div>
+                                            
+                                            <Image src={whitePickfun}></Image>
+                                            <p className="proxima whiteText center-text">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
+        sit amet, consectetur adipiscing elit. </p>
+                                        </div>
                                     </Col>
                                     <Col>
                                     </Col>

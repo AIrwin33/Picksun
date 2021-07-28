@@ -18,7 +18,7 @@ import {
 
 import "./TopPanel.css";
 
-import headerIcon from "../assets/pickfun_3x.png";
+import headerIcon from "../assets/pickfun.png";
 import Login from './Login';
 
 
