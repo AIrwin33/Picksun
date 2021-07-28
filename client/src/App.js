@@ -141,9 +141,9 @@ function App() {
                             <div className="footer">
                                 <Image  className="float-right mt-3 mr-3" src={backtotop} onClick={handleBackToTop}></Image>
                                 <Row>
-                                    <Col>
+                                    <Col lg="4">
                                     </Col>
-                                    <Col className="justify-content-center">
+                                    <Col md="auto">
                                         <div>
                                             
                                             <Image src={whitePickfun}></Image>
@@ -151,7 +151,7 @@ function App() {
         sit amet, consectetur adipiscing elit. </p>
                                         </div>
                                     </Col>
-                                    <Col>
+                                    <Col lg="4">
                                     </Col>
                                 </Row>
                             </div>
