@@ -143,9 +143,9 @@ function App() {
                                 <Row className="justify-content-md-center p-3">
                                     <Col md="4">
                                     </Col>
-                                    <Col md="auto">
+                                    <Col md="auto text-center">
                                             <Image src={whitePickfun}></Image>
-                                            <p className="proxima whiteText text-center">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
+                                            <p className="proxima whiteText ">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
         sit amet, consectetur adipiscing elit. </p>
                                     </Col>
                                     <Col md="4">
