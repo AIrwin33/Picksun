@@ -71,8 +71,8 @@ const Login = ({ setAuth }) => {
         {/* Main Body */}
         <Container fluid className="LoginBody">
             <Row>
-                <Col >
-                    <h4 className="text-center textWhite aptifer">Login</h4>
+                <Col className="mt-3">
+                    <h4 className="text-center textWhite aptifer font20 ">Login</h4>
                 </Col>
             </Row>
             <Row>
@@ -81,15 +81,15 @@ const Login = ({ setAuth }) => {
                 <Form onSubmit={onSubmitForm}>
 
                     <Form.Group>
-                        <Form.Label className="textWhite proxima">Email</Form.Label>
+                        <Form.Label className="textWhite proxima font16">Email</Form.Label>
                         <Form.Control className="proxima" type="text" name="email" placeholder="email" onChange={e => onChange(e)} />
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label className="textWhite proxima">Password</Form.Label>
+                        <Form.Label className="textWhite proxima font16">Password</Form.Label>
                         <Form.Control className="proxima" type="password" name="password" placeholder="password" onChange={e => onChange(e)}/>
                     </Form.Group>
-                    <Button variant="primary" type="submit" className="btnRed float-right aptifer">
+                    <Button variant="primary" type="submit" className="btnRed float-right aptifer font20">
                         Login
                     </Button>
                 </Form>
@@ -117,7 +117,7 @@ const Login = ({ setAuth }) => {
                 <Col xs={3}>
                 </Col>
                 <Col xs={6} className="mt-3 mb-3 justify-content-center text-center">
-                    <Button className="btnRed mt-3 aptifer" onClick={registerRedirect}>Sign Up</Button> <Button className="btnRed mt-3 aptifer" onClick={forgotPassword}>Forgot Password</Button>
+                    <Button className="btnRed mt-3 aptifer font20" onClick={registerRedirect}>Sign Up</Button> <Button className="btnRed mt-3 aptifer font20" onClick={forgotPassword}>Forgot Password</Button>
                 </Col>
                 <Col xs={3}>
                 </Col>
