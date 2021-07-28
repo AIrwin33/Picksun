@@ -80,7 +80,7 @@ const Lobby = () => {
                     <Col sm={10} xs={10}>
                     
                     {contests.map(contest => (
-                        <div key={contest.id} className="LobbyCard">
+                        <div key={contest.id} className="LobbyCard justify-content-md-center">
                             <div>
                                 <img width="250" src={contest.image__c}/>
                             </div>

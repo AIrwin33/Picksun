@@ -4,13 +4,13 @@
 .LobbyCard {
     margin: 1em;
     border: 1px solid white;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
 .LobbyCard .btnRed {
     width:250px;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
     border-top-right-radius: 0px;
     border-top-left-radius: 0px;
 }
