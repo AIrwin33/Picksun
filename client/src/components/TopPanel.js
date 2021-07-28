@@ -58,13 +58,13 @@ const TopPanel = ({setAuth}) => {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" className="custom-toggler"/>
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="ml-auto">
-                <Nav.Link className="lightBlueText" href="/Lobby">Lobby</Nav.Link>
-                <Nav.Link className="lightBlueText" href="/Contests">My Contests</Nav.Link>
+                <Nav.Link className="lightBlueText aptifer" href="/Lobby">Lobby</Nav.Link>
+                <Nav.Link className="lightBlueText aptifer" href="/Contests">My Contests</Nav.Link>
                 {isAuthenticated && 
-                    <Nav.Link href="/Profile" className="lightBlueText">{name}</Nav.Link>
+                    <Nav.Link href="/Profile" className="lightBlueText aptifer">{name}</Nav.Link>
                 }
                 {!isAuthenticated && 
-                    <Nav.Link href="/Login">Login</Nav.Link>
+                    <Nav.Link className="aptifer lightBlueText" href="/Login">Login</Nav.Link>
                 }  
                 </Nav>
             </Navbar.Collapse>
