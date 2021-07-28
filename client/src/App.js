@@ -139,13 +139,18 @@ function App() {
                             </Switch>
 
                             <div className="footer">
-                                <Image  className="float-right" src={backtotop} onClick={handleBackToTop}></Image>
-                                <div className="justify-content-md-center ">
+                                <Image  className="float-right mt-3 mr-3" src={backtotop} onClick={handleBackToTop}></Image>
+                                <Row>
+                                    <Col>
+                                    </Col>
+                                    <Col className="justify-content-md-center">
                                     <Image src={whitePickfun}></Image>
                                     <p className="proxima whiteText">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
  sit amet, consectetur adipiscing elit. </p>
-
-                                </div>
+                                    </Col>
+                                    <Col>
+                                    </Col>
+                                </Row>
                             </div>
 
                         </div>

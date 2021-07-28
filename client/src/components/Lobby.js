@@ -82,7 +82,7 @@ const Lobby = () => {
                     {contests.map(contest => (
                         <div key={contest.id} className="LobbyCard">
                             <div>
-                                <img width="250" src={contest.image__c}/>
+                                <img width="247" src={contest.image__c}/>
                             </div>
                             <p className="whiteText">{contest.name}</p>
                             <Button className="btnRed" onClick={() => enterContest(contest.id, contest.sfid, )}>Start Picking</Button>
