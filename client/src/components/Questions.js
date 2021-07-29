@@ -371,7 +371,7 @@ const Questions = (props) => {
                 </Row>
                 }
                 
-                <Row className="questionRow m-3 p-3 justify-content-center">
+                <Row className="questionRow m-1 p-1 justify-content-center">
                     <Col>
                         {questions.length > 0 && !isShowWaiting &&
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
