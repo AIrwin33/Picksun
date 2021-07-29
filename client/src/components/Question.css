@@ -99,11 +99,13 @@
   }
 
   .proxima {
-    font-size: 12px;
     font-family: proxima-reg;
 }
 
 .aptifer {
-    font-size: 12px;
     font-family: aptifer-reg;
+}
+
+.font12 {
+    font-size: 12px;
 }
