@@ -96,7 +96,7 @@ const Contests = ({setAuth}) => {
                         {moment(contest.start_time__c).isSameOrAfter(time.today) && moment(contest.start_time__c).isSameOrBefore(time.twoHours) &&
                         <div>
                             <div className="gamesInProgress red">
-                                <h5 className="text-center aptifer">
+                                <h5 className="text-center aptifer mt-2">
                                     In Progress
                                 </h5>
                             </div>
@@ -111,7 +111,7 @@ const Contests = ({setAuth}) => {
                         {moment(contest.start_time__c).isSameOrAfter(time.today) && moment(contest.start_time__c).isSameOrBefore(time.tomorrow) &&
                         <div>
                             <div className="gamesInProgress">
-                                <h5 className="text-center aptifer">
+                                <h5 className="text-center aptifer  mt-2">
                                     Today
                                 </h5>
                             </div>
@@ -126,7 +126,7 @@ const Contests = ({setAuth}) => {
                         {moment(contest.start_time__c).isSameOrAfter(time.tomorrow) && moment(contest.start_time__c).isSameOrBefore(time.twoDays) &&
                         <div>
                             <div className="gamesInProgress">
-                                <h5 className="text-center aptifer">
+                                <h5 className="text-center aptifer  mt-2">
                                     Tomorrow
                                 </h5>
                             </div>
