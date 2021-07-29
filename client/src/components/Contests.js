@@ -83,7 +83,7 @@ const Contests = ({setAuth}) => {
                 <Row id="Hero" >
                     <Col className="m-3" >
                         <div>
-                            <h4 className="text-center">
+                            <h4 className="text-center aptifer">
                                 My Contests
                             </h4>
                         </div>
@@ -96,12 +96,12 @@ const Contests = ({setAuth}) => {
                         {moment(contest.start_time__c).isSameOrAfter(time.today) && moment(contest.start_time__c).isSameOrBefore(time.twoHours) &&
                         <div>
                             <div className="gamesInProgress red">
-                                <h5 className="text-center">
+                                <h5 className="text-center aptifer">
                                     In Progress
                                 </h5>
                             </div>
                             <div>
-                                <a onClick={() => contestRedirect(contest.sfid)}>
+                                <a className="text-center proxima" onClick={() => contestRedirect(contest.sfid)}>
                                     {contest.name}
                                 </a>
                             </div>
@@ -111,12 +111,12 @@ const Contests = ({setAuth}) => {
                         {moment(contest.start_time__c).isSameOrAfter(time.today) && moment(contest.start_time__c).isSameOrBefore(time.tomorrow) &&
                         <div>
                             <div className="gamesInProgress">
-                                <h5 className="text-center">
+                                <h5 className="text-center aptifer">
                                     Today
                                 </h5>
                             </div>
                             <div>
-                                <a onClick={() => contestRedirect(contest.sfid)}>
+                                <a className="text-center proxima" onClick={() => contestRedirect(contest.sfid)}>
                                     {contest.name}
                                 </a>
                             </div>
@@ -126,12 +126,12 @@ const Contests = ({setAuth}) => {
                         {moment(contest.start_time__c).isSameOrAfter(time.tomorrow) && moment(contest.start_time__c).isSameOrBefore(time.twoDays) &&
                         <div>
                             <div className="gamesInProgress">
-                                <h5 className="text-center">
+                                <h5 className="text-center aptifer">
                                     Tomorrow
                                 </h5>
                             </div>
                             <div>
-                                <a onClick={() => contestRedirect(contest.sfid)}>
+                                <a className="text-center proxima" onClick={() => contestRedirect(contest.sfid)}>
                                     {contest.name}
                                 </a>
                             </div>
@@ -149,7 +149,7 @@ const Contests = ({setAuth}) => {
                                 </h5>
                             </div>
                             <div>
-                                <a onClick={() => contestRedirect(contest.sfid)}>
+                                <a className="text-center proxima" onClick={() => contestRedirect(contest.sfid)}>
                                     {contest.name}
                                 </a>
                             </div>
