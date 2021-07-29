@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Col, Row, Button, Modal} from "react-bootstrap";
+import {Col, Row, Button, Image, Modal} from "react-bootstrap";
 
 import {v4 as uuidv4} from 'uuid';
 import "./Question.css";
@@ -311,45 +311,49 @@ const Question = (props) => {
                         </Modal.Footer>
                     </Modal>
                 </div>
+                <Row>
 
-                <div className="questionTextDiv">
-                    <h3>{quest.question_text__c}</h3>
-                    {/* {props.ques.live_stat__c !== null &&
-                    <div>
+                    <div className="questionTextDiv">
+                        <h3>{quest.question_text__c}</h3>
+                        {/* {props.ques.live_stat__c !== null &&
+                        <div>
                         <span>Current Stat: {props.ques.live_stat__c}</span>
-                    </div>
+                        </div>
                     } */}
-                </div>
-                <div className="counterDiv clearfix">
-                    <div className="float-left">
+                    </div>
+                </Row>
+                <Row>
+                    <div className="counterDiv clearfix">
 
+                        <div className="float-right">
+                            Question: {props.questionNum} / {props.totalQuestions}
+                        </div>
                     </div>
-                    <div className="float-right">
-                        Question: {props.questionNum} / {props.totalQuestions}
-                    </div>
-                </div>
-                <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
-                     aria-label="Basic example" data-toggle="buttons">
-                    <button type="radio" value="A" className="btn btn-primary questionButton"
-                            onClick={handleRadioChange}>{quest.answer_a__c}</button>
-                    <button type="radio" value="B" className="btn btn-primary questionButton"
-                            onClick={handleRadioChange}>{quest.answer_b__c}</button>
-                    {quest.answer_c__c !== null &&
-                    <button type="radio" value="C" className="btn btn-primary questionButton"
-                            onClick={handleRadioChange}>{quest.answer_c__c}</button>
+                </Row>
+                <Row>
+                    <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
+                        aria-label="Basic example" data-toggle="buttons">
+                        <button type="radio" value="A" className="btn btn-primary questionButton"
+                                onClick={handleRadioChange}>{quest.answer_a__c}</button>
+                        <button type="radio" value="B" className="btn btn-primary questionButton"
+                                onClick={handleRadioChange}>{quest.answer_b__c}</button>
+                        {quest.answer_c__c !== null &&
+                        <button type="radio" value="C" className="btn btn-primary questionButton"
+                        onClick={handleRadioChange}>{quest.answer_c__c}</button>
                     }
-                    {quest.answer_d__c !== null &&
-                    <button type="radio" value="D" className="btn btn-primary questionButton"
-                            onClick={handleRadioChange}>{quest.answer_d__c}</button>
+                        {quest.answer_d__c !== null &&
+                        <button type="radio" value="D" className="btn btn-primary questionButton"
+                        onClick={handleRadioChange}>{quest.answer_d__c}</button>
                     }
-                </div>
-                {props.doShowNext &&
-                <div className="nextQuestionDiv pb-3">
-                    <div className="float-right">
-                        <span>Next Question!</span>
                     </div>
-                </div>
-                }
+                    {props.doShowNext &&
+                    <div className="nextQuestionDiv pb-3">
+                        <div className="float-right">
+                            <span>Next Question!</span>
+                        </div>
+                    </div>
+                    }
+                </Row>
                 {partAnswer.selection__c ?
                     <div>
                         <Row>
