@@ -9,6 +9,7 @@ import Contests from './components/Contests';
 import Contest from './components/Contest';
 import Questions from './components/Questions';
 import TopPanel from './components/TopPanel';
+import Landing from './components/Landing';
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 
 import backtotop from './assets/backtotop.png';
@@ -141,6 +142,13 @@ function App() {
                                                <Redirect to="/Login"/>
                                            )
                                        }
+                                />
+                                <Route path="/"
+                                    render={props =>
+                                        (
+                                        <Landing {...props}/>
+                                        )
+                                    }
                                 />
                             </Switch>
 
