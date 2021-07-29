@@ -3,6 +3,7 @@ import {Col, Row, Button, Modal} from "react-bootstrap";
 
 import {v4 as uuidv4} from 'uuid';
 import "./Question.css";
+import info from '../assets/info2x.png';
 import $ from 'jquery';
 
 const Question = (props) => {
@@ -296,7 +297,7 @@ const Question = (props) => {
                 }
                 <div className="infoDiv mb-4">
                     <a src="#" className="float-right" onClick={handleInfoShow} >
-                        info
+                        <Image src={info}></Image>
                     </a>
                     <Modal show={showInfo} onHide={handleInfoClose}>
                         <Modal.Header closeButton>
