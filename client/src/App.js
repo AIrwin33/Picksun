@@ -143,13 +143,13 @@ function App() {
                                            )
                                        }
                                 />
-                                <Route path="/"
+                                {/* <Route path="/"
                                     render={props =>
                                         (
                                         <Landing {...props}/>
                                         )
                                     }
-                                />
+                                /> */}
                             </Switch>
 
                             <div className="footer">
