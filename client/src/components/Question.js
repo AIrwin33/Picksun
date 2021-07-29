@@ -322,15 +322,15 @@ const Question = (props) => {
                     } */}
                     </div>
                 </Row>
-                <Row>
-                    <div className="counterDiv clearfix">
-
+                <Row className="counterDiv">
+                    <Col>
                         <div className="float-right">
                             Question: {props.questionNum} / {props.totalQuestions}
                         </div>
-                    </div>
+                    </Col>
                 </Row>
                 <Row>
+                    <Col>
                     <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
                         aria-label="Basic example" data-toggle="buttons">
                         <button type="radio" value="A" className="btn btn-primary questionButton"
@@ -353,6 +353,7 @@ const Question = (props) => {
                         </div>
                     </div>
                     }
+                    </Col>
                 </Row>
                 {partAnswer.selection__c ?
                     <div>
