@@ -44,6 +44,10 @@ function App() {
 
     const handleBackToTop = async () => {
         console.log('back to top');
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
     }
 
     useEffect(() => {
