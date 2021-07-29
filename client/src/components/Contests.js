@@ -83,7 +83,7 @@ const Contests = ({setAuth}) => {
                 <Row id="Hero" >
                     <Col className="m-3" >
                         <div>
-                            <h4 className="text-center aptifer">
+                            <h4 className="text-center aptifer whiteText">
                                 My Contests
                             </h4>
                         </div>

@@ -37,6 +37,10 @@
     padding:0.25em;
 }
 
+.whiteText {
+    color:white;
+    }
+
 .proxima {
     font-family: proxima-reg;
 }
