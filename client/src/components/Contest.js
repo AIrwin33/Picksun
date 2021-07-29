@@ -143,13 +143,13 @@ const Contest = ({match}) => {
                             <div className="scoreboard">
                                 <Row>
                                     <Col sm={5}>
-                                        <h5 className="text-center mt-1">{home.name}</h5>
+                                        <h5 className="text-center mt-1 aptifer">{home.name}</h5>
                                     </Col>
                                     <Col sm={2}>
-                                        <h5 className="text-center mt-1">vs.</h5>
+                                        <h5 className="text-center mt-1 aptifer">vs.</h5>
                                     </Col>
                                     <Col sm={5}>
-                                        <h5 className="text-center mt-1">{away.name}</h5>
+                                        <h5 className="text-center mt-1 aptifer">{away.name}</h5>
                                     </Col>
                                 </Row>
                             </div>
@@ -166,7 +166,7 @@ const Contest = ({match}) => {
                         </Col>
                     </Row>
                     <Tabs fill>
-                        <Tab eventKey="Questions" title="Questions">
+                        <Tab eventKey="Questions" title="Questions" className="aptifer">
                             <Row>
                                 <Col>
 
@@ -181,7 +181,7 @@ const Contest = ({match}) => {
                                 </Col>
                             </Row>
                         </Tab>
-                        <Tab eventKey="Participants" title="Participants" className="pb-4 pt-4">
+                        <Tab eventKey="Participants" title="Participants" className="pb-4 pt-4 aptifer">
 
                             {/* loop through participations */}
 
@@ -222,7 +222,7 @@ const Contest = ({match}) => {
                                 </Row>
                             })}
                         </Tab>
-                        <Tab eventKey="Chat" title="Twitter">
+                        <Tab eventKey="Chat" title="Twitter" className="aptifer">
                             <Row>
                                 <Col>
                                     <TwitterTimelineEmbed
