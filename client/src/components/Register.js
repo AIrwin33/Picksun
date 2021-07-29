@@ -91,7 +91,7 @@ const Register = ({ setAuth }) => {
                             <Form.Control type="password" name="confirm" placeholder="confirm password" onChange={e => onChange(e)}/>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Check className="textWhite aptifer font20" type="checkbox" label="I have read the Term and Conditions" />
+                            <Form.Check className="textWhite aptifer font16" type="checkbox" label="I have read the Term and Conditions" />
                         </Form.Group>
 						<Form.Group>
 							{/* include actual link */}

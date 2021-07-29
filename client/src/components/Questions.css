@@ -71,7 +71,10 @@
     color: black;
 }
 
+.font12 {
+    font-size:12px;
+}
+
 .proxima {
-    font-size: 12px;
     font-family: proxima-reg;
 }

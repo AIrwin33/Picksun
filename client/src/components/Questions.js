@@ -364,7 +364,7 @@ const Questions = (props) => {
                 {isShowWaiting &&
                 <Row>
                     <Col>
-                        <div className="greyDiv justify-content-md-center proxima">
+                        <div className="greyDiv justify-content-md-center proxima font16">
                             Wait for all other players to lock in their scores
                         </div>
                     </Col>
