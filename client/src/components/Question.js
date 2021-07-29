@@ -319,7 +319,10 @@ const Question = (props) => {
                     </div>
                     } */}
                 </div>
-                <div className="counterDiv">
+                <div className="counterDiv clearfix">
+                    <div className="float-left">
+
+                    </div>
                     <div className="float-right">
                         Question: {props.questionNum} / {props.totalQuestions}
                     </div>
