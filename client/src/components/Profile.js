@@ -18,7 +18,7 @@ import moment from 'moment';
 
 import "./Profile.css";
 
-const Profile = ({setAuth}) => {
+const Profile = ({props, setAuth}) => {
 
     const [profile, setProfile] = useState({
         favorite_team: "",
