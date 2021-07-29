@@ -35,6 +35,14 @@
     font-weight:bold;
 }
 
+.proxima {
+    font-family: proxima-reg;
+}
+
+.aptifer {
+    font-family: aptifer-reg;
+}
+
 .rowCard{
     border: 1px solid grey;
     border-radius: 1px;

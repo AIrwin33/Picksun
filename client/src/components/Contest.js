@@ -143,13 +143,13 @@ const Contest = ({match}) => {
                             <div className="scoreboard">
                                 <Row>
                                     <Col sm={5}>
-                                        <h5 className="text-center">{home.name}</h5>
+                                        <h5 className="text-center mt-1">{home.name}</h5>
                                     </Col>
                                     <Col sm={2}>
-                                        <h5 className="text-center">vs.</h5>
+                                        <h5 className="text-center mt-1">vs.</h5>
                                     </Col>
                                     <Col sm={5}>
-                                        <h5 className="text-center">{away.name}</h5>
+                                        <h5 className="text-center mt-1">{away.name}</h5>
                                     </Col>
                                 </Row>
                             </div>
@@ -160,7 +160,7 @@ const Contest = ({match}) => {
                     <Row className="rowBar">
                         <Col xs={3} sm={3}></Col>
                         <Col xs={6} sm={6} className="text-center ">
-                            <h4 className="whiteText fontBold">{contest.name}</h4>
+                            <h4 className="whiteText fontBold aptifer">{contest.name}</h4>
                         </Col>
                         <Col xs={3} sm={3}>
                         </Col>
