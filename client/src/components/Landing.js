@@ -8,7 +8,7 @@ import {
 
 import "./Landing.css";
 
-import justLogo from  "./assets/justLogo.png";
+import justLogo from  "./assets/logoOnly.png";
 
 import $ from 'jquery';
 
