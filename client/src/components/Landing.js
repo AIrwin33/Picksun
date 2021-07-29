@@ -1,11 +1,8 @@
 import React, {Component, useEffect, useState} from 'react';
 import {
     Container,
-    Navbar,
-    Nav,
-    Image,
-    NavDropdown,
-    ResponsiveEmbed
+    Row,
+    Col
 } from "react-bootstrap";
 
 import "./Landing.css";
