@@ -100,8 +100,8 @@ const Contests = ({setAuth}) => {
                                     In Progress
                                 </h5>
                             </div>
-                            <div>
-                                <a className="text-center proxima" onClick={() => contestRedirect(contest.sfid)}>
+                            <div className="text-center">
+                                <a className=" proxima" onClick={() => contestRedirect(contest.sfid)}>
                                     {contest.name}
                                 </a>
                             </div>
@@ -115,8 +115,8 @@ const Contests = ({setAuth}) => {
                                     Today
                                 </h5>
                             </div>
-                            <div>
-                                <a className="text-center proxima" onClick={() => contestRedirect(contest.sfid)}>
+                            <div className="text-center">
+                                <a className=" proxima" onClick={() => contestRedirect(contest.sfid)}>
                                     {contest.name}
                                 </a>
                             </div>
@@ -130,8 +130,8 @@ const Contests = ({setAuth}) => {
                                     Tomorrow
                                 </h5>
                             </div>
-                            <div>
-                                <a className="text-center proxima" onClick={() => contestRedirect(contest.sfid)}>
+                            <div  className="text-center">
+                                <a className="proxima" onClick={() => contestRedirect(contest.sfid)}>
                                     {contest.name}
                                 </a>
                             </div>
@@ -148,8 +148,8 @@ const Contests = ({setAuth}) => {
 
                                 </h5>
                             </div>
-                            <div>
-                                <a className="text-center proxima" onClick={() => contestRedirect(contest.sfid)}>
+                            <div  className="text-center">
+                                <a className=" proxima" onClick={() => contestRedirect(contest.sfid)}>
                                     {contest.name}
                                 </a>
                             </div>
