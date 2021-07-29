@@ -55,7 +55,7 @@ const Profile = (props) => {
         e.preventDefault();
         try {
         localStorage.removeItem("token");
-        setAuth(false);
+        props.setAuth(false);
         console.log("Logout successfully");
         window.location = '/Lobby';
         } catch (err) {
