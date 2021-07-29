@@ -19,13 +19,17 @@ const Landing = (props) => {
         <>
         {/* Main Body */}
         <Container fluid className="landingBody">
-            <Row>
+            <Row className="justify-content-md-center">
+                <Col>
+                </Col>
                 <Col>
                     <div>
                         <Image src={justLogo}></Image>
-                        <h4>Welcome To PickFun</h4>
-                        <p className="text-center">Before you start Picking, let us know your location so we can notify you about free prize contests sponsored by businesses in your area.</p>
+                        <h4 className="text-center whiteText aptifer">Welcome To PickFun</h4>
+                        <p className="text-center whiteText proxima">Before you start Picking, let us know your location so we can notify you about free prize contests sponsored by businesses in your area.</p>
                     </div>
+                </Col>
+                <Col>
                 </Col>
             </Row>
         </Container>
