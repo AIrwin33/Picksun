@@ -319,7 +319,7 @@ const Questions = (props) => {
             {/* Main Body */}
             <Container>
                 {questions.length > 0 &&
-                <Row className="questionRow m-3 p-3 justify-content-center">
+                <Row className="questionRow m-2 p-2 justify-content-center">
                     {/* slide for questions */}
                     <Col className="d-flex justify-content-start">
                     {questions.length !== 0 &&
@@ -362,16 +362,16 @@ const Questions = (props) => {
                 </Row>
                 }
                 {isShowWaiting &&
-                <Row>
+                <Row className="questionRow m-2 p-2 justify-content-center">
                     <Col>
-                        <div className="greyDiv justify-content-md-center proxima font16">
+                        <div className="proxima font16">
                             {props.contest.waiting_text__c}
                         </div>
                     </Col>
                 </Row>
                 }
                 
-                <Row className="questionRow m-1 p-1 justify-content-center">
+                <Row className="questionRow m-2 p-2 justify-content-center">
                     <Col>
                         {questions.length > 0 && !isShowWaiting &&
                         <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
@@ -397,7 +397,7 @@ const Questions = (props) => {
                     </Col>
                 </Row>
                 {questions.length > 0 && !isShowWaiting &&
-                <Row className="questionRow m-3 p-3 justify-content-md-center">
+                <Row className="questionRow m-2 p-2 justify-content-md-center">
                     <Col>
                     </Col>
                     <Col className="align-items-center col-md-auto">
