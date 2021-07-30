@@ -83,7 +83,7 @@ const Lobby = () => {
                                 <img width="247" src={contest.image__c}/>
                             </div>
                             <p className="whiteText aptifer font16 text-center mt-3">{contest.name}</p>
-                            <Button className="btnRed aptifer font16" onClick={() => enterContest(contest.id, contest.sfid, )}>Start Picking</Button>
+                            <Button className="btnRed aptifer font16 boldText" onClick={() => enterContest(contest.id, contest.sfid, )}>Start Picking</Button>
                         </div>
                       </Col>
                     ))}

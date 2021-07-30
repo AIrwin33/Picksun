@@ -23,3 +23,7 @@
 .greyText {
     color:grey;
 }
+
+.boldText {
+    font-weight: bold;
+}
