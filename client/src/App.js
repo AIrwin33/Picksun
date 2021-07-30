@@ -159,14 +159,13 @@ function App() {
                             <div className="footer">
                                 <Row>
                                     <Col>
-                                        <Image  className="float-right mt-3 mr-3" src={backtotop} onClick={handleBackToTop}></Image>
+                                        <Image  className="float-right mt-1 mr-1" src={backtotop} onClick={handleBackToTop}></Image>
                                     </Col>
                                 </Row>
-                                <Row className="justify-content-md-center p-3">
+                                <Row className="justify-content-md-center p-1">
                                     <Col md="4">
                                     </Col>
                                     <Col md="4 text-center">
-                                            <Image src={whitePickfun}></Image>
                                             <p className="proxima whiteText ">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
         sit amet, consectetur adipiscing elit. </p>
                                     </Col>
