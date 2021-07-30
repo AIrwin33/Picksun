@@ -314,7 +314,7 @@ const Question = (props) => {
                 <Row>
 
                     <div className="questionTextDiv">
-                        <h3>{props.questionNum}: {quest.question_text__c}</h3>
+                        <h3>{props.questionNum}) {quest.question_text__c}</h3>
                         {/* {props.ques.live_stat__c !== null &&
                         <div>
                         <span>Current Stat: {props.ques.live_stat__c}</span>

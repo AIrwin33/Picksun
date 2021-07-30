@@ -48,8 +48,7 @@
 
 .footer {
   background-color: #181818;
-  height: 400px;
-  background-image: url("assets/footer.png");
+  height: 80px;
   background-repeat:no-repeat;
   background-position: center center;
 }

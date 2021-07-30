@@ -215,7 +215,7 @@ const Contest = ({match}) => {
                                                 Wrong Answers: {part.wrong_answers__c}
                                             </Col>
                                             <Col>
-                                                Answers Allowed: {part.wrong_answers_allowed__c}
+                                                Wrong Answers Allowed: {part.wrong_answers_allowed__c}
                                             </Col>
                                         </Row>
                                     </Col>
