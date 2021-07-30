@@ -157,19 +157,15 @@ function App() {
                             </Switch>
 
                             <div className="footer">
-                                <Row>
-                                    <Col>
-                                        <Image  className="float-right mt-1 mr-1" src={backtotop} onClick={handleBackToTop}></Image>
-                                    </Col>
-                                </Row>
-                                <Row className="justify-content-md-center p-1">
+                                <Row className="justify-content-md-center">
                                     <Col md="4">
                                     </Col>
                                     <Col md="4 text-center">
-                                            <p className="proxima whiteText ">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
+                                            <p className="proxima whiteText mt-2">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
         sit amet, consectetur adipiscing elit. </p>
                                     </Col>
                                     <Col md="4">
+                                        <Image  className="float-right mt-2 mr-2" src={backtotop} onClick={handleBackToTop}></Image>
                                     </Col>
                                 </Row>
                             </div>
