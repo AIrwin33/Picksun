@@ -45,7 +45,7 @@
 
 .rowCard{
     border: 1px solid grey;
-    border-radius: 1px;
+    border-radius: 5px;
     margin: 5px 30px 5px 30px;
     padding:5px;
     background-color: lightgrey;
