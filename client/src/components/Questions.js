@@ -192,8 +192,9 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
-
+            console.log('questions after disable' + parseData);
             setQuestions(parseData);
+            setShowWaiting(false);
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
