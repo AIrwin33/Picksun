@@ -90,6 +90,13 @@
     border: 1px solid black;
   }
 
+.nextDiv {
+    border: 1px solid white;
+    background-color: #215975;
+    color: white;
+    border-radius: 2px;
+}
+
   .centerText {
       text-align: center;
   }

@@ -348,7 +348,7 @@ const Question = (props) => {
                     </div>
                     {props.doShowNext &&
                     <div className="nextQuestionDiv pb-3">
-                        <div className="float-right">
+                        <div className="float-right nextDiv">
                             <span>Next Question!</span>
                         </div>
                     </div>
