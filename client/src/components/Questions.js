@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import moment from 'moment';
 
 import "./Questions.css";
+import baseball from '../assets/Baseballspinning.gif';
 import {SocketContext} from '../socket';
 import Timer from 'react-compound-timer';
 
@@ -400,6 +401,9 @@ const Questions = (props) => {
                 {questions.length > 0 && !isShowWaiting &&
                 <Row className="questionRow m-2 p-2 justify-content-md-center">
                     <Col>
+                        {counter > 0 &&
+                            <Image src={baseball}/>
+                        }
                     </Col>
                     <Col className="align-items-center col-md-auto">
                         <button
@@ -409,6 +413,9 @@ const Questions = (props) => {
 
                     </Col>
                     <Col>
+                        {counter > 0 &&
+                            <Image src={baseball}/>
+                        }
                     </Col>
                 </Row>
                 }
