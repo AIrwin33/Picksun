@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Carousel, Col, Button, Container, Modal, Row} from "react-bootstrap";
+import {Carousel, Col, Button, Container, Modal, Row, Image} from "react-bootstrap";
 
 import Question from './Question.js';
 
