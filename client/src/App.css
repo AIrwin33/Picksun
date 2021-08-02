@@ -56,6 +56,10 @@
   color:white;
 }
 
+.fontBold {
+  font-weight: bold;
+}
+
 .font12 {
   font-size: 12px;
 }
