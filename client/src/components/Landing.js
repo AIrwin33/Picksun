@@ -7,6 +7,10 @@ import {
     Link
 } from "react-bootstrap";
 
+import {
+    Link
+  } from "react-router-dom";
+
 import "./Landing.css";
 
 import justLogo from  "../assets/logoOnly.png";
