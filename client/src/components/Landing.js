@@ -3,8 +3,7 @@ import {
     Container,
     Row,
     Col,
-    Image,
-    Link
+    Image
 } from "react-bootstrap";
 
 import {
@@ -19,11 +18,6 @@ import $ from 'jquery';
 
 
 const Landing = (props) => {
-
-    const handleLobby = async () => {
-        console.log('handle lobby');
-
-    }
 
     return (
         <>
