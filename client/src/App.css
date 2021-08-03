@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  
+}
+
+.container {
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 .App-logo {
