@@ -135,7 +135,7 @@ const Contest = ({match}) => {
             <>
 
                 {/* Main Body */}
-                <Div id="contestContainer">
+                <div id="contestContainer">
                     <Row className="headerRow">
                         <Col xs={1} sm={1}>
                         </Col>
@@ -234,7 +234,7 @@ const Contest = ({match}) => {
                             </Row>
                         </Tab>
                     </Tabs>
-                </Div>
+                </div>
 
             </>
         )
