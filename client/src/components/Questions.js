@@ -205,7 +205,7 @@ const Questions = (props) => {
     const handleSubmitAnswers = async () => {
         try {
             const partanswers = answerList;
-            console.log('part answers' + partanswers);
+            console.log('part answers' + JSON.stringify(partanswers));
             const body = {partanswers};
             const res = await fetch(`/submitpartanswers`, {
                 method: "POST",
@@ -244,7 +244,7 @@ const Questions = (props) => {
             console.log('child data' + childData);
             if (answerList.length < 1) {
                 answerList.push(childData);
-                console.log('answer list' + answerList);
+                console.log('answer list 1' + JSON.stringify(answerList));
             } else {
 
                 //if answer list contains a question, then replace it, otherwise add it
@@ -253,7 +253,7 @@ const Questions = (props) => {
                         //replace existing question
                         answerList.splice(i, 1, childData);
                         console.log('here');
-                        console.log('answer list' + answerList);
+                        console.log('answer list 2' + answerList);
                     }
                 }
             }
@@ -267,7 +267,7 @@ const Questions = (props) => {
                 }
             }
             setSelectedCount(selectedCount + 1);
-            console.log('answerlist' + answerList);
+            console.log('answerlist 3' + JSON.stringify(answerList));
             setAnswerList(answerList);
             if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
@@ -399,7 +399,7 @@ const Questions = (props) => {
                         }
                     </Col>
                 </Row>
-                {questions.length !== 0 && !isShowWaiting &&
+                {questions.length !== 0 && !isShowWaiting && !submitted &&
                 <Row className="questionRow m-2 p-2 justify-content-md-center">
                     <Col className="col-md-auto">
                         {counter > 0 &&
