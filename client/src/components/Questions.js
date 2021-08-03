@@ -95,7 +95,7 @@ const Questions = (props) => {
         if (questions.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
             setFinished(true);
         }
-            setCounter(40000);
+            setCounter(60000);
             setIndex(questions.length);
 
     }
