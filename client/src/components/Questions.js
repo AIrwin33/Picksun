@@ -405,6 +405,13 @@ const Questions = (props) => {
                         }
                     </Col>
                 </Row>
+                {submitted &&
+                    <p>submitted</p>
+                }
+
+                {isShowWaiting &&
+                    <p>waiting</p>
+                }       
                 {submitted && isShowWaiting && questions.length > 0 ?
                     null
                     : 
