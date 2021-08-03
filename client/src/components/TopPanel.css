@@ -1,3 +1,8 @@
+:root {
+    --sidebar-width: 300px;
+    --toggler-size: 40px;
+  }
+
 .TopPanelCont {
     background-color: #181818;
 }
@@ -151,7 +156,7 @@
   }
 
   .hidden {
-      display:hidden;
+      display:none;
   }
   
   
