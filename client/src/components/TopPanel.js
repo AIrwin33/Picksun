@@ -43,9 +43,9 @@ const TopPanel = (props) => {
       }
     };
 
-    const handleToggle = async () => {
-      $('.sidebar').toggleClass('hidden');
-    }
+    // const handleToggle = async () => {
+    //   $('.sidebar').toggleClass('hidden');
+    // }
 
 
 
