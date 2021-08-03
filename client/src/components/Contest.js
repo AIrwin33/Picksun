@@ -165,7 +165,7 @@ const Contest = ({match}) => {
                         <Col xs={3} sm={3}>
                         </Col>
                     </Row>
-                    <Tabs fill>
+                    <Tabs fill className="ml-2 mr-2">
                         <Tab eventKey="Questions" title="Questions" className="aptifer">
                             <Row>
                                 <Col>
