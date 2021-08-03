@@ -50,6 +50,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
+    z-index: 999;
     opacity: .5;
     transition: transform .6s, background-position 1s .6s;
   }
@@ -74,7 +75,7 @@
   
   .menu {
     list-style-type: none;
-    z-index: 1;
+    z-index: 999;
   }
   
   .menu__link {
@@ -86,11 +87,11 @@
     
   }
   
-  .menu__link:hover,
+  /* .menu__link:hover,
   .menu__link:focus,
   .menu__link:active {
     color: #46AFEF;
-  }
+  } */
   
   .menu-toggler {
     display: block;
