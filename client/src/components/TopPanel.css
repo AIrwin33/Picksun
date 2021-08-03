@@ -39,6 +39,7 @@
   
   .sidebar {
     width: var(--sidebar-width);
+    height: 100vh;
     transform: translateX(calc(var(--sidebar-width) * -1));
     background: linear-gradient(to bottom right, Tomato, Wheat);
     background-size: 400% 400%;
@@ -73,7 +74,6 @@
   
   .menu {
     list-style-type: none;
-    margin-top:70vh;
   }
   
   .menu__link {
@@ -98,6 +98,7 @@
     position: fixed;
     cursor: pointer;
     border-radius: 4px;
+    z-index: 1;
   }
   
   
@@ -139,7 +140,7 @@
   }
   
   .input-toggler:checked ~ .menu-toggler .menu-toggler__line {
-    background: Wheat;
+    background: White;
   }
   
   .input-toggler:checked ~ .menu-toggler .menu-toggler__line:nth-child(1) {

@@ -71,7 +71,7 @@ const TopPanel = (props) => {
               <span className="menu-toggler__line"></span>
             </label>
             <aside className="sidebar hidden">
-              <ul className="menu aptifer">
+              <ul className="menu aptifer ml-3">
                 <li className="menu__item"><a className="menu__link" href="/">Home</a></li>
                 <li className="menu__item"><a className="menu__link" href="/Lobby">Lobby</a></li>
                 <li className="menu__item"><a className="menu__link" href="/Contests">My Contests</a></li>
