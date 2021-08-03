@@ -205,6 +205,7 @@ const Questions = (props) => {
     const handleSubmitAnswers = async () => {
         try {
             const partanswers = answerList;
+            console.log('part answers' + partanswers);
             const body = {partanswers};
             const res = await fetch(`/submitpartanswers`, {
                 method: "POST",
@@ -266,6 +267,7 @@ const Questions = (props) => {
                 }
             }
             setSelectedCount(selectedCount + 1);
+            console.log('answerlist' + answerList);
             setAnswerList(answerList);
             if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
