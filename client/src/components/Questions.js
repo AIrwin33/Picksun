@@ -412,7 +412,7 @@ const Questions = (props) => {
                 {isShowWaiting &&
                     <p>waiting</p>
                 }       
-                {submitted && isShowWaiting && questions.length > 0 ?
+                {submitted && isShowWaiting ?
                     null
                     : 
                     <Row className="questionRow m-2 p-2 justify-content-md-center">
