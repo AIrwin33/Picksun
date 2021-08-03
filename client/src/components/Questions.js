@@ -229,12 +229,12 @@ const Questions = (props) => {
             setQuestions(tempQuestions)
             setAnswerListShow(false);
             setSubmitted(true);
-            //reset count
             setSelectedCount(1);
             setSubsegmentCount(1);
             setShowWaiting(true);
             console.log(submitted);
             console.log(isShowWaiting);
+            console.log(questions.length);
 
         } catch (err) {
             console.log('handle submit answers err : ' + err.message);
@@ -405,7 +405,7 @@ const Questions = (props) => {
                         }
                     </Col>
                 </Row>
-                {!submitted && questions.length !== 0 ?
+                {!submitted && !isShowWaiting  && questions.length > 0?
                     <Row className="questionRow m-2 p-2 justify-content-md-center">
                         <Col className="col-md-auto">
                             {counter > 0 &&
