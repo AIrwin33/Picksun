@@ -147,8 +147,8 @@ const Profile = (props) => {
                     </Button>
                 </Col>
             </Row>
-            <Tabs>
-                <Tab className="profileTab" eventKey="profile" title="Profile">
+            <Tabs className="ml-2 mr-2">
+                <Tab className="profileTab ml-2 mr-2" eventKey="profile" title="Profile">
                     <Card>  
                     <Card.Header className="text-center">Profile</Card.Header>
                     <ListGroup variant="flush">
@@ -159,7 +159,7 @@ const Profile = (props) => {
                     </ListGroup>
                     </Card>
                 </Tab>
-                <Tab className="profileTab" eventKey="preferences" title="Preferences">
+                <Tab className="profileTab ml-2 mr-2" eventKey="preferences" title="Preferences">
                     <Card>
                         <Card.Header className="text-center">Set Preferences</Card.Header>
                         <Form onSubmit={() => onUpdateProfile(profile.participant_id)} className="m-3">
