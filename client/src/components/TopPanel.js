@@ -44,7 +44,7 @@ const TopPanel = (props) => {
     };
 
     const handleToggle = async () => {
-      $('.sidebar').removeClass('hidden');
+      $('.sidebar').toggleClass('hidden');
     }
 
 
