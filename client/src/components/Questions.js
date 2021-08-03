@@ -363,9 +363,9 @@ const Questions = (props) => {
                 </Row>
                 }
                 {isShowWaiting &&
-                <Row className="questionRow m-2 p-2 justify-content-center">
+                <Row className="questionRow m-2 p-2">
                     <Col>
-                        <div className="proxima font16">
+                        <div className="proxima font16 text-center">
                             {props.contest.waiting_text__c}
                         </div>
                     </Col>
