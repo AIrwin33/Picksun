@@ -222,9 +222,9 @@ const Contest = ({match}) => {
                                 </Row>
                             })}
                         </Tab>
-                        <Tab eventKey="Chat" title="Twitter" className="aptifer">
+                        <Tab eventKey="Chat" title="Twitter" className="aptifer ">
                             <Row>
-                                <Col>
+                                <Col className='mx-auto'>
                                     <TwitterTimelineEmbed
                                         sourceType="profile"
                                         screenName="playpickfun"
