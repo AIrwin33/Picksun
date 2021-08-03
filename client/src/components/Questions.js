@@ -249,15 +249,18 @@ const Questions = (props) => {
 
                 //if answer list contains a question, then replace it, otherwise add it
                 for (var i = 0; i < answerList.length; i++) {
-                    if (childData.questionid === answerList[i].questionid) {
+                    if (childData.question__c === answerList[i].question__c) {
                         //replace existing question
                         answerList.splice(i, 1, childData);
                         console.log('here');
                         console.log('answer list 2' + JSON.stringify(answerList));
+                    }else {
+                        answerList.push(childData);
+                        break;
                     }
                 }
             }
-
+            console.log('answerlist 3' + JSON.stringify(answerList));
             var numplus = index + 1;
             for (var k = 0; k < questions.length; k++) {
                 if(questions[numplus] !== undefined){
@@ -267,7 +270,7 @@ const Questions = (props) => {
                 }
             }
             setSelectedCount(selectedCount + 1);
-            console.log('answerlist 3' + JSON.stringify(answerList));
+            
             setAnswerList(answerList);
             if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
