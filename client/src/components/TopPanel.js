@@ -64,7 +64,7 @@ const TopPanel = (props) => {
         <Navbar  className="TopPanelCont" expand="md">
             
 
-            <input type="checkbox" id="menuToggler" className="input-toggler" onClick={handleToggle}/>
+            <input type="checkbox" id="menuToggler" className="input-toggler"/>
             <label for="menuToggler" className="menu-toggler ml-3">
               <span className="menu-toggler__line"></span>
               <span className="menu-toggler__line"></span>
