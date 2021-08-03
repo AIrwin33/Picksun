@@ -96,10 +96,8 @@
     width: var(--toggler-size);
     height: var(--toggler-size);
     position: fixed;
-    top: 10px;
-    left: 10px;
     cursor: pointer;
-    z-index: 1;
+    border-radius: 4px;
   }
   
   
@@ -117,6 +115,7 @@
     animation-duration: .5s;
     animation-iteration-count:1;
     animation-timing-function: ease-out;
+    border-radius: 4px;
   }
   
   .input-toggler:checked ~ .menu-toggler .menu-toggler__line {

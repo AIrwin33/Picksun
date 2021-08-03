@@ -43,6 +43,10 @@ const TopPanel = (props) => {
       }
     };
 
+    const handleToggle = async () => {
+      $('.sidebar').removeClass('hidden');
+    }
+
 
 
     useEffect(() => {
@@ -60,7 +64,7 @@ const TopPanel = (props) => {
         <Navbar  className="TopPanelCont" expand="md">
             
 
-            <input type="checkbox" id="menuToggler" className="input-toggler" />
+            <input type="checkbox" id="menuToggler" className="input-toggler" onClick={handleToggle}/>
             <label for="menuToggler" className="menu-toggler">
               <span className="menu-toggler__line"></span>
               <span className="menu-toggler__line"></span>
@@ -75,7 +79,7 @@ const TopPanel = (props) => {
                 <li className="menu__item"><a className="menu__link" href="https://pick.fun">Rules</a></li>
               </ul>
             </aside>
-            <Navbar.Brand   className="nav-logo justify-content-end">
+            <Navbar.Brand   className="nav-logo ml-auto">
                 <img src={headerIcon} height="50"></img>
             </Navbar.Brand>
             {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" className="custom-toggler"/>
