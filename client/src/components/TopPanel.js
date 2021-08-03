@@ -65,13 +65,14 @@ const TopPanel = (props) => {
             
 
             <input type="checkbox" id="menuToggler" className="input-toggler" onClick={handleToggle}/>
-            <label for="menuToggler" className="menu-toggler">
+            <label for="menuToggler" className="menu-toggler ml-3">
               <span className="menu-toggler__line"></span>
               <span className="menu-toggler__line"></span>
               <span className="menu-toggler__line"></span>
             </label>
             <aside className="sidebar hidden">
               <ul className="menu aptifer ml-3">
+                
                 <li className="menu__item"><a className="menu__link" href="/">Home</a></li>
                 <li className="menu__item"><a className="menu__link" href="/Lobby">Lobby</a></li>
                 <li className="menu__item"><a className="menu__link" href="/Contests">My Contests</a></li>
