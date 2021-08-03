@@ -233,6 +233,9 @@ const Questions = (props) => {
             setSelectedCount(1);
             setSubsegmentCount(1);
             setShowWaiting(true);
+            console.log(submitted);
+            console.log(isShowWaiting);
+
         } catch (err) {
             console.log('handle submit answers err : ' + err.message);
         }
@@ -402,27 +405,29 @@ const Questions = (props) => {
                         }
                     </Col>
                 </Row>
-                {questions.length !== 0 && isShowWaiting === false && submitted === false &&
-                <Row className="questionRow m-2 p-2 justify-content-md-center">
-                    <Col className="col-md-auto">
-                        {counter > 0 &&
-                            <Image width='35' src={baseball}/>
-                        }
-                    </Col>
-                    <Col className="align-items-center col-md-auto">
-                        <button
-                            className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
-                            onClick={handleSubmitAnswers}>submit answers
-                        </button>
+                {!submitted && questions.length !== 0 ?
+                    <Row className="questionRow m-2 p-2 justify-content-md-center">
+                        <Col className="col-md-auto">
+                            {counter > 0 &&
+                                <Image width='35' src={baseball}/>
+                            }
+                        </Col>
+                        <Col className="align-items-center col-md-auto">
+                            <button
+                                className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
+                                onClick={handleSubmitAnswers}>submit answers
+                            </button>
 
-                    </Col>
-                    <Col className="col-md-auto">
-                        {counter > 0 &&
-                            <Image  width='35' src={baseball}/>
-                        }
-                    </Col>
-                </Row>
+                        </Col>
+                        <Col className="col-md-auto">
+                            {counter > 0 &&
+                                <Image  width='35' src={baseball}/>
+                            }
+                        </Col>
+                    </Row>
+                    : null
                 }
+
 
         </>
     )
