@@ -29,21 +29,18 @@ const Landing = (props) => {
                 <Col md={4} className="text-center">
                     <Image src={justLogo}></Image>
                     <h5 className="whiteText aptifer"> How to Pickfun</h5>
-                    <p className="whiteText proxima">
-                    <span className="whiteText aptifer fontBold">Pick</span>
-                        Go to the Lobby and select a contest
-                        Simple questions about ‘what will happen next?’ are published while the live event (ex: football game) takes place
-                        Pick your answers before the timer reaches zero and then watch the live event to see if you were right
-                        Participants are ‘knocked out’ from the competition after answering a certain number of questions incorredtly. 
-                        Last player remaining wins the prize. If multiple participants survive to the contest’s end, the player with the fewest wrong answers wins. Prize is split if there’s a tie.
-                    </p>
-                    <p className="whiteText proxima">
+                    <span className="whiteText aptifer fontBold">Pick</span><br/>
+                    <span className="whiteText proxima">Go to the Lobby and select a contest</span><br/>
+                    <span className="whiteText proxima">Simple questions about ‘what will happen next?’ are published while the live event (ex: football game) takes place</span><br/>
+                    <span className="whiteText proxima">Pick your answers before the timer reaches zero and then watch the live event to see if you were right</span><br/>
+                    <span className="whiteText proxima">Participants are ‘knocked out’ from the competition after answering a certain number of questions incorredtly. </span><br/>
+                    <span className="whiteText proxima">Last player remaining wins the prize. If multiple participants survive to the contest’s end, the player with the fewest wrong answers wins. Prize is split if there’s a tie.</span><br/>
                     <span className="whiteText aptifer fontBold">Fun</span>
-                        Our contests cover short segements - such as one inning of a baseball game - so that fun and winning comes at you fast!
-                        No complicated scoring systems. No math skills required.
-                        You drive the action! uggest questions you want us to ask while the contest is underway.
-                        Hangout! While contests take place, come chat about whatever you want with the moderator and fellow participants.
-                    </p>
+                    <span className="whiteText proxima">Our contests cover short segements - such as one inning of a baseball game - so that fun and winning comes at you fast!</span><br/>
+                    <span className="whiteText proxima">No complicated scoring systems. No math skills required.
+                    </span><br/>
+                    <span className="whiteText proxima">You drive the action! uggest questions you want us to ask while the contest is underway.</span><br/>
+                    <span className="whiteText proxima">   Hangout! While contests take place, come chat about whatever you want with the moderator and fellow participants.</span><br/>
                     <Link className="btn btn-primary" label="lets go!" to='/Lobby'>Let's Go!</Link>
                 </Col>
                 <Col md={4}>
