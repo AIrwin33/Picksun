@@ -265,6 +265,7 @@ const Question = (props) => {
     useEffect((e) => {
         setQuest(props.ques);
         handleSubsegmentCount(props.ques.subsegment__c);
+        console.log('is locked' + props.ques.islocked__c);
         if (props.ques.islocked__c === true || props.isInactive === true || props.issubmitted === true) {
             setDisabledQuestion(true);
         }
