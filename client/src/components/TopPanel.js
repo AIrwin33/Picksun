@@ -60,22 +60,22 @@ const TopPanel = (props) => {
         <Navbar  className="TopPanelCont" expand="md">
             
 
-            <input type="checkbox" id="menuToggler" class="input-toggler" />
-            <label for="menuToggler" class="menu-toggler">
-              <span class="menu-toggler__line"></span>
-              <span class="menu-toggler__line"></span>
-              <span class="menu-toggler__line"></span>
+            <input type="checkbox" id="menuToggler" className="input-toggler" />
+            <label for="menuToggler" className="menu-toggler">
+              <span className="menu-toggler__line"></span>
+              <span className="menu-toggler__line"></span>
+              <span className="menu-toggler__line"></span>
             </label>
-            <aside class="sidebar">
-              <ul class="menu aptifer">
-                <li class="menu__item"><a class="menu__link" href="/">Home</a></li>
-                <li class="menu__item"><a class="menu__link" href="/Lobby">Lobby</a></li>
-                <li class="menu__item"><a class="menu__link" href="/Contests">My Contests</a></li>
-                <li class="menu__item"><a class="menu__link" href="/Profile">Profile</a></li>
-                <li class="menu__item"><a class="menu__link" href="https://pick.fun">Rules</a></li>
+            <aside className="sidebar hidden">
+              <ul className="menu aptifer">
+                <li className="menu__item"><a className="menu__link" href="/">Home</a></li>
+                <li className="menu__item"><a className="menu__link" href="/Lobby">Lobby</a></li>
+                <li className="menu__item"><a className="menu__link" href="/Contests">My Contests</a></li>
+                <li className="menu__item"><a className="menu__link" href="/Profile">Profile</a></li>
+                <li className="menu__item"><a className="menu__link" href="https://pick.fun">Rules</a></li>
               </ul>
             </aside>
-            <Navbar.Brand   className="nav-logo">
+            <Navbar.Brand   className="nav-logo justify-content-end">
                 <img src={headerIcon} height="50"></img>
             </Navbar.Brand>
             {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" className="custom-toggler"/>

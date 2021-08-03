@@ -149,6 +149,10 @@
   .input-toggler:checked ~ .menu-toggler .menu-toggler__line:nth-child(3) {
     transform: translateY(calc(var(--toggler-size) / 5 * -2)) rotate(-45deg);
   }
+
+  .hidden {
+      display:hidden;
+  }
   
   
   
