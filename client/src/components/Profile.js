@@ -94,7 +94,7 @@ const Profile = (props) => {
         <>
 
         {/* Main Body */}
-        <Container className="profileContainer">
+        <div className="profileContainer">
             <Row  className="pt-3">
                 <Col sm={3} xs={3} className="text-center">
                 </Col>
@@ -184,7 +184,7 @@ const Profile = (props) => {
             </Tabs>
             {/* if preferences */}
             
-        </Container>
+        </div>
 
         </>
     )
