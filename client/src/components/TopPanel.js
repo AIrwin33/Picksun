@@ -48,7 +48,8 @@ const TopPanel = (props) => {
       // content.style.visibility = "hidden";
 
       var sidebar = document.getElementsByClassName("sidebar")[0];
-
+      console.log(sidebar); 
+      console.log(document.getElementsByTagName("ul"));
       // Add click listeners to the menu on the sidebar
       document.getElementsByTagName("ul")[0].addEventListener("click", function(evt) {
         // when a menu item is clicked hide the sidebar by unchecking the input
