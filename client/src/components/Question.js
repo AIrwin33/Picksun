@@ -361,11 +361,7 @@ const Question = (props) => {
 
                             <Col>
                                 <div>
-                                    {
-                                        <span>Your Answer: {partAnswer.selection_value__c}</span>
-                                    }
-
-
+                                    <span>Your Answer: {partAnswer.selection_value__c}</span>
                                     {partAnswer.Status__c === 'Did Not Answer' &&
                                     <span>Your Answer: Did Not Answer </span>
                                     }
