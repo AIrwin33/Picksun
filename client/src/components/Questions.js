@@ -204,6 +204,8 @@ const Questions = (props) => {
 
     const handleSubmitAnswers = async () => {
         try {
+            setSubmitted(true);
+            setShowWaiting(true);
             const partanswers = answerList;
             console.log('part answers' + JSON.stringify(partanswers));
             const body = {partanswers};
@@ -228,10 +230,10 @@ const Questions = (props) => {
             tempQuestions[questionIndex].selection_value__c = partanswers[0].selection_value__c
             setQuestions(tempQuestions)
             setAnswerListShow(false);
-            setSubmitted(true);
+            
             setSelectedCount(1);
             setSubsegmentCount(1);
-            setShowWaiting(true);
+            
             console.log(submitted);
             console.log(isShowWaiting);
             console.log(questions.length);
@@ -405,13 +407,6 @@ const Questions = (props) => {
                         }
                     </Col>
                 </Row>
-                {submitted &&
-                    <p>submitted</p>
-                }
-
-                {isShowWaiting &&
-                    <p>waiting</p>
-                }       
                 {!submitted && !isShowWaiting  && questions.length > 0 &&
                     <Row className="questionRow m-2 p-2 justify-content-md-center">
                         <Col className="col-md-auto">
