@@ -319,7 +319,6 @@ const Questions = (props) => {
         <>
 
             {/* Main Body */}
-            <Container>
                 {questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-center">
                     {/* slide for questions */}
@@ -419,7 +418,6 @@ const Questions = (props) => {
                     </Col>
                 </Row>
                 }
-            </Container>
 
         </>
     )
