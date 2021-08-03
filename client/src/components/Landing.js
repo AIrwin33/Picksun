@@ -46,7 +46,7 @@ const Landing = (props) => {
                     <span className="whiteText proxima">You drive the action! uggest questions you want us to ask while the contest is underway.</span><br/>
                     <span className="whiteText proxima">   Hangout! While contests take place, come chat about whatever you want with the moderator and fellow participants.</span><br/>
                     </div>
-                    <Link className="btn btn-primary" label="lets go!" to='/Lobby'>Let's Go!</Link>
+                    <Link className="btn btn-primary mt-3" label="lets go!" to='/Lobby'>Let's Go!</Link>
                 </Col>
                 <Col md={4}>
                 </Col>
