@@ -405,7 +405,9 @@ const Questions = (props) => {
                         }
                     </Col>
                 </Row>
-                {!submitted && !isShowWaiting  && questions.length > 0?
+                {submitted && isShowWaiting && questions.length > 0?
+                    null
+                    : 
                     <Row className="questionRow m-2 p-2 justify-content-md-center">
                         <Col className="col-md-auto">
                             {counter > 0 &&
@@ -425,7 +427,6 @@ const Questions = (props) => {
                             }
                         </Col>
                     </Row>
-                    : null
                 }
 
 
