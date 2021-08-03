@@ -68,7 +68,7 @@
   
   .menu {
     list-style-type: none;
-    margin-top:200px;
+    margin-top:70vh;
   }
   
   .menu__link {
@@ -83,7 +83,7 @@
   .menu__link:hover,
   .menu__link:focus,
   .menu__link:active {
-    color: Gold;
+    color: #46AFEF;
   }
   
   .menu-toggler {
@@ -101,7 +101,7 @@
   
   .menu-toggler__line {
     height: calc(var(--toggler-size) / 5);
-    background: Tomato;
+    background: #215975;
     position: absolute;
     left: 0;
     right: 0;

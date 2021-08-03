@@ -58,9 +58,7 @@ const TopPanel = (props) => {
     return (
             
         <Navbar  className="TopPanelCont" expand="md">
-            <Navbar.Brand   className="nav-logo">
-                <img src={headerIcon} height="50"></img>
-            </Navbar.Brand>
+            
 
             <input type="checkbox" id="menuToggler" class="input-toggler" />
             <label for="menuToggler" class="menu-toggler">
@@ -69,7 +67,7 @@ const TopPanel = (props) => {
               <span class="menu-toggler__line"></span>
             </label>
             <aside class="sidebar">
-              <ul class="menu">
+              <ul class="menu aptifer">
                 <li class="menu__item"><a class="menu__link" href="/">Home</a></li>
                 <li class="menu__item"><a class="menu__link" href="/Lobby">Lobby</a></li>
                 <li class="menu__item"><a class="menu__link" href="/Contests">My Contests</a></li>
@@ -77,6 +75,9 @@ const TopPanel = (props) => {
                 <li class="menu__item"><a class="menu__link" href="https://pick.fun">Rules</a></li>
               </ul>
             </aside>
+            <Navbar.Brand   className="nav-logo">
+                <img src={headerIcon} height="50"></img>
+            </Navbar.Brand>
             {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" className="custom-toggler"/>
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="ml-auto">
