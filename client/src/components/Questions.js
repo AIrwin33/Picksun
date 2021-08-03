@@ -399,7 +399,7 @@ const Questions = (props) => {
                 </Row>
                 {questions.length > 0 && !isShowWaiting &&
                 <Row className="questionRow m-2 p-2 justify-content-md-center">
-                    <Col className='mx-auto'>
+                    <Col className="col-md-auto">
                         {counter > 0 &&
                             <Image width='35' src={baseball}/>
                         }
@@ -411,9 +411,9 @@ const Questions = (props) => {
                         </button>
 
                     </Col>
-                    <Col className='mx-auto'>
+                    <Col className="col-md-auto">
                         {counter > 0 &&
-                            <Image src={baseball}/>
+                            <Image  width='35' src={baseball}/>
                         }
                     </Col>
                 </Row>
