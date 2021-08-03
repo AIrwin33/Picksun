@@ -240,8 +240,8 @@ const Questions = (props) => {
 
     const updateAnswerList = async (childData) => {
         try {
-            console.log('in update answer list' + answerList);
-            console.log('child data' + childData);
+            console.log('in update answer list' + JSON.stringify(answerList));
+            console.log('child data' + JSON.stringify(childData));
             if (answerList.length < 1) {
                 answerList.push(childData);
                 console.log('answer list 1' + JSON.stringify(answerList));
@@ -253,7 +253,7 @@ const Questions = (props) => {
                         //replace existing question
                         answerList.splice(i, 1, childData);
                         console.log('here');
-                        console.log('answer list 2' + answerList);
+                        console.log('answer list 2' + JSON.stringify(answerList));
                     }
                 }
             }
