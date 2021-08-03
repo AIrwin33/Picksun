@@ -81,7 +81,7 @@ function App() {
             <SocketContext.Provider value={socket}>
                 <Fragment>
                     <Router>
-                        <div className="container">
+                        <div>
 
                             <div id="top">
                                 <TopPanel profile={isProfile}/>
