@@ -44,8 +44,8 @@ const TopPanel = (props) => {
     };
 
     // Hide the contents until the burger menu finishes sliding in from the left
-      var content = document.getElementsByTagName("main")[0];
-      content.style.visibility = "hidden";
+      // var content = document.getElementsByTagName("main")[0];
+      // content.style.visibility = "hidden";
 
       var sidebar = document.getElementsByClassName("sidebar")[0];
 
