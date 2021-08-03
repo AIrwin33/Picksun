@@ -1,5 +1,6 @@
 #contestContainer {
     background-color: #262626;
+    min-height: 100vh;
 }
 
 .list-group-item {
