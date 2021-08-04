@@ -94,7 +94,11 @@
     border: 1px solid white;
     background-color: #215975;
     color: white;
-    border-radius: 2px;
+    border-radius: 5px;
+}
+
+.nextDiv span {
+    padding: 3px;
 }
 
   .centerText {
