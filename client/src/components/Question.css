@@ -121,20 +121,18 @@
     font-size: 12px;
 }
 
-.modalDiv {
+
+.modalHeader {
     background-color: #262626;
 }
 
-/* .modalHeader {
-
+.modalBody {
+    background-color: #262626;
 }
-
-.modalBody { */
-
-
 
 .modalBtn {
     background-color: #d4d4d4;
     border: 2px solid #262626;
     border-radius: 3px;
+    color: #262626;
 }
