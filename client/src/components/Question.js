@@ -300,13 +300,13 @@ const Question = (props) => {
                     <a src="#" className="float-right" onClick={handleInfoShow} >
                         <Image src={info} width="22"></Image>
                     </a>
-                    <Modal show={showInfo} onHide={handleInfoClose}>
+                    <Modal className="modalDiv" show={showInfo} onHide={handleInfoClose}>
                         <Modal.Header closeButton>
-                        <Modal.Title className="aptifer font16">Modal heading</Modal.Title>
+                        <Modal.Title className="aptifer font16 modalHeader">Modal heading</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body className="proxima font12">Woohoo, you're reading this text in a modal!</Modal.Body>
+                        <Modal.Body className="proxima font12 modalBody">Woohoo, you're reading this text in a modal!</Modal.Body>
                         <Modal.Footer>
-                        <Button className="aptifer" variant="secondary" onClick={handleInfoClose}>
+                        <Button className="aptifer modalBtn" variant="secondary" onClick={handleInfoClose}>
                             Close
                         </Button>
                         </Modal.Footer>

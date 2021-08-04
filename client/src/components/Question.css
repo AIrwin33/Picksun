@@ -40,7 +40,7 @@
 }
 
 .questionTextDiv {
-    height:15vh;
+    height:20vh;
 }
 
 .carousel-control-next-icon {
@@ -119,4 +119,22 @@
 
 .font12 {
     font-size: 12px;
+}
+
+.modalDiv {
+    background-color: #262626;
+}
+
+/* .modalHeader {
+
+}
+
+.modalBody { */
+
+}
+
+.modalBtn {
+    background-color: #d4d4d4;
+    border: 2px solid #262626;
+    border-radius: 3px;
 }
