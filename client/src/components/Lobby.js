@@ -11,19 +11,6 @@ import "./Lobby.css";
 const Lobby = () => {
      //get contests
      const [contests, setContests] = useState([]);
-     const getProfile = async () => {
-      try {
-        const res = await fetch("/profile", {
-          method: "POST",
-          headers: { jwt_token: localStorage.token }
-        });
-  
-        const parseData = await res.json();
-        
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
      const getAllContests = async () => {
          try {
              const res = await fetch("/allcontests", {
@@ -64,12 +51,8 @@ const Lobby = () => {
            
        };
      useEffect(() => {
-       getProfile();
        getAllContests();
        }, []);
-     
-     
-
         return (
             <>
             {/* Main Body */}

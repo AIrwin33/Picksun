@@ -41,23 +41,8 @@ const Contests = () => {
       };
 
       const contestRedirect = async sfid => {
-
-        //get existing contest and participation and pass
         try {
-            console.log('id' + sfid);
-            const res = await fetch(
-              "/participationbycontest/" + sfid,
-              {
-                method: "GET",
-                headers: {
-                    "Content-type": "application/json",
-                    jwt_token: localStorage.token
-                }
-              }
-            );
-            const parseRes = await res.json();
-            
-              window.location = "/Contest/" + sfid;
+            window.location = "/Contest/" + sfid;
             
           } catch (err) {
             console.error(err.message);
