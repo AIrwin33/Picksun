@@ -1,19 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {Col, Container, Image, Row, Tab, Tabs,} from "react-bootstrap";
+import {Row, Col, Tab, Tabs, Image} from "react-bootstrap";
+import {TwitterTimelineEmbed} from 'react-twitter-embed';
+import {SocketContext} from "../socket";
+import {connect} from "react-redux";
+
+import "./Contest.css";
 
 import Questions from './Questions.js';
 
 import avatar from '../assets/blue_avatar_200.png';
 
-import {TwitterTimelineEmbed} from 'react-twitter-embed';
-
-import "./Contest.css";
-import {SocketContext} from "../socket";
-import {connect} from "react-redux";
-
 
 const Contest = ({match}) => {
-    //get contest
     const [contest, setContest] = useState([]);
     const [isloaded, setLoaded] = useState(false);
     const [home, setHomeTeam] = useState([]);
@@ -25,7 +23,6 @@ const Contest = ({match}) => {
     const socket = React.useContext(SocketContext)
 
     const getContest = async () => {
-        console.log('getting contest');
         try {
             const res = await fetch(`/contestdetail/${match.params.id}`, {
                 method: "GET",
@@ -51,9 +48,6 @@ const Contest = ({match}) => {
             const parseData = await res.json();
             setHomeTeam(parseData[0]);
             setAwayTeam(parseData[1]);
-
-
-
             setTimeout(
                 function() {
                     console.log('end of timeout');
@@ -69,7 +63,6 @@ const Contest = ({match}) => {
     }
 
     const getContestParticipations = async (contestRec) => {
-        console.log('getting contest participations');
         try {
             const res = await fetch(`/contestparticipations/` + contestRec.sfid, {
                 method: "GET",
@@ -88,7 +81,6 @@ const Contest = ({match}) => {
             setActiveParts(activeParts.length);
             setParticipations(activeParts);
             getParticipationByContest(contestRec);
-
             
         } catch (err) {
             console.error(err.message);
@@ -96,7 +88,6 @@ const Contest = ({match}) => {
     }
 
     const getParticipationByContest = async (contestRec) => {
-        console.log('getting participation be contest');
         try {
             const res = await fetch(`/participationbycontest/` + contestRec.sfid, {
                 method: "GET",
@@ -112,18 +103,10 @@ const Contest = ({match}) => {
     }
 
     const updateparts = async (childData) => {
+        //updates participations in the contest as they are updated from questions.
 
+        //passed up from questions js when answers are marked
         getContestParticipations(contest);
-
-        // var i;
-        // for (i = 0; i < participations.length; i++) {
-        //     console.log(participations[i]);
-        //     if (participations[i].externalid__c === childData.externalid__c) {
-        //         console.log('found');
-        //         participations[i] = childData;
-        //     }
-        // }
-        // console.log(participations);
     }
 
     useEffect(() => {
@@ -133,7 +116,6 @@ const Contest = ({match}) => {
     }, []);
     return ((
             <>
-
                 {/* Main Body */}
                 <div id="contestContainer">
                     <Row className="headerRow">
@@ -169,8 +151,6 @@ const Contest = ({match}) => {
                         <Tab eventKey="Questions" title="Questions" className="aptifer">
                             <Row>
                                 <Col>
-
-
                                     {isloaded &&
                                     <Questions updatepart={updateparts} contestid={contest.sfid}
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}

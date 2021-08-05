@@ -101,26 +101,13 @@
     padding: 3px;
 }
 
-  .centerText {
-      text-align: center;
-  }
-
-  .counterDiv {
-      border-bottom: 1px solid black;
-  }
-
-  .proxima {
-    font-family: proxima-reg;
+.centerText {
+    text-align: center;
 }
 
-.aptifer {
-    font-family: aptifer-reg;
+.counterDiv {
+    border-bottom: 1px solid black;
 }
-
-.font12 {
-    font-size: 12px;
-}
-
 
 .modalHeader {
     background-color: #262626;

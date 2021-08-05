@@ -19,29 +19,8 @@
     margin:0.25em;
 }
 
-
 .rowBar {
     margin-top:1em; 
-}
-
-.whiteText {
-    color:white;
-}
-
-.greyText {
-    color:grey;
-}
-
-.fontBold {
-    font-weight:bold;
-}
-
-.proxima {
-    font-family: proxima-reg;
-}
-
-.aptifer {
-    font-family: aptifer-reg;
 }
 
 .rowCard{

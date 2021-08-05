@@ -13,30 +13,6 @@
   pointer-events: none;
 }
 
-@font-face {
-  font-family: aptifer-reg;
-  src: url("assets/aptifer-slab-regular.ttf");
-}
-
-@font-face {
-  font-family: proxima-reg;
-  src: url("assets/ProximaNova-Regular.ttf");
-}
-
-.aptifer {
-  font-family: aptifer-reg;
-}
-
-.proxima {
-  font-family: proxima-reg;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -58,8 +34,30 @@
   background-position: center center;
 }
 
+@font-face {
+  font-family: aptifer-reg;
+  src: url("assets/aptifer-slab-regular.ttf");
+}
+
+@font-face {
+  font-family: proxima-reg;
+  src: url("assets/ProximaNova-Regular.ttf");
+}
+
+.aptifer {
+  font-family: aptifer-reg;
+}
+
+.proxima {
+  font-family: proxima-reg;
+}
+
 .whiteText {
   color:white;
+}
+
+.greyText {
+  color:grey;
 }
 
 .fontBold {
@@ -77,6 +75,15 @@
 .font20 {
   font-size: 20px;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+
 
 @keyframes App-logo-spin {
   from {

@@ -71,14 +71,6 @@
     color: black;
 }
 
-.font12 {
-    font-size:12px;
-}
-
-.proxima {
-    font-family: proxima-reg;
-}
-
 @media only screen and (max-width: 600px) {
     .questionTextDiv {
         height: 35vh;

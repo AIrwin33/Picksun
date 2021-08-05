@@ -10,7 +10,7 @@ const Question = (props) => {
     const [partAnswer, setPartAnswer] = useState([]);
     const [quest, setQuest] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
-    const [showanswer, setShowAnswer] = useState([false]);
+    const [showanswer, setShowAnswer] = useState(false);
     const [subSegmentCount, setSubsegmentCount] = useState(0);
     const [showKnockOut, setKnockOut] = useState(false);
     const [contestKnockoutText, setContestKnockoutText] = useState([]);
@@ -43,12 +43,9 @@ const Question = (props) => {
         handleUpdateQuestionValue(event.target.value, label);
     }
     const handleUpdateQuestionValue = async (eventVal, eventLabel) => {
-
         try {
-
             let newuuid = uuidv4();
             const partid = props.partsfid;
-            const expartid = props.participation_id;
             const question_sfid = props.ques.sfid;
             const answer = {
                 participation__c: partid,
@@ -58,11 +55,12 @@ const Question = (props) => {
                 externalid__c: newuuid,
                 status__c: 'Submitted'
             }
+
+            //add answer to client side answer list in Questions JS before submitting
             props.addAnswer(answer);
         } catch (err) {
             console.error(err.message);
         }
-
     }
 
     const handleExistingPartAnswer = async () => {
@@ -81,7 +79,6 @@ const Question = (props) => {
             );
 
             const parseRes = await response.json();
-            console.log(parseRes);
             setPartAnswer(parseRes);
             var partRes = parseRes
 
@@ -93,9 +90,7 @@ const Question = (props) => {
 
             setShowAnswer(true);
 
-
             if (props.contestfinished == true) {
-                console.log('contest finsihed, handle place finsihed');
                 //TODO - wait for correct count
                 handleContestEnd();
             } else {
@@ -129,7 +124,6 @@ const Question = (props) => {
             const parseRes = await response.json();
             const participationwrong = parseRes;
             if (participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c) {
-                console.log('knocked out');
                 handleKnockout();
             } else {
                 console.log('still in the game');
@@ -229,6 +223,7 @@ const Question = (props) => {
 
     }
 
+    
     const handleSubsegmentCount = async (subseg) => {
         try {
             var conid = props.contest.sfid
@@ -243,8 +238,8 @@ const Question = (props) => {
             });
 
             const parseData = await res.json();
-            props.getsubcount(parseData);
             setSubsegmentCount(parseData);
+            //set subsegement. why?
             props.getsubcount(parseData);
         }
         catch (err) {
@@ -252,27 +247,24 @@ const Question = (props) => {
         }
     }
 
+    //show info modal on question
     const handleInfoShow = async () => {
-        console.log('hanlding modal');
+
         setShowInfo(true);
     }
-
+    //close info modal on question
     const handleInfoClose = async () => {
-        console.log('close');
+
         setShowInfo(false);
     }
 
     useEffect((e) => {
         setQuest(props.ques);
         handleSubsegmentCount(props.ques.subsegment__c);
-        console.log('is locked' + props.ques.islocked__c);
         if (props.ques.islocked__c === true || props.isInactive === true || props.issubmitted === true) {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();
-
-        
-
     }, [props.ques]);
 
 

@@ -3,10 +3,6 @@
     height:100%;
 }
 
-.textWhite {
-    color:white
-}
-
 .btnRed {
     background-color: #d4392ea9;
     border: #d4392ea9;
@@ -14,12 +10,4 @@
 
 .btnRed:hover {
     background-color: #4BADE9;
-}
-
-.font16 {
-    font-size: 16px;
-}
-
-.font20 {
-font-size: 20px;
 }

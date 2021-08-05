@@ -1,5 +1,10 @@
 import React, {Fragment, useEffect, useState} from "react";
-import {Col, Container, Image, Row, Tab, Tabs,} from "react-bootstrap";
+import {Row, Col, Image} from "react-bootstrap";
+import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import {SocketContext, socket} from './socket';
+
 import './App.css';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -10,19 +15,14 @@ import Contest from './components/Contest';
 import Questions from './components/Questions';
 import TopPanel from './components/TopPanel';
 import Landing from './components/Landing';
-import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
-
 import backtotop from './assets/backtotop.png';
-import whitePickfun from './assets/pickfun.png';
-import {Provider} from "react-redux";
-import {createStore} from "redux";
-import {SocketContext, socket} from './socket';
 
 
 function App() {
 
     const [isProfile, setIsProfile] = useState(false);
 
+    //check if the user is authenticated
     const checkAuthenticated = async () => {
         try {
             const header = {
@@ -43,7 +43,7 @@ function App() {
     };
 
     const handleBackToTop = async () => {
-        console.log('back to top');
+        // snap the view back to the top of the page
         window.scrollTo({
             top: 0,
             behavior: "smooth"
@@ -69,6 +69,7 @@ function App() {
     store.dispatch({type: "INCREMENT!"});
 
     const setProfile = boolean => {
+        //set if the page is the profile or not for CSS changes
         setIsProfile(boolean);
     }
 

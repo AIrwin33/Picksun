@@ -2,23 +2,16 @@ import React, {useState, useEffect} from 'react';
 import {
     Container, 
     Row,
-    Col,
-    Image,
-    Button,
-    ResponsiveEmbed
+    Col
 } from "react-bootstrap";
 
-import Moment from 'react-moment';
-
 import moment from 'moment';
-
-import kbAllDay from '../assets/kbAllDay.png';
 
 import "./Contests.css";
 
 
 
-const Contests = ({setAuth}) => {
+const Contests = () => {
     //get contests
     const [contests, setContests] = useState([]);
 
@@ -46,14 +39,10 @@ const Contests = ({setAuth}) => {
             console.error(err.message);
           }
       };
-    useEffect(() => {
-        getMyContests();
-        
-      }, []);
-    
-    const contestRedirect = async sfid => {
 
-        //get existing contest and participation
+      const contestRedirect = async sfid => {
+
+        //get existing contest and participation and pass
         try {
             console.log('id' + sfid);
             const res = await fetch(
@@ -67,7 +56,6 @@ const Contests = ({setAuth}) => {
               }
             );
             const parseRes = await res.json();
-            console.log('now redirect');
             
               window.location = "/Contest/" + sfid;
             
@@ -75,6 +63,12 @@ const Contests = ({setAuth}) => {
             console.error(err.message);
           }
     };
+    useEffect(() => {
+        getMyContests();
+        
+      }, []);
+    
+    
     return (
                 (
             <>

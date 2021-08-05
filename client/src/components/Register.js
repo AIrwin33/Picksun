@@ -3,9 +3,8 @@ import {
     Container, 
     Row,
     Col,
-    Image,
     Button,
-    ResponsiveEmbed, Form
+    Form
 } from "react-bootstrap";
 import "./Register.css";
 
@@ -41,7 +40,6 @@ const Register = ({ setAuth }) => {
       );
       const parseRes = await response.json();
 
-      console.log("JSON.stringify(parseRes)",JSON.stringify(parseRes));
       if (parseRes.token) {
         localStorage.setItem("token", parseRes.token);
         setAuth(true);
@@ -93,10 +91,10 @@ const Register = ({ setAuth }) => {
                         <Form.Group>
                             <Form.Check className="textWhite aptifer font16" type="checkbox" label="I have read the Term and Conditions" />
                         </Form.Group>
-						<Form.Group>
-							{/* include actual link */}
-							<Form.Label className="textWhite proxima font16"><a href="#">Terms and Conditions</a></Form.Label>
-						</Form.Group>
+						        <Form.Group>
+                      {/* include actual link */}
+                      <Form.Label className="textWhite proxima font16"><a href="#">Terms and Conditions</a></Form.Label>
+                    </Form.Group>
                         <Button variant="primary" type="submit" className="btnRed float-right mb-3 aptifer font20">
                             Sign Up
                         </Button>

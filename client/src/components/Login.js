@@ -93,24 +93,6 @@ const Login = ({ setAuth }) => {
                         Login
                     </Button>
                 </Form>
-
-                    {/* <form onSubmit={onSubmitForm}>
-                        <input
-                        type="text"
-                        name="email"
-                        value={email}
-                        onChange={e => onChange(e)}
-                        className="form-control my-3"
-                        />
-                        <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={e => onChange(e)}
-                        className="form-control my-3"
-                        />
-                        <button className="btn btn-success btn-block">Submit</button>
-                    </form> */}
                 </Col>
             </Row>
             <Row>

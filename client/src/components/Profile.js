@@ -1,6 +1,5 @@
 import React, {useEffect, useState}from 'react';
 import {
-    Container, 
     Row,
     Tabs,
     Tab,
@@ -9,12 +8,11 @@ import {
     ListGroup,
     Button,
     Form,
-    ResponsiveEmbed, Card
+    Card
 } from "react-bootstrap";
 
 import avatar from '../assets/blue_avatar_200.png';
 
-import moment from 'moment';
 
 import "./Profile.css";
 
@@ -41,10 +39,7 @@ const Profile = (props) => {
           method: "POST",
           headers: { jwt_token: localStorage.token }
         });
-        console.log('here');
         const parseData = await res.json();
-        console.log('t  here');
-        console.log(parseData);
         setProfile(parseData);
       } catch (err) {
         console.error(err.message);
@@ -56,7 +51,6 @@ const Profile = (props) => {
         try {
         localStorage.removeItem("token");
         props.setAuth(false);
-        console.log("Logout successfully");
         window.location = '/Lobby';
         } catch (err) {
         console.error(err.message);
@@ -76,7 +70,6 @@ const Profile = (props) => {
             );
       
             const parseData = await res.json();
-            console.log(parseData);
             setProfile(parseData);
           } catch (err) {
             console.error(err.message);
@@ -85,14 +78,13 @@ const Profile = (props) => {
 
     useEffect(() => {
         getProfile();
+        //set profile to true for changing background color
         props.setProfile(true);
     }, [props]);
 
     
-
     return (
         <>
-
         {/* Main Body */}
         <div className="profileContainer">
             <Row  className="pt-3">
@@ -182,8 +174,6 @@ const Profile = (props) => {
                     </Card>
                 </Tab>
             </Tabs>
-            {/* if preferences */}
-            
         </div>
 
         </>
