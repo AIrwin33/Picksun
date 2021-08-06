@@ -43,9 +43,9 @@ const Answers = (props) => {
             <div>
 
                 {/* if number wrong is  */}
-                <h4>Wrong Answers:</h4>
+                <p>Wrong Answers:</p>
                 {answers.map((answer, index) => {
-                    return <div  className={`circle ${answer.wrong ? "wrong" : ""}`} key={i}></div>
+                    return <div  className={`circle ${answer.wrong ? "wrong" : ""}`} key={index}></div>
                 })}                
             </div>
         </>
