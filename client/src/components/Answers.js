@@ -8,7 +8,7 @@ import $ from 'jquery';
 
 const Answers = (props) => {
 
-    const [totals, setTotal] = useState(0);
+    const [total, setTotal] = useState(0);
     const [wrong, setWrong] = useState(0);
 
 
