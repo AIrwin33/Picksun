@@ -38,9 +38,9 @@ const Answers = (props) => {
 
                 {/* if number wrong is  */}
                 <h4>Wrong Answers:</h4>
-                return <div>{Array.from(Array(answers), (e, i) => {
+                {/* return <div>{Array.from(Array(answers), (e, i) => {
                     return <div  className={`circle ${answers.wrong ? "wrong" : ""}`} key={i}></div>
-                })}</div>
+                })}</div> */}
             </div>
         </>
     )
