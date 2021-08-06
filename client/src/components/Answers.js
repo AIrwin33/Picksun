@@ -14,7 +14,7 @@ const Answers = (props) => {
     const getWrongTotal = async (infoWrong, infoTotal) => {
         var ans = [];
 
-        for (let i = 0;i < infoTotal.length; i++) {
+        for (var i = 0;i < infoTotal.length; i++) {
             infoTotal[i].id = i;
             var an = infoTotal[i];
             ans.push(an);
@@ -29,7 +29,9 @@ const Answers = (props) => {
     }
 
     useEffect(() => {
-       getWrongTotal(props.wrong, props.total)
+       getWrongTotal(props.wrong, props.total);
+       console.log(props.wrong);
+       console.log(props.total);
     }, [props]);
 
     return (
