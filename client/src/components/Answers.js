@@ -8,14 +8,24 @@ import $ from 'jquery';
 
 const Answers = (props) => {
 
-    const [total, setTotal] = useState(0);
-    const [wrong, setWrong] = useState(0);
+    const [answers, setAnswers] = useState([]);
 
 
     const getWrongTotal = async (infoWrong, infoTotal) => {
-        console.log(infoWrong);
-        console.log(infoTotal);
-        setTotal(infoTotal);
+        var ans = [];
+
+        for (let i = 0;i < infoTotal.length; i++) {
+            infoTotal[i].id = i;
+            var an = infoTotal[i];
+            ans.push(an);
+        }
+        console.log(ans);
+        // for (let w = 0; w < infoWrong.length; w++) {
+        //     infoWrong[w].wrong = true;
+        //     ans.push(an);
+        // }
+        // setAnswers(ans);
+
     }
 
     useEffect(() => {
@@ -25,10 +35,12 @@ const Answers = (props) => {
     return (
         <>
             <div>
+
+                {/* if number wrong is  */}
                 <h4>Wrong Answers:</h4>
-                return <ul>{Array.from(Array(total), (e, i) => {
-                    return <li key={i}>{i}</li>
-                })}</ul>
+                return <div>{Array.from(Array(answers), (e, i) => {
+                    return <div  className={`circle ${answers.wrong ? "wrong" : ""}`} key={i}></div>
+                })}</div>
             </div>
         </>
     )
