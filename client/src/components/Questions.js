@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Carousel, Col, Button, Container, Modal, Row, Image} from "react-bootstrap";
 
 import Question from './Question.js';
+import Answers from './Answers.js';
 
 import {connect} from "react-redux";
 
@@ -324,7 +325,7 @@ const Questions = (props) => {
                     
                     {partWrongAnswer.wrong_answers_allowed__c &&
                     <Col className="d-flex justify-content-end">
-                        Wrong Answers / Allowed: {partWrongAnswer.wrong_answers__c} / {partWrongAnswer.wrong_answers_allowed__c}
+                        <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
                     </Col>
                     }
                 </Row>
