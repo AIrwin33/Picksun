@@ -14,9 +14,11 @@ const Answers = (props) => {
     const getWrongTotal = async (infoWrong, infoTotal) => {
         var ans = [];
 
-        for (var i = 0;i < infoTotal.length; i++) {
-            infoTotal[i].id = i;
-            var an = infoTotal[i];
+        for (var i = 0;i < infoTotal; i++) {
+            var an = {
+                id = i,
+                wrong = false
+            }
             ans.push(an);
         }
         console.log(ans);
