@@ -22,10 +22,12 @@ const Answers = (props) => {
             ans.push(an);
         }
         console.log(ans);
-        // for (let w = 0; w < infoWrong.length; w++) {
-        //     infoWrong[w].wrong = true;
-        //     ans.push(an);
-        // }
+        for (var w = 0; w < infoWrong; w++) {
+            for (var a = 0; a < ans.length; a++) {
+                ans[a].wrong = true;
+            }
+        }
+        console.log('show wrong answers' + ans);
         // setAnswers(ans);
 
     }
