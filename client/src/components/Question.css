@@ -109,12 +109,14 @@
     border-bottom: 1px solid black;
 }
 
-.modalHeader {
+.modal-header {
     background-color: #262626;
+    color: white;
 }
 
-.modalBody {
+.modal-body {
     background-color: #262626;
+    color:white;
 }
 
 .modalBtn {
