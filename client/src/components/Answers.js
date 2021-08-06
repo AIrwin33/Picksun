@@ -28,7 +28,7 @@ const Answers = (props) => {
             }
         }
         console.log('show wrong answers' + ans);
-        // setAnswers(ans);
+        setAnswers(ans);
 
     }
 
@@ -44,9 +44,9 @@ const Answers = (props) => {
 
                 {/* if number wrong is  */}
                 <h4>Wrong Answers:</h4>
-                {/* return <div>{Array.from(Array(answers), (e, i) => {
-                    return <div  className={`circle ${answers.wrong ? "wrong" : ""}`} key={i}></div>
-                })}</div> */}
+                {answers.map((answer, index) => {
+                    return <div  className={`circle ${answer.wrong ? "wrong" : ""}`} key={i}></div>
+                })}                
             </div>
         </>
     )

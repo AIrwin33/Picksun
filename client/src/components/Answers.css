@@ -1,4 +1,9 @@
-.totalWhite {
+.circle {
     background-color: white;
+    border-radius: 10px;
+}
+
+.circle.wrong {
+    background-color: red;
     border-radius: 10px;
 }
