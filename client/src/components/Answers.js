@@ -16,8 +16,8 @@ const Answers = (props) => {
 
         for (var i = 0;i < infoTotal; i++) {
             var an = {
-                id = i,
-                wrong = false
+                id : i,
+                wrong : false
             }
             ans.push(an);
         }
