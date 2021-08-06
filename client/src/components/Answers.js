@@ -26,11 +26,9 @@ const Answers = (props) => {
         <>
             <div>
                 <h4>Wrong Answers:</h4>
-                {totals.map((total, index) => {
-                    return <div key={total.id} className="totalWhite">
-
-                            </div>
-                })}
+                return <ul>{Array.from(Array(total), (e, i) => {
+                    return <li key={i}>{i}</li>
+                })}</ul>
             </div>
         </>
     )
