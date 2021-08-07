@@ -342,7 +342,7 @@ const Questions = (props) => {
             {/* show questions or no question text */}
             <Row className="questionRow m-2 p-2 justify-content-center">
                 <Col>
-                    {questions.length > 0 && !isShowWaiting && !submitted &&
+                    {questions.length > 0 && !submitted &&
                     <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                         {questions.map((question, index) => {
                             return <Carousel.Item key={question.id} className="text-center">
@@ -367,7 +367,7 @@ const Questions = (props) => {
             </Row>
 
             {/* showing submit answers button */}
-            {!submitted && !isShowWaiting  && questions.length > 0 &&
+            {!submitted && questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-md-center">
                     <Col className="col-md-auto">
                         {counter > 0 &&
