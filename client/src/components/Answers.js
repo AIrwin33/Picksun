@@ -40,7 +40,7 @@ const Answers = (props) => {
 
     return (
         <>
-            <div >
+            <div className='inline'>
                 {/* if number wrong is  */}
                 <p>Wrong Answers:</p>
                 <div className="d-inline-block">

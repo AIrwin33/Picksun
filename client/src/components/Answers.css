@@ -4,6 +4,7 @@
     width:15px;
     height:15px;
     margin-left:2px;
+    display: inline-block;
 }
 
 .circle.wrong {
@@ -12,8 +13,5 @@
     width:15px;
     height:1    5px;
     margin-left:2px;
-}
-
-.inline {
     display: inline-block;
 }
