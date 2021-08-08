@@ -416,7 +416,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 pgListen.notifications.on("new_question", e => {
     console.log(e);
-    if (e !== undefined && e.published__c && !e.islocked__c) {
+    if (e !== undefined && e.published__c) {
         console.log('send socket question');
         io.to(e.contest__c).emit("new_question", e)
     }
