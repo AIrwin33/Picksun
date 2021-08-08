@@ -104,6 +104,8 @@ const Questions = (props) => {
     const doGetParticipationWrongAnswers = async () => {
         try {
             console.log('getting participation answers');
+
+            console.log(counter);
             const partid = props.participation_id;
             const partsfid = props.partsfid;
             const body = {partid};
@@ -127,6 +129,8 @@ const Questions = (props) => {
                 console.log('status active');
                 setInactive(true);
             }
+
+            console.log(counter);
             setPartWrongAnswer(parseData);
             setSocketUpdate(false);
             setShowAnswer(true);
@@ -310,7 +314,7 @@ const Questions = (props) => {
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
-        // console.log(counter);
+        
         doGetParticipationWrongAnswers();
         }
             
@@ -358,7 +362,7 @@ const Questions = (props) => {
                     
                     {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
                     <Col className="d-flex justify-content-end">
-                        <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c} loop={showAnswer}/>
+                        <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
                     </Col>
                     }
                 </Row>
