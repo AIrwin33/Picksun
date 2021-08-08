@@ -23,6 +23,7 @@ const Questions = (props) => {
     const [selectedCount, setSelectedCount] = useState(0);
     const [subSegmentCount, setSubsegmentCount] = useState(0);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
+    const [showAnswer, setShowAnswer] = useState(false);
     const [counter, setCounter] = useState(undefined);
     const [answerList, setAnswerList] = useState([]);
     const [showNext, setShowNext] = useState(false);
@@ -128,6 +129,7 @@ const Questions = (props) => {
             }
             setPartWrongAnswer(parseData);
             setSocketUpdate(false);
+            setShowAnswer(true)
             props.updatepart(parseData);  
 
         } catch (err) {
@@ -351,7 +353,7 @@ const Questions = (props) => {
                       }  
                     </Col>
                     
-                    {partWrongAnswer.wrong_answers_allowed__c &&
+                    {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
                     <Col className="d-flex justify-content-end">
                         <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
                     </Col>

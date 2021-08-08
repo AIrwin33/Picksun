@@ -11,7 +11,6 @@ const Answers = (props) => {
 
     const getWrongTotal = async (infoWrong, infoTotal) => {
         var ans = [];
-
         for (var i = 0;i < infoTotal; i++) {
             var an = {
                 id : i,
@@ -30,7 +29,8 @@ const Answers = (props) => {
     }
 
     useEffect(() => {
-       getWrongTotal(props.wrong, props.total);
+
+       //getWrongTotal(props.wrong, props.total);
 
     }, [props]);
 
