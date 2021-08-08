@@ -29,7 +29,7 @@ const Answers = (props) => {
     }
 
     useEffect(() => {
-
+        console.log('in answers');
        //getWrongTotal(props.wrong, props.total);
 
     }, [props]);
