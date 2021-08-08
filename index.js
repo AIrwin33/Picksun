@@ -362,9 +362,9 @@ app.post("/contestwon", authorization, async (req, res) => {
 app.post("/knockout", async (req, res) => {
     try {
         const {partid} = req.body;
-
+        console.log(partid);
         const knockedoutpart = await pool.query(
-            "UPDATE salesforce.participation__c SET Status__c = 'Knocked Out' WHERE sfid = $1",
+            "UPDATE salesforce.participation__c SET Status__c = 'Knocked Out' WHERE sfid = $1 RETURNING *",
             [partid]
         );
         const contestId = knockedoutpart.rows[0].Contest__c;
