@@ -129,7 +129,8 @@ const Questions = (props) => {
             }
             setPartWrongAnswer(parseData);
             setSocketUpdate(false);
-            setShowAnswer(true)
+            setShowAnswer(true);
+            console.log('before update part');
             props.updatepart(parseData);  
 
         } catch (err) {
