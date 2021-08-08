@@ -260,12 +260,11 @@ const Question = (props) => {
 
     useEffect((e) => {
         setQuest(props.ques);
+        handleExistingPartAnswer();
         handleSubsegmentCount(props.ques.subsegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true || props.issubmitted === true) {
             setDisabledQuestion(true);
-            handleExistingPartAnswer();
-        }else{ 
-            handleExistingPartAnswer();
+            
         }
     }, [props.ques]);
 

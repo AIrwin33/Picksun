@@ -285,6 +285,10 @@ const Questions = (props) => {
             }
         }
     })
+
+    socket.once("cor_question", question => {   
+        console.log('in cor question');
+    })
     return (
         <>
 

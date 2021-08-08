@@ -420,9 +420,14 @@ pgListen.notifications.on("new_question", e => {
         console.log('send socket question');
         io.to(e.contest__c).emit("new_question", e)
     }
-    if(e.islocked__c && e.correct_answer__c !== undefined) {
-        io.to(e.contest__c).emit("new_question", e)
-    }
+    
+})
+pgListen.notifications.on("cor_question", e => {
+    console.log(e);
+
+        if(e.islocked__c && e.correct_answer__c !== undefined) {
+            io.to(e.contest__c).emit("cor_question", e)
+        }
 })
 
 pgListen.notifications.on("new_participation", e => {
