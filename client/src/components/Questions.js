@@ -178,6 +178,7 @@ const Questions = (props) => {
         try {
             setSubmitted(true);
             setShowWaiting(true);
+            console.log(JSON.stringify(answerList));
             const partanswers = answerList;
             const body = {partanswers};
             const res = await fetch(`/submitpartanswers`, {
