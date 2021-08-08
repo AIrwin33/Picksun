@@ -262,6 +262,8 @@ const Questions = (props) => {
     }, []);
     socket.once("new_question", question => {   
         const questionidsIndex = questionids.indexOf(question.sfid);
+        console.log('is question locked' + question.islocked__c);
+        console.log('is question answer' + question.correct_answer__c);
         if(!socketUpdate){
             setSocketUpdate(true);
             if (questionidsIndex === -1) {
