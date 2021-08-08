@@ -261,7 +261,7 @@ const Questions = (props) => {
         socket.emit("set_contest_room", props.contestid)
     }, []);
     socket.once("new_question", question => {   
-        const questionidsIndex = questionids.indexOf(question.sfid);
+        var questionidsIndex = questionids.indexOf(question.sfid);
         console.log('is question locked' + question.islocked__c);
         console.log('is question answer' + question.correct_answer__c);
         if(!socketUpdate){
@@ -291,8 +291,12 @@ const Questions = (props) => {
 
         console.log('is question locked' + question.islocked__c);
         console.log('is question answer' + question.correct_answer__c);
-        setQuestions([...questions, question]);
-        doGetParticipationWrongAnswers();
+        var questionidsIndex = questionids.indexOf(question.sfid);
+        if (questionidsIndex === -1) {
+
+            setQuestions([...questions, question]);
+            doGetParticipationWrongAnswers();
+        }
     })
     return (
         <>
