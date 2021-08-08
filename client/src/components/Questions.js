@@ -137,7 +137,7 @@ const Questions = (props) => {
             setSocketUpdate(false);
             setShowAnswer(true);
             console.log('before update part');
-            props.updatepart(parseData);  
+            //props.updatepart(parseData);  
 
         } catch (err) {
             console.error(err.message);
