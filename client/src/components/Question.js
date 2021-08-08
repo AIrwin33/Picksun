@@ -371,7 +371,7 @@ const Question = (props) => {
                             </Col>
                             }
 
-                            {props.ques.correct_answer__c !== null &&
+                            {props.ques.correct_answer__c === null &&
                              <Col>
                                 <div>
                                     <span>Correct Answer: Stay Tuned</span>

@@ -27,7 +27,7 @@ const Answers = (props) => {
                 ans[a].wrong = true;
             }
         }
-        console.log('show wrong answers' + ans);
+        console.log('show wrong answers' + JSON.stringify(ans));
         setAnswers(ans);
 
     }
