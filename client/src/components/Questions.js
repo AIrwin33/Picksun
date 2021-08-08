@@ -191,9 +191,10 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
-            if (!parseData) {
-                setPartWrongAnswer({...partWrongAnswer, wrong_answers__c: ++partWrongAnswer.wrong_answers__c})
-            }
+            console.log(parseData);
+            // if (!parseData) {
+            //     setPartWrongAnswer({...partWrongAnswer, wrong_answers__c: ++partWrongAnswer.wrong_answers__c})
+            // }
             const questionIndex = questions.map(r => {
                 return r.sfid
             }).indexOf(partanswers[0].question__c)

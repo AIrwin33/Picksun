@@ -386,10 +386,15 @@ app.post("/knockout", async (req, res) => {
 app.post("/submitpartanswers", authorization, async (req, res) => {
     try {
         const {partanswers} = req.body;
-        const answer = partanswers[0];
-        const part = await pool.query(
-            "UPDATE salesforce.Participation_Answers__c SET selection__c = $1, selection_value__c = $2, Status__c = $3 WHERE Participation__c = $4 AND Question__c = $5 RETURNING *", [answer.selection__c, answer.selection_value__c, 'Submitted', answer.participation__c, answer.question__c]
-            );
+        var parts = []
+        for(var i=0; i < partanswers.length; i++){
+            const answer = partanswers[i];
+            const part = await pool.query(
+                "UPDATE salesforce.Participation_Answers__c SET selection__c = $1, selection_value__c = $2, Status__c = $3 WHERE Participation__c = $4 AND Question__c = $5 RETURNING *", [answer.selection__c, answer.selection_value__c, 'Submitted', answer.participation__c, answer.question__c]
+                );
+            parts.push(part.row[0]);
+        }
+       
         //const question = await pool.query("SELECT * FROM salesforce.question__c WHERE sfid = $1", [answer.question__c])
         // if (question.rows[0].correct_answer__c !== answer.selection__c && question.rows[0].correct_answer__c !== null) {
         //     res.json(0) //incorrect
@@ -399,7 +404,7 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
         //     console.log('correct');
         //     res.json(1) //correct
         // }
-        res.json(part.rows[0]);
+        res.json(parts);
     } catch (err) {
         console.log('error on submit answer' + err);
     }
