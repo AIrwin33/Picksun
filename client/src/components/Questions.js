@@ -306,7 +306,10 @@ const Questions = (props) => {
         var tempQuestions = questions;
         console.log('temp questions');
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+
+        console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
+        console.log(counter);
         // doGetParticipationWrongAnswers();
             
         
