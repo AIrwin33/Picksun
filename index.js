@@ -423,6 +423,7 @@ pgListen.notifications.on("new_question", e => {
     }
 
     if(e.islocked__c && e.correct_answer__c !== undefined) {
+        console.log('here');
         io.to(e.contest__c).emit("cor_question", e)
     }
     

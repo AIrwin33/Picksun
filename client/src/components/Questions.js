@@ -288,6 +288,11 @@ const Questions = (props) => {
 
     socket.once("cor_question", question => {   
         console.log('in cor question');
+
+        console.log('is question locked' + question.islocked__c);
+        console.log('is question answer' + question.correct_answer__c);
+        setQuestions([...questions, question]);
+        doGetParticipationWrongAnswers();
     })
     return (
         <>
