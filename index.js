@@ -389,13 +389,12 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
         var parts = [];
         console.log(partanswers.length);
         for(var i=0; i < partanswers.length; i++){
-            const answer = partanswers[i];
+            var answer = partanswers[i];
             console.log(answer);
-            const part = await pool.query(
+            var part = await pool.query(
                 "UPDATE salesforce.Participation_Answers__c SET selection__c = $1, selection_value__c = $2, Status__c = $3 WHERE Participation__c = $4 AND Question__c = $5 RETURNING *", [answer.selection__c, answer.selection_value__c, 'Submitted', answer.participation__c, answer.question__c]
                 );
-            parts.push(part.row[0]);
-            console.log(parts);
+            console.log(part);
         }
        
         //const question = await pool.query("SELECT * FROM salesforce.question__c WHERE sfid = $1", [answer.question__c])
