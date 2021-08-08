@@ -266,6 +266,7 @@ const Questions = (props) => {
         getQuestions();
         socket.emit("set_contest_room", props.contestid)
         console.log('questions use effect');
+        
     }, []);
     socket.once("new_question", question => {   
         var questionidsIndex = questionids.indexOf(question.sfid);

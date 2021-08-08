@@ -111,7 +111,7 @@ const Contest = ({match}) => {
 
     useEffect(() => {
         getContest();
-
+        console.log('here in contest');
         socket.emit("set_contest_room", contest.id);
     }, []);
     return ((

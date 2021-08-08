@@ -259,7 +259,7 @@ const Question = (props) => {
         setShowInfo(false);
     }
 
-    useEffect((e) => {
+    useEffect(() => {
         setQuest(props.ques);
         
         handleSubsegmentCount(props.ques.subsegment__c);
