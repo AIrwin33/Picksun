@@ -66,7 +66,6 @@ const Question = (props) => {
     const handleExistingPartAnswer = async () => {
         try {
             console.log('handle existing answer');
-            console.log('is this even needed?');
             const partsfid = props.partsfid;
             const questid = props.ques.sfid;
 
@@ -266,9 +265,10 @@ const Question = (props) => {
         handleSubsegmentCount(props.ques.subsegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true || props.issubmitted === true) {
             setDisabledQuestion(true);
-            handleExistingPartAnswer();
+            
             
         }
+        handleExistingPartAnswer();
     }, [props.ques]);
 
 
