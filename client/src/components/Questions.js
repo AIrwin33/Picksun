@@ -340,9 +340,10 @@ const Questions = (props) => {
                 </Row>
                 }
             {/* show questions or no question text */}
+            {!isShowWaiting &&
             <Row className="questionRow m-2 p-2 justify-content-center">
                 <Col>
-                    {questions.length > 0 && !isShowWaiting &&
+                    {questions.length > 0 && 
                     <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                         {questions.map((question, index) => {
                             return <Carousel.Item key={question.id} className="text-center">
@@ -365,6 +366,7 @@ const Questions = (props) => {
                     }
                 </Col>
             </Row>
+            }
 
             {/* showing submit answers button */}
             {!submitted && !isShowWaiting  && questions.length > 0 &&
