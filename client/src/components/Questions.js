@@ -191,7 +191,7 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
-            console.log(parseData);
+            console.log('submit answer' + parseData);
             // if (!parseData) {
             //     setPartWrongAnswer({...partWrongAnswer, wrong_answers__c: ++partWrongAnswer.wrong_answers__c})
             // }
