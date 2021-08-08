@@ -30,7 +30,12 @@ const Answers = (props) => {
 
     useEffect(() => {
         console.log('in answers');
-       //getWrongTotal(props.wrong, props.total);
+        if(props.loop){
+            getWrongTotal(props.wrong, props.total);
+
+        }else{
+            console.log('check looping');
+        }
 
     }, [props]);
 

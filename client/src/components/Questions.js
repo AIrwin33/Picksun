@@ -358,7 +358,7 @@ const Questions = (props) => {
                     
                     {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
                     <Col className="d-flex justify-content-end">
-                        <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
+                        <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c} loop={showAnswer}/>
                     </Col>
                     }
                 </Row>
