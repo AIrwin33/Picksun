@@ -139,7 +139,7 @@ const Question = (props) => {
 
         //TODO : get place finish when knocked out
         try {
-            const partid = props.participation_id;
+            const partid = props.partsfid;
             const body = {partid};
             const response = await fetch(
                 "/knockout",
