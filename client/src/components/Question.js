@@ -263,8 +263,10 @@ const Question = (props) => {
         handleSubsegmentCount(props.ques.subsegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true || props.issubmitted === true) {
             setDisabledQuestion(true);
+            handleExistingPartAnswer();
+        }else{ 
+            handleExistingPartAnswer();
         }
-        handleExistingPartAnswer();
     }, [props.ques]);
 
 
