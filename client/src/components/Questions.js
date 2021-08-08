@@ -192,9 +192,9 @@ const Questions = (props) => {
 
             const parseData = await res.json();
             console.log('submit answer' + parseData);
-            // if (!parseData) {
-            //     setPartWrongAnswer({...partWrongAnswer, wrong_answers__c: ++partWrongAnswer.wrong_answers__c})
-            // }
+            if (!parseData) {
+                setPartWrongAnswer({...partWrongAnswer, wrong_answers__c: ++partWrongAnswer.wrong_answers__c})
+            }
             const questionIndex = questions.map(r => {
                 return r.sfid
             }).indexOf(partanswers[0].question__c)
@@ -297,15 +297,6 @@ const Questions = (props) => {
 
     socket.once("cor_question", question => {   
         console.log('in cor question');
-
-        // console.log('is question locked' + question.islocked__c);
-        // console.log('is question answer' + question.correct_answer__c);
-        // var questionidsIndex = questionids.indexOf(question.sfid);
-        // if (questionidsIndex === -1) {
-
-        //     setQuestions([...questions, question]);
-        //     doGetParticipationWrongAnswers();
-        // }
 
         var tempQuestions = questions;
         console.log('temp questions');
