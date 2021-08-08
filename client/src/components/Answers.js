@@ -19,8 +19,8 @@ const Answers = (props) => {
             }
             ans.push(an);
         }
-        for (var w = 0; w < infoWrong; w++) {
-            for (var a = 0; a < ans.length; a++) {
+        for (var a = 0; a < ans.length; a++) {
+            for (var w = 0; w < infoWrong; w++) {
                 ans[a].wrong = true;
             }
         }
