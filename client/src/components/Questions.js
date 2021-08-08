@@ -23,7 +23,7 @@ const Questions = (props) => {
     const [selectedCount, setSelectedCount] = useState(0);
     const [subSegmentCount, setSubsegmentCount] = useState(0);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
-    const [counter, setCounter] = useState(props.questiontime);
+    const [counter, setCounter] = useState(0);
     const [answerList, setAnswerList] = useState([]);
     const [showNext, setShowNext] = useState(false);
     const [knockedOut, setKnockedOut] = useState(false);
