@@ -73,8 +73,10 @@ const Questions = (props) => {
                 var counttime = moment.duration(closedTimerFormat.diff(currtime));
 
                 if (counttime < 0) {
+                    console.log('setting timer?');
                     setCounter(0);
                 } else {
+                    console.log('setting timer?');
                     setCounter(counttime);
                 }
             } else {
@@ -173,6 +175,8 @@ const Questions = (props) => {
 
             const parseData = await res.json();
             console.log('questions after disable' + parseData);
+            console.log(counter);
+            $('.timerdiv').addClass('hiddenTimer');
             setQuestions(parseData);
             setShowWaiting(false);
 
@@ -284,6 +288,7 @@ const Questions = (props) => {
                 setQuestions([...questions, question]);
                 doGetParticipationWrongAnswers();
                 setTimer();
+                $('.timerdiv').removeClass('hiddenTimer');
                 
                 
                 
@@ -298,6 +303,7 @@ const Questions = (props) => {
                     setQuestions(tempQuestions);
                     doGetParticipationWrongAnswers();
                     setTimer();
+                    $('.timerdiv').removeClass('hiddenTimer');
                 }
                 
             }
@@ -314,7 +320,7 @@ const Questions = (props) => {
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
-        
+        console.log(counter);
         doGetParticipationWrongAnswers();
         }
             
