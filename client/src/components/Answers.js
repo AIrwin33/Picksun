@@ -4,8 +4,6 @@ import {Carousel, Col, Button, Container, Modal, Row, Image} from "react-bootstr
 
 import "./Answers.css";
 
-import $ from 'jquery';
-
 const Answers = (props) => {
 
     const [answers, setAnswers] = useState([]);
@@ -21,7 +19,6 @@ const Answers = (props) => {
             }
             ans.push(an);
         }
-        console.log(ans);
         for (var w = 0; w < infoWrong; w++) {
             for (var a = 0; a < ans.length; a++) {
                 ans[a].wrong = true;
@@ -34,8 +31,7 @@ const Answers = (props) => {
 
     useEffect(() => {
        getWrongTotal(props.wrong, props.total);
-       console.log(props.wrong);
-       console.log(props.total);
+
     }, [props]);
 
     return (

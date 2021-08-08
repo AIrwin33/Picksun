@@ -289,22 +289,22 @@ const Questions = (props) => {
     socket.once("cor_question", question => {   
         console.log('in cor question');
 
-        console.log('is question locked' + question.islocked__c);
-        console.log('is question answer' + question.correct_answer__c);
-        var questionidsIndex = questionids.indexOf(question.sfid);
-        if (questionidsIndex === -1) {
+        // console.log('is question locked' + question.islocked__c);
+        // console.log('is question answer' + question.correct_answer__c);
+        // var questionidsIndex = questionids.indexOf(question.sfid);
+        // if (questionidsIndex === -1) {
 
-            setQuestions([...questions, question]);
-            doGetParticipationWrongAnswers();
-        }
-        else {
-            var tempQuestions = questions;
-            console.log('temp questions');
-            tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-            setQuestions(tempQuestions);
-            doGetParticipationWrongAnswers();
+        //     setQuestions([...questions, question]);
+        //     doGetParticipationWrongAnswers();
+        // }
+
+        var tempQuestions = questions;
+        console.log('temp questions');
+        tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+        setQuestions(tempQuestions);
+        doGetParticipationWrongAnswers();
             
-        }
+        
     })
     return (
         <>
