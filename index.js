@@ -370,7 +370,7 @@ app.post("/knockout", async (req, res) => {
         const contestId = knockedoutpart.rows[0].Contest__c;
         console.log(contestId);
         const contestText = await pool.query("SELECT * FROM salesforce.contest__c WHERE sfid = $1", [contestId]);
-            console.log(contestText);
+            console.log(contestText.rows[0]);
         //TODO lock all questions
 
 
