@@ -124,6 +124,8 @@ const Question = (props) => {
             const parseRes = await response.json();
             const participationwrong = parseRes;
             if (participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c) {
+                console.log(participationwrong.wrong_answers_allowed__c);
+                console.log(participationwrong.wrong_answers__c);
                 handleKnockout();
             } else {
                 console.log('still in the game');
