@@ -416,19 +416,18 @@ if (process.env.NODE_ENV === 'production') {
 }
 pgListen.notifications.on("new_question", e => {
     console.log(e);
+    console.log('listener on');
     if (e !== undefined && e.published__c && !e.islocked__c) {
         console.log('send socket question');
         io.to(e.contest__c).emit("new_question", e)
     }
+
+    if(e.islocked__c && e.correct_answer__c !== undefined) {
+        io.to(e.contest__c).emit("cor_question", e)
+    }
     
 })
-pgListen.notifications.on("cor_question", e => {
-    console.log('correct question' + e);
 
-        if(e.islocked__c && e.correct_answer__c !== undefined) {
-            io.to(e.contest__c).emit("cor_question", e)
-        }
-})
 
 pgListen.notifications.on("new_participation", e => {
     console.log('in new participation');
