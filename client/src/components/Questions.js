@@ -298,13 +298,13 @@ const Questions = (props) => {
     socket.once("cor_question", question => {   
         console.log('in cor question');
 
-        var tempQuestions = questions;
-        console.log('temp questions');
-        tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+        // var tempQuestions = questions;
+        // console.log('temp questions');
+        // tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
 
-        console.log('tempQuestions' + JSON.stringify(tempQuestions));
-        setQuestions(tempQuestions);
-        console.log(counter);
+        // console.log('tempQuestions' + JSON.stringify(tempQuestions));
+        // setQuestions(tempQuestions);
+        // console.log(counter);
         // doGetParticipationWrongAnswers();
             
         
