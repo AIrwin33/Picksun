@@ -89,7 +89,7 @@ const Question = (props) => {
             }
 
             setShowAnswer(true);
-
+            console.log(partRes.selection__c);
             if (props.contestfinished == true) {
                 //TODO - wait for correct count
                 handleContestEnd();
