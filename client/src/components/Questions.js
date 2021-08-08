@@ -275,12 +275,17 @@ const Questions = (props) => {
                 
                 
             } else {
-                const tempQuestions = questions;
-                console.log('temp questions');
-                tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-                setQuestions(tempQuestions);
-                doGetParticipationWrongAnswers();
-                setTimer();
+                if(question.islocked__c){
+                    console.log('question is locked, dont do anything');
+                }else{
+
+                    const tempQuestions = questions;
+                    console.log('temp questions');
+                    tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+                    setQuestions(tempQuestions);
+                    doGetParticipationWrongAnswers();
+                    setTimer();
+                }
                 
             }
         }
@@ -302,7 +307,7 @@ const Questions = (props) => {
         console.log('temp questions');
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
         setQuestions(tempQuestions);
-        doGetParticipationWrongAnswers();
+        // doGetParticipationWrongAnswers();
             
         
     })
