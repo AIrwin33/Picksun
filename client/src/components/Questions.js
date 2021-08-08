@@ -297,6 +297,14 @@ const Questions = (props) => {
             setQuestions([...questions, question]);
             doGetParticipationWrongAnswers();
         }
+        else {
+            var tempQuestions = questions;
+            console.log('temp questions');
+            tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+            setQuestions(tempQuestions);
+            doGetParticipationWrongAnswers();
+            
+        }
     })
     return (
         <>
