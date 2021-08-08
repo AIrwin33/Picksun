@@ -443,6 +443,8 @@ pgListen.events.on("error", (error) => {
 pgListen.connect()
 pgListen.listenTo("new_question")
 
+pgListen.listenTo("cor_question")
+
 io.on("connection", (socket) => {
     socket.on("set_contest_room", e => {
         socket.join(e)
