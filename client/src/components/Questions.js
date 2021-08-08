@@ -136,6 +136,7 @@ const Questions = (props) => {
     }
 
     const setTimer = () => {
+        console.log('setting timer?');
         let nonLockedQuestions = 0;
             for (const questionElt of questions) {
                 if(!questionElt.islocked__c)
