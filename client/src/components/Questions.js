@@ -311,9 +311,9 @@ const Questions = (props) => {
                 var newquestions = [];
 
                 //if there is already a segment published, include old questions
-                // if(question.subsegment__c > 1) {
-                //     newquestions = questions;
-                // }
+                if(question.subsegment__c > 1) {
+                    newquestions = questions;
+                }
                 console.log('315' + newquestions);
                 var newquestionids = [];
                 for(var i=0; i< allquestions.length; i++){
