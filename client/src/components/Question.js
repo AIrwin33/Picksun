@@ -88,7 +88,6 @@ const Question = (props) => {
             }
 
             setShowAnswer(true);
-            console.log(partRes.selection__c);
             if (props.contestfinished == true) {
                 //TODO - wait for correct count
                 handleContestEnd();
@@ -261,8 +260,10 @@ const Question = (props) => {
     }
 
     useEffect(() => {
+
         setQuest(props.ques);
-        
+        console.log('in set question');
+        console.log(props.ques);
         handleSubsegmentCount(props.ques.subsegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true || props.issubmitted === true) {
             setDisabledQuestion(true);
