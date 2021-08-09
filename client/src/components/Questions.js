@@ -24,6 +24,7 @@ const Questions = (props) => {
     const [subSegmentCount, setSubsegmentCount] = useState(0);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [publishedQuestions, setPublishedQuestions] = useState(0);
+    const [review, setReview] = useState(false);
     const [showAnswer, setShowAnswer] = useState(false);
     const [counter, setCounter] = useState(undefined);
     const [answerList, setAnswerList] = useState([]);
@@ -84,6 +85,7 @@ const Questions = (props) => {
                 console.log('no available unlocked questions');
             }
             setQuestions(parseData);
+            console.log(questions.length);
             setPublishedQuestions(questions.length);
             doGetParticipationWrongAnswers();
         } catch (err) {
@@ -182,6 +184,7 @@ const Questions = (props) => {
             $('.timerdiv').addClass('hiddenTimer');
             setQuestions(parseData);
             setShowWaiting(false);
+            setReview(true);
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
@@ -417,7 +420,7 @@ const Questions = (props) => {
             }
 
             {/* showing submit answers button */}
-            {!submitted && !isShowWaiting  && questions.length > 0 &&
+            {review && questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-md-center">
                     <Col className="col-md-auto">
                         {counter > 0 &&
