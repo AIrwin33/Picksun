@@ -329,21 +329,23 @@ const Questions = (props) => {
                             console.log('new question');
                             newquestions.push(question);
                             newquestionids.push(question.sfid);
-                            if(allquestions.length === newquestions.length){
-                                break;
-                            }
+                            
                         }
                     }
                 }
                 console.log('new questions' +newquestions);
                 console.log('length' + newquestions.length);
-                setPublishedQuestions(newquestions.length);
-                setQuestionIds(newquestionids);
-                setQuestions(newquestions);
+                if(allquestions.length < newquestions.length){
+                }else{
+                    setPublishedQuestions(newquestions.length);
+                    setQuestionIds(newquestionids);
+                    setQuestions(newquestions);
+                    
+                    doGetParticipationWrongAnswers();
+                    setTimer();
+                    $('.timerdiv').removeClass('hiddenTimer');
+                }
                 
-                doGetParticipationWrongAnswers();
-                setTimer();
-                $('.timerdiv').removeClass('hiddenTimer');
                 
                 
                 
