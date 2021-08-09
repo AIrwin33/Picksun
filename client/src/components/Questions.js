@@ -326,12 +326,17 @@ const Questions = (props) => {
                             newquestions.splice(i, 1, question);
                             
                         }else{
-                            console.log('new question');
-                            newquestions.push(question);
-                            newquestionids.push(question.sfid);
                             if(allquestions.length === newquestions.length){
                                 console.log('break');
                                 break;
+                            
+                            
+                                
+                            }else{
+                                console.log('new question');
+                                newquestions.push(question);
+                                newquestionids.push(question.sfid);
+
                             }
                             
                         }
