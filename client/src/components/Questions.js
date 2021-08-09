@@ -39,10 +39,10 @@ const Questions = (props) => {
     const [isShowWaiting, setShowWaiting] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
     const [socketUpdate, setSocketUpdate] = useState(false);
-    const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
+    const tiRef = useRef(null);
 
-    const tiRef = React.createRef();
+    
 
     const getAllQuestions = async () => {
         try {
