@@ -402,7 +402,6 @@ const Questions = (props) => {
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
                                             getsubcount={handleSubsegmentCount}
-                                            doShowNext={showNext}
                                             isKnockedOut={knockedOut} participation_id={props.participation_id}
                                             contestfinished={finished} partsfid={props.partsfid} issubmitted={submitted}/>
                             </Carousel.Item>

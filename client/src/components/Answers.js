@@ -40,8 +40,11 @@ const Answers = (props) => {
         <>
             <div className='inline'>
                 {/* if number wrong is  */}
-                <p>Wrong Answers:</p>
+                
                 <div className="d-inline-block">
+                    <div>
+                    <p>Knockout Limit:</p>
+                    </div>
                 {answers.map((answer, index) => {
                     return <div  className={`circle   ${answer.wrong ? "wrong" : ""}`} key={index}></div>
                 })}                
