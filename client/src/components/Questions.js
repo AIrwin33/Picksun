@@ -309,17 +309,19 @@ const Questions = (props) => {
             if (questionidsIndex === -1) {
                 console.log('existing questions' + questions);
                 var newquestions = questions;
+                var newquestionids = [];
                 for(var i=0; i< allquestions.length; i++){
                     if(allquestions[i].subsegment__c === question.subsegment__c){
                         console.log(allquestions[i]);
                         console.log(question);
                         newquestions.push(question);
-
+                        newquestionids.push(question.sfid);
                     }
                 }
                 console.log('new questions' +newquestions);
+                console.log('length' + newquestions.length);
                 setPublishedQuestions(newquestions.length);
-                setQuestionIds([...questionids, question.sfid]);
+                setQuestionIds(newquestionids);
                 setQuestions(newquestions);
                 
                 doGetParticipationWrongAnswers();
