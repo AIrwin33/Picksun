@@ -408,7 +408,9 @@ const Questions = (props) => {
     })
     return (
         <>
-
+                <div>
+                    {questions.length}
+                </div>
             {/* Show timer and answer count */}
                 {questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-center">
