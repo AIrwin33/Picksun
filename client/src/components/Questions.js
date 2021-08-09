@@ -311,7 +311,7 @@ const Questions = (props) => {
             if (questionidsIndex === -1) {
                 var newquestions = [];
                 for(var i=0; i< allquestions.length; i++){
-                    if(allquestions[i].subsegment__c = question.subsegment__c){
+                    if(allquestions[i].subsegment__c === question.subsegment__c){
                         console.log(allquestions[i]);
                         console.log(question);
                         newquestions.push(question);
