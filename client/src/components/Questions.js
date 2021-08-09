@@ -302,20 +302,30 @@ const Questions = (props) => {
         socket.emit("set_contest_room", props.contestid)
         
     }, []);
-    socket.on("new_question", question => {   
+    socket.once("new_question", question => {   
         var questionidsIndex = questionids.indexOf(question.sfid);
         if(!socketUpdate){
             setSocketUpdate(true);
             if (questionidsIndex === -1) {
                 console.log('existing questions' + questions);
-                var newquestions = questions;
+                var newquestions = [];
+
+                //if there is already a segment published, include old questions
+                // if(question.subsegment__c > 1) {
+                //     newquestions = questions;
+                // }
+                console.log('315' + newquestions);
                 var newquestionids = [];
                 for(var i=0; i< allquestions.length; i++){
                     if(allquestions[i].subsegment__c === question.subsegment__c){
                         console.log(allquestions[i]);
                         console.log(question);
-                        if(allquestions[i].sfid !== question.sfid){
-
+                        if(allquestions[i].sfid === question.sfid){
+                            console.log('splice');
+                            newquestions.splice(i, 1, question);
+                            
+                        }else{
+                            console.log('new question');
                             newquestions.push(question);
                             newquestionids.push(question.sfid);
                         }
