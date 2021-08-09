@@ -138,6 +138,7 @@ const Questions = (props) => {
             setPartWrongAnswer(parseData);
             setSocketUpdate(false);
             setShowAnswer(true);
+            setPublishedQuestions(questions.length);
             console.log('before update part');
             //props.updatepart(parseData);  
 
@@ -288,7 +289,7 @@ const Questions = (props) => {
             if (questionidsIndex === -1) {
                 setQuestionIds([...questionids, question.sfid]);
                 setQuestions([...questions, question]);
-                setPublishedQuestions(questions.length);
+                
                 doGetParticipationWrongAnswers();
                 setTimer();
                 $('.timerdiv').removeClass('hiddenTimer');
@@ -304,7 +305,6 @@ const Questions = (props) => {
                     console.log('temp questions');
                     tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
                     setQuestions(tempQuestions);
-                    setPublishedQuestions(questions.length);
                     doGetParticipationWrongAnswers();
                     setTimer();
                     $('.timerdiv').removeClass('hiddenTimer');
@@ -324,7 +324,7 @@ const Questions = (props) => {
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
-        setPublishedQuestions(questions.length);
+
         console.log(counter);
         doGetParticipationWrongAnswers();
         }
