@@ -188,6 +188,18 @@ app.get("/questions/:contest_id", authorization, async (req, res) => {
     }
 });
 
+app.get("/allquestions/:contest_id", authorization, async (req, res) => {
+    try {
+        const {contest_id} = req.params;
+        console.log('getting all questions');
+        const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 ORDER BY SubSegment__c ASC", [contest_id]);
+        res.json(allContestQuestions.rows)
+
+    } catch (error) {
+        console.log('error contest questions :: ' + error.message);
+    }
+});
+
 
 //disable questions on times up or locked
 

@@ -17,6 +17,7 @@ import $ from 'jquery';
 
 const Questions = (props) => {
     const [questions, setQuestions] = useState([]);
+    const [allquestions, setAllQuestions] = useState([]);
     const [index, setIndex] = useState(0);
     const [questionids, setQuestionIds] = useState([]);
     const [questionNum, setQuestionNum] = useState(1);
@@ -38,6 +39,23 @@ const Questions = (props) => {
     const [socketUpdate, setSocketUpdate] = useState(false);
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
+
+    const getAllQuestions = async () => {
+        try {
+            console.log('get questions');
+
+            const res = await fetch(`/allquestions/${props.contestid}`, {
+                method: "GET",
+                headers: {jwt_token: localStorage.token}
+            });
+
+            const parseData = await res.json();
+            setAllQuestions(parseData);
+
+        } catch (err) {
+            console.error('get questions error' + err.message);
+        }
+    }
 
     const getQuestions = async () => {
         try {
@@ -278,20 +296,29 @@ const Questions = (props) => {
     }
 
     useEffect(() => {
-        getQuestions();
-        socket.emit("set_contest_room", props.contestid)
         console.log('questions use effect');
+        getQuestions();
+        getAllQuestions();
+        socket.emit("set_contest_room", props.contestid)
         
     }, []);
     socket.on("new_question", question => {   
         var questionidsIndex = questionids.indexOf(question.sfid);
         console.log('is question locked' + question.islocked__c);
-        console.log('is question answer' + question.correct_answer__c);
+        console.log('is question answer' + question.SubSegment__c);
         if(!socketUpdate){
             setSocketUpdate(true);
             if (questionidsIndex === -1) {
+                var newquestions = [];
+                for(var i=0; i< allquestions.length; i++){
+                    if(allquestions[i].SubSegment__c = question.SubSegment__c){
+                        newquestions.push(question);
+
+                    }
+                }
+
                 setQuestionIds([...questionids, question.sfid]);
-                setQuestions([...questions, question]);
+                setQuestions(newquestions);
                 
                 doGetParticipationWrongAnswers();
                 setTimer();
