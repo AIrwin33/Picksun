@@ -161,10 +161,7 @@ const Questions = (props) => {
             setShowWaiting(false);
             setReview(false);
             //setPublishedQuestions(questions.length);
-            console.log('before update part');
-            console.log(review);
-            console.log(isShowWaiting);
-            console.log(JSON.stringify(questions));
+
             //props.updatepart(parseData);  
 
         } catch (err) {
@@ -425,12 +422,14 @@ const Questions = (props) => {
                                        }
                                    ]}
                             >
-                                {({start, resume, pause, stop, reset, getTimerState, getTime, setTime}) => (
+                                {({start, resume, pause, stop, reset, getTimerState, getTime, setTime, timerState}) => (
 
                                     <React.Fragment>
 
                                         {/* on timer state of stopped, call the disable function and show answer*/}
                                         <div className="timerdiv">
+                                            <div> {getTime()}</div>
+                                            <div>{timerState}</div>
                                             <Timer.Seconds/> Seconds
                                         </div>
                                     </React.Fragment>
