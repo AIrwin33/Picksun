@@ -158,7 +158,7 @@ const Questions = (props) => {
             setPartWrongAnswer(parseData);
             setSocketUpdate(false);
             setShowAnswer(true);
-            setPublishedQuestions(questions.length);
+            //setPublishedQuestions(questions.length);
             console.log('before update part');
             //props.updatepart(parseData);  
 
