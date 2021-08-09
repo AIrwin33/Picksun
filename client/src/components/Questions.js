@@ -304,12 +304,11 @@ const Questions = (props) => {
     }, []);
     socket.on("new_question", question => {   
         var questionidsIndex = questionids.indexOf(question.sfid);
-        console.log('is question locked' + question.islocked__c);
-        console.log('is question answer' + question.subsegment__c);
         if(!socketUpdate){
             setSocketUpdate(true);
             if (questionidsIndex === -1) {
-                var newquestions = [];
+                console.log('existing questions' + questions);
+                var newquestions = questions;
                 for(var i=0; i< allquestions.length; i++){
                     if(allquestions[i].subsegment__c === question.subsegment__c){
                         console.log(allquestions[i]);
@@ -318,7 +317,7 @@ const Questions = (props) => {
 
                     }
                 }
-                console.log('here' +newquestions);
+                console.log('new questions' +newquestions);
                 setPublishedQuestions(newquestions.length);
                 setQuestionIds([...questionids, question.sfid]);
                 setQuestions(newquestions);
