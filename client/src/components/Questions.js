@@ -326,8 +326,9 @@ const Questions = (props) => {
                 if(question.subsegment__c > 1) {
                     newquestions = questions;
                     console.log('second subsegment');
+                    $('.timerdiv').removeClass('warning');
                     tiRef.current.reset();
-                    tiRef.current.start();
+                    tiRef.current.start();  
                 }
                 console.log('315' + newquestions);
                 var newquestionids = [];
