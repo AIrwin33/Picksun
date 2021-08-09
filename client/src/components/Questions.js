@@ -283,7 +283,7 @@ const Questions = (props) => {
         console.log('questions use effect');
         
     }, []);
-    socket.once("new_question", question => {   
+    socket.on("new_question", question => {   
         var questionidsIndex = questionids.indexOf(question.sfid);
         console.log('is question locked' + question.islocked__c);
         console.log('is question answer' + question.correct_answer__c);
@@ -317,7 +317,7 @@ const Questions = (props) => {
         }
     })
 
-    socket.once("cor_question", question => {   
+    socket.on("cor_question", question => {   
         console.log('in cor question');
         if(!socketUpdate){
             setSocketUpdate(true);
