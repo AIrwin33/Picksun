@@ -320,13 +320,6 @@ const Question = (props) => {
                     } */}
                     </div>
                 </Row>
-                <Row className="counterDiv">
-                    <Col>
-                        <div className="float-right">
-                            Question: {props.questionNum} / {props.totalQuestions}
-                        </div>
-                    </Col>
-                </Row>
                 <Row>
                     <Col>
                     <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
@@ -344,15 +337,16 @@ const Question = (props) => {
                         onClick={handleRadioChange}>{quest.answer_d__c}</button>
                     }
                     </div>
-                    {props.doShowNext &&
-                    <div className="nextQuestionDiv pb-3">
-                        <div className="float-right nextDiv">
-                            <span>Next Question!</span>
-                        </div>
-                    </div>
-                    }
                     </Col>
                 </Row>
+                <Row className="counterDiv">
+                    <Col>
+                        <div className="float-right">
+                            Question: {props.questionNum} / {props.totalQuestions}
+                        </div>
+                    </Col>
+                </Row>
+                
                 {partAnswer.selection__c ?
                     <div>
                         <Row>

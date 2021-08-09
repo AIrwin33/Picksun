@@ -9,11 +9,14 @@
 }
 
 .headerRow {
-    background-color: #D4382E;
+    background-color: #215975;
+    color:white;
+    margin-left:0px;
+    margin-right:0px;
 }
 
 .scoreboard {
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 1px; 
     padding:0.1em;
     margin:0.25em;

@@ -23,6 +23,7 @@ const Questions = (props) => {
     const [selectedCount, setSelectedCount] = useState(0);
     const [subSegmentCount, setSubsegmentCount] = useState(0);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
+    const [publishedQuestions, setPublishedQuestions] = useState(0);
     const [showAnswer, setShowAnswer] = useState(false);
     const [counter, setCounter] = useState(undefined);
     const [answerList, setAnswerList] = useState([]);
@@ -83,6 +84,7 @@ const Questions = (props) => {
                 console.log('no available unlocked questions');
             }
             setQuestions(parseData);
+            setPublishedQuestions(questions.length);
             doGetParticipationWrongAnswers();
         } catch (err) {
             console.error('get questions error' + err.message);
@@ -286,6 +288,7 @@ const Questions = (props) => {
             if (questionidsIndex === -1) {
                 setQuestionIds([...questionids, question.sfid]);
                 setQuestions([...questions, question]);
+                setPublishedQuestions(questions.length);
                 doGetParticipationWrongAnswers();
                 setTimer();
                 $('.timerdiv').removeClass('hiddenTimer');
@@ -301,6 +304,7 @@ const Questions = (props) => {
                     console.log('temp questions');
                     tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
                     setQuestions(tempQuestions);
+                    setPublishedQuestions(questions.length);
                     doGetParticipationWrongAnswers();
                     setTimer();
                     $('.timerdiv').removeClass('hiddenTimer');
@@ -320,6 +324,7 @@ const Questions = (props) => {
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
+        setPublishedQuestions(questions.length);
         console.log(counter);
         doGetParticipationWrongAnswers();
         }
@@ -390,7 +395,7 @@ const Questions = (props) => {
                     <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                         {questions.map((question, index) => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={props.contest.number_of_questions__c}
+                                <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
                                             getsubcount={handleSubsegmentCount}

@@ -55,7 +55,7 @@ const TopPanel = (props) => {
                 <li className="menu__item"><a className="menu__link" href="/">Home</a></li>
                 <li className="menu__item"><a className="menu__link" href="/Lobby">Lobby</a></li>
                 <li className="menu__item"><a className="menu__link" href="/Contests">My Contests</a></li>
-                <li className="menu__item"><a className="menu__link" href="/Profile">{name}</a></li>
+                <li className="menu__item"><a className="menu__link" href="/Profile">Profile</a></li>
                 <li className="menu__item"><a className="menu__link" href="https://pick.fun">Rules</a></li>
               </ul>
             </aside>
