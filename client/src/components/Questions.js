@@ -15,6 +15,8 @@ import Timer from 'react-compound-timer';
 
 import $ from 'jquery';
 
+
+
 const Questions = (props) => {
     const [questions, setQuestions] = useState([]);
     const [allquestions, setAllQuestions] = useState([]);
@@ -39,6 +41,8 @@ const Questions = (props) => {
     const [socketUpdate, setSocketUpdate] = useState(false);
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
+
+    const tiRef = React.createRef();
 
     const getAllQuestions = async () => {
         try {
@@ -183,10 +187,12 @@ const Questions = (props) => {
             console.log('here finishing');
             setFinished(true);
         }
-        console.log('setting counter');
+        //console.log('setting counter');
         
-            setCounter(60000);
-            setIndex(questions.length);
+        setCounter(60000);
+        setIndex(questions.length);
+        tiRef.current.reset();
+        tiRef.current.start();
 
     }
 
@@ -359,7 +365,8 @@ const Questions = (props) => {
                 setTimer();
                 $('.timerdiv').removeClass('hiddenTimer');
             
-            
+                
+
                 
                 
             } else {
@@ -411,6 +418,7 @@ const Questions = (props) => {
                             <Timer initialTime={counter}
                                    direction="backward"
                                    lastUnit="s"
+                                   ref={tiRef}
                                    checkpoints={[
                                        {
                                            time: 0,
