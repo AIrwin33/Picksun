@@ -351,21 +351,17 @@ const Questions = (props) => {
                         }
                     }
                 }
-                console.log('new questions' +newquestions);
-                console.log('length' + newquestions.length);
-                if(allquestions.length < newquestions.length){
-                }else{
-                    console.log('setting');
-                    setPublishedQuestions(newquestions.length);
-                    setQuestionIds(newquestionids);
-                    setQuestions(newquestions);
-                    
-                    doGetParticipationWrongAnswers();
-                    setTimer();
-                    $('.timerdiv').removeClass('hiddenTimer');
-                }
+
+                console.log('setting');
+                setPublishedQuestions(newquestions.length);
+                setQuestionIds(newquestionids);
+                setQuestions(newquestions);
                 
-                
+                doGetParticipationWrongAnswers();
+                setTimer();
+                $('.timerdiv').removeClass('hiddenTimer');
+            
+            
                 
                 
             } else {
