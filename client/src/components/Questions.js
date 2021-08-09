@@ -329,6 +329,10 @@ const Questions = (props) => {
                             console.log('new question');
                             newquestions.push(question);
                             newquestionids.push(question.sfid);
+                            if(allquestions.length === newquestions.length){
+                                console.log('break');
+                                break;
+                            }
                             
                         }
                     }
