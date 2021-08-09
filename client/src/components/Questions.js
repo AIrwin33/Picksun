@@ -470,6 +470,16 @@ const Questions = (props) => {
             <Row className="questionRow m-2 p-2 justify-content-center">
                 <Col>
                     {questions.length > 0 && 
+                        <div>
+
+                            {questions.map((question, index) => {
+                                return <div key={question.id}>
+                                    <span>{question.name}</span>
+                                </div>
+                            })}
+                        </div>
+                    }
+                    {/* {questions.length > 0 && 
                     <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
                         {questions.map((question, index) => {
                             return <Carousel.Item key={question.id} className="text-center">
@@ -482,7 +492,7 @@ const Questions = (props) => {
                             </Carousel.Item>
                         })}
                     </Carousel>
-                    }
+                    } */}
 
                     {questions.length === 0 &&
                     <div className="greyDiv text-center proxima font16">
