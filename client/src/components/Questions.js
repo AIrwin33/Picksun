@@ -305,13 +305,13 @@ const Questions = (props) => {
     socket.on("new_question", question => {   
         var questionidsIndex = questionids.indexOf(question.sfid);
         console.log('is question locked' + question.islocked__c);
-        console.log('is question answer' + question.SubSegment__c);
+        console.log('is question answer' + question.subsegment__c);
         if(!socketUpdate){
             setSocketUpdate(true);
             if (questionidsIndex === -1) {
                 var newquestions = [];
                 for(var i=0; i< allquestions.length; i++){
-                    if(allquestions[i].SubSegment__c = question.SubSegment__c){
+                    if(allquestions[i].subsegment__c = question.subsegment__c){
                         console.log(allquestions[i]);
                         console.log(question);
                         newquestions.push(question);
