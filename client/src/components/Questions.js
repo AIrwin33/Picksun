@@ -175,7 +175,10 @@ const Questions = (props) => {
                     nonLockedQuestions++
                 
             }
+            console.log(nonLockedQuestions);
         if (questions.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
+            console.log(nonLockedQuestions);
+            console.log('here finishing');
             setFinished(true);
         }
             setCounter(60000);
