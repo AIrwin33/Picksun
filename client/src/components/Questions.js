@@ -313,6 +313,7 @@ const Questions = (props) => {
                 //if there is already a segment published, include old questions
                 if(question.subsegment__c > 1) {
                     newquestions = questions;
+                    console.log('second subsegment');
                 }
                 console.log('315' + newquestions);
                 var newquestionids = [];
@@ -328,6 +329,9 @@ const Questions = (props) => {
                             console.log('new question');
                             newquestions.push(question);
                             newquestionids.push(question.sfid);
+                            if(allquestions.length === newquestions.length){
+                                break;
+                            }
                         }
                     }
                 }
