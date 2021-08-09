@@ -312,11 +312,13 @@ const Questions = (props) => {
                 var newquestions = [];
                 for(var i=0; i< allquestions.length; i++){
                     if(allquestions[i].SubSegment__c = question.SubSegment__c){
+                        console.log(allquestions[i]);
+                        console.log(question);
                         newquestions.push(question);
 
                     }
                 }
-
+                console.log('here' +newquestions);
                 setQuestionIds([...questionids, question.sfid]);
                 setQuestions(newquestions);
                 

@@ -40,7 +40,7 @@ const Landing = (props) => {
 
                     <span className="whiteText aptifer fontBold text-center">Fun</span><br/>
                     <div className="justify-content-start">
-                    <span className="whiteText proxima">Our contests cover short segements - such as one inning of a baseball game - so that fun and winning comes at you fast!</span><br/>
+                    <span className="whiteText proxima">Our contests cover short segments - such as one inning of a baseball game - so that fun and winning comes at you fast!</span><br/>
                     <span className="whiteText proxima">No complicated scoring systems. No math skills required.
                     </span><br/>
                     <span className="whiteText proxima">You drive the action! uggest questions you want us to ask while the contest is underway.</span><br/>
