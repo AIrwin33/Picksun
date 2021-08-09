@@ -408,9 +408,7 @@ const Questions = (props) => {
     })
     return (
         <>
-                <div>
-                    {questions.length}
-                </div>
+
             {/* Show timer and answer count */}
                 {questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-center">
@@ -468,7 +466,7 @@ const Questions = (props) => {
                 </Row>
                 }
             {/* show questions or no question text */}
-
+            {!isShowWaiting &&
             <Row className="questionRow m-2 p-2 justify-content-center">
                 <Col>
                     {questions.length > 0 && 
@@ -493,7 +491,7 @@ const Questions = (props) => {
                     }
                 </Col>
             </Row>
-            
+            }
 
             {/* showing submit answers button */}
             {!review && questions.length > 0 &&
