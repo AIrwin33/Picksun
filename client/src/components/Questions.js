@@ -160,6 +160,8 @@ const Questions = (props) => {
             setShowAnswer(true);
             //setPublishedQuestions(questions.length);
             console.log('before update part');
+            console.log(review);
+            console.log(isShowWaiting);
             //props.updatepart(parseData);  
 
         } catch (err) {
@@ -181,6 +183,8 @@ const Questions = (props) => {
             console.log('here finishing');
             setFinished(true);
         }
+        console.log('setting counter');
+        console.log(JSON.stringify(questions));
             setCounter(60000);
             setIndex(questions.length);
 
