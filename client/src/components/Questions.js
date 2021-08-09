@@ -337,6 +337,7 @@ const Questions = (props) => {
                 console.log('length' + newquestions.length);
                 if(allquestions.length < newquestions.length){
                 }else{
+                    console.log('setting');
                     setPublishedQuestions(newquestions.length);
                     setQuestionIds(newquestionids);
                     setQuestions(newquestions);
