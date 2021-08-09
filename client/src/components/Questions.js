@@ -158,10 +158,12 @@ const Questions = (props) => {
             setPartWrongAnswer(parseData);
             setSocketUpdate(false);
             setShowAnswer(true);
+            setReview(false);
             //setPublishedQuestions(questions.length);
             console.log('before update part');
             console.log(review);
             console.log(isShowWaiting);
+            console.log(JSON.stringify(questions));
             //props.updatepart(parseData);  
 
         } catch (err) {
@@ -184,7 +186,7 @@ const Questions = (props) => {
             setFinished(true);
         }
         console.log('setting counter');
-        console.log(JSON.stringify(questions));
+        
             setCounter(60000);
             setIndex(questions.length);
 
