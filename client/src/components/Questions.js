@@ -191,8 +191,7 @@ const Questions = (props) => {
         
         setCounter(60000);
         setIndex(questions.length);
-        tiRef.current.reset();
-        tiRef.current.start();
+        
 
     }
 
@@ -327,6 +326,8 @@ const Questions = (props) => {
                 if(question.subsegment__c > 1) {
                     newquestions = questions;
                     console.log('second subsegment');
+                    tiRef.current.reset();
+                    tiRef.current.start();
                 }
                 console.log('315' + newquestions);
                 var newquestionids = [];
