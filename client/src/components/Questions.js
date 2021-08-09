@@ -314,8 +314,11 @@ const Questions = (props) => {
                     if(allquestions[i].subsegment__c === question.subsegment__c){
                         console.log(allquestions[i]);
                         console.log(question);
-                        newquestions.push(question);
-                        newquestionids.push(question.sfid);
+                        if(allquestions[i].sfid !== question.sfid){
+
+                            newquestions.push(question);
+                            newquestionids.push(question.sfid);
+                        }
                     }
                 }
                 console.log('new questions' +newquestions);
