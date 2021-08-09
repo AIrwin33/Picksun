@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {Carousel, Col, Button, Container, Modal, Row, Image} from "react-bootstrap";
 
 import Question from './Question.js';
@@ -468,7 +468,7 @@ const Questions = (props) => {
             <Row className="questionRow m-2 p-2 justify-content-center">
                 <Col>
                     {questions.length > 0 && 
-                    <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
+                    <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
                         {questions.map((question, index) => {
                             return <Carousel.Item key={question.id} className="text-center">
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
