@@ -306,9 +306,7 @@ const Questions = (props) => {
     }, []);
     socket.once("new_question", question => {   
         var questionidsIndex = questionids.indexOf(question.sfid);
-        if(!socketUpdate){
-            setSocketUpdate(true);
-            if (questionidsIndex === -1) {
+        if (questionidsIndex === -1) {
                 console.log('existing questions' + questions);
                 console.log('id' + question.sfid);
                 var newquestions = [];
@@ -325,19 +323,19 @@ const Questions = (props) => {
                     console.log('questions' + newquestions);
                     setQuestions(newquestions);
                     setPublishedQuestions(newquestions.length);
-                    // setQuestionIds([...questionids, question.sfid]);
-                    // setQuestions([...questions, question]);
-                    // setPublishedQuestions(questions.length + 1);
-                    // if(question.subsegment__c > 1) {
-                    //     $('.timerdiv').removeClass('warning');
-                    //     tiRef.current.reset();
-                    //     tiRef.current.start(); 
-                    // }    
+
+
+                    setQuestionIds([...questionids, question.sfid]);
+                    if(question.subsegment__c > 1) {
+                        $('.timerdiv').removeClass('warning');
+                        tiRef.current.reset();
+                        tiRef.current.start(); 
+                    }    
                     
                     
-                    // doGetParticipationWrongAnswers();
-                    // setTimer();
-                    // $('.timerdiv').removeClass('hiddenTimer');
+                    doGetParticipationWrongAnswers();
+                    setTimer();
+                    $('.timerdiv').removeClass('hiddenTimer');
                 }
 
                 
@@ -346,22 +344,22 @@ const Questions = (props) => {
 
                 
                 
-            } else {
-                if(question.islocked__c){
-                    console.log('question is locked, dont do anything');
-                }else{
+        } else {
+            if(question.islocked__c){
+                console.log('question is locked, dont do anything');
+            }else{
 
-                    const tempQuestions = questions;
-                    console.log('temp questions');
-                    tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-                    setQuestions(tempQuestions);
-                    doGetParticipationWrongAnswers();
-                    setTimer();
-                    $('.timerdiv').removeClass('hiddenTimer');
-                }
-                
+                const tempQuestions = questions;
+                console.log('temp questions');
+                tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+                setQuestions(tempQuestions);
+                doGetParticipationWrongAnswers();
+                setTimer();
+                $('.timerdiv').removeClass('hiddenTimer');
             }
+            
         }
+        
     })
 
     socket.on("cor_question", question => {   
