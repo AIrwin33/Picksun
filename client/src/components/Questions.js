@@ -309,7 +309,7 @@ const Questions = (props) => {
             setSocketUpdate(true);
             if (questionidsIndex === -1) {
                 console.log('existing questions' + questions);
-                if(questions.length === allquestions.length){
+                if(questions.length > 0 && questions.length === allquestions.length){
                     console.log('done')
                 }else{
                     console.log('add more questions');
@@ -318,7 +318,6 @@ const Questions = (props) => {
                     //if there is already a segment published, include old questions
                     if(question.subsegment__c > 1) {
                         newquestions = questions;
-                        console.log('second subsegment');
                         $('.timerdiv').removeClass('warning');
                         tiRef.current.reset();
                         tiRef.current.start();  
@@ -335,9 +334,6 @@ const Questions = (props) => {
                                 if(allquestions.length === newquestions.length){
                                     console.log('break');
                                     break;
-                                    
-                                    
-                                    
                                 }else{
                                     console.log('new question');
                                     newquestions.push(question);
