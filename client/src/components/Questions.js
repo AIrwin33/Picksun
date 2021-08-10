@@ -161,7 +161,7 @@ const Questions = (props) => {
             setShowAnswer(true);
             setShowWaiting(false);
             setReview(false);
-            setPublishedQuestions(questions.length);
+            console.log('questions' + JSON.stringify(questions));
 
             props.updatepart(parseData);  
 
@@ -316,8 +316,10 @@ const Questions = (props) => {
                 }else{
                     for(var i=0; i< allquestions.length; i++){
                         if(allquestions[i].subsegment__c === question.subsegment__c){
+                            console.log('questions' + questions);
                             setQuestionIds([...questionids, question.sfid]);
                             setQuestions([...questions, question]);
+                            setPublishedQuestions(questions.length + 1);
                             if(question.subsegment__c > 1) {
                                 $('.timerdiv').removeClass('warning');
                                 tiRef.current.reset();
