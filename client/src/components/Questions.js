@@ -309,6 +309,7 @@ const Questions = (props) => {
             setSocketUpdate(true);
             if (questionidsIndex === -1) {
                 console.log('existing questions' + questions);
+                console.log('id' + question.sfid);
                 if(questions.length > 0 && questions.length === allquestions.length){
                     console.log('done')
                 }else{
@@ -336,6 +337,9 @@ const Questions = (props) => {
                                     break;
                                 }else{
                                     console.log('new question');
+                                    console.log(typeof questions);
+                                    console.log(typeof question);
+                                    console.log(typeof newquestions);
                                     newquestions.push(question);
                                     newquestionids.push(question.sfid);
                                     console.log('new questions' + JSON.stringify(newquestions));
@@ -354,6 +358,13 @@ const Questions = (props) => {
                     setTimer();
                     $('.timerdiv').removeClass('hiddenTimer');
                 }
+
+                
+            
+                
+
+                
+                
             } else {
                 if(question.islocked__c){
                     console.log('question is locked, dont do anything');
@@ -421,6 +432,8 @@ const Questions = (props) => {
 
                                         {/* on timer state of stopped, call the disable function and show answer*/}
                                         <div className="timerdiv">
+                                            <div> {getTime()}</div>
+                                            <div>{timerState}</div>
                                             <Timer.Seconds/> Seconds
                                         </div>
                                     </React.Fragment>
@@ -456,6 +469,7 @@ const Questions = (props) => {
                     <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
                         {questions.map((question, index) => {
                             return <Carousel.Item key={question.id} className="text-center">
+                                {question.name}
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
