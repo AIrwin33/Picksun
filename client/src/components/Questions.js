@@ -117,16 +117,18 @@ const Questions = (props) => {
 
     // select a question and increment/decrement the question number on the screen
     const handleSelect = (selectedIndex, e) => {
-        setIndex(selectedIndex);
+        console.log('hanlde select');
+        console.log(selectedIndex);
+        setIndex(selectedIndex + 1);
         setQuestionNum(selectedIndex + 1);
-        var nextQues = selectedIndex + 1;
-        if(questions[nextQues] === undefined){
-            setShowNext(false);
-        }else{
-            if(!questions[nextQues].islocked__c){
-                setShowNext(true);
-            }
-        }
+        // var nextQues = selectedIndex + 1;
+        // if(questions[nextQues] === undefined){
+        //     setShowNext(false);
+        // }else{
+        //     if(!questions[nextQues].islocked__c){
+        //         setShowNext(true);
+        //     }
+        // }
       };
 
     const doGetParticipationWrongAnswers = async () => {
@@ -284,12 +286,11 @@ const Questions = (props) => {
 
             console.log('answer list' + answerList);
             setAnswerList(answerList);
-            if(answerList.length === selectedCount){
-                if(selectedCount + 1 === subSegmentCount){
-                    setAnswerListShow(true);
-                }
+
+            if(selectedCount + 1 === subSegmentCount){
+                setAnswerListShow(true);
             }
-            
+        
         } catch (err) {
             console.log('err' + err.message);
         }
