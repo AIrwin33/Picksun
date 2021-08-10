@@ -340,6 +340,7 @@ const Questions = (props) => {
                                     newquestionids.push(question.sfid);
                                     console.log('new questions' + JSON.stringify(newquestions));
                                     console.log('lenght' + newquestions.length);
+                                    console.log(newquestions[0]);
                                 }
                                 
                             }
@@ -428,8 +429,6 @@ const Questions = (props) => {
 
                                         {/* on timer state of stopped, call the disable function and show answer*/}
                                         <div className="timerdiv">
-                                            <div> {getTime()}</div>
-                                            <div>{timerState}</div>
                                             <Timer.Seconds/> Seconds
                                         </div>
                                     </React.Fragment>
@@ -465,6 +464,7 @@ const Questions = (props) => {
                     <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
+                                {question.id}
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
