@@ -337,9 +337,7 @@ const Questions = (props) => {
                             console.log(question.sfid);
                             console.log(newquestions);
                             if(allquestions[i].sfid === question.sfid && newquestions.length > 0){
-                                console.log('splice');
                                 newquestions.splice(i, 1, question);
-                                console.log(newquestions);
                                 
                             }
                             
@@ -350,6 +348,8 @@ const Questions = (props) => {
                                     break;
                                 }else{
                                     console.log('new question');
+                                    console.log(question);
+                                    console.log(newquestions);
                                     newquestions.push(question);
                                     newquestionids.push(question.sfid);
                                     console.log('new questions' + JSON.stringify(newquestions));
