@@ -261,9 +261,10 @@ const Questions = (props) => {
                     console.log(answerList[i].question__c);
                     if (childData.question__c === answerList[i].question__c) {
                         //replace existing question
+                        console.log('splice');
                         answerList.splice(i, 1, childData);
                     }else {
-
+                        console.log('add');
                         answerList.push(childData);
                         break;
                     }
@@ -280,13 +281,15 @@ const Questions = (props) => {
             }
             setSelectedCount(selectedCount + 1);
 
+
             console.log('answer list' + answerList);
+            setAnswerList(answerList);
             if(answerList.length === selectedCount){
                 if(selectedCount + 1 === subSegmentCount){
                     setAnswerListShow(true);
                 }
             }
-            setAnswerList(answerList);
+            
         } catch (err) {
             console.log('err' + err.message);
         }

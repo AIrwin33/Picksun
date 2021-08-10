@@ -47,6 +47,7 @@ const Question = (props) => {
             let newuuid = uuidv4();
             const partid = props.partsfid;
             const question_sfid = props.ques.sfid;
+            console.log(question_sfid);
             const answer = {
                 participation__c: partid,
                 question__c: question_sfid,
