@@ -185,9 +185,6 @@ const Questions = (props) => {
         }
         
         setCounter(60000);
-        var lengthminus = questions.length - 1;
-        console.log(lengthminus);
-        setIndex(lengthminus)
 
     }
 
@@ -288,10 +285,10 @@ const Questions = (props) => {
 
             console.log('answer list' + answerList);
             setAnswerList(answerList);
-
-            if(selectedCount + 1 === subSegmentCount){
-                setAnswerListShow(true);
-            }
+            setAnswerListShow(true);
+            // if(selectedCount + 1 === subSegmentCount){
+                
+            // }
         
         } catch (err) {
             console.log('err' + err.message);
