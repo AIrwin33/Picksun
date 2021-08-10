@@ -429,8 +429,6 @@ const Questions = (props) => {
 
                                         {/* on timer state of stopped, call the disable function and show answer*/}
                                         <div className="timerdiv">
-                                            <div> {getTime()}</div>
-                                            <div>{timerState}</div>
                                             <Timer.Seconds/> Seconds
                                         </div>
                                     </React.Fragment>
@@ -466,7 +464,6 @@ const Questions = (props) => {
                     <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
                         {questions.map((question, index) => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                {question.name}
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
