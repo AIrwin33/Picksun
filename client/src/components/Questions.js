@@ -338,6 +338,7 @@ const Questions = (props) => {
                             console.log(newquestions);
                             //if the question is already there
                             if(newquestions.length > 0 && allquestions[i].sfid === question.sfid && newquestions[i].sfid === question.sfid){
+                                console.log('splice');
                                 newquestions.splice(i, 1, question);
                                 
                             }
