@@ -344,7 +344,7 @@ const Questions = (props) => {
                             }
                             console.log(allquestions[i].sfid);
                             console.log(question.sfid);
-                            if(allquestions[i].sfid === question.sfid ){
+                            if(allquestions[i].sfid === question.sfid && newquestions[i].sfid !== question.sfid){
                                 console.log('dont splice');
                                 if(allquestions.length === newquestions.length){
                                     console.log('break');
