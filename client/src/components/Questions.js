@@ -306,33 +306,49 @@ const Questions = (props) => {
     }, []);
     socket.once("new_question", question => {   
         var questionidsIndex = questionids.indexOf(question.sfid);
-        if (questionidsIndex === -1) {
+            if (questionidsIndex === -1) {
                 console.log('existing questions' + questions);
-                console.log('id' + question.sfid);
-                var newquestions = [];
                 if(questions.length > 0 && questions.length === allquestions.length){
                     console.log('done')
                 }else{
-                    for(var i=0; i< allquestions.length; i++){
-                        if(allquestions[i].subsegment__c === question.subsegment__c){
-                            newquestions.push(question);
-                            
-                        }
-                    }
-
-                    console.log('questions' + newquestions);
-                    setQuestions(newquestions);
-                    setPublishedQuestions(newquestions.length);
-
-
-                    setQuestionIds([...questionids, question.sfid]);
+                    console.log('add more questions');
+                    var newquestions = [];
+                    
+                    //if there is already a segment published, include old questions
                     if(question.subsegment__c > 1) {
+                        newquestions = questions;
                         $('.timerdiv').removeClass('warning');
                         tiRef.current.reset();
-                        tiRef.current.start(); 
-                    }    
-                    
-                    
+                        tiRef.current.start();  
+                    }
+                    console.log('315' + JSON.stringify(newquestions));
+                    var newquestionids = [];
+                    for(var i=0; i< allquestions.length; i++){
+                        if(allquestions[i].subsegment__c === question.subsegment__c){
+                            if(allquestions[i].sfid === question.sfid){
+                                console.log('splice');
+                                newquestions.splice(i, 1, question);
+                                
+                            }else{
+                                if(allquestions.length === newquestions.length){
+                                    console.log('break');
+                                    break;
+                                }else{
+                                    console.log('new question');
+                                    newquestions.push(question);
+                                    newquestionids.push(question.sfid);
+                                    console.log('new questions' + JSON.stringify(newquestions));
+                                    console.log('lenght' + newquestions.length);
+                                }
+                                
+                            }
+                        }
+                    }
+                    console.log('setting');
+                    setPublishedQuestions(newquestions.length);
+                    setQuestionIds(newquestionids);
+                    setQuestions(newquestions);
+
                     doGetParticipationWrongAnswers();
                     setTimer();
                     $('.timerdiv').removeClass('hiddenTimer');
