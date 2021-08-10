@@ -119,7 +119,7 @@ const Questions = (props) => {
     const handleSelect = (selectedIndex, e) => {
         console.log('hanlde select');
         console.log(selectedIndex);
-        setIndex(selectedIndex + 1);
+        setIndex(selectedIndex);
         setQuestionNum(selectedIndex + 1);
         // var nextQues = selectedIndex + 1;
         // if(questions[nextQues] === undefined){
@@ -185,7 +185,6 @@ const Questions = (props) => {
         }
         
         setCounter(60000);
-        
 
     }
 
