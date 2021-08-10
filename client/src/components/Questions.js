@@ -185,6 +185,9 @@ const Questions = (props) => {
         }
         
         setCounter(60000);
+        var lengthminus = questions.length - 1;
+        console.log(lengthminus);
+        setIndex(lengthminus)
 
     }
 
