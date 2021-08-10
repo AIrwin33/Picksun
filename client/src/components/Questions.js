@@ -340,8 +340,8 @@ const Questions = (props) => {
                                 newquestions.splice(i, 1, question);
                                 
                             }
-                            
-                            if(allquestions[i].sfid !== question.sfid && allquestions[i].published__c === true){
+                            console.log(allquestions[i].published__c);
+                            if(allquestions[i].sfid === question.sfid && allquestions[i].published__c == true){
                                 console.log('dont splice');
                                 if(allquestions.length === newquestions.length){
                                     console.log('break');
