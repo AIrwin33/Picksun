@@ -161,6 +161,7 @@ const Questions = (props) => {
             setShowAnswer(true);
             setShowWaiting(false);
             setReview(false);
+            setPublishedQuestions(questions.length);
 
             props.updatepart(parseData);  
 
@@ -325,7 +326,7 @@ const Questions = (props) => {
                             
                         }
                     }
-                    setPublishedQuestions(questions.length);
+                    
                     
                     doGetParticipationWrongAnswers();
                     setTimer();
