@@ -330,15 +330,18 @@ const Questions = (props) => {
                         tiRef.current.reset();
                         tiRef.current.start();  
                     }
-                    console.log('315' + JSON.stringify(newquestions));
                     var newquestionids = [];
                     for(var i=0; i< allquestions.length; i++){
                         if(allquestions[i].subsegment__c === question.subsegment__c){
                             if(allquestions[i].sfid === question.sfid){
                                 console.log('splice');
                                 newquestions.splice(i, 1, question);
+                                console.log(newquestions);
                                 
-                            }else{
+                            }
+                            
+                            if(allquestions[i].sfid !== question.sfid){
+                                console.log('dont splice');
                                 if(allquestions.length === newquestions.length){
                                     console.log('break');
                                     break;
