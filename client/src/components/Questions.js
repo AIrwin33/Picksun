@@ -465,13 +465,13 @@ const Questions = (props) => {
                     <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                {question.id}
-                                <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
+                                {question.question_text__c}
+                                {/* <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
                                             getsubcount={handleSubsegmentCount}
                                             isKnockedOut={knockedOut} participation_id={props.participation_id}
-                                            contestfinished={finished} partsfid={props.partsfid} issubmitted={submitted}/>
+                                            contestfinished={finished} partsfid={props.partsfid} issubmitted={submitted}/> */}
                             </Carousel.Item>
                         })}
                     </Carousel>
