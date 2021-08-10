@@ -383,7 +383,7 @@ const Question = (props) => {
             </div>
             {/* end div wrapper */}
         </>
-    )
+    ) 
 }
 
 export default Question;
