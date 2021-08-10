@@ -306,8 +306,7 @@ const Questions = (props) => {
     }, []);
     socket.once("new_question", question => {   
         var questionidsIndex = questionids.indexOf(question.sfid);
-        if(!socketUpdate){
-            setSocketUpdate(true);
+        
             if (questionidsIndex === -1) {
                 console.log('existing questions' + questions);
                 if(questions.length > 0 && questions.length === allquestions.length){
@@ -360,7 +359,7 @@ const Questions = (props) => {
             
                 
 
-            }
+                
                 
         } else {
             if(question.islocked__c){
@@ -429,6 +428,8 @@ const Questions = (props) => {
 
                                         {/* on timer state of stopped, call the disable function and show answer*/}
                                         <div className="timerdiv">
+                                            <div> {getTime()}</div>
+                                            <div>{timerState}</div>
                                             <Timer.Seconds/> Seconds
                                         </div>
                                     </React.Fragment>
