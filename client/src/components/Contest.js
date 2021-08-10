@@ -117,6 +117,7 @@ const Contest = ({match}) => {
     }, []);
     return ((
             <>
+<<<<<<< HEAD
                 {/* Main Body */}
                 <div id="contestContainer">
                     <Row className="headerRow">
@@ -124,6 +125,65 @@ const Contest = ({match}) => {
                         </Col>
                         <Col xs={10} sm={10}>
                             <div className="scoreboard">
+=======
+         
+            {/* Main Body */}
+            <Container id="contestContainer">
+                <Row className="headerRow">
+                    <Col xs={1} sm={1}>
+                    </Col>
+                    <Col xs={10} sm={10}>
+                    <div className="scoreboard">
+                        <Row>
+                            <Col>
+                                <h5 className="ml-3">{home.name} vs.</h5>
+                            </Col>
+                            <Col>
+                                <h5>{away.name}</h5>
+                            </Col>
+                        </Row>
+                    </div>
+                    </Col>
+                    <Col xs={1} sm={1}>
+                    </Col>
+                </Row>
+                <Row className="rowBar">
+                    <Col xs={3} sm={3}></Col>
+                    <Col xs={6} sm={6} className="text-center ">
+                        <h4 className="whiteText fontBold">{contest.name}</h4>
+                    </Col>
+                    <Col xs={3} sm={3}></Col>
+                </Row>
+                <Tabs fill>
+                    <Tab eventKey="Questions" title="Questions">
+                        <Row>
+                            <Col>
+                            {isloaded &&
+                                <Questions contestid={contest.sfid} participation_id={participation.id}/> 
+                            }  
+                            </Col>
+                        </Row>
+                    </Tab>
+                    <Tab eventKey="Participants" title="Participants" className="pb-4 pt-4">
+
+                        {/* loop through participations */}
+
+                        <Row className="rowCard ">
+                            <Col xs={3}>
+                                
+                            </Col>
+                            <Col xs={6} className="text-center">
+                                <span >Participants Remaining: {activeParts}/{allParts}</span>
+                            </Col>
+                            <Col xs={3}>
+                            
+                            </Col>
+                        </Row>
+                        {participations.map(part => {
+                        return <Row key={part.id}className="rowCard ">
+                            <Col xs={3}className="text-right"> <Image src={avatar} roundedCircle height="50"></Image>  </Col>
+                            <Col xs={9}> 
+>>>>>>> 73eaa794... change stats in contest header
                                 <Row>
                                     <Col sm={5}>
                                         <h5 className="text-center mt-1 aptifer">{home.name}</h5>
