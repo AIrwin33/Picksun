@@ -352,7 +352,7 @@ const Questions = (props) => {
                     console.log('setting');
                     setPublishedQuestions(newquestions.length);
                     setQuestionIds(newquestionids);
-                    setQuestions(newquestions);
+                    setQuestions(JSON.stringify(newquestions));
                     
                     doGetParticipationWrongAnswers();
                     setTimer();
