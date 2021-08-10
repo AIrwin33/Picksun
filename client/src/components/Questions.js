@@ -345,21 +345,15 @@ const Questions = (props) => {
                             }
                         }
                     }
+                    console.log('setting');
+                    setPublishedQuestions(newquestions.length);
+                    setQuestionIds(newquestionids);
+                    setQuestions(newquestions);
+                    
+                    doGetParticipationWrongAnswers();
+                    setTimer();
+                    $('.timerdiv').removeClass('hiddenTimer');
                 }
-
-                console.log('setting');
-                setPublishedQuestions(newquestions.length);
-                setQuestionIds(newquestionids);
-                setQuestions(newquestions);
-                
-                doGetParticipationWrongAnswers();
-                setTimer();
-                $('.timerdiv').removeClass('hiddenTimer');
-            
-                
-
-                
-                
             } else {
                 if(question.islocked__c){
                     console.log('question is locked, dont do anything');
