@@ -338,7 +338,8 @@ const Questions = (props) => {
                                     console.log('new question');
                                     newquestions.push(question);
                                     newquestionids.push(question.sfid);
-
+                                    console.log('new questions' + JSON.stringify(newquestions));
+                                    console.log('lenght' + newquestions.length);
                                 }
                                 
                             }
@@ -462,8 +463,8 @@ const Questions = (props) => {
                 <Col>
                     {questions.length > 0 && 
                     <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
-                        {questions.map((question, index) => {
-                            return <Carousel.Item key={index} className="text-center">
+                        {questions.map(question => {
+                            return <Carousel.Item key={question.id} className="text-center">
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
