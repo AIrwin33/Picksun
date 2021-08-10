@@ -350,14 +350,8 @@ const Questions = (props) => {
                                     console.log('break');
                                     break;
                                 }else{
-                                    console.log('new question');
-                                    console.log(question);
-                                    console.log(newquestions);
                                     newquestions.push(question);
                                     newquestionids.push(question.sfid);
-                                    console.log('new questions' + JSON.stringify(newquestions));
-                                    console.log('lenght' + newquestions.length);
-                                    console.log(newquestions[0]);
                                 }
                                 
                             }
