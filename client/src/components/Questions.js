@@ -107,7 +107,6 @@ const Questions = (props) => {
                 console.log('no available unlocked questions');
             }
             setQuestions(parseData);
-            console.log(questions.length);
             setPublishedQuestions(questions.length);
             doGetParticipationWrongAnswers();
         } catch (err) {
@@ -162,6 +161,7 @@ const Questions = (props) => {
             setShowWaiting(false);
             setReview(false);
             console.log('questions' + JSON.stringify(questions));
+            console.log(questions[0]);
 
             props.updatepart(parseData);  
 
