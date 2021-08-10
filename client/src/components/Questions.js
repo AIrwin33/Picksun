@@ -333,15 +333,15 @@ const Questions = (props) => {
                     var newquestionids = [];
                     for(var i=0; i< allquestions.length; i++){
                         if(allquestions[i].subsegment__c === question.subsegment__c){
-                            console.log(allquestions[i].sfid);
+                            console.log(allquestions[i]);
                             console.log(question.sfid);
                             console.log(newquestions);
-                            if(allquestions[i].sfid === question.sfid && newquestions.length > 0){
-                                newquestions.splice(i, 1, question);
+                            //if the question is already there
+                            // if(allquestions[i].sfid === question.sfid && newquestions.length > 0){
+                            //     newquestions.splice(i, 1, question);
                                 
-                            }
-                            console.log(allquestions[i].Published__c);
-                            if(allquestions[i].sfid === question.sfid && newquestions.length === 0){
+                            // }
+                            if(allquestions[i].sfid === question.sfid ){
                                 console.log('dont splice');
                                 if(allquestions.length === newquestions.length){
                                     console.log('break');
