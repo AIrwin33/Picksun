@@ -215,7 +215,7 @@ const Questions = (props) => {
         try {
             setSubmitted(true);
             setShowWaiting(true);
-            console.log(JSON.stringify(answerList));
+            console.log('answer list' + JSON.stringify(answerList));
             const partanswers = answerList;
             const body = {partanswers};
             const res = await fetch(`/submitpartanswers`, {
@@ -277,10 +277,14 @@ const Questions = (props) => {
                 }
             }
             setSelectedCount(selectedCount + 1);
-            setAnswerList(answerList);
-            if(selectedCount + 1 === subSegmentCount){
-                setAnswerListShow(true);
+
+            console.log('answer list' + answerList);
+            if(answerList.length === selectedCount){
+                if(selectedCount + 1 === subSegmentCount){
+                    setAnswerListShow(true);
+                }
             }
+            setAnswerList(answerList);
         } catch (err) {
             console.log('err' + err.message);
         }
