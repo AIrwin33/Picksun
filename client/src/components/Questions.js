@@ -338,8 +338,7 @@ const Questions = (props) => {
                                     console.log('new question');
                                     newquestions.push(question);
                                     newquestionids.push(question.sfid);
-                                    console.log('new questions' + JSON.stringify(newquestions));
-                                    console.log('lenght' + newquestions.length);
+
                                 }
                                 
                             }
