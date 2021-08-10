@@ -311,28 +311,31 @@ const Questions = (props) => {
             if (questionidsIndex === -1) {
                 console.log('existing questions' + questions);
                 console.log('id' + question.sfid);
+                var newquestions = [];
                 if(questions.length > 0 && questions.length === allquestions.length){
                     console.log('done')
                 }else{
                     for(var i=0; i< allquestions.length; i++){
                         if(allquestions[i].subsegment__c === question.subsegment__c){
-                            console.log('questions' + questions);
-                            setQuestionIds([...questionids, question.sfid]);
-                            setQuestions([...questions, question]);
-                            setPublishedQuestions(questions.length + 1);
-                            if(question.subsegment__c > 1) {
-                                $('.timerdiv').removeClass('warning');
-                                tiRef.current.reset();
-                                tiRef.current.start(); 
-                            }    
+                            newquestions.push(question);
                             
                         }
                     }
+
+                    console.log('questions' + newquestions);
+                    // setQuestionIds([...questionids, question.sfid]);
+                    // setQuestions([...questions, question]);
+                    // setPublishedQuestions(questions.length + 1);
+                    // if(question.subsegment__c > 1) {
+                    //     $('.timerdiv').removeClass('warning');
+                    //     tiRef.current.reset();
+                    //     tiRef.current.start(); 
+                    // }    
                     
                     
-                    doGetParticipationWrongAnswers();
-                    setTimer();
-                    $('.timerdiv').removeClass('hiddenTimer');
+                    // doGetParticipationWrongAnswers();
+                    // setTimer();
+                    // $('.timerdiv').removeClass('hiddenTimer');
                 }
 
                 
