@@ -327,32 +327,28 @@ const Questions = (props) => {
                     var newquestionids = [];
                     for(var i=0; i< allquestions.length; i++){
                         if(allquestions[i].subsegment__c === question.subsegment__c){
-                            if(allquestions[i].sfid === question.sfid){
-                                console.log('splice');
-                                newquestions.splice(i, 1, question);
+                            setQuestionIds([...questionids, question.sfid]);
+                            setQuestions([...questions, question]);
+                            // if(allquestions[i].sfid === question.sfid){
+                            //     console.log('splice');
+                            //     newquestions.splice(i, 1, question);
                                 
-                            }else{
-                                if(allquestions.length === newquestions.length){
-                                    console.log('break');
-                                    break;
-                                }else{
-                                    console.log('new question');
-                                    console.log(typeof questions);
-                                    console.log(typeof question);
-                                    console.log(typeof newquestions);
-                                    newquestions.push(question);
-                                    newquestionids.push(question.sfid);
-                                    console.log('new questions' + JSON.stringify(newquestions));
-                                    console.log('lenght' + newquestions.length);
-                                }
+                            // }else{
+                            //     if(allquestions.length === newquestions.length){
+                            //         console.log('break');
+                            //         break;
+                            //     }else{
+                            //         setQuestionIds([...newquestionids, question.sfid]);
+                            //         setQuestions([...newquestions, question]);
+                            //         console.log('new questions' + JSON.stringify(newquestions));
+                            //         console.log('lenght' + newquestions.length);
+                            //     }
                                 
-                            }
+                            
                         }
                     }
                     console.log('setting');
                     setPublishedQuestions(newquestions.length);
-                    setQuestionIds(newquestionids);
-                    setQuestions(JSON.stringify(newquestions));
                     
                     doGetParticipationWrongAnswers();
                     setTimer();
