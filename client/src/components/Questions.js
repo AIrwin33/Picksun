@@ -133,7 +133,6 @@ const Questions = (props) => {
         try {
             console.log('getting participation answers');
 
-            console.log(counter);
             const partid = props.participation_id;
             const partsfid = props.partsfid;
             const body = {partid};
@@ -157,16 +156,13 @@ const Questions = (props) => {
                 console.log('status active');
                 setInactive(true);
             }
-
-            console.log(counter);
             setPartWrongAnswer(parseData);
             setSocketUpdate(false);
             setShowAnswer(true);
             setShowWaiting(false);
             setReview(false);
-            //setPublishedQuestions(questions.length);
 
-            //props.updatepart(parseData);  
+            props.updatepart(parseData);  
 
         } catch (err) {
             console.error(err.message);
@@ -174,17 +170,13 @@ const Questions = (props) => {
     }
 
     const setTimer = () => {
-        console.log('setting timer?');
         let nonLockedQuestions = 0;
             for (const questionElt of questions) {
                 if(!questionElt.islocked__c)
                     nonLockedQuestions++
                 
             }
-            console.log(nonLockedQuestions);
         if (questions.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
-            console.log(nonLockedQuestions);
-            console.log('here finishing');
             setFinished(true);
         }
         //console.log('setting counter');
@@ -209,8 +201,6 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
-            console.log('questions after disable' + parseData);
-            console.log(counter);
             $('.timerdiv').addClass('hiddenTimer');
             setQuestions(parseData);
             setShowWaiting(false);
@@ -287,7 +277,6 @@ const Questions = (props) => {
                 }
             }
             setSelectedCount(selectedCount + 1);
-            console.log(JSON.stringify(answerList));
             setAnswerList(answerList);
             if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
@@ -330,12 +319,10 @@ const Questions = (props) => {
                     tiRef.current.reset();
                     tiRef.current.start();  
                 }
-                console.log('315' + newquestions);
+                console.log('315' + JSON.stringify(newquestions));
                 var newquestionids = [];
                 for(var i=0; i< allquestions.length; i++){
                     if(allquestions[i].subsegment__c === question.subsegment__c){
-                        console.log(allquestions[i]);
-                        console.log(question);
                         if(allquestions[i].sfid === question.sfid){
                             console.log('splice');
                             newquestions.splice(i, 1, question);
@@ -351,7 +338,7 @@ const Questions = (props) => {
                                 console.log('new question');
                                 newquestions.push(question);
                                 newquestionids.push(question.sfid);
-
+                                console.log('new questions' + JSON.stringify(newquestions));
                             }
                             
                         }
@@ -465,16 +452,17 @@ const Questions = (props) => {
                     </Col>
                 </Row>
                 }
+            {isShowWaiting}
             {/* show questions or no question text */}
             {!isShowWaiting &&
             <Row className="questionRow m-2 p-2 justify-content-center">
+                
                 <Col>
                     {questions.length > 0 && 
                     <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
                         {questions.map((question, index) => {
                             return <Carousel.Item key={question.id} className="text-center">
                                 {question.name}
-                                {questions.length}
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
