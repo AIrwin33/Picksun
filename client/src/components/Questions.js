@@ -184,7 +184,7 @@ const Questions = (props) => {
         //console.log('setting counter');
         
         setCounter(60000);
-        setIndex(questions.length);
+        setIndex(0);
         
 
     }
@@ -465,7 +465,7 @@ const Questions = (props) => {
                     <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-
+                                {index}
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
