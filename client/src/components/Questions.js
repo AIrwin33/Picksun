@@ -321,11 +321,11 @@ const Questions = (props) => {
                     console.log('done')
                 }else{
                     console.log('add more questions');
-                    var newquestions = [];
+                    var newquestions = questions;;
                     
                     //if there is already a segment published, include old questions
                     if(question.subsegment__c > 1) {
-                        newquestions = questions;
+                        
                         $('.timerdiv').removeClass('warning');
                         tiRef.current.reset();
                         tiRef.current.start();  
