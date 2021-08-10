@@ -321,7 +321,7 @@ const Question = (props) => {
                     </div>
                 </Row>
                 <Row>
-                    <Col>
+                <Col>
                     <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
                         aria-label="Basic example" data-toggle="buttons">
                         <button type="radio" value="A" className="btn btn-primary questionButton"
