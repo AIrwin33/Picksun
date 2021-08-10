@@ -323,6 +323,8 @@ const Questions = (props) => {
                     }
 
                     console.log('questions' + newquestions);
+                    setQuestions(newquestions);
+                    setPublishedQuestions(newquestions.length);
                     // setQuestionIds([...questionids, question.sfid]);
                     // setQuestions([...questions, question]);
                     // setPublishedQuestions(questions.length + 1);
