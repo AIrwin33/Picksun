@@ -39,6 +39,7 @@ const Questions = (props) => {
     const [isShowWaiting, setShowWaiting] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
     const [socketUpdate, setSocketUpdate] = useState(false);
+    const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
     const tiRef = useRef(null);
 
@@ -461,7 +462,7 @@ const Questions = (props) => {
                 
                 <Col>
                     {questions.length > 0 && 
-                    <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
+                    <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
                                 {question.id}
