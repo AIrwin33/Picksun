@@ -335,7 +335,8 @@ const Questions = (props) => {
                         if(allquestions[i].subsegment__c === question.subsegment__c){
                             console.log(allquestions[i].sfid);
                             console.log(question.sfid);
-                            if(allquestions[i].sfid === question.sfid){
+                            console.log(newquestions);
+                            if(allquestions[i].sfid === question.sfid && newquestions.length > 0){
                                 console.log('splice');
                                 newquestions.splice(i, 1, question);
                                 console.log(newquestions);
