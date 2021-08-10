@@ -321,7 +321,7 @@ const Questions = (props) => {
                     console.log('done')
                 }else{
                     console.log('add more questions');
-                    var newquestions = questions;;
+                    var newquestions = questions;
                     
                     //if there is already a segment published, include old questions
                     if(question.subsegment__c > 1) {
@@ -333,14 +333,15 @@ const Questions = (props) => {
                     var newquestionids = [];
                     for(var i=0; i< allquestions.length; i++){
                         if(allquestions[i].subsegment__c === question.subsegment__c){
-                            console.log(allquestions[i]);
-                            console.log(question.sfid);
+                            console.log(i);
                             console.log(newquestions);
+                            console.log(newquestions[i]);
                             //if the question is already there
-                            if(newquestions.length > 0 && allquestions[i].sfid === question.sfid && newquestions[i].sfid === question.sfid){
+                            if(newquestions.length > 0 ){
+                                if(allquestions[i].sfid === question.sfid && newquestions[i].sfid === question.sfid){
                                 console.log('splice');
                                 newquestions.splice(i, 1, question);
-                                
+                                }
                             }
                             if(allquestions[i].sfid === question.sfid ){
                                 console.log('dont splice');
