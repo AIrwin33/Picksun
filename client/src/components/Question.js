@@ -301,7 +301,35 @@ const Question = (props) => {
                         <Modal.Header closeButton>
                         <Modal.Title className="aptifer font16 modalHeader">Modal heading</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body className="proxima font12 modalBody">Woohoo, you're reading this text in a modal!</Modal.Body>
+                        <Modal.Body className="proxima font12 modalBody">
+                            <span>
+                                Pick an answer for each question. You’ll know you have unanswered questions when the countdown timer and bouncing ball image are present.
+                            </span>
+                            <span>
+                                Before the countdown timer reaches zero, click ‘Submit Answers.’ The ‘Submit Answer’ button becomes clickable once you’ve picked answers for all available questions.
+                            </span>
+                            <span>
+                                Review your answers and results using left / right toggles.
+                            </span>
+                            <span>
+                                Keep your phone nearby when playing! Questions are published live in small batches.
+                            </span>
+                            <span>
+                                Keep track of how many answers you’ve gotten wrong + how many left until you’re knocked by looking at the ‘Wrong Answers’ indicator. When all circles (Knockout Limit) are filled in, you’ll be removed from the contest.
+                            </span>
+                            <span>
+                                Click ‘Participants’ to see who else is still alive in the contest.
+                            </span>
+                            <span>
+                                Access Twitter to communicate with us before, during or after contests.
+                            </span>
+                            <span>
+                                You’ll receive a prompt if you get knocked out and notification if you’re one of the winners. We’ll follow up with winners directly.
+                            </span>
+
+                            
+
+                        </Modal.Body>
                         <Modal.Footer>
                         <Button className="aptifer modalBtn" variant="secondary" onClick={handleInfoClose}>
                             Close
