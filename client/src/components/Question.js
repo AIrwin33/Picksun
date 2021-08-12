@@ -370,7 +370,7 @@ const Question = (props) => {
                 <Row className="counterDiv">
                     <Col>
                         <div className="float-right">
-                            Question: {props.questionNum} / {props.totalQuestions}
+                            Question: {props.questionNum} of {props.totalQuestions}
                         </div>
                     </Col>
                 </Row>

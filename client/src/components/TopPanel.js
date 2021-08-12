@@ -35,6 +35,7 @@ const TopPanel = (props) => {
         getProfile();
         if(props.profile){
           $('.TopPanelCont').addClass('profile');
+          $('.menu-toggler__line').addClass('white');
         }
 
     }, [props]);

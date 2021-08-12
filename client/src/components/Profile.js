@@ -132,13 +132,6 @@ const Profile = (props) => {
                     </ul>
                 </Col>
             </Row>
-            <Row>
-                <Col className="text-center">
-                    <Button className="float-right inviteBtn" onClick={e => onInvite(e)}>
-                        Invite
-                    </Button>
-                </Col>
-            </Row>
             <Tabs className="ml-2 mr-2">
                 <Tab className="profileTab ml-2 mr-2" eventKey="profile" title="Profile">
                     <Card>  
