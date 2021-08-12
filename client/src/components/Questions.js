@@ -98,10 +98,10 @@ const Questions = (props) => {
                 var counttime = moment.duration(closedTimerFormat.diff(currtime));
 
                 if (counttime < 0) {
-                    console.log('setting timer?');
+                    console.log('setting timer zero?');
                     setCounter(0);
                 } else {
-                    console.log('setting timer?');
+                    console.log('setting timer count time?');
                     setCounter(counttime);
                 }
             } else {
