@@ -41,7 +41,7 @@ const Answers = (props) => {
                 
                 <div className="d-inline-block">
                     <div>
-                    <p>Knockout Limit:</p>
+                    <p className="font20">Knockout Limit:</p>
                     </div>
                 {answers.map((answer, index) => {
                     return <div  className={`circle   ${answer.wrong ? "wrong" : ""}`} key={index}></div>

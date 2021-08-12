@@ -441,7 +441,7 @@ const Questions = (props) => {
                                     <React.Fragment>
 
                                         {/* on timer state of stopped, call the disable function and show answer*/}
-                                        <div className="timerdiv">
+                                        <div className="timerdiv font20">
                                             <Timer.Seconds/> Seconds
                                         </div>
                                     </React.Fragment>
