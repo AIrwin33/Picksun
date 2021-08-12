@@ -93,7 +93,7 @@ const Register = ({ setAuth }) => {
                         </Form.Group>
 						        <Form.Group>
                       {/* include actual link */}
-                      <Form.Label className="textWhite proxima font16"><a href="#">Terms and Conditions</a></Form.Label>
+                      <Form.Label className="textWhite proxima font16"><a href="https://www.pick.fun/legal">Terms and Conditions</a></Form.Label>
                     </Form.Group>
                         <Button variant="primary" type="submit" className="btnRed float-right mb-3 aptifer font20">
                             Sign Up
