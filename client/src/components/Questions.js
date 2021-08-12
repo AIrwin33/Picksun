@@ -505,7 +505,7 @@ const Questions = (props) => {
             }
 
             {/* showing submit answers button */}
-            {!review && questions.length > 0 &&
+            {!review && !submitted &&questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-md-center">
                     <Col className="col-md-auto">
                         {counter > 0 && answerListShow &&
