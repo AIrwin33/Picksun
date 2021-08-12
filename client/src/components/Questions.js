@@ -442,7 +442,14 @@ const Questions = (props) => {
 
                                         {/* on timer state of stopped, call the disable function and show answer*/}
                                         <div className="timerdiv font20">
+                                            {counter > 0 &&
+                                                <Image width='20' src={baseball}/>
+                                            }
                                             <Timer.Seconds/> Seconds
+
+                                            {counter > 0 &&
+                                                <Image width='20' src={baseball}/>
+                                            }
                                         </div>
                                     </React.Fragment>
                                 )}
