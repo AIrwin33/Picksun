@@ -68,27 +68,24 @@
     visibility: hidden;
 }
 
+.answerBanner {
+    background-color:  #215975;
+    border-radius:5px;
+    color: white;
+}
 
- .red {
-    background-color:  #d4382e;
- }
- 
-.green {
-     background-color:  green;
-  }
+.disabledBtnGroup {
+pointer-events: none;
 
-  .disabledBtnGroup {
-    pointer-events: none;
+}
 
-  }
+.disabledBtnGroup > .questionButton{
 
-  .disabledBtnGroup > .questionButton{
-    
-    background-color: #d4d4d4;
-    color:black;
-    border-radius: 1px;
-    border: 1px solid black;
-  }
+background-color: #d4d4d4;
+color:black;
+border-radius: 1px;
+border: 1px solid black;
+}
 
 .nextDiv {
     border: 1px solid white;
