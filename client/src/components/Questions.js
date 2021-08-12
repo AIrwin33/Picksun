@@ -509,7 +509,7 @@ const Questions = (props) => {
             {!review && questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-md-center">
                     <Col className="col-md-auto">
-                        {counter > 0 &&
+                        {counter > 0 && answerListShow &&
                             <Image width='35' src={baseball}/>
                         }
                     </Col>
@@ -521,7 +521,7 @@ const Questions = (props) => {
 
                     </Col>
                     <Col className="col-md-auto">
-                        {counter > 0 &&
+                        {counter > 0 && answerListShow &&
                             <Image  width='35' src={baseball}/>
                         }
                     </Col>
