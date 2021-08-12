@@ -377,7 +377,7 @@ const Question = (props) => {
                 
                 {partAnswer.selection__c ?
                     <div>
-                        <Row>
+                        <Row className="mt-2">
 
                             <Col>
                                 <div>
