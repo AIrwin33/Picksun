@@ -348,7 +348,7 @@ const Questions = (props) => {
                     setQuestionIds(newquestionids);
                     setQuestions(newquestions);
 
-                    doGetParticipationWrongAnswers();
+                    //doGetParticipationWrongAnswers();
                     setTimer();
                     $('.timerdiv').removeClass('hiddenTimer');
                 }
