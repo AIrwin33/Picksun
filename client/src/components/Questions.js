@@ -121,14 +121,6 @@ const Questions = (props) => {
         console.log(selectedIndex);
         setIndex(selectedIndex);
         setQuestionNum(selectedIndex + 1);
-        // var nextQues = selectedIndex + 1;
-        // if(questions[nextQues] === undefined){
-        //     setShowNext(false);
-        // }else{
-        //     if(!questions[nextQues].islocked__c){
-        //         setShowNext(true);
-        //     }
-        // }
       };
 
     const doGetParticipationWrongAnswers = async () => {
@@ -136,7 +128,6 @@ const Questions = (props) => {
             console.log('getting participation answers');
 
             const partid = props.participation_id;
-            const partsfid = props.partsfid;
             const body = {partid};
             const response = await fetch(
                 "/participationswronganswer",
@@ -163,8 +154,6 @@ const Questions = (props) => {
             setShowAnswer(true);
             setShowWaiting(false);
             setReview(false);
-            console.log('questions' + JSON.stringify(questions));
-            console.log(questions[0]);
 
             props.updatepart(parseData);  
 
@@ -400,7 +389,7 @@ const Questions = (props) => {
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
-        // doGetParticipationWrongAnswers();
+        doGetParticipationWrongAnswers();
 
         
     })
