@@ -264,8 +264,9 @@ const Question = (props) => {
 
         setQuest(props.ques);
         handleSubsegmentCount(props.ques.subsegment__c);
+        console.log('in question');
         if (props.ques.islocked__c === true || props.isInactive === true || props.issubmitted === true) {
-            console.log('is disabled');
+            console.log('is disabled' + props.ques.id);
             setDisabledQuestion(true);
             
             
