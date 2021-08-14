@@ -267,6 +267,7 @@ const Question = (props) => {
         console.log('in question');
         console.log(JSON.stringify(props.ques));
         console.log('is disabled' + disabledQuestion);
+        console.log(props.isInactive);
         if (props.ques.islocked__c === true || props.isInactive === true || props.issubmitted === true) {
             console.log('is disabled' + props.ques.id);
             setDisabledQuestion(true);
