@@ -141,6 +141,7 @@ const Questions = (props) => {
             );
 
             const parseData = await response.json();
+            console.log('running');
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
                 setKnockedOut(true);
@@ -149,11 +150,11 @@ const Questions = (props) => {
                 console.log('status active');
                 setInactive(true);
             }
-            setPartWrongAnswer(parseData);
-            setSocketUpdate(false);
-            setShowAnswer(true);
-            setShowWaiting(false);
-            setReview(false);
+            // setPartWrongAnswer(parseData);
+            // setSocketUpdate(false);
+            // setShowAnswer(true);
+            // setShowWaiting(false);
+            // setReview(false);
 
             //props.updatepart(parseData);  
 
@@ -324,6 +325,7 @@ const Questions = (props) => {
                             //if the question is already there
                             if(newquestions.length > i ){
                                 if(newquestions[i].sfid === question.sfid){
+                                    console.log('question.sfid)' + question.sfid);
                                 console.log('splice');
                                 newquestions.splice(i, 1, question);
                                     continue;
@@ -348,7 +350,7 @@ const Questions = (props) => {
                     setQuestionIds(newquestionids);
                     setQuestions(newquestions);
 
-                    //doGetParticipationWrongAnswers();
+                    doGetParticipationWrongAnswers();
                     setTimer();
                     $('.timerdiv').removeClass('hiddenTimer');
                 }
