@@ -308,7 +308,10 @@ const Questions = (props) => {
                 console.log('existing questions' + questions);
                 if(questions.length > 0 && questions.length === allquestions.length){
                     console.log('done');
-                    socket.close();
+                    socket.on('disconnect', function() {
+                        console.log("disconnect")
+
+                    });
                 }else{
                     console.log('add more questions');
                     var newquestions = questions;
