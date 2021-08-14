@@ -126,7 +126,7 @@ const Questions = (props) => {
     const doGetParticipationWrongAnswers = async () => {
         try {
             console.log('getting participation answers');
-
+            setSubmitted(false);
             const partid = props.participation_id;
             const body = {partid};
             const response = await fetch(
@@ -151,10 +151,10 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
-            // setSocketUpdate(false);
-            // setShowAnswer(true);
-            // setShowWaiting(false);
-            // setReview(false);
+            setSocketUpdate(false);
+            setShowAnswer(true);
+            setShowWaiting(false);
+            setReview(false);
 
             props.updatepart(parseData);  
 
@@ -357,13 +357,7 @@ const Questions = (props) => {
                     doGetParticipationWrongAnswers();
                     setTimer();
                     $('.timerdiv').removeClass('hiddenTimer');
-                }
-
-                
-            
-                
-
-                
+                }     
                 
         } else {
             if(question.islocked__c){
@@ -459,7 +453,6 @@ const Questions = (props) => {
                     </Col>
                 </Row>
                 }
-            {isShowWaiting}
             {/* show questions or no question text */}
             {!isShowWaiting &&
             <Row className="questionRow m-2 p-2 justify-content-center">
@@ -491,7 +484,7 @@ const Questions = (props) => {
             }
 
             {/* showing submit answers button */}
-            {!review && !submitted &&questions.length > 0 &&
+            {!review && !submitted && questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-md-center">
                     <Col className="col-md-auto">
                         {counter > 0 && answerListShow &&
