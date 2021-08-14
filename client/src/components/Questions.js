@@ -396,12 +396,10 @@ const Questions = (props) => {
         console.log('in cor question');
 
         var tempQuestions = questions;
-        console.log('temp questions' + questions);
-        console.log('temp question' + question);
-        // tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+        tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
 
-        // console.log('tempQuestions' + JSON.stringify(tempQuestions));
-        // setQuestions(tempQuestions);
+        console.log('tempQuestions' + JSON.stringify(tempQuestions));
+        setQuestions(tempQuestions);
         // doGetParticipationWrongAnswers();
 
         
