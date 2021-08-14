@@ -150,13 +150,13 @@ const Questions = (props) => {
                 console.log('status active');
                 setInactive(true);
             }
-            // setPartWrongAnswer(parseData);
+            setPartWrongAnswer(parseData);
             // setSocketUpdate(false);
             // setShowAnswer(true);
             // setShowWaiting(false);
             // setReview(false);
 
-            //props.updatepart(parseData);  
+            props.updatepart(parseData);  
 
         } catch (err) {
             console.error(err.message);
@@ -307,7 +307,8 @@ const Questions = (props) => {
             if (questionidsIndex === -1) {
                 console.log('existing questions' + questions);
                 if(questions.length > 0 && questions.length === allquestions.length){
-                    console.log('done')
+                    console.log('done');
+                    break;
                 }else{
                     console.log('add more questions');
                     var newquestions = questions;
