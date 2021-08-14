@@ -155,7 +155,7 @@ const Questions = (props) => {
             setShowWaiting(false);
             setReview(false);
 
-            props.updatepart(parseData);  
+            //props.updatepart(parseData);  
 
         } catch (err) {
             console.error(err.message);

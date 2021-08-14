@@ -102,13 +102,13 @@ const Contest = ({match}) => {
         }
     }
 
-    const updateparts = async (childData) => {
+    const updateparts = useCallback(() => {
         //updates participations in the contest as they are updated from questions.
 
         //passed up from questions js when answers are marked
         console.log('update parts');
         getContestParticipations(contest);
-    }
+    })
 
     useEffect(() => {
         getContest();
