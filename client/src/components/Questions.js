@@ -475,7 +475,7 @@ const Questions = (props) => {
                                             selectedCount={selectedCount}
                                             getsubcount={handleSubsegmentCount}
                                             isKnockedOut={knockedOut} participation_id={props.participation_id}
-                                            contestfinished={finished} partsfid={props.partsfid} issubmitted={submitted}/>
+                                            contestfinished={finished} partsfid={props.partsfid}/>
                             </Carousel.Item>
                         })}
                     </Carousel>
