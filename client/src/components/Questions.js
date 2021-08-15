@@ -350,7 +350,10 @@ const Questions = (props) => {
                         }
                     }
                     console.log('setting');
+                    var newIndex = newquestions.length - 1;
                     setPublishedQuestions(newquestions.length);
+                    console.log('new index' + newIndex);
+                    setIndex(newIndex)
                     setQuestionIds(newquestionids);
                     setQuestions(newquestions);
 
