@@ -459,7 +459,7 @@ const Questions = (props) => {
                 
                 <Col>
                     {questions.length > 0 && 
-                    <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}>
+                    <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null} data-slide-to={index}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
                                 
