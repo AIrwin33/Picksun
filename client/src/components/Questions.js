@@ -292,6 +292,7 @@ const Questions = (props) => {
     const warningText = async () => {
         console.log('warning, close to time up');
         $('.timerdiv').addClass('warning');
+        $('.carousel-control-next-icon').addClass('active');
     }
 
     useEffect(() => {
