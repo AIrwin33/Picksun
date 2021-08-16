@@ -193,6 +193,7 @@ const Questions = (props) => {
 
             const parseData = await res.json();
             $('.timerdiv').addClass('hiddenTimer');
+            $('.carousel-control-next-icon').removeClass('active');
             setQuestions(parseData);
             setShowWaiting(false);
             setReview(true);
@@ -488,7 +489,7 @@ const Questions = (props) => {
             {/* showing submit answers button */}
             {!review && !submitted && questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-md-center">
-                    <Col className="col-md-auto">
+                    <Col className="col-md-auto float-right">
                         {counter > 0 && answerListShow &&
                             <Image width='35' src={baseball}/>
                         }
