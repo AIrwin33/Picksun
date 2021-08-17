@@ -42,8 +42,7 @@ const Questions = (props) => {
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
     const tiRef = useRef(null);
-
-    
+    const [newQuestion, setNewQuestion] = useState()
 
     const getAllQuestions = async () => {
         try {
@@ -121,7 +120,7 @@ const Questions = (props) => {
         console.log(selectedIndex);
         setIndex(selectedIndex);
         setQuestionNum(selectedIndex + 1);
-      };
+    };
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -156,7 +155,7 @@ const Questions = (props) => {
             setShowWaiting(false);
             setReview(false);
 
-            props.updatepart(parseData);  
+            props.updatepart(parseData);
 
         } catch (err) {
             console.error(err.message);
@@ -165,15 +164,15 @@ const Questions = (props) => {
 
     const setTimer = () => {
         let nonLockedQuestions = 0;
-            for (const questionElt of questions) {
-                if(!questionElt.islocked__c)
-                    nonLockedQuestions++
-                
-            }
+        for (const questionElt of questions) {
+            if (!questionElt.islocked__c)
+                nonLockedQuestions++
+
+        }
         if (questions.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
             setFinished(true);
         }
-        
+
         setCounter(60000);
 
     }
@@ -254,7 +253,7 @@ const Questions = (props) => {
                         //replace existing question
                         console.log('splice');
                         answerList.splice(i, 1, childData);
-                    }else {
+                    } else {
                         console.log('add');
                         answerList.push(childData);
                         break;
@@ -264,8 +263,8 @@ const Questions = (props) => {
             var numplus = index + 1;
             //show next question text on screen if next question is unlocked and not undefined
             for (var k = 0; k < questions.length; k++) {
-                if(questions[numplus] !== undefined){
-                    if(!questions[numplus].islocked__c && questions[numplus] !== undefined){
+                if (questions[numplus] !== undefined) {
+                    if (!questions[numplus].islocked__c && questions[numplus] !== undefined) {
                         setShowNext(true);
                     }
                 }
@@ -275,10 +274,10 @@ const Questions = (props) => {
 
             console.log('answer list' + answerList);
             setAnswerList(answerList);
-            if(selectedCount + 1 === subSegmentCount){
+            if (selectedCount + 1 === subSegmentCount) {
                 setAnswerListShow(true);
             }
-        
+
         } catch (err) {
             console.log('err' + err.message);
         }
@@ -298,68 +297,58 @@ const Questions = (props) => {
         console.log('questions use effect');
         getQuestions();
         getAllQuestions();
-        socket.emit("set_contest_room", props.contestid)
-        
-    }, []);
-    socket.once("new_question", question => {   
+        if(newQuestion !== props.newQuestion) {
+            setNewQuestion(props.newQuestion)
+            addNewQuestion(props.newQuestion)
+        }
+    }, [props.newQuestion]);
+    const addNewQuestion = question => {
         var questionidsIndex = questionids.indexOf(question.sfid);
-        
-            if (questionidsIndex === -1) {
-                console.log('existing questions' + questions);
-                if(questions.length > 0 && questions.length === allquestions.length){
-                    console.log('done');
-                    socket.on('disconnect', function() {
-                        console.log("disconnect")
+        if (questionidsIndex === -1) {
+            if (questions.length > 0 && questions.length === allquestions.length) {
+            } else {
+                var newquestions = questions;
 
-                    });
-                }else{
-                    console.log('add more questions');
-                    var newquestions = questions;
-                    
-                    //if there is already a segment published, include old questions
-                    if(question.subsegment__c > 1) {
-                        
-                        $('.timerdiv').removeClass('warning');
-                        tiRef.current.reset();
-                        tiRef.current.start();  
-                    }
-                    var newquestionids = [];
-                    for(var i=0; i< allquestions.length; i++){
-                        if(allquestions[i].subsegment__c === question.subsegment__c){
-                            //if the question is already there
-                            if(newquestions.length > i ){
-                                if(newquestions[i].sfid === question.sfid){
-                                    console.log('question.sfid)' + question.sfid);
-                                console.log('splice');
+                //if there is already a segment published, include old questions
+                if (question.subsegment__c > 1) {
+
+                    $('.timerdiv').removeClass('warning');
+                    tiRef.current.reset();
+                    tiRef.current.start();
+                }
+                var newquestionids = [];
+                for (var i = 0; i < allquestions.length; i++) {
+                    if (allquestions[i].subsegment__c === question.subsegment__c) {
+                        //if the question is already there
+                        if (newquestions.length > i) {
+                            if (newquestions[i].sfid === question.sfid) {
                                 newquestions.splice(i, 1, question);
-                                    continue;
-                                }
+                                continue;
+                            }
 
+                        }
+                        if (allquestions[i].sfid === question.sfid) {
+                            if (allquestions.length === newquestions.length) {
+                                break;
+                            } else {
+                                newquestions.push(question);
+                                newquestionids.push(question.sfid);
                             }
-                            if(allquestions[i].sfid === question.sfid){
-                                console.log('dont splice');
-                                if(allquestions.length === newquestions.length ){
-                                    console.log('break');
-                                    break;
-                                }else{
-                                    newquestions.push(question);
-                                    newquestionids.push(question.sfid);
-                                }
-                                
-                            }
+
                         }
                     }
-                    
-                    setPublishedQuestions(newquestions.length);
-                    
-                    setQuestionIds(newquestionids);
-                    setQuestions(newquestions);
+                }
+
+                setPublishedQuestions(newquestions.length);
+
+                setQuestionIds(newquestionids);
+                setQuestions(newquestions);
 
                     doGetParticipationWrongAnswers();
                     setTimer();
                     $('.timerdiv').removeClass('hiddenTimer');
-                }     
-                
+                }
+
         } else {
             if(question.islocked__c){
                 console.log('question is locked, dont do anything');
@@ -373,103 +362,102 @@ const Questions = (props) => {
                 setTimer();
                 $('.timerdiv').removeClass('hiddenTimer');
             }
-            
-        }
-        
-    })
 
-    socket.once("cor_question", question => {   
+        }
+    }
+
+   socket.on("cor_question", question => {
         console.log('in cor question');
 
         var tempQuestions = questions;
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-
-        console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
         doGetParticipationWrongAnswers();
 
-        
+
     })
     return (
         <>
 
             {/* Show timer and answer count */}
-                {questions.length > 0 &&
-                <Row className="questionRow m-2 p-2 justify-content-center">
-                    {/* slide for questions */}
-                    <Col className="d-flex justify-content-start">
+            {questions.length > 0 &&
+            <Row className="questionRow m-2 p-2 justify-content-center">
+                {/* slide for questions */}
+                <Col className="d-flex justify-content-start">
                     {questions.length !== 0 &&
-                        <div key={counter}>
+                    <div key={counter}>
 
-                            <Timer initialTime={counter}
-                                   direction="backward"
-                                   lastUnit="s"
-                                   ref={tiRef}
-                                   checkpoints={[
-                                       {
-                                           time: 0,
-                                           callback: () => disableQuestions(),
-                                       },
-                                       {
-                                           time: 10000,
-                                           callback: () => warningText(),
-                                       }
-                                   ]}
-                            >
-                                {({start, resume, pause, stop, reset, getTimerState, getTime, setTime, timerState}) => (
+                        <Timer initialTime={counter}
+                               direction="backward"
+                               lastUnit="s"
+                               ref={tiRef}
+                               checkpoints={[
+                                   {
+                                       time: 0,
+                                       callback: () => disableQuestions(),
+                                   },
+                                   {
+                                       time: 10000,
+                                       callback: () => warningText(),
+                                   }
+                               ]}
+                        >
+                            {({start, resume, pause, stop, reset, getTimerState, getTime, setTime, timerState}) => (
 
-                                    <React.Fragment>
+                                <React.Fragment>
 
-                                        {/* on timer state of stopped, call the disable function and show answer*/}
-                                        <div className="timerdiv font20">
-                                            {counter > 0 &&
-                                                <Image width='20' src={baseball}/>
-                                            }
-                                            <Timer.Seconds/> Seconds
+                                    {/* on timer state of stopped, call the disable function and show answer*/}
+                                    <div className="timerdiv font20">
+                                        {counter > 0 &&
+                                        <Image width='20' src={baseball}/>
+                                        }
+                                        <Timer.Seconds/> Seconds
 
-                                            {counter > 0 &&
-                                                <Image width='20' src={baseball}/>
-                                            }
-                                        </div>
-                                    </React.Fragment>
-                                )}
-                            </Timer>
-                        </div>
-                      }  
-                    </Col>
-                    
-                    {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
-                    <Col className="d-flex justify-content-end">
-                        <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
-                    </Col>
+                                        {counter > 0 &&
+                                        <Image width='20' src={baseball}/>
+                                        }
+                                    </div>
+                                </React.Fragment>
+                            )}
+                        </Timer>
+                    </div>
                     }
-                </Row>
+                </Col>
+
+                {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
+                <Col className="d-flex justify-content-end">
+                    <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
+                </Col>
                 }
-                {isShowWaiting &&
-                <Row className="questionRow m-2 p-2">
-                    <Col>
-                        <div className="proxima font16 text-center">
-                            {props.contest.waiting_text__c}
-                        </div>
-                    </Col>
-                </Row>
-                }
+            </Row>
+            }
+            {isShowWaiting &&
+            <Row className="questionRow m-2 p-2">
+                <Col>
+                    <div className="proxima font16 text-center">
+                        {props.contest.waiting_text__c}
+                    </div>
+                </Col>
+            </Row>
+            }
             {/* show questions or no question text */}
             {!isShowWaiting &&
             <Row className="questionRow m-2 p-2 justify-content-center">
-                
+
                 <Col>
-                    {questions.length > 0 && 
-                    <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null} data-slide-to={index}>
+                    {questions.length > 0 &&
+                    <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}
+                              data-slide-to={index}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                
-                                <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
-                                            isInactive={inactive}
-                                            selectedCount={selectedCount}
-                                            getsubcount={handleSubsegmentCount}
-                                            isKnockedOut={knockedOut} participation_id={props.participation_id}
-                                            contestfinished={finished} partsfid={props.partsfid}/>
+
+                                <Question addAnswer={updateAnswerList} ques={question} contest={props.contest}
+                                          questionNum={questionNum} totalQuestions={publishedQuestions}
+                                          isInactive={inactive}
+                                          selectedCount={selectedCount}
+                                          getsubcount={handleSubsegmentCount}
+                                          isKnockedOut={knockedOut} participation_id={props.participation_id}
+                                          contestfinished={finished} partsfid={props.partsfid}/>
                             </Carousel.Item>
                         })}
                     </Carousel>
