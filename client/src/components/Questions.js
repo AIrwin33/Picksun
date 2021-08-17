@@ -278,6 +278,8 @@ const Questions = (props) => {
 
             console.log('answer list' + answerList);
             setAnswerList(answerList);
+            console.log(subSegmentCount);
+            console.log(selectedCount);
             if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
             }
