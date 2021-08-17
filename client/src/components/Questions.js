@@ -120,7 +120,7 @@ const Questions = (props) => {
         console.log(selectedIndex);
         setIndex(selectedIndex);
         setQuestionNum(selectedIndex + 1);
-    };
+      };
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -192,9 +192,12 @@ const Questions = (props) => {
 
             const parseData = await res.json();
             $('.timerdiv').addClass('hiddenTimer');
+            $('.carousel-control-next-icon').removeClass('active');
             setQuestions(parseData);
             setShowWaiting(false);
             setReview(true);
+            var questionsindex = parseData.length - 1;
+            setIndex(questionsindex);
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
@@ -274,7 +277,7 @@ const Questions = (props) => {
 
             console.log('answer list' + answerList);
             setAnswerList(answerList);
-            if (selectedCount + 1 === subSegmentCount) {
+            if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
             }
 
@@ -323,8 +326,8 @@ const Questions = (props) => {
                         if (newquestions.length > i) {
                             if (newquestions[i].sfid === question.sfid) {
                                 newquestions.splice(i, 1, question);
-                                continue;
-                            }
+                                    continue;
+                                }
 
                         }
                         if (allquestions[i].sfid === question.sfid) {
@@ -340,7 +343,7 @@ const Questions = (props) => {
                 }
 
                 setPublishedQuestions(newquestions.length);
-
+//$('.carouselDiv').carousel(newquestions.length);
                 setQuestionIds(newquestionids);
                 setQuestions(newquestions);
 
@@ -364,13 +367,16 @@ const Questions = (props) => {
             }
 
         }
-    }
 
-   socket.on("cor_question", question => {
+    })
+
+    socket.once("cor_question", question => {
         console.log('in cor question');
 
         var tempQuestions = questions;
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+
+        console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
         doGetParticipationWrongAnswers();
 
@@ -380,84 +386,83 @@ const Questions = (props) => {
         <>
 
             {/* Show timer and answer count */}
-            {questions.length > 0 &&
-            <Row className="questionRow m-2 p-2 justify-content-center">
-                {/* slide for questions */}
-                <Col className="d-flex justify-content-start">
+                {questions.length > 0 &&
+                <Row className="questionRow m-2 p-2 justify-content-center">
+                    {/* slide for questions */}
+                    <Col className="d-flex justify-content-start">
                     {questions.length !== 0 &&
-                    <div key={counter}>
+                        <div key={counter}>
 
-                        <Timer initialTime={counter}
-                               direction="backward"
-                               lastUnit="s"
-                               ref={tiRef}
-                               checkpoints={[
-                                   {
-                                       time: 0,
-                                       callback: () => disableQuestions(),
-                                   },
-                                   {
-                                       time: 10000,
-                                       callback: () => warningText(),
-                                   }
-                               ]}
-                        >
-                            {({start, resume, pause, stop, reset, getTimerState, getTime, setTime, timerState}) => (
+                            <Timer initialTime={counter}
+                                   direction="backward"
+                                   lastUnit="s"
+                                   ref={tiRef}
+                                   checkpoints={[
+                                       {
+                                           time: 0,
+                                           callback: () => disableQuestions(),
+                                       },
+                                       {
+                                           time: 10000,
+                                           callback: () => warningText(),
+                                       }
+                                   ]}
+                            >
+                                {({start, resume, pause, stop, reset, getTimerState, getTime, setTime, timerState}) => (
 
-                                <React.Fragment>
+                                    <React.Fragment>
 
-                                    {/* on timer state of stopped, call the disable function and show answer*/}
-                                    <div className="timerdiv font20">
-                                        {counter > 0 &&
-                                        <Image width='20' src={baseball}/>
-                                        }
-                                        <Timer.Seconds/> Seconds
+                                        {/* on timer state of stopped, call the disable function and show answer*/}
+                                        <div className="timerdiv font20">
+                                            {counter > 0 &&
+                                                <Image width='20' src={baseball}/>
+                                            }
+                                            <Timer.Seconds/> Seconds
 
-                                        {counter > 0 &&
-                                        <Image width='20' src={baseball}/>
-                                        }
-                                    </div>
-                                </React.Fragment>
-                            )}
-                        </Timer>
-                    </div>
+                                            {counter > 0 &&
+                                                <Image width='20' src={baseball}/>
+                                            }
+                                        </div>
+                                    </React.Fragment>
+                                )}
+                            </Timer>
+                        </div>
+                      }
+                    </Col>
+
+                    {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
+                    <Col className="d-flex justify-content-end">
+                        <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
+                    </Col>
                     }
-                </Col>
-
-                {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
-                <Col className="d-flex justify-content-end">
-                    <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
-                </Col>
+                </Row>
                 }
-            </Row>
-            }
-            {isShowWaiting &&
-            <Row className="questionRow m-2 p-2">
-                <Col>
-                    <div className="proxima font16 text-center">
-                        {props.contest.waiting_text__c}
-                    </div>
-                </Col>
-            </Row>
-            }
+                {isShowWaiting &&
+                <Row className="questionRow m-2 p-2">
+                    <Col>
+                        <div className="proxima font16 text-center">
+                            {props.contest.waiting_text__c}
+                        </div>
+                    </Col>
+                </Row>
+                }
             {/* show questions or no question text */}
             {!isShowWaiting &&
             <Row className="questionRow m-2 p-2 justify-content-center">
 
                 <Col>
                     {questions.length > 0 &&
-                    <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}
+                    <Carousel className="carouselDiv" ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}
                               data-slide-to={index}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
 
-                                <Question addAnswer={updateAnswerList} ques={question} contest={props.contest}
-                                          questionNum={questionNum} totalQuestions={publishedQuestions}
-                                          isInactive={inactive}
-                                          selectedCount={selectedCount}
-                                          getsubcount={handleSubsegmentCount}
-                                          isKnockedOut={knockedOut} participation_id={props.participation_id}
-                                          contestfinished={finished} partsfid={props.partsfid}/>
+                                <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
+                                            isInactive={inactive}
+                                            selectedCount={selectedCount}
+                                            getsubcount={handleSubsegmentCount}
+                                            isKnockedOut={knockedOut} participation_id={props.participation_id}
+                                            contestfinished={finished} partsfid={props.partsfid}/>
                             </Carousel.Item>
                         })}
                     </Carousel>
