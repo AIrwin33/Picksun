@@ -89,13 +89,14 @@ const Questions = (props) => {
             }
             //if there are questions that aren't locked, then set the timing based on how much time is left
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
+                console.log('new questions, get time');
                 var questime = props.contest.question_timer__c;
                 var millival = questime * 1000;
                 var currtime = moment();
                 var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
                 var closedTimerFormat = moment(closedTimerInt);
                 var counttime = moment.duration(closedTimerFormat.diff(currtime));
-
+                console.log(counttime);
                 if (counttime < 0) {
                     console.log('setting timer zero?');
                     setCounter(0);
@@ -172,7 +173,7 @@ const Questions = (props) => {
         if (questions.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
             setFinished(true);
         }
-
+        console.log('setting timer in setTimer');
         setCounter(60000);
 
     }
@@ -343,7 +344,6 @@ const Questions = (props) => {
                 }
 
                 setPublishedQuestions(newquestions.length);
-//$('.carouselDiv').carousel(newquestions.length);
                 setQuestionIds(newquestionids);
                 setQuestions(newquestions);
 
