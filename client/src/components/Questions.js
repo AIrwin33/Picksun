@@ -489,19 +489,19 @@ const Questions = (props) => {
             {/* showing submit answers button */}
             {!review && !submitted && questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-md-center">
-                    <Col className="col-md-auto float-right">
+                    <Col className="col-auto float-right">
                         {counter > 0 && answerListShow &&
                             <Image width='35' src={baseball}/>
                         }
                     </Col>
-                    <Col className="align-items-center col-md-auto">
+                    <Col className="align-items-center col-auto">
                         <button
                             className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
                             onClick={handleSubmitAnswers}>submit answers
                         </button>
 
                     </Col>
-                    <Col className="col-md-auto">
+                    <Col className="col-auto">
                         {counter > 0 && answerListShow &&
                             <Image  width='35' src={baseball}/>
                         }
