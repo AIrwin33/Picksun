@@ -296,9 +296,7 @@ const Questions = (props) => {
         console.log('subseg' + subseg);
         console.log(questions.length);
         var minussubseg = questions.length - subseg;
-        console.log('minussubseg' + minussubseg);
-        console.log(minussubseg + 1);
-        setSubSegPlusOne(minussubseg + 1);
+        setSubSegPlusOne(minussubseg);
         setSubsegmentCount(subseg);
     }
 
@@ -363,6 +361,7 @@ const Questions = (props) => {
                 console.log('before set index');
                 setIndex(subsegplusone);
                 $('.timerdiv').removeClass('hiddenTimer');
+                console.log(index);
             }
 
         } else {
@@ -469,6 +468,7 @@ const Questions = (props) => {
                               data-slide-to={index}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
+                                {index}
 
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
