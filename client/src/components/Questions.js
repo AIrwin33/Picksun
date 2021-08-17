@@ -297,6 +297,7 @@ const Questions = (props) => {
         console.log(questions.length);
         var minussubseg = questions.length - subseg;
         setSubSegPlusOne(minussubseg);
+        setIndex(minussubseg);
         setSubsegmentCount(subseg);
     }
 
