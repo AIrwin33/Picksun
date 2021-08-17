@@ -291,6 +291,12 @@ const Questions = (props) => {
     }
 
     const handleSubsegmentCount = async (subseg) => {
+        console.log('subseg' + subseg);
+        console.log(questions.length);
+        var minussubseg = questions.length - subseg;
+        console.log('minussubseg' + minussubseg);
+        console.log(minussubseg + 1);
+
         setSubsegmentCount(subseg);
     }
 
