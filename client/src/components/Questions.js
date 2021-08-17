@@ -354,7 +354,7 @@ const Questions = (props) => {
                     }
                     
                     setPublishedQuestions(newquestions.length);
-                    $('.carouselDiv').carousel(newquestions.length);
+                    //$('.carouselDiv').carousel(newquestions.length);
                     setQuestionIds(newquestionids);
                     setQuestions(newquestions);
 
