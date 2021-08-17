@@ -197,7 +197,8 @@ const Questions = (props) => {
             setQuestions(parseData);
             setShowWaiting(false);
             setReview(true);
-            setIndex(parseData.length);
+            var questionsindex = parseData.length - 1;
+            setIndex(questionsindex);
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
