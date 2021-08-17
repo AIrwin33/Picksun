@@ -347,10 +347,10 @@ const Questions = (props) => {
                 setQuestionIds(newquestionids);
                 setQuestions(newquestions);
 
-                    doGetParticipationWrongAnswers();
-                    setTimer();
-                    $('.timerdiv').removeClass('hiddenTimer');
-                }
+                doGetParticipationWrongAnswers();
+                setTimer();
+                $('.timerdiv').removeClass('hiddenTimer');
+            }
 
         } else {
             if(question.islocked__c){
@@ -413,7 +413,7 @@ const Questions = (props) => {
                                     <React.Fragment>
 
                                         {/* on timer state of stopped, call the disable function and show answer*/}
-                                        <div className="timerdiv font20">
+                                        <div className="timerdiv font20 hiddenTimer">
                                             {counter > 0 &&
                                                 <Image width='20' src={baseball}/>
                                             }
