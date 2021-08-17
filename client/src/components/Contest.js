@@ -20,8 +20,8 @@ const Contest = ({match}) => {
     const [participations, setParticipations] = useState([]);
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
+    const [newQuestion, setNewQuestion] = useState()
     const socket = React.useContext(SocketContext)
-
     const getContest = async () => {
         try {
             const res = await fetch(`/contestdetail/${match.params.id}`, {
@@ -52,11 +52,11 @@ const Contest = ({match}) => {
                 function() {
                     console.log('end of timeout');
                     getContestParticipations(contestRec);
-                    
+
                 },
                 2000
             );
-           
+
         } catch (error) {
             console.error(error.message);
         }
@@ -81,7 +81,7 @@ const Contest = ({match}) => {
             setActiveParts(activeParts.length);
             setParticipations(activeParts);
             getParticipationByContest(contestRec);
-            
+
         } catch (err) {
             console.error(err.message);
         }
@@ -109,12 +109,16 @@ const Contest = ({match}) => {
         console.log('update parts');
         getContestParticipations(contest);
     })
-
     useEffect(() => {
-        getContest();
-        console.log('here in contest');
-        socket.emit("set_contest_room", contest.id);
-    }, []);
+        getContest().then(r =>  {
+            console.log('here in contest', contest);
+            socket.emit("set_contest_room", match.params.id);
+            socket.on("new_question", question => {
+                console.log("new question")
+                setNewQuestion(question)
+            })
+        });
+    }, [socket]);
     return ((
             <>
                 {/* Main Body */}
@@ -156,7 +160,7 @@ const Contest = ({match}) => {
                                     <Questions updatepart={updateparts} contestid={contest.sfid}
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}
-                                               partsfid={participation.sfid}
+                                               partsfid={participation.sfid} newQuestion={newQuestion}
                                                />
                                     }
                                 </Col>
@@ -179,7 +183,7 @@ const Contest = ({match}) => {
                             </Row>
                             {participations.map(part => {
                                 return <Row key={part.id} className="rowCard ">
-                                    
+
                                     <Col xs={3} className="text-right"> <Image src={avatar} roundedCircle
                                                                                height="50"></Image> </Col>
                                     <Col xs={9}>

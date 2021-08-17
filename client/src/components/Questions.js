@@ -42,8 +42,7 @@ const Questions = (props) => {
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
     const tiRef = useRef(null);
-
-    
+    const [newQuestion, setNewQuestion] = useState()
 
     const getAllQuestions = async () => {
         try {
@@ -156,7 +155,7 @@ const Questions = (props) => {
             setShowWaiting(false);
             setReview(false);
 
-            props.updatepart(parseData);  
+            props.updatepart(parseData);
 
         } catch (err) {
             console.error(err.message);
@@ -165,15 +164,15 @@ const Questions = (props) => {
 
     const setTimer = () => {
         let nonLockedQuestions = 0;
-            for (const questionElt of questions) {
-                if(!questionElt.islocked__c)
-                    nonLockedQuestions++
-                
-            }
+        for (const questionElt of questions) {
+            if (!questionElt.islocked__c)
+                nonLockedQuestions++
+
+        }
         if (questions.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
             setFinished(true);
         }
-        
+
         setCounter(60000);
 
     }
@@ -257,7 +256,7 @@ const Questions = (props) => {
                         //replace existing question
                         console.log('splice');
                         answerList.splice(i, 1, childData);
-                    }else {
+                    } else {
                         console.log('add');
                         answerList.push(childData);
                         break;
@@ -267,8 +266,8 @@ const Questions = (props) => {
             var numplus = index + 1;
             //show next question text on screen if next question is unlocked and not undefined
             for (var k = 0; k < questions.length; k++) {
-                if(questions[numplus] !== undefined){
-                    if(!questions[numplus].islocked__c && questions[numplus] !== undefined){
+                if (questions[numplus] !== undefined) {
+                    if (!questions[numplus].islocked__c && questions[numplus] !== undefined) {
                         setShowNext(true);
                     }
                 }
@@ -281,7 +280,7 @@ const Questions = (props) => {
             if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
             }
-        
+
         } catch (err) {
             console.log('err' + err.message);
         }
@@ -295,75 +294,64 @@ const Questions = (props) => {
     const warningText = async () => {
         console.log('warning, close to time up');
         $('.timerdiv').addClass('warning');
-        $('.carousel-control-next-icon').addClass('active');
     }
 
     useEffect(() => {
         console.log('questions use effect');
         getQuestions();
         getAllQuestions();
-        socket.emit("set_contest_room", props.contestid)
-        
-    }, []);
-    socket.once("new_question", question => {   
+        if(newQuestion !== props.newQuestion) {
+            setNewQuestion(props.newQuestion)
+            addNewQuestion(props.newQuestion)
+        }
+    }, [props.newQuestion]);
+    const addNewQuestion = question => {
         var questionidsIndex = questionids.indexOf(question.sfid);
-        
-            if (questionidsIndex === -1) {
-                console.log('existing questions' + questions);
-                if(questions.length > 0 && questions.length === allquestions.length){
-                    console.log('done');
-                    socket.on('disconnect', function() {
-                        console.log("disconnect")
+        if (questionidsIndex === -1) {
+            if (questions.length > 0 && questions.length === allquestions.length) {
+            } else {
+                var newquestions = questions;
 
-                    });
-                }else{
-                    console.log('add more questions');
-                    var newquestions = questions;
-                    
-                    //if there is already a segment published, include old questions
-                    if(question.subsegment__c > 1) {
-                        
-                        $('.timerdiv').removeClass('warning');
-                        tiRef.current.reset();
-                        tiRef.current.start();  
-                    }
-                    var newquestionids = [];
-                    for(var i=0; i< allquestions.length; i++){
-                        if(allquestions[i].subsegment__c === question.subsegment__c){
-                            //if the question is already there
-                            if(newquestions.length > i ){
-                                if(newquestions[i].sfid === question.sfid){
-                                    console.log('question.sfid)' + question.sfid);
-                                console.log('splice');
+                //if there is already a segment published, include old questions
+                if (question.subsegment__c > 1) {
+
+                    $('.timerdiv').removeClass('warning');
+                    tiRef.current.reset();
+                    tiRef.current.start();
+                }
+                var newquestionids = [];
+                for (var i = 0; i < allquestions.length; i++) {
+                    if (allquestions[i].subsegment__c === question.subsegment__c) {
+                        //if the question is already there
+                        if (newquestions.length > i) {
+                            if (newquestions[i].sfid === question.sfid) {
                                 newquestions.splice(i, 1, question);
                                     continue;
                                 }
 
+                        }
+                        if (allquestions[i].sfid === question.sfid) {
+                            if (allquestions.length === newquestions.length) {
+                                break;
+                            } else {
+                                newquestions.push(question);
+                                newquestionids.push(question.sfid);
                             }
-                            if(allquestions[i].sfid === question.sfid){
-                                console.log('dont splice');
-                                if(allquestions.length === newquestions.length ){
-                                    console.log('break');
-                                    break;
-                                }else{
-                                    newquestions.push(question);
-                                    newquestionids.push(question.sfid);
-                                }
-                                
-                            }
+
                         }
                     }
-                    
-                    setPublishedQuestions(newquestions.length);
-                    //$('.carouselDiv').carousel(newquestions.length);
-                    setQuestionIds(newquestionids);
-                    setQuestions(newquestions);
+                }
+
+                setPublishedQuestions(newquestions.length);
+//$('.carouselDiv').carousel(newquestions.length);
+                setQuestionIds(newquestionids);
+                setQuestions(newquestions);
 
                     doGetParticipationWrongAnswers();
                     setTimer();
                     $('.timerdiv').removeClass('hiddenTimer');
-                }     
-                
+                }
+
         } else {
             if(question.islocked__c){
                 console.log('question is locked, dont do anything');
@@ -377,12 +365,12 @@ const Questions = (props) => {
                 setTimer();
                 $('.timerdiv').removeClass('hiddenTimer');
             }
-            
+
         }
-        
+
     })
 
-    socket.once("cor_question", question => {   
+    socket.once("cor_question", question => {
         console.log('in cor question');
 
         var tempQuestions = questions;
@@ -392,7 +380,7 @@ const Questions = (props) => {
         setQuestions(tempQuestions);
         doGetParticipationWrongAnswers();
 
-        
+
     })
     return (
         <>
@@ -439,9 +427,9 @@ const Questions = (props) => {
                                 )}
                             </Timer>
                         </div>
-                      }  
+                      }
                     </Col>
-                    
+
                     {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
                     <Col className="d-flex justify-content-end">
                         <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
@@ -461,13 +449,14 @@ const Questions = (props) => {
             {/* show questions or no question text */}
             {!isShowWaiting &&
             <Row className="questionRow m-2 p-2 justify-content-center">
-                
+
                 <Col>
-                    {questions.length > 0 && 
-                    <Carousel className="carouselDiv" ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null} data-slide-to={index}>
+                    {questions.length > 0 &&
+                    <Carousel className="carouselDiv" ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}
+                              data-slide-to={index}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                
+
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
@@ -490,20 +479,20 @@ const Questions = (props) => {
 
             {/* showing submit answers button */}
             {!review && !submitted && questions.length > 0 &&
-                <Row className="questionRow m-2 p-2 justify-content-center">
-                    <Col className="col-sm-auto col-md-auto float-right">
+                <Row className="questionRow m-2 p-2 justify-content-md-center">
+                    <Col className="col-md-auto">
                         {counter > 0 && answerListShow &&
                             <Image width='35' src={baseball}/>
                         }
                     </Col>
-                    <Col className="align-items-center col-sm-auto col-md-auto">
+                    <Col className="align-items-center col-md-auto">
                         <button
                             className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
                             onClick={handleSubmitAnswers}>submit answers
                         </button>
 
                     </Col>
-                    <Col className="col-sm-auto col-md-auto">
+                    <Col className="col-md-auto">
                         {counter > 0 && answerListShow &&
                             <Image  width='35' src={baseball}/>
                         }
