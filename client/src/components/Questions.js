@@ -195,12 +195,13 @@ const Questions = (props) => {
             const parseData = await res.json();
             $('.timerdiv').addClass('hiddenTimer');
             $('.carousel-control-next-icon').removeClass('active');
+            setIndex(subsegplusone);
+            setQuestionNum(subsegplusone + 1);
             setQuestions(parseData);
             setShowWaiting(false);
             setReview(true);
-            //var questionsindex = parseData.length - 1;
-            setIndex(subsegplusone);
-            setQuestionNum(subsegplusone + 1);
+            console.log('set index');
+            
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
@@ -470,7 +471,6 @@ const Questions = (props) => {
                               data-slide-to={index}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                {index}
 
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
