@@ -197,6 +197,7 @@ const Questions = (props) => {
             setQuestions(parseData);
             setShowWaiting(false);
             setReview(true);
+            $('.carouselDiv').carousel(parseData.length);
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
@@ -353,7 +354,7 @@ const Questions = (props) => {
                     }
                     
                     setPublishedQuestions(newquestions.length);
-                    
+                    $('.carouselDiv').carousel(newquestions.length);
                     setQuestionIds(newquestionids);
                     setQuestions(newquestions);
 
@@ -462,7 +463,7 @@ const Questions = (props) => {
                 
                 <Col>
                     {questions.length > 0 && 
-                    <Carousel ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null} data-slide-to={index}>
+                    <Carousel className="carouselDiv" ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null} data-slide-to={index}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
                                 
