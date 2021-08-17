@@ -200,6 +200,7 @@ const Questions = (props) => {
             setReview(true);
             //var questionsindex = parseData.length - 1;
             setIndex(subsegplusone);
+            setQuestionNum(subsegplusone + 1);
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
