@@ -25,6 +25,7 @@ const Questions = (props) => {
     const [questionNum, setQuestionNum] = useState(1);
     const [selectedCount, setSelectedCount] = useState(0);
     const [subSegmentCount, setSubsegmentCount] = useState(0);
+    const [subsegplusone, setSubSegPlusOne] = useState(0);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [publishedQuestions, setPublishedQuestions] = useState(0);
     const [review, setReview] = useState(false);
@@ -197,8 +198,8 @@ const Questions = (props) => {
             setQuestions(parseData);
             setShowWaiting(false);
             setReview(true);
-            var questionsindex = parseData.length - 1;
-            setIndex(questionsindex);
+            //var questionsindex = parseData.length - 1;
+            setIndex(subsegplusone);
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
@@ -244,7 +245,7 @@ const Questions = (props) => {
 
     const updateAnswerList = async (childData) => {
         try {
-            setSelectedCount(selectedCount + 1);
+            
             //if the answer list is empty, add the answered question from the Question JS
             if (answerList.length < 1) {
                 answerList.push(childData);
@@ -281,9 +282,10 @@ const Questions = (props) => {
             setAnswerList(answerList);
             console.log(subSegmentCount);
             console.log(selectedCount);
-            if(selectedCount === subSegmentCount){
+            if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
             }
+            setSelectedCount(selectedCount + 1);
 
         } catch (err) {
             console.log('err' + err.message);
@@ -296,7 +298,7 @@ const Questions = (props) => {
         var minussubseg = questions.length - subseg;
         console.log('minussubseg' + minussubseg);
         console.log(minussubseg + 1);
-
+        setSubSegPlusOne(minussubseg + 1);
         setSubsegmentCount(subseg);
     }
 
@@ -358,6 +360,8 @@ const Questions = (props) => {
 
                 doGetParticipationWrongAnswers();
                 setTimer();
+                console.log('before set index');
+                setIndex(subsegplusone);
                 $('.timerdiv').removeClass('hiddenTimer');
             }
 
