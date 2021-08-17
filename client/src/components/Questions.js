@@ -244,6 +244,7 @@ const Questions = (props) => {
 
     const updateAnswerList = async (childData) => {
         try {
+            setSelectedCount(selectedCount + 1);
             //if the answer list is empty, add the answered question from the Question JS
             if (answerList.length < 1) {
                 answerList.push(childData);
@@ -264,23 +265,23 @@ const Questions = (props) => {
                     }
                 }
             }
-            var numplus = index + 1;
-            //show next question text on screen if next question is unlocked and not undefined
-            for (var k = 0; k < questions.length; k++) {
-                if (questions[numplus] !== undefined) {
-                    if (!questions[numplus].islocked__c && questions[numplus] !== undefined) {
-                        setShowNext(true);
-                    }
-                }
-            }
-            setSelectedCount(selectedCount + 1);
+            // var numplus = index + 1;
+            // //show next question text on screen if next question is unlocked and not undefined
+            // for (var k = 0; k < questions.length; k++) {
+            //     if (questions[numplus] !== undefined) {
+            //         if (!questions[numplus].islocked__c && questions[numplus] !== undefined) {
+            //             setShowNext(true);
+            //         }
+            //     }
+            // }
+            
 
 
             console.log('answer list' + answerList.length);
             setAnswerList(answerList);
             console.log(subSegmentCount);
             console.log(selectedCount);
-            if(answerList.length === subSegmentCount){
+            if(selectedCount === subSegmentCount){
                 setAnswerListShow(true);
             }
 
