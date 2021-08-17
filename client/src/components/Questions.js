@@ -197,7 +197,7 @@ const Questions = (props) => {
             setQuestions(parseData);
             setShowWaiting(false);
             setReview(true);
-            $('.carouselDiv').carousel(parseData.length);
+            setIndex(parseData.length);
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
