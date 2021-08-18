@@ -110,6 +110,8 @@ const Questions = (props) => {
             }
             $('.timerdiv').removeClass('hiddenTimer');
             setQuestions(parseData);
+            console.log(parseData);
+            //set question num
             setPublishedQuestions(parseData.length);
             doGetParticipationWrongAnswers();
         } catch (err) {
