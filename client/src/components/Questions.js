@@ -108,6 +108,7 @@ const Questions = (props) => {
             } else {
                 console.log('no available unlocked questions');
             }
+            $('.timerdiv').removeClass('hiddenTimer');
             setQuestions(parseData);
             setPublishedQuestions(parseData.length);
             doGetParticipationWrongAnswers();
