@@ -185,7 +185,7 @@ const Question = (props) => {
                 for (var i = 0; i < parseRes.length; i++) {
                     console.log(parseRes[i]);
                     console.log(parseRes[i].wrong_answers__c);
-                    parseRes[i].PlaceFinish__c = i + 1:
+                    parseRes[i].PlaceFinish__c = i + 1;
                 }
 
                 if (props.partsfid === parseRes[0].sfid) {
