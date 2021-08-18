@@ -81,6 +81,7 @@ const Questions = (props) => {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
             }
+            console.log(nonLockedQuestionsArr);
             setQuestionIds(questionIdArr);
             if (questionIdArr.length === props.contest.number_of_questions__c && nonLockedQuestionsArr.length === 0) {
                 //set contest over
@@ -108,6 +109,7 @@ const Questions = (props) => {
             } else {
                 console.log('no available unlocked questions');
             }
+            console.log($('.timerdiv'));
             $('.timerdiv').removeClass('hiddenTimer');
             setQuestions(parseData);
             console.log(parseData);
