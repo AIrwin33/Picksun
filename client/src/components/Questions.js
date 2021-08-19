@@ -44,6 +44,7 @@ const Questions = (props) => {
     const socket = React.useContext(SocketContext);
     const tiRef = useRef(null);
     const [newQuestion, setNewQuestion] = useState()
+    const [newCorrectQuestion, setNewCorrectQuestion] = useState()
 
     const getAllQuestions = async () => {
         try {
@@ -251,7 +252,7 @@ const Questions = (props) => {
 
     const updateAnswerList = async (childData) => {
         try {
-            
+
             //if the answer list is empty, add the answered question from the Question JS
             if (answerList.length < 1) {
                 answerList.push(childData);
@@ -281,7 +282,7 @@ const Questions = (props) => {
             //         }
             //     }
             // }
-            
+
 
 
             console.log('answer list' + answerList.length);
@@ -322,7 +323,11 @@ const Questions = (props) => {
             setNewQuestion(props.newQuestion)
             addNewQuestion(props.newQuestion)
         }
-    }, [props.newQuestion]);
+        if(newCorrectQuestion !== props.newCorrectQuestion) {
+            setNewQuestion(props.newCorrectQuestion)
+            addCorrectQuestion(props.newCorrectQuestion)
+        }
+    }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
         var questionidsIndex = questionids.indexOf(question.sfid);
         if (questionidsIndex === -1) {
@@ -390,8 +395,7 @@ const Questions = (props) => {
         }
 
     }
-
-    socket.once("cor_question", question => {
+    const addCorrectQuestion = question => {
         console.log('in cor question');
 
         var tempQuestions = questions;
@@ -400,9 +404,8 @@ const Questions = (props) => {
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
         doGetParticipationWrongAnswers();
+    }
 
-
-    })
     return (
         <>
 
