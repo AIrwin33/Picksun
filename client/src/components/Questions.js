@@ -110,7 +110,7 @@ const Questions = (props) => {
             } else {
                 console.log('no available unlocked questions');
             }
-            console.log($('.timerdiv'));
+            console.log('removing timer');
             $('.timerdiv').removeClass('hiddenTimer');
             setQuestions(parseData);
             console.log(parseData);
@@ -402,6 +402,7 @@ const Questions = (props) => {
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
+        console.log(submitted);
         setQuestions(tempQuestions);
         doGetParticipationWrongAnswers();
     }
@@ -480,7 +481,6 @@ const Questions = (props) => {
                               data-slide-to={index}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                {index}
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
@@ -514,7 +514,6 @@ const Questions = (props) => {
                             className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
                             onClick={handleSubmitAnswers}>submit answers
                         </button>
-
                     </Col>
                     <Col className="col-md-auto col-sm-auto">
                         {counter > 0 && answerListShow &&
