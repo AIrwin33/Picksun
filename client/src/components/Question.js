@@ -264,6 +264,7 @@ const Question = (props) => {
     useEffect(() => {
 
         setQuest(props.ques);
+        console.log('question num in question js' + props.questionNum);
         handleSubsegmentCount(props.ques.subsegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true) {
             console.log('is disabled' + props.ques.id);
