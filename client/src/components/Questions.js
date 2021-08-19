@@ -367,7 +367,7 @@ const Questions = (props) => {
 
                 doGetParticipationWrongAnswers();
                 setTimer();
-                console.log('before set index');
+                console.log('before set index' + subsegplusone);
                 setIndex(subsegplusone);
                 $('.timerdiv').removeClass('hiddenTimer');
                 console.log(index);
