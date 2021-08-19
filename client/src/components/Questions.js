@@ -384,6 +384,7 @@ const Questions = (props) => {
                 setQuestions(tempQuestions);
                 doGetParticipationWrongAnswers();
                 setTimer();
+                setIndex(subsegplusone);
                 $('.timerdiv').removeClass('hiddenTimer');
             }
 
