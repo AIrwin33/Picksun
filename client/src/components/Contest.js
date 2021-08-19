@@ -21,6 +21,7 @@ const Contest = ({match}) => {
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
     const [newQuestion, setNewQuestion] = useState()
+    const [newCorrectQuestion, setNewCorrectQuestion] = useState()
     const socket = React.useContext(SocketContext)
     const getContest = async () => {
         try {
@@ -117,6 +118,10 @@ const Contest = ({match}) => {
                 console.log("new question")
                 setNewQuestion(question)
             })
+            socket.once("cor_question", question => {
+                console.log("new correct question")
+                setNewCorrectQuestion(question)
+            })
         });
     }, [socket]);
     return ((
@@ -160,7 +165,7 @@ const Contest = ({match}) => {
                                     <Questions updatepart={updateparts} contestid={contest.sfid}
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}
-                                               partsfid={participation.sfid} newQuestion={newQuestion}
+                                               partsfid={participation.sfid} newQuestion={newQuestion} newCorrectQuestion={newCorrectQuestion}
                                                />
                                     }
                                 </Col>
