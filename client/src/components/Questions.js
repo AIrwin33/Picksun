@@ -403,6 +403,7 @@ const Questions = (props) => {
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         console.log(submitted);
+        console.log(review);
         setQuestions(tempQuestions);
         doGetParticipationWrongAnswers();
     }
