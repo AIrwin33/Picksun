@@ -136,6 +136,7 @@ const Questions = (props) => {
       };
 
     const resetLogic = async () => {
+        console.log('reset logic');
         setSubmitted(false);
         setReview(false);
         setShowAnswer(true);
@@ -365,6 +366,7 @@ const Questions = (props) => {
                 doGetParticipationWrongAnswers();
                 setTimer();
                 setIndex(subsegplusone);
+                console.log('in set logic add new questions');
                 $('.timerdiv').removeClass('hiddenTimer');
                 resetLogic();
             }
@@ -381,6 +383,7 @@ const Questions = (props) => {
                 doGetParticipationWrongAnswers();
                 setTimer();
                 setIndex(subsegplusone);
+                console.log('in set logic add new questions');
                 $('.timerdiv').removeClass('hiddenTimer');
                 resetLogic();
             }
