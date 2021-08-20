@@ -345,11 +345,6 @@ const Question = (props) => {
 
                     <div className="questionTextDiv">
                         <h3>{props.questionNum}) {quest.question_text__c}</h3>
-                        {/* {props.ques.live_stat__c !== null &&
-                        <div>
-                        <span>Current Stat: {props.ques.live_stat__c}</span>
-                        </div>
-                    } */}
                     </div>
                 </Row>
                 <Row>
