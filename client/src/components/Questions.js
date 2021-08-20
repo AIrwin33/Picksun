@@ -621,7 +621,7 @@ const Questions = (props) => {
                     }
 
                     <div
-                    className={`questionRow m-3 justify-content-center timer p-3  ${quest.islocked__c ? "locked" : "open"}`}>
+                    className="questionRow m-3 justify-content-center p-3">
                     {(props.isKnockedOut === true || showKnockOut === true) &&
                     <Row>
                         <div className="text-center">
