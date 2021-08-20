@@ -96,7 +96,7 @@ const Question = (props) => {
                 //TODO - wait for correct count
                 handleContestEnd();
             } else {
-                getParticipationWrongAnswerInfo()
+                //getParticipationWrongAnswerInfo()
             }
         } catch (err) {
             console.error(err.message);
@@ -181,12 +181,6 @@ const Question = (props) => {
                 }
             );
 
-            // if (participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c) {
-            //     console.log(participationwrong.wrong_answers_allowed__c);
-            //     console.log(participationwrong.wrong_answers__c);
-            //     handleKnockout();
-            // }
-
             const parseRes = await response.json();
             var winningPart = parseRes[0];
             //if you have the least amount of wrong answers, set contest won
@@ -196,6 +190,9 @@ const Question = (props) => {
 
                     console.log(parseRes[i]);
                     console.log(parseRes[i].wrong_answers__c);
+                    if(parseRes[i].wrong_answers__c === parseRes[i].wrong_answers_allowed__c && parseRes[i].sfid === props.partsfid){
+                        handleKnockout();
+                    }
                     parseRes[i].PlaceFinish__c = i + 1;
         
 
