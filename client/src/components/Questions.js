@@ -310,7 +310,9 @@ const Questions = (props) => {
         setSubSegPlusOne(minussubseg);
         setIndex(minussubseg);
         setSubsegmentCount(subseg);
-        setQuestionNum(subseg + 1);
+        if(minussubseg > 1){
+            setQuestionNum(subseg + 1);
+        }
     }
 
     //add warning styling if the timer reaches 10 seconds
