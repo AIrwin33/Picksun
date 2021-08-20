@@ -73,7 +73,13 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
-            
+            var nonLockedQuestionsArr = [];
+            for (var i = 0; parseData.length > i; i++) {
+                questionIdArr.push(parseData[i].sfid);
+                if (parseData[i].islocked__c !== true) {
+                    nonLockedQuestionsArr.push(parseData[i]);
+                }
+            }
             //if there are questions that aren't locked, then set the timing based on how much time is left
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
                 console.log('new questions, get time');
@@ -170,15 +176,15 @@ const Questions = (props) => {
     const handleFinish = () => {
         var questionIdArr = [];
             var nonLockedQuestionsArr = [];
-            var i = 0;
-            for (i = 0; questions.length > i; i++) {
+
+            for (var i = 0; questions.length > i; i++) {
                 questionIdArr.push(questions[i].sfid);
                 if (questions[i].islocked__c !== true) {
                     nonLockedQuestionsArr.push(questions[i]);
                 }
             }
             var answeredQuestionsArr = [];
-            for (i = 0; questions.length > i; i++) {
+            for (var i = 0; questions.length > i; i++) {
                 questionIdArr.push(questions[i].sfid);
                 if (questions[i].correct_answer__c !== null) {
                     answeredQuestionsArr.push(questions[i]);
