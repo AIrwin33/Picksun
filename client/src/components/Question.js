@@ -16,6 +16,8 @@ const Question = (props) => {
     const [contestKnockoutText, setContestKnockoutText] = useState([]);
     const [showContestWon, setShowContestWon] = useState(false);
     const [contestWonText, setContestWonText] = useState([]);
+    const [showContestFinished, setShowContestFinished] = useState(false);
+    const [contestFinishedText, setContestFinishedText] = useState([]);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
 
 
@@ -187,11 +189,16 @@ const Question = (props) => {
                     console.log(parseRes[i]);
                     console.log(parseRes[i].wrong_answers__c);
                     parseRes[i].PlaceFinish__c = i + 1;
+                    
+
                 }
                 console.log(parseRes[0]);
                 if (props.partsfid === parseRes[0].sfid) {
                     console.log('handling contest won');
                     handleContestWon()
+                }else{
+                    setShowContestFinished(true);
+                    setContestFinishedText('Thanks for playing, you got 2nd place')
                 }
             }
 
@@ -294,6 +301,14 @@ const Question = (props) => {
                 <Row>
                     <div className="text-center">
                         <span>{contestWonText}</span>
+                    </div>
+                </Row>
+                }
+
+                {(props.isContestFinished == true || showContestFinished == true) &&
+                <Row>
+                    <div className="text-center">
+                        <span>{contestFinishedText}</span>
                     </div>
                 </Row>
                 }
