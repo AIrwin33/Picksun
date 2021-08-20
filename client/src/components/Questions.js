@@ -187,15 +187,15 @@ const Questions = (props) => {
     }
 
     const setTimer = () => {
-        let nonLockedQuestions = 0;
-        for (const questionElt of questions) {
-            if (!questionElt.islocked__c)
-                nonLockedQuestions++
+        // let nonLockedQuestions = 0;
+        // for (const questionElt of questions) {
+        //     if (!questionElt.islocked__c)
+        //         nonLockedQuestions++
 
-        }
-        if (questions.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
-            setFinished(true);
-        }
+        // }
+        // if (questions.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
+        //     setFinished(true);
+        // }
         console.log('setting timer in setTimer');
         setCounter(60000);
 
@@ -393,9 +393,7 @@ const Questions = (props) => {
                 setTimer();
                 setIndex(subsegplusone);
                 setQuestionNum(subsegplusone + 1);
-                // console.log('in set logic add new questions');
-                // $('.timerdiv').removeClass('hiddenTimer');
-                // resetLogic();
+
             }
 
         }
