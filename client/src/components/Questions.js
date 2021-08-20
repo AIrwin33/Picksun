@@ -375,8 +375,9 @@ const Questions = (props) => {
 
                 doGetParticipationWrongAnswers();
                 setTimer();
-                setIndex(newquestions.length - 1);
-                setQuestionNum(newquestions.length - 1);
+                setIndex(newquestions.length);
+                console.log(subsegplusone);
+                setQuestionNum(subsegplusone + 1);
                 console.log('question num' + subsegplusone);
                 console.log('in set logic add new questions');
                 $('.timerdiv').removeClass('hiddenTimer');
