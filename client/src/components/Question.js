@@ -92,7 +92,7 @@ const Question = (props) => {
             if (props.contestfinished === true) {
                 console.log('contest finished?')
                 //TODO - wait for correct count
-                //handleContestEnd();
+                handleContestEnd();
             } else {
                 getParticipationWrongAnswerInfo()
             }
@@ -188,7 +188,7 @@ const Question = (props) => {
                     console.log(parseRes[i].wrong_answers__c);
                     parseRes[i].PlaceFinish__c = i + 1;
                 }
-
+                console.log(parseRes[0]);
                 if (props.partsfid === parseRes[0].sfid) {
                     console.log('handling contest won');
                     handleContestWon()

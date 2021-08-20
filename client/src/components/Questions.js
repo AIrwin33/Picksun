@@ -73,30 +73,7 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
-            var questionIdArr = [];
-            var nonLockedQuestionsArr = [];
-            var i = 0;
-            for (i = 0; parseData.length > i; i++) {
-                questionIdArr.push(parseData[i].sfid);
-                if (parseData[i].islocked__c !== true) {
-                    nonLockedQuestionsArr.push(parseData[i]);
-                }
-            }
-            var answeredQuestionsArr = [];
-            for (i = 0; parseData.length > i; i++) {
-                questionIdArr.push(parseData[i].sfid);
-                if (parseData[i].correct_answer__c !== null) {
-                    answeredQuestionsArr.push(parseData[i]);
-                }
-            }
-            console.log('questions answered array' + answeredQuestionsArr);
-            setQuestionIds(questionIdArr);
-            if (questionIdArr.length === props.contest.number_of_questions__c && nonLockedQuestionsArr.length === 0 && answeredQuestionsArr.length === props.contest.number_of_questions__c) {
-                //set contest over
-                console.log('no more questions, contest is over');
-                setFinished(true);
-
-            }
+            
             //if there are questions that aren't locked, then set the timing based on how much time is left
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
                 console.log('new questions, get time');
@@ -179,7 +156,10 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
-            
+            if(questions.length === props.contest.number_of_questions__c){
+                console.log('end of contest');
+                handleFinish();
+            }
             props.updatepart(parseData);
 
         } catch (err) {
@@ -187,19 +167,36 @@ const Questions = (props) => {
         }
     }
 
-    const setTimer = () => {
-        // let nonLockedQuestions = 0;
-        // for (const questionElt of questions) {
-        //     if (!questionElt.islocked__c)
-        //         nonLockedQuestions++
+    const handleFinish = () => {
+        var questionIdArr = [];
+            var nonLockedQuestionsArr = [];
+            var i = 0;
+            for (i = 0; questions.length > i; i++) {
+                questionIdArr.push(questions[i].sfid);
+                if (questions[i].islocked__c !== true) {
+                    nonLockedQuestionsArr.push(questions[i]);
+                }
+            }
+            var answeredQuestionsArr = [];
+            for (i = 0; questions.length > i; i++) {
+                questionIdArr.push(questions[i].sfid);
+                if (questions[i].correct_answer__c !== null) {
+                    answeredQuestionsArr.push(questions[i]);
+                }
+            }
+            console.log('questions answered array' + answeredQuestionsArr);
+            setQuestionIds(questionIdArr);
+            if (questionIdArr.length === props.contest.number_of_questions__c && nonLockedQuestionsArr.length === 0 && answeredQuestionsArr.length === props.contest.number_of_questions__c) {
+                //set contest over
+                console.log('no more questions, contest is over');
+                setFinished(true);
 
-        // }
-        // if (questions.length === props.contest.number_of_questions__c && nonLockedQuestions === 0) {
-        //     setFinished(true);
-        // }
+            }
+    }
+
+    const setTimer = () => {
         console.log('setting timer in setTimer');
         setCounter(60000);
-
     }
 
     const disableQuestions = async () => {
