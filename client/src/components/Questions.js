@@ -161,7 +161,7 @@ const Questions = (props) => {
             setSocketUpdate(false);
             setShowAnswer(true);
             setShowWaiting(false);
-            setReview(false);
+            //setReview(false);
 
             props.updatepart(parseData);
 
