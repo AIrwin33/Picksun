@@ -269,7 +269,7 @@ const Questions = (props) => {
 
     const updateAnswerList = async (childData) => {
         try {
-
+            setSelectedCount(selectedCount + 1);
             //if the answer list is empty, add the answered question from the Question JS
             if (answerList.length < 1) {
                 answerList.push(childData);
@@ -293,10 +293,10 @@ const Questions = (props) => {
             setAnswerList(answerList);
             console.log(subSegmentCount);
             console.log(selectedCount);
-            if(selectedCount + 1 === subSegmentCount){
+            if(selectedCount === subSegmentCount){
                 setAnswerListShow(true);
             }
-            setSelectedCount(selectedCount + 1);
+            
 
         } catch (err) {
             console.log('err' + err.message);
