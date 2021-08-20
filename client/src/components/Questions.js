@@ -134,6 +134,7 @@ const Questions = (props) => {
         try {
             console.log('getting participation answers');
             setSubmitted(false);
+            setReview(false);
             const partid = props.participation_id;
             const body = {partid};
             const response = await fetch(
@@ -161,8 +162,6 @@ const Questions = (props) => {
             setSocketUpdate(false);
             setShowAnswer(true);
             setShowWaiting(false);
-            //setReview(false);
-
             props.updatepart(parseData);
 
         } catch (err) {
@@ -405,7 +404,7 @@ const Questions = (props) => {
         console.log(submitted);
         console.log(review);
         setQuestions(tempQuestions);
-        doGetParticipationWrongAnswers();
+        //doGetParticipationWrongAnswers();
     }
 
     return (
