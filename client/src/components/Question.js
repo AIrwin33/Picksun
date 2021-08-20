@@ -181,6 +181,12 @@ const Question = (props) => {
                 }
             );
 
+            if (participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c) {
+                console.log(participationwrong.wrong_answers_allowed__c);
+                console.log(participationwrong.wrong_answers__c);
+                handleKnockout();
+            }
+
             const parseRes = await response.json();
             var winningPart = parseRes[0];
             //if you have the least amount of wrong answers, set contest won
