@@ -200,6 +200,7 @@ const Question = (props) => {
                     console.log('handling contest won');
                     handleContestWon()
                 }else{
+                    //set place finish
                     setShowContestFinished(true);
                     setContestFinishedText('Thanks for playing, you got 2nd place')
                 }

@@ -176,29 +176,29 @@ const Questions = (props) => {
 
     const handleFinish = () => {
         var questionIdArr = [];
-            var nonLockedQuestionsArr = [];
+        var nonLockedQuestionsArr = [];
 
-            for (var i = 0; questions.length > i; i++) {
-                questionIdArr.push(questions[i].sfid);
-                if (questions[i].islocked__c !== true) {
-                    nonLockedQuestionsArr.push(questions[i]);
-                }
+        for (var i = 0; questions.length > i; i++) {
+            questionIdArr.push(questions[i].sfid);
+            if (questions[i].islocked__c !== true) {
+                nonLockedQuestionsArr.push(questions[i]);
             }
-            var answeredQuestionsArr = [];
-            for (var i = 0; questions.length > i; i++) {
-                questionIdArr.push(questions[i].sfid);
-                if (questions[i].correct_answer__c !== null) {
-                    answeredQuestionsArr.push(questions[i]);
-                }
+        }
+        var answeredQuestionsArr = [];
+        for (var i = 0; questions.length > i; i++) {
+            questionIdArr.push(questions[i].sfid);
+            if (questions[i].correct_answer__c !== null) {
+                answeredQuestionsArr.push(questions[i]);
             }
-            console.log('questions answered array' + answeredQuestionsArr);
-            setQuestionIds(questionIdArr);
-            if (questionIdArr.length === props.contest.number_of_questions__c && nonLockedQuestionsArr.length === 0 && answeredQuestionsArr.length === props.contest.number_of_questions__c) {
-                //set contest over
-                console.log('no more questions, contest is over');
-                setFinished(true);
+        }
+        console.log('questions answered array' + answeredQuestionsArr);
+        setQuestionIds(questionIdArr);
+        if (answeredQuestionsArr.length === props.contest.number_of_questions__c) {
+            //set contest over
+            console.log('no more questions, contest is over');
+            setFinished(true);
 
-            }
+        }
     }
 
     const setTimer = () => {
