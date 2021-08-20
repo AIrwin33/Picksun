@@ -85,7 +85,7 @@ const Questions = (props) => {
             var nonAnsweredQuestionsArr = [];
             for (i = 0; parseData.length > i; i++) {
                 questionIdArr.push(parseData[i].sfid);
-                if (parseData[i].correct_answer === null) {
+                if (parseData[i].correct_answer__c === null) {
                     nonAnsweredQuestionsArr.push(parseData[i]);
                 }
             }

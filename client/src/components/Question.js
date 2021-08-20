@@ -90,8 +90,9 @@ const Question = (props) => {
 
             setShowAnswer(true);
             if (props.contestfinished === true) {
+                console.log('contest finished?')
                 //TODO - wait for correct count
-                handleContestEnd();
+                //handleContestEnd();
             } else {
                 getParticipationWrongAnswerInfo()
             }
