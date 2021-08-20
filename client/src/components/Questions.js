@@ -82,7 +82,6 @@ const Questions = (props) => {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
             }
-            console.log(nonLockedQuestionsArr);
             setQuestionIds(questionIdArr);
             if (questionIdArr.length === props.contest.number_of_questions__c && nonLockedQuestionsArr.length === 0) {
                 //set contest over
@@ -111,9 +110,11 @@ const Questions = (props) => {
                 console.log('no available unlocked questions');
             }
             console.log('removing timer');
-            $('.timerdiv').removeClass('hiddenTimer');
+            if(nonLockedQuestionsArr.length > 0) {
+                showTimer();
+            }
             setQuestions(parseData);
-            console.log(parseData);
+            
             //set question num
             setPublishedQuestions(parseData.length);
             doGetParticipationWrongAnswers();
@@ -121,6 +122,10 @@ const Questions = (props) => {
             console.error('get questions error' + err.message);
         }
     };
+
+    const showTimer = async () => {
+        $('.timerdiv').removeClass('hiddenTimer');
+    }
 
     // select a question and increment/decrement the question number on the screen
     const handleSelect = (selectedIndex, e) => {
@@ -130,11 +135,17 @@ const Questions = (props) => {
         setQuestionNum(selectedIndex + 1);
       };
 
+    const resetLogic = async () => {
+        setSubmitted(false);
+        setReview(false);
+        setShowAnswer(true);
+        setShowWaiting(false);
+    }
+
     const doGetParticipationWrongAnswers = async () => {
         try {
             console.log('getting participation answers');
-            setSubmitted(false);
-            setReview(false);
+            
             const partid = props.participation_id;
             const body = {partid};
             const response = await fetch(
@@ -159,9 +170,7 @@ const Questions = (props) => {
                 setInactive(true);
             }
             setPartWrongAnswer(parseData);
-            setSocketUpdate(false);
-            setShowAnswer(true);
-            setShowWaiting(false);
+            
             props.updatepart(parseData);
 
         } catch (err) {
@@ -272,22 +281,7 @@ const Questions = (props) => {
                     }
                 }
             }
-            // var numplus = index + 1;
-            // //show next question text on screen if next question is unlocked and not undefined
-            // for (var k = 0; k < questions.length; k++) {
-            //     if (questions[numplus] !== undefined) {
-            //         if (!questions[numplus].islocked__c && questions[numplus] !== undefined) {
-            //             setShowNext(true);
-            //         }
-            //     }
-            // }
-
-
-
-            console.log('answer list' + answerList.length);
             setAnswerList(answerList);
-            console.log(subSegmentCount);
-            console.log(selectedCount);
             if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
             }
@@ -370,10 +364,9 @@ const Questions = (props) => {
 
                 doGetParticipationWrongAnswers();
                 setTimer();
-                console.log('before set index' + subsegplusone);
                 setIndex(subsegplusone);
                 $('.timerdiv').removeClass('hiddenTimer');
-                console.log(index);
+                resetLogic();
             }
 
         } else {
@@ -389,6 +382,7 @@ const Questions = (props) => {
                 setTimer();
                 setIndex(subsegplusone);
                 $('.timerdiv').removeClass('hiddenTimer');
+                resetLogic();
             }
 
         }
@@ -404,7 +398,7 @@ const Questions = (props) => {
         console.log(submitted);
         console.log(review);
         setQuestions(tempQuestions);
-        //doGetParticipationWrongAnswers();
+        doGetParticipationWrongAnswers();
     }
 
     return (
