@@ -12,12 +12,7 @@ const Question = (props) => {
     const [showInfo, setShowInfo] = useState(false);
     const [showanswer, setShowAnswer] = useState(false);
     const [subSegmentCount, setSubsegmentCount] = useState(0);
-    const [showKnockOut, setKnockOut] = useState(false);
-    const [contestKnockoutText, setContestKnockoutText] = useState([]);
-    const [showContestWon, setShowContestWon] = useState(false);
-    const [contestWonText, setContestWonText] = useState([]);
-    const [showContestFinished, setShowContestFinished] = useState(false);
-    const [contestFinishedText, setContestFinishedText] = useState([]);
+    
     const [disabledQuestion, setDisabledQuestion] = useState(false);
 
 
@@ -138,108 +133,7 @@ const Question = (props) => {
 
     }
 
-    const handleKnockout = async () => {
-
-        //TODO : get place finish when knocked out
-        try {
-            const partid = props.partsfid;
-            const body = {partid};
-            const response = await fetch(
-                "/knockout",
-                {
-                    method: "POST",
-                    headers: {
-                        jwt_token: localStorage.token,
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(body)
-                }
-            );
-
-            const parseRes = await response.json();
-            console.log('parseres' + JSON.stringify(parseRes));
-            setKnockOut(true);
-            setContestKnockoutText(parseRes.Knockout_Text__c);
-        } catch (err) {
-            console.error(err.message);
-        }
-
-    }
-
-    const handleContestEnd = async () => {
-        try {
-            console.log('quest contest' + quest.contest__c);
-            //check if there are other participations active
-            const response = await fetch(
-                `/allendingparticipations/` + quest.contest__c,
-                {
-                    method: "GET",
-                    headers: {
-                        jwt_token: localStorage.token,
-                        "Content-type": "application/json"
-                    }
-                }
-            );
-
-            const parseRes = await response.json();
-            var winningPart = parseRes[0];
-            //if you have the least amount of wrong answers, set contest won
-            if (winningPart !== undefined) {
-                console.log('setting winners');
-                for (var i = 0; i < parseRes.length; i++) {
-
-                    console.log(parseRes[i]);
-                    console.log(parseRes[i].wrong_answers__c);
-                    if(parseRes[i].wrong_answers__c === parseRes[i].wrong_answers_allowed__c && parseRes[i].sfid === props.partsfid){
-                        handleKnockout();
-                    }
-                    parseRes[i].PlaceFinish__c = i + 1;
-        
-
-                }
-                console.log(JSON.stringify(parseRes));
-                console.log(parseRes[0]);
-                if (props.partsfid === parseRes[0].sfid) {
-                    console.log('handling contest won');
-                    handleContestWon()
-                }else{
-                    //set place finish
-                    setShowContestFinished(true);
-                    setContestFinishedText('Thanks for playing, you got 2nd place')
-                }
-            }
-
-        } catch (err) {
-            console.log('err on contest end' + err.message);
-        }
-    }
-
-    const handleContestWon = async () => {
-        try {
-            const contestid = props.ques.contest__c;
-            const partsfid = props.partsfid;
-            const body = {contestid, partsfid};
-            const response = await fetch(
-                "/contestwon",
-                {
-                    method: "POST",
-                    headers: {
-                        jwt_token: localStorage.token,
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(body)
-                }
-            );
-
-            const parseRes = await response.json();
-            setShowContestWon(true);
-            setContestWonText("Congratulations, You Won");
-
-        } catch (err) {
-            console.error(err.message);
-        }
-
-    }
+    
 
     
     const handleSubsegmentCount = async (subseg) => {
@@ -279,13 +173,9 @@ const Question = (props) => {
     useEffect(() => {
 
         setQuest(props.ques);
-        console.log('question num in question js' + props.questionNum);
         handleSubsegmentCount(props.ques.subsegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true) {
-            console.log('is disabled' + props.ques.id);
             setDisabledQuestion(true);
-            
-            
         }
         handleExistingPartAnswer();
     }, [props.ques]);
@@ -294,31 +184,7 @@ const Question = (props) => {
     return (
         <>
 
-            <div
-                className={`questionRow m-3 justify-content-center timer p-3  ${quest.islocked__c ? "locked" : "open"}`}>
-                {(props.isKnockedOut === true || showKnockOut === true) &&
-                <Row>
-                    <div className="text-center">
-                        <span>{contestKnockoutText}</span>
-                    </div>
-                </Row>
-                }
-
-                {(props.isContestWon == true || showContestWon == true) &&
-                <Row>
-                    <div className="text-center">
-                        <span>{contestWonText}</span>
-                    </div>
-                </Row>
-                }
-
-                {(props.isContestFinished == true || showContestFinished == true) &&
-                <Row>
-                    <div className="text-center">
-                        <span>{contestFinishedText}</span>
-                    </div>
-                </Row>
-                }
+                
                 <div className="infoDiv mb-4">
                     <a src="#" className="float-right" onClick={handleInfoShow} >
                         <Image src={info} width="22"></Image>
@@ -429,7 +295,6 @@ const Question = (props) => {
                         </Row>
                     </div> : null
                 }
-            </div>
             {/* end div wrapper */}
         </>
     ) 

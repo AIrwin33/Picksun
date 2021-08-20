@@ -39,6 +39,12 @@ const Questions = (props) => {
     const [submitted, setSubmitted] = useState(false);
     const [isShowWaiting, setShowWaiting] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
+    const [showKnockOut, setKnockOut] = useState(false);
+    const [contestKnockoutText, setContestKnockoutText] = useState([]);
+    const [showContestWon, setShowContestWon] = useState(false);
+    const [contestWonText, setContestWonText] = useState([]);
+    const [showContestFinished, setShowContestFinished] = useState(false);
+    const [contestFinishedText, setContestFinishedText] = useState([]);
     const [socketUpdate, setSocketUpdate] = useState(false);
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
@@ -197,8 +203,111 @@ const Questions = (props) => {
             //set contest over
             console.log('no more questions, contest is over');
             setFinished(true);
+            handleContestEnd();
 
         }
+    }
+
+    const handleKnockout = async () => {
+
+        //TODO : get place finish when knocked out
+        try {
+            const partid = props.partsfid;
+            const body = {partid};
+            const response = await fetch(
+                "/knockout",
+                {
+                    method: "POST",
+                    headers: {
+                        jwt_token: localStorage.token,
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(body)
+                }
+            );
+
+            const parseRes = await response.json();
+            console.log('parseres' + JSON.stringify(parseRes));
+            setKnockOut(true);
+            setContestKnockoutText(parseRes.Knockout_Text__c);
+        } catch (err) {
+            console.error(err.message);
+        }
+
+    }
+
+    const handleContestEnd = async () => {
+        try {
+            //check if there are other participations active
+            const response = await fetch(
+                `/allendingparticipations/` + props.contest.id,
+                {
+                    method: "GET",
+                    headers: {
+                        jwt_token: localStorage.token,
+                        "Content-type": "application/json"
+                    }
+                }
+            );
+
+            const parseRes = await response.json();
+            var winningPart = parseRes[0];
+            //if you have the least amount of wrong answers, set contest won
+            if (winningPart !== undefined) {
+                console.log('setting winners');
+                for (var i = 0; i < parseRes.length; i++) {
+
+                    console.log(parseRes[i]);
+                    console.log(parseRes[i].wrong_answers__c);
+                    if(parseRes[i].wrong_answers__c === parseRes[i].wrong_answers_allowed__c && parseRes[i].sfid === props.partsfid){
+                        handleKnockout();
+                    }
+                    parseRes[i].PlaceFinish__c = i + 1;
+        
+
+                }
+                console.log(JSON.stringify(parseRes));
+                console.log(parseRes[0]);
+                if (props.partsfid === parseRes[0].sfid) {
+                    console.log('handling contest won');
+                    handleContestWon()
+                }else{
+                    //set place finish
+                    setShowContestFinished(true);
+                    setContestFinishedText('Thanks for playing, you got 2nd place')
+                }
+            }
+
+        } catch (err) {
+            console.log('err on contest end' + err.message);
+        }
+    }
+
+    const handleContestWon = async () => {
+        try {
+            const contestid = props.contest.sfid;
+            const partsfid = props.partsfid;
+            const body = {contestid, partsfid};
+            const response = await fetch(
+                "/contestwon",
+                {
+                    method: "POST",
+                    headers: {
+                        jwt_token: localStorage.token,
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(body)
+                }
+            );
+
+            const parseRes = await response.json();
+            setShowContestWon(true);
+            setContestWonText("Congratulations, You Won");
+
+        } catch (err) {
+            console.error(err.message);
+        }
+
     }
 
     const setTimer = () => {
@@ -510,6 +619,33 @@ const Questions = (props) => {
                         {props.contestQuestionText}
                     </div>
                     }
+
+                    <div
+                    className={`questionRow m-3 justify-content-center timer p-3  ${quest.islocked__c ? "locked" : "open"}`}>
+                    {(props.isKnockedOut === true || showKnockOut === true) &&
+                    <Row>
+                        <div className="text-center">
+                            <span>{contestKnockoutText}</span>
+                        </div>
+                    </Row>
+                    }
+
+                    {(props.isContestWon == true || showContestWon == true) &&
+                    <Row>
+                        <div className="text-center">
+                            <span>{contestWonText}</span>
+                        </div>
+                    </Row>
+                    }
+
+                    {(props.isContestFinished == true || showContestFinished == true) &&
+                    <Row>
+                        <div className="text-center">
+                            <span>{contestFinishedText}</span>
+                        </div>
+                    </Row>
+                    }
+                    </div>
                 </Col>
             </Row>
             }
