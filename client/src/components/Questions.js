@@ -374,6 +374,7 @@ const Questions = (props) => {
                 setTimer();
                 setIndex(subsegplusone);
                 setQuestionNum(subsegplusone + 1);
+                console.log('question num' + subsegplusone);
                 console.log('in set logic add new questions');
                 $('.timerdiv').removeClass('hiddenTimer');
                 resetLogic();
@@ -393,7 +394,7 @@ const Questions = (props) => {
                 setTimer();
                 setIndex(subsegplusone);
                 setQuestionNum(subsegplusone + 1);
-
+                console.log('question num' + subsegplusone);
             }
 
         }
