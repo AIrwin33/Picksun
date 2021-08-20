@@ -86,55 +86,12 @@ const Question = (props) => {
             }
 
             setShowAnswer(true);
-            if (props.contestfinished === true) {
-                console.log('contest finished?')
-                //TODO - wait for correct count
-                handleContestEnd();
-            } else {
-                //getParticipationWrongAnswerInfo()
-            }
+           
         } catch (err) {
             console.error(err.message);
         }
 
     }
-
-
-    const getParticipationWrongAnswerInfo = async () => {
-
-        //insert participation answer
-        try {
-            const partid = props.participation_id;
-            const body = {partid};
-            const response = await fetch(
-                "/wronganswer",
-                {
-                    method: "POST",
-                    headers: {
-                        jwt_token: localStorage.token,
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(body)
-                }
-            );
-
-            const parseRes = await response.json();
-            const participationwrong = parseRes;
-            if (participationwrong.wrong_answers_allowed__c === participationwrong.wrong_answers__c) {
-                console.log(participationwrong.wrong_answers_allowed__c);
-                console.log(participationwrong.wrong_answers__c);
-                handleKnockout();
-            } else {
-                console.log('still in the game');
-            }
-        } catch (err) {
-            console.error(err.message);
-        }
-
-    }
-
-    
-
     
     const handleSubsegmentCount = async (subseg) => {
         try {
