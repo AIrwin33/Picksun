@@ -397,7 +397,6 @@ const Questions = (props) => {
                 tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
                 setQuestions(tempQuestions);
                 setIndex(subsegplusone);
-                setQuestionNum(tempQuestions.length);
                 doGetParticipationWrongAnswers();
                 setTimer();
                 console.log('question num' + subsegplusone);
