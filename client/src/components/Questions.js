@@ -82,8 +82,15 @@ const Questions = (props) => {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
             }
+            var nonAnsweredQuestionsArr = [];
+            for (i = 0; parseData.length > i; i++) {
+                questionIdArr.push(parseData[i].sfid);
+                if (parseData[i].correct_answer === null) {
+                    nonAnsweredQuestionsArr.push(parseData[i]);
+                }
+            }
             setQuestionIds(questionIdArr);
-            if (questionIdArr.length === props.contest.number_of_questions__c && nonLockedQuestionsArr.length === 0) {
+            if (questionIdArr.length === props.contest.number_of_questions__c && nonLockedQuestionsArr.length === 0 && nonAnsweredQuestionsArr.length === 0) {
                 //set contest over
                 console.log('no more questions, contest is over');
                 setFinished(true);
@@ -366,6 +373,7 @@ const Questions = (props) => {
                 doGetParticipationWrongAnswers();
                 setTimer();
                 setIndex(subsegplusone);
+                setQuestionNum(subsegplusone + 1);
                 console.log('in set logic add new questions');
                 $('.timerdiv').removeClass('hiddenTimer');
                 resetLogic();
@@ -375,7 +383,8 @@ const Questions = (props) => {
             if(question.islocked__c){
                 console.log('question is locked, dont do anything');
             }else{
-
+                console.log('question not locked');
+                console.log(question.islocked__c);
                 const tempQuestions = questions;
                 console.log('temp questions');
                 tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
@@ -383,6 +392,7 @@ const Questions = (props) => {
                 doGetParticipationWrongAnswers();
                 setTimer();
                 setIndex(subsegplusone);
+                setQuestionNum(subsegplusone + 1);
                 // console.log('in set logic add new questions');
                 // $('.timerdiv').removeClass('hiddenTimer');
                 // resetLogic();
@@ -398,8 +408,6 @@ const Questions = (props) => {
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
-        console.log(submitted);
-        console.log(review);
         setQuestions(tempQuestions);
         doGetParticipationWrongAnswers();
     }
