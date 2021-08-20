@@ -375,7 +375,7 @@ const Questions = (props) => {
 
                 doGetParticipationWrongAnswers();
                 setTimer();
-                setIndex(newquestions.length);
+                setIndex(subsegplusone);
                 console.log(subsegplusone);
                 setQuestionNum(subsegplusone + 1);
                 console.log('question num' + subsegplusone);
