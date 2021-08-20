@@ -383,9 +383,9 @@ const Questions = (props) => {
                 doGetParticipationWrongAnswers();
                 setTimer();
                 setIndex(subsegplusone);
-                console.log('in set logic add new questions');
-                $('.timerdiv').removeClass('hiddenTimer');
-                resetLogic();
+                // console.log('in set logic add new questions');
+                // $('.timerdiv').removeClass('hiddenTimer');
+                // resetLogic();
             }
 
         }
