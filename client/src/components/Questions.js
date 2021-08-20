@@ -82,17 +82,16 @@ const Questions = (props) => {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
             }
-            var nonAnsweredQuestionsArr = [];
+            var answeredQuestionsArr = [];
             for (i = 0; parseData.length > i; i++) {
                 questionIdArr.push(parseData[i].sfid);
-                console.log('correct answer in loop' + parseData[i].correct_answer__c);
-                if (parseData[i].correct_answer__c === null) {
-                    nonAnsweredQuestionsArr.push(parseData[i]);
+                if (parseData[i].correct_answer__c !== null) {
+                    answeredQuestionsArr.push(parseData[i]);
                 }
             }
-            console.log('questions answered array' + nonAnsweredQuestionsArr);
+            console.log('questions answered array' + answeredQuestionsArr);
             setQuestionIds(questionIdArr);
-            if (questionIdArr.length === props.contest.number_of_questions__c && nonLockedQuestionsArr.length === 0 && nonAnsweredQuestionsArr.length === 0) {
+            if (questionIdArr.length === props.contest.number_of_questions__c && nonLockedQuestionsArr.length === 0 && answeredQuestionsArr.length === props.contest.number_of_questions__c) {
                 //set contest over
                 console.log('no more questions, contest is over');
                 setFinished(true);
