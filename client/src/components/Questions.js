@@ -85,10 +85,12 @@ const Questions = (props) => {
             var nonAnsweredQuestionsArr = [];
             for (i = 0; parseData.length > i; i++) {
                 questionIdArr.push(parseData[i].sfid);
+                console.log('correct answer in loop' + parseData[i].correct_answer__c);
                 if (parseData[i].correct_answer__c === null) {
                     nonAnsweredQuestionsArr.push(parseData[i]);
                 }
             }
+            console.log('questions answered array' + nonAnsweredQuestionsArr);
             setQuestionIds(questionIdArr);
             if (questionIdArr.length === props.contest.number_of_questions__c && nonLockedQuestionsArr.length === 0 && nonAnsweredQuestionsArr.length === 0) {
                 //set contest over
