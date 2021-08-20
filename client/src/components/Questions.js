@@ -240,7 +240,7 @@ const Questions = (props) => {
         try {
             //check if there are other participations active
             const response = await fetch(
-                `/allendingparticipations/` + props.contest.id,
+                `/allendingparticipations/` + props.contest.sfid,
                 {
                     method: "GET",
                     headers: {
