@@ -310,6 +310,7 @@ const Questions = (props) => {
         setSubSegPlusOne(minussubseg);
         setIndex(minussubseg);
         setSubsegmentCount(subseg);
+        setQuestionNum(subseg + 1);
     }
 
     //add warning styling if the timer reaches 10 seconds
@@ -375,10 +376,9 @@ const Questions = (props) => {
 
                 doGetParticipationWrongAnswers();
                 setTimer();
-
-                setIndex(questions.length);
-                setQuestionNum(questions.length +1);
-                console.log('question num' + questions.length +1);
+                
+                
+                console.log('question num' + subsegplusone);
                 console.log('in set logic add new questions');
                 $('.timerdiv').removeClass('hiddenTimer');
                 resetLogic();
