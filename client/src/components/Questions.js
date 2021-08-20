@@ -257,7 +257,7 @@ const Questions = (props) => {
             const tempQuestions = questions
             tempQuestions[questionIndex].selection__c = partanswers[0].selection__c
             tempQuestions[questionIndex].selection_value__c = partanswers[0].selection_value__c
-            setQuestions(tempQuestions)
+            setQuestions(tempQuestions);
             setAnswerListShow(false);
             setSelectedCount(0);
             setSubsegmentCount(1);
@@ -375,10 +375,10 @@ const Questions = (props) => {
 
                 doGetParticipationWrongAnswers();
                 setTimer();
-                setIndex(subsegplusone);
-                console.log(subsegplusone);
-                setQuestionNum(subsegplusone + 1);
-                console.log('question num' + subsegplusone);
+
+                setIndex(questions.length);
+                setQuestionNum(questions.length +1);
+                console.log('question num' + questions.length +1);
                 console.log('in set logic add new questions');
                 $('.timerdiv').removeClass('hiddenTimer');
                 resetLogic();
@@ -394,10 +394,10 @@ const Questions = (props) => {
                 console.log('temp questions');
                 tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
                 setQuestions(tempQuestions);
+                setIndex(subsegplusone);
+                setQuestionNum(tempQuestions.length);
                 doGetParticipationWrongAnswers();
                 setTimer();
-                setIndex(subsegplusone);
-                setQuestionNum(subsegplusone + 1);
                 console.log('question num' + subsegplusone);
             }
 
