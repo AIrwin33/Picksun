@@ -74,6 +74,7 @@ const Questions = (props) => {
 
             const parseData = await res.json();
             var nonLockedQuestionsArr = [];
+            var questionIdArr = [];
             for (var i = 0; parseData.length > i; i++) {
                 questionIdArr.push(parseData[i].sfid);
                 if (parseData[i].islocked__c !== true) {
