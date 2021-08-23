@@ -83,7 +83,6 @@ const Question = (props) => {
                 setDisabledQuestion(true);
             }
 
-            setShowAnswer(true);
            
         } catch (err) {
             console.error(err.message);
@@ -105,7 +104,6 @@ const Question = (props) => {
             });
 
             const parseData = await res.json();
-            setSubsegmentCount(parseData);
             props.getsubcount(parseData);
         }
         catch (err) {
