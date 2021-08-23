@@ -4,15 +4,15 @@ import {Col, Row, Button, Image, Modal} from "react-bootstrap";
 import {v4 as uuidv4} from 'uuid';
 import "./Question.css";
 import info from '../assets/infoicon.png';
+
+import correctLogo from '../assets/correctIcon.png';
+import incorrectLogo from '../assets/incorrectIcon.png';
 import $ from 'jquery';
 
 const Question = (props) => {
     const [partAnswer, setPartAnswer] = useState([]);
     const [quest, setQuest] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
-    const [showanswer, setShowAnswer] = useState(false);
-    const [subSegmentCount, setSubsegmentCount] = useState(0);
-    
     const [disabledQuestion, setDisabledQuestion] = useState(false);
 
 
@@ -63,7 +63,6 @@ const Question = (props) => {
 
     const handleExistingPartAnswer = async () => {
         try {
-            console.log('handle existing answer');
             const partsfid = props.partsfid;
             const questid = props.ques.sfid;
 
@@ -81,7 +80,6 @@ const Question = (props) => {
 
 
             if (partRes.status__c === 'Submitted') {
-                console.log('submitted');
                 setDisabledQuestion(true);
             }
 
@@ -108,7 +106,6 @@ const Question = (props) => {
 
             const parseData = await res.json();
             setSubsegmentCount(parseData);
-            //set subsegement. why?
             props.getsubcount(parseData);
         }
         catch (err) {
@@ -233,10 +230,14 @@ const Question = (props) => {
                             </Col>
                             {props.ques.correct_answer__c !== null &&
                             <Col>
-                                <div
-                                    className={`answerBanner ${props.ques.selection__c !== props.ques.correct_answer__c ? "red" : "green"} ${partAnswer.selection__c !== props.ques.correct_answer__c ? "red" : "green"}`}
-                                >
-                                    {props.ques.selection__c !== props.ques.correct_answer__c}
+                                <div className='answerBanner '>
+                                    {props.ques.selection__c === props.ques.correct_answer__c && 
+                                        <img width="35" src={correctLogo}/>
+                                    }
+
+                                    {props.ques.selection__c !== props.ques.correct_answer__c && 
+                                        <img width="35" src={incorrectLogo}/>
+                                    }
                                     <span>Correct Answer: {props.ques.correct_answer_value__c} {partAnswer.correct_answer_value__c}</span>
                                 </div>
                             </Col>

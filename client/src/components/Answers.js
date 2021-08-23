@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Carousel, Col, Button, Container, Modal, Row, Image} from "react-bootstrap";
 
-
+import knockout from "../assets/knockedout.png";
 import "./Answers.css";
 
 const Answers = (props) => {
@@ -41,6 +41,7 @@ const Answers = (props) => {
                 
                 <div className="d-inline-block">
                     <div>
+                        <img width='50' src={knockout}/>
                     <p className="font20">Knockout Limit:</p>
                     </div>
                 {answers.map((answer, index) => {

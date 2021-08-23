@@ -45,7 +45,6 @@ const Questions = (props) => {
     const [contestWonText, setContestWonText] = useState([]);
     const [showContestFinished, setShowContestFinished] = useState(false);
     const [contestFinishedText, setContestFinishedText] = useState([]);
-    const [socketUpdate, setSocketUpdate] = useState(false);
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
     const tiRef = useRef(null);
@@ -54,7 +53,6 @@ const Questions = (props) => {
 
     const getAllQuestions = async () => {
         try {
-            console.log('get questions');
 
             const res = await fetch(`/allquestions/${props.contestid}`, {
                 method: "GET",
@@ -71,7 +69,6 @@ const Questions = (props) => {
 
     const getQuestions = async () => {
         try {
-            console.log('get questions');
 
             const res = await fetch(`/questions/${props.contestid}`, {
                 method: "GET",
@@ -89,7 +86,6 @@ const Questions = (props) => {
             }
             //if there are questions that aren't locked, then set the timing based on how much time is left
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
-                console.log('new questions, get time');
                 var questime = props.contest.question_timer__c;
                 var millival = questime * 1000;
                 var currtime = moment();
@@ -107,7 +103,6 @@ const Questions = (props) => {
             } else {
                 console.log('no available unlocked questions');
             }
-            console.log('removing timer');
             if(nonLockedQuestionsArr.length > 0) {
                 showTimer();
             }
@@ -127,14 +122,11 @@ const Questions = (props) => {
 
     // select a question and increment/decrement the question number on the screen
     const handleSelect = (selectedIndex, e) => {
-        console.log('hanlde select');
-        console.log(selectedIndex);
         setIndex(selectedIndex);
         setQuestionNum(selectedIndex + 1);
       };
 
     const resetLogic = async () => {
-        console.log('reset logic');
         setSubmitted(false);
         setReview(false);
         setShowAnswer(true);
@@ -143,7 +135,6 @@ const Questions = (props) => {
 
     const doGetParticipationWrongAnswers = async () => {
         try {
-            console.log('getting participation answers');
             
             const partid = props.participation_id;
             const body = {partid};
@@ -159,7 +150,6 @@ const Questions = (props) => {
             );
 
             const parseData = await response.json();
-            console.log('running');
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
                 setKnockedOut(true);
@@ -311,7 +301,6 @@ const Questions = (props) => {
     }
 
     const setTimer = () => {
-        console.log('setting timer in setTimer');
         setCounter(60000);
     }
 
@@ -347,7 +336,6 @@ const Questions = (props) => {
         try {
             setSubmitted(true);
             setShowWaiting(true);
-            console.log('answer list' + JSON.stringify(answerList));
             const partanswers = answerList;
             const body = {partanswers};
             const res = await fetch(`/submitpartanswers`, {
@@ -360,7 +348,6 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
-            console.log('submit answer' + parseData);
             if (!parseData) {
                 setPartWrongAnswer({...partWrongAnswer, wrong_answers__c: ++partWrongAnswer.wrong_answers__c})
             }
@@ -382,7 +369,6 @@ const Questions = (props) => {
 
     const updateAnswerList = async (childData) => {
         try {
-            console.log('selectedCount' + selectedCount);
             //if the answer list is empty, add the answered question from the Question JS
             if (answerList.length < 1) {
                 answerList.push(childData);
@@ -390,22 +376,16 @@ const Questions = (props) => {
 
                 //if answer list contains the question answer already, then replace it, otherwise add it
                 for (var i = 0; i < answerList.length; i++) {
-                    console.log(childData.question__c);
-                    console.log(answerList[i].question__c);
                     if (childData.question__c === answerList[i].question__c) {
                         //replace existing question
-                        console.log('splice');
                         answerList.splice(i, 1, childData);
                     } else {
-                        console.log('add');
                         answerList.push(childData);
                         break;
                     }
                 }
             }
             setAnswerList(answerList);
-            console.log(subSegmentCount);
-            console.log(selectedCount + 1);
             if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
             }
@@ -417,8 +397,6 @@ const Questions = (props) => {
     }
 
     const handleSubsegmentCount = async (subseg) => {
-        console.log('subseg' + subseg);
-        console.log(questions.length);
         var minussubseg = questions.length - subseg;
         setSubSegPlusOne(minussubseg);
         setIndex(minussubseg);
@@ -430,7 +408,6 @@ const Questions = (props) => {
 
     //add warning styling if the timer reaches 10 seconds
     const warningText = async () => {
-        console.log('warning, close to time up');
         $('.timerdiv').addClass('warning');
     }
 
