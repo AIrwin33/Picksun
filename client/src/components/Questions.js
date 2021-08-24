@@ -461,9 +461,13 @@ const Questions = (props) => {
             addCorrectQuestion(props.newCorrectQuestion)
         }
         if(props.newCorrectQuestion === null && props.newQuestion === null){
+            console.log('resetting');
             setReview(true);
             setShowAnswer(true);
         }
+        console.log('props');
+        console.log(props.newCorrectQuestion);
+        console.log(props.newQuestion)
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
         var questionidsIndex = questionids.indexOf(question.sfid);
