@@ -537,7 +537,7 @@ const Questions = (props) => {
         doGetParticipationWrongAnswers();
         if(questions.length === props.contest.number_of_questions__c){
             console.log('end of contest');
-            handleFinish();
+            //handleFinish();
         }
     }
 
