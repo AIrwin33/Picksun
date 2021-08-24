@@ -252,7 +252,6 @@ const Questions = (props) => {
             const parseRes = await response.json();
             //if you have the least amount of wrong answers, set contest won
             var finishedParts = [];
-            if (winningPart !== undefined) {
                 console.log('setting winners');
                 for (var i = 0; i < parseRes.length; i++) {
 
@@ -283,7 +282,6 @@ const Questions = (props) => {
 
                     }
                 }
-            }
 
         } catch (err) {
             console.log('err on contest end' + err.message);
