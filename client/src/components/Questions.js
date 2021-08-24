@@ -227,7 +227,7 @@ const Questions = (props) => {
             const parseRes = await response.json();
             console.log('parseres' + JSON.stringify(parseRes));
             setKnockOut(true);
-            setContestKnockoutText(parseRes.Knockout_Text__c);
+            setContestKnockoutText(parseRes.knockout_text__c);
         } catch (err) {
             console.error(err.message);
         }
