@@ -236,7 +236,9 @@ const Question = (props) => {
                                     {props.ques.selection__c !== props.ques.correct_answer__c && 
                                         <img alt="incorrect answer" width="35" src={incorrectLogo}/>
                                     }
-                                    <span>Correct Answer: {props.ques.correct_answer_value__c} {partAnswer.correct_answer_value__c}</span>
+                                    {props.ques.correct_answer__c}
+                                    {props.ques.selection__c}
+                                    <span>Correct Answer: {props.ques.correct_answer_value__c}</span>
                                 </div>
                             </Col>
                             }
