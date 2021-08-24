@@ -463,6 +463,8 @@ const Questions = (props) => {
         }
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
+        //make sure sfid is being returned
+        console.log('question in add new question' + question);
         var questionidsIndex = questionids.indexOf(question.sfid);
         if (questionidsIndex === -1) {
             if (questions.length > 0 && questions.length === allquestions.length) {
