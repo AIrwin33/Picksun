@@ -275,6 +275,8 @@ const Questions = (props) => {
                         finishedParts[k].PlaceFinish__c = 1;
                     }else{
                         finishedParts[k].PlaceFinish__c  = placecount + 1;
+
+                        console.log('finished part inside place count' + JSON.stringify(finishedParts[k]));
                         // if(finishedParts[k].sfid === props.partsfid) {
                         //     console.log('did not win');
                         //         setShowContestFinished(true);
