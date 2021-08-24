@@ -229,15 +229,15 @@ const Question = (props) => {
                             {props.ques.correct_answer__c !== null &&
                             <Col>
                                 <div className='answerBanner '>
-                                    {props.ques.selection__c === props.ques.correct_answer__c && 
+                                    {props.ques.selection__c == props.ques.correct_answer__c && 
                                         <img alt="correct answer" width="35" src={correctLogo}/>
                                     }
 
-                                    {props.ques.selection__c !== props.ques.correct_answer__c && 
+                                    {props.ques.selection__c != props.ques.correct_answer__c && 
                                         <img alt="incorrect answer" width="35" src={incorrectLogo}/>
                                     }
-                                    {props.ques.correct_answer__c}
-                                    {props.ques.selection__c}
+                                    correct: {props.ques.correct_answer__c}
+                                    selection: {props.ques.selection__c}
                                     <span>Correct Answer: {props.ques.correct_answer_value__c}</span>
                                 </div>
                             </Col>

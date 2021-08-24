@@ -118,7 +118,7 @@ const Contest = ({match}) => {
                 setNewQuestion(question)
             })
             socket.on("cor_question", question => {
-                console.log("new correct question")
+                console.log("new correct question");
                 setNewCorrectQuestion(question)
             })
         });
