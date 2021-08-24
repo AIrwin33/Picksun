@@ -186,6 +186,8 @@ const Questions = (props) => {
             }
         }
         setQuestionIds(questionIdArr);
+        console.log(answeredQuestionsArr.length);
+        console.log(props.contest.number_of_questions__c);
         if (answeredQuestionsArr.length === props.contest.number_of_questions__c) {
             //set contest over
             console.log('no more questions, contest is over');
