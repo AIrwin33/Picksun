@@ -41,7 +41,7 @@ const Answers = (props) => {
                 
                 <div className="d-inline-block">
                     <div>
-                        <img width='50' src={knockout}/>
+                        <img alt="knockout limit" width='50' src={knockout}/>
                     <p className="font20">Knockout Limit:</p>
                     </div>
                 {answers.map((answer, index) => {
