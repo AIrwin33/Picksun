@@ -39,11 +39,17 @@ const Answers = (props) => {
             <Row>
                 <Col>
                     <div className="d-inline-block">
-                        <img alt="knockout limit" width='30' src={knockout}/>
-                        <p className="font20">Knockout Limit:</p>
+                        <div>
+                            <img alt="knockout limit" width='30' src={knockout}/>
+
+                        </div>
+                        <div>
+                            <p className="font20">Knockout Limit:</p>
+
+                        </div>
                     </div>
                 </Col>
-                <Col>
+                <Col className="d-flex justify-content-end">
                     <div className="d-inline-block">
                     {answers.map((answer, index) => {
                         return <div  className={`circle   ${answer.wrong ? "wrong" : ""}`} key={index}></div>
