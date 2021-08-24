@@ -272,12 +272,12 @@ const Questions = (props) => {
                     }else{
                         finishedParts[k].PlaceFinish__c  = placecount + 1;
 
-                        console.log('finished part inside place count' + JSON.stringify(finishedParts[k]));
-                        // if(finishedParts[k].sfid === props.partsfid) {
-                        //     console.log('did not win');
+                        if(finishedParts[k].sfid === props.partsfid) {
+                            console.log('finished part inside place count' + JSON.stringify(finishedParts[k]));
+                            console.log('did not win');
                         //         setShowContestFinished(true);
                         //         setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
-                        // }
+                        }
                         
                     }
 
@@ -456,14 +456,11 @@ const Questions = (props) => {
             setNewQuestion(props.newCorrectQuestion)
             addCorrectQuestion(props.newCorrectQuestion)
         }
-        if(props.newCorrectQuestion === null && props.newQuestion === null){
+        if(props.newCorrectQuestion === undefined && props.newQuestion === undefined){
             console.log('resetting');
             setReview(true);
             setShowAnswer(true);
         }
-        console.log('props');
-        console.log(props.newCorrectQuestion);
-        console.log(props.newQuestion)
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
         var questionidsIndex = questionids.indexOf(question.sfid);
