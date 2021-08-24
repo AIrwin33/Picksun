@@ -267,20 +267,29 @@ const Questions = (props) => {
                 console.log(JSON.stringify(parseRes));
                 console.log(parseRes[0]);
                 var winningParts = [];
+                var placecount = 1;
                 for (var k = 0; k < finishedParts.length; k++) {
                     winningParts.push(finishedParts[0]);
                     if(finishedParts[0].wrong_answers__c === finishedParts[k].wrong_answers__c){
                         winningParts.push(finishedParts[k]);
-                    }
-                    
-                    if (props.wrong_answers__c === finishedParts[0].wrong_answers__c) {
-                        console.log('handling contest won');
-                        handleContestWon();
+                        finishedParts[k].PlaceFinish__c = 1;
                     }else{
-                        setShowContestFinished(true);
-                        setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
-
+                        finishedParts[k].PlaceFinish__c  = placecount + 1;
+                        if(finishedParts[k].sfid === props.partsfid) {
+                            console.log('did not win')
+                                setShowContestFinished(true);
+                                setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
+                        }
+                        
                     }
+
+                    
+                }
+                console.log(JSON.stringify(winningParts));
+
+                if (props.wrong_answers__c === winningParts[0].wrong_answers__c) {
+                    console.log('handling contest won');
+                    handleContestWon(winningParts.length);
                 }
 
         } catch (err) {
@@ -288,7 +297,7 @@ const Questions = (props) => {
         }
     }
 
-    const handleContestWon = async () => {
+    const handleContestWon = async (winnercount) => {
         try {
             const contestid = props.contest.sfid;
             const partsfid = props.partsfid;
@@ -305,9 +314,19 @@ const Questions = (props) => {
                 }
             );
 
+
             const parseRes = await response.json();
             setShowContestWon(true);
-            setContestWonText("Congratulations, You Won");
+
+            if(winnercount === 1){
+                console.log('single winner');
+                setContestWonText("Congratulations, You Won");
+
+            }else{
+
+                console.log('miltiple winner');
+                setContestWonText("Congratulations, You Won with some other folks");
+            }
 
         } catch (err) {
             console.error(err.message);
