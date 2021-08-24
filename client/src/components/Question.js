@@ -230,11 +230,11 @@ const Question = (props) => {
                             <Col>
                                 <div className='answerBanner '>
                                     {props.ques.selection__c == props.ques.correct_answer__c && 
-                                        <img alt="correct answer" width="35" src={correctLogo}/>
+                                        <img alt="correct answer" width="30" src={correctLogo}/>
                                     }
 
                                     {props.ques.selection__c != props.ques.correct_answer__c && 
-                                        <img alt="incorrect answer" width="35" src={incorrectLogo}/>
+                                        <img alt="incorrect answer" width="30" src={incorrectLogo}/>
                                     }
                                     correct: {props.ques.correct_answer__c}
                                     selection: {props.ques.selection__c}
