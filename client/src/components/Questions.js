@@ -455,14 +455,15 @@ const Questions = (props) => {
             console.log('in set new question');
             setNewQuestion(props.newQuestion)
             addNewQuestion(props.newQuestion)
+            
         }
         if(newCorrectQuestion !== props.newCorrectQuestion) {
             setNewQuestion(props.newCorrectQuestion)
             addCorrectQuestion(props.newCorrectQuestion)
         }
         if(props.newCorrectQuestion === null && props.newQuestion === null){
-            $('.timerdiv').removeClass('hiddenTimer');
-            resetLogic();
+            setReview(true);
+            setShowAnswer(true);
         }
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
