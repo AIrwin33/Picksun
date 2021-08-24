@@ -194,7 +194,14 @@ const Questions = (props) => {
             //set contest over
             console.log('no more questions, contest is over');
             setFinished(true);
-            handleContestEnd();
+            setTimeout(
+                function() {
+                    console.log('end of contest timeout');
+                    handleContestEnd();
+
+                },
+                1000
+            );
 
         }
     }
@@ -229,6 +236,7 @@ const Questions = (props) => {
 
     const handleContestEnd = async () => {
         try {
+            console.log('step 1.5: contest is over');
             //check if there are other participations active
             const response = await fetch(
                 `/allendingparticipations/` + props.contest.sfid,
@@ -242,30 +250,38 @@ const Questions = (props) => {
             );
 
             const parseRes = await response.json();
-            var winningPart = parseRes[0];
             //if you have the least amount of wrong answers, set contest won
+            var finishedParts = [];
             if (winningPart !== undefined) {
                 console.log('setting winners');
                 for (var i = 0; i < parseRes.length; i++) {
 
-                    console.log(parseRes[i]);
-                    console.log(parseRes[i].wrong_answers__c);
                     if(parseRes[i].wrong_answers__c === parseRes[i].wrong_answers_allowed__c && parseRes[i].sfid === props.partsfid){
+                        console.log('Step 2: handle knock out');
                         handleKnockout();
+                    }else{
+                        finishedParts.push(parseRes[i]);
                     }
-                    parseRes[i].PlaceFinish__c = i + 1;
         
 
                 }
                 console.log(JSON.stringify(parseRes));
                 console.log(parseRes[0]);
-                if (props.partsfid === parseRes[0].sfid) {
-                    console.log('handling contest won');
-                    handleContestWon()
-                }else{
-                    //set place finish
-                    setShowContestFinished(true);
-                    setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
+                var winningParts = [];
+                for (var k = 0; k < finishedParts.length; k++) {
+                    winningParts.push(finishedParts[0]);
+                    if(finishedParts[0].wrong_answers__c === finishedParts[k].wrong_answers__c){
+                        winningParts.push(finishedParts[k]);
+                    }
+                    
+                    if (props.wrong_answers__c === finishedParts[0].wrong_answers__c) {
+                        console.log('handling contest won');
+                        handleContestWon();
+                    }else{
+                        setShowContestFinished(true);
+                        setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
+
+                    }
                 }
             }
 
