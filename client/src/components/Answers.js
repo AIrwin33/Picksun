@@ -37,17 +37,17 @@ const Answers = (props) => {
     return (
         <>
             <div className='inline'>
-                <img alt="knockout limit" width='30' src={knockout}/>
-                <p className="font20">Knockout Limit:</p>
-            </div>
-            <div className='inline'>
                 {/* if number wrong is  */}
                 
- 
-                
+                <div>
+                    <img alt="knockout limit" width='30' src={knockout}/>
+                    <p className="font20">Knockout Limit:</p>
+                </div>
+                <div className="d-inline-block">
                 {answers.map((answer, index) => {
                     return <div  className={`circle   ${answer.wrong ? "wrong" : ""}`} key={index}></div>
                 })}                
+                </div>
             </div>
         </>
     )
