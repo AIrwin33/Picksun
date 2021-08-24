@@ -266,7 +266,7 @@ const Questions = (props) => {
                 var placecount = 1;
                 for (var k = 0; k < finishedParts.length; k++) {
                     winningParts.push(finishedParts[0]);
-                    if(finishedParts[0].wrong_answers__c === finishedParts[k].wrong_answers__c){
+                    if(finishedParts[0].wrong_answers__c === finishedParts[k].wrong_answers__c && finishedParts[0].sfid !== finishedParts[k].sfid){
                         winningParts.push(finishedParts[k]);
                         finishedParts[k].PlaceFinish__c = 1;
                     }else{
