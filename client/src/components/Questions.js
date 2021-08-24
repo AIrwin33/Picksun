@@ -160,10 +160,7 @@ const Questions = (props) => {
             }
             console.log('step 1 : setting wrong answers')
             setPartWrongAnswer(parseData);
-            if(questions.length === props.contest.number_of_questions__c){
-                console.log('end of contest');
-                handleFinish();
-            }
+            
             props.updatepart(parseData);
 
         } catch (err) {
@@ -538,6 +535,10 @@ const Questions = (props) => {
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
         doGetParticipationWrongAnswers();
+        if(questions.length === props.contest.number_of_questions__c){
+            console.log('end of contest');
+            handleFinish();
+        }
     }
 
     return (
