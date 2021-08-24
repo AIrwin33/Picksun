@@ -39,10 +39,10 @@ const Answers = (props) => {
             <Row>
                 <Col md={8}>  
                     <Row>
-                        <Col md={4}>
+                        <Col md={2}>
                         <img alt="knockout limit" width='30' src={knockout}/>
                         </Col>
-                        <Col md={8}>
+                        <Col md={10}>
                         <p className="font20">Knockout Limit:</p>
                         </Col>
                     </Row>
