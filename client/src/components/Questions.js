@@ -158,6 +158,7 @@ const Questions = (props) => {
                 console.log('status active');
                 setInactive(true);
             }
+            console.log('step 1 : setting wrong answers')
             setPartWrongAnswer(parseData);
             if(questions.length === props.contest.number_of_questions__c){
                 console.log('end of contest');
@@ -264,7 +265,7 @@ const Questions = (props) => {
                 }else{
                     //set place finish
                     setShowContestFinished(true);
-                    setContestFinishedText('Thanks for playing, you got 2nd place')
+                    setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
                 }
             }
 
