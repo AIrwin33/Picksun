@@ -159,6 +159,7 @@ const Questions = (props) => {
                 setInactive(true);
             }
             console.log('step 1 : setting wrong answers')
+            console.log(questions.length);
             setPartWrongAnswer(parseData);
             
             props.updatepart(parseData);
@@ -449,6 +450,7 @@ const Questions = (props) => {
         console.log('questions use effect');
         getQuestions();
         getAllQuestions();
+        
         if(newQuestion !== props.newQuestion) {
             console.log('in set new question');
             setNewQuestion(props.newQuestion)
@@ -457,6 +459,10 @@ const Questions = (props) => {
         if(newCorrectQuestion !== props.newCorrectQuestion) {
             setNewQuestion(props.newCorrectQuestion)
             addCorrectQuestion(props.newCorrectQuestion)
+        }
+        if(props.newCorrectQuestion === null && props.newQuestion === null){
+            $('.timerdiv').removeClass('hiddenTimer');
+            resetLogic();
         }
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
