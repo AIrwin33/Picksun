@@ -460,6 +460,7 @@ const Questions = (props) => {
             console.log('resetting');
             setReview(true);
             setShowAnswer(true);
+            $('.timerdiv').removeClass('hiddenTimer');
         }
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
