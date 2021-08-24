@@ -37,17 +37,17 @@ const Answers = (props) => {
     return (
         <>
             <Row>
-                <Col>
-                    <div className="d-inline-block">
-                        <div>
-                            <img alt="knockout limit" width='30' src={knockout}/>
-
-                        </div>
-                        <div>
-                            <p className="font20">Knockout Limit:</p>
-
-                        </div>
-                    </div>
+                <Col>  
+                    <Row>
+                        <Col>
+                        <img alt="knockout limit" width='30' src={knockout}/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                        <p className="font20">Knockout Limit:</p>
+                        </Col>
+                    </Row>
                 </Col>
                 <Col className="d-flex justify-content-end">
                     <div className="d-inline-block">
