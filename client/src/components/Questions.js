@@ -275,20 +275,17 @@ const Questions = (props) => {
                         finishedParts[k].PlaceFinish__c = 1;
                     }else{
                         finishedParts[k].PlaceFinish__c  = placecount + 1;
-                        if(finishedParts[k].sfid === props.partsfid) {
-                            console.log('did not win');
-                                setShowContestFinished(true);
-                                setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
-                        }
+                        // if(finishedParts[k].sfid === props.partsfid) {
+                        //     console.log('did not win');
+                        //         setShowContestFinished(true);
+                        //         setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
+                        // }
                         
                     }
 
                     
                 }
-                console.log(JSON.stringify(winningParts));
-                console.log(props.wrong_answers__c);
-                console.log(winningParts[0].wrong_answers__c);
-                if (props.wrong_answers__c === winningParts[0].wrong_answers__c) {
+                if (partWrongAnswer.wrong_answers__c === winningParts[0].wrong_answers__c) {
                     console.log('handling contest won');
                     handleContestWon(winningParts.length);
                 }
