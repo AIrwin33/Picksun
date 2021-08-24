@@ -159,7 +159,6 @@ const Questions = (props) => {
                 setInactive(true);
             }
             console.log('step 1 : setting wrong answers')
-            console.log(questions.length);
             setPartWrongAnswer(parseData);
             
             props.updatepart(parseData);
@@ -186,7 +185,6 @@ const Questions = (props) => {
                 answeredQuestionsArr.push(questions[i]);
             }
         }
-        console.log('questions answered array' + answeredQuestionsArr);
         setQuestionIds(questionIdArr);
         if (answeredQuestionsArr.length === props.contest.number_of_questions__c) {
             //set contest over
@@ -264,8 +262,6 @@ const Questions = (props) => {
         
 
                 }
-                console.log(JSON.stringify(parseRes));
-                console.log(parseRes[0]);
                 var winningParts = [];
                 var placecount = 1;
                 for (var k = 0; k < finishedParts.length; k++) {

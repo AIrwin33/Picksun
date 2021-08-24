@@ -42,8 +42,6 @@ const Answers = (props) => {
                         <Col >
                         <img alt="knockout limit" width='30' src={knockout}/>
                         </Col>
-                    </Row>
-                    <Row>
                         <Col>
                         <p className="font20">Knockout Limit:</p>
                         </Col>
