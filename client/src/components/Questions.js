@@ -283,6 +283,7 @@ const Questions = (props) => {
 
                     
                 }
+                console.log('winning parts' + JSON.stringify(winningParts));
                 if (partWrongAnswer.wrong_answers__c === winningParts[0].wrong_answers__c) {
                     console.log('handling contest won');
                     handleContestWon(winningParts.length);
