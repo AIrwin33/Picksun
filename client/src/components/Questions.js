@@ -223,6 +223,8 @@ const Questions = (props) => {
 
             const parseRes = await response.json();
             console.log('parseres' + JSON.stringify(parseRes));
+
+            //move this to when knockout is called
             setKnockOut(true);
             setContestKnockoutText(parseRes.knockout_text__c);
         } catch (err) {
@@ -590,7 +592,7 @@ const Questions = (props) => {
                     </Col>
 
                     {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
-                    <Col className="d-flex justify-content-end">
+                    <Col className="justify-content-end">
                         <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
                     </Col>
                     }
