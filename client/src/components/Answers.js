@@ -37,11 +37,11 @@ const Answers = (props) => {
     return (
         <>
             <Row>
-                <Col md={8}>  
-                    <div className="d-flex justify-content-end">
+                <Col md={8} className="d-flex flex-row">  
+                    <div >
                         <img alt="knockout limit" width='30' src={knockout}/>
                     </div>
-                    <div className="d-flex justify-content-start">
+                    <div>
                         <span className="font20">Knockout Limit:</span>
                     </div>
                 </Col>
