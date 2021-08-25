@@ -38,19 +38,12 @@ const Answers = (props) => {
         <>
             <Row>
                 <Col md={8}>  
-                    <Row>
-                        <Col md={2} className="p-1">
-                            <div className="justify-content-end">
-                                <img alt="knockout limit" width='30' src={knockout}/>
-                            </div>
-                        </Col>
-                        <Col md={10} className="p-1">
-                        <div className="justify-content-start">
-
+                    <div className="d-flex justify-content-end">
+                        <img alt="knockout limit" width='30' src={knockout}/>
+                    </div>
+                    <div className="d-flex justify-content-start">
                         <span className="font20">Knockout Limit:</span>
-                        </div>
-                        </Col>
-                    </Row>
+                    </div>
                 </Col>
                 <Col  md={4} className="d-flex justify-content-end">
                     <div className="d-inline-block">
