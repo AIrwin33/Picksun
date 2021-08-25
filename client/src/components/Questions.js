@@ -10,6 +10,7 @@ import moment from 'moment';
 
 import "./Questions.css";
 import baseball from '../assets/Baseballspinning.gif';
+import hourglass from '../assets/hourglass.png';
 import {SocketContext} from '../socket';
 import Timer from 'react-compound-timer';
 
@@ -612,7 +613,12 @@ const Questions = (props) => {
                 <Row className="questionRow m-2 p-2">
                     <Col>
                         <div className="proxima font16 text-center">
-                            {props.contest.waiting_text__c}
+                            <img width="30" src={hourglass}/>
+                            
+                            <span>
+                                {props.contest.waiting_text__c}
+
+                            </span>
                         </div>
                     </Col>
                 </Row>
