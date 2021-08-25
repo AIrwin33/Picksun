@@ -24,9 +24,9 @@ const Landing = (props) => {
         {/* Main Body */}
         <Container fluid className="landingBody">
             <Row className="justify-content-md-center pt-3 pb-3">
-                <Col md={4}>
+                <Col md={2} sm={1} lg={4}>
                 </Col>
-                <Col md={4} className="">
+                <Col md={8} sm={10} lg={4}>
                     <Image src={justLogo}></Image>
                     <h5 className="whiteText aptifer"> How to Pickfun</h5>
                     <span className="whiteText aptifer fontBold text-center">Pick</span><br/>
@@ -48,7 +48,7 @@ const Landing = (props) => {
                     </div>
                     <Link className="btn btn-primary mt-3" label="lets go!" to='/Lobby'>Let's Go!</Link>
                 </Col>
-                <Col md={4}>
+                <Col md={2} sm={1} lg={4}>
                 </Col>
             </Row>
         </Container>
