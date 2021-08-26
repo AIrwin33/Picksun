@@ -159,6 +159,7 @@ const Questions = (props) => {
                 console.log('status active');
                 setInactive(true);
             }
+            console.log('parts wrong' + parseData)
             console.log('step 1 : setting wrong answers')
             setPartWrongAnswer(parseData);
             
