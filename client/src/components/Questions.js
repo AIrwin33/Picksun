@@ -226,7 +226,7 @@ const Questions = (props) => {
                 }
             );
 
-            // const parseRes = await response.json();
+            const parseRes = await response.json();
             // console.log('parseres' + JSON.stringify(parseRes));
 
             //move this to when knockout is called
