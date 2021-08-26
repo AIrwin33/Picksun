@@ -154,12 +154,14 @@ const Questions = (props) => {
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
                 setKnockedOut(true);
+                handleKnockout();
+                
             }
             if (parseData.status__c !== 'Active') {
                 console.log('status active');
                 setInactive(true);
             }
-            console.log('parts wrong' + parseData)
+            console.log('parts wrong' + JSON.stringify(parseData));
             console.log('step 1 : setting wrong answers')
             setPartWrongAnswer(parseData);
             
@@ -170,41 +172,41 @@ const Questions = (props) => {
         }
     }
 
-    const handleFinish = () => {
-        var questionIdArr = [];
-        var nonLockedQuestionsArr = [];
+    // const handleFinish = () => {
+    //     var questionIdArr = [];
+    //     var nonLockedQuestionsArr = [];
 
-        for (var i = 0; questions.length > i; i++) {
-            questionIdArr.push(questions[i].sfid);
-            if (questions[i].islocked__c !== true) {
-                nonLockedQuestionsArr.push(questions[i]);
-            }
-        }
-        var answeredQuestionsArr = [];
-        for (var i = 0; questions.length > i; i++) {
-            questionIdArr.push(questions[i].sfid);
-            if (questions[i].correct_answer__c !== null) {
-                answeredQuestionsArr.push(questions[i]);
-            }
-        }
-        setQuestionIds(questionIdArr);
-        console.log(answeredQuestionsArr.length);
-        console.log(props.contest.number_of_questions__c);
-        if (answeredQuestionsArr.length === props.contest.number_of_questions__c) {
-            //set contest over
-            console.log('no more questions, contest is over');
-            setFinished(true);
-            setTimeout(
-                function() {
-                    console.log('end of contest timeout');
-                    handleContestEnd();
+    //     for (var i = 0; questions.length > i; i++) {
+    //         questionIdArr.push(questions[i].sfid);
+    //         if (questions[i].islocked__c !== true) {
+    //             nonLockedQuestionsArr.push(questions[i]);
+    //         }
+    //     }
+    //     var answeredQuestionsArr = [];
+    //     for (var i = 0; questions.length > i; i++) {
+    //         questionIdArr.push(questions[i].sfid);
+    //         if (questions[i].correct_answer__c !== null) {
+    //             answeredQuestionsArr.push(questions[i]);
+    //         }
+    //     }
+    //     setQuestionIds(questionIdArr);
+    //     console.log(answeredQuestionsArr.length);
+    //     console.log(props.contest.number_of_questions__c);
+    //     if (answeredQuestionsArr.length === props.contest.number_of_questions__c) {
+    //         //set contest over
+    //         console.log('no more questions, contest is over');
+    //         setFinished(true);
+    //         setTimeout(
+    //             function() {
+    //                 console.log('end of contest timeout');
+    //                 handleContestEnd();
 
-                },
-                1000
-            );
+    //             },
+    //             1000
+    //         );
 
-        }
-    }
+    //     }
+    // }
 
     const handleKnockout = async () => {
 
@@ -252,46 +254,30 @@ const Questions = (props) => {
             );
 
             const parseRes = await response.json();
+            //returns all remaining participants who aren't knocked out
+
+
             //if you have the least amount of wrong answers, set contest won
-            var finishedParts = [];
-                console.log('setting winners');
-                for (var i = 0; i < parseRes.length; i++) {
-
-                    if(parseRes[i].wrong_answers__c === parseRes[i].wrong_answers_allowed__c && parseRes[i].sfid === props.partsfid){
-                        console.log('Step 2: handle knock out');
-                        handleKnockout();
-                    }else{
-                        finishedParts.push(parseRes[i]);
-                    }
-        
-
-                }
-                var winningParts = [];
-                var placecount = 1;
-                for (var k = 0; k < finishedParts.length; k++) {
-                    winningParts.push(finishedParts[0]);
-                    if(finishedParts[0].wrong_answers__c === finishedParts[k].wrong_answers__c && finishedParts[0].sfid !== finishedParts[k].sfid){
-                        winningParts.push(finishedParts[k]);
-                        finishedParts[k].PlaceFinish__c = 1;
-                    }else{
-                        finishedParts[k].PlaceFinish__c  = placecount + 1;
-
-                        if(finishedParts[k].sfid === props.partsfid) {
-                            console.log('finished part inside place count' + JSON.stringify(finishedParts[k]));
-                            console.log('did not win');
-                        //         setShowContestFinished(true);
-                        //         setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
-                        }
-                        
-                    }
-
+            var winningParts = [];
+            for (var k = 0; k < parseRes.length; k++) {
+                winningParts.push(parseRes[0]);
+                if(parseRes[0].wrong_answers__c === parseRes[k].wrong_answers__c && parseRes[0].sfid !== parseRes[k].sfid){
+                    console.log('adding to winning participants');
+                    winningParts.push(parseRes[k]);
                     
                 }
-                console.log('winning parts' + JSON.stringify(winningParts));
-                if (partWrongAnswer.wrong_answers__c === winningParts[0].wrong_answers__c) {
+            }
+            console.log('winning parts' + JSON.stringify(winningParts));
+            if(partWrongAnswer.status__c === 'Active'){
+                if (partWrongAnswer.placefinish__c === 1) {
                     console.log('handling contest won');
                     handleContestWon(winningParts.length);
+                }else{
+                    setShowContestFinished(true);
+                    setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
                 }
+
+            }
 
         } catch (err) {
             console.log('err on contest end' + err.message);
@@ -482,6 +468,7 @@ const Questions = (props) => {
             if (questions.length > 0 && questions.length === allquestions.length) {
             } else {
                 var newquestions = questions;
+                doGetParticipationWrongAnswers();
 
                 //if there is already a segment published, include old questions
                 if (question.subsegment__c > 1) {
@@ -517,7 +504,7 @@ const Questions = (props) => {
                 setQuestionIds(newquestionids);
                 setQuestions(newquestions);
 
-                doGetParticipationWrongAnswers();
+                
                 setTimer();
                 
                 
@@ -533,12 +520,13 @@ const Questions = (props) => {
             }else{
                 console.log('question not locked');
                 console.log(question.islocked__c);
+                doGetParticipationWrongAnswers();
                 const tempQuestions = questions;
                 console.log('temp questions');
                 tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
                 setQuestions(tempQuestions);
                 setIndex(subsegplusone);
-                doGetParticipationWrongAnswers();
+                
                 setTimer();
                 console.log('question num' + subsegplusone);
             }
@@ -548,16 +536,18 @@ const Questions = (props) => {
     }
     const addCorrectQuestion = question => {
         console.log('in cor question');
-
+        doGetParticipationWrongAnswers();
         var tempQuestions = questions;
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
-        doGetParticipationWrongAnswers();
+        
         if(questions.length === props.contest.number_of_questions__c){
             console.log('end of contest');
-            handleFinish();
+            handleContestEnd();
+        }else{
+            console.log('continue');
         }
     }
 
