@@ -543,7 +543,7 @@ const Questions = (props) => {
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
         
-        if(questions.length === props.contest.number_of_questions__c){
+        if(props.contest.status__c = 'Finished'){
             console.log('end of contest');
             handleContestEnd();
         }else{

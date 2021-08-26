@@ -340,11 +340,6 @@ app.post("/contestwon", authorization, async (req, res) => {
 
         //run calcs based on previous numbers
 
-        const wonparticipation = await pool.query(
-            "UPDATE salesforce.participation__c SET PlaceFinish__c = 1, Status__c = 'Inactive' WHERE sfid = $1",
-            [partsfid]
-        );
-
         const contestwoncount = await pool.query(
             "SELECT * FROM salesforce.participant__c WHERE sfid = $1",
             [req.user.id]
@@ -354,11 +349,6 @@ app.post("/contestwon", authorization, async (req, res) => {
         const wonparticipant = await pool.query(
             "UPDATE salesforce.participant__c SET Contests_Won__c = $1 WHERE sfid = $2",
             [contestwonnewcount, req.user.id]
-        );
-
-        const woncontest = await pool.query(
-            "UPDATE salesforce.contest__c SET Status__c = 'Finished' WHERE sfid = $1 RETURNING *",
-            [contestid]
         );
         res.json(woncontest.rows);
 
