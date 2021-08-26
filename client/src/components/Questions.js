@@ -273,6 +273,7 @@ const Questions = (props) => {
                     console.log('handling contest won');
                     handleContestWon(winningParts.length);
                 }else{
+                    console.log('place finish' + partWrongAnswer.placefinish__c);
                     setShowContestFinished(true);
                     setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
                 }
