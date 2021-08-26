@@ -360,28 +360,28 @@ app.post("/contestwon", authorization, async (req, res) => {
 
 
 //knockout
+//confirm I can remove
+// app.post("/knockout", async (req, res) => {
+//     try {
+//         const {partid} = req.body;
+//         console.log(partid);
+//         const knockedoutpart = await pool.query(
+//             "UPDATE salesforce.participation__c SET Status__c = 'Knocked Out' WHERE sfid = $1 RETURNING *",
+//             [partid]
+//         );
+//         const contestId = knockedoutpart.rows[0].contest__c;
+//         console.log(contestId);
+//         const contestText = await pool.query("SELECT * FROM salesforce.contest__c WHERE sfid = $1", [contestId]);
+//             console.log(contestText.rows[0]);
+//         //TODO lock all questions
 
-app.post("/knockout", async (req, res) => {
-    try {
-        const {partid} = req.body;
-        console.log(partid);
-        const knockedoutpart = await pool.query(
-            "UPDATE salesforce.participation__c SET Status__c = 'Knocked Out' WHERE sfid = $1 RETURNING *",
-            [partid]
-        );
-        const contestId = knockedoutpart.rows[0].contest__c;
-        console.log(contestId);
-        const contestText = await pool.query("SELECT * FROM salesforce.contest__c WHERE sfid = $1", [contestId]);
-            console.log(contestText.rows[0]);
-        //TODO lock all questions
 
+//         res.json(contestText.rows[0]);
+//     } catch (err) {
+//         console.log('knock out error ' + err);
+//     }
 
-        res.json(contestText.rows[0]);
-    } catch (err) {
-        console.log('knock out error ' + err);
-    }
-
-});
+// });
 
 
 // PG Promise to insert participation answers

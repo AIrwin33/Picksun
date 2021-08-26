@@ -157,8 +157,8 @@ const Questions = (props) => {
                 handleKnockout();
                 
             }
-            if (parseData.status__c !== 'Active') {
-                console.log('status active');
+            if (parseData.status__c === 'Inactive') {
+                console.log('status inactive');
                 setInactive(true);
             }
             console.log('parts wrong' + JSON.stringify(parseData));
@@ -212,22 +212,22 @@ const Questions = (props) => {
 
         //TODO : get place finish when knocked out
         try {
-            const partid = props.partsfid;
-            const body = {partid};
-            const response = await fetch(
-                "/knockout",
-                {
-                    method: "POST",
-                    headers: {
-                        jwt_token: localStorage.token,
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(body)
-                }
-            );
+            // const partid = props.partsfid;
+            // const body = {partid};
+            // const response = await fetch(
+            //     "/knockout",
+            //     {
+            //         method: "POST",
+            //         headers: {
+            //             jwt_token: localStorage.token,
+            //             "Content-type": "application/json"
+            //         },
+            //         body: JSON.stringify(body)
+            //     }
+            // );
 
-            const parseRes = await response.json();
-            console.log('parseres' + JSON.stringify(parseRes));
+            // const parseRes = await response.json();
+            // console.log('parseres' + JSON.stringify(parseRes));
 
             //move this to when knockout is called
             setKnockOut(true);
@@ -242,32 +242,32 @@ const Questions = (props) => {
         try {
             console.log('step 1.5: contest is over');
             //check if there are other participations active
-            const response = await fetch(
-                `/allendingparticipations/` + props.contest.sfid,
-                {
-                    method: "GET",
-                    headers: {
-                        jwt_token: localStorage.token,
-                        "Content-type": "application/json"
-                    }
-                }
-            );
+            // const response = await fetch(
+            //     `/allendingparticipations/` + props.contest.sfid,
+            //     {
+            //         method: "GET",
+            //         headers: {
+            //             jwt_token: localStorage.token,
+            //             "Content-type": "application/json"
+            //         }
+            //     }
+            // );
 
-            const parseRes = await response.json();
-            //returns all remaining participants who aren't knocked out
+            // const parseRes = await response.json();
+            // //returns all remaining participants who aren't knocked out
 
 
-            //if you have the least amount of wrong answers, set contest won
-            var winningParts = [];
-            for (var k = 0; k < parseRes.length; k++) {
-                winningParts.push(parseRes[0]);
-                if(parseRes[0].wrong_answers__c === parseRes[k].wrong_answers__c && parseRes[0].sfid !== parseRes[k].sfid){
-                    console.log('adding to winning participants');
-                    winningParts.push(parseRes[k]);
+            // //if you have the least amount of wrong answers, set contest won
+            // var winningParts = [];
+            // for (var k = 0; k < parseRes.length; k++) {
+            //     winningParts.push(parseRes[0]);
+            //     if(parseRes[0].wrong_answers__c === parseRes[k].wrong_answers__c && parseRes[0].sfid !== parseRes[k].sfid){
+            //         console.log('adding to winning participants');
+            //         winningParts.push(parseRes[k]);
                     
-                }
-            }
-            console.log('winning parts' + JSON.stringify(winningParts));
+            //     }
+            // }
+            // console.log('winning parts' + JSON.stringify(winningParts));
             if(partWrongAnswer.status__c === 'Active'){
                 if (partWrongAnswer.placefinish__c === 1) {
                     console.log('handling contest won');
