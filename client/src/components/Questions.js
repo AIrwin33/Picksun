@@ -212,19 +212,19 @@ const Questions = (props) => {
 
         //TODO : get place finish when knocked out
         try {
-            // const partid = props.partsfid;
-            // const body = {partid};
-            // const response = await fetch(
-            //     "/knockout",
-            //     {
-            //         method: "POST",
-            //         headers: {
-            //             jwt_token: localStorage.token,
-            //             "Content-type": "application/json"
-            //         },
-            //         body: JSON.stringify(body)
-            //     }
-            // );
+            const partid = props.partsfid;
+            const body = {partid};
+            const response = await fetch(
+                "/knockout",
+                {
+                    method: "POST",
+                    headers: {
+                        jwt_token: localStorage.token,
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(body)
+                }
+            );
 
             // const parseRes = await response.json();
             // console.log('parseres' + JSON.stringify(parseRes));
