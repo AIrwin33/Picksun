@@ -424,6 +424,12 @@ const Questions = (props) => {
             if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
             }
+            console.log('check if its going over after clicking multiple times');
+
+            //maybe increment selected count only on push?
+            console.log(answerList.length);
+            console.log(selectedCount + 1);
+            console.log(subSegmentCount);
             setSelectedCount(selectedCount + 1);
 
         } catch (err) {
