@@ -97,11 +97,13 @@ const Questions = (props) => {
                 if (counttime < 0) {
                     console.log('setting timer zero?');
                     setCounter(0);
-                    showTimer();
+                    $('.timerdiv').removeClass('hiddenTimer');
+    
                 } else {
                     console.log('setting timer count time?');
                     setCounter(counttime);
-                    showTimer();
+                    $('.timerdiv').removeClass('hiddenTimer');
+    
                 }
             } else {
                 console.log('no available unlocked questions');
@@ -119,6 +121,7 @@ const Questions = (props) => {
     const showTimer = async () => {
         $('.timerdiv').removeClass('hiddenTimer');
     }
+        
 
     // select a question and increment/decrement the question number on the screen
     const handleSelect = (selectedIndex, e) => {
@@ -322,6 +325,7 @@ const Questions = (props) => {
     }
 
     const setTimer = () => {
+        console.log('set timer');
         setCounter(60000);
     }
 
