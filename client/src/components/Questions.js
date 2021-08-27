@@ -457,6 +457,7 @@ const Questions = (props) => {
             console.log('resetting');
             setReview(true);
             setShowAnswer(true);
+            console.log($('.timerdiv'));
             $('.timerdiv').removeClass('hiddenTimer');
         }
     }, [props.newQuestion, props.newCorrectQuestion]);
