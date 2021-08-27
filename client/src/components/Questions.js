@@ -503,13 +503,7 @@ const Questions = (props) => {
                 setPublishedQuestions(newquestions.length);
                 setQuestionIds(newquestionids);
                 setQuestions(newquestions);
-
-                
                 setTimer();
-                
-                
-                console.log('question num' + subsegplusone);
-                console.log('in set logic add new questions');
                 $('.timerdiv').removeClass('hiddenTimer');
                 resetLogic();
             }
