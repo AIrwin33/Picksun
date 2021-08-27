@@ -118,11 +118,6 @@ const Questions = (props) => {
         }
     };
 
-    const showTimer = async () => {
-        $('.timerdiv').removeClass('hiddenTimer');
-    }
-        
-
     // select a question and increment/decrement the question number on the screen
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
@@ -417,7 +412,7 @@ const Questions = (props) => {
             
             setAnswerList(answerList);
             console.log(selectedCount);
-            if(selectedCount === subSegmentCount){
+            if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
             }
         } catch (err) {
@@ -457,10 +452,9 @@ const Questions = (props) => {
         }
         if(props.newCorrectQuestion === undefined && props.newQuestion === undefined){
             console.log('resetting');
-            $('.timerdiv').removeClass('hiddenTimer');
+            
             setReview(true);
             setShowAnswer(true);
-            console.log($('.timerdiv'));
         }
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
