@@ -398,6 +398,7 @@ const Questions = (props) => {
             if (answerList.length < 1) {
                 answerList.push(childData);
                 setSelectedCount(selectedCount + 1);
+                console.log(selectedCount);
             } else {
 
                 //if answer list contains the question answer already, then replace it, otherwise add it
@@ -408,10 +409,12 @@ const Questions = (props) => {
                     } else {
                         answerList.push(childData);
                         setSelectedCount(selectedCount + 1);
+                        console.log(selectedCount);
                         break;
                     }
                 }
             }
+            
             setAnswerList(answerList);
             console.log(selectedCount);
             if(selectedCount === subSegmentCount){
@@ -576,7 +579,7 @@ const Questions = (props) => {
                                     <React.Fragment>
 
                                         {/* on timer state of stopped, call the disable function and show answer*/}
-                                        <div className="timerdiv font20 hiddenTimer">
+                                        <div className="timerdiv font20">
                                             {counter > 0 &&
                                                 <Image width='20' src={baseball}/>
                                             }
