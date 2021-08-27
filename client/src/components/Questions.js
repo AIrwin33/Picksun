@@ -394,6 +394,7 @@ const Questions = (props) => {
             //if the answer list is empty, add the answered question from the Question JS
             if (answerList.length < 1) {
                 answerList.push(childData);
+                setSelectedCount(selectedCount + 1);
             } else {
 
                 //if answer list contains the question answer already, then replace it, otherwise add it
@@ -403,22 +404,17 @@ const Questions = (props) => {
                         answerList.splice(i, 1, childData);
                     } else {
                         answerList.push(childData);
+                        setSelectedCount(selectedCount + 1);
                         break;
                     }
                 }
             }
             setAnswerList(answerList);
-            if(answerList.length === subSegmentCount){
+            console.log(selectedCount);
+            console.log(subSegmentCount);
+            if(selectedCount === subSegmentCount){
                 setAnswerListShow(true);
             }
-            console.log('check if its going over after clicking multiple times');
-
-            //maybe increment selected count only on push?
-            console.log(answerList.length);
-            console.log(selectedCount + 1);
-            console.log(subSegmentCount);
-            setSelectedCount(selectedCount + 1);
-
         } catch (err) {
             console.log('err' + err.message);
         }
