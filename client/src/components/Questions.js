@@ -414,7 +414,6 @@ const Questions = (props) => {
             }
             setAnswerList(answerList);
             console.log(selectedCount);
-            console.log(subSegmentCount);
             if(selectedCount === subSegmentCount){
                 setAnswerListShow(true);
             }
@@ -455,10 +454,10 @@ const Questions = (props) => {
         }
         if(props.newCorrectQuestion === undefined && props.newQuestion === undefined){
             console.log('resetting');
+            $('.timerdiv').removeClass('hiddenTimer');
             setReview(true);
             setShowAnswer(true);
             console.log($('.timerdiv'));
-            $('.timerdiv').removeClass('hiddenTimer');
         }
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
