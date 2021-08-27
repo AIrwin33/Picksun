@@ -408,7 +408,7 @@ const Questions = (props) => {
                 }
             }
             setAnswerList(answerList);
-            if(selectedCount + 1 === subSegmentCount){
+            if(answerList.length === subSegmentCount){
                 setAnswerListShow(true);
             }
             console.log('check if its going over after clicking multiple times');
@@ -544,7 +544,7 @@ const Questions = (props) => {
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
         
-        if(props.contest.status__c = 'Finished'){
+        if(props.contest.status__c === 'Finished'){
             console.log('end of contest');
             handleContestEnd();
         }else{
