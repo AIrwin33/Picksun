@@ -440,13 +440,13 @@ const Questions = (props) => {
         getQuestions();
         getAllQuestions();
         
-        if(newQuestion !== props.newQuestion) {
+        if(newQuestion !== props.newQuestion && props.newQuestion !== undefined) {
             console.log('in set new question');
             setNewQuestion(props.newQuestion)
             addNewQuestion(props.newQuestion)
             
         }
-        if(newCorrectQuestion !== props.newCorrectQuestion) {
+        if(newCorrectQuestion !== props.newCorrectQuestion && props.newCorrectQuestion !== undefined) {
             setNewQuestion(props.newCorrectQuestion)
             addCorrectQuestion(props.newCorrectQuestion)
         }

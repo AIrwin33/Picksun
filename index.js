@@ -424,7 +424,7 @@ pgListen.notifications.on("new_question", e => {
         io.to(e.contest__c).emit("new_question", e)
     }
 
-    if(e.correct_answer__c !== null) {
+    if(e.correct_answer__c !== null && e !== undefined) {
         console.log('e.correct_answer__c' + e.correct_answer__c);
         console.log('here');
         io.to(e.contest__c).emit("cor_question", e)
