@@ -97,15 +97,14 @@ const Questions = (props) => {
                 if (counttime < 0) {
                     console.log('setting timer zero?');
                     setCounter(0);
+                    showTimer();
                 } else {
                     console.log('setting timer count time?');
                     setCounter(counttime);
+                    showTimer();
                 }
             } else {
                 console.log('no available unlocked questions');
-            }
-            if(nonLockedQuestionsArr.length > 0) {
-                showTimer();
             }
             setQuestions(parseData);
             
