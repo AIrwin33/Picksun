@@ -94,7 +94,7 @@ const Questions = (props) => {
                 console.log(closedTimerInt);
                 var closedTimerFormat = moment(closedTimerInt);
                 console.log(closedTimerFormat);
-                var counttime = moment.duration(closedTimerFormat.diff(currtime));
+                var counttime = moment.duration(closedTimerFormat.diff(currtime)).milliseconds();
                 console.log(props.contest.opened_timer__c);
                 console.log(counttime);
                 if (counttime < 0) {
@@ -172,66 +172,14 @@ const Questions = (props) => {
         }
     }
 
-    // const handleFinish = () => {
-    //     var questionIdArr = [];
-    //     var nonLockedQuestionsArr = [];
-
-    //     for (var i = 0; questions.length > i; i++) {
-    //         questionIdArr.push(questions[i].sfid);
-    //         if (questions[i].islocked__c !== true) {
-    //             nonLockedQuestionsArr.push(questions[i]);
-    //         }
-    //     }
-    //     var answeredQuestionsArr = [];
-    //     for (var i = 0; questions.length > i; i++) {
-    //         questionIdArr.push(questions[i].sfid);
-    //         if (questions[i].correct_answer__c !== null) {
-    //             answeredQuestionsArr.push(questions[i]);
-    //         }
-    //     }
-    //     setQuestionIds(questionIdArr);
-    //     console.log(answeredQuestionsArr.length);
-    //     console.log(props.contest.number_of_questions__c);
-    //     if (answeredQuestionsArr.length === props.contest.number_of_questions__c) {
-    //         //set contest over
-    //         console.log('no more questions, contest is over');
-    //         setFinished(true);
-    //         setTimeout(
-    //             function() {
-    //                 console.log('end of contest timeout');
-    //                 handleContestEnd();
-
-    //             },
-    //             1000
-    //         );
-
-    //     }
-    // }
-
     const handleKnockout = async () => {
 
         //TODO : get place finish when knocked out
         try {
-            const partid = props.partsfid;
-            const body = {partid};
-            const response = await fetch(
-                "/knockout",
-                {
-                    method: "POST",
-                    headers: {
-                        jwt_token: localStorage.token,
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(body)
-                }
-            );
-
-            const parseRes = await response.json();
-            // console.log('parseres' + JSON.stringify(parseRes));
 
             //move this to when knockout is called
             setKnockOut(true);
-            setContestKnockoutText(parseRes.knockout_text__c);
+            setContestKnockoutText(props.contest.knockout_text__c);
         } catch (err) {
             console.error(err.message);
         }
@@ -302,8 +250,6 @@ const Questions = (props) => {
                 }
             );
 
-
-            const parseRes = await response.json();
             setShowContestWon(true);
 
             if(winnercount === 1){
