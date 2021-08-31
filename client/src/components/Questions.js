@@ -36,7 +36,6 @@ const Questions = (props) => {
     const [showNext, setShowNext] = useState(false);
     const [knockedOut, setKnockedOut] = useState(false);
     const [finished, setFinished] = useState(false);
-    const [placefinished, setPlaceFinished] = useState(0);
     const [inactive, setInactive] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [isShowWaiting, setShowWaiting] = useState(false);
@@ -151,7 +150,6 @@ const Questions = (props) => {
                 }
             );
             const parseData = await response.json();
-            console.log(parseData.placefinish__c);
             setPartWrongAnswer(parseData);
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
@@ -168,9 +166,6 @@ const Questions = (props) => {
             //set sort of timeout to check waiting for finished game
             setTimeout(
                 function() {
-                    if(parseData.placefinish__c !== null) {
-                        setPlaceFinished(parseData.placefinish__c);
-                    }
                     checkFinished();
                 },
                 2000
@@ -223,30 +218,29 @@ const Questions = (props) => {
             );
 
             const parseRes = await response.json();
+            var placefinish;
             var winningParts = [];
             for (var k = 0; k < parseRes.length; k++) {
                 winningParts.push(parseRes[0]);
+                if(parseRes[k].sfid === props.partsfid){
+                    placefinish = parseRes[i].placefinish__c;
+                }
                 if(parseRes[0].wrong_answers__c === parseRes[k].wrong_answers__c && parseRes[0].sfid !== parseRes[k].sfid){
                     console.log('adding to winning participants');
                     winningParts.push(parseRes[k]);
                     
                 }
             }
-            console.log('placefinished' + placefinished);
-            setTimeout(
-                function() {
+            console.log(placefinish);
                     
-                    if (placefinished === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
-                        console.log('handling contest won');
-                        handleContestWon(winningParts.length);
-                    }else{
-                        console.log('place finish' + placefinished);
-                        setShowContestFinished(true);
-                        setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
-                    }
-                },
-                5000
-            );
+            if (placefinish === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
+                console.log('handling contest won');
+                handleContestWon(winningParts.length);
+            }else{
+                setShowContestFinished(true);
+                setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
+            }
+
             
 
         } catch (err) {
