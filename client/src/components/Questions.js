@@ -206,7 +206,7 @@ const Questions = (props) => {
                 }
             }
             console.log(partWrongAnswer);
-            if (partWrongAnswer.placefinish__c === 1) {
+            if (partWrongAnswer.placefinish__c === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
                 console.log('handling contest won');
                 handleContestWon(winningParts.length);
             }else{
