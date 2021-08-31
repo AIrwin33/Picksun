@@ -35,7 +35,7 @@ const Questions = (props) => {
     const [answerList, setAnswerList] = useState([]);
     const [showNext, setShowNext] = useState(false);
     const [knockedOut, setKnockedOut] = useState(false);
-    const [finished, setFinished] = useState(false);
+    const [placefinished, setPlaceFinished] = useState(0);
     const [inactive, setInactive] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [isShowWaiting, setShowWaiting] = useState(false);
@@ -167,6 +167,9 @@ const Questions = (props) => {
             //set sort of timeout to check waiting for finished game
             setTimeout(
                 function() {
+                    if(parseData.placefinish__c !== null) {
+                        setPlaceFinished(parseData.placefinish__c);
+                    }
                     checkFinished();
                 },
                 2000
@@ -231,17 +234,17 @@ const Questions = (props) => {
 
             setTimeout(
                 function() {
-                    console.log(partWrongAnswer);
-                    if (partWrongAnswer.placefinish__c === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
+                    
+                    if (placefinished === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
                         console.log('handling contest won');
                         handleContestWon(winningParts.length);
                     }else{
-                        console.log('place finish' + partWrongAnswer.placefinish__c);
+                        console.log('place finish' + placefinished);
                         setShowContestFinished(true);
                         setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
                     }
                 },
-                3000
+                5000
             );
             
 
