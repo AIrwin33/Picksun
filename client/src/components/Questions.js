@@ -238,6 +238,7 @@ const Questions = (props) => {
                 handleContestWon(winningParts.length);
             }else{
                 setShowContestFinished(true);
+                console.log(placefinish);
                 setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
             }
 
@@ -619,6 +620,7 @@ const Questions = (props) => {
                     <Row>
                         <div className="text-center">
                             <span>{contestFinishedText}</span>
+                            <span>Place Finish: {partWrongAnswer.placefinish__c}</span>
                         </div>
                     </Row>
                     }
