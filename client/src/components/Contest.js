@@ -49,11 +49,12 @@ const Contest = ({match}) => {
             const parseData = await res.json();
             setHomeTeam(parseData[0]);
             setAwayTeam(parseData[1]);
+            getContestParticipations(contestRec);
             setTimeout(
                 function() {
                     console.log('end of timeout');
-                    getContestParticipations(contestRec);
-
+                    
+                    setLoaded(true);
                 },
                 2000
             );
@@ -98,7 +99,7 @@ const Contest = ({match}) => {
 
             const parseData = await res.json();
             setParticipation(parseData);
-            setLoaded(true);
+            
         } catch (err) {
             console.error(err.message);
         }
