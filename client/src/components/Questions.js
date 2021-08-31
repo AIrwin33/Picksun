@@ -162,8 +162,15 @@ const Questions = (props) => {
                 setInactive(true);
                 
             }
-            console.log(props.contest.status__c);
-            if(props.contest.number_of_questions__c === questions.length){
+            var i;
+            var correctQuestions = [];
+            for(1=0; i > questions.length; i++){
+                if(questions[i].correct_answer__c !== null){
+                    correctQuestions.add(questions[i]);
+                }
+            }
+            console.log(correctQuestions);
+            if(props.contest.number_of_questions__c === correctQuestions.length){
                 console.log('end of contest');
                 handleContestEnd();
             }else{
@@ -177,11 +184,7 @@ const Questions = (props) => {
     }
 
     const handleKnockout = async () => {
-
-        //TODO : get place finish when knocked out
         try {
-
-            //move this to when knockout is called
             setKnockOut(true);
             setContestKnockoutText(props.contest.knockout_text__c);
         } catch (err) {
@@ -205,11 +208,7 @@ const Questions = (props) => {
                 }
             );
 
-             const parseRes = await response.json();
-            // //returns all remaining participants who aren't knocked out
-
-
-            // //if you have the least amount of wrong answers, set contest won
+            const parseRes = await response.json();
             var winningParts = [];
             for (var k = 0; k < parseRes.length; k++) {
                 winningParts.push(parseRes[0]);
@@ -220,16 +219,13 @@ const Questions = (props) => {
                 }
             }
             
-            if(partWrongAnswer.placefinish__c !== null){
-                if (partWrongAnswer.placefinish__c === 1) {
-                    console.log('handling contest won');
-                    handleContestWon(winningParts.length);
-                }else{
-                    console.log('place finish' + partWrongAnswer.placefinish__c);
-                    setShowContestFinished(true);
-                    setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
-                }
-
+            if (partWrongAnswer.placefinish__c === 1) {
+                console.log('handling contest won');
+                handleContestWon(winningParts.length);
+            }else{
+                console.log('place finish' + partWrongAnswer.placefinish__c);
+                setShowContestFinished(true);
+                setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
             }
 
         } catch (err) {
