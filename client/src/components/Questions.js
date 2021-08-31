@@ -166,18 +166,7 @@ const Questions = (props) => {
             //set sort of timeout to check waiting for finished game
             setTimeout(
                 function() {
-                    const res = fetch(`/contestdetail/` + props.contestid, {
-                        method: "GET",
-                        headers: {jwt_token: localStorage.token}
-                    });
-                    const parseContestData = res.json();
-                    console.log(JSON.stringify(parseContestData));
-                    if(parseContestData.status__c === 'Finished'){
-                        console.log('end of contest');
-                        handleContestEnd();
-                    }else{
-                        console.log('continue');
-                    }
+                    checkFinished();
                 },
                 2000
             );
@@ -193,6 +182,21 @@ const Questions = (props) => {
         }
     }
 
+
+    const checkFinished = async () => {
+        const res = await fetch(`/contestdetail/` + props.contestid, {
+            method: "GET",
+            headers: {jwt_token: localStorage.token}
+        });
+        const parseContestData = await res.json();
+        console.log(JSON.stringify(parseContestData));
+        if(parseContestData.status__c === 'Finished'){
+            console.log('end of contest');
+            handleContestEnd();
+        }else{
+            console.log('continue');
+        }
+    }
     const handleKnockout = async () => {
         try {
             setKnockOut(true);
