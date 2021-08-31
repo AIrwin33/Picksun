@@ -347,10 +347,10 @@ app.post("/contestwon", authorization, async (req, res) => {
 
         var contestwonnewcount = contestwoncount.Contests_Won__c + 1;
         const wonparticipant = await pool.query(
-            "UPDATE salesforce.participant__c SET Contests_Won__c = $1 WHERE sfid = $2",
+            "UPDATE salesforce.participant__c SET Contests_Won__c = $1 WHERE sfid = $2 RETURNING *",
             [contestwonnewcount, req.user.id]
         );
-        res.json(woncontest.rows);
+        res.json(wonparticipant.rows);
 
     } catch (err) {
         console.log('contest won error ' + err);
