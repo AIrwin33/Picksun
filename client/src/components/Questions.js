@@ -205,7 +205,7 @@ const Questions = (props) => {
                     
                 }
             }
-            
+            console.log(partWrongAnswer);
             if (partWrongAnswer.placefinish__c === 1) {
                 console.log('handling contest won');
                 handleContestWon(winningParts.length);
