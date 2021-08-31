@@ -164,7 +164,7 @@ const Questions = (props) => {
             }
             var i;
             var correctQuestions = [];
-            for(1=0; i > questions.length; i++){
+            for(i=0; i > questions.length; i++){
                 if(questions[i].correct_answer__c !== null){
                     correctQuestions.add(questions[i]);
                 }
