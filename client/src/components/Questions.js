@@ -162,6 +162,22 @@ const Questions = (props) => {
                 setInactive(true);
                 
             }
+
+            var correctQuestions = [];
+            console.log(questions.length);
+            for(var i=0; i < questions.length; i++){
+                console.log(questions[i]);
+                if(questions[i].correct_answer__c !== null){
+                    correctQuestions.push(questions[i]);
+                }
+            }
+            console.log(correctQuestions.length);
+            if(props.contest.number_of_questions__c === correctQuestions.length){
+                console.log('end of contest');
+                handleContestEnd();
+            }else{
+                console.log('continue');
+            }
            
             props.updatepart(parseData);
 
@@ -205,6 +221,7 @@ const Questions = (props) => {
                     
                 }
             }
+            console.log(winningParts.length);
             console.log(partWrongAnswer);
             if (partWrongAnswer.placefinish__c === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
                 console.log('handling contest won');
@@ -466,22 +483,7 @@ const Questions = (props) => {
         var tempQuestions = questions;
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
 
-        console.log('tempQuestions' + JSON.stringify(tempQuestions));
-        var correctQuestions = [];
-        console.log(tempQuestions.length);
-        for(var i=0; i < tempQuestions.length; i++){
-            console.log(tempQuestions[i]);
-            if(tempQuestions[i].correct_answer__c !== null){
-                correctQuestions.push(tempQuestions[i]);
-            }
-        }
-        console.log(correctQuestions.length);
-        if(props.contest.number_of_questions__c === correctQuestions.length){
-            console.log('end of contest');
-            handleContestEnd();
-        }else{
-            console.log('continue');
-        }
+        
         setQuestions(tempQuestions);
         doGetParticipationWrongAnswers();
         
