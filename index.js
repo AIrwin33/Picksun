@@ -180,7 +180,7 @@ app.get("/questions/:contest_id", authorization, async (req, res) => {
     try {
         const {contest_id} = req.params;
         console.log('getting questions');
-        const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY SubSegment__c ASC", [contest_id]);
+        const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY Name ASC", [contest_id]);
         res.json(allContestQuestions.rows)
 
     } catch (error) {
@@ -192,7 +192,7 @@ app.get("/allquestions/:contest_id", authorization, async (req, res) => {
     try {
         const {contest_id} = req.params;
         console.log('getting all questions');
-        const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 ORDER BY SubSegment__c ASC", [contest_id]);
+        const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 ORDER BY Name ASC", [contest_id]);
         res.json(allContestQuestions.rows)
 
     } catch (error) {
