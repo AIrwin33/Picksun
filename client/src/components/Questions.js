@@ -463,22 +463,19 @@ const Questions = (props) => {
 
     }
     const addCorrectQuestion = question => {
-        console.log('in cor question');
-        
-        
-        
         var tempQuestions = questions;
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         var correctQuestions = [];
+        console.log(tempQuestions.length);
         for(var i=0; i < tempQuestions.length; i++){
-            console.log(tempQuestions[i].correct_answer__c);
+            console.log(tempQuestions[i]);
             if(tempQuestions[i].correct_answer__c !== null){
                 correctQuestions.push(tempQuestions[i]);
             }
         }
-        console.log(correctQuestions);
+        console.log(correctQuestions.length);
         if(props.contest.number_of_questions__c === correctQuestions.length){
             console.log('end of contest');
             handleContestEnd();
