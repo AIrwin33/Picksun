@@ -150,6 +150,7 @@ const Questions = (props) => {
                 }
             );
             const parseData = await response.json();
+            console.log(parseData.placefinish__c);
             setPartWrongAnswer(parseData);
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
@@ -170,11 +171,6 @@ const Questions = (props) => {
                 },
                 2000
             );
-            
-
-            
-            
-           
             props.updatepart(parseData);
 
         } catch (err) {
@@ -232,16 +228,22 @@ const Questions = (props) => {
                     
                 }
             }
-            console.log(winningParts.length);
-            console.log(partWrongAnswer);
-            if (partWrongAnswer.placefinish__c === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
-                console.log('handling contest won');
-                handleContestWon(winningParts.length);
-            }else{
-                console.log('place finish' + partWrongAnswer.placefinish__c);
-                setShowContestFinished(true);
-                setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
-            }
+
+            setTimeout(
+                function() {
+                    console.log(partWrongAnswer);
+                    if (partWrongAnswer.placefinish__c === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
+                        console.log('handling contest won');
+                        handleContestWon(winningParts.length);
+                    }else{
+                        console.log('place finish' + partWrongAnswer.placefinish__c);
+                        setShowContestFinished(true);
+                        setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
+                    }
+                },
+                1000
+            );
+            
 
         } catch (err) {
             console.log('err on contest end' + err.message);
