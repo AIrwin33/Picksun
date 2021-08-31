@@ -396,14 +396,20 @@ const Questions = (props) => {
             
         }
         if(newCorrectQuestion !== props.newCorrectQuestion && props.newCorrectQuestion !== undefined) {
-            setNewQuestion(props.newCorrectQuestion)
-            addCorrectQuestion(props.newCorrectQuestion)
+            setNewQuestion(props.newCorrectQuestion);
+            addCorrectQuestion(props.newCorrectQuestion);
         }
         if(props.newCorrectQuestion === undefined && props.newQuestion === undefined){
             console.log('resetting');
             
             setReview(true);
             setShowAnswer(true);
+        }
+        if(props.contest.status__c === 'Finished'){
+            console.log('end of contest');
+            handleContestEnd();
+        }else{
+            console.log('continue');
         }
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
@@ -484,12 +490,7 @@ const Questions = (props) => {
         setQuestions(tempQuestions);
         doGetParticipationWrongAnswers();
         
-        if(props.contest.status__c === 'Finished'){
-            console.log('end of contest');
-            handleContestEnd();
-        }else{
-            console.log('continue');
-        }
+        
     }
 
     return (
