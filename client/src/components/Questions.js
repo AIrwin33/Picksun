@@ -162,20 +162,7 @@ const Questions = (props) => {
                 setInactive(true);
                 
             }
-            var i;
-            var correctQuestions = [];
-            for(i=0; i > questions.length; i++){
-                if(questions[i].correct_answer__c !== null){
-                    correctQuestions.add(questions[i]);
-                }
-            }
-            console.log(correctQuestions);
-            if(props.contest.number_of_questions__c === correctQuestions.length){
-                console.log('end of contest');
-                handleContestEnd();
-            }else{
-                console.log('continue');
-            }
+           
             props.updatepart(parseData);
 
         } catch (err) {
@@ -484,6 +471,21 @@ const Questions = (props) => {
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
+        var i;
+        var correctQuestions = [];
+        for(i=0; i > tempQuestions.length; i++){
+            console.log(tempQuestions[i].correct_answer__c);
+            if(tempQuestions[i].correct_answer__c !== null){
+                correctQuestions.add(tempQuestions[i]);
+            }
+        }
+        console.log(correctQuestions);
+        if(props.contest.number_of_questions__c === correctQuestions.length){
+            console.log('end of contest');
+            handleContestEnd();
+        }else{
+            console.log('continue');
+        }
         setQuestions(tempQuestions);
         doGetParticipationWrongAnswers();
         
