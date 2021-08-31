@@ -231,7 +231,7 @@ const Questions = (props) => {
                     
                 }
             }
-
+            console.log('placefinished' + placefinished);
             setTimeout(
                 function() {
                     
