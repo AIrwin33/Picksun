@@ -223,7 +223,7 @@ const Questions = (props) => {
             for (var k = 0; k < parseRes.length; k++) {
                 winningParts.push(parseRes[0]);
                 if(parseRes[k].sfid === props.partsfid){
-                    placefinish = parseRes[i].placefinish__c;
+                    placefinish = parseRes[k].placefinish__c;
                 }
                 if(parseRes[0].wrong_answers__c === parseRes[k].wrong_answers__c && parseRes[0].sfid !== parseRes[k].sfid){
                     console.log('adding to winning participants');
