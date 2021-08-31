@@ -163,7 +163,7 @@ const Questions = (props) => {
                 
             }
             console.log(props.contest.status__c);
-            if(props.contest.status__c === 'Finished'){
+            if(props.contest.number_of_questions__c === publishedQuestions){
                 console.log('end of contest');
                 handleContestEnd();
             }else{
