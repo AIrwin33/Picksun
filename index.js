@@ -407,12 +407,6 @@ pgListen.notifications.on("new_question", e => {
 })
 
 
-pgListen.notifications.on("new_participation", e => {
-    console.log('in new participation');
-    console.log(e);
-
-})
-
 pgListen.events.on("error", (error) => {
     console.error("Fatal database connection error:", error)
     process.exit(1)

@@ -162,6 +162,8 @@ const Questions = (props) => {
                 setInactive(true);
                 
             }
+
+            //set sort of timeout to check waiting for finished game
             const res = await fetch(`/contestdetail/` + props.contestid, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
