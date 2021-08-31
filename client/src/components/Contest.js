@@ -124,6 +124,10 @@ const Contest = ({match}) => {
                 console.log("new correct question");
                 setNewCorrectQuestion(question)
             })
+            socket.on("new_contest", contest => {
+                console.log('new_contest' + contest);
+                setContest(contest)
+            })
         });
     }, [socket]);
     return ((

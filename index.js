@@ -390,9 +390,18 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')) // relative path
     })
 }
+
+pgListen.notifications.on("new_contest", e => {
+    console.log(e);
+    if(e.status__c === 'Finished'){
+        io.to(e.contest__c).emit("new_contest", e)
+    }
+})
+
 pgListen.notifications.on("new_question", e => {
     console.log(e);
     console.log('listener on');
+
     if (e !== undefined && e.published__c && !e.islocked__c) {
         console.log('send socket question');
         io.to(e.contest__c).emit("new_question", e)
@@ -415,6 +424,8 @@ pgListen.connect()
 pgListen.listenTo("new_question")
 
 pgListen.listenTo("cor_question")
+
+pgListen.listenTo("new_contest")
 
 io.on("connection", (socket) => {
     socket.on("set_contest_room", e => {
