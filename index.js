@@ -393,6 +393,7 @@ if (process.env.NODE_ENV === 'production') {
 
 pgListen.notifications.on("new_contest", e => {
     console.log(e);
+    console.log('in new contest');
     if(e.status__c === 'Finished'){
         io.to(e.contest__c).emit("new_contest", e)
     }
