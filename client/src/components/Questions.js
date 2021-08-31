@@ -471,9 +471,8 @@ const Questions = (props) => {
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
-        var i;
         var correctQuestions = [];
-        for(i=0; i > tempQuestions.length; i++){
+        for(var i=0; i < tempQuestions.length; i++){
             console.log(tempQuestions[i].correct_answer__c);
             if(tempQuestions[i].correct_answer__c !== null){
                 correctQuestions.add(tempQuestions[i]);
