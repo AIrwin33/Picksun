@@ -166,7 +166,7 @@ const Questions = (props) => {
             //set sort of timeout to check waiting for finished game
             setTimeout(
                 function() {
-                    const res = await fetch(`/contestdetail/` + props.contestid, {
+                    const res = fetch(`/contestdetail/` + props.contestid, {
                         method: "GET",
                         headers: {jwt_token: localStorage.token}
                     });
