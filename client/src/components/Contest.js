@@ -71,6 +71,7 @@ const Contest = ({match}) => {
             });
 
             const parseData = await res.json();
+            console.log('contest parts' + JSON.stringify(parseData));
             setAllParts(parseData.length);
             var i;
             var activeParts = [];
