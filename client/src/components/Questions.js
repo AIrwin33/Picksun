@@ -35,6 +35,7 @@ const Questions = (props) => {
     const [answerList, setAnswerList] = useState([]);
     const [showNext, setShowNext] = useState(false);
     const [knockedOut, setKnockedOut] = useState(false);
+    const [finished, setFinished] = useState(false);
     const [placefinished, setPlaceFinished] = useState(0);
     const [inactive, setInactive] = useState(false);
     const [submitted, setSubmitted] = useState(false);
