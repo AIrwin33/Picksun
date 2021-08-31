@@ -162,17 +162,14 @@ const Questions = (props) => {
                 setInactive(true);
                 
             }
+            const res = await fetch(`/contestdetail/` + props.contestid, {
+                method: "GET",
+                headers: {jwt_token: localStorage.token}
+            });
 
-            var correctQuestions = [];
-            console.log(questions.length);
-            for(var i=0; i < questions.length; i++){
-                console.log(questions[i]);
-                if(questions[i].correct_answer__c !== null){
-                    correctQuestions.push(questions[i]);
-                }
-            }
-            console.log(correctQuestions.length);
-            if(props.contest.number_of_questions__c === correctQuestions.length){
+            const parseContestData = await res.json();
+            console.log(JSON.stringify(parseContestData));
+            if(parseContestData.status__c === 'Finished'){
                 console.log('end of contest');
                 handleContestEnd();
             }else{
