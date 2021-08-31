@@ -475,7 +475,7 @@ const Questions = (props) => {
         for(var i=0; i < tempQuestions.length; i++){
             console.log(tempQuestions[i].correct_answer__c);
             if(tempQuestions[i].correct_answer__c !== null){
-                correctQuestions.add(tempQuestions[i]);
+                correctQuestions.push(tempQuestions[i]);
             }
         }
         console.log(correctQuestions);
