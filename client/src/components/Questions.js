@@ -149,8 +149,8 @@ const Questions = (props) => {
                     body: JSON.stringify(body)
                 }
             );
-
             const parseData = await response.json();
+            setPartWrongAnswer(parseData);
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
                 setKnockedOut(true);
@@ -163,8 +163,8 @@ const Questions = (props) => {
             }
             console.log('parts wrong' + JSON.stringify(parseData));
             console.log('step 1 : setting wrong answers')
-            setPartWrongAnswer(parseData);
             
+            console.log(partWrongAnswer.wrong_answers__c);
             props.updatepart(parseData);
 
         } catch (err) {
@@ -476,12 +476,13 @@ const Questions = (props) => {
     }
     const addCorrectQuestion = question => {
         console.log('in cor question');
-        doGetParticipationWrongAnswers();
+        
         var tempQuestions = questions;
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
 
         console.log('tempQuestions' + JSON.stringify(tempQuestions));
         setQuestions(tempQuestions);
+        doGetParticipationWrongAnswers();
         
         if(props.contest.status__c === 'Finished'){
             console.log('end of contest');
