@@ -216,7 +216,7 @@ const Questions = (props) => {
                 }
             }
             
-            if(partWrongAnswer.status__c === 'Active' && partWrongAnswer.placefinish__c !== null){
+            if(partWrongAnswer.placefinish__c !== null){
                 if (partWrongAnswer.placefinish__c === 1) {
                     console.log('handling contest won');
                     handleContestWon(winningParts.length);
