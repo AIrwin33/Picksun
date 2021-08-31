@@ -160,11 +160,15 @@ const Questions = (props) => {
             if (parseData.status__c === 'Inactive') {
                 console.log('status inactive');
                 setInactive(true);
+                
             }
-            console.log('parts wrong' + JSON.stringify(parseData));
-            console.log('step 1 : setting wrong answers')
-            
-            console.log(partWrongAnswer.wrong_answers__c);
+            console.log(props.contest.status__c);
+            if(props.contest.status__c === 'Finished'){
+                console.log('end of contest');
+                handleContestEnd();
+            }else{
+                console.log('continue');
+            }
             props.updatepart(parseData);
 
         } catch (err) {
@@ -477,13 +481,8 @@ const Questions = (props) => {
     }
     const addCorrectQuestion = question => {
         console.log('in cor question');
-        console.log(props.contest.status__c);
-        if(props.contest.status__c === 'Finished'){
-            console.log('end of contest');
-            handleContestEnd();
-        }else{
-            console.log('continue');
-        }
+        
+        
         
         var tempQuestions = questions;
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
