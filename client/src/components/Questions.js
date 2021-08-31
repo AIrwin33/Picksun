@@ -405,12 +405,7 @@ const Questions = (props) => {
             setReview(true);
             setShowAnswer(true);
         }
-        if(props.contest.status__c === 'Finished'){
-            console.log('end of contest');
-            handleContestEnd();
-        }else{
-            console.log('continue');
-        }
+        
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
         //make sure sfid is being returned
@@ -482,6 +477,13 @@ const Questions = (props) => {
     }
     const addCorrectQuestion = question => {
         console.log('in cor question');
+        console.log(props.contest.status__c);
+        if(props.contest.status__c === 'Finished'){
+            console.log('end of contest');
+            handleContestEnd();
+        }else{
+            console.log('continue');
+        }
         
         var tempQuestions = questions;
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
