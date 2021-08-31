@@ -241,7 +241,7 @@ const Questions = (props) => {
                         setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
                     }
                 },
-                1000
+                3000
             );
             
 
