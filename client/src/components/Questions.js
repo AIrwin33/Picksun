@@ -170,7 +170,7 @@ const Questions = (props) => {
                         method: "GET",
                         headers: {jwt_token: localStorage.token}
                     });
-                    const parseContestData = await res.json();
+                    const parseContestData = res.json();
                     console.log(JSON.stringify(parseContestData));
                     if(parseContestData.status__c === 'Finished'){
                         console.log('end of contest');
