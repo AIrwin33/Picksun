@@ -85,14 +85,22 @@ const Questions = (props) => {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
             }
-            var openedtimerval = getUpdatedOpenedTimer();
-            console.log(openedtimerval);
+
+            if(props.contest.opened_timer__c !== null){
+
+                const res = await fetch(`/contestdetail/` + props.contestid, {
+                    method: "GET",
+                    headers: {jwt_token: localStorage.token}
+                });
+                const parseContestData = await res.json();
+                openedtimerval = parseContestData.opened_timer__c;
+            }
             //if there are questions that aren't locked, then set the timing based on how much time is left
-            if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
+            if (nonLockedQuestionsArr.length > 0 && openedtimerval !== null) {
                 var questime = props.contest.question_timer__c;
                 var millival = questime * 1000;
                 var currtime = moment();
-                var closedTimerInt = millival + parseInt(props.contest.opened_timer__c);
+                var closedTimerInt = millival + parseInt(openedtimerval);
                 console.log(closedTimerInt);
                 var closedTimerFormat = moment(closedTimerInt);
                 console.log(closedTimerFormat);
@@ -124,11 +132,7 @@ const Questions = (props) => {
     };
 
     const getUpdatedOpenedTimer = () => {
-        const res =  fetch(`/contestdetail/` + props.contestid, {
-            method: "GET",
-            headers: {jwt_token: localStorage.token}
-        });
-        const parseContestData =  res.json();
+        
         console.log(parseContestData.opened_timer__c);
         console.log(JSON.stringify(parseContestData));
         return parseContestData.opened_timer__c;
