@@ -33,10 +33,10 @@ const Questions = (props) => {
     const [showAnswer, setShowAnswer] = useState(false);
     const [counter, setCounter] = useState(undefined);
     const [answerList, setAnswerList] = useState([]);
-    const [showNext, setShowNext] = useState(false);
     const [knockedOut, setKnockedOut] = useState(false);
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
+    const [openedtimer, setOpenedTimer] = useState(0);
     const [submitted, setSubmitted] = useState(false);
     const [isShowWaiting, setShowWaiting] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
@@ -85,6 +85,8 @@ const Questions = (props) => {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
             }
+            var openedtimerval = getUpdatedOpenedTimer();
+            console.log(openedtimerval);
             //if there are questions that aren't locked, then set the timing based on how much time is left
             if (nonLockedQuestionsArr.length > 0 && props.contest.opened_timer__c !== null) {
                 var questime = props.contest.question_timer__c;
@@ -121,6 +123,17 @@ const Questions = (props) => {
         }
     };
 
+    const getUpdatedOpenedTimer = () => {
+        const res = await fetch(`/contestdetail/` + props.contestid, {
+            method: "GET",
+            headers: {jwt_token: localStorage.token}
+        });
+        const parseContestData = await res.json();
+        console.log(parseContestData.opened_timer__c);
+        console.log(JSON.stringify(parseContestData));
+        return parseContestData.opened_timer__c;
+    }
+
     // select a question and increment/decrement the question number on the screen
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
@@ -151,6 +164,15 @@ const Questions = (props) => {
             );
             const parseData = await response.json();
             setPartWrongAnswer(parseData);
+            
+
+            //set sort of timeout to check waiting for finished game
+            setTimeout(
+                function() {
+                    checkFinished();
+                },
+                2000
+            );
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
                 setKnockedOut(true);
@@ -162,14 +184,6 @@ const Questions = (props) => {
                 setInactive(true);
                 
             }
-
-            //set sort of timeout to check waiting for finished game
-            setTimeout(
-                function() {
-                    checkFinished();
-                },
-                2000
-            );
             props.updatepart(parseData);
 
         } catch (err) {
