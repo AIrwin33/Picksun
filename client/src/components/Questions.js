@@ -85,7 +85,7 @@ const Questions = (props) => {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
             }
-
+            var openedtimerval;
             if(props.contest.opened_timer__c !== null){
 
                 const res = await fetch(`/contestdetail/` + props.contestid, {
@@ -130,13 +130,6 @@ const Questions = (props) => {
             console.error('get questions error' + err.message);
         }
     };
-
-    const getUpdatedOpenedTimer = () => {
-        
-        console.log(parseContestData.opened_timer__c);
-        console.log(JSON.stringify(parseContestData));
-        return parseContestData.opened_timer__c;
-    }
 
     // select a question and increment/decrement the question number on the screen
     const handleSelect = (selectedIndex, e) => {
