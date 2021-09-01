@@ -124,11 +124,11 @@ const Questions = (props) => {
     };
 
     const getUpdatedOpenedTimer = () => {
-        const res = await fetch(`/contestdetail/` + props.contestid, {
+        const res =  fetch(`/contestdetail/` + props.contestid, {
             method: "GET",
             headers: {jwt_token: localStorage.token}
         });
-        const parseContestData = await res.json();
+        const parseContestData =  res.json();
         console.log(parseContestData.opened_timer__c);
         console.log(JSON.stringify(parseContestData));
         return parseContestData.opened_timer__c;
