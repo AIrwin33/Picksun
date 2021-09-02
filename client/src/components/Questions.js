@@ -86,42 +86,44 @@ const Questions = (props) => {
                 }
             }
             var openedtimerval;
+            if(props.contest.opened_timer__c !== null){
 
-            const response = await fetch(`/contestdetail/` + props.contestid, {
-                method: "GET",
-                headers: {jwt_token: localStorage.token}
-            });
-            const parseContestData = await response.json();
-            console.log(parseContestData.opened_timer__c);
-            openedtimerval = parseContestData.opened_timer__c;
-            console.log(openedtimerval);
-            console.log(typeof openedtimerval);
-        
-            //if there are questions that aren't locked, then set the timing based on how much time is left
-            if (nonLockedQuestionsArr.length > 0 && openedtimerval !== null) {
-                var questime = props.contest.question_timer__c;
-                var millival = questime * 1000;
-                var currtime = moment();
-                var closedTimerInt = millival + parseInt(openedtimerval);
-                console.log(closedTimerInt);
-                var closedTimerFormat = moment(closedTimerInt);
-                console.log(closedTimerFormat);
-                var counttime = moment.duration(closedTimerFormat.diff(currtime)).milliseconds();
-                console.log(props.contest.opened_timer__c);
-                console.log(counttime);
-                if (counttime < 0) {
-                    console.log('setting timer zero?');
-                    setCounter(0);
-                    $('.timerdiv').removeClass('hiddenTimer');
-    
+                const res = await fetch(`/contestdetail/` + props.contestid, {
+                    method: "GET",
+                    headers: {jwt_token: localStorage.token}
+                });
+                const parseContestData = await res.json();
+                console.log(parseContestData.opened_timer__c);
+                openedtimerval = parseContestData.opened_timer__c;
+                console.log(openedtimerval);
+                console.log(typeof openedtimerval);
+                console.log(openedtimerval);
+                //if there are questions that aren't locked, then set the timing based on how much time is left
+                if (nonLockedQuestionsArr.length > 0 && openedtimerval !== null) {
+                    var questime = props.contest.question_timer__c;
+                    var millival = questime * 1000;
+                    var currtime = moment();
+                    var closedTimerInt = millival + parseInt(openedtimerval);
+                    console.log(closedTimerInt);
+                    var closedTimerFormat = moment(closedTimerInt);
+                    console.log(closedTimerFormat);
+                    var counttime = moment.duration(closedTimerFormat.diff(currtime)).milliseconds();
+                    console.log(props.contest.opened_timer__c);
+                    console.log(counttime);
+                    if (counttime < 0) {
+                        console.log('setting timer zero?');
+                        setCounter(0);
+                        $('.timerdiv').removeClass('hiddenTimer');
+                        
+                    } else {
+                        console.log('setting timer count time?');
+                        setCounter(counttime);
+                        $('.timerdiv').removeClass('hiddenTimer');
+                        
+                    }
                 } else {
-                    console.log('setting timer count time?');
-                    setCounter(counttime);
-                    $('.timerdiv').removeClass('hiddenTimer');
-    
+                    console.log('no available unlocked questions');
                 }
-            } else {
-                console.log('no available unlocked questions');
             }
             setQuestions(parseData);
             
