@@ -107,10 +107,10 @@ const Questions = (props) => {
                     var currtime = moment();
                     var closedTimerInt = millival + parseInt(openedtimerval);
                     console.log(closedTimerInt);
+                    console.log(currtime);
                     var closedTimerFormat = moment(closedTimerInt);
                     console.log(closedTimerFormat);
                     var counttime = moment.duration(closedTimerFormat.diff(currtime)).milliseconds();
-                    console.log(props.contest.opened_timer__c);
                     console.log(counttime);
                     if (counttime < 0) {
                         console.log('setting timer zero?');
