@@ -86,6 +86,7 @@ const Questions = (props) => {
                 }
             }
             var openedtimerval;
+            
             if(props.contest.opened_timer__c !== null){
 
                 const res = await fetch(`/contestdetail/` + props.contestid, {
@@ -98,6 +99,7 @@ const Questions = (props) => {
                 console.log(openedtimerval);
                 console.log(typeof openedtimerval);
                 console.log(openedtimerval);
+                console.log(nonLockedQuestionsArr);
                 //if there are questions that aren't locked, then set the timing based on how much time is left
                 if (nonLockedQuestionsArr.length > 0 && openedtimerval !== null) {
                     var questime = props.contest.question_timer__c;
