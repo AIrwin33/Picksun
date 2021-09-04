@@ -94,34 +94,23 @@ const Questions = (props) => {
                     headers: {jwt_token: localStorage.token}
                 });
                 const parseContestData = await res.json();
-                console.log(parseContestData.opened_timer__c);
                 openedtimerval = parseContestData.opened_timer__c;
-                console.log(openedtimerval);
-                console.log(typeof openedtimerval);
-                console.log(openedtimerval);
-                console.log(nonLockedQuestionsArr);
                 //if there are questions that aren't locked, then set the timing based on how much time is left
                 if (nonLockedQuestionsArr.length > 0 && openedtimerval !== null) {
                     var questime = props.contest.question_timer__c;
                     var millival = questime * 1000;
                     var currtime = moment().valueOf();
                     var closedTimerInt = millival + parseInt(openedtimerval);
-                    console.log(closedTimerInt);
-                    console.log(moment().valueOf());
-                    var closedTimerFormat = moment(closedTimerInt);
-                    console.log(closedTimerFormat);
                     var diffTime = moment(closedTimerInt).diff(currtime);
                     console.log(diffTime);
-                    var counttime = moment.duration(diffTime).milliseconds();
-                    console.log(counttime);
-                    if (counttime < 0) {
+                    if (diffTime < 0) {
                         console.log('setting timer zero?');
                         setCounter(0);
                         $('.timerdiv').removeClass('hiddenTimer');
                         
                     } else {
                         console.log('setting timer count time?');
-                        setCounter(counttime);
+                        setCounter(diffTime);
                         $('.timerdiv').removeClass('hiddenTimer');
                         
                     }
