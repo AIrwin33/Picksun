@@ -22,12 +22,13 @@ const Answers = (props) => {
         for (var w = 0; w < infoWrong; w++) {
             ans[w].wrong = true;
         }
+        console.log(ans);
         setAnswers(ans);
 
     }
 
     useEffect(() => {
-
+        console.log(props);
         getWrongTotal(props.wrong, props.total);
 
        
