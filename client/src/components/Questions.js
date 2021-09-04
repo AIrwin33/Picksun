@@ -104,9 +104,11 @@ const Questions = (props) => {
                 if (nonLockedQuestionsArr.length > 0 && openedtimerval !== null) {
                     var questime = props.contest.question_timer__c;
                     var millival = questime * 1000;
-                    var currtime = moment().valueOf()
+                    var currtime = moment().valueOf();
                     var closedTimerInt = millival + parseInt(openedtimerval);
                     console.log(closedTimerInt);
+                    console.log(moment().valueOf());
+                    console.log(moment().unix());
                     console.log(currtime);
                     console.log(currtime.isValid());
                     var closedTimerFormat = moment(closedTimerInt);
