@@ -169,6 +169,7 @@ const Questions = (props) => {
                 }
             );
             const parseData = await response.json();
+            console.log('parts in answers' + JSON.stringify(parseData));
             setPartWrongAnswer(parseData);
             
 
@@ -517,6 +518,7 @@ const Questions = (props) => {
 
         
         setQuestions(tempQuestions);
+        console.log('before add correct questions');
         doGetParticipationWrongAnswers();
         
         
