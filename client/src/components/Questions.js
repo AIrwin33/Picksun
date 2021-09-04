@@ -110,7 +110,9 @@ const Questions = (props) => {
                     console.log(moment().valueOf());
                     var closedTimerFormat = moment(closedTimerInt);
                     console.log(closedTimerFormat);
-                    var counttime = moment.duration(closedTimerFormat.diff(currtime)).milliseconds();
+                    var diffTime = moment(closedTimerInt).diff(currtime);
+                    console.log(diffTime);
+                    var counttime = moment.duration(diffTime).milliseconds();
                     console.log(counttime);
                     if (counttime < 0) {
                         console.log('setting timer zero?');
