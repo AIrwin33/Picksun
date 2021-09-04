@@ -104,7 +104,7 @@ const Questions = (props) => {
                 if (nonLockedQuestionsArr.length > 0 && openedtimerval !== null) {
                     var questime = props.contest.question_timer__c;
                     var millival = questime * 1000;
-                    var currtime = moment().milliseconds();
+                    var currtime = moment().valueOf()
                     var closedTimerInt = millival + parseInt(openedtimerval);
                     console.log(closedTimerInt);
                     console.log(currtime);
