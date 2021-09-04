@@ -219,10 +219,10 @@ const Question = (props) => {
 
                             <Col>
                                 <div>
-                                    {partAnswer.Status__c === 'Submitted' &&
+                                    {partAnswer.selection_value__c !== null &&
                                     <span>Your Answer: {partAnswer.selection_value__c}</span>
                                     }
-                                    {partAnswer.Status__c !== 'Submitted' &&
+                                    {partAnswer.selection_value__c == null &&
                                     <span>Your Answer: Did Not Answer </span>
                                     }
                                 </div>
