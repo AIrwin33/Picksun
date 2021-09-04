@@ -213,14 +213,14 @@ const Question = (props) => {
                     </Col>
                 </Row>
                 
-                {partAnswer.selection__c ?
+                {disabledQuestion?
                     <div>
                         <Row className="mt-2">
 
                             <Col>
                                 <div>
                                     <span>Your Answer: {partAnswer.selection_value__c}</span>
-                                    {partAnswer.Status__c === 'Did Not Answer' &&
+                                    {partAnswer.Status__c !== 'Submitted' &&
                                     <span>Your Answer: Did Not Answer </span>
                                     }
                                 </div>
