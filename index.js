@@ -209,6 +209,7 @@ app.post("/disablequestions/", authorization, async (req, res) => {
         console.log('Disable questions ids' + conid);
         const allContestQuestions = await pool.query("UPDATE salesforce.question__c SET islocked__c = true WHERE contest__c = $1 AND published__c = TRUE RETURNING *", [conid]
         );
+
         console.log('disabled questions' + allContestQuestions.rows);
         res.json(allContestQuestions.rows)
 
@@ -335,11 +336,6 @@ app.get("/allendingparticipations/:contest_id", authorization, async (req, res) 
 
 app.post("/contestwon", authorization, async (req, res) => {
     try {
-        //update contests won number and win rate number, place finish
-        const {contestid, partsfid} = req.body;
-
-        //run calcs based on previous numbers
-
         const contestwoncount = await pool.query(
             "SELECT * FROM salesforce.participant__c WHERE sfid = $1",
             [req.user.id]
