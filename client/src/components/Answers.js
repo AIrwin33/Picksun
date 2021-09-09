@@ -11,6 +11,7 @@ const Answers = (props) => {
 
     const getWrongTotal = async (infoWrong, infoTotal) => {
         var ans = [];
+        console.log('infowrong' + infoWrong);
         for (var i = 0;i < infoTotal; i++) {
             if(i < infoWrong){
                 var anw = {
