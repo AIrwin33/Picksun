@@ -626,7 +626,7 @@ const Questions = (props) => {
                     </Row>
                     }
 
-                    {(props.isContestFinished == true || showContestFinished == true) &&
+                    {(props.isContestFinished == true || showContestFinished == true) && props.isKnockedOut !== true &&
                     <Row>
                         <div className="text-center">
                             <span>{contestFinishedText}</span>

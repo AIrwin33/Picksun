@@ -12,16 +12,22 @@ const Answers = (props) => {
     const getWrongTotal = async (infoWrong, infoTotal) => {
         var ans = [];
         for (var i = 0;i < infoTotal; i++) {
-            var an = {
-                id : i,
-                wrong : false
+            if(i < infoWrong){
+                var anw = {
+                    id : i,
+                    wrong : true
+                }
+                ans.push(anw);
+            }else{
+                var an = {
+                    id : i,
+                    
+                    wrong : false
+                }
+                ans.push(an);
             }
-            ans.push(an);
         }
-
-        for (var w = 0; w < infoWrong; w++) {
-            ans[w].wrong = true;
-        }
+        console.log('ans' + ans);
         setAnswers(ans);
 
     }
