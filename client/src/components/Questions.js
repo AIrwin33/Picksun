@@ -231,10 +231,8 @@ const Questions = (props) => {
             var winningParts = [];
             winningParts.push(parseRes[0]);
             for (var k = 0; k < parseRes.length; k++) {
-                console.log('winning parts length in loop' + winningParts.length)
                 if(parseRes[k].sfid === props.partsfid){
                     placefinish = parseRes[k].placefinish__c;
-                    console.log('contest end palce finish' + placefinish);
                 }
                 if(parseRes[0].wrong_answers__c === parseRes[k].wrong_answers__c && parseRes[0].sfid !== parseRes[k].sfid){
                     console.log('adding to winning participants');
@@ -246,9 +244,7 @@ const Questions = (props) => {
                 }
             }
             console.log(placefinish);
-            
-            console.log('knocked out' + knockedOut);
-            console.log('status' + partWrongAnswer.status__c);
+        
             if (placefinish === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
                 console.log('handling contest won');
                 handleContestWon(winningParts.length);
