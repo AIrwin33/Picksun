@@ -229,8 +229,9 @@ const Questions = (props) => {
             const parseRes = await response.json();
             var placefinish;
             var winningParts = [];
+            winningParts.push(parseRes[0]);
             for (var k = 0; k < parseRes.length; k++) {
-                winningParts.push(parseRes[0]);
+                console.log('winning parts length in loop' + winningParts.length)
                 if(parseRes[k].sfid === props.partsfid){
                     placefinish = parseRes[k].placefinish__c;
                     console.log('contest end palce finish' + placefinish);
@@ -245,12 +246,13 @@ const Questions = (props) => {
                 }
             }
             console.log(placefinish);
-            console.log('winning parts length' + winningParts.length)
-                    
+            
+            console.log('knocked out' + knockedOut);
+            console.log('status' + partWrongAnswer.status__c);
             if (placefinish === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
                 console.log('handling contest won');
                 handleContestWon(winningParts.length);
-            }else{
+            }else if (knockedOut){
                 setShowContestFinished(true);
                 console.log(placefinish);
                 setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
