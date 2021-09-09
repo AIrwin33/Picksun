@@ -252,7 +252,7 @@ const Questions = (props) => {
             if (placefinish === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
                 console.log('handling contest won');
                 handleContestWon(winningParts.length);
-            }else if (knockedOut){
+            }else if (!knockedOut){
                 setShowContestFinished(true);
                 console.log(placefinish);
                 setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
