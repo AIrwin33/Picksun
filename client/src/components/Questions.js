@@ -29,6 +29,7 @@ const Questions = (props) => {
     const [subsegplusone, setSubSegPlusOne] = useState(0);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [publishedQuestions, setPublishedQuestions] = useState(0);
+    const [placeFin, setPlaceFinish] = useState(0);
     const [review, setReview] = useState(false);
     const [showAnswer, setShowAnswer] = useState(false);
     const [counter, setCounter] = useState(undefined);
@@ -244,11 +245,14 @@ const Questions = (props) => {
                 }
             }
             console.log(placefinish);
+            setPlaceFinish(placefinish);
         
             if (placefinish === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
                 console.log('handling contest won');
                 handleContestWon(winningParts.length);
             }else if (!knockedOut){
+                console.log(knockedOut);
+                console.log('didnt win not knocked out');
                 setShowContestFinished(true);
                 console.log(placefinish);
                 setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
@@ -629,11 +633,11 @@ const Questions = (props) => {
                     </Row>
                     }
 
-                    {(props.isContestFinished == true || showContestFinished == true) && (props.isKnockedOut !== true || showKnockOut !== true) &&
+                    {(props.isContestFinished == true || showContestFinished == true) && (props.isKnockedOut !== true || knockedOut !== true) &&
                     <Row>
                         <div className="text-center">
-                            <span>{contestFinishedText}</span>
-                            <span>Place Finish: {partWrongAnswer.placefinish__c}</span>
+                            <span>{contestFinishedText}</span><br/>
+                            <span>Place Finish: {placeFin}</span>
                         </div>
                     </Row>
                     }
