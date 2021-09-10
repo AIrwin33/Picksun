@@ -229,11 +229,16 @@ const Questions = (props) => {
 
             const parseRes = await response.json();
             var placefinish;
+            var ko = false;
             var winningParts = [];
             winningParts.push(parseRes[0]);
             for (var k = 0; k < parseRes.length; k++) {
                 if(parseRes[k].sfid === props.partsfid){
                     placefinish = parseRes[k].placefinish__c;
+                    if(parseRes[k].status__c === 'Knocked Out'){
+                        ko = true;
+
+                    }
                 }
                 if(parseRes[0].wrong_answers__c === parseRes[k].wrong_answers__c && parseRes[0].sfid !== parseRes[k].sfid){
                     console.log('adding to winning participants');
@@ -244,19 +249,20 @@ const Questions = (props) => {
                     
                 }
             }
-            console.log(placefinish);
             setPlaceFinish(placefinish);
-        
-            if (placefinish === 1 && partWrongAnswer.status__c !== 'Knocked Out') {
-                console.log('handling contest won');
-                handleContestWon(winningParts.length);
-            }else if (!knockedOut){
-                console.log(knockedOut);
-                console.log('didnt win not knocked out');
-                setShowContestFinished(true);
-                console.log(placefinish);
-                setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
+            console.log(ko);
+            if(ko){
+
+            }else{
+                if (placefinish === 1) {
+                    console.log('handling contest won');
+                    handleContestWon(winningParts.length);
+                }else {
+                    setShowContestFinished(true);
+                    setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
+                }
             }
+            
 
             
 
@@ -633,7 +639,7 @@ const Questions = (props) => {
                     </Row>
                     }
 
-                    {(props.isContestFinished == true || showContestFinished == true) && (props.isKnockedOut !== true || knockedOut !== true) &&
+                    {(props.isContestFinished == true || showContestFinished == true) && (props.isKnockedOut == false || showKnockOut == false) &&
                     <Row>
                         <div className="text-center">
                             <span>{contestFinishedText}</span><br/>
