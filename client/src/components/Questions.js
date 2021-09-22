@@ -524,9 +524,10 @@ const Questions = (props) => {
         console.log('before add correct questions');
         setTimeout(
             function() {
-        doGetParticipationWrongAnswers();
-            },
-            2000);
+            doGetParticipationWrongAnswers();
+                },
+                5000
+        );
         
         
     }
