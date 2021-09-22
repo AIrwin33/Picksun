@@ -144,7 +144,7 @@ const Questions = (props) => {
 
     const doGetParticipationWrongAnswers = async () => {
         try {
-            
+            console.log('in do get participation answers')
             const partid = props.participation_id;
             const body = {partid};
             const response = await fetch(
@@ -159,6 +159,8 @@ const Questions = (props) => {
             );
             const parseData = await response.json();
             console.log('parts in answers' + JSON.stringify(parseData));
+            console.log(parseData.wrong_answers__c);
+            console.log(partWrongAnswer.wrong_answers__c);
             setPartWrongAnswer(parseData);
             
 
@@ -520,7 +522,11 @@ const Questions = (props) => {
         
         setQuestions(tempQuestions);
         console.log('before add correct questions');
+        setTimeout(
+            function() {
         doGetParticipationWrongAnswers();
+            },
+            2000);
         
         
     }
