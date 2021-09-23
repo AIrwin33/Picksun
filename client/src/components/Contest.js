@@ -165,10 +165,10 @@ const Contest = ({match}) => {
                     <Tabs fill className="ml-2 mr-2">
                         <Tab eventKey="Questions" title="Questions" className="aptifer">
                             <Row>
-                                <Col lg={4} sm={1}>
+                                <Col lg={3} sm={1}>
 
                                 </Col>
-                                <Col lg={4} sm={10}>
+                                <Col lg={6} sm={10}>
                                     {isloaded &&
                                     <Questions updatepart={updateparts} contestid={contest.sfid}
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
@@ -177,7 +177,7 @@ const Contest = ({match}) => {
                                                />
                                     }
                                 </Col>
-                                <Col lg={4} sm={1}>
+                                <Col lg={3} sm={1}>
 
                                 </Col>
                             </Row>
