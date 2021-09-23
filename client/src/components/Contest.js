@@ -165,7 +165,10 @@ const Contest = ({match}) => {
                     <Tabs fill className="ml-2 mr-2">
                         <Tab eventKey="Questions" title="Questions" className="aptifer">
                             <Row>
-                                <Col>
+                                <Col lg={4}>
+
+                                </Col>
+                                <Col lg={4}>
                                     {isloaded &&
                                     <Questions updatepart={updateparts} contestid={contest.sfid}
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
@@ -173,6 +176,9 @@ const Contest = ({match}) => {
                                                partsfid={participation.sfid} newQuestion={newQuestion} newCorrectQuestion={newCorrectQuestion}
                                                />
                                     }
+                                </Col>
+                                <Col lg={4}>
+
                                 </Col>
                             </Row>
                         </Tab>
@@ -219,12 +225,18 @@ const Contest = ({match}) => {
                         </Tab>
                         <Tab eventKey="Chat" title="Twitter" className="aptifer ">
                             <Row>
-                                <Col className=''>
+                                <Col lg={4}>
+
+                                </Col>
+                                <Col lg={4} className=''>
                                     <TwitterTimelineEmbed
                                         sourceType="profile"
                                         screenName="playpickfun"
                                         options={{height: 400}}
                                     />
+                                </Col>
+                                <Col lg={4}>
+                                    
                                 </Col>
                             </Row>
                         </Tab>
