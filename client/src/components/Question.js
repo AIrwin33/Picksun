@@ -187,6 +187,11 @@ const Question = (props) => {
                     </div>
                 </Row>
                 <Row>
+                    <Col>
+                        <div className="counterDiv font16">
+                            Question: {props.questionNum} of {props.totalQuestions}
+                        </div>
+                    </Col>
                 <Col>
                     <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
                         aria-label="Basic example" data-toggle="buttons">
@@ -203,13 +208,6 @@ const Question = (props) => {
                         onClick={handleRadioChange}>{quest.answer_d__c}</button>
                     }
                     </div>
-                    </Col>
-                </Row>
-                <Row className="counterDiv">
-                    <Col>
-                        <div className="float-right">
-                            Question: {props.questionNum} of {props.totalQuestions}
-                        </div>
                     </Col>
                 </Row>
                 
