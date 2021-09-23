@@ -254,8 +254,11 @@ const Question = (props) => {
                             </Col>
                             }
                         </Row>
+
+                        
                     </div> : null
                 }
+                
             {/* end div wrapper */}
         </>
     ) 

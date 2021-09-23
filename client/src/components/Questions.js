@@ -398,7 +398,7 @@ const Questions = (props) => {
                     }
                 }
             }
-            
+            console.log('answerList' + answerList);
             setAnswerList(answerList);
             console.log(selectedCount);
             if(selectedCount + 1 === subSegmentCount){
@@ -627,6 +627,16 @@ const Questions = (props) => {
                         {props.contestQuestionText}
                     </div>
                     }
+
+
+                    <div>
+                    {answerList.map(answer => {
+                        return <div>
+                                {answer}
+                                </div>
+                    })}
+                    </div>
+                
 
                     <div
                     className="questionRow m-3 justify-content-center p-3">
