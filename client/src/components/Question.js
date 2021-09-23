@@ -192,22 +192,28 @@ const Question = (props) => {
                             Question: {props.questionNum} of {props.totalQuestions}
                         </div>
                     </Col>
-                <Col>
-                    <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
-                        aria-label="Basic example" data-toggle="buttons">
-                        <button type="radio" value="A" className="btn btn-primary questionButton font20 fontBold"
-                                onClick={handleRadioChange}>{quest.answer_a__c}</button>
-                        <button type="radio" value="B" className="btn btn-primary questionButton font20 fontBold"
-                                onClick={handleRadioChange}>{quest.answer_b__c}</button>
-                        {quest.answer_c__c !== null &&
-                        <button type="radio" value="C" className="btn btn-primary questionButton font20 fontBold"
-                        onClick={handleRadioChange}>{quest.answer_c__c}</button>
-                    }
-                        {quest.answer_d__c !== null &&
-                        <button type="radio" value="D" className="btn btn-primary questionButton font20 fontBold"
-                        onClick={handleRadioChange}>{quest.answer_d__c}</button>
-                    }
-                    </div>
+                </Row>
+                <Row>
+                    <Col sm={1}> 
+                    </Col>
+                    <Col sm={10}>
+                        <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
+                            aria-label="Basic example" data-toggle="buttons">
+                            <button type="radio" value="A" className="btn btn-primary questionButton font20 fontBold"
+                                    onClick={handleRadioChange}>{quest.answer_a__c}</button>
+                            <button type="radio" value="B" className="btn btn-primary questionButton font20 fontBold"
+                                    onClick={handleRadioChange}>{quest.answer_b__c}</button>
+                            {quest.answer_c__c !== null &&
+                            <button type="radio" value="C" className="btn btn-primary questionButton font20 fontBold"
+                            onClick={handleRadioChange}>{quest.answer_c__c}</button>
+                        }
+                            {quest.answer_d__c !== null &&
+                            <button type="radio" value="D" className="btn btn-primary questionButton font20 fontBold"
+                            onClick={handleRadioChange}>{quest.answer_d__c}</button>
+                        }
+                        </div>
+                    </Col>
+                    <Col sm={1}> 
                     </Col>
                 </Row>
                 
