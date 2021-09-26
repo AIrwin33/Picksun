@@ -630,11 +630,11 @@ const Questions = (props) => {
 
 
                     <div>
-                    {answerList.map(answer => {
+                    {/* {answerList.map(answer => {
                         return <div>
                                 {answer}
                                 </div>
-                    })}
+                    })} */}
                     </div>
                 
 
