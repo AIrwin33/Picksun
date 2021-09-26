@@ -628,14 +628,18 @@ const Questions = (props) => {
                     </div>
                     }
 
-
+                    {answerList.length === 0 &&
+                    
                     <div>
                     {/* {answerList.map(answer => {
                         return <div>
-                                {answer}
-                                </div>
+                        {answer}
+                        </div>
                     })} */}
+                    <span>Answer List Length</span>
+                    {answerList.length}
                     </div>
+                    }
                 
 
                     <div
