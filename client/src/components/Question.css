@@ -131,3 +131,20 @@ border: 1px solid black;
     border-radius: 3px;
     color: #262626;
 }
+
+.answerDiv {
+    opacity: 0.5;
+    background-color: #215975;
+}
+
+.answerDiv .selected {
+    opacity: 1;
+}
+
+.answerDiv .correct {
+    background-color: green;
+}
+
+.answerDiv .incorrect {
+    background-color: red;
+}

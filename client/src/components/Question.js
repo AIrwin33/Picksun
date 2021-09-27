@@ -288,7 +288,7 @@ const Question = (props) => {
                 {allpartanswers.length === 0 &&
                     
                     <div>
-                    {/* {answerList.map(answer => {
+                    {/* {allpartanswers.map(answer => {
                         return <div>
                         {answer}
                         </div>
