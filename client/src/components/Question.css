@@ -132,10 +132,15 @@ border: 1px solid black;
     color: #262626;
 }
 
+.answerMain {
+    display:inline-flex;
+}
+
 .answerDiv {
     opacity: 0.5;
     margin: 2px;
-    display: inline;
+    width:30px;
+    height: 5px;
     background-color: #215975;
 }
 
