@@ -38,7 +38,7 @@ const Questions = (props) => {
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
     const [openedtimer, setOpenedTimer] = useState(0);
-    
+    const [showSubmit, setShowSubmit] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [isShowWaiting, setShowWaiting] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
@@ -142,6 +142,17 @@ const Questions = (props) => {
         setShowAnswer(true);
         setShowWaiting(false);
     }
+
+    const handleSubmitShow = async () => {
+
+        setShowInfo(true);
+    }
+    //close info modal on question
+    const handleSubmitClose = async () => {
+
+        setShowInfo(false);
+    }
+
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -681,7 +692,7 @@ const Questions = (props) => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                <Button className="aptifer modalBtn" variant="secondary" onClick={handleInfoClose}>
+                <Button className="aptifer modalBtn" variant="secondary" onClick={handleShowClose}>
                     Close
                 </Button>
                 </Modal.Footer>
