@@ -285,18 +285,16 @@ const Question = (props) => {
                     </div> : null
                 }
 
-                {allpartanswers.length === 0 &&
+                {allpartanswers.length > 0 &&
                     
                     <div>
-                    {/* {allpartanswers.map(answer => {
+                    {allpartanswers.map(answer => {
                         return <div>
-                        {answer}
+                        {answer.selection__c}
                         </div>
-                    })} */}
-                    <span>Answer Length</span>
-                    {allpartanswers.length}
+                    })}
                     </div>
-                    }       
+                }       
                 
             {/* end div wrapper */}
         </>
