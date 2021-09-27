@@ -38,6 +38,7 @@ const Questions = (props) => {
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
     const [openedtimer, setOpenedTimer] = useState(0);
+    const [allpartanswers, setAllpartanswers] = userState([]);
     const [submitted, setSubmitted] = useState(false);
     const [isShowWaiting, setShowWaiting] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
@@ -376,6 +377,28 @@ const Questions = (props) => {
         }
     }
 
+    const updateAllPartAnswers = async () => {
+        try{
+            console.log('update all part answers');
+            const partsfid = props.partsfid;
+            const body = {partsfid};
+            const res = await fetch(`/existingpartanswernoquestion`, {
+                method: "POST",
+                headers: {
+                    jwt_token: localStorage.token,
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+
+            const parseData = await res.json();
+            console.log('parse Data' + JSON.stringify(parseData));
+            setAllpartanswers(parseData);
+        }catch(error){
+            console.log( 'err' + error.message);
+        }
+    }
+
     const updateAnswerList = async (childData) => {
         try {
             //if the answer list is empty, add the answered question from the Question JS
@@ -525,6 +548,7 @@ const Questions = (props) => {
         setTimeout(
             function() {
             doGetParticipationWrongAnswers();
+            updateAllPartAnswers();
                 },
                 5000
         );
@@ -628,7 +652,7 @@ const Questions = (props) => {
                     </div>
                     }
 
-                    {answerList.length === 0 &&
+                    {allpartanswers.length === 0 &&
                     
                     <div>
                     {/* {answerList.map(answer => {
@@ -636,8 +660,8 @@ const Questions = (props) => {
                         {answer}
                         </div>
                     })} */}
-                    <span>Answer List Length</span>
-                    {answerList.length}
+                    <span>Answer Length</span>
+                    {allpartanswers.length}
                     </div>
                     }
                 

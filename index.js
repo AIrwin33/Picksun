@@ -273,8 +273,6 @@ app.post("/participationswronganswer", async (req, res) => {
 
 });
 
-//REFACTOR - keep this?
-
 app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async (req, res) => {
     try {
         const {partsfid, questid} = req.params;
@@ -282,6 +280,17 @@ app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async 
         res.json(participationExistAnswer.rows[0]);
     } catch (err) {
         console.log('existing part answer error ' + err);
+    }
+
+});
+
+app.post("/existingpartanswernoquestion/:partsfid", authorization, async (req, res) => {
+    try {
+        const {partsfid} = req.body;
+        const participationAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1", [partsfid]);
+        res.json(participationAnswer.rows[0]);
+    } catch (err) {
+        console.log('all part answer error ' + err);
     }
 
 });
