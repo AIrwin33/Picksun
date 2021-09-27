@@ -134,9 +134,8 @@ border: 1px solid black;
 
 .answerDiv {
     opacity: 0.5;
-    padding: 2px;
-    height: 5px;
-    width: 10px;
+    margin: 2px;
+    display: inline;
     background-color: #215975;
 }
 
