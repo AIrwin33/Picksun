@@ -417,7 +417,7 @@ const Questions = (props) => {
             console.log(selectedCount);
             if(selectedCount + 1 === subSegmentCount){
                 setAnswerListShow(true);
-                showSubmit(true);
+                setShowSubmit(true);
             }
         } catch (err) {
             console.log('err' + err.message);
