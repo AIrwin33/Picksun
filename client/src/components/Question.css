@@ -35,6 +35,12 @@
     padding-right: 0.5em;
 }
 
+.selectedQuestion {
+    background-color: #262626;
+    
+    color:white;
+}
+
 .timer {
     border-radius: 10px;
 }
