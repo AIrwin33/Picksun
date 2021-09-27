@@ -145,12 +145,12 @@ const Questions = (props) => {
 
     const handleSubmitShow = async () => {
 
-        setShowInfo(true);
+        setShowSubmit(true);
     }
     //close info modal on question
     const handleSubmitClose = async () => {
 
-        setShowInfo(false);
+        setShowSubmit(false);
     }
 
 
@@ -692,7 +692,7 @@ const Questions = (props) => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                <Button className="aptifer modalBtn" variant="secondary" onClick={handleShowClose}>
+                <Button className="aptifer modalBtn" variant="secondary" onClick={handleSubmitClose}>
                     Close
                 </Button>
                 </Modal.Footer>
