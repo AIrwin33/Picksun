@@ -543,7 +543,7 @@ const Questions = (props) => {
                 {questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-center">
                     {/* slide for questions */}
-                    <Col lg={4} className="d-flex justify-content-end">
+                    <Col lg={4} className="d-flex justify-content-start">
                     {questions.length !== 0 &&
                         <div key={counter}>
 
