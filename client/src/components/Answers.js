@@ -51,7 +51,7 @@ const Answers = (props) => {
                     </div>
                 </Col>
                 <Col  md={5} className="d-flex justify-content-start">
-                    <div className="d-inline-block">
+                    <div className="d-inline-block pt-1">
                     {answers.map((answer, index) => {
                         return <div  className={`circle   ${answer.wrong ? "wrong" : ""}`} key={index}></div>
                     })}                

@@ -585,7 +585,7 @@ const Questions = (props) => {
                     </Col>
 
                     {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
-                    <Col lg={8} sm={12} className="justify-content-start pt-1" >
+                    <Col lg={8} sm={12} className="justify-content-start" >
                         <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
                     </Col>
                     }
