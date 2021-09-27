@@ -245,7 +245,7 @@ const Question = (props) => {
                 
                 {disabledQuestion ?
                     <div>
-                        <Row className="mt-2">
+                        <Row className="mt-2">   
 
                             <Col>
                                 <div>

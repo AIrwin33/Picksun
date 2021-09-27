@@ -666,6 +666,27 @@ const Questions = (props) => {
             </Row>
             }
 
+
+            <Modal className="modalDiv" show={showSubmit} onHide={handleSubmitClose}>
+                <Modal.Header closeButton>
+                <Modal.Title className="aptifer font16 modalHeader">How To Pick Fun</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="proxima font12 modalBody">
+                        <span>Submit your Answers</span>
+
+                        <button
+                            className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
+                            onClick={handleSubmitAnswers}>submit answers
+                        </button>
+
+                </Modal.Body>
+                <Modal.Footer>
+                <Button className="aptifer modalBtn" variant="secondary" onClick={handleInfoClose}>
+                    Close
+                </Button>
+                </Modal.Footer>
+            </Modal>
+
             {/* showing submit answers button */}
             {!review && !submitted && questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-center">
