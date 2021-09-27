@@ -14,6 +14,7 @@ const Question = (props) => {
     const [quest, setQuest] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
+    const [allpartanswers, setAllpartanswers] = useState([]);
 
 
     const handleRadioChange = async (event) => {
@@ -59,6 +60,30 @@ const Question = (props) => {
             console.error(err.message);
         }
     }
+
+
+    const updateAllPartAnswers = async () => {
+        try{
+            console.log('update all part answers');
+            const partsfid = props.partsfid;
+            const body = {partsfid};
+            const res = await fetch(`/existingpartanswernoquestion`, {
+                method: "POST",
+                headers: {
+                    jwt_token: localStorage.token,
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+
+            const parseData = await res.json();
+            console.log('parse Data' + JSON.stringify(parseData));
+            setAllpartanswers(parseData);
+        }catch(error){
+            console.log( 'err' + error.message);
+        }
+    }
+
 
     const handleExistingPartAnswer = async () => {
         try {
@@ -129,6 +154,7 @@ const Question = (props) => {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();
+        updateAllPartAnswers();
     }, [props.ques]);
 
 
@@ -258,6 +284,19 @@ const Question = (props) => {
                         
                     </div> : null
                 }
+
+                {allpartanswers.length === 0 &&
+                    
+                    <div>
+                    {/* {answerList.map(answer => {
+                        return <div>
+                        {answer}
+                        </div>
+                    })} */}
+                    <span>Answer Length</span>
+                    {allpartanswers.length}
+                    </div>
+                    }       
                 
             {/* end div wrapper */}
         </>
