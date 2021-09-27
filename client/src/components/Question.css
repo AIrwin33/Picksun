@@ -139,14 +139,14 @@ border: 1px solid black;
     background-color: #215975;
 }
 
-.answerDiv .selected {
+.answerDiv.selected {
     opacity: 1;
 }
 
-.answerDiv .correct {
+.answerDiv.correct {
     background-color: green;
 }
 
-.answerDiv .incorrect {
+.answerDiv.incorrect {
     background-color: red;
 }
