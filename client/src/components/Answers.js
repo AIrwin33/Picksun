@@ -42,7 +42,7 @@ const Answers = (props) => {
     return (
         <>
             <Row>
-                <Col md={7} className="d-flex flex-row">  
+                <Col md={7} className="d-flex flex-row justify-content-end">  
                     <div >
                         <img alt="knockout limit" width='30' src={knockout}/>
                     </div>
@@ -50,7 +50,7 @@ const Answers = (props) => {
                         <span className="font20">Knockout Limit:</span>
                     </div>
                 </Col>
-                <Col  md={5} className="d-flex justify-content-end">
+                <Col  md={5} className="d-flex justify-content-start">
                     <div className="d-inline-block">
                     {answers.map((answer, index) => {
                         return <div  className={`circle   ${answer.wrong ? "wrong" : ""}`} key={index}></div>
