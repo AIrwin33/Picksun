@@ -681,15 +681,17 @@ const Questions = (props) => {
 
             <Modal className="modalDiv" show={showSubmit} onHide={handleSubmitClose}>
                 <Modal.Header closeButton>
-                <Modal.Title className="aptifer font16 modalHeader">How To Pick Fun</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="proxima font12 modalBody">
-                        <span>Submit your Answers</span>
-
-                        <button
-                            className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
-                            onClick={handleSubmitAnswers}>submit answers
-                        </button>
+                        <Row>
+                            Submit your Questions here or close the popup to change them
+                        </Row>
+                        <Row>
+                            <button
+                                className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
+                                onClick={handleSubmitAnswers}>submit answers
+                            </button>
+                        </Row>
 
                 </Modal.Body>
                 <Modal.Footer>
