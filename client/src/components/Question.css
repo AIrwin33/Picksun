@@ -35,7 +35,7 @@
     padding-right: 0.5em;
 }
 
-.disabledBtnGroup>.selectedQuestion {
+.disabledBtnGroup > .questionButton.selectedQuestion {
     background-color: #262626;
     color:white;
 }
