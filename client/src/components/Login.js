@@ -17,6 +17,7 @@ import LoginButton from '../components/LoginButton';
 import "./Login.css";
 
 const Login = ({ setAuth }) => {
+    const [errorMsg, setErrorMsg] = useState();
     const [inputs, setInputs] = useState({
         email:"",
         password: ""
@@ -55,6 +56,7 @@ const Login = ({ setAuth }) => {
         }
       } catch (err) {
         console.error(err.message);
+        setErrorMsg('That email and password are not valid');
       }
     };
 
@@ -92,6 +94,11 @@ const Login = ({ setAuth }) => {
                     <Button variant="primary" type="submit" className="btnRed float-right aptifer font20">
                         Login
                     </Button>
+                    {setErrorMsg !== null &&
+                     <div>
+                       {errorMsg}
+                     </div> 
+                    }
                 </Form>
                 </Col>
             </Row>
