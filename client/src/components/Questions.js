@@ -355,6 +355,7 @@ const Questions = (props) => {
 
     const handleSubmitAnswers = async () => {
         try {
+            handleSubmitClose();
             setSubmitted(true);
             setShowWaiting(true);
             const partanswers = answerList;
@@ -684,13 +685,18 @@ const Questions = (props) => {
                 </Modal.Header>
                 <Modal.Body className="proxima font12 modalBody">
                         <Row>
-                            Submit your Questions here or close the popup to change them
+                            <div className="d-flex justify-content-center mb-2">
+
+                                Submit your Questions here or close the popup to change them
+                            </div>
                         </Row>
                         <Row>
+                            <div className="d-flex justify-content-center">
                             <button
                                 className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
                                 onClick={handleSubmitAnswers}>submit answers
                             </button>
+                            </div>
                         </Row>
 
                 </Modal.Body>

@@ -95,7 +95,7 @@ const Login = ({ setAuth }) => {
                         Login
                     </Button>
                     {setErrorMsg !== null &&
-                     <div className="errorDiv proxima">
+                     <div className="errorDiv proxima fontBold">
                        <p>{errorMsg}</p>
                      </div> 
                     }
