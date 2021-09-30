@@ -322,7 +322,8 @@ const Questions = (props) => {
 
     const setTimer = () => {
         console.log('set timer');
-        setCounter(60000);
+        var timerMilli = contest.question_timer__c * 1000;
+        setCounter(timerMilli);
     }
 
     const disableQuestions = async () => {
