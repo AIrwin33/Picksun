@@ -327,6 +327,7 @@ const Questions = (props) => {
 
     const disableQuestions = async () => {
         try {
+            handleSubmitClose();
             var conid = props.contestid
             const body = {conid};
             const res = await fetch(`/disableQuestions/`, {
@@ -685,18 +686,22 @@ const Questions = (props) => {
                 </Modal.Header>
                 <Modal.Body className="proxima font12 modalBody">
                         <Row>
-                            <div className="d-flex justify-content-center mb-2">
+                            <Col className="d-flex justify-content-center">
+                                <div className=" mb-2">
 
-                                Submit your Questions here or close the popup to change them
-                            </div>
+                                    Submit your Questions here or close the popup to change them
+                                </div>
+                            </Col>
                         </Row>
                         <Row>
-                            <div className="d-flex justify-content-center">
-                            <button
-                                className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
-                                onClick={handleSubmitAnswers}>submit answers
-                            </button>
-                            </div>
+                            <Col className="d-flex justify-content-center">
+                                <div className="d-flex justify-content-center">
+                                    <button
+                                        className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
+                                        onClick={handleSubmitAnswers}>submit answers
+                                    </button>
+                                </div>
+                            </Col>
                         </Row>
 
                 </Modal.Body>
