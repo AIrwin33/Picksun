@@ -322,7 +322,7 @@ const Questions = (props) => {
 
     const setTimer = () => {
         console.log('set timer');
-        var timerMilli = contest.question_timer__c * 1000;
+        var timerMilli = props.contest.question_timer__c * 1000;
         setCounter(timerMilli);
     }
 
