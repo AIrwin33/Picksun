@@ -687,7 +687,7 @@ const Questions = (props) => {
                 <Modal.Body className="proxima font12 modalBody">
                         <Row>
                             <Col className="d-flex justify-content-center">
-                                <div className=" mb-2">
+                                <div className="font16 mb-3">
 
                                     Submit your Questions here or close the popup to change them
                                 </div>
