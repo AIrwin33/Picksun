@@ -40,6 +40,7 @@ const Questions = (props) => {
     const [openedtimer, setOpenedTimer] = useState(0);
     const [showSubmit, setShowSubmit] = useState(false);
     const [showEnd, setShowEnd] = useState(false);
+    const [showEndBanner, setShowEndBanner] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [isShowWaiting, setShowWaiting] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
@@ -157,6 +158,7 @@ const Questions = (props) => {
     const handleEndShow = async () => {
 
         setShowEnd(true);
+        setShowEndBanner(true);
     }
     //close info modal on question
     const handleEndClose = async () => {
@@ -637,12 +639,12 @@ const Questions = (props) => {
             {/* show questions or no question text */}
             {!isShowWaiting &&
             <Row className="questionRow m-2 p-2 justify-content-center">
-                {showEnd &&
-                <Col className="endtextbanner">
+                {showEndBanner &&
+                <Col sm={12} lg={12} className="endtextbanner text-center font16">
                     <span>Thanks For Playing</span>
                 </Col>
                 }
-                <Col>
+                <Col  sm={12} lg={12}>
                     {questions.length > 0 &&
                     <Carousel className="carouselDiv" ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}
                               data-slide-to={index}>
