@@ -212,7 +212,7 @@ app.post("/disablequestions/", authorization, async (req, res) => {
 
         console.log('disabled questions' + allContestQuestions.rows);
         const selectQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE id IN $1 ORDER BY Name ASC", [allContestQuestions.rows]);
-        console.log(selectQuestions);
+        console.log('selected' + selectQuestions.rows);
         res.json(selectQuestions.rows)
 
     } catch (error) {

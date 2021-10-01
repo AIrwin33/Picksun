@@ -341,6 +341,7 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
+            console.log('parse disabled' + JSON.stringify(parseData));
             $('.timerdiv').addClass('hiddenTimer');
             $('.carousel-control-next-icon').removeClass('active');
             setIndex(subsegplusone);
