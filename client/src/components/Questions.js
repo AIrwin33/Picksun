@@ -504,7 +504,8 @@ const Questions = (props) => {
                         }
                     }
                 }
-
+                console.log('newquestions' + newquestions);
+                console.log('questions not new' + questions);
                 setPublishedQuestions(newquestions.length);
                 setQuestionIds(newquestionids);
                 setQuestions(newquestions);
