@@ -210,8 +210,13 @@ app.post("/disablequestions/", authorization, async (req, res) => {
         const allContestQuestions = await pool.query("UPDATE salesforce.question__c SET islocked__c = true WHERE published__c = true AND contest__c = $1 RETURNING *", [conid]
         );
 
-        console.log('disabled questions' + allContestQuestions.rows);
-        const selectQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE Id = ANY ($1) ORDER BY Name ASC", [allContestQuestions.rows]);
+        console.log('disabled questions' + JSON.stringify(allContestQuestions.rows));
+        var idlist = [];
+        for(var i = 0; i < allContestQuestions.rows.length; i++){
+            idlist.add(allContestQuestions.rows[i].sfid);
+        }
+        console.log('id list' + idlist);
+        const selectQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE sfid = ANY ($1) ORDER BY Name ASC", [allContestQuestions.rows]);
         console.log('selected' + selectQuestions.rows);
         res.json(selectQuestions.rows)
 
