@@ -213,7 +213,7 @@ app.post("/disablequestions/", authorization, async (req, res) => {
         console.log('disabled questions' + JSON.stringify(allContestQuestions.rows));
         var idlist = [];
         for(var i = 0; i < allContestQuestions.rows.length; i++){
-            idlist.add(allContestQuestions.rows[i].sfid);
+            idlist.push(allContestQuestions.rows[i].sfid);
         }
         console.log('id list' + idlist);
         const selectQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE sfid = ANY ($1) ORDER BY Name ASC", [allContestQuestions.rows]);
