@@ -39,6 +39,7 @@ const Questions = (props) => {
     const [inactive, setInactive] = useState(false);
     const [openedtimer, setOpenedTimer] = useState(0);
     const [showSubmit, setShowSubmit] = useState(false);
+    const [showEnd, setShowEnd] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [isShowWaiting, setShowWaiting] = useState(false);
     const [answerListShow, setAnswerListShow] = useState(false);
@@ -153,6 +154,16 @@ const Questions = (props) => {
         setShowSubmit(false);
     }
 
+    const handleEndShow = async () => {
+
+        setShowEnd(true);
+    }
+    //close info modal on question
+    const handleEndClose = async () => {
+
+        setShowEnd(false);
+    }
+
 
     const doGetParticipationWrongAnswers = async () => {
         try {
@@ -185,7 +196,6 @@ const Questions = (props) => {
             );
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
-                setKnockedOut(true);
                 handleKnockout();
                 
             }
@@ -218,6 +228,7 @@ const Questions = (props) => {
     }
     const handleKnockout = async () => {
         try {
+            handleEndShow();
             setKnockOut(true);
             setContestKnockoutText(props.contest.knockout_text__c);
         } catch (err) {
@@ -272,6 +283,7 @@ const Questions = (props) => {
                     console.log('handling contest won');
                     handleContestWon(winningParts.length);
                 }else {
+                    handleEndShow();
                     setShowContestFinished(true);
                     setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
                 }
@@ -301,7 +313,7 @@ const Questions = (props) => {
                     body: JSON.stringify(body)
                 }
             );
-
+            handleEndShow();
             setShowContestWon(true);
 
             if(winnercount === 1){
@@ -652,6 +664,16 @@ const Questions = (props) => {
                     
                 
 
+                    
+                </Col>
+            </Row>
+            }
+
+
+            <Modal className="modalDiv" show={showEnd} onHide={handleEndClose}>
+                <Modal.Header closeButton>
+                </Modal.Header>
+                <Modal.Body className="proxima font12 modalBody">
                     <div
                     className="questionRow m-3 justify-content-center p-3">
                     {(props.isKnockedOut === true || showKnockOut === true) &&
@@ -679,10 +701,14 @@ const Questions = (props) => {
                     </Row>
                     }
                     </div>
-                </Col>
-            </Row>
-            }
 
+                </Modal.Body>
+                <Modal.Footer>
+                <Button className="aptifer modalBtn" variant="secondary" onClick={handleEndClose}>
+                    Close
+                </Button>
+                </Modal.Footer>
+            </Modal>
 
             <Modal className="modalDiv" show={showSubmit} onHide={handleSubmitClose}>
                 <Modal.Header closeButton>
