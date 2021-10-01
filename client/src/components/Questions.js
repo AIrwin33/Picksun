@@ -675,10 +675,10 @@ const Questions = (props) => {
                 </Modal.Header>
                 <Modal.Body className="proxima font12 modalBody">
                     <div
-                    className="questionRow m-3 justify-content-center p-3">
+                    className="m-3 justify-content-center p-3">
                     {(props.isKnockedOut === true || showKnockOut === true) &&
                     <Row>
-                        <div className="text-center">
+                        <div className="text-center font16">
                             <span>{contestKnockoutText}</span>
                         </div>
                     </Row>
@@ -686,7 +686,7 @@ const Questions = (props) => {
 
                     {(props.isContestWon == true || showContestWon == true) &&
                     <Row>
-                        <div className="text-center">
+                        <div className="text-center font16">
                             <span>{contestWonText}</span>
                         </div>
                     </Row>
@@ -694,7 +694,7 @@ const Questions = (props) => {
 
                     {(props.isContestFinished == true || showContestFinished == true) && (props.isKnockedOut == false || showKnockOut == false) &&
                     <Row>
-                        <div className="text-center">
+                        <div className="text-center font16">
                             <span>{contestFinishedText}</span><br/>
                             <span>Place Finish: {placeFin}</span>
                         </div>
