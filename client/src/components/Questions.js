@@ -637,7 +637,11 @@ const Questions = (props) => {
             {/* show questions or no question text */}
             {!isShowWaiting &&
             <Row className="questionRow m-2 p-2 justify-content-center">
-
+                {showEnd &&
+                <Col className="endtextbanner">
+                    <span>Thanks For Playing</span>
+                </Col>
+                }
                 <Col>
                     {questions.length > 0 &&
                     <Carousel className="carouselDiv" ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}
