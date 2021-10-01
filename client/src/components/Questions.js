@@ -536,8 +536,8 @@ const Questions = (props) => {
     const addCorrectQuestion = question => {
         var tempQuestions = questions;
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-
-        
+        console.log('question' + question);
+        console.log('tempQuestions' + tempQuestions);
         setQuestions(tempQuestions);
         console.log('before add correct questions');
         setTimeout(
