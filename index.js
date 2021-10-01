@@ -207,11 +207,13 @@ app.post("/disablequestions/", authorization, async (req, res) => {
     try {
         const {conid} = req.body;
         console.log('Disable questions ids' + conid);
-        const allContestQuestions = await pool.query("UPDATE salesforce.question__c SET islocked__c = true WHERE published__c = true AND contest__c = $1 ORDER BY Name ASC RETURNING *", [conid]
+        const allContestQuestions = await pool.query("UPDATE salesforce.question__c SET islocked__c = true WHERE published__c = true AND contest__c = $1 RETURNING *", [conid]
         );
 
         console.log('disabled questions' + allContestQuestions.rows);
-        res.json(allContestQuestions.rows)
+        const selectQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE id IN $1 ORDER BY Name ASC", [allContestQuestions.rows]);
+        console.log(selectQuestions);
+        res.json(selectQuestions.rows)
 
     } catch (error) {
         console.log('error disable questions :: ' + error.message);
