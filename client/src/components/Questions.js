@@ -431,6 +431,8 @@ const Questions = (props) => {
                 }
             }
             console.log('answerList' + JSON.stringify(answerList));
+            console.log(answerList.length);
+            console.log(subSegmentCount);
             setAnswerList(answerList);
             console.log(selectedCount);
             if(selectedCount + 1 === subSegmentCount){
