@@ -209,7 +209,7 @@ const Question = (props) => {
                 <Row>
 
                     <div className="questionTextDiv">
-                        <h3>{props.questionNum}) {quest.question_text__c}</h3>
+                        <h4>{props.questionNum}) {quest.question_text__c}</h4>
                     </div>
                 </Row>
                 <Row>
