@@ -163,7 +163,7 @@ const Contest = ({match}) => {
                         </Col>
                     </Row>
                     <Tabs fill className="ml-2 mr-2">
-                        <Tab eventKey="Questions" title="Questions" className="aptifer">
+                        <Tab eventKey="Questions" title="Questions" className="aptifer pb-4 pt-4">
                             <Row>
                                 <Col lg={3} sm={1}>
 
@@ -191,14 +191,15 @@ const Contest = ({match}) => {
 
                                 </Col>
                                 <Col lg={6} sm={10} >
-                                    <Row className="text-center colCard"> 
-                                        <span>Participants Remaining: {activeParts}/{allParts}</span>
-
+                                    <Row className="colCard"> 
+                                        <div className="text-center">
+                                            <span>Participants Remaining: {activeParts}/{allParts}</span>
+                                        </div>
                                     </Row>
                                     {participations.map(part => {
                                         return <Row key={part.id} className="colCard ">
 
-                                            <Col xs={3} className="text-right"> <Image src={avatar} roundedCircle
+                                            <Col xs={3} className="text-center"> <Image src={avatar} roundedCircle
                                                                                     height="50"></Image> </Col>
                                             <Col xs={9}>
                                                 <Row>
@@ -210,10 +211,10 @@ const Contest = ({match}) => {
                                                     }
                                                 </Row>
                                                 <Row>
-                                                    <Col>
+                                                    <Col sm={12} lg={6}>
                                                         Wrong Answers: {part.wrong_answers__c}
                                                     </Col>
-                                                    <Col>
+                                                    <Col sm={12} lg={6}>
                                                         Wrong Answers Allowed: {part.wrong_answers_allowed__c}
                                                     </Col>
                                                 </Row>
@@ -227,7 +228,7 @@ const Contest = ({match}) => {
                             </Row>
                             
                         </Tab>
-                        <Tab eventKey="Chat" title="Twitter" className="aptifer ">
+                        <Tab eventKey="Chat" title="Twitter" className="aptifer pb-4 pt-4">
                             <Row>
                                 <Col lg={3} sm={1}>
 
