@@ -50,7 +50,7 @@ const Answers = (props) => {
                         <span className="font20">Knockout Limit:</span>
                     </div>
                 </Col>
-                <Col  md={5} className="d-flex justify-content-start">
+                <Col  md={5} className="d-flex justify-content-end">
                     <div className="d-inline-block pt-1">
                     {answers.map((answer, index) => {
                         return <div  className={`circle   ${answer.wrong ? "wrong" : ""}`} key={index}></div>
