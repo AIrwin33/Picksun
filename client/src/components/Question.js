@@ -136,14 +136,14 @@ const Question = (props) => {
         }
     }
 
-    // const markBarCorrect =  async (answer) => {
+    // const markBarCorrect =  async (an) => {
         
     //     var text = '';
-    //     if(answer.question__c === props.ques.sfid){
+    //     if(an.question__c === props.ques.sfid){
     //         text += 'selected';
     //     }
-    //     if(answer.validated__c){
-    //         if(answer.incorrect__c){
+    //     if(an.validated__c){
+    //         if(an.incorrect__c){
     //             console.log('incorrect');
     //             text += 'answerDiv incorrect';
     //         }else{
