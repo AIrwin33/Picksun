@@ -137,15 +137,22 @@ const Question = (props) => {
     }
 
     const markBarCorrect =  async (answer) => {
+        
+        var text = '';
+        if(answer.question__c === props.ques.sfid){
+            text += 'selected';
+        }
         if(answer.validated__c){
             if(answer.incorrect__c){
                 console.log('incorrect');
-                return 'incorrect';
+                text += 'answerDiv incorrect';
             }else{
                 console.log('incorrect');
-                return 'correct';
+                text += 'answerDiv correct';
             }
         }
+        console.log('text' + text);
+        return text;
     }
 
     //show info modal on question
@@ -302,7 +309,7 @@ const Question = (props) => {
                     
                     <div className="answerMain">
                     {allpartanswers.map(answer => {
-                        return <div className={`answerDiv ${answer.question__c === props.ques.sfid ? "selected" : ""}`}>
+                        return <div className={markBarCorrect(answer)}>
                         </div>
                         
                     })}
