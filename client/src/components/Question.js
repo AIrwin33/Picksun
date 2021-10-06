@@ -137,7 +137,7 @@ const Question = (props) => {
 
     const markBarCorrect =  async (an) => {
         
-        var text = 'answerDiv';
+        var text = '';
         if(an.question__c === props.ques.sfid){
             text += ' selected';
         }
@@ -308,7 +308,7 @@ const Question = (props) => {
                     
                     <div className="answerMain">
                     {allpartanswers.map(answer => {
-                        return <div className={markBarCorrect(answer)}>
+                        return <div className={'answerDiv ' + (markBarCorrect(answer))}>
                         </div>
                         
                     })}
