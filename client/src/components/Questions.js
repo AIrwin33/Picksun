@@ -574,7 +574,7 @@ const Questions = (props) => {
                 {questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-center">
                     {/* slide for questions */}
-                    <Col lg={4} sm={12} className="d-flex justify-content-start">
+                    <Col lg={4} sm={6} className="d-flex justify-content-start">
                     {questions.length !== 0 &&
                         <div key={counter}>
 
@@ -616,7 +616,7 @@ const Questions = (props) => {
                     </Col>
 
                     {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
-                    <Col lg={8} sm={12} className="justify-content-start" >
+                    <Col lg={8} sm={6} className="justify-content-start" >
                         <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
                     </Col>
                     }
