@@ -309,7 +309,7 @@ const Question = (props) => {
                     
                     <div className="answerMain">
                     {allpartanswers.map(answer => {
-                        return <div className="here">
+                        return <div className={`answerDiv ${answer.incorrect__c === true ? "incorrect" : ""} ${answer.question__c === props.ques.sfid ? "selected" : ""}`}>
                         </div>
                         
                     })}
