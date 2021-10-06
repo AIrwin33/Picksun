@@ -8,7 +8,6 @@ import info from '../assets/infoicon.png';
 import correctLogo from '../assets/correctIcon.png';
 import incorrectLogo from '../assets/incorrectIcon.png';
 import $ from 'jquery';
-import e from 'express';
 
 const Question = (props) => {
     const [partAnswer, setPartAnswer] = useState([]);
