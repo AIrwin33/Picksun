@@ -8,6 +8,7 @@ import info from '../assets/infoicon.png';
 import correctLogo from '../assets/correctIcon.png';
 import incorrectLogo from '../assets/incorrectIcon.png';
 import $ from 'jquery';
+import e from 'express';
 
 const Question = (props) => {
     const [partAnswer, setPartAnswer] = useState([]);
@@ -132,6 +133,18 @@ const Question = (props) => {
         }
         catch (err) {
             console.log('err subsegment' + err.message);
+        }
+    }
+
+    const markBarCorrect =  async (answer) => {
+        if(answer.validated__c){
+            if(answer.incorrect__c){
+                console.log('incorrect');
+                return 'incorrect';
+            }else{
+                console.log('incorrect');
+                return 'correct';
+            }
         }
     }
 
@@ -289,7 +302,7 @@ const Question = (props) => {
                     
                     <div className="answerMain">
                     {allpartanswers.map(answer => {
-                        return <div className={`answerDiv ${answer.validated__c === true ?  answer.incorrect__c === true ? "incorrect" : "correct" : 'invalid'} ${answer.question__c === props.ques.sfid ? "selected" : ""}`}>
+                        return <div className={`answerDiv ${markBarCorrect(answer)} ${answer.question__c === props.ques.sfid ? "selected" : ""}`}>
                         </div>
                         
                     })}
