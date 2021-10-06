@@ -302,7 +302,7 @@ const Question = (props) => {
                     
                     <div className="answerMain">
                     {allpartanswers.map(answer => {
-                        return <div className={`answerDiv ${markBarCorrect(answer)} ${answer.question__c === props.ques.sfid ? "selected" : ""}`}>
+                        return <div className={`answerDiv ${answer.question__c === props.ques.sfid ? "selected" : ""}`}>
                         </div>
                         
                     })}
