@@ -137,17 +137,17 @@ const Question = (props) => {
 
     const markBarCorrect =  async (an) => {
         
-        var text = '';
+        var text = 'answerDiv';
         if(an.question__c === props.ques.sfid){
-            text += 'selected';
+            text += ' selected';
         }
         if(an.validated__c){
             if(an.incorrect__c){
                 console.log('incorrect');
-                text += 'answerDiv incorrect';
+                text += ' incorrect';
             }else{
                 console.log('incorrect');
-                text += 'answerDiv correct';
+                text += ' correct';
             }
         }
         console.log('text' + text);
