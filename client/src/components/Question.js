@@ -135,24 +135,24 @@ const Question = (props) => {
         }
     }
 
-    // const markBarCorrect =  async (an) => {
+    const markBarCorrect =  async (an) => {
         
-    //     var text = '';
-    //     if(an.question__c === props.ques.sfid){
-    //         text += 'selected';
-    //     }
-    //     if(an.validated__c){
-    //         if(an.incorrect__c){
-    //             console.log('incorrect');
-    //             text += 'answerDiv incorrect';
-    //         }else{
-    //             console.log('incorrect');
-    //             text += 'answerDiv correct';
-    //         }
-    //     }
-    //     console.log('text' + text);
-    //     return text;
-    // }
+        var text = '';
+        if(an.question__c === props.ques.sfid){
+            text += 'selected';
+        }
+        if(an.validated__c){
+            if(an.incorrect__c){
+                console.log('incorrect');
+                text += 'answerDiv incorrect';
+            }else{
+                console.log('incorrect');
+                text += 'answerDiv correct';
+            }
+        }
+        console.log('text' + text);
+        return text;
+    }
 
     //show info modal on question
     const handleInfoShow = async () => {
@@ -308,7 +308,7 @@ const Question = (props) => {
                     
                     <div className="answerMain">
                     {allpartanswers.map(answer => {
-                        return <div className={`answerDiv ${answer.incorrect__c === true ? "incorrect" : ""} ${answer.question__c === props.ques.sfid ? "selected" : ""}`}>
+                        return <div className={markBarCorrect(answer)}>
                         </div>
                         
                     })}
