@@ -186,56 +186,60 @@ const Contest = ({match}) => {
 
                             {/* loop through participations */}
 
-                            <Row className="rowCard ">
-                                <Col xs={3}>
+                            <Row className="partCard">
+                                <Col lg={3} sm={1}>
 
                                 </Col>
-                                <Col xs={6} className="text-center">
-                                    <span>Participants Remaining: {activeParts}/{allParts}</span>
+                                <Col lg={6} sm={10} >
+                                    <Row className="text-center colCard"> 
+                                        <span>Participants Remaining: {activeParts}/{allParts}</span>
+
+                                    </Row>
+                                    {participations.map(part => {
+                                        return <Row key={part.id} className="colCard ">
+
+                                            <Col xs={3} className="text-right"> <Image src={avatar} roundedCircle
+                                                                                    height="50"></Image> </Col>
+                                            <Col xs={9}>
+                                                <Row>
+                                                    <span className="fontBold">{part.participant_name__c}</span>
+                                                    {part.sfid === participation.sfid &&
+                                                    <div className="yourpart ml-3">
+                                                        You
+                                                    </div>
+                                                    }
+                                                </Row>
+                                                <Row>
+                                                    <Col>
+                                                        Wrong Answers: {part.wrong_answers__c}
+                                                    </Col>
+                                                    <Col>
+                                                        Wrong Answers Allowed: {part.wrong_answers_allowed__c}
+                                                    </Col>
+                                                </Row>
+                                            </Col>
+                                        </Row>
+                                    })}
                                 </Col>
-                                <Col xs={3}>
+                                <Col lg={3} sm={1}>
 
                                 </Col>
                             </Row>
-                            {participations.map(part => {
-                                return <Row key={part.id} className="rowCard ">
-
-                                    <Col xs={3} className="text-right"> <Image src={avatar} roundedCircle
-                                                                               height="50"></Image> </Col>
-                                    <Col xs={9}>
-                                        <Row>
-                                            <span className="fontBold">{part.participant_name__c}</span>
-                                            {part.sfid === participation.sfid &&
-                                            <div className="yourpart ml-3">
-                                                You
-                                            </div>
-                                            }
-                                        </Row>
-                                        <Row>
-                                            <Col>
-                                                Wrong Answers: {part.wrong_answers__c}
-                                            </Col>
-                                            <Col>
-                                                Wrong Answers Allowed: {part.wrong_answers_allowed__c}
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                </Row>
-                            })}
+                            
                         </Tab>
                         <Tab eventKey="Chat" title="Twitter" className="aptifer ">
                             <Row>
-                                <Col lg={4} sm={1}>
+                                <Col lg={3} sm={1}>
 
                                 </Col>
-                                <Col lg={4} sm={10} className=''>
+                                <Col lg={6} sm={10} className=''>
                                     <TwitterTimelineEmbed
                                         sourceType="profile"
                                         screenName="playpickfun"
                                         options={{height: 400}}
                                     />
                                 </Col>
-                                <Col lg={4} sm={1}>
+                                <Col lg={3} sm={1}>
                                     
                                 </Col>
                             </Row>
