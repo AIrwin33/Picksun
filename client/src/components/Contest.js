@@ -192,7 +192,7 @@ const Contest = ({match}) => {
                                 </Col>
                                 <Col lg={6} sm={10} >
                                     <Row className="colCard"> 
-                                        <div className="text-center">
+                                        <div className="justify-content-center">
                                             <span>Participants Remaining: {activeParts}/{allParts}</span>
                                         </div>
                                     </Row>

@@ -309,7 +309,7 @@ const Question = (props) => {
                     
                     <div className="answerMain">
                     {allpartanswers.map(answer => {
-                        return <div className={markBarCorrect(answer)}>
+                        return <div className="here">
                         </div>
                         
                     })}
