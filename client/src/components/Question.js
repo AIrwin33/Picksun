@@ -308,7 +308,7 @@ const Question = (props) => {
                     
                     <div className="answerMain">
                     {allpartanswers.map(answer => {
-                        return <div className={'answerDiv ' + (answer.question__c === props.ques.sfid ? 'selected ' : '') + (answer.incorrect__c === true ? 'incorrect ' : '') + (answer.validated__c === true ? 'correct ' : '')}>
+                        return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? 'selected ' : ''} ${answer.incorrect__c === true ? 'incorrect ' : ''} ${answer.validated__c === true ? 'correct ' : ''}`}>
                         </div>
                         
                     })}
