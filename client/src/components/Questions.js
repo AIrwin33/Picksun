@@ -410,18 +410,24 @@ const Questions = (props) => {
 
     const updateAnswerList = async (childData) => {
         try {
-            //if the answer list is empty, add the answered question from the Question JS
-            //if (answerList.length < 1) {
-                console.log('starting answer list');
-                answerList.push(childData);
-                setSelectedCount(selectedCount + 1);
-                console.log(selectedCount);
-            //} else {
 
-                //if answer list contains the question answer already, then replace it, otherwise add it
+            console.log(childData);
+
+            // //if the answer list is empty, add the answered question from the Question JS
+            // //if (answerList.length < 1) {
+            //     console.log('starting answer list');
+                answerList.push(childData);
+            //     setSelectedCount(selectedCount + 1);
+            //     console.log(selectedCount);
+            // //} else {
+
+            //     //if answer list contains the question answer already, then replace it, otherwise add it
                 for (var i = 0; i < answerList.length; i++) {
                     console.log(childData);
                     console.log(answerList[i]);
+
+
+
                     if (childData.question__c === answerList[i].question__c) {
                         //replace existing question
                         console.log('replacing existing question')
@@ -429,22 +435,23 @@ const Questions = (props) => {
                         console.log(answerList.length);
                         break;
                     } 
-                //     else {
-                //         console.log('adding a question');
-                //         answerList.push(childData);
-                //         console.log(answerList.length);
-                //         setSelectedCount(selectedCount + 1);
-                //         break;
-                //     }
-                // }
-            }
-            console.log('answerList' + JSON.stringify(answerList));
-            console.log(answerList.length);
-            setAnswerList(answerList);
-            if(answerList.length === subSegmentCount){
-                setAnswerListShow(true);
-                setShowSubmit(true);
-            }
+                }
+            //     //     else {
+            //     //         console.log('adding a question');
+            //     //         answerList.push(childData);
+            //     //         console.log(answerList.length);
+            //     //         setSelectedCount(selectedCount + 1);
+            //     //         break;
+            //     //     }
+            //     // }
+            //     }
+            // console.log('answerList' + JSON.stringify(answerList));
+            // console.log(answerList.length);
+            // setAnswerList(answerList);
+            // if(answerList.length === subSegmentCount){
+            //     setAnswerListShow(true);
+            //     setShowSubmit(true);
+            // }
         } catch (err) {
             console.log('err' + err.message);
         }
