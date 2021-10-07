@@ -173,7 +173,14 @@ const Question = (props) => {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();
-        updateAllPartAnswers();
+        setTimeout(
+            function() {
+                updateAllPartAnswers();
+            
+                },
+                2000
+        );
+        
     }, [props.ques]);
 
 
