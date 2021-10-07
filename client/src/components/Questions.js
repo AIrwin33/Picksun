@@ -418,27 +418,28 @@ const Questions = (props) => {
             //     console.log('starting answer list');
                 answerList.push(childData);
             }
-
+            var addTo = true;
             //if answer list contains the question answer already, then replace it, otherwise add it
-                for (var i = 0; i < answerList.length; i++) {
+            for (var i = 0; i < answerList.length; i++) {
+                console.log(answerList.length);
+                console.log('child' + JSON.stringify(childData));
+                console.log('of 1' + JSON.stringify(answerList[i]));
+
+
+
+                if (childData.question__c === answerList[i].question__c) {
+                    //replace existing question
+                    console.log('replacing existing question')
+                    answerList.splice(i, 1, childData);
+                    addTo = false;
                     console.log(answerList.length);
-                    console.log('child' + JSON.stringify(childData));
-                    console.log('of 1' + JSON.stringify(answerList[i]));
+                    break;
+                } 
+            }
 
-
-
-                    if (childData.question__c === answerList[i].question__c) {
-                        //replace existing question
-                        console.log('replacing existing question')
-                        answerList.splice(i, 1, childData);
-                        console.log(answerList.length);
-                        break;
-                    } else{
-                        console.log('dont splice');
-                        answerList.push(childData);
-                        break;
-                    }
-                }
+            if(addTo){
+                answerList.push(childData);
+            }
 
             console.log('answerList' + JSON.stringify(answerList));
             console.log(answerList.length);
