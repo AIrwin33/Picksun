@@ -412,6 +412,7 @@ const Questions = (props) => {
         try {
             //if the answer list is empty, add the answered question from the Question JS
             if (answerList.length < 1) {
+                console.log('starting answer list');
                 answerList.push(childData);
                 setSelectedCount(selectedCount + 1);
                 console.log(selectedCount);
@@ -421,23 +422,22 @@ const Questions = (props) => {
                 for (var i = 0; i < answerList.length; i++) {
                     if (childData.question__c === answerList[i].question__c) {
                         //replace existing question
+                        console.log('replacing existing question')
                         answerList.splice(i, 1, childData);
                         console.log(answerList.length);
                         break;
                     } else {
+                        console.log('adding a question');
                         answerList.push(childData);
                         console.log(answerList.length);
                         setSelectedCount(selectedCount + 1);
-                        console.log(selectedCount);
                         break;
                     }
                 }
             }
             console.log('answerList' + JSON.stringify(answerList));
             console.log(answerList.length);
-            console.log(subSegmentCount);
             setAnswerList(answerList);
-            console.log(selectedCount);
             if(answerList.length === subSegmentCount){
                 setAnswerListShow(true);
                 setShowSubmit(true);
