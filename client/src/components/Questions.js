@@ -427,13 +427,11 @@ const Questions = (props) => {
                         console.log('replacing existing question')
                         answerList.splice(i, 1, childData);
                         console.log(answerList.length);
-                        break;
                     } else {
                         console.log('adding a question');
                         answerList.push(childData);
                         console.log(answerList.length);
                         setSelectedCount(selectedCount + 1);
-                        break;
                     }
                 }
             }
