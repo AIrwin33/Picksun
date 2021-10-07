@@ -436,6 +436,7 @@ const Questions = (props) => {
                         break;
                     } else{
                         console.log('dont splice');
+                        answerList.push(childData);
                         //addTo = true;
                         
                     }
