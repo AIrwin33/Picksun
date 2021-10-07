@@ -420,8 +420,8 @@ const Questions = (props) => {
 
                 //if answer list contains the question answer already, then replace it, otherwise add it
                 for (var i = 0; i < answerList.length; i++) {
-                    console.log(childData.question__c );
-                    console.log(answerList[i].question__c);
+                    console.log(childData);
+                    console.log(answerList[i]);
                     if (childData.question__c === answerList[i].question__c) {
                         //replace existing question
                         console.log('replacing existing question')
