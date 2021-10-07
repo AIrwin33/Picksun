@@ -443,11 +443,11 @@ const Questions = (props) => {
 
             console.log('answerList' + JSON.stringify(answerList));
             console.log(answerList.length);
-            // setAnswerList(answerList);
-            // if(answerList.length === subSegmentCount){
-            //     setAnswerListShow(true);
-            //     setShowSubmit(true);
-            // }
+            setAnswerList(answerList);
+            if(answerList.length === subSegmentCount){
+                setAnswerListShow(true);
+                setShowSubmit(true);
+            }
         } catch (err) {
             console.log('err' + err.message);
         }
