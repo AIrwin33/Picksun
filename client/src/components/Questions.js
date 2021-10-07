@@ -411,12 +411,12 @@ const Questions = (props) => {
     const updateAnswerList = async (childData) => {
         try {
             //if the answer list is empty, add the answered question from the Question JS
-            if (answerList.length < 1) {
+            //if (answerList.length < 1) {
                 console.log('starting answer list');
                 answerList.push(childData);
                 setSelectedCount(selectedCount + 1);
                 console.log(selectedCount);
-            } else {
+            //} else {
 
                 //if answer list contains the question answer already, then replace it, otherwise add it
                 for (var i = 0; i < answerList.length; i++) {
@@ -427,13 +427,16 @@ const Questions = (props) => {
                         console.log('replacing existing question')
                         answerList.splice(i, 1, childData);
                         console.log(answerList.length);
-                    } else {
-                        console.log('adding a question');
-                        answerList.push(childData);
-                        console.log(answerList.length);
-                        setSelectedCount(selectedCount + 1);
-                    }
-                }
+                        break;
+                    } 
+                //     else {
+                //         console.log('adding a question');
+                //         answerList.push(childData);
+                //         console.log(answerList.length);
+                //         setSelectedCount(selectedCount + 1);
+                //         break;
+                //     }
+                // }
             }
             console.log('answerList' + JSON.stringify(answerList));
             console.log(answerList.length);
