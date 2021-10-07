@@ -422,8 +422,11 @@ const Questions = (props) => {
                     if (childData.question__c === answerList[i].question__c) {
                         //replace existing question
                         answerList.splice(i, 1, childData);
+                        console.log(answerList.length);
+                        break;
                     } else {
                         answerList.push(childData);
+                        console.log(answerList.length);
                         setSelectedCount(selectedCount + 1);
                         console.log(selectedCount);
                         break;
