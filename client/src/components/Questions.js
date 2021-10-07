@@ -419,7 +419,6 @@ const Questions = (props) => {
                 answerList.push(childData);
             }
 
-            var addTo = false;
             //if answer list contains the question answer already, then replace it, otherwise add it
                 for (var i = 0; i < answerList.length; i++) {
                     console.log(answerList.length);
@@ -437,14 +436,9 @@ const Questions = (props) => {
                     } else{
                         console.log('dont splice');
                         answerList.push(childData);
-                        //addTo = true;
-                        
+                        break;
                     }
                 }
-            // if(addTo) {
-            //     answerList.push(childData);
-            //     console.log(answerList.length);
-            // }
 
             console.log('answerList' + JSON.stringify(answerList));
             console.log(answerList.length);
