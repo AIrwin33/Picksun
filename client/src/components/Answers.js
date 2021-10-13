@@ -47,7 +47,7 @@ const Answers = (props) => {
                         <img alt="knockout limit" width='30' src={knockout}/>
                     </div>
                     <div>
-                        <span className="font20">Knockout Limit:</span>
+                        <span className="font16">Knockout Limit:</span>
                     </div>
                 </Col>
                 <Col  md={5} className="d-flex justify-content-end">

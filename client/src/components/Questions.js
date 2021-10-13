@@ -586,7 +586,7 @@ const Questions = (props) => {
                 <Row className="questionRow m-2 p-2">
                     {/* slide for questions */}
                     {questions.length !== 0 &&
-                    <Col lg={4} sm={12} className="justify-content-start">
+                    <Col lg={4} sm={4} className="justify-content-start">
                     
                         <div key={counter}>
 
@@ -628,7 +628,7 @@ const Questions = (props) => {
                     }
 
                     {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
-                    <Col lg={8} sm={12} className="justify-content-start" >
+                    <Col lg={8} sm={8} className="justify-content-start" >
                         <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
                     </Col>
                     }
