@@ -586,7 +586,7 @@ const Questions = (props) => {
                 <Row className="questionRow m-2 p-2">
                     {/* slide for questions */}
                     {questions.length !== 0 &&
-                    <Col xs={4} className="justify-content-start">
+                    <Col xs={6} className="justify-content-start no-margin">
                     
                         <div key={counter}>
 
@@ -628,7 +628,7 @@ const Questions = (props) => {
                     }
 
                     {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
-                    <Col xs={8} className="justify-content-start" >
+                    <Col xs={6} className="justify-content-start no-margin" >
                         <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c}/>
                     </Col>
                     }
@@ -762,19 +762,19 @@ const Questions = (props) => {
             {/* showing submit answers button */}
             {!review && !submitted && questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-center">
-                    <Col sm={4} lg={4}>
+                    <Col xs={2}>
                         {counter > 0 && answerListShow &&
                         
                             <Image width='35' src={baseball}/>
                         }
                     </Col>
-                    <Col sm="auto">
+                    <Col xs={6}>
                         <button
                             className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
                             onClick={handleSubmitAnswers}>submit answers
                         </button>
                     </Col>
-                    <Col sm={4} lg={4}>
+                    <Col xs={2}>
                         {counter > 0 && answerListShow &&
                         
                             <Image  width='35' src={baseball}/>
