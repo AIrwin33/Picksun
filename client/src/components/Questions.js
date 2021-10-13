@@ -766,7 +766,7 @@ const Questions = (props) => {
                             <Image width='35' src={baseball}/>
                         }
                     </Col>
-                    <Col className="align-items-center">
+                    <Col className="">
                         <button
                             className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
                             onClick={handleSubmitAnswers}>submit answers
