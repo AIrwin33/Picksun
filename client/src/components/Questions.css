@@ -12,9 +12,9 @@
     align-items: center;
 }
 
-.no-margin {
-    margin-left:0px !important;
-    margin-right:0px !important;
+.no-padding {
+    padding-left:0px !important;
+    padding-right:0px !important;
 }
 
 .timer {
