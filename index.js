@@ -10,7 +10,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 const authorization = require("./server/middleware/authorize");
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 const path = require("path");
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
