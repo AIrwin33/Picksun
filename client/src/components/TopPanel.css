@@ -102,7 +102,7 @@
 
 .menu-toggler__line {
   height: calc(var(--toggler-size) / 5);
-  background: #215975;
+  background: white;
   position: absolute;
   left: 0;
   right: 0;
