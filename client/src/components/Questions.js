@@ -585,8 +585,9 @@ const Questions = (props) => {
                 {questions.length > 0 &&
                 <Row className="questionRow m-2 p-2">
                     {/* slide for questions */}
-                    <Col lg={4} sm={12} className="justify-content-start">
                     {questions.length !== 0 &&
+                    <Col lg={4} sm={12} className="justify-content-start">
+                    
                         <div key={counter}>
 
                             <Timer initialTime={counter}
@@ -623,8 +624,8 @@ const Questions = (props) => {
                                 )}
                             </Timer>
                         </div>
-                      }
                     </Col>
+                    }
 
                     {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
                     <Col lg={8} sm={12} className="justify-content-start" >
@@ -761,24 +762,24 @@ const Questions = (props) => {
             {/* showing submit answers button */}
             {!review && !submitted && questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-center">
-                    {counter > 0 && answerListShow &&
-                    <Col className="">
+                    <Col sm={4} lg={4}>
+                        {counter > 0 && answerListShow &&
                         
                             <Image width='35' src={baseball}/>
+                        }
                     </Col>
-                    }
-                    <Col className="justify-content-center">
+                    <Col sm={4} lg={4} className="justify-content-center">
                         <button
                             className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
                             onClick={handleSubmitAnswers}>submit answers
                         </button>
                     </Col>
-                    {counter > 0 && answerListShow &&
-                    <Col className="">
+                    <Col sm={4} lg={4}>
+                        {counter > 0 && answerListShow &&
                         
                             <Image  width='35' src={baseball}/>
+                        }
                     </Col>
-                    }
                 </Row>
             }
         </>
