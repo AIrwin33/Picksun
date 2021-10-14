@@ -7,11 +7,13 @@ import {connect} from "react-redux";
 import "./Contest.css";
 
 import Questions from './Questions.js';
-
+import { useAuth0,withAuthenticationRequired } from "@auth0/auth0-react";
 import avatar from '../assets/blue_avatar_200.png';
-
+import Loading from './util/Loading';
 
 const Contest = ({match}) => {
+    const { withAuthenticationRequired } = useAuth0();
+    
     const [contest, setContest] = useState([]);
     const [isloaded, setLoaded] = useState(false);
     const [home, setHomeTeam] = useState([]);
@@ -253,4 +255,6 @@ const Contest = ({match}) => {
     )
 }
 
-export default connect()(Contest);
+export default connect()(withAuthenticationRequired(Contest, {
+    onRedirecting: () => <Loading />,
+  }))

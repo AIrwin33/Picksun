@@ -4,12 +4,13 @@ import {Col, Row, Button, Image, Modal} from "react-bootstrap";
 import {v4 as uuidv4} from 'uuid';
 import "./Question.css";
 import info from '../assets/infoicon.png';
-
+import Loading from './util/Loading';
 import correctLogo from '../assets/correctIcon.png';
 import incorrectLogo from '../assets/incorrectIcon.png';
 import $ from 'jquery';
-
+import { useAuth0 ,withAuthenticationRequired} from "@auth0/auth0-react";
 const Question = (props) => {
+    const { withAuthenticationRequired } = useAuth0();
     const [partAnswer, setPartAnswer] = useState([]);
     const [quest, setQuest] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
@@ -327,4 +328,7 @@ const Question = (props) => {
     ) 
 }
 
-export default Question;
+
+export default withAuthenticationRequired(Question, {
+    onRedirecting: () => <Loading />,
+  });

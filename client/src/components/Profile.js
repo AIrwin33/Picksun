@@ -10,9 +10,9 @@ import {
     Form,
     Card
 } from "react-bootstrap";
-
+import { useAuth0 ,withAuthenticationRequired} from "@auth0/auth0-react";
 import avatar from '../assets/blue_avatar_200.png';
-
+import Loading from './util/Loading';
 
 import "./Profile.css";
 
@@ -23,7 +23,8 @@ const Profile = (props) => {
         favorite_sport: "",
         favorite_player: ""
     });
-
+    const { withAuthenticationRequired } = useAuth0();
+    
     const { favorite_team, favorite_sport, favorite_player } = profile;
 
     const onChange = e =>
@@ -173,4 +174,6 @@ const Profile = (props) => {
     )
 }
 
-export default Profile;
+export default withAuthenticationRequired(Profile, {
+    onRedirecting: () => <Loading />,
+  });

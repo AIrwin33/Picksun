@@ -5,11 +5,13 @@ import {
     Col,
     Button,
 } from "react-bootstrap";
-
+import Loading from './util/Loading';
 import "./Lobby.css";
-
+import { useAuth0 ,withAuthenticationRequired} from "@auth0/auth0-react";
 const Lobby = () => {
      //get contests
+     const { withAuthenticationRequired } = useAuth0();
+    
      const [contests, setContests] = useState([]);
      const getAllContests = async () => {
          try {
@@ -79,4 +81,7 @@ const Lobby = () => {
     
 }
 
-export default Lobby;
+
+export default withAuthenticationRequired(Lobby, {
+  onRedirecting: () => <Loading />,
+});

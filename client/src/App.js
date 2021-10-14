@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import {SocketContext, socket} from './socket';
-
+import Auth0Provider from "./auth0-provide";
 import './App.css';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -16,31 +16,31 @@ import Questions from './components/Questions';
 import TopPanel from './components/TopPanel';
 import Landing from './components/Landing';
 import backtotop from './assets/backtotop.png';
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
 
     const [isProfile, setIsProfile] = useState(false);
-
+    const { loginWithRedirect,isAuthenticated } = useAuth0();
     //check if the user is authenticated
-    const checkAuthenticated = async () => {
-        try {
-            const header = {
-                Accept: 'application/json',
-                'Content-type': 'application/json',
-                'jwt_token': localStorage.token,
-            }
-            const res = await fetch("/auth/verify", {
-                method: "POST",
-                headers: header
-            });
+    // const checkAuthenticated = async () => {
+    //     try {
+    //         const header = {
+    //             Accept: 'application/json',
+    //             'Content-type': 'application/json',
+    //             'jwt_token': localStorage.token,
+    //         }
+    //         const res = await fetch("/auth/verify", {
+    //             method: "POST",
+    //             headers: header
+    //         });
 
-            const parseRes = await res.json();
-            parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
-        } catch (err) {
-            console.error(err.message);
-        }
-    };
+    //         const parseRes = await res.json();
+    //         parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+    //     } catch (err) {
+    //         console.error(err.message);
+    //     }
+    // };
 
     const handleBackToTop = async () => {
         // snap the view back to the top of the page
@@ -50,11 +50,11 @@ function App() {
           });
     }
 
-    useEffect(() => {
-        checkAuthenticated();
-    }, []);
+    // useEffect(() => {
+    //     checkAuthenticated();
+    // }, []);
 
-    const [isAuthenticated, setIsAuthenticated] = useState(true);
+    // const [isAuthenticated, setIsAuthenticated] = useState(true);
 
     const Initval = {
         questions: []
@@ -74,7 +74,7 @@ function App() {
     }
 
     const setAuth = boolean => {
-        setIsAuthenticated(boolean);
+        // setIsAuthenticated(boolean);
     };
 
     return (
@@ -82,70 +82,74 @@ function App() {
             <SocketContext.Provider value={socket}>
                 <Fragment>
                     <Router>
-                        <div>
+                        <Auth0Provider>
+                            <div>
 
                             <div id="top">
                                 <TopPanel profile={isProfile}/>
                             </div>
 
                             <Switch>
-                                <Route path="/Login"
-                                       render={props =>
-                                           <Login {...props} setAuth={setAuth}/>
+                                {/* <Route path="/Login"
+                                       render={props => {loginWithRedirect();}
+                                        //    <Login {...props} setAuth={setAuth}/>
                                        }
-                                />
-                                <Route path="/Register"
-                                       render={props =>
-                                           <Register {...props} setAuth={setAuth}/>
+                                /> */}
+                                {/* <Route path="/Register"
+                                       render={props =>loginWithRedirect();
+                                        //    <Register {...props} setAuth={setAuth}/>
                                        }
-                                />
+                                /> */}
                                 <Route path="/Lobby"
-                                       render={props =>
-                                           isAuthenticated ? (
-                                               <Lobby {...props}  />
-                                           ) : (
-                                               <Redirect to="/Login"/>
-                                           )
+                                       render={props =>  <Lobby {...props}  />
+                                        //    isAuthenticated ? (
+                                        //        <Lobby {...props}  />
+                                        //    ) : (
+                                        //        <Redirect to="/Login"/>
+                                        //    )
                                        }
                                 />
                                 <Route path="/Contests"
-                                       render={props =>
-                                           isAuthenticated ? (
-                                               <Contests {...props}  />
-                                           ) : (
-                                               <Redirect to="/Login"/>
-                                           )
+                                       render={props =>  <Contests {...props}  />
+                                        //    isAuthenticated ? (
+                                        //        <Contests {...props}  />
+                                        //    ) : (
+                                        //        <Redirect to="/Login"/>
+                                        //    )
                                        }
                                 />
                                 <Route path="/Profile"
-                                       render={props =>
-                                           isAuthenticated ? (
-                                               <Profile {...props} setProfile={setProfile} setAuth={setAuth}/>
-                                           ) : (
-                                               <Redirect to="/Login"/>
-                                           )
+                                       render={props =>        <Profile {...props} setProfile={setProfile} setAuth={setAuth}/>
+                                        
+                                        //    isAuthenticated ? (
+                                        //        <Profile {...props} setProfile={setProfile} setAuth={setAuth}/>
+                                        //    ) : (
+                                        //        <Redirect to="/Login"/>
+                                        //    )
                                        }
                                 />
                                 <Route path="/Contest/:id"
-                                       render={props =>
-                                           isAuthenticated ? (
-                                               <Contest
-                                                   {...props}
-                                                   setAuth={setAuth}/>
-                                           ) : (
-                                               <Redirect to="/Login"/>
-                                           )
+                                       render={props => <Contest {...props} setAuth={setAuth}/>
+                                        //    isAuthenticated ? (
+                                        //        <Contest
+                                        //            {...props}
+                                        //            setAuth={setAuth}/>
+                                        //    ) : (
+                                        //        <Redirect to="/Login"/>
+                                        //    )
                                        }
                                 />
                                 <Route path="/Questions/:contestid"
-                                       render={props =>
-                                           isAuthenticated ? (
-                                               <Questions
-                                                   {...props}
-                                               />
-                                           ) : (
-                                               <Redirect to="/Login"/>
-                                           )
+                                       render={props => <Questions  {...props} />
+                                        //    isAuthenticated ? (
+                                        //        <Questions
+                                        //            {...props}
+                                        //        />
+                                        //    ) : (
+                                        //        <Redirect to="/Login"/>
+                                        //    )
+                                             
+                                           
                                        }
                                 />
                                 <Route path="/"
@@ -172,6 +176,7 @@ function App() {
                             </div>
 
                         </div>
+                        </Auth0Provider>
                     </Router>
                 </Fragment>
             </SocketContext.Provider>
