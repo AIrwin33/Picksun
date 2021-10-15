@@ -103,12 +103,12 @@ const Login = ({ setAuth }) => {
                 </Col>
             </Row>
             <Row>
-                <Col xs={3}>
+                <Col xs={2}>
                 </Col>
-                <Col xs={6} className="mt-3 mb-3 justify-content-center text-center">
+                <Col xs={8} className="mt-3 mb-3 justify-content-center text-center">
                     <Button className="btnRed mt-3 aptifer font20" onClick={registerRedirect}>Sign Up</Button> <Button className="btnRed mt-3 aptifer font20" onClick={forgotPassword}>Forgot Password</Button>
                 </Col>
-                <Col xs={3}>
+                <Col xs={2}>
                 </Col>
             </Row>
         </Container>
