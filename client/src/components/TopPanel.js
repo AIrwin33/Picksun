@@ -6,9 +6,9 @@ import $ from 'jquery';
 import Loading from './util/Loading';
 import { useAuth0 ,withAuthenticationRequired} from "@auth0/auth0-react";
 
-const TopPanel = async(props) => {
+const TopPanel = (props) => {
   // const { getAccessTokenSilently ,isAuthenticated} = useAuth0();
-    const [name, setName] = useState(props.name);
+    // const [name, setName] = useState(props.name);
     // const [isAuthenticated, setIsAuthenticated] = useState(false);
     // const accessToken = await getAccessTokenSilently();
     // const getProfile = async () => {
@@ -30,10 +30,10 @@ const TopPanel = async(props) => {
       // if(isAuthenticated){
       //   getProfile();
       // }
-        if(props.profile){
-          $('.TopPanelCont').addClass('profile');
-          $('.menu-toggler__line').addClass('white');
-        }
+        // if(props.profile){
+        //   $('.TopPanelCont').addClass('profile');
+        //   $('.menu-toggler__line').addClass('white');
+        // }
 
     }, [props]);
         
