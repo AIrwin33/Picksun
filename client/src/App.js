@@ -79,7 +79,7 @@ useEffect(async()=>{
         const parseRes = await res.json();
     }
 
-}
+},[])
    
     const Initval = {
         questions: []
