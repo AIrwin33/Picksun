@@ -18,7 +18,7 @@ import "./Profile.css";
 const Profile = (props) => {
     const { getAccessTokenSilently } = useAuth0();
     const { logout } = useAuth0();
-    alert('syes')
+    alert(JSON.stringify(props.user))
     const [profile, setProfile] = useState({
         favorite_team: "",
         favorite_sport: "",

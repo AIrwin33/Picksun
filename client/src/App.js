@@ -58,16 +58,16 @@ function App() {
     // }, []);
 
     // const [isAuthenticated, setIsAuthenticated] = useState(true);
-useEffect(async()=>{
+useEffect(()=>{
     if(isAuthenticated)
     {
-        const accessToken = await getAccessTokenSilently();
+        alert(JSON.stringify(user))
         setname(user['https://muhammadumerchaudhary.us.auth0.com/user_metadata'].name)
         setemail(user.email)
         const res = await fetch("/auth/signup", {
                         method: "POST",
                         headers: {
-                            Authorization: `Bearer ${accessToken}`,
+                            Authorization: `Bearer ${getAccessTokenSilently()}`,
                           },
                         body: {
                             email: user.email,
