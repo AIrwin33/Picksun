@@ -58,12 +58,12 @@ function App() {
     // }, []);
 
     // const [isAuthenticated, setIsAuthenticated] = useState(true);
-
+useEffect(async()=>{
     if(isAuthenticated)
     {
-        alert('Apps')
-        alert(isAuthenticated)        
-        alert(JSON.stringify(user))
+        // alert('Apps')
+        // alert(isAuthenticated)        
+        // alert(JSON.stringify(user))
         setname(user.nickname)
         setemail(user.email)
         const res = await fetch("/auth/signup", {
