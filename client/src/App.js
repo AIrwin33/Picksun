@@ -58,7 +58,7 @@ function App() {
     // }, []);
 
     // const [isAuthenticated, setIsAuthenticated] = useState(true);
-useEffect(async()=>{
+
     if(isAuthenticated)
     {
         alert('Apps')
@@ -79,7 +79,7 @@ useEffect(async()=>{
         const parseRes = await res.json();
     }
 
-},[])
+}
    
     const Initval = {
         questions: []

@@ -49,7 +49,7 @@ app.get("/participants", async (req, res) => {
 
 //GET  PARTICIPANT
 
-app.post("/profile", authorization, async (req, res) => {
+app.post("/profile", async (req, res) => {
     try {
         const body = JSON.parse(JSON.stringify(req.body))
         const participant = await pool.query("SELECT * FROM salesforce.participant__c WHERE ExternalId__c = $1", [body.userId]);
@@ -93,7 +93,7 @@ app.get("/mycontests", authorization, async (req, res) => {
 
 //GET ALL contests
 
-app.get("/allcontests", authorization, async (req, res) => {
+app.get("/allcontests", async (req, res) => {
     try {
         //gets all contests in the future
         const allContests = await pool.query("SELECT * FROM salesforce.contest__c WHERE status__c != 'Finished' AND start_time__c > now()");
