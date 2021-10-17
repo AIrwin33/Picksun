@@ -18,7 +18,7 @@ import "./Profile.css";
 const Profile =async (props) => {
     const { getAccessTokenSilently } = useAuth0();
     const { logout } = useAuth0();
-    
+    alert('syes')
     const [profile, setProfile] = useState({
         favorite_team: "",
         favorite_sport: "",
@@ -34,59 +34,60 @@ const Profile =async (props) => {
     const onInvite = async e => {
         window.location.href = "mailto:username@example.com?subject=Join me on PickFun";
     }
-    const accessToken = await getAccessTokenSilently();
-    const getProfile = async () => {
-        alert('syes')
-      try {
-        const res = await fetch("/profile", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body:{userId:props.userId},
-        });
-        const parseData = await res.json();
-        setProfile(parseData);
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
 
-    // const logout = async e => {
-    //     e.preventDefault();
-    //     try {
-    //     localStorage.removeItem("token");
-    //     props.setAuth(false);
-    //     window.location = '/Lobby';
-    //     } catch (err) {
+    // const accessToken = await getAccessTokenSilently();
+    // const getProfile = async () => {
+    
+    //   try {
+    //     const res = await fetch("/profile", {
+    //       method: "POST",
+    //       headers: {
+    //         Authorization: `Bearer ${accessToken}`,
+    //       },
+    //       body:{userId:props.userId},
+    //     });
+    //     const parseData = await res.json();
+    //     setProfile(parseData);
+    //   } catch (err) {
     //     console.error(err.message);
-    //     }
+    //   }
+    // };
+
+    // // const logout = async e => {
+    // //     e.preventDefault();
+    // //     try {
+    // //     localStorage.removeItem("token");
+    // //     props.setAuth(false);
+    // //     window.location = '/Lobby';
+    // //     } catch (err) {
+    // //     console.error(err.message);
+    // //     }
+    // // }
+
+    // const onUpdateProfile = async id => {
+    //     try {
+    //         const body = {favorite_team, favorite_sport, favorite_player };
+    //         console.log(body);
+
+    //         const res = await fetch("/participant/" + id, {
+    //             method: "PUT",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify(body)
+    //           }
+    //         );
+      
+    //         const parseData = await res.json();
+    //         setProfile(parseData);
+    //       } catch (err) {
+    //         console.error(err.message);
+    //       }
     // }
 
-    const onUpdateProfile = async id => {
-        try {
-            const body = {favorite_team, favorite_sport, favorite_player };
-            console.log(body);
-
-            const res = await fetch("/participant/" + id, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body)
-              }
-            );
-      
-            const parseData = await res.json();
-            setProfile(parseData);
-          } catch (err) {
-            console.error(err.message);
-          }
-    }
-
-    useEffect(() => {
-        getProfile();
-        //set profile to true for changing background color
-        props.setProfile(true);
-    }, [props]);
+    // useEffect(() => {
+    //     getProfile();
+    //     //set profile to true for changing background color
+    //     props.setProfile(true);
+    // }, [props]);
 
     
     return (
@@ -154,7 +155,7 @@ const Profile =async (props) => {
                 <Tab className="profileTab ml-2 mr-2" eventKey="preferences" title="Preferences">
                     <Card>
                         <Card.Header className="text-center">Set Preferences</Card.Header>
-                        <Form onSubmit={() => onUpdateProfile(profile.participant_id)} className="m-3">
+                        <Form  className="m-3">
                             <Form.Group controlId="formBasicTeam">
                                 <Form.Label>Favorite Team</Form.Label>
                                 <Form.Control type="text" name="favorite_team" placeholder="Chicago Bulls"  onChange={e => onChange(e)}/>   
@@ -180,6 +181,7 @@ const Profile =async (props) => {
     )
 }
 
-export default withAuthenticationRequired(Profile, {
-    onRedirecting: () => <Loading />,
-  });
+export default Profile;
+// export default withAuthenticationRequired(Profile, {
+//     onRedirecting: () => <Loading />,
+//   });
