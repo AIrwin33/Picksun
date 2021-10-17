@@ -9,14 +9,17 @@ import correctLogo from '../assets/correctIcon.png';
 import incorrectLogo from '../assets/incorrectIcon.png';
 import $ from 'jquery';
 import { useAuth0 ,withAuthenticationRequired} from "@auth0/auth0-react";
-const Question = (props) => {
-    const { withAuthenticationRequired } = useAuth0();
+const Question = async(props) => {
+    const { getAccessTokenSilently } = useAuth0();
     const [partAnswer, setPartAnswer] = useState([]);
     const [quest, setQuest] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
     const [allpartanswers, setAllpartanswers] = useState([]);
-
+    const accessToken = await getAccessTokenSilently({
+        audience: `/profile`,
+        scope: "read:profile",
+      });
 
     const handleRadioChange = async (event) => {
         var tgt = $(event.target);
@@ -71,7 +74,7 @@ const Question = (props) => {
             const res = await fetch(`/existingpartanswernoquestion`, {
                 method: "POST",
                 headers: {
-                    jwt_token: localStorage.token,
+                    jwt_token: accessToken,
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify(body)
@@ -95,7 +98,7 @@ const Question = (props) => {
                 `/existingpartanswer/` + partsfid + `/question/` + questid,
                 {
                     method: "GET",
-                    headers: {jwt_token: localStorage.token}
+                    headers: {jwt_token: accessToken}
                 }
             );
 
@@ -122,7 +125,7 @@ const Question = (props) => {
             const res = await fetch(`/countsubsegment`, {
                 method: "POST",
                 headers: {
-                    jwt_token: localStorage.token,
+                    jwt_token: accessToken,
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify(body)

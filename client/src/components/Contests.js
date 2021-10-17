@@ -8,11 +8,12 @@ import {
 import moment from 'moment';
 
 import "./Contests.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
-
-const Contests = () => {
+const Contests = async() => {
     //get contests
+    const { getAccessTokenSilently } = useAuth0();
     const [contests, setContests] = useState([]);
 
     const [time, setTime] = useState({ 
@@ -22,13 +23,17 @@ const Contests = () => {
         twoDays: moment().add(2, 'day').endOf('day').toDate().toISOString()
     });
 
+    const accessToken = await getAccessTokenSilently({
+        audience: `/profile`,
+        scope: "read:profile",
+      });
 
     const getMyContests = async () => {
         try {
             console.log('getting my contests');
             const res = await fetch("/mycontests", {
               method: "GET",
-              headers: { jwt_token: localStorage.token }
+              headers: { jwt_token: accessToken }
             });
       
             const parseData = await res.json();

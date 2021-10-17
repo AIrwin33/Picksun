@@ -7,17 +7,22 @@ import {
 } from "react-bootstrap";
 import Loading from './util/Loading';
 import "./Lobby.css";
-import { useAuth0 ,withAuthenticationRequired} from "@auth0/auth0-react";
-const Lobby = () => {
+import { useAuth0 ,withAuthenticationRequired } from "@auth0/auth0-react";
+
+const Lobby = async() => {
      //get contests
-     const { withAuthenticationRequired } = useAuth0();
-    
+     const { getAccessTokenSilently } = useAuth0();
+
+     const accessToken = await getAccessTokenSilently({
+      audience: `/profile`,
+      scope: "read:profile",
+    });
      const [contests, setContests] = useState([]);
      const getAllContests = async () => {
          try {
              const res = await fetch("/allcontests", {
                method: "GET",
-               headers: { jwt_token: localStorage.token }
+               headers: { jwt_token: accessToken }
              });
        
              const parseData = await res.json();
@@ -38,7 +43,7 @@ const Lobby = () => {
               method: "POST",
               headers: {
                 "Content-type": "application/json",
-                jwt_token: localStorage.token
+                jwt_token: accessToken
               },
               body: JSON.stringify(body)
             }

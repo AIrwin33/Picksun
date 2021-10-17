@@ -1,30 +1,28 @@
 import React, { useEffect, useState} from 'react';
-import {
-    Navbar,
-} from "react-bootstrap";
-
-
-
+import {Navbar} from "react-bootstrap";
 import "./TopPanel.css";
-
 import headerIcon from "../assets/pickfun.png";
 import $ from 'jquery';
+import Loading from './util/Loading';
+import { useAuth0 ,withAuthenticationRequired} from "@auth0/auth0-react";
 
-
-const TopPanel = (props) => {
-
+const TopPanel = async(props) => {
+  const { getAccessTokenSilently ,isAuthenticated} = useAuth0();
     const [name, setName] = useState("");
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
+    // const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const accessToken = await getAccessTokenSilently({
+      audience: `/profile`,
+      scope: "read:profile",
+    });
     const getProfile = async () => {
       try {
         const res = await fetch("/profile", {
           method: "POST",
-          headers: { jwt_token: localStorage.token }
+          headers: { jwt_token: accessToken }
         });
   
         const parseData = await res.json();
-        setIsAuthenticated(true);
+        // setIsAuthenticated(true);
         setName(parseData.name);
       } catch (err) {
         console.error(err.message);
@@ -66,4 +64,6 @@ const TopPanel = (props) => {
     )
 }
 
-export default TopPanel;
+export default withAuthenticationRequired(TopPanel, {
+  onRedirecting: () => <Loading />,
+})

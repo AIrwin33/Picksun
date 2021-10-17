@@ -11,8 +11,8 @@ import { useAuth0,withAuthenticationRequired } from "@auth0/auth0-react";
 import avatar from '../assets/blue_avatar_200.png';
 import Loading from './util/Loading';
 
-const Contest = ({match}) => {
-    const { withAuthenticationRequired } = useAuth0();
+const Contest = async({match}) => {
+    const { getAccessTokenSilently } = useAuth0();
     
     const [contest, setContest] = useState([]);
     const [isloaded, setLoaded] = useState(false);
@@ -25,11 +25,15 @@ const Contest = ({match}) => {
     const [newQuestion, setNewQuestion] = useState()
     const [newCorrectQuestion, setNewCorrectQuestion] = useState()
     const socket = React.useContext(SocketContext)
+    const accessToken = await getAccessTokenSilently({
+        audience: `/profile`,
+        scope: "read:contest",
+      });
     const getContest = async () => {
         try {
             const res = await fetch(`/contestdetail/${match.params.id}`, {
                 method: "GET",
-                headers: {jwt_token: localStorage.token}
+                headers: {jwt_token:accessToken}
             });
 
             const parseData = await res.json();
@@ -45,7 +49,7 @@ const Contest = ({match}) => {
         try {
             const res = await fetch(`/event/` + contestRec.event__c, {
                 method: "GET",
-                headers: {jwt_token: localStorage.token}
+                headers: {jwt_token: accessToken}
             });
 
             const parseData = await res.json();
@@ -70,7 +74,7 @@ const Contest = ({match}) => {
         try {
             const res = await fetch(`/contestparticipations/` + contestRec.sfid, {
                 method: "GET",
-                headers: {jwt_token: localStorage.token}
+                headers: {jwt_token: accessToken}
             });
 
             const parseData = await res.json();
@@ -95,7 +99,7 @@ const Contest = ({match}) => {
         try {
             const res = await fetch(`/participationbycontest/` + contestRec.sfid, {
                 method: "GET",
-                headers: {jwt_token: localStorage.token}
+                headers: {jwt_token: accessToken}
             });
 
             const parseData = await res.json();

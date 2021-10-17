@@ -15,10 +15,12 @@ import {SocketContext} from '../socket';
 import Timer from 'react-compound-timer';
 
 import $ from 'jquery';
+import Loading from './util/Loading';
+import { useAuth0 ,withAuthenticationRequired} from "@auth0/auth0-react";
 
+const Questions = async (props) => {
 
-
-const Questions = (props) => {
+    const { getAccessTokenSilently } = useAuth0();
     const [questions, setQuestions] = useState([]);
     const [allquestions, setAllQuestions] = useState([]);
     const [index, setIndex] = useState(0);
@@ -55,13 +57,17 @@ const Questions = (props) => {
     const tiRef = useRef(null);
     const [newQuestion, setNewQuestion] = useState()
     const [newCorrectQuestion, setNewCorrectQuestion] = useState()
+    const accessToken = await getAccessTokenSilently({
+        audience: `/profile`,
+        scope: "read:profile",
+      });
 
     const getAllQuestions = async () => {
         try {
 
             const res = await fetch(`/allquestions/${props.contestid}`, {
                 method: "GET",
-                headers: {jwt_token: localStorage.token}
+                headers: {jwt_token: accessToken}
             });
 
             const parseData = await res.json();
@@ -77,7 +83,7 @@ const Questions = (props) => {
 
             const res = await fetch(`/questions/${props.contestid}`, {
                 method: "GET",
-                headers: {jwt_token: localStorage.token}
+                headers: {jwt_token: accessToken}
             });
 
             const parseData = await res.json();
@@ -95,7 +101,7 @@ const Questions = (props) => {
 
                 const res = await fetch(`/contestdetail/` + props.contestid, {
                     method: "GET",
-                    headers: {jwt_token: localStorage.token}
+                    headers: {jwt_token: accessToken}
                 });
                 const parseContestData = await res.json();
                 openedtimerval = parseContestData.opened_timer__c;
@@ -217,7 +223,7 @@ const Questions = (props) => {
     const checkFinished = async () => {
         const res = await fetch(`/contestdetail/` + props.contestid, {
             method: "GET",
-            headers: {jwt_token: localStorage.token}
+            headers: {jwt_token: accessToken}
         });
         const parseContestData = await res.json();
         console.log(JSON.stringify(parseContestData));
@@ -248,7 +254,7 @@ const Questions = (props) => {
                 {
                     method: "GET",
                     headers: {
-                        jwt_token: localStorage.token,
+                        jwt_token: accessToken,
                         "Content-type": "application/json"
                     }
                 }
@@ -309,7 +315,7 @@ const Questions = (props) => {
                 {
                     method: "POST",
                     headers: {
-                        jwt_token: localStorage.token,
+                        jwt_token: accessToken,
                         "Content-type": "application/json"
                     },
                     body: JSON.stringify(body)
@@ -348,7 +354,7 @@ const Questions = (props) => {
             const res = await fetch(`/disableQuestions/`, {
                 method: "POST",
                 headers: {
-                    jwt_token: localStorage.token,
+                    jwt_token: accessToken,
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify(body)
@@ -380,7 +386,7 @@ const Questions = (props) => {
             const res = await fetch(`/submitpartanswers`, {
                 method: "POST",
                 headers: {
-                    jwt_token: localStorage.token,
+                    jwt_token: accessToken,
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify(body)
@@ -786,4 +792,6 @@ const Questions = (props) => {
     )
 }
 
-export default connect()(Questions);
+export default connect()( withAuthenticationRequired(Questions, {
+    onRedirecting: () => <Loading />,
+  }));

@@ -10,20 +10,21 @@ import {
     Form,
     Card
 } from "react-bootstrap";
-import { useAuth0 ,withAuthenticationRequired} from "@auth0/auth0-react";
+import { useAuth0 ,withAuthenticationRequired } from "@auth0/auth0-react";
 import avatar from '../assets/blue_avatar_200.png';
 import Loading from './util/Loading';
-
 import "./Profile.css";
 
-const Profile = (props) => {
-
+const Profile =async (props) => {
+    const { getAccessTokenSilently } = useAuth0();
+    const { logout } = useAuth0();
+    
     const [profile, setProfile] = useState({
         favorite_team: "",
         favorite_sport: "",
         favorite_player: ""
     });
-    const { withAuthenticationRequired } = useAuth0();
+
     
     const { favorite_team, favorite_sport, favorite_player } = profile;
 
@@ -33,12 +34,15 @@ const Profile = (props) => {
     const onInvite = async e => {
         window.location.href = "mailto:username@example.com?subject=Join me on PickFun";
     }
-
+    const accessToken = await getAccessTokenSilently({
+        audience: `/profile`,
+        scope: "read:profile",
+      });
     const getProfile = async () => {
       try {
         const res = await fetch("/profile", {
           method: "POST",
-          headers: { jwt_token: localStorage.token }
+          headers: { jwt_token:accessToken }
         });
         const parseData = await res.json();
         setProfile(parseData);
@@ -47,16 +51,16 @@ const Profile = (props) => {
       }
     };
 
-    const logout = async e => {
-        e.preventDefault();
-        try {
-        localStorage.removeItem("token");
-        props.setAuth(false);
-        window.location = '/Lobby';
-        } catch (err) {
-        console.error(err.message);
-        }
-    }
+    // const logout = async e => {
+    //     e.preventDefault();
+    //     try {
+    //     localStorage.removeItem("token");
+    //     props.setAuth(false);
+    //     window.location = '/Lobby';
+    //     } catch (err) {
+    //     console.error(err.message);
+    //     }
+    // }
 
     const onUpdateProfile = async id => {
         try {
@@ -99,7 +103,8 @@ const Profile = (props) => {
                     {profile.name}
                 </Row>
                 <Row className="justify-content-center">
-                    <Button className="logoutBtn" onClick={e => logout(e)}>Log Out</Button>
+                    {/* <Button className="logoutBtn" onClick={e => logout(e)}>Log Out</Button> */}
+                    <Button className="logoutBtn" onClick={e =>logout({ returnTo: window.location.origin })}>Log Out</Button>
                 </Row>
                 
                 </Col>
