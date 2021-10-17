@@ -36,6 +36,7 @@ const Profile =async (props) => {
     }
     const accessToken = await getAccessTokenSilently();
     const getProfile = async () => {
+        alert('syes')
       try {
         const res = await fetch("/profile", {
           method: "POST",

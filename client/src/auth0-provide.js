@@ -5,7 +5,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 const Auth0ProviderWithHistory = ({ children }) => {
   const domain = 'muhammadumerchaudhary.us.auth0.com';
   const clientId = 'XR8RSl1GjFGTycMyBjuiLfkXAe1wCs7p';
-  const audience='https://pickfun-auth'
+  // const audience='https://pickfun-auth'
   // alert(domain);
   const history = useHistory();
 
@@ -20,7 +20,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
       clientId={clientId}
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
-      audience={audience}
+      // audience={audience}
 
     >
       {children}
