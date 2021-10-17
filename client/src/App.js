@@ -58,7 +58,7 @@ function App() {
     // }, []);
 
     // const [isAuthenticated, setIsAuthenticated] = useState(true);
-useEffect(()=>{
+useEffect(async()=>{
     if(isAuthenticated)
     {
         alert(JSON.stringify(user))
