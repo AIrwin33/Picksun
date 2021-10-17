@@ -15,7 +15,7 @@ import avatar from '../assets/blue_avatar_200.png';
 import Loading from './util/Loading';
 import "./Profile.css";
 
-const Profile =async (props) => {
+const Profile = (props) => {
     const { getAccessTokenSilently } = useAuth0();
     const { logout } = useAuth0();
     alert('syes')
