@@ -16,7 +16,7 @@ import Loading from './util/Loading';
 import "./Profile.css";
 
 const Profile = (props) => {
-    const { getAccessTokenSilently,user } = useAuth0();
+    const { getAccessTokenSilently,user ,isAuthenticated} = useAuth0();
     const { logout } = useAuth0();
     alert(JSON.stringify(user))
     alert(isAuthenticated)    
