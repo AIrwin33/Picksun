@@ -34,60 +34,60 @@ const Profile = (props) => {
     const onInvite = async e => {
         window.location.href = "mailto:username@example.com?subject=Join me on PickFun";
     }
-
-    // const accessToken = await getAccessTokenSilently();
-    // const getProfile = async () => {
     
-    //   try {
-    //     const res = await fetch("/profile", {
-    //       method: "POST",
-    //       headers: {
-    //         Authorization: `Bearer ${accessToken}`,
-    //       },
-    //       body:{userId:props.userId},
-    //     });
-    //     const parseData = await res.json();
-    //     setProfile(parseData);
-    //   } catch (err) {
-    //     console.error(err.message);
-    //   }
-    // };
+    // const accessToken = getAccessTokenSilently();
+    const getProfile = async () => {
+    
+      try {
+        const res = await fetch("/profile", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${getAccessTokenSilently()}`,
+          },
+          body:{userId:props.userId},
+        });
+        const parseData = await res.json();
+        setProfile(parseData);
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
 
-    // // const logout = async e => {
-    // //     e.preventDefault();
-    // //     try {
-    // //     localStorage.removeItem("token");
-    // //     props.setAuth(false);
-    // //     window.location = '/Lobby';
-    // //     } catch (err) {
-    // //     console.error(err.message);
-    // //     }
-    // // }
-
-    // const onUpdateProfile = async id => {
+    // const logout = async e => {
+    //     e.preventDefault();
     //     try {
-    //         const body = {favorite_team, favorite_sport, favorite_player };
-    //         console.log(body);
-
-    //         const res = await fetch("/participant/" + id, {
-    //             method: "PUT",
-    //             headers: { "Content-Type": "application/json" },
-    //             body: JSON.stringify(body)
-    //           }
-    //         );
-      
-    //         const parseData = await res.json();
-    //         setProfile(parseData);
-    //       } catch (err) {
-    //         console.error(err.message);
-    //       }
+    //     localStorage.removeItem("token");
+    //     props.setAuth(false);
+    //     window.location = '/Lobby';
+    //     } catch (err) {
+    //     console.error(err.message);
+    //     }
     // }
 
-    // useEffect(() => {
-    //     getProfile();
-    //     //set profile to true for changing background color
-    //     props.setProfile(true);
-    // }, [props]);
+    const onUpdateProfile = async id => {
+        try {
+            const body = {favorite_team, favorite_sport, favorite_player };
+            console.log(body);
+
+            const res = await fetch("/participant/" + id, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+              }
+            );
+      
+            const parseData = await res.json();
+            setProfile(parseData);
+          } catch (err) {
+            console.error(err.message);
+          }
+    }
+
+    useEffect(() => {
+        getProfile();
+        //set profile to true for changing background color
+        props.setProfile(true);
+    }, [props]);
 
     
     return (
@@ -155,7 +155,7 @@ const Profile = (props) => {
                 <Tab className="profileTab ml-2 mr-2" eventKey="preferences" title="Preferences">
                     <Card>
                         <Card.Header className="text-center">Set Preferences</Card.Header>
-                        <Form  className="m-3">
+                        <Form onSubmit={() => onUpdateProfile(profile.participant_id)} className="m-3">
                             <Form.Group controlId="formBasicTeam">
                                 <Form.Label>Favorite Team</Form.Label>
                                 <Form.Control type="text" name="favorite_team" placeholder="Chicago Bulls"  onChange={e => onChange(e)}/>   
@@ -181,7 +181,6 @@ const Profile = (props) => {
     )
 }
 
-export default Profile;
-// export default withAuthenticationRequired(Profile, {
-//     onRedirecting: () => <Loading />,
-//   });
+export default withAuthenticationRequired(Profile, {
+    onRedirecting: () => <Loading />,
+  });
