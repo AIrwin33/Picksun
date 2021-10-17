@@ -61,6 +61,7 @@ function App() {
 useEffect(async()=>{
     if(isAuthenticated)
     {
+        alert(isAuthenticated)        
         alert(JSON.stringify(user))
         setname(user['https://muhammadumerchaudhary.us.auth0.com/user_metadata'].name)
         setemail(user.email)
