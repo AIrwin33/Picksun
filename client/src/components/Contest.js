@@ -25,13 +25,12 @@ const Contest = async({match,userId}) => {
     const [newQuestion, setNewQuestion] = useState()
     const [newCorrectQuestion, setNewCorrectQuestion] = useState()
     const socket = React.useContext(SocketContext)
-    const accessToken = await getAccessTokenSilently();
     const getContest = async () => {
         try {
             const res = await fetch(`/contestdetail/${match.params.id}`, {
                 method: "GET",
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${getAccessTokenSilently()}`,
                   },
             });
 
@@ -49,7 +48,7 @@ const Contest = async({match,userId}) => {
             const res = await fetch(`/event/` + contestRec.event__c, {
                 method: "GET",
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${getAccessTokenSilently()}`,
                   },
             });
 
@@ -76,7 +75,7 @@ const Contest = async({match,userId}) => {
             const res = await fetch(`/contestparticipations/` + contestRec.sfid, {
                 method: "GET",
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${getAccessTokenSilently()}`,
                   },
             });
 
@@ -103,7 +102,7 @@ const Contest = async({match,userId}) => {
             const res = await fetch(`/participationbycontest/` + contestRec.sfid, {
                 method: "GET",
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${getAccessTokenSilently()}`,
                   },
                   body:{userId:userId}
             });

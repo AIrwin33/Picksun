@@ -9,18 +9,18 @@ import Loading from './util/Loading';
 import "./Lobby.css";
 import { useAuth0 ,withAuthenticationRequired } from "@auth0/auth0-react";
 
-const Lobby = async({userId}) => {
+const Lobby = ({userId}) => {
      //get contests
      const { getAccessTokenSilently } = useAuth0();
 
-     const accessToken = await getAccessTokenSilently();
+
      const [contests, setContests] = useState([]);
      const getAllContests = async () => {
          try {
              const res = await fetch("/allcontests", {
                method: "GET",
                headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${getAccessTokenSilently()}`,
               },
              });
        
@@ -41,7 +41,7 @@ const Lobby = async({userId}) => {
             {
               method: "POST",
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${getAccessTokenSilently()}`,
                 "Content-type": "application/json",
                },
               body: JSON.stringify(body)

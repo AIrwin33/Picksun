@@ -11,7 +11,7 @@ import "./Contests.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-const Contests = async({userId}) => {
+const Contests = ({userId}) => {
     //get contests
     const { getAccessTokenSilently } = useAuth0();
     const [contests, setContests] = useState([]);
@@ -23,7 +23,7 @@ const Contests = async({userId}) => {
         twoDays: moment().add(2, 'day').endOf('day').toDate().toISOString()
     });
 
-    const accessToken = await getAccessTokenSilently();
+
 
     const getMyContests = async () => {
         try {
@@ -31,7 +31,7 @@ const Contests = async({userId}) => {
             const res = await fetch("/mycontests", {
               method: "GET",
               headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${getAccessTokenSilently()}`,
               },
               body:{userId:userId},
             });

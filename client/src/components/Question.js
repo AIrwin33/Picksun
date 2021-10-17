@@ -9,14 +9,14 @@ import correctLogo from '../assets/correctIcon.png';
 import incorrectLogo from '../assets/incorrectIcon.png';
 import $ from 'jquery';
 import { useAuth0 ,withAuthenticationRequired} from "@auth0/auth0-react";
-const Question = async(props) => {
+const Question = (props) => {
     const { getAccessTokenSilently } = useAuth0();
     const [partAnswer, setPartAnswer] = useState([]);
     const [quest, setQuest] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
     const [allpartanswers, setAllpartanswers] = useState([]);
-    const accessToken = await getAccessTokenSilently();
+    
 
     const handleRadioChange = async (event) => {
         var tgt = $(event.target);
@@ -71,7 +71,7 @@ const Question = async(props) => {
             const res = await fetch(`/existingpartanswernoquestion`, {
                 method: "POST",
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${getAccessTokenSilently()}`,
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify(body)
@@ -96,7 +96,7 @@ const Question = async(props) => {
                 {
                     method: "GET",
                     headers: {
-                        Authorization: `Bearer ${accessToken}`,
+                        Authorization: `Bearer ${getAccessTokenSilently()}`,
                       },
                 }
             );
@@ -124,7 +124,7 @@ const Question = async(props) => {
             const res = await fetch(`/countsubsegment`, {
                 method: "POST",
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${getAccessTokenSilently()}`,
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify(body)

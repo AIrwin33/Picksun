@@ -18,7 +18,7 @@ import $ from 'jquery';
 import Loading from './util/Loading';
 import { useAuth0 ,withAuthenticationRequired} from "@auth0/auth0-react";
 
-const Questions = async (props) => {
+const Questions = (props) => {
 
     const { getAccessTokenSilently } = useAuth0();
     const [questions, setQuestions] = useState([]);
@@ -57,7 +57,7 @@ const Questions = async (props) => {
     const tiRef = useRef(null);
     const [newQuestion, setNewQuestion] = useState()
     const [newCorrectQuestion, setNewCorrectQuestion] = useState()
-    const accessToken = await getAccessTokenSilently();
+    
 
     const getAllQuestions = async () => {
         try {
@@ -65,7 +65,7 @@ const Questions = async (props) => {
             const res = await fetch(`/allquestions/${props.contestid}`, {
                 method: "GET",
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${getAccessTokenSilently()}`,
                   },
             });
 
@@ -83,7 +83,7 @@ const Questions = async (props) => {
             const res = await fetch(`/questions/${props.contestid}`, {
                 method: "GET",
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${getAccessTokenSilently()}`,
                   },
             });
 
@@ -103,7 +103,7 @@ const Questions = async (props) => {
                 const res = await fetch(`/contestdetail/` + props.contestid, {
                     method: "GET",
                     headers: {
-                        Authorization: `Bearer ${accessToken}`,
+                        Authorization: `Bearer ${getAccessTokenSilently()}`,
                       },
                 });
                 const parseContestData = await res.json();
@@ -227,7 +227,7 @@ const Questions = async (props) => {
         const res = await fetch(`/contestdetail/` + props.contestid, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${getAccessTokenSilently()}`,
               },
         });
         const parseContestData = await res.json();
@@ -259,7 +259,7 @@ const Questions = async (props) => {
                 {
                     method: "GET",
                     headers: {
-                        Authorization: `Bearer ${accessToken}`,
+                        Authorization: `Bearer ${getAccessTokenSilently()}`,
                         "Content-type": "application/json"
                     }
                 }
@@ -320,7 +320,7 @@ const Questions = async (props) => {
                 {
                     method: "POST",
                     headers: {
-                        Authorization: `Bearer ${accessToken}`,
+                        Authorization: `Bearer ${getAccessTokenSilently()}`,
                         "Content-type": "application/json"
                     },
                     body: JSON.stringify(body)
@@ -359,7 +359,7 @@ const Questions = async (props) => {
             const res = await fetch(`/disableQuestions/`, {
                 method: "POST",
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${getAccessTokenSilently()}`,
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify(body)
@@ -391,7 +391,7 @@ const Questions = async (props) => {
             const res = await fetch(`/submitpartanswers`, {
                 method: "POST",
                 headers: {
-                    Authorization: `Bearer ${accessToken}`,
+                    Authorization: `Bearer ${getAccessTokenSilently()}`,
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify(body)
