@@ -7,29 +7,29 @@ import Loading from './util/Loading';
 import { useAuth0 ,withAuthenticationRequired} from "@auth0/auth0-react";
 
 const TopPanel = async(props) => {
-  const { getAccessTokenSilently ,isAuthenticated} = useAuth0();
-    const [name, setName] = useState("");
+  // const { getAccessTokenSilently ,isAuthenticated} = useAuth0();
+    const [name, setName] = useState(props.name);
     // const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const accessToken = await getAccessTokenSilently();
-    const getProfile = async () => {
-      try {
-        const res = await fetch("/profile", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+    // const accessToken = await getAccessTokenSilently();
+    // const getProfile = async () => {
+    //   try {
+    //     const res = await fetch("/profile", {
+    //       method: "POST",
+    //       headers: { jwt_token: accessToken }
+    //     });
   
-        const parseData = await res.json();
-        // setIsAuthenticated(true);
-        setName(parseData.name);
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
+    //     const parseData = await res.json();
+    //     // setIsAuthenticated(true);
+    //     setName(parseData.name);
+    //   } catch (err) {
+    //     console.error(err.message);
+    //   }
+    // };
 
     useEffect(() => {
-        getProfile();
+      // if(isAuthenticated){
+      //   getProfile();
+      // }
         if(props.profile){
           $('.TopPanelCont').addClass('profile');
           $('.menu-toggler__line').addClass('white');
@@ -63,6 +63,4 @@ const TopPanel = async(props) => {
     )
 }
 
-export default withAuthenticationRequired(TopPanel, {
-  onRedirecting: () => <Loading />,
-})
+export default TopPanel;

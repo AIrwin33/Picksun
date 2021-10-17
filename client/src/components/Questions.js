@@ -314,7 +314,7 @@ const Questions = async (props) => {
         try {
             const contestid = props.contest.sfid;
             const partsfid = props.partsfid;
-            const body = {contestid, partsfid};
+            const body = {contestid, partsfid,userId:props.userId};
             const response = await fetch(
                 "/contestwon",
                 {

@@ -42,6 +42,7 @@ const Profile =async (props) => {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
+          body:{userId:props.userId},
         });
         const parseData = await res.json();
         setProfile(parseData);

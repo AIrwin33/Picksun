@@ -9,7 +9,7 @@ import Loading from './util/Loading';
 import "./Lobby.css";
 import { useAuth0 ,withAuthenticationRequired } from "@auth0/auth0-react";
 
-const Lobby = async() => {
+const Lobby = async({userId}) => {
      //get contests
      const { getAccessTokenSilently } = useAuth0();
 
@@ -34,7 +34,7 @@ const Lobby = async() => {
        const enterContest = async (contest_id) => {
         try {
 
-          const body = {contest_id};
+          const body = {contest_id,userId};
           const response = await fetch(
 
             "/participations",

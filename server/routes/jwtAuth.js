@@ -102,4 +102,47 @@ router.post("/verify", authorization, async(req,res) => {
 });
 
 
+
+router.post("/signup", validInfo, async (req, res) =>{
+
+    try {
+        const body = JSON.parse(JSON.stringify(req.body))
+        console.log(body);
+        //step one: desturcture req.body (name email password)
+        console.log('register req' + body);
+        const {name, email} = body;
+        console.log(name)
+        //step two: does the user already exist
+
+
+        const participant = await pool.query("SELECT * from salesforce.participant__c Where email__c = $1", [
+            email
+        ]);
+
+        if(participant.rows.length === 0){
+            return res.status(401).send("Email is incorrect");
+        }
+
+       else if(participant.rows.length != 0){
+            return res.json({user: participant.rows[0].externalid__c});
+        }
+
+    
+        //step three: enter new user in db
+        console.log('after bcrypt');
+
+        const newParticipant = await pool.query
+        ("Insert INTO salesforce.participant__c (name, email__c, participant_password__c, member_since__c, externalid__c) Values ($1,$2,$3, $4, gen_random_uuid()) RETURNING *", [name, email,  bcryptPassword, 2021]);
+    
+    
+        return res.json({user: newParticipant.rows[0].externalid__c});
+
+    }catch(error){
+        console.log(error.message);
+        res.status(500).send("server error");
+    }
+});
+
+
+
 module.exports = router;

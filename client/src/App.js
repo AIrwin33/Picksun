@@ -20,8 +20,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
 
+    const [email,setemail]=useState("")
+    const [name,setname]=useState("")
+    const [userId,setuserId]=useState("")
     const [isProfile, setIsProfile] = useState(false);
-    const { loginWithRedirect,isAuthenticated } = useAuth0();
+    const { loginWithRedirect,isAuthenticated,user,getAccessTokenSilently } = useAuth0();
     //check if the user is authenticated
     // const checkAuthenticated = async () => {
     //     try {
@@ -55,7 +58,27 @@ function App() {
     // }, []);
 
     // const [isAuthenticated, setIsAuthenticated] = useState(true);
+useEffect(async()=>{
+    if(isAuthenticated)
+    {
+        const accessToken = await getAccessTokenSilently();
+        setname(user['https://muhammadumerchaudhary.us.auth0.com/user_metadata'].name)
+        setemail(user.email)
+        const res = await fetch("/auth/signup", {
+                        method: "POST",
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`,
+                          },
+                        body: {
+                            email: user.email,
+                            name: user['https://muhammadumerchaudhary.us.auth0.com/user_metadata'].name ,
+                          }
+                    });
+        const parseRes = await res.json();
+    }
 
+},[])
+   
     const Initval = {
         questions: []
     }
@@ -86,7 +109,7 @@ function App() {
                             <div>
 
                             <div id="top">
-                                <TopPanel profile={isProfile}/>
+                                <TopPanel profile={isProfile} name={name}/>
                             </div>
 
                             <Switch>
@@ -101,7 +124,7 @@ function App() {
                                        }
                                 /> */}
                                 <Route path="/Lobby"
-                                       render={props =>  <Lobby {...props}  />
+                                       render={props =>  <Lobby {...props} userId={userId} />
                                         //    isAuthenticated ? (
                                         //        <Lobby {...props}  />
                                         //    ) : (
@@ -109,8 +132,7 @@ function App() {
                                         //    )
                                        }
                                 />
-                                <Route path="/Contests"
-                                       render={props =>  <Contests {...props}  />
+                                <Route path="/Contests" render={props =>    <Contests {...props} userId={userId} />
                                         //    isAuthenticated ? (
                                         //        <Contests {...props}  />
                                         //    ) : (
@@ -119,7 +141,7 @@ function App() {
                                        }
                                 />
                                 <Route path="/Profile"
-                                       render={props =>        <Profile {...props} setProfile={setProfile} setAuth={setAuth}/>
+                                       render={props =>   <Profile {...props} setProfile={setProfile} setAuth={setAuth} userId={userId}/>
                                         
                                         //    isAuthenticated ? (
                                         //        <Profile {...props} setProfile={setProfile} setAuth={setAuth}/>
@@ -129,7 +151,7 @@ function App() {
                                        }
                                 />
                                 <Route path="/Contest/:id"
-                                       render={props => <Contest {...props} setAuth={setAuth}/>
+                                       render={props => <Contest {...props} setAuth={setAuth} userId={userId}/>
                                         //    isAuthenticated ? (
                                         //        <Contest
                                         //            {...props}
@@ -140,7 +162,7 @@ function App() {
                                        }
                                 />
                                 <Route path="/Questions/:contestid"
-                                       render={props => <Questions  {...props} />
+                                       render={props => <Questions  {...props} userId={userId}/>
                                         //    isAuthenticated ? (
                                         //        <Questions
                                         //            {...props}
@@ -152,12 +174,7 @@ function App() {
                                            
                                        }
                                 />
-                                <Route path="/"
-                                    render={props =>
-                                        (
-                                        <Landing {...props}/>
-                                        )
-                                    }
+                                <Route path="/" render={props => ( <Landing {...props} userId={userId}/>  )     }
                                 />
                             </Switch>
 

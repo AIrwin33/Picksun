@@ -11,7 +11,7 @@ import "./Contests.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-const Contests = async() => {
+const Contests = async({userId}) => {
     //get contests
     const { getAccessTokenSilently } = useAuth0();
     const [contests, setContests] = useState([]);
@@ -33,6 +33,7 @@ const Contests = async() => {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
               },
+              body:{userId:userId},
             });
       
             const parseData = await res.json();

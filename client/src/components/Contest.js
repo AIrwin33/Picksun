@@ -11,7 +11,7 @@ import { useAuth0,withAuthenticationRequired } from "@auth0/auth0-react";
 import avatar from '../assets/blue_avatar_200.png';
 import Loading from './util/Loading';
 
-const Contest = async({match}) => {
+const Contest = async({match,userId}) => {
     const { getAccessTokenSilently } = useAuth0();
     
     const [contest, setContest] = useState([]);
@@ -105,6 +105,7 @@ const Contest = async({match}) => {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                   },
+                  body:{userId:userId}
             });
 
             const parseData = await res.json();

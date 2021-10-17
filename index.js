@@ -51,7 +51,8 @@ app.get("/participants", async (req, res) => {
 
 app.post("/profile", authorization, async (req, res) => {
     try {
-        const participant = await pool.query("SELECT * FROM salesforce.participant__c WHERE ExternalId__c = $1", [req.user.id]);
+        const body = JSON.parse(JSON.stringify(req.body))
+        const participant = await pool.query("SELECT * FROM salesforce.participant__c WHERE ExternalId__c = $1", [body.userId]);
         res.json(participant.rows[0]);
     } catch (err) {
         console.log('err profile::' + err);
@@ -78,9 +79,11 @@ app.put("/participant/:id", async (req, res) => {
 
 app.get("/mycontests", authorization, async (req, res) => {
     try {
+        const body = JSON.parse(JSON.stringify(req.body))
+     
         //get all participations based on external ID
         const mycontests = await pool.query("SELECT * FROM salesforce.participation__c AS participation, salesforce.contest__c AS contest WHERE participation.participant__r__externalid__c = $1 AND contest.sfid = participation.contest__c",
-            [req.user.id]);
+            [body.userId]);
         res.json(mycontests.rows);
 
     } catch (err) {
@@ -132,8 +135,8 @@ app.get("/contestdetail/:id", async (req, res) => {
 app.post("/participations", authorization, async (req, res) => {
     try {
         //request user expires, find another way
-        const {contest_id} = req.body;
-        const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND participant__r__externalid__c = $2", [contest_id, req.user.id]);
+        const {contest_id,userId} = req.body;
+        const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND participant__r__externalid__c = $2", [contest_id, userId]);
         if (part.rows.length != 0) {
             res.json(part.rows[0]);
             return res.status(401).send("Already Exists");
@@ -141,7 +144,7 @@ app.post("/participations", authorization, async (req, res) => {
 
         const newParticipation = await pool.query(
             "INSERT INTO salesforce.participation__c (Contest__c, Participant__r__ExternalId__c,Status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *",
-            [contest_id, req.user.id, 'Active']
+            [contest_id, userId, 'Active']
         );
         console.log('new participation' + JSON.stringify(newParticipation.rows[0]));
         res.json(newParticipation.rows[0]);
@@ -168,8 +171,9 @@ app.get("/contestparticipations/:contest_id", authorization, async (req, res) =>
 app.get("/participationbycontest/:contest_id", authorization, async (req, res) => {
     try {
         const {contest_id} = req.params;
-
-        const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND participant__r__externalid__c = $2", [contest_id, req.user.id]);
+        const body = JSON.parse(JSON.stringify(req.body))
+     
+        const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND participant__r__externalid__c = $2", [contest_id, body.userId]);
         console.log(JSON.stringify(part.rows));
         res.json(part.rows[0]);
     } catch (err) {
@@ -355,13 +359,13 @@ app.post("/contestwon", authorization, async (req, res) => {
     try {
         const contestwoncount = await pool.query(
             "SELECT * FROM salesforce.participant__c WHERE sfid = $1",
-            [req.user.id]
+            [req.body.userId]
         );
 
         var contestwonnewcount = contestwoncount.Contests_Won__c + 1;
         const wonparticipant = await pool.query(
             "UPDATE salesforce.participant__c SET Contests_Won__c = $1 WHERE sfid = $2 RETURNING *",
-            [contestwonnewcount, req.user.id]
+            [contestwonnewcount, req.body.userId]
         );
         res.json(wonparticipant.rows);
 
