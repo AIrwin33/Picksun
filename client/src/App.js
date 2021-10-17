@@ -61,9 +61,10 @@ function App() {
 useEffect(async()=>{
     if(isAuthenticated)
     {
+        alert('Apps')
         alert(isAuthenticated)        
         alert(JSON.stringify(user))
-        setname(user['https://muhammadumerchaudhary.us.auth0.com/user_metadata'].name)
+        setname(user.nickname)
         setemail(user.email)
         const res = await fetch("/auth/signup", {
                         method: "POST",
@@ -72,7 +73,7 @@ useEffect(async()=>{
                           },
                         body: {
                             email: user.email,
-                            name: user['https://muhammadumerchaudhary.us.auth0.com/user_metadata'].name ,
+                            name: user.nickname ,
                           }
                     });
         const parseRes = await res.json();
