@@ -34,15 +34,14 @@ const Profile =async (props) => {
     const onInvite = async e => {
         window.location.href = "mailto:username@example.com?subject=Join me on PickFun";
     }
-    const accessToken = await getAccessTokenSilently({
-        audience: `/profile`,
-        scope: "read:profile",
-      });
+    const accessToken = await getAccessTokenSilently();
     const getProfile = async () => {
       try {
         const res = await fetch("/profile", {
           method: "POST",
-          headers: { jwt_token:accessToken }
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
         });
         const parseData = await res.json();
         setProfile(parseData);

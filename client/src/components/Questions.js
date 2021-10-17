@@ -57,17 +57,16 @@ const Questions = async (props) => {
     const tiRef = useRef(null);
     const [newQuestion, setNewQuestion] = useState()
     const [newCorrectQuestion, setNewCorrectQuestion] = useState()
-    const accessToken = await getAccessTokenSilently({
-        audience: `/profile`,
-        scope: "read:profile",
-      });
+    const accessToken = await getAccessTokenSilently();
 
     const getAllQuestions = async () => {
         try {
 
             const res = await fetch(`/allquestions/${props.contestid}`, {
                 method: "GET",
-                headers: {jwt_token: accessToken}
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                  },
             });
 
             const parseData = await res.json();
@@ -83,7 +82,9 @@ const Questions = async (props) => {
 
             const res = await fetch(`/questions/${props.contestid}`, {
                 method: "GET",
-                headers: {jwt_token: accessToken}
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                  },
             });
 
             const parseData = await res.json();
@@ -101,7 +102,9 @@ const Questions = async (props) => {
 
                 const res = await fetch(`/contestdetail/` + props.contestid, {
                     method: "GET",
-                    headers: {jwt_token: accessToken}
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                      },
                 });
                 const parseContestData = await res.json();
                 openedtimerval = parseContestData.opened_timer__c;
@@ -223,7 +226,9 @@ const Questions = async (props) => {
     const checkFinished = async () => {
         const res = await fetch(`/contestdetail/` + props.contestid, {
             method: "GET",
-            headers: {jwt_token: accessToken}
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
         });
         const parseContestData = await res.json();
         console.log(JSON.stringify(parseContestData));
@@ -254,7 +259,7 @@ const Questions = async (props) => {
                 {
                     method: "GET",
                     headers: {
-                        jwt_token: accessToken,
+                        Authorization: `Bearer ${accessToken}`,
                         "Content-type": "application/json"
                     }
                 }
@@ -315,7 +320,7 @@ const Questions = async (props) => {
                 {
                     method: "POST",
                     headers: {
-                        jwt_token: accessToken,
+                        Authorization: `Bearer ${accessToken}`,
                         "Content-type": "application/json"
                     },
                     body: JSON.stringify(body)
@@ -354,7 +359,7 @@ const Questions = async (props) => {
             const res = await fetch(`/disableQuestions/`, {
                 method: "POST",
                 headers: {
-                    jwt_token: accessToken,
+                    Authorization: `Bearer ${accessToken}`,
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify(body)
@@ -386,7 +391,7 @@ const Questions = async (props) => {
             const res = await fetch(`/submitpartanswers`, {
                 method: "POST",
                 headers: {
-                    jwt_token: accessToken,
+                    Authorization: `Bearer ${accessToken}`,
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify(body)

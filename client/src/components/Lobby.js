@@ -13,16 +13,15 @@ const Lobby = async() => {
      //get contests
      const { getAccessTokenSilently } = useAuth0();
 
-     const accessToken = await getAccessTokenSilently({
-      audience: `/profile`,
-      scope: "read:profile",
-    });
+     const accessToken = await getAccessTokenSilently();
      const [contests, setContests] = useState([]);
      const getAllContests = async () => {
          try {
              const res = await fetch("/allcontests", {
                method: "GET",
-               headers: { jwt_token: accessToken }
+               headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
              });
        
              const parseData = await res.json();
@@ -42,9 +41,9 @@ const Lobby = async() => {
             {
               method: "POST",
               headers: {
+                Authorization: `Bearer ${accessToken}`,
                 "Content-type": "application/json",
-                jwt_token: accessToken
-              },
+               },
               body: JSON.stringify(body)
             }
           );

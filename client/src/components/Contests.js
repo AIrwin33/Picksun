@@ -23,17 +23,16 @@ const Contests = async() => {
         twoDays: moment().add(2, 'day').endOf('day').toDate().toISOString()
     });
 
-    const accessToken = await getAccessTokenSilently({
-        audience: `/profile`,
-        scope: "read:profile",
-      });
+    const accessToken = await getAccessTokenSilently();
 
     const getMyContests = async () => {
         try {
             console.log('getting my contests');
             const res = await fetch("/mycontests", {
               method: "GET",
-              headers: { jwt_token: accessToken }
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
             });
       
             const parseData = await res.json();

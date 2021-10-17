@@ -10,15 +10,14 @@ const TopPanel = async(props) => {
   const { getAccessTokenSilently ,isAuthenticated} = useAuth0();
     const [name, setName] = useState("");
     // const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const accessToken = await getAccessTokenSilently({
-      audience: `/profile`,
-      scope: "read:profile",
-    });
+    const accessToken = await getAccessTokenSilently();
     const getProfile = async () => {
       try {
         const res = await fetch("/profile", {
           method: "POST",
-          headers: { jwt_token: accessToken }
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
         });
   
         const parseData = await res.json();

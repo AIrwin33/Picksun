@@ -16,10 +16,7 @@ const Question = async(props) => {
     const [showInfo, setShowInfo] = useState(false);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
     const [allpartanswers, setAllpartanswers] = useState([]);
-    const accessToken = await getAccessTokenSilently({
-        audience: `/profile`,
-        scope: "read:profile",
-      });
+    const accessToken = await getAccessTokenSilently();
 
     const handleRadioChange = async (event) => {
         var tgt = $(event.target);
@@ -74,7 +71,7 @@ const Question = async(props) => {
             const res = await fetch(`/existingpartanswernoquestion`, {
                 method: "POST",
                 headers: {
-                    jwt_token: accessToken,
+                    Authorization: `Bearer ${accessToken}`,
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify(body)
@@ -98,7 +95,9 @@ const Question = async(props) => {
                 `/existingpartanswer/` + partsfid + `/question/` + questid,
                 {
                     method: "GET",
-                    headers: {jwt_token: accessToken}
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                      },
                 }
             );
 
@@ -125,7 +124,7 @@ const Question = async(props) => {
             const res = await fetch(`/countsubsegment`, {
                 method: "POST",
                 headers: {
-                    jwt_token: accessToken,
+                    Authorization: `Bearer ${accessToken}`,
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify(body)

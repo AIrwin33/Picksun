@@ -25,15 +25,14 @@ const Contest = async({match}) => {
     const [newQuestion, setNewQuestion] = useState()
     const [newCorrectQuestion, setNewCorrectQuestion] = useState()
     const socket = React.useContext(SocketContext)
-    const accessToken = await getAccessTokenSilently({
-        audience: `/profile`,
-        scope: "read:contest",
-      });
+    const accessToken = await getAccessTokenSilently();
     const getContest = async () => {
         try {
             const res = await fetch(`/contestdetail/${match.params.id}`, {
                 method: "GET",
-                headers: {jwt_token:accessToken}
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                  },
             });
 
             const parseData = await res.json();
@@ -49,7 +48,9 @@ const Contest = async({match}) => {
         try {
             const res = await fetch(`/event/` + contestRec.event__c, {
                 method: "GET",
-                headers: {jwt_token: accessToken}
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                  },
             });
 
             const parseData = await res.json();
@@ -74,7 +75,9 @@ const Contest = async({match}) => {
         try {
             const res = await fetch(`/contestparticipations/` + contestRec.sfid, {
                 method: "GET",
-                headers: {jwt_token: accessToken}
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                  },
             });
 
             const parseData = await res.json();
@@ -99,7 +102,9 @@ const Contest = async({match}) => {
         try {
             const res = await fetch(`/participationbycontest/` + contestRec.sfid, {
                 method: "GET",
-                headers: {jwt_token: accessToken}
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                  },
             });
 
             const parseData = await res.json();

@@ -9,8 +9,8 @@ require("dotenv").config();
 const cors = require("cors");
 app.use(cors());
 app.use(express.json());
-const authorization = require("./server/middleware/authorize");
-// const authorization = require("./server/middleware/auth");
+// const authorization = require("./server/middleware/authorize");
+const authorization = require("./server/middleware/auth");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
 
