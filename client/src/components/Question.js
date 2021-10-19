@@ -275,7 +275,7 @@ const Question = (props) => {
                         <Row className="mt-2">   
 
                             <Col>
-                                <div>
+                                <div class="font14">
                                     {partAnswer.selection_value__c !== null &&
                                     <span>Your Answer: {partAnswer.selection_value__c}</span>
                                     }
@@ -286,13 +286,13 @@ const Question = (props) => {
                             </Col>
                             {props.ques.correct_answer__c !== null &&
                             <Col>
-                                <div className='answerBanner '>
+                                <div className='answerBanner font14'>
                                     {partAnswer.selection__c == props.ques.correct_answer__c && 
-                                        <img alt="correct answer" width="30" src={correctLogo}/>
+                                        <img alt="correct answer" width="20" src={correctLogo}/>
                                     }
 
                                     {partAnswer.selection__c != props.ques.correct_answer__c && 
-                                        <img alt="incorrect answer" width="30" src={incorrectLogo}/>
+                                        <img alt="incorrect answer" width="20" src={incorrectLogo}/>
                                     }
                                     <span>Correct Answer: {props.ques.correct_answer_value__c}</span>
                                 </div>
@@ -301,7 +301,7 @@ const Question = (props) => {
 
                             {props.ques.correct_answer__c === null &&
                              <Col>
-                                <div>
+                                <div class="font14">
                                     <span>Correct Answer: Stay Tuned</span>
                                 </div>
                             </Col>
