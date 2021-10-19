@@ -191,17 +191,15 @@ const Contest = ({match}) => {
 
                                 </Col>
                                 <Col lg={6} sm={10} >
-                                    <Row className="colCard"> 
-                                        <div className="justify-content-center">
-                                            <span>Participants Remaining: {activeParts}/{allParts}</span>
-                                        </div>
+                                    <Row className="colCard text-center"> 
+                                        <span>Participants Remaining: {activeParts}/{allParts}</span>
                                     </Row>
                                     {participations.map(part => {
                                         return <Row key={part.id} className="colCard ">
 
-                                            <Col xs={3} className="text-center"> <Image src={avatar} roundedCircle
+                                            <Col xs={2} className="text-center"> <Image src={avatar} roundedCircle
                                                                                     height="50"></Image> </Col>
-                                            <Col xs={9}>
+                                            <Col xs={10}>
                                                 <Row>
                                                     <span className="fontBold">{part.participant_name__c}</span>
                                                     {part.sfid === participation.sfid &&
