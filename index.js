@@ -15,7 +15,7 @@ app.use(express.json());
 // const authorization = require("./server/middleware/auth");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
-var authorization = jwt({    secret: jwks.expressJwtSecret({cache: true,rateLimit: true,jwksRequestsPerMinute: 5,jwksUri: 'https://muhammadumerchaudhary.us.auth0.com/.well-known/jwks.json'}), audience: `${process.env.AUTH0_AUDIENCE}`,  issuer: `${process.env.AUTH0_ISSUER}`,  algorithms: ['RS256']});
+var authorization = jwt({    secret: jwks.expressJwtSecret({cache: true,rateLimit: true,jwksRequestsPerMinute: 5,jwksUri: 'https://shrill-math-9181.us.auth0.com/.well-known/jwks.json'}), audience: `${process.env.AUTH0_AUDIENCE}`,  issuer: `${process.env.AUTH0_ISSUER}`,  algorithms: ['RS256']});
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 //PG Promise setup
