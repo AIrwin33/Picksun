@@ -175,10 +175,11 @@ const Question = (props) => {
         handleExistingPartAnswer();
         setTimeout(
             function() {
+                console.log('updating part answers in timeout');
                 updateAllPartAnswers();
             
                 },
-                2000
+                3000
         );
         
     }, [props.ques]);

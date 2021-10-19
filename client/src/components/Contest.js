@@ -155,11 +155,11 @@ const Contest = ({match}) => {
                         </Col>
                     </Row>
                     <Row className="rowBar">
-                        <Col xs={3} sm={3}></Col>
-                        <Col xs={6} sm={6} className="text-center ">
+                        <Col xs={1} sm={3}></Col>
+                        <Col xs={10} sm={6} className="text-center ">
                             <h4 className="whiteText fontBold aptifer">{contest.name}</h4>
                         </Col>
-                        <Col xs={3} sm={3}>
+                        <Col xs={1} sm={3}>
                         </Col>
                     </Row>
                     <Tabs fill className="ml-2 mr-2">

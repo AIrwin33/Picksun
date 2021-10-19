@@ -166,7 +166,6 @@ function App() {
         sit amet, consectetur adipiscing elit. </p>
                                     </Col>
                                     <Col md="4">
-                                        <Image  className="float-right mt-2 mr-2" src={backtotop} onClick={handleBackToTop}></Image>
                                     </Col>
                                 </Row>
                             </div>
