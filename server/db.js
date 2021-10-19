@@ -2,8 +2,10 @@ const Pool = require("pg").Pool;
 console.log('working from db')
 const devConfig = new Pool({
   HOST: "localhost",
-  USER: "andrewirwin",
-  PASSWORD: "buster2k",
+  // USER: "andrewirwin",
+  // PASSWORD: "buster2k",
+  USER: "postgres",
+  PASSWORD: "",
   DB: "localtree",
   dialect: "postgres"
 });

@@ -3,9 +3,9 @@ import { useHistory } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 const Auth0ProviderWithHistory = ({ children }) => {
-  const domain = 'muhammadumerchaudhary.us.auth0.com';
-  const clientId = 'XR8RSl1GjFGTycMyBjuiLfkXAe1wCs7p';
-  const audience='https://pickfun-auth'
+  const domain = `${process.env.REACT_APP_AUTH0_DOMAIN}` //'muhammadumerchaudhary.us.auth0.com';
+  const clientId =`${process.env.REACT_APP_AUTH0_CLIENTID}` //'XR8RSl1GjFGTycMyBjuiLfkXAe1wCs7p';
+  const audience= `${process.env.REACT_APP_AUTH0_AUDIENCE}` //'https://pickfun-auth'
   // alert(domain);
   const history = useHistory();
 

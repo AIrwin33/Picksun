@@ -7,13 +7,15 @@ const bodyParser = require('body-parser');
 require("dotenv").config();
 //middleware
 const cors = require("cors");
+var jwt = require('express-jwt');
+var jwks = require('jwks-rsa');
 app.use(cors());
 app.use(express.json());
 // const authorization = require("./server/middleware/authorize");
-const authorization = require("./server/middleware/auth");
+// const authorization = require("./server/middleware/auth");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
-
+var authorization = jwt({    secret: jwks.expressJwtSecret({cache: true,rateLimit: true,jwksRequestsPerMinute: 5,jwksUri: 'https://muhammadumerchaudhary.us.auth0.com/.well-known/jwks.json'}), audience: `${process.env.AUTH0_AUDIENCE}`,  issuer: `${process.env.AUTH0_ISSUER}`,  algorithms: ['RS256']});
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 //PG Promise setup
@@ -49,7 +51,7 @@ app.get("/participants", async (req, res) => {
 
 //GET  PARTICIPANT
 
-app.post("/profile", async (req, res) => {
+app.post("/profile",authorization, async (req, res) => {
     try {
         const body = JSON.parse(JSON.stringify(req.body))
         const participant = await pool.query("SELECT * FROM salesforce.participant__c WHERE ExternalId__c = $1", [body.userId]);
