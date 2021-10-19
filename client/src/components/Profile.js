@@ -40,10 +40,11 @@ const Profile = (props) => {
     const getProfile = async () => {
     
       try {
+          cosnt token = await getAccessTokenSilently();
         const res = await fetch("/profile", {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${getAccessTokenSilently()}`,
+            Authorization: `Bearer ${token}`,
           },
           body:{userId:props.userId},
         });
