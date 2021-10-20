@@ -142,7 +142,7 @@ app.post("/participations", authorization, async (req, res) => {
             "INSERT INTO salesforce.participation__c (Contest__c, Participant__r__ExternalId__c,Status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *",
             [contest_id, req.user.id, 'Active']
         );
-        console.log('new participation' + JSON.stringify(newParticipation.rows[0]));
+       
         res.json(newParticipation.rows[0]);
     } catch (err) {
         console.log('error participations' + err.message);
@@ -169,7 +169,7 @@ app.get("/participationbycontest/:contest_id", authorization, async (req, res) =
         const {contest_id} = req.params;
 
         const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND participant__r__externalid__c = $2", [contest_id, req.user.id]);
-        console.log(JSON.stringify(part.rows));
+        
         res.json(part.rows[0]);
     } catch (err) {
         console.log('err participation by contest' + err);
@@ -179,7 +179,7 @@ app.get("/participationbycontest/:contest_id", authorization, async (req, res) =
 app.get("/questions/:contest_id", authorization, async (req, res) => {
     try {
         const {contest_id} = req.params;
-        console.log('getting questions');
+        
         const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY Name ASC", [contest_id]);
         res.json(allContestQuestions.rows)
 
@@ -191,7 +191,7 @@ app.get("/questions/:contest_id", authorization, async (req, res) => {
 app.get("/allquestions/:contest_id", authorization, async (req, res) => {
     try {
         const {contest_id} = req.params;
-        console.log('getting all questions');
+        
         const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 ORDER BY Name ASC", [contest_id]);
         res.json(allContestQuestions.rows)
 
@@ -206,18 +206,18 @@ app.get("/allquestions/:contest_id", authorization, async (req, res) => {
 app.post("/disablequestions/", authorization, async (req, res) => {
     try {
         const {conid} = req.body;
-        console.log('Disable questions ids' + conid);
+        
         const allContestQuestions = await pool.query("UPDATE salesforce.question__c SET islocked__c = true WHERE published__c = true AND contest__c = $1 RETURNING *", [conid]
         );
 
-        console.log('disabled questions' + JSON.stringify(allContestQuestions.rows));
+        
         var idlist = [];
         for(var i = 0; i < allContestQuestions.rows.length; i++){
             idlist.push(allContestQuestions.rows[i].sfid);
         }
-        console.log('id list' + idlist);
+        
         const selectQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE sfid = ANY ($1) ORDER BY Name ASC", [idlist]);
-        console.log('selected' + selectQuestions.rows);
+       
         res.json(selectQuestions.rows)
 
     } catch (error) {
@@ -230,11 +230,10 @@ app.post("/disablequestions/", authorization, async (req, res) => {
 app.post("/countsubsegment/", authorization, async (req, res) => {
     try {
         const {conid, subseg} = req.body;
-        console.log(conid);
-        console.log(subseg);
+        
         const subsegQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true AND SubSegment__c = $2", [conid, subseg]
         );
-        console.log(subsegQuestions.rows);
+        
         res.json(subsegQuestions.rows.length);
 
     } catch (error) {
@@ -252,10 +251,6 @@ app.post("/answers", async (req, res) => {
             "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1",
             [expartid]
         );
-        console.log(expartid);
-        console.log(participation.rows[0].sfid);
-        console.log(participation.rows);
-        console.log('partid in creating answer');
         const newParticipationAnswer = await pool.query(
             "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES($1,$2,$3,$4,$5, gen_random_uuid()) RETURNING *",
             [participation.rows[0].sfid, question_sfid, eventVal, eventLabel, 'Submitted']
@@ -340,7 +335,6 @@ app.get("/allendingparticipations/:contest_id", authorization, async (req, res) 
             "SELECT * FROM salesforce.participation__c WHERE contest__c = $1 ORDER BY wrong_answers__c ASC",
             [contest_id]
         );
-        console.log('rows remaining parts:' + contestwoncount.rows);
         if (contestwoncount.rows.length === 0) {
         } else {
             res.json(contestwoncount.rows);
@@ -376,14 +370,14 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
     try {
         const {partanswers} = req.body;
         var parts = [];
-        console.log(partanswers.length);
+        
         for(var i=0; i < partanswers.length; i++){
             var answer = partanswers[i];
-            console.log(answer);
+         
             const part = await pool.query(
                 "UPDATE salesforce.Participation_Answers__c SET selection__c = $1, selection_value__c = $2, Status__c = $3, ExternalId__c = gen_random_uuid() WHERE Participation__c = $4 AND Question__c = $5 RETURNING *", [answer.selection__c, answer.selection_value__c, 'Submitted', answer.participation__c, answer.question__c]
                 );
-            console.log(part.rows[0]);
+            
             parts.push(part.rows[0]);
         }
        
