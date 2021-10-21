@@ -441,6 +441,14 @@ io.on("connection", (socket) => {
     })
 });
 
+io.on('connect_error', function(err) {
+    console.log("client connect_error: ", err);
+});
+
+io.on('connect_timeout', function(err) {
+    console.log("client connect_timeout: ", err);
+});
+
 http.listen(PORT, () => {
     console.log(`Server is starting on port ${PORT}`);
 });
