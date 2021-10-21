@@ -115,17 +115,29 @@ const Contest = ({match}) => {
             console.log('here in contest', contest);
             console.log('r'+ r);
             socket.emit("set_contest_room", match.params.id);
+
+            socket.on('connection', function() {
+                console.log("client connected");
+            });
+            
+            socket.on('connect_error', function(err) {
+                console.log("client connect_error: ", err);
+            });
+            
+            socket.on('connect_timeout', function(err) {
+                console.log("client connect_timeout: ", err);
+            });
             socket.on("new_question", question => {
-                console.log("new question")
+                console.log("new question");
                 setNewQuestion(question)
             })
             socket.on("cor_question", question => {
                 console.log("new correct question");
-                setNewCorrectQuestion(question)
+                setNewCorrectQuestion(question);
             })
             socket.on("new_contest", contest => {
                 console.log('new_contest' + contest);
-                setContest(contest)
+                setContest(contest);
             })
         });
     }, [socket]);
