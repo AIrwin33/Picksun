@@ -114,7 +114,7 @@ const Contest = ({match}) => {
         getContest().then(r =>  {
             console.log('here in contest', contest);
             console.log('r'+ r);
-            socket.emit("set_contest_room", match.params.id);
+            
 
             socket.on("new_question", question => {
                 console.log("new question");
@@ -128,6 +128,8 @@ const Contest = ({match}) => {
                 console.log('new_contest' + contest);
                 setContest(contest);
             })
+            console.log('before emit contest');
+            socket.emit("set_contest_room", match.params.id);
         });
     }, [socket]);
     return ((
