@@ -431,11 +431,12 @@ pgListen.connect()
 pgListen.listenTo("new_question")
 
 pgListen.listenTo("cor_question")
-
+console.log('after listen tio');
 pgListen.listenTo("new_contest")
 
 io.on("connection", (socket) => {
     socket.on("set_contest_room", e => {
+        console.log('set contest room' + e);
         socket.join(e)
     })
 });
