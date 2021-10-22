@@ -70,10 +70,12 @@
 
 .carousel-control-next {
     bottom:-100px;
+    right:-25px  !important;
 }
 
 .carousel-control-prev {
     bottom:-100px;
+    left:-15px !important;
 }
 
 .carousel-indicators li {

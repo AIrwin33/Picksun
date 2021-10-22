@@ -249,7 +249,7 @@ const Question = (props) => {
                     <Col sm={1}> 
                     </Col>
                     <Col sm={10}>
-                        <div className={`btn-group m-3 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
+                        <div className={`btn-group m-2 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
                             aria-label="Basic example" data-toggle="buttons">
                             <button type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold ${partAnswer.selection_value__c === quest.answer_a__c && disabledQuestion ? "selectedQuestion" : ""}`}
                                     onClick={handleRadioChange}>{quest.answer_a__c}</button>

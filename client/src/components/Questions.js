@@ -650,7 +650,8 @@ const Questions = (props) => {
             <Row className="questionRow m-2 p-2 justify-content-center">
                 {showEndBanner &&
                 <Col sm={12} lg={12} className="endtextbanner text-center font16">
-                    <span>Thanks For Playing</span>
+                    <span>Thanks For Playing</span><br/>
+                    <span>Place Finish: {placeFin}</span>
                 </Col>
                 }
                 <Col  sm={12} lg={12}>
