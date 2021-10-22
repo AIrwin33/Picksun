@@ -760,10 +760,10 @@ const Questions = (props) => {
             {/* showing submit answers button */}
             {!review && !submitted && questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-center">
-                    <Col xs={2} lg={4} class="float-right">
+                    <Col xs={2} lg={4} >
                         {counter > 0 && answerListShow &&
                         
-                            <Image width='35' src={baseball}/>
+                            <Image width='35' src={baseball} class="float-right"/>
                         }
                     </Col>
                     <Col xs={6} lg={4}>
@@ -772,10 +772,10 @@ const Questions = (props) => {
                             onClick={handleSubmitAnswers}>submit answers
                         </button>
                     </Col>
-                    <Col xs={2} lg={4} class="float-left">
+                    <Col xs={2} lg={4} >
                         {counter > 0 && answerListShow &&
                         
-                            <Image  width='35' src={baseball}/>
+                            <Image  width='35' src={baseball} class="float-left"/>
                         }
                     </Col>
                 </Row>
