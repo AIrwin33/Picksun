@@ -406,7 +406,7 @@ pgListen.notifications.on("new_contest", e => {
 })
 
 pgListen.notifications.on("new_question", e => {
-    console.log(e);
+    console.log(e.correct_answer__c);
     console.log('listener on');
 
     if (e !== undefined && e.published__c && !e.islocked__c) {

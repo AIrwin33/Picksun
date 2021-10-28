@@ -359,7 +359,7 @@ const Questions = (props) => {
             $('.timerdiv').addClass('hiddenTimer');
             $('.carousel-control-next-icon').removeClass('active');
             setIndex(subsegplusone);
-            setQuestionNum(subsegplusone + 1);
+            setQuestionNum(1);
             setQuestions(parseData);
             setShowWaiting(false);
             setReview(true);
@@ -564,6 +564,8 @@ const Questions = (props) => {
         var tempQuestions = questions;
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
         console.log('question' + question);
+
+        console.log('get question num here');
         console.log('tempQuestions' + tempQuestions);
         setQuestions(tempQuestions);
         console.log('before add correct questions');
