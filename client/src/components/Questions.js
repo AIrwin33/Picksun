@@ -567,6 +567,8 @@ const Questions = (props) => {
 
         console.log('get question num here');
         console.log('tempQuestions' + tempQuestions);
+        console.log(tempQuestions.map(r => r.sfid).indexOf(question.sfid) + 1);
+        setQuestionNum(tempQuestions.map(r => r.sfid).indexOf(question.sfid) + 1);
         setQuestions(tempQuestions);
         console.log('before add correct questions');
         setTimeout(
