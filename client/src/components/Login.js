@@ -71,7 +71,7 @@ const Login = ({ setAuth }) => {
     return (
         <>
         {/* Main Body */}
-        <Container fluid className="LoginBody">
+        <Container className="LoginBody">
             <Row>
                 <Col className="mt-3">
                     <h4 className="text-center textWhite aptifer font20 ">Login</h4>
