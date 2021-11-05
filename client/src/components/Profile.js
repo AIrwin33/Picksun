@@ -86,7 +86,7 @@ const Profile = (props) => {
     return (
         <>
         {/* Main Body */}
-        <div className="profileContainer">
+        <Container className="profileContainer">
             <Row  className="pt-3">
                 <Col sm={3} xs={3} className="text-center">
                 </Col>
@@ -167,7 +167,7 @@ const Profile = (props) => {
                     </Card>
                 </Tab>
             </Tabs>
-        </div>
+        </Container>
 
         </>
     )

@@ -22,7 +22,7 @@ const Landing = (props) => {
     return (
         <>
         {/* Main Body */}
-        <Container fluid className="landingBody">
+        <Container className="landingBody">
             <Row className="justify-content-md-center pt-3 pb-3">
                 <Col md={2} sm={1} lg={2}>
                 </Col>
