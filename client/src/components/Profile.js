@@ -8,7 +8,8 @@ import {
     ListGroup,
     Button,
     Form,
-    Card
+    Card,
+    Container
 } from "react-bootstrap";
 
 import avatar from '../assets/blue_avatar_200.png';
