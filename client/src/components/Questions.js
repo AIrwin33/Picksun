@@ -38,7 +38,8 @@ const Questions = (props) => {
     const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
     const [openedtimer, setOpenedTimer] = useState(0);
-    const [showSubmit, setShowSubmit] = useState(false);
+    const [showSubmitCount, setShowSubmitCount] = useState(0);
+    const [showSubmitModal, setShowSubmitModal] = useState(false);
     const [showEnd, setShowEnd] = useState(false);
     const [showEndBanner, setShowEndBanner] = useState(false);
     const [submitted, setSubmitted] = useState(false);
@@ -145,14 +146,11 @@ const Questions = (props) => {
         setShowWaiting(false);
     }
 
-    const handleSubmitShow = async () => {
-
-        setShowSubmit(true);
-    }
     //close info modal on question
     const handleSubmitClose = async () => {
 
-        setShowSubmit(false);
+        setShowSubmitModal(false);
+        setShowSubmitCount(1);
     }
 
     const handleEndShow = async () => {
@@ -446,7 +444,10 @@ const Questions = (props) => {
             setAnswerList(answerList);
             if(answerList.length === subSegmentCount){
                 setAnswerListShow(true);
-                setShowSubmit(true);
+                if(showSubmitCount > 0){
+                    setShowSubmitModal(true);
+                }
+                
             }
         } catch (err) {
             console.log('err' + err.message);
@@ -730,7 +731,7 @@ const Questions = (props) => {
                 </Modal.Footer>
             </Modal>
 
-            <Modal className="modalDiv" show={showSubmit} onHide={handleSubmitClose}>
+            <Modal className="modalDiv" show={showSubmitModal} onHide={handleSubmitClose}>
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body className="proxima font12 modalBody">
