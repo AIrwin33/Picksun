@@ -562,6 +562,8 @@ const Questions = (props) => {
 
     }
     const addCorrectQuestion = question => {
+
+        //TODO Task 1 - debug why this part isn't running in Mobile
         var tempQuestions = questions;
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
         console.log('question' + question);
@@ -574,6 +576,7 @@ const Questions = (props) => {
         console.log('before add correct questions');
         setTimeout(
             function() {
+                //TODO - Task 2, update to socket maybe?
             doGetParticipationWrongAnswers();
             
                 },
