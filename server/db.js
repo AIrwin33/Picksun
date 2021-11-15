@@ -16,6 +16,7 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false }
 });
 
+
 const createSubscriber = require("pg-listen")
 const pgListen = createSubscriber({ connectionString: proConfig})
 

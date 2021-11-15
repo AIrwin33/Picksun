@@ -91,7 +91,7 @@ const Questions = (props) => {
                 }
             }
             var openedtimerval;
-            
+
             if(props.contest.opened_timer__c !== null){
 
                 const res = await fetch(`/contestdetail/` + props.contestid, {
@@ -112,19 +112,19 @@ const Questions = (props) => {
                         console.log('setting timer zero?');
                         setCounter(0);
                         $('.timerdiv').removeClass('hiddenTimer');
-                        
+
                     } else {
                         console.log('setting timer count time?');
                         setCounter(diffTime);
                         $('.timerdiv').removeClass('hiddenTimer');
-                        
+
                     }
                 } else {
                     console.log('no available unlocked questions');
                 }
             }
             setQuestions(parseData);
-            
+
             //set question num
             setPublishedQuestions(parseData.length);
             doGetParticipationWrongAnswers();
@@ -185,7 +185,7 @@ const Questions = (props) => {
             console.log(parseData.wrong_answers__c);
             console.log(partWrongAnswer.wrong_answers__c);
             setPartWrongAnswer(parseData);
-            
+
 
             //set sort of timeout to check waiting for finished game
             setTimeout(
@@ -197,12 +197,12 @@ const Questions = (props) => {
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
                 handleKnockout();
-                
+
             }
             if (parseData.status__c === 'Inactive') {
                 console.log('status inactive');
                 setInactive(true);
-                
+
             }
             props.updatepart(parseData);
 
@@ -271,7 +271,7 @@ const Questions = (props) => {
                     console.log(parseRes[k].sfid);
                     console.log(JSON.stringify(parseRes[k]));
                     winningParts.push(parseRes[k]);
-                    
+
                 }
             }
             setPlaceFinish(placefinish);
@@ -288,9 +288,9 @@ const Questions = (props) => {
                     setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
                 }
             }
-            
 
-            
+
+
 
         } catch (err) {
             console.log('err on contest end' + err.message);
@@ -404,7 +404,7 @@ const Questions = (props) => {
         }
     }
 
-    
+
 
     const updateAnswerList = async (childData) => {
         try {
@@ -432,7 +432,7 @@ const Questions = (props) => {
                     addTo = false;
                     console.log(answerList.length);
                     break;
-                } 
+                }
             }
 
             if(addTo){
@@ -447,7 +447,7 @@ const Questions = (props) => {
                 if(showSubmitCount > 0){
                     setShowSubmitModal(true);
                 }
-                
+
             }
         } catch (err) {
             console.log('err' + err.message);
@@ -473,12 +473,12 @@ const Questions = (props) => {
         console.log('questions use effect');
         getQuestions();
         getAllQuestions();
-        
+
         if(newQuestion !== props.newQuestion && props.newQuestion !== undefined) {
             console.log('in set new question');
             setNewQuestion(props.newQuestion)
             addNewQuestion(props.newQuestion)
-            
+
         }
         if(newCorrectQuestion !== props.newCorrectQuestion && props.newCorrectQuestion !== undefined) {
             setNewQuestion(props.newCorrectQuestion);
@@ -486,11 +486,11 @@ const Questions = (props) => {
         }
         if(props.newCorrectQuestion === undefined && props.newQuestion === undefined){
             console.log('resetting');
-            
+
             setReview(true);
             setShowAnswer(true);
         }
-        
+
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
         //make sure sfid is being returned
@@ -553,7 +553,7 @@ const Questions = (props) => {
                 tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
                 setQuestions(tempQuestions);
                 setIndex(subsegplusone);
-                
+
                 setTimer();
                 console.log('question num' + subsegplusone);
             }
@@ -574,16 +574,39 @@ const Questions = (props) => {
         setQuestionNum(tempQuestions.map(r => r.sfid).indexOf(question.sfid) + 1);
         setQuestions(tempQuestions);
         console.log('before add correct questions');
-        setTimeout(
-            function() {
-                //TODO - Task 2, update to socket maybe?
-            doGetParticipationWrongAnswers();
-            
-                },
-                5000
-        );
-        
-        
+        socket.on('connect', () => {
+            socket.emit('get_wrong_answers', props.partsfid);
+            socket.on("getWrongAnswers", (data) => {
+                setAllpartanswers(data);
+                setTimeout(
+                    function() {
+                        checkFinished();
+                    },
+                    2000
+                );
+                if (data.status__c === 'Knocked Out') {
+                    console.log('player is knocked out');
+                    handleKnockout();
+
+                }
+                if (data.status__c === 'Inactive') {
+                    console.log('status inactive');
+                    setInactive(true);
+
+                }
+                props.updatepart(data);
+            })
+        })
+        // setTimeout(
+        //     function() {
+        //         //TODO - Task 2, update to socket maybe?
+        //     doGetParticipationWrongAnswers();
+        //
+        //         },
+        //         5000
+        // );
+
+
     }
 
     return (
@@ -595,7 +618,7 @@ const Questions = (props) => {
                     {/* slide for questions */}
                     {questions.length !== 0 &&
                     <Col xs={6} className="justify-content-start no-padding">
-                    
+
                         <div key={counter}>
 
                             <Timer initialTime={counter}
@@ -644,7 +667,7 @@ const Questions = (props) => {
                     <Col>
                         <div className="proxima font16 text-center">
                             <img width="30" src={hourglass}/>
-                            
+
                             <span>
                                 {props.contest.waiting_text__c}
 
@@ -685,10 +708,10 @@ const Questions = (props) => {
                     </div>
                     }
 
-                    
-                
 
-                    
+
+
+
                 </Col>
             </Row>
             }
@@ -770,7 +793,7 @@ const Questions = (props) => {
                 <Row className="questionRow m-2 p-2 justify-content-center">
                     <Col xs={2} lg={4} >
                         {counter > 0 && answerListShow &&
-                        
+
                             <Image width='35' src={baseball} class="float-right"/>
                         }
                     </Col>
@@ -782,7 +805,7 @@ const Questions = (props) => {
                     </Col>
                     <Col xs={2} lg={4} >
                         {counter > 0 && answerListShow &&
-                        
+
                             <Image  width='35' src={baseball} class="float-left"/>
                         }
                     </Col>

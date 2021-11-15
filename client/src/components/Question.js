@@ -8,6 +8,7 @@ import info from '../assets/infoicon.png';
 import correctLogo from '../assets/correctIcon.png';
 import incorrectLogo from '../assets/incorrectIcon.png';
 import $ from 'jquery';
+import {SocketContext} from "../socket";
 
 const Question = (props) => {
     const [partAnswer, setPartAnswer] = useState([]);
@@ -15,7 +16,7 @@ const Question = (props) => {
     const [showInfo, setShowInfo] = useState(false);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
     const [allpartanswers, setAllpartanswers] = useState([]);
-
+    const socket = React.useContext(SocketContext);
 
     const handleRadioChange = async (event) => {
         var tgt = $(event.target);
@@ -37,7 +38,7 @@ const Question = (props) => {
         if (event.target.value == 'D') {
             label = quest.answer_d__c;
         }
-        
+
         handleUpdateQuestionValue(event.target.value, label);
     }
     const handleUpdateQuestionValue = async (eventVal, eventLabel) => {
@@ -62,26 +63,26 @@ const Question = (props) => {
     }
 
 
-    const updateAllPartAnswers = async () => {
-        try{
-            console.log('update all part answers');
-            const partsfid = props.partsfid;
-            const body = {partsfid};
-            const res = await fetch(`/existingpartanswernoquestion`, {
-                method: "POST",
-                headers: {
-                    jwt_token: localStorage.token,
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify(body)
-            });
-
-            const parseData = await res.json();
-            setAllpartanswers(parseData);
-        }catch(error){
-            console.log( 'err' + error.message);
-        }
-    }
+    // const updateAllPartAnswers = async () => {
+    //     try{
+    //         console.log('update all part answers');
+    //         const partsfid = props.partsfid;
+    //         const body = {partsfid};
+    //         const res = await fetch(`/existingpartanswernoquestion`, {
+    //             method: "POST",
+    //             headers: {
+    //                 jwt_token: localStorage.token,
+    //                 "Content-type": "application/json"
+    //             },
+    //             body: JSON.stringify(body)
+    //         });
+    //
+    //         const parseData = await res.json();
+    //         setAllpartanswers(parseData);
+    //     }catch(error){
+    //         console.log( 'err' + error.message);
+    //     }
+    // }
 
 
     const handleExistingPartAnswer = async () => {
@@ -106,13 +107,13 @@ const Question = (props) => {
                 setDisabledQuestion(true);
             }
 
-           
+
         } catch (err) {
             console.error(err.message);
         }
 
     }
-    
+
     const handleSubsegmentCount = async (subseg) => {
         try {
             var conid = props.contest.sfid
@@ -135,7 +136,7 @@ const Question = (props) => {
     }
 
     const markBarCorrect =  async (an) => {
-        
+
         var text = '';
         if(an.question__c === props.ques.sfid){
             text += ' selected';
@@ -165,31 +166,37 @@ const Question = (props) => {
     }
 
     useEffect(() => {
-
         setQuest(props.ques);
         handleSubsegmentCount(props.ques.subsegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true) {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();
-        setTimeout(
-            function() {
-                console.log('updating part answers in timeout');
+        socket.on('connect', () => {
+            socket.emit('update_all_part_answers', props.partsfid);
+            socket.on("updateAllPartAnswers", (data) => {
+                setAllpartanswers(data);
+            })
+        })
 
-                //TODO - Task 2 change to socket maybe?
-                updateAllPartAnswers();
-            
-                },
-                3000
-        );
-        
+        // setTimeout(
+        //     function() {
+        //         console.log('updating part answers in timeout');
+        //
+        //         //TODO - Task 2 change to socket maybe?
+        //         updateAllPartAnswers();
+        //
+        //         },
+        //         3000
+        // );
+
     }, [props.ques]);
 
 
     return (
         <>
 
-                
+
                 <div className="infoDiv mb-4">
                     <a src="#" className="float-right" onClick={handleInfoShow} >
                         <Image src={info} width="22"></Image>
@@ -224,7 +231,7 @@ const Question = (props) => {
                                 You’ll receive a prompt if you get knocked out and notification if you’re one of the winners. We’ll follow up with winners directly.
                             </span>
 
-                            
+
 
                         </Modal.Body>
                         <Modal.Footer>
@@ -248,7 +255,7 @@ const Question = (props) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={1}> 
+                    <Col sm={1}>
                     </Col>
                     <Col sm={10}>
                         <div className={`btn-group m-2 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
@@ -267,13 +274,13 @@ const Question = (props) => {
                         }
                         </div>
                     </Col>
-                    <Col sm={1}> 
+                    <Col sm={1}>
                     </Col>
                 </Row>
-                
+
                 {disabledQuestion ?
                     <div>
-                        <Row className="mt-2">   
+                        <Row className="mt-2">
 
                             <Col>
                                 <div class="font14">
@@ -288,11 +295,11 @@ const Question = (props) => {
                             {props.ques.correct_answer__c !== null &&
                             <Col>
                                 <div className='answerBanner font14'>
-                                    {partAnswer.selection__c == props.ques.correct_answer__c && 
+                                    {partAnswer.selection__c == props.ques.correct_answer__c &&
                                         <img alt="correct answer" width="20" src={correctLogo}/>
                                     }
 
-                                    {partAnswer.selection__c != props.ques.correct_answer__c && 
+                                    {partAnswer.selection__c != props.ques.correct_answer__c &&
                                         <img alt="incorrect answer" width="20" src={incorrectLogo}/>
                                     }
                                     <span>Correct Answer: {props.ques.correct_answer_value__c}</span>
@@ -309,24 +316,24 @@ const Question = (props) => {
                             }
                         </Row>
 
-                        
+
                     </div> : null
                 }
 
                 {allpartanswers.length > 0 &&
-                    
+
                     <div className="answerMain">
                     {allpartanswers.map(answer => {
                         return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? ' selected ' : ''}  ${answer.correct__c === true ? 'correct' : ''} ${answer.incorrect__c === true ? 'incorrect' : ''}`}>
                         </div>
-                        
+
                     })}
                     </div>
-                }       
-                
+                }
+
             {/* end div wrapper */}
         </>
-    ) 
+    )
 }
 
 export default Question;

@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import {
-    Container, 
+    Container,
     Row,
     Col,
     Image,
@@ -26,7 +26,7 @@ const Login = ({ setAuth }) => {
     const { email, password } = inputs;
     const onChange = e =>
       setInputs({ ...inputs, [e.target.name]: e.target.value });
-  
+
     const onSubmitForm = async e => {
       e.preventDefault();
       try {
@@ -43,7 +43,7 @@ const Login = ({ setAuth }) => {
             body: JSON.stringify(body)
           }
         );
-  
+          console.log(await response)
         const parseRes = await response.json();
         if (parseRes.token) {
           localStorage.setItem("token", parseRes.token);
@@ -79,7 +79,7 @@ const Login = ({ setAuth }) => {
             </Row>
             <Row>
                 <Col sm={{ span: 6, offset: 3 }}>
-                
+
                 <Form onSubmit={onSubmitForm}>
 
                     <Form.Group>
@@ -97,7 +97,7 @@ const Login = ({ setAuth }) => {
                     {setErrorMsg !== null &&
                      <div className="errorDiv proxima fontBold">
                        <p>{errorMsg}</p>
-                     </div> 
+                     </div>
                     }
                 </Form>
                 </Col>

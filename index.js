@@ -142,7 +142,7 @@ app.post("/participations", authorization, async (req, res) => {
             "INSERT INTO salesforce.participation__c (Contest__c, Participant__r__ExternalId__c,Status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *",
             [contest_id, req.user.id, 'Active']
         );
-       
+
         res.json(newParticipation.rows[0]);
     } catch (err) {
         console.log('error participations' + err.message);
@@ -169,7 +169,7 @@ app.get("/participationbycontest/:contest_id", authorization, async (req, res) =
         const {contest_id} = req.params;
 
         const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND participant__r__externalid__c = $2", [contest_id, req.user.id]);
-        
+
         res.json(part.rows[0]);
     } catch (err) {
         console.log('err participation by contest' + err);
@@ -179,7 +179,7 @@ app.get("/participationbycontest/:contest_id", authorization, async (req, res) =
 app.get("/questions/:contest_id", authorization, async (req, res) => {
     try {
         const {contest_id} = req.params;
-        
+
         const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY Name ASC", [contest_id]);
         res.json(allContestQuestions.rows)
 
@@ -191,7 +191,7 @@ app.get("/questions/:contest_id", authorization, async (req, res) => {
 app.get("/allquestions/:contest_id", authorization, async (req, res) => {
     try {
         const {contest_id} = req.params;
-        
+
         const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 ORDER BY Name ASC", [contest_id]);
         res.json(allContestQuestions.rows)
 
@@ -206,18 +206,18 @@ app.get("/allquestions/:contest_id", authorization, async (req, res) => {
 app.post("/disablequestions/", authorization, async (req, res) => {
     try {
         const {conid} = req.body;
-        
+
         const allContestQuestions = await pool.query("UPDATE salesforce.question__c SET islocked__c = true WHERE published__c = true AND contest__c = $1 RETURNING *", [conid]
         );
 
-        
+
         var idlist = [];
         for(var i = 0; i < allContestQuestions.rows.length; i++){
             idlist.push(allContestQuestions.rows[i].sfid);
         }
-        
+
         const selectQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE sfid = ANY ($1) ORDER BY Name ASC", [idlist]);
-       
+
         res.json(selectQuestions.rows)
 
     } catch (error) {
@@ -230,10 +230,10 @@ app.post("/disablequestions/", authorization, async (req, res) => {
 app.post("/countsubsegment/", authorization, async (req, res) => {
     try {
         const {conid, subseg} = req.body;
-        
+
         const subsegQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true AND SubSegment__c = $2", [conid, subseg]
         );
-        
+
         res.json(subsegQuestions.rows.length);
 
     } catch (error) {
@@ -370,17 +370,17 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
     try {
         const {partanswers} = req.body;
         var parts = [];
-        
+
         for(var i=0; i < partanswers.length; i++){
             var answer = partanswers[i];
-         
+
             const part = await pool.query(
                 "UPDATE salesforce.Participation_Answers__c SET selection__c = $1, selection_value__c = $2, Status__c = $3, ExternalId__c = gen_random_uuid() WHERE Participation__c = $4 AND Question__c = $5 RETURNING *", [answer.selection__c, answer.selection_value__c, 'Submitted', answer.participation__c, answer.question__c]
                 );
-            
+
             parts.push(part.rows[0]);
         }
-       
+
         res.json(parts);
     } catch (err) {
         console.log('error on submit answer' + err);
@@ -419,7 +419,7 @@ pgListen.notifications.on("new_question", e => {
         console.log('here');
         io.to(e.contest__c).emit("cor_question", e)
     }
-    
+
 })
 
 
@@ -439,7 +439,18 @@ io.on("connection", (socket) => {
         console.log('set contest room' + e);
         socket.join(e)
     })
+    socket.on('update_all_part_answers', async (partsfid) => {
+        const participationAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 ORDER BY name ASC", [partsfid]);
+        io.emit("updateAllPartAnswers",participationAnswer.rows)
+    });
+    socket.on('get_wrong_answers', async (partid) => {
+        const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid]);
+        io.emit("getWrongAnswers",participationWrongAnswer.rows[0])
+    });
+
 });
+
+
 
 io.on('connect_error', function(err) {
     console.log("client connect_error: ", err);
