@@ -449,7 +449,7 @@ const Questions = (props) => {
             setAnswerList(answerList);
             if(answerList.length === subSegmentCount){
                 setAnswerListShow(true);
-                if(showSubmitCount > 0){
+                if(showSubmitCount === 0){
                     setShowSubmitModal(true);
                 }
                 
