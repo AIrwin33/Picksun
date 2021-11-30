@@ -581,39 +581,39 @@ const Questions = (props) => {
         console.log()
         setQuestions(tempQuestions);
         console.log('before add correct questions');
-        // setTimeout(
-        //     function() {
-        //         //TODO - Task 2, update to socket maybe?
-        //     doGetParticipationWrongAnswers();
+        setTimeout(
+            function() {
+                //TODO - Task 2, update to socket maybe?
+            doGetParticipationWrongAnswers();
             
-        //         },
-        //         5000
-        // );
+                },
+                5000
+        );
 
-        socket.on('connect', () => {
-            socket.emit('get_wrong_answers', props.partsfid);
-            socket.on("getWrongAnswers", (data) => {
-                console.log(data);
-                //setAllpartanswers(data);
-                setTimeout(
-                    function() {
-                        checkFinished();
-                    },
-                    2000
-                );
-                if (data.status__c === 'Knocked Out') {
-                    console.log('player is knocked out');
-                    handleKnockout();
+        // socket.on('connect', () => {
+        //     socket.emit('get_wrong_answers', props.partsfid);
+        //     socket.on("getWrongAnswers", (data) => {
+        //         console.log(data);
+        //         //setAllpartanswers(data);
+        //         setTimeout(
+        //             function() {
+        //                 checkFinished();
+        //             },
+        //             2000
+        //         );
+        //         if (data.status__c === 'Knocked Out') {
+        //             console.log('player is knocked out');
+        //             handleKnockout();
 
-                }
-                if (data.status__c === 'Inactive') {
-                    console.log('status inactive');
-                    setInactive(true);
+        //         }
+        //         if (data.status__c === 'Inactive') {
+        //             console.log('status inactive');
+        //             setInactive(true);
 
-                }
-                props.updatepart(data);
-            })
-        })
+        //         }
+        //         props.updatepart(data);
+        //     })
+        // })
         
         
     }

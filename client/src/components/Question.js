@@ -173,23 +173,23 @@ const Question = (props) => {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();
-        // setTimeout(
-        //     function() {
-        //         console.log('updating part answers in timeout');
+        setTimeout(
+            function() {
+                console.log('updating part answers in timeout');
 
-        //         //TODO - Task 2 change to socket maybe?
-        //         updateAllPartAnswers();
+                //TODO - Task 2 change to socket maybe?
+                updateAllPartAnswers();
             
-        //         },
-        //         3000
-        // );
+                },
+                3000
+        );
 
-        socket.on('connect', () => {
-            socket.emit('update_all_part_answers', props.partsfid);
-            socket.on("updateAllPartAnswers", (data) => {
-                setAllpartanswers(data);
-            })
-        })
+        // socket.on('connect', () => {
+        //     socket.emit('update_all_part_answers', props.partsfid);
+        //     socket.on("updateAllPartAnswers", (data) => {
+        //         setAllpartanswers(data);
+        //     })
+        // })
         
     }, [props.ques]);
 
