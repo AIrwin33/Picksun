@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
-const http = require('http').createServer(app);
-const io = require("socket.io")(http);
+
 const {pool, pgListen} = require("./server/db");
 const bodyParser = require('body-parser');
 require("dotenv").config();
@@ -12,6 +11,13 @@ app.use(express.json());
 const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
+
+var server = app.listen(app.get('port'), function() {
+    console.log('Node app is running on port', app.get('port'));
+});
+
+//const http = require('http').createServer(app);
+const io = require("socket.io")(server);
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
