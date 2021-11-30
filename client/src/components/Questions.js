@@ -228,6 +228,7 @@ const Questions = (props) => {
     }
     const handleKnockout = async () => {
         try {
+
             handleEndShow();
             setKnockOut(true);
             setContestKnockoutText(props.contest.knockout_text__c);
@@ -257,6 +258,9 @@ const Questions = (props) => {
             var ko = false;
             var winningParts = [];
             winningParts.push(parseRes[0]);
+
+
+            //TODO - andrew make sure that ko is showing up for already knocked out participants
             for (var k = 0; k < parseRes.length; k++) {
                 if(parseRes[k].sfid === props.partsfid){
                     placefinish = parseRes[k].placefinish__c;
@@ -277,8 +281,9 @@ const Questions = (props) => {
             setPlaceFinish(placefinish);
             console.log(ko);
             if(ko){
-
-            }else{
+                console.log('status ko, dont show end modal');
+            }
+            else{
                 if (placefinish === 1) {
                     console.log('handling contest won');
                     handleContestWon(winningParts.length);
@@ -571,7 +576,9 @@ const Questions = (props) => {
         console.log('get question num here');
         console.log('tempQuestions' + tempQuestions);
         console.log(tempQuestions.map(r => r.sfid).indexOf(question.sfid) + 1);
-        setQuestionNum(tempQuestions.map(r => r.sfid).indexOf(question.sfid) + 1);
+
+        setQuestionNum(1);
+        console.log()
         setQuestions(tempQuestions);
         console.log('before add correct questions');
         setTimeout(

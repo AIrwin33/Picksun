@@ -57,7 +57,7 @@ const Register = ({ setAuth }) => {
     return (
             <>
             {/* Main Body */}
-            <Container fluid id="MainContainer">
+            <Container id="MainContainer">
             <Row>
                 <Col className="mt-3">
                     <h4 className="text-center mt-3 textWhite aptifer font20">Register</h4>
