@@ -441,14 +441,14 @@ io.on("connection", (socket) => {
     })
 });
 
-socket.on('update_all_part_answers', async (partsfid) => {
-    const participationAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 ORDER BY name ASC", [partsfid]);
-    io.emit("updateAllPartAnswers",participationAnswer.rows)
-});
-socket.on('get_wrong_answers', async (partid) => {
-    const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid]);
-    io.emit("getWrongAnswers",participationWrongAnswer.rows[0])
-});
+// socket.on('update_all_part_answers', async (partsfid) => {
+//     const participationAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 ORDER BY name ASC", [partsfid]);
+//     io.emit("updateAllPartAnswers",participationAnswer.rows)
+// });
+// socket.on('get_wrong_answers', async (partid) => {
+//     const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid]);
+//     io.emit("getWrongAnswers",participationWrongAnswer.rows[0])
+// });
 
 io.on('connect_error', function(err) {
     console.log("client connect_error: ", err);
