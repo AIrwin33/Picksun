@@ -12,12 +12,12 @@ const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
 
-var server = app.listen(app.get('port'), function() {
+var http = app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });
 
 //const http = require('http').createServer(app);
-const io = require("socket.io")(server);
+const io = require("socket.io")(http);
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
