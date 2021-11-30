@@ -4,6 +4,7 @@ import {Col, Row, Button, Image, Modal} from "react-bootstrap";
 import {v4 as uuidv4} from 'uuid';
 import "./Question.css";
 import info from '../assets/infoicon.png';
+import {SocketContext} from "../socket";
 
 import correctLogo from '../assets/correctIcon.png';
 import incorrectLogo from '../assets/incorrectIcon.png';

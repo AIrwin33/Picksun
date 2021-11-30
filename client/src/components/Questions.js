@@ -593,7 +593,8 @@ const Questions = (props) => {
         socket.on('connect', () => {
             socket.emit('get_wrong_answers', props.partsfid);
             socket.on("getWrongAnswers", (data) => {
-                setAllpartanswers(data);
+                console.log(data);
+                //setAllpartanswers(data);
                 setTimeout(
                     function() {
                         checkFinished();
