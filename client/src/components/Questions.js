@@ -287,7 +287,9 @@ const Questions = (props) => {
                 }
             }
             console.log(placefinish);
-            setPlaceFinish(placefinish);
+            if(placeFin === 0){
+                setPlaceFinish(placefinish);
+            }
             console.log(ko);
             if(ko){
                 console.log('status ko, dont show end modal');
