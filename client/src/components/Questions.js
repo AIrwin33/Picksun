@@ -229,10 +229,12 @@ const Questions = (props) => {
     const handleKnockout = async () => {
         try {
 
-            handleEndShow();
+            
             if(placeFin === 'DNF'){
-                
+                console.log('already DNF, dont show');
             }else{
+                console.log('not DNF yet');
+                handleEndShow();
                 setPlaceFinish('DNF');
                 setKnockOut(true);
                 setContestKnockoutText(props.contest.knockout_text__c);
@@ -284,6 +286,7 @@ const Questions = (props) => {
                     
                 }
             }
+            console.log(placefinish);
             setPlaceFinish(placefinish);
             console.log(ko);
             if(ko){
