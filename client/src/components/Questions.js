@@ -232,6 +232,7 @@ const Questions = (props) => {
             handleEndShow();
             setKnockOut(true);
             setContestKnockoutText(props.contest.knockout_text__c);
+            setPlaceFinish('DNF');
         } catch (err) {
             console.error(err.message);
         }
