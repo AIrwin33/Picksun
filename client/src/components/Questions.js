@@ -230,7 +230,7 @@ const Questions = (props) => {
         try {
 
             handleEndShow();
-            if(placefinish === 'DNF'){
+            if(placeFin === 'DNF'){
                 
             }else{
                 setPlaceFinish('DNF');
