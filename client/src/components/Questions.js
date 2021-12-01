@@ -228,7 +228,7 @@ const Questions = (props) => {
     }
     const handleKnockout = async () => {
         try {
-
+            console.log('handling knocked out' + placeFin);
             
             if(placeFin === 'DNF'){
                 console.log('already DNF, dont show');
