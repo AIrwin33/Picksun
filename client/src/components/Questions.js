@@ -230,9 +230,14 @@ const Questions = (props) => {
         try {
 
             handleEndShow();
-            setKnockOut(true);
-            setContestKnockoutText(props.contest.knockout_text__c);
-            setPlaceFinish('DNF');
+            if(placefinish === 'DNF'){
+                
+            }else{
+                setPlaceFinish('DNF');
+                setKnockOut(true);
+                setContestKnockoutText(props.contest.knockout_text__c);
+
+            }
         } catch (err) {
             console.error(err.message);
         }
