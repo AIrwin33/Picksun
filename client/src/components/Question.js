@@ -286,10 +286,10 @@ const Question = (props) => {
                             <Col>
                                 <div class="font14">
                                     {partAnswer.selection_value__c !== null &&
-                                    <span>Your Answer: {partAnswer.selection_value__c}</span>
+                                    <span>My Pick: {partAnswer.selection_value__c}</span>
                                     }
                                     {partAnswer.selection_value__c == null &&
-                                    <span>Your Answer: Did Not Answer </span>
+                                    <span>My Pick: Did Not Answer </span>
                                     }
                                 </div>
                             </Col>
@@ -303,7 +303,7 @@ const Question = (props) => {
                                     {partAnswer.selection__c != props.ques.correct_answer__c && 
                                         <img alt="incorrect answer" width="20" src={incorrectLogo}/>
                                     }
-                                    <span>Correct Answer: {props.ques.correct_answer_value__c}</span>
+                                    <span>Answer: {props.ques.correct_answer_value__c}</span>
                                 </div>
                             </Col>
                             }
@@ -311,7 +311,7 @@ const Question = (props) => {
                             {props.ques.correct_answer__c === null &&
                              <Col>
                                 <div class="font14">
-                                    <span>Correct Answer: Stay Tuned</span>
+                                    <span>Answer: Stay Tuned</span>
                                 </div>
                             </Col>
                             }

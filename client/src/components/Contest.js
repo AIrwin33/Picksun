@@ -123,6 +123,8 @@ const Contest = ({match}) => {
                 setNewQuestion(question)
             })
             socket.on("cor_question", question => {
+
+                //Does not hit this when running into issues in mobile
                 console.log("new correct question");
                 setNewCorrectQuestion(question);
             })
