@@ -130,7 +130,12 @@ const Contest = ({match}) => {
             socket.on("new_contest", contest => {
                 console.log('new_contest' + contest);
                 setContest(contest);
-            })
+            });
+
+            socket.on('reconnect', function() {
+                console.log('reconnect fired!');
+            });
+ 
             console.log('before emit contest');
             socket.emit("set_contest_room", match.params.id);
         });
