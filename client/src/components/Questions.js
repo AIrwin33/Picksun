@@ -668,6 +668,12 @@ const Questions = (props) => {
                                             <Image width='20' src={baseball}/>
                                         </div>
                                         }
+
+                                        {counter === 0 &&
+                                        <div className="gameBanner font16">
+                                            <h3>Game On</h3>
+                                        </div>
+                                        }
                                     </React.Fragment>
                                 )}
                             </Timer>

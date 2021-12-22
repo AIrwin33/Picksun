@@ -109,6 +109,13 @@
     padding: 2px;
 }
 
+.gameBanner {
+    color: white;
+    background-color: red;
+    border-radius: 2px;
+    border: 1px solid red;
+}
+
 @media only screen and (max-width: 600px) {
     .questionTextDiv {
         height: 15vh;

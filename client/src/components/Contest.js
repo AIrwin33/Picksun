@@ -113,9 +113,8 @@ const Contest = ({match}) => {
     useEffect(() => {
         getContest().then(r =>  {
             console.log('here in contest', contest);
-            console.log('r'+ r);
             socket.on("connect", () => {
-                console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+                console.log('socket id::' + socket.id); // x8WIv7-mJelg7on_ALbx
               });
 
             socket.on("new_question", question => {
