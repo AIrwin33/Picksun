@@ -25,6 +25,13 @@ const Lobby = () => {
            }
        };
 
+       let button;
+        if (isLoggedIn) {
+          button = <LogoutButton onClick={this.handleLogoutClick} />;
+        } else {
+          button = <LoginButton onClick={this.handleLoginClick} />;
+        }
+
        const enterContest = async (contest_id) => {
         try {
 
@@ -62,9 +69,16 @@ const Lobby = () => {
                     {contests.map(contest => (
                     <Col xs={12} md={4}>
                         <div key={contest.id} className="LobbyCard mx-auto">
+                            {contest.image_url__c != null &&
+                            <div>
+                                <img width="247" src={contest.image_url__c}/>
+                            </div>
+                            }
+                            {contest.image_url__c == null && 
                             <div>
                                 <img width="247" src={contest.image__c}/>
                             </div>
+                            }
                             <p className="whiteText aptifer font16 text-center mt-1 mb-0">{contest.name}</p>
                             <p className="whiteText aptifer font12 text-center mt-1 mb-0">{contest.start_time_text__c}</p>
                             <Button className="btnRed aptifer font16 boldText" onClick={() => enterContest(contest.sfid)}>Start Picking</Button>
