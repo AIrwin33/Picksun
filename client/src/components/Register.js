@@ -17,6 +17,7 @@ const Register = ({ setAuth }) => {
         password: "",
         name: ""
       });
+    const [showError, setShowError] = useState(false);
 
       const { email, password, name } = inputs;
 
@@ -47,6 +48,8 @@ const Register = ({ setAuth }) => {
         window.location = "/Lobby";
       } else {
         setAuth(false);
+        console.log('could not register');
+        setShowError(true);
         console.log('parseRes? ' + parseRes);
       }
     } catch (err) {
@@ -98,6 +101,12 @@ const Register = ({ setAuth }) => {
                         <Button variant="primary" type="submit" className="btnRed float-right mb-3 aptifer font20">
                             Sign Up
                         </Button>
+                        {showError &&
+                        
+                        <div>
+                          <h4 class="textRed">There was an error in registration</h4>
+                        </div>
+                        }
                     </Form>
                     
                     </Col>
