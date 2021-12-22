@@ -16,10 +16,12 @@ const Contest = ({match}) => {
     const [isloaded, setLoaded] = useState(false);
     const [home, setHomeTeam] = useState([]);
     const [away, setAwayTeam] = useState([]);
+    const [key, setKey] = useState('Questions');
     const [participation, setParticipation] = useState([]);
     const [participations, setParticipations] = useState([]);
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
+
     const [newQuestion, setNewQuestion] = useState()
     const [newCorrectQuestion, setNewCorrectQuestion] = useState()
     const socket = React.useContext(SocketContext)
@@ -104,6 +106,12 @@ const Contest = ({match}) => {
         }
     }
 
+    const tabset = useCallback(() => {
+        //updates participations in the contest as they are updated from questions.
+        //passed up from questions js when answers are marked
+        setKey('Participants');
+    })
+
     const updateparts = useCallback(() => {
         //updates participations in the contest as they are updated from questions.
         //passed up from questions js when answers are marked
@@ -173,7 +181,7 @@ const Contest = ({match}) => {
                         <Col xs={1} sm={3}>
                         </Col>
                     </Row>
-                    <Tabs fill className="ml-2 mr-2">
+                    <Tabs activeKey={key} fill className="ml-2 mr-2">
                         <Tab eventKey="Questions" title="Questions" className="aptifer pb-4 pt-4">
                             <Row>
                                 <Col lg={3} sm={1}>
@@ -181,7 +189,7 @@ const Contest = ({match}) => {
                                 </Col>
                                 <Col lg={6} sm={10}>
                                     {isloaded &&
-                                    <Questions updatepart={updateparts} contestid={contest.sfid}
+                                    <Questions tabset={tabset} updatepart={updateparts} contestid={contest.sfid} 
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}
                                                partsfid={participation.sfid} newQuestion={newQuestion} newCorrectQuestion={newCorrectQuestion}

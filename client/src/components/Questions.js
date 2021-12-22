@@ -389,6 +389,7 @@ const Questions = (props) => {
             handleSubmitClose();
             setSubmitted(true);
             setShowWaiting(true);
+            props.tabset();
             const partanswers = answerList;
             const body = {partanswers};
             const res = await fetch(`/submitpartanswers`, {
