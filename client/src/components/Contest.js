@@ -181,7 +181,7 @@ const Contest = ({match}) => {
                         <Col xs={1} sm={3}>
                         </Col>
                     </Row>
-                    <Tabs activeKey={key} fill className="ml-2 mr-2">
+                    <Tabs activeKey={key} onSelect={(k) => setKey(k)} fill className="ml-2 mr-2">
                         <Tab eventKey="Questions" title="Questions" className="aptifer pb-4 pt-4">
                             <Row>
                                 <Col lg={3} sm={1}>
