@@ -671,7 +671,7 @@ const Questions = (props) => {
                                         }
 
                                         {counter === 0 && questions.length > 0 &&
-                                        <div className="gameBanner font16">
+                                        <div className="gameBanner font16 text-center">
                                             <h3>Game On</h3>
                                         </div>
                                         }
