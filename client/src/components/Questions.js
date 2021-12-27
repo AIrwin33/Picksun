@@ -570,21 +570,21 @@ const Questions = (props) => {
     const addCorrectQuestion = question => {
 
         //TODO Task 1 - debug why this part isn't running in Mobile
-        var tempQuestions = questions;
-        tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+        // var tempQuestions = questions;
+        // tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
 
-        setQuestionNum(1);
+        // setQuestionNum(1);
         
-        setQuestions(tempQuestions);
+        // setQuestions(tempQuestions);
         
-        setTimeout(
-            function() {
-                //TODO - Task 2, update to socket maybe?
-            doGetParticipationWrongAnswers();
+        // setTimeout(
+        //     function() {
+        //         //TODO - Task 2, update to socket maybe?
+        //     doGetParticipationWrongAnswers();
             
-                },
-                5000
-        );
+        //         },
+        //         5000
+        // );
 
         // socket.on('connect', () => {
         //     socket.emit('get_wrong_answers', props.partsfid);
