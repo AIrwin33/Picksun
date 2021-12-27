@@ -670,7 +670,7 @@ const Questions = (props) => {
                                         </div>
                                         }
 
-                                        {counter === 0 && questions.length > 0 &&
+                                        {counter === 0 && publishedQuestions > 0 &&
                                         <div className="gameBanner font16 text-center">
                                             <h3>Game On</h3>
                                         </div>
