@@ -175,7 +175,7 @@ const Question = (props) => {
         handleExistingPartAnswer();
         setTimeout(
             function() {
-                console.log('updating part answers in timeout');
+               
 
                 //TODO - Task 2 change to socket maybe?
                 updateAllPartAnswers();

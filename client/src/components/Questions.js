@@ -167,7 +167,7 @@ const Questions = (props) => {
 
     const doGetParticipationWrongAnswers = async () => {
         try {
-            
+            console.log('part answers method');
             const partid = props.participation_id;
             const body = {partid};
             const response = await fetch(
@@ -220,7 +220,7 @@ const Questions = (props) => {
             console.log('end of contest');
             handleContestEnd();
         }else{
-            console.log('continue');
+            
         }
     }
     const handleKnockout = async () => {
@@ -509,6 +509,7 @@ const Questions = (props) => {
             if (questions.length > 0 && questions.length === allquestions.length) {
             } else {
                 var newquestions = questions;
+                console.log('call parts answers in add new question');
                 doGetParticipationWrongAnswers();
 
                 //if there is already a segment published, include old questions
@@ -553,7 +554,7 @@ const Questions = (props) => {
             if(question.islocked__c){
                 console.log('question is locked, dont do anything');
             }else{
-
+                console.log('call parts answers in add new question');
                 doGetParticipationWrongAnswers();
                 const tempQuestions = questions;
                 
