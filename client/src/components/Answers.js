@@ -11,7 +11,6 @@ const Answers = (props) => {
 
     const getWrongTotal = async (infoWrong, infoTotal) => {
         var ans = [];
-        console.log('infowrong in answers' + infoWrong);
         for (var i = 0;i < infoTotal; i++) {
             if(i < infoWrong){
                 var anw = {
@@ -28,13 +27,11 @@ const Answers = (props) => {
                 ans.push(an);
             }
         }
-        console.log('ans' + ans);
         setAnswers(ans);
 
     }
 
     useEffect(() => {
-        console.log('props wrong' + props.wrong);
         getWrongTotal(props.wrong, props.total);   
 
     }, [props]);

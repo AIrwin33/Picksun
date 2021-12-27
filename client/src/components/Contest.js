@@ -115,14 +115,13 @@ const Contest = ({match}) => {
     const updateparts = useCallback(() => {
         //updates participations in the contest as they are updated from questions.
         //passed up from questions js when answers are marked
-        console.log('update parts');
         getContestParticipations(contest);
     })
     useEffect(() => {
         getContest().then(r =>  {
             console.log('here in contest', contest);
             socket.on("connect", () => {
-                console.log('socket id::' + socket.id); // x8WIv7-mJelg7on_ALbx
+                console.log('socket id::' + socket.id); 
               });
 
             socket.on("new_question", question => {

@@ -107,20 +107,20 @@ const Questions = (props) => {
                     var currtime = moment().valueOf();
                     var closedTimerInt = millival + parseInt(openedtimerval);
                     var diffTime = moment(closedTimerInt).diff(currtime);
-                    console.log(diffTime);
+                    
                     if (diffTime < 0) {
-                        console.log('setting timer zero?');
+                        
                         setCounter(0);
                         $('.timerdiv').removeClass('hiddenTimer');
                         
                     } else {
-                        console.log('setting timer count time?');
+                       
                         setCounter(diffTime);
                         $('.timerdiv').removeClass('hiddenTimer');
                         
                     }
                 } else {
-                    console.log('no available unlocked questions');
+                    
                 }
             }
             setQuestions(parseData);
@@ -167,7 +167,7 @@ const Questions = (props) => {
 
     const doGetParticipationWrongAnswers = async () => {
         try {
-            console.log('in do get participation answers')
+            
             const partid = props.participation_id;
             const body = {partid};
             const response = await fetch(
@@ -181,9 +181,6 @@ const Questions = (props) => {
                 }
             );
             const parseData = await response.json();
-            console.log('parts in answers' + JSON.stringify(parseData));
-            console.log(parseData.wrong_answers__c);
-            console.log(partWrongAnswer.wrong_answers__c);
             setPartWrongAnswer(parseData);
             
 
@@ -218,7 +215,7 @@ const Questions = (props) => {
             headers: {jwt_token: localStorage.token}
         });
         const parseContestData = await res.json();
-        console.log(JSON.stringify(parseContestData));
+        
         if(parseContestData.status__c === 'Finished'){
             console.log('end of contest');
             handleContestEnd();
@@ -228,7 +225,7 @@ const Questions = (props) => {
     }
     const handleKnockout = async () => {
         try {
-            console.log('handling knocked out' + placeFin);
+            
             
             if(placeFin === 'DNF'){
                 console.log('already DNF, dont show');
@@ -248,7 +245,7 @@ const Questions = (props) => {
 
     const handleContestEnd = async () => {
         try {
-            console.log('step 1.5: contest is over');
+            
             //check if there are other participations active
             const response = await fetch(
                 `/allendingparticipations/` + props.contest.sfid,
@@ -278,21 +275,18 @@ const Questions = (props) => {
                     }
                 }
                 if(parseRes[0].wrong_answers__c === parseRes[k].wrong_answers__c && parseRes[0].sfid !== parseRes[k].sfid){
-                    console.log('adding to winning participants');
-                    console.log(parseRes[0].sfid);
-                    console.log(parseRes[k].sfid);
-                    console.log(JSON.stringify(parseRes[k]));
+                    
                     winningParts.push(parseRes[k]);
                     
                 }
             }
-            console.log(placefinish);
+            
             if(placeFin === 0){
                 setPlaceFinish(placefinish);
             }
-            console.log(ko);
+            
             if(ko){
-                console.log('status ko, dont show end modal');
+                
             }
             else{
                 if (placefinish === 1) {
@@ -349,7 +343,7 @@ const Questions = (props) => {
     }
 
     const setTimer = () => {
-        console.log('set timer');
+        
         var timerMilli = props.contest.question_timer__c * 1000;
         setCounter(timerMilli);
     }
@@ -369,7 +363,7 @@ const Questions = (props) => {
             });
 
             const parseData = await res.json();
-            console.log('parse disabled' + JSON.stringify(parseData));
+            
             $('.timerdiv').addClass('hiddenTimer');
             $('.carousel-control-next-icon').removeClass('active');
             setIndex(subsegplusone);
@@ -426,7 +420,7 @@ const Questions = (props) => {
     const updateAnswerList = async (childData) => {
         try {
 
-            console.log(childData);
+            
 
             //if the answer list is empty, add the answered question from the Question JS
             if (answerList.length < 1) {
@@ -436,18 +430,16 @@ const Questions = (props) => {
             var addTo = true;
             //if answer list contains the question answer already, then replace it, otherwise add it
             for (var i = 0; i < answerList.length; i++) {
-                console.log(answerList.length);
-                console.log('child' + JSON.stringify(childData));
-                console.log('of 1' + JSON.stringify(answerList[i]));
+               
 
 
 
                 if (childData.question__c === answerList[i].question__c) {
                     //replace existing question
-                    console.log('replacing existing question')
+                    
                     answerList.splice(i, 1, childData);
                     addTo = false;
-                    console.log(answerList.length);
+                   
                     break;
                 } 
             }
@@ -456,8 +448,6 @@ const Questions = (props) => {
                 answerList.push(childData);
             }
 
-            console.log('answerList' + JSON.stringify(answerList));
-            console.log(answerList.length);
             setAnswerList(answerList);
             if(answerList.length === subSegmentCount){
                 setAnswerListShow(true);
@@ -548,8 +538,7 @@ const Questions = (props) => {
                         }
                     }
                 }
-                console.log('newquestions' + newquestions);
-                console.log('questions not new' + questions);
+                
                 setPublishedQuestions(newquestions.length);
                 setQuestionIds(newquestionids);
                 setQuestions(newquestions);
@@ -562,17 +551,14 @@ const Questions = (props) => {
             if(question.islocked__c){
                 console.log('question is locked, dont do anything');
             }else{
-                console.log('question not locked');
-                console.log(question.islocked__c);
+
                 doGetParticipationWrongAnswers();
                 const tempQuestions = questions;
-                console.log('temp questions');
+                
                 tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
                 setQuestions(tempQuestions);
                 setIndex(subsegplusone);
-                
                 setTimer();
-                console.log('question num' + subsegplusone);
             }
 
         }
@@ -583,16 +569,11 @@ const Questions = (props) => {
         //TODO Task 1 - debug why this part isn't running in Mobile
         var tempQuestions = questions;
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-        console.log('question' + question);
-
-        console.log('get question num here');
-        console.log('tempQuestions' + tempQuestions);
-        console.log(tempQuestions.map(r => r.sfid).indexOf(question.sfid) + 1);
 
         setQuestionNum(1);
-        console.log()
+        
         setQuestions(tempQuestions);
-        console.log('before add correct questions');
+        
         setTimeout(
             function() {
                 //TODO - Task 2, update to socket maybe?
