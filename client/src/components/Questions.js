@@ -672,7 +672,7 @@ const Questions = (props) => {
 
                                         {counter === 0 && publishedQuestions > 0 &&
                                         <div className="gameBanner font16 text-center">
-                                            <h3>Game On</h3>
+                                            <h3 class="text-center">Game On</h3>
                                         </div>
                                         }
                                     </React.Fragment>
