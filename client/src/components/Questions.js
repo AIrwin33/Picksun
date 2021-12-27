@@ -293,6 +293,7 @@ const Questions = (props) => {
                     console.log('handling contest won');
                     handleContestWon(winningParts.length);
                 }else {
+                    console.log('hanlde end show in contest end place finish not 1' + placefinish);
                     handleEndShow();
                     setShowContestFinished(true);
                     setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
@@ -323,6 +324,7 @@ const Questions = (props) => {
                     body: JSON.stringify(body)
                 }
             );
+            console.log('hanlde end show in handle contest won');
             handleEndShow();
             setShowContestWon(true);
 
