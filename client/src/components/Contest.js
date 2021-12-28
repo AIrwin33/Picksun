@@ -113,6 +113,7 @@ const Contest = ({match}) => {
     })
 
     const updateparts = useCallback(() => {
+        console.log('update parts in contest');
         //updates participations in the contest as they are updated from questions.
         //passed up from questions js when answers are marked
         getContestParticipations(contest);
