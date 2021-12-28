@@ -181,7 +181,7 @@ const Question = (props) => {
                 updateAllPartAnswers();
             
                 },
-                3000
+                1500
         );
 
         // socket.on('connect', () => {
