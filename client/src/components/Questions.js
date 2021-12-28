@@ -651,10 +651,25 @@ const Questions = (props) => {
                                         {/* on timer state of stopped, call the disable function and show answer*/}
                                         {counter > 0 &&
                                         <div className="timerdiv font16">
-                                            {contest.event__r.}
-                                            <Image width='20' src={football}/>
+                                            {props.sport === 'baseball' && 
+                                                <Image width='20' src={baseball}/>
+                                            }
+                                            {props.sport === 'football' && 
+                                                <Image width='20' src={football}/>
+                                            }
+                                            {props.sport === 'basketball' && 
+                                                <Image width='20' src={basketball}/>
+                                            }
                                                 <Timer.Seconds/> Seconds
-                                            <Image width='20' src={football}/>
+                                            {props.sport === 'baseball' && 
+                                                <Image width='20' src={baseball}/>
+                                            }
+                                            {props.sport === 'football' && 
+                                                <Image width='20' src={football}/>
+                                            }
+                                            {props.sport === 'basketball' && 
+                                                <Image width='20' src={basketball}/>
+                                            }
                                         </div>
                                         }
 
@@ -807,10 +822,19 @@ const Questions = (props) => {
             {!review && !submitted && questions.length > 0 &&
                 <Row className="questionRow m-2 p-2 justify-content-center">
                     <Col xs={2} lg={4} >
-                        {counter > 0 && answerListShow &&
+                        {counter > 0 && answerListShow && props.sport === 'basketball' &&
                         
+                            <Image width='35' src={basketball} class="float-right"/>
+                        }
+                        {counter > 0 && answerListShow && props.sport === 'baseball' &&
+                        
+                            <Image width='35' src={baseball} class="float-right"/>
+                        }
+                        {counter > 0 && answerListShow && props.sport === 'football' &&
+                            
                             <Image width='35' src={football} class="float-right"/>
                         }
+
                     </Col>
                     <Col xs={6} lg={4}>
                         <button
@@ -819,7 +843,17 @@ const Questions = (props) => {
                         </button>
                     </Col>
                     <Col xs={2} lg={4} >
-                        {counter > 0 && answerListShow &&
+                        {counter > 0 && answerListShow && props.sport === 'basketball' &&
+                        
+                            <Image  width='35' src={basketball} class="float-left"/>
+                        }
+
+                        {counter > 0 && answerListShow && props.sport === 'baseball' &&
+                        
+                            <Image  width='35' src={baseball} class="float-left"/>
+                        }
+
+                        {counter > 0 && answerListShow && props.sport === 'football' &&
                         
                             <Image  width='35' src={football} class="float-left"/>
                         }

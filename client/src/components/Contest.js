@@ -16,6 +16,7 @@ const Contest = ({match}) => {
     const [isloaded, setLoaded] = useState(false);
     const [home, setHomeTeam] = useState([]);
     const [away, setAwayTeam] = useState([]);
+    const [sport, setSport] = useState('baseball');
     const [key, setKey] = useState('Questions');
     const [participation, setParticipation] = useState([]);
     const [participations, setParticipations] = useState([]);
@@ -49,6 +50,7 @@ const Contest = ({match}) => {
             });
 
             const parseData = await res.json();
+            setSport(parseData[0].sport__c);
             setHomeTeam(parseData[0]);
             setAwayTeam(parseData[1]);
             getContestParticipations(contestRec);
@@ -189,7 +191,7 @@ const Contest = ({match}) => {
                                 </Col>
                                 <Col lg={6} sm={10}>
                                     {isloaded &&
-                                    <Questions tabset={tabset} updatepart={updateparts} contestid={contest.sfid} 
+                                    <Questions tabset={tabset} updatepart={updateparts} sport={sport} contestid={contest.sfid} 
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}
                                                partsfid={participation.sfid} newQuestion={newQuestion} newCorrectQuestion={newCorrectQuestion}
