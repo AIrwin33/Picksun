@@ -10,6 +10,8 @@ import moment from 'moment';
 
 import "./Questions.css";
 import baseball from '../assets/Baseballspinning.gif';
+import football from '../assets/footbal.gif';
+import basketball from '../assets/basketball.gif';
 import hourglass from '../assets/hourglass.png';
 import {SocketContext} from '../socket';
 import Timer from 'react-compound-timer';
@@ -649,9 +651,10 @@ const Questions = (props) => {
                                         {/* on timer state of stopped, call the disable function and show answer*/}
                                         {counter > 0 &&
                                         <div className="timerdiv font16">
-                                            <Image width='20' src={baseball}/>
+                                            {contest.event__r.}
+                                            <Image width='20' src={football}/>
                                                 <Timer.Seconds/> Seconds
-                                            <Image width='20' src={baseball}/>
+                                            <Image width='20' src={football}/>
                                         </div>
                                         }
 
@@ -806,7 +809,7 @@ const Questions = (props) => {
                     <Col xs={2} lg={4} >
                         {counter > 0 && answerListShow &&
                         
-                            <Image width='35' src={baseball} class="float-right"/>
+                            <Image width='35' src={football} class="float-right"/>
                         }
                     </Col>
                     <Col xs={6} lg={4}>
@@ -818,7 +821,7 @@ const Questions = (props) => {
                     <Col xs={2} lg={4} >
                         {counter > 0 && answerListShow &&
                         
-                            <Image  width='35' src={baseball} class="float-left"/>
+                            <Image  width='35' src={football} class="float-left"/>
                         }
                     </Col>
                 </Row>
