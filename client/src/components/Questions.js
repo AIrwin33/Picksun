@@ -555,7 +555,7 @@ const Questions = (props) => {
             if(question.islocked__c){
                 console.log('question is locked, dont do anything');
             }else{
-                console.log('call parts answers in add new question');
+                console.log('call parts answers in add new question else');
                 doGetParticipationWrongAnswers();
                 const tempQuestions = questions;
                 
