@@ -10,7 +10,7 @@ import moment from 'moment';
 
 import "./Questions.css";
 import baseball from '../assets/Baseballspinning.gif';
-import football from '../assets/footbal.gif';
+import football from '../assets/football.gif';
 import basketball from '../assets/basketball.gif';
 import hourglass from '../assets/hourglass.png';
 import {SocketContext} from '../socket';
