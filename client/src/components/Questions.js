@@ -229,12 +229,12 @@ const Questions = (props) => {
         try {
             
             
-            if(placeFin === 'DNF'){
+            if(placeFin === 'Knocked Out'){
                 console.log('already DNF, dont show');
             }else{
                 console.log('not DNF yet');
                 handleEndShow();
-                setPlaceFinish('DNF');
+                setPlaceFinish('Knocked Out');
                 setKnockOut(true);
                 setContestKnockoutText(props.contest.knockout_text__c);
 
@@ -679,7 +679,7 @@ const Questions = (props) => {
                             </Timer>
                             {review &&
                                         <div className="gameBanner font16 text-center">
-                                            <h3 class="text-center">Game On</h3>
+                                            <h3 class="text-center">Contest Is Live</h3>
                                         </div>
                                         }
                         </div>
@@ -774,7 +774,7 @@ const Questions = (props) => {
                     <Row>
                         <div className="font16">
                             <span>{contestFinishedText}</span><br/>
-                            <span>Place Finish: {placeFin}</span>
+                            <span>Your Rank: {placeFin}</span>
                         </div>
                     </Row>
                     }
