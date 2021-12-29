@@ -677,7 +677,7 @@ const Questions = (props) => {
                                     </React.Fragment>
                                 )}
                             </Timer>
-                            {counter < 1 && publishedQuestions > 0 &&
+                            {review &&
                                         <div className="gameBanner font16 text-center">
                                             <h3 class="text-center">Game On</h3>
                                         </div>
