@@ -678,8 +678,8 @@ const Questions = (props) => {
                                 )}
                             </Timer>
                             {review &&
-                                        <div className="gameBanner font16 text-center">
-                                            <h3 class="text-center">Contest Is Live</h3>
+                                        <div className="gameBanner proxima font16 text-center">
+                                            <h3 class="text-center">Contest Live</h3>
                                         </div>
                                         }
                         </div>
@@ -712,8 +712,8 @@ const Questions = (props) => {
             <Row className="questionRow m-2 p-2 justify-content-center">
                 {showEndBanner &&
                 <Col sm={12} lg={12} className="endtextbanner text-center font16">
-                    <span>Thanks For Playing</span><br/>
-                    <span>Place Finish: {placeFin}</span>
+                    <span class="proxima">Thanks For Playing</span><br/>
+                    <span class="proxima">Place Finish: {placeFin}</span>
                 </Col>
                 }
                 <Col  sm={12} lg={12}>
