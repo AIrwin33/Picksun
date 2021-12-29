@@ -673,14 +673,15 @@ const Questions = (props) => {
                                         </div>
                                         }
 
-                                        {counter < 1 && publishedQuestions > 0 &&
+                                        
+                                    </React.Fragment>
+                                )}
+                            </Timer>
+                            {counter < 1 && publishedQuestions > 0 &&
                                         <div className="gameBanner font16 text-center">
                                             <h3 class="text-center">Game On</h3>
                                         </div>
                                         }
-                                    </React.Fragment>
-                                )}
-                            </Timer>
                         </div>
                     </Col>
                     }
