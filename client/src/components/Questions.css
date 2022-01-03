@@ -112,7 +112,7 @@
 .gameBanner {
     color: white;
     background-color: red;
-    opacity: 0.8;
+    opacity: 50%;
     border-radius: 5px;
     border: 1px solid red;
     padding-top:8px;
