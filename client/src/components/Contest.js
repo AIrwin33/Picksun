@@ -212,8 +212,8 @@ const Contest = ({match}) => {
 
                                 </Col>
                                 <Col lg={6} sm={10} >
-                                    <Row className="colCard justify-content-center"> 
-                                        <span>Participants Remaining: {activeParts}/{allParts}</span>
+                                    <Row className="colCard justify-content-center "> 
+                                        <span class="aptifer">Participants Remaining: {activeParts}/{allParts}</span>
                                     </Row>
                                     {participations.map(part => {
                                         return <Row key={part.id} className="colCard ">
@@ -222,18 +222,18 @@ const Contest = ({match}) => {
                                                                                     height="50"></Image> </Col>
                                             <Col xs={10}>
                                                 <Row>
-                                                    <span className="fontBold">{part.participant_name__c}</span>
+                                                    <span className="fontBold proxima">{part.participant_name__c}</span>
                                                     {part.sfid === participation.sfid &&
-                                                    <div className="yourpart ml-3">
+                                                    <div className="yourpart ml-3 proxima">
                                                         You
                                                     </div>
                                                     }
                                                 </Row>
                                                 <Row>
-                                                    <Col sm={12} lg={6}>
+                                                    <Col sm={12} lg={6} class="proxima">
                                                         Wrong Answers: {part.wrong_answers__c}
                                                     </Col>
-                                                    <Col sm={12} lg={6}>
+                                                    <Col sm={12} lg={6} class="proxima">
                                                         Wrong Answers Allowed: {part.wrong_answers_allowed__c}
                                                     </Col>
                                                 </Row>
