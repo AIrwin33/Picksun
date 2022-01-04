@@ -439,10 +439,17 @@ console.log('after listen tio');
 pgListen.listenTo("new_contest")
 
 io.on("connection", (socket) => {
+    console.log('connect to socket');
+    console.log(socket.id);
     socket.on("set_contest_room", e => {
         console.log('set contest room' + e);
         socket.join(e)
     })
+});
+
+io.on("disconnect", (socket) => {
+    console.log('disconnect from socket');
+    console.log(socket.id);
 });
 
 // socket.on('update_all_part_answers', async (partsfid) => {
