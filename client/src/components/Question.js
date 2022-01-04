@@ -244,13 +244,13 @@ const Question = (props) => {
                 </div>
                 <Row>
 
-                    <div className="questionTextDiv">
+                    <div className="questionTextDiv aptifer">
                         <h4>{props.questionNum}) {quest.question_text__c}</h4>
                     </div>
                 </Row>
                 <Row>
                     <Col>
-                        <div className="counterDiv font16">
+                        <div className="counterDiv font16 aptifer">
                             Question: {props.questionNum} of {props.totalQuestions}
                         </div>
                     </Col>
@@ -261,16 +261,16 @@ const Question = (props) => {
                     <Col sm={10}>
                         <div className={`btn-group m-2 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
                             aria-label="Basic example" data-toggle="buttons">
-                            <button type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold ${partAnswer.selection_value__c === quest.answer_a__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                            <button type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_a__c && disabledQuestion ? "selectedQuestion" : ""}`}
                                     onClick={handleRadioChange}>{quest.answer_a__c}</button>
-                            <button type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold ${partAnswer.selection_value__c === quest.answer_b__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                            <button type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_b__c && disabledQuestion ? "selectedQuestion" : ""}`}
                                     onClick={handleRadioChange}>{quest.answer_b__c}</button>
                             {quest.answer_c__c !== null &&
-                            <button type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold ${partAnswer.selection_value__c === quest.answer_c__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                            <button type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_c__c && disabledQuestion ? "selectedQuestion" : ""}`}
                             onClick={handleRadioChange}>{quest.answer_c__c}</button>
                         }
                             {quest.answer_d__c !== null &&
-                            <button type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold ${partAnswer.selection_value__c === quest.answer_d__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                            <button type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_d__c && disabledQuestion ? "selectedQuestion" : ""}`}
                             onClick={handleRadioChange}>{quest.answer_d__c}</button>
                         }
                         </div>
@@ -286,10 +286,10 @@ const Question = (props) => {
                             <Col>
                                 <div class="font14">
                                     {partAnswer.selection_value__c !== null &&
-                                    <span>My Pick: {partAnswer.selection_value__c}</span>
+                                    <span class="proxima" >My Pick: {partAnswer.selection_value__c}</span>
                                     }
                                     {partAnswer.selection_value__c == null &&
-                                    <span>Did Not Answer </span>
+                                    <span class="proxima">My Pick: Did Not Answer </span>
                                     }
                                 </div>
                             </Col>
@@ -303,7 +303,7 @@ const Question = (props) => {
                                     {partAnswer.selection__c != props.ques.correct_answer__c && 
                                         <img alt="incorrect answer" width="20" src={incorrectLogo}/>
                                     }
-                                    <span>Answer: {props.ques.correct_answer_value__c}</span>
+                                    <span class="proxima" >Answer: {props.ques.correct_answer_value__c}</span>
                                 </div>
                             </Col>
                             }
@@ -311,7 +311,7 @@ const Question = (props) => {
                             {props.ques.correct_answer__c === null &&
                              <Col>
                                 <div class="font14">
-                                    <span>Answer: Stay Tuned</span>
+                                    <span class="proxima">Answer: Stay Tuned</span>
                                 </div>
                             </Col>
                             }
