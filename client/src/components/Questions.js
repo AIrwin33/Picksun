@@ -825,15 +825,15 @@ const Questions = (props) => {
                     <Col xs={2} lg={4} >
                         {counter > 0 && answerListShow && props.sport === 'Basketball' &&
                         
-                            <Image width='35' src={basketball} class="float-right"/>
+                            <Image width='35' src={basketball} className="float-right"/>
                         }
                         {counter > 0 && answerListShow && props.sport === 'Baseball' &&
                         
-                            <Image width='35' src={baseball} class="float-right"/>
+                            <Image width='35' src={baseball} className="float-right"/>
                         }
                         {counter > 0 && answerListShow && props.sport === 'Football' &&
                             
-                            <Image width='35' src={football} class="float-right"/>
+                            <Image width='35' src={football} className="float-right"/>
                         }
 
                     </Col>
@@ -846,17 +846,17 @@ const Questions = (props) => {
                     <Col xs={2} lg={4} >
                         {counter > 0 && answerListShow && props.sport === 'Basketball' &&
                         
-                            <Image  width='35' src={basketball} class="float-left"/>
+                            <Image  width='35' src={basketball} className="float-left"/>
                         }
 
                         {counter > 0 && answerListShow && props.sport === 'Baseball' &&
                         
-                            <Image  width='35' src={baseball} class="float-left"/>
+                            <Image  width='35' src={baseball} className="float-left"/>
                         }
 
                         {counter > 0 && answerListShow && props.sport === 'Football' &&
                         
-                            <Image  width='35' src={football} class="float-left"/>
+                            <Image  width='35' src={football} className="float-left"/>
                         }
                     </Col>
                 </Row>
