@@ -445,12 +445,13 @@ io.on("connection", (socket) => {
         console.log('set contest room' + e);
         socket.join(e)
     })
+    socket.on("disconnect", (socket) => {
+        console.log('disconnect from socket');
+        console.log(socket.id);
+    });
 });
 
-io.on("disconnect", (socket) => {
-    console.log('disconnect from socket');
-    console.log(socket.id);
-});
+
 
 // socket.on('update_all_part_answers', async (partsfid) => {
 //     const participationAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 ORDER BY name ASC", [partsfid]);
