@@ -129,16 +129,19 @@ const Contest = ({match}) => {
 
             socket.on("new_question", question => {
                 console.log("new question");
+                console.log('socket id::' + socket.id); 
                 setNewQuestion(question)
             })
             socket.on("cor_question", question => {
 
                 //Does not hit this when running into issues in mobile
                 console.log("new correct question");
+                console.log('socket id::' + socket.id); 
                 setNewCorrectQuestion(question);
             })
             socket.on("new_contest", contest => {
                 console.log('new_contest' + contest);
+                console.log('socket id::' + socket.id); 
                 setContest(contest);
             });
 
