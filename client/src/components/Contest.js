@@ -145,7 +145,7 @@ const Contest = ({match}) => {
                 setContest(contest);
             });
 
-            socket.on('reconnect', function() {
+            socket.on('disconnect', () =>{
                 console.log('reconnect fired!');
             });
  
