@@ -2,6 +2,12 @@ const express = require("express");
 const app = express();
 const http = require('http').createServer(app);
 const io = require("socket.io")(http);
+const session = require("express-session")({
+  secret: "my-secret",
+  resave: true,
+  saveUninitialized: true
+});
+const sharedsession = require("express-socket.io-session");
 const {pool, pgListen} = require("./server/db");
 const bodyParser = require('body-parser');
 require("dotenv").config();
@@ -11,6 +17,13 @@ const cors = require("cors");
 app.set('port', (process.env.PORT || 5000));
 app.use(cors());
 app.use(express.json());
+
+// Attach session
+app.use(session);
+ 
+// Share session with io sockets
+ 
+io.use(sharedsession(session));
 const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
@@ -440,7 +453,8 @@ pgListen.listenTo("new_contest")
 
 io.on("connection", (socket) => {
     console.log('connect to socket');
-    console.log(socket.id);
+    console.log(socket.handshake.session);
+   
     socket.on("set_contest_room", e => {
         console.log('set contest room' + e);
         socket.join(e)
