@@ -113,7 +113,7 @@ app.get("/allcontests", authorization, async (req, res) => {
         res.json(allContests.rows);
 
     } catch (err) {
-        console.log('error all contests' + err.message);
+        console.log('error all contests' + err.message); 
     }
 });
 
