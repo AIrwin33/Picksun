@@ -451,6 +451,10 @@ pgListen.listenTo("cor_question")
 console.log('after listen tio');
 pgListen.listenTo("new_contest")
 
+io.use(sharedsession(session, {
+    autoSave:true
+}));
+
 io.on("connection", (socket) => {
     console.log('connect to socket');
     console.log(socket.handshake.session);
