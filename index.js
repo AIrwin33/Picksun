@@ -462,8 +462,11 @@ io.on("connection", (socket) => {
     socket.on("set_contest_room", e => {
         console.log('set contest room' + e);
         socket.handshake.session.user = {
-			username: 'OSK'
-		};
+            username: 'OSK',
+            id: socket.id
+        };
+        
+        console.log(socket.handshake.session.user);
         socket.join(e)
     })
     socket.on("disconnect", (socket) => {
