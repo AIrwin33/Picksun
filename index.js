@@ -455,32 +455,22 @@ console.log('after listen tio');
 pgListen.listenTo("new_contest")
 
 
-// io.use((socket, next) => {
+io.use((socket, next) => {
     
-//     io.engine.generateId = req => {
-//       const parsedUrl = new url.parse(req.url)
-//       const prevId = parsedUrl.searchParams.get('socketId')
-//       // prevId is either a valid id or an empty string
-//       if (prevId) {
-//         return prevId
-//       }
-//       return base64id.generateId()
-//     }
-// });
+    io.engine.generateId = req => {
+      const parsedUrl = new url.parse(req.url)
+      const prevId = parsedUrl.searchParams.get('socketId')
+
+      if (prevId) {
+        return prevId
+      }
+      return base64id.generateId();
+    }
+});
 
 io.on("connection", (socket) => {
     console.log('connect to socket');
     console.log(socket.id);
-
-    socket.id = 'new ID';
-    console.log(socket.id); 
-
-
-    // socket.io.opts.query = {
-    //     socketId: socket.id || ''
-    // }
-
-    // console.log(socket.handshake.query.socketId);
    
     socket.on("set_contest_room", e => {
         console.log('set contest room' + e);
