@@ -453,16 +453,31 @@ pgListen.listenTo("new_question")
 pgListen.listenTo("cor_question")
 console.log('after listen tio');
 pgListen.listenTo("new_contest")
+const url = require('url')
+const base64id = require('base64id')
 
-io.use(sharedsession(session, {
-    autoSave:true
-}));
+io.use((socket, next) => {
+    
+    
+    io.engine.generateId = req => {
+      const parsedUrl = new url.parse(req.url)
+      const prevId = parsedUrl.searchParams.get('socketId')
+      // prevId is either a valid id or an empty string
+      if (prevId) {
+        return prevId
+      }
+      return base64id.generateId()
+    }
+});
 
 io.on("connection", (socket) => {
     console.log('connect to socket');
 
-    var customId = uuidv4();
-    console.log(customId);
+    socket.io.opts.query = {
+        socketId: existingSocketId || ''
+    }
+
+    console.log(socketId);
    
     socket.on("set_contest_room", e => {
         console.log('set contest room' + e);
