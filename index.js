@@ -477,7 +477,7 @@ io.on("connection", (socket) => {
         socketId: socket.id || ''
     }
 
-    console.log(socketId);
+    console.log(socket.handshake.query.socketId);
    
     socket.on("set_contest_room", e => {
         console.log('set contest room' + e);
