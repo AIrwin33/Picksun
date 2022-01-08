@@ -474,7 +474,7 @@ io.on("connection", (socket) => {
     console.log('connect to socket');
 
     socket.io.opts.query = {
-        socketId: existingSocketId || ''
+        socketId: socket.id || ''
     }
 
     console.log(socketId);
