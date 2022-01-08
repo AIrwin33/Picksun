@@ -470,10 +470,10 @@ pgListen.listenTo("new_contest")
 
 io.on("connection", (socket) => {
     console.log('connect to socket');
-    console.log(socket.io.engine.id);
+    console.log(socket.id);
 
-    socket.io.engine.id = 'new ID';
-    console.log(socket.io.engine.id); 
+    socket.id = 'new ID';
+    console.log(socket.id); 
 
 
     // socket.io.opts.query = {
