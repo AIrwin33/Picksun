@@ -7,17 +7,15 @@ const session = require("express-session")({
   resave: true,
   saveUninitialized: true
 });
+
+const { v4: uuidv4 } = require('uuid');
+
 const sharedsession = require("express-socket.io-session");
 const {pool, pgListen} = require("./server/db");
 const bodyParser = require('body-parser');
 require("dotenv").config();
 //middleware
 const cors = require("cors");
-
-var util = require("util"),
-    fs = require('fs'),
-    os = require('os'),
-    url = require('url');
 
 app.set('port', (process.env.PORT || 5000));
 app.use(cors());
@@ -462,16 +460,13 @@ io.use(sharedsession(session, {
 
 io.on("connection", (socket) => {
     console.log('connect to socket');
-    console.log(socket.handshake.session);
+
+    var customId = uuidv4();
+    console.log(customId);
    
     socket.on("set_contest_room", e => {
         console.log('set contest room' + e);
-        socket.handshake.session.user = {
-            username: 'OSK',
-            id: socket.id
-        };
-        
-        console.log(socket.handshake.session.user);
+
         socket.join(e)
     })
     socket.on("disconnect", (socket) => {
