@@ -453,31 +453,34 @@ pgListen.listenTo("new_question")
 pgListen.listenTo("cor_question")
 console.log('after listen tio');
 pgListen.listenTo("new_contest")
-const url = require('url')
-const base64id = require('base64id')
 
-io.use((socket, next) => {
+
+// io.use((socket, next) => {
     
-    
-    io.engine.generateId = req => {
-      const parsedUrl = new url.parse(req.url)
-      const prevId = parsedUrl.searchParams.get('socketId')
-      // prevId is either a valid id or an empty string
-      if (prevId) {
-        return prevId
-      }
-      return base64id.generateId()
-    }
-});
+//     io.engine.generateId = req => {
+//       const parsedUrl = new url.parse(req.url)
+//       const prevId = parsedUrl.searchParams.get('socketId')
+//       // prevId is either a valid id or an empty string
+//       if (prevId) {
+//         return prevId
+//       }
+//       return base64id.generateId()
+//     }
+// });
 
 io.on("connection", (socket) => {
     console.log('connect to socket');
+    console.log(socket.io.engine.id);
 
-    socket.io.opts.query = {
-        socketId: socket.id || ''
-    }
+    socket.io.engine.id = 'new ID';
+    console.log(socket.io.engine.id); 
 
-    console.log(socket.handshake.query.socketId);
+
+    // socket.io.opts.query = {
+    //     socketId: socket.id || ''
+    // }
+
+    // console.log(socket.handshake.query.socketId);
    
     socket.on("set_contest_room", e => {
         console.log('set contest room' + e);
