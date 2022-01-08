@@ -181,7 +181,7 @@ const Contest = ({match}) => {
                     <Row className="rowBar">
                         <Col xs={1} sm={3}></Col>
                         <Col xs={10} sm={6} className="text-center ">
-                            <h4 className="whiteText fontBold aptifer">{contest.name}</h4>
+                            <h4 className="whiteText fontBold aptifer">{contest.sub_title__c}</h4>
                         </Col>
                         <Col xs={1} sm={3}>
                         </Col>
