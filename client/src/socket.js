@@ -9,7 +9,7 @@ export const socket = io({
   
 
   },
-  {query: "foo=bar"});
+  {query: "portfolioID=1"});
 
   // io.engine.generateId = req => {
 //     console.log('generate id');
