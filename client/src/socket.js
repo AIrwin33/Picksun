@@ -2,14 +2,16 @@ import {io} from "socket.io-client";
 import React from "react";
 import { v4 as uuidv4 } from 'uuid';
 
-var socket = io({
+export const socket = io({
   'connect timeout': 150000,
   'reconnection': true,
   'max reconnection attempts': 10000,
   
 
   },
-  {query: "portfolioID=1"});
+  query: {
+    "foo": "bar"
+  });
 
   // io.engine.generateId = req => {
 //     console.log('generate id');

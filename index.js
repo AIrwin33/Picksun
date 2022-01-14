@@ -458,8 +458,7 @@ pgListen.listenTo("new_contest")
 io.on("connection", (socket) => {
     console.log('connect to socket');
     console.log(socket.id);
-    const { portfolioID } = socket.handshake.query;
-    console.log(portfolioID);
+    console.log(socket.handshake.query);
    
     socket.on("set_contest_room", e => {
         console.log('set contest room' + e);
