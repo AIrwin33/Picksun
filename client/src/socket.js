@@ -1,6 +1,6 @@
 import {io} from "socket.io-client";
 import React from "react";
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
 export const socket = io({
   'connect timeout': 150000,
@@ -9,7 +9,7 @@ export const socket = io({
   
 
   },
-  {param:uuid.v4()});
+  {param:uuidv4()});
 
   // io.engine.generateId = req => {
 //     console.log('generate id');
