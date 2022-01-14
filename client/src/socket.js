@@ -3,7 +3,7 @@ import React from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 export const socket = io({
-    query: {foo:'bar'}
+    query: {conid:uuidv4()}
   });
 
   // io.engine.generateId = req => {
