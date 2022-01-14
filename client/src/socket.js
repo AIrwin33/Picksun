@@ -10,7 +10,7 @@ export const socket = io({
 
   },
   query: {
-    "foo": "bar"
+    {"foo": "bar"}
   });
 
   // io.engine.generateId = req => {
