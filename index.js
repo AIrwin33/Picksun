@@ -459,6 +459,11 @@ pgListen.listenTo("new_contest")
 //     return uuid.v4();
 // }
 
+io.engine.generateId = function (req) {
+    // generate a new custom id here
+    return 1
+}
+
 io.on("connection", (socket) => {
     console.log('connect to socket');
     console.log(socket.id);
