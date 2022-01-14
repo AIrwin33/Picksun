@@ -4,18 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const socket = io({
     query: {conid:uuidv4()}
-  },
-  'connect timeout': 150000,
-  'reconnection': true,
-  'max reconnection attempts': 10000,
-);
+  // },
+  // 'connect timeout': 150000,
+  // 'reconnection': true,
+  // 'max reconnection attempts': 10000,
+});
 
-  // io.engine.generateId = req => {
-//     console.log('generate id');
-//     return uuid.v4();
-// );
-
-// 'connect timeout': 150000,
-//   'reconnection': true,
-//   'max reconnection attempts': 10000,
 export const SocketContext = React.createContext(null);
