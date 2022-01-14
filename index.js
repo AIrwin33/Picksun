@@ -457,13 +457,7 @@ const url = require('url')
 const base64id = require('base64id')
 
 io.engine.generateId = req => {
-      const parsedUrl = new url.parse(req.url)
-      const prevId = parsedUrl.searchParams.get('socketId')
-
-      if (prevId) {
-        return prevId
-      }
-      return base64id.generateId();
+      return uuid.v4(); 
 };
 
 io.on("connection", (socket) => {
