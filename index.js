@@ -457,6 +457,7 @@ const url = require('url')
 const base64id = require('base64id')
 
 io.engine.generateId = req => {
+        console.log('generating id');
       return uuid.v4(); 
 };
 
