@@ -453,13 +453,11 @@ pgListen.listenTo("new_question")
 pgListen.listenTo("cor_question")
 console.log('after listen tio');
 pgListen.listenTo("new_contest")
-const url = require('url')
-const base64id = require('base64id')
 
 io.engine.generateId = req => {
-        console.log('generating id');
-      return uuid.v4(); 
-};
+    console.log('generate id');
+    return uuid.v4();
+}
 
 io.on("connection", (socket) => {
     console.log('connect to socket');
