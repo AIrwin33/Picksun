@@ -454,10 +454,10 @@ pgListen.listenTo("cor_question")
 console.log('after listen tio');
 pgListen.listenTo("new_contest")
 
-io.engine.generateId = req => {
-    console.log('generate id');
-    return uuid.v4();
-}
+// io.engine.generateId = req => {
+//     console.log('generate id');
+//     return uuid.v4();
+// }
 
 io.on("connection", (socket) => {
     console.log('connect to socket');
