@@ -456,9 +456,7 @@ pgListen.listenTo("new_contest")
 const url = require('url')
 const base64id = require('base64id')
 
-io.use((socket, next) => {
-    
-    io.engine.generateId = req => {
+io.engine.generateId = req => {
       const parsedUrl = new url.parse(req.url)
       const prevId = parsedUrl.searchParams.get('socketId')
 
@@ -466,8 +464,7 @@ io.use((socket, next) => {
         return prevId
       }
       return base64id.generateId();
-    }
-});
+};
 
 io.on("connection", (socket) => {
     console.log('connect to socket');
