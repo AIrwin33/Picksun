@@ -6,9 +6,10 @@ export const socket = io({
   'connect timeout': 150000,
   'reconnection': true,
   'max reconnection attempts': 10000,
-  {param:uuid.v4()}
+  
 
-  });
+  },
+  {param:uuid.v4()});
 
   // io.engine.generateId = req => {
 //     console.log('generate id');
