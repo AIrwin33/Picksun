@@ -467,6 +467,7 @@ io.engine.generateId = function (req) {
 io.on("connection", (socket) => {
     console.log('connect to socket');
     console.log(socket.id);
+    console.log(socket.handshake.query.param);
    
     socket.on("set_contest_room", e => {
         console.log('set contest room' + e);
