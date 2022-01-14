@@ -9,7 +9,7 @@ export const socket = io({
   
 
   },
-  {param=uuidv4()});
+  {query: "foo=bar"});
 
   // io.engine.generateId = req => {
 //     console.log('generate id');
