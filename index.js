@@ -433,6 +433,9 @@ pgListen.notifications.on("new_question", e => {
         console.log('send socket question');
         const sockets = io.in('a0017000007yz9nAAA').fetchSockets();
         console.log(sockets);
+        for(let soc in sockets){
+            console.log(soc.id);
+        }
         io.to(e.contest__c).emit("new_question", e)
     }
 
@@ -441,6 +444,9 @@ pgListen.notifications.on("new_question", e => {
         console.log('here');
         const sockets = io.in('a0017000007yz9nAAA').fetchSockets();
         console.log(sockets);
+        for(let soc in sockets){
+            console.log(soc.id);
+        }
         io.to(e.contest__c).emit("cor_question", e)
     }
     
