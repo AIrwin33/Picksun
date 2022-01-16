@@ -130,8 +130,10 @@ const Contest = ({match}) => {
             socket.on("new_question", question => {
                 console.log("new question");
                 console.log('socket id::' + socket.id); 
-                setNewQuestion(question)
+                setNewQuestion(question);
+
             })
+            console.log(socket.rooms);
             socket.on("cor_question", question => {
 
                 //Does not hit this when running into issues in mobile
