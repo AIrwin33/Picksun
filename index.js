@@ -473,7 +473,7 @@ io.on("connection", (socket) => {
     });
 });
 
-const sockets = await io.fetchSockets();
+const sockets = io.fetchSockets();
 
 console.log('sockets' + sockets);
 
