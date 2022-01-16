@@ -447,30 +447,22 @@ pgListen.events.on("error", (error) => {
     console.error("Fatal database connection error:", error)
     process.exit(1)
 })
-pgListen.connect()
-pgListen.listenTo("new_question")
-
-pgListen.listenTo("cor_question")
-console.log('after listen tio');
-pgListen.listenTo("new_contest")
-
 
 io.on("connection", async (socket) => {
     console.log('connect to socket');
-    console.log(socket.id);
-
-    console.log(socket.rooms);
-   
-    // socket.on("set_contest_room", e => {
-    //     console.log('set contest room' + e);
-        
-    //     socket.join(e)
-    // });
 
     socket.on("disconnect", (socket) => {
         console.log('disconnect from socket');
     });
 });
+
+
+pgListen.connect().listenTo("new_question").listenTo("cor_question")
+console.log('after listen to');
+pgListen.listenTo("new_contest")
+
+
+
 
 
 // socket.on('update_all_part_answers', async (partsfid) => {
