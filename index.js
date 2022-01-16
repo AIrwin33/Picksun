@@ -458,32 +458,24 @@ pgListen.listenTo("new_contest")
 io.on("connection", (socket) => {
     console.log('connect to socket');
     console.log(socket.id);
-    socket.join('testroom');
 
-    var clients = io.sockets.adapter.rooms['testroom'].sockets;   
-    console.log('clients' + clients);
-    //to get the number of clients
-    var numClients = (typeof clients !== 'undefined') ? Object.keys(clients).length : 0;
-    console.log('num of clients' + numClients);
-    for (var clientId in clients ) {
-
-        //this is the socket of each client in the room.
-        var clientSocket = io.sockets.connected[clientId];
-
-        console.log('this socket' + clientSocket);
-
-    }
+    
    
     socket.on("set_contest_room", e => {
         console.log('set contest room' + e);
-
+        
         socket.join(e)
-    })
+    });
+
     socket.on("disconnect", (socket) => {
         console.log('disconnect from socket');
         console.log(socket.id);
     });
 });
+
+const sockets = await io.fetchSockets();
+
+console.log('sockets' + sockets);
 
 
 
