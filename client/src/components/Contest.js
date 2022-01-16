@@ -124,6 +124,7 @@ const Contest = ({match}) => {
         getContest().then(r =>  {
             console.log('here in contest', contest);
             socket.on("connect", () => {
+                console.log('reconnectings')
                 console.log('socket id::' + socket.id); 
               });
 
