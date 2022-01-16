@@ -477,7 +477,11 @@ const sockets = io.fetchSockets();
 
 console.log('sockets' + sockets);
 
-
+for(let participant in sockets){
+    for(let socketId in sockets[participant]){
+        console.log(socketId)
+    }
+}
 
 // socket.on('update_all_part_answers', async (partsfid) => {
 //     const participationAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 ORDER BY name ASC", [partsfid]);
