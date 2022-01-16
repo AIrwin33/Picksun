@@ -443,9 +443,6 @@ pgListen.notifications.on("new_question", e => {
         console.log(sockets);
         io.to(e.contest__c).emit("cor_question", e)
     }
-
-    zzWoyzl_xPDygS2JAAAB
-    Ubbr-xA2NDoMmNluAAAD
     
 })
 
