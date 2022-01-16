@@ -436,7 +436,7 @@ pgListen.notifications.on("new_question", e => {
         for(let soc in sockets){
             console.log(soc.id);
         }
-        io.to(e.contest__c).emit("new_question", e)
+        io.emit("new_question", e)
     }
 
     if(e.correct_answer__c !== null && e !== undefined) {
@@ -447,7 +447,7 @@ pgListen.notifications.on("new_question", e => {
         for(let soc in sockets){
             console.log(soc.id);
         }
-        io.to(e.contest__c).emit("cor_question", e)
+        io.emit("cor_question", e)
     }
     
 })
@@ -468,16 +468,14 @@ pgListen.listenTo("new_contest")
 io.on("connection", async (socket) => {
     console.log('connect to socket');
     console.log(socket.id);
-    const userId = await fetchUserId(socket);
-    console.log(userId);
 
     console.log(socket.rooms);
    
-    socket.on("set_contest_room", e => {
-        console.log('set contest room' + e);
+    // socket.on("set_contest_room", e => {
+    //     console.log('set contest room' + e);
         
-        socket.join(e)
-    });
+    //     socket.join(e)
+    // });
 
     socket.on("disconnect", (socket) => {
         console.log('disconnect from socket');

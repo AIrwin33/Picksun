@@ -152,8 +152,8 @@ const Contest = ({match}) => {
                 console.log('reconnect fired!');
             });
  
-            console.log('before emit contest');
-            socket.emit("set_contest_room", match.params.id);
+            // console.log('before emit contest');
+            // socket.emit("set_contest_room", match.params.id);
         });
     }, [socket]);
     return ((
