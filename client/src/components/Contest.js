@@ -133,7 +133,9 @@ const Contest = ({match}) => {
                 setNewQuestion(question);
 
             })
+            let conid = match.params.id;
             console.log(socket.rooms);
+            console.log(socket.rooms.has(conid));
             socket.on("cor_question", question => {
 
                 //Does not hit this when running into issues in mobile
