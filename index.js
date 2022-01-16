@@ -465,11 +465,13 @@ console.log('after listen tio');
 pgListen.listenTo("new_contest")
 
 
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
     console.log('connect to socket');
     console.log(socket.id);
+    const userId = await fetchUserId(socket);
+    console.log(userId);
 
-    
+    console.log(socket.rooms);
    
     socket.on("set_contest_room", e => {
         console.log('set contest room' + e);
@@ -480,6 +482,7 @@ io.on("connection", (socket) => {
     socket.on("disconnect", (socket) => {
         console.log('disconnect from socket');
         console.log(socket.id);
+        console.log(socket.rooms);
     });
 });
 
