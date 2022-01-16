@@ -431,7 +431,7 @@ pgListen.notifications.on("new_question", e => {
 
     if (e !== undefined && e.published__c && !e.islocked__c) {
         console.log('send socket question');
-        const sockets = io.in('a0017000007yz9nAAA').fetchSockets();
+        const sockets = io.in('a00170000085kfoAAA').fetchSockets();
         console.log(sockets);
         for(let soc in sockets){
             console.log(soc.id);
@@ -442,7 +442,7 @@ pgListen.notifications.on("new_question", e => {
     if(e.correct_answer__c !== null && e !== undefined) {
         console.log('e.correct_answer__c' + e.correct_answer__c);
         console.log('here');
-        const sockets = io.in('a0017000007yz9nAAA').fetchSockets();
+        const sockets = io.in('a00170000085kfoAAA').fetchSockets();
         console.log(sockets);
         for(let soc in sockets){
             console.log(soc.id);
