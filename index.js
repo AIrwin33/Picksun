@@ -450,6 +450,8 @@ pgListen.events.on("error", (error) => {
 
 io.on("connection", async (socket) => {
     console.log('connect to socket');
+    pgListen.listenTo("new_question");
+    pgListen.listenTo("cor_question");
 
     socket.on("disconnect", (socket) => {
         console.log('disconnect from socket');
@@ -457,7 +459,7 @@ io.on("connection", async (socket) => {
 });
 
 
-pgListen.connect().listenTo("new_question").listenTo("cor_question")
+pgListen.connect();
 console.log('after listen to');
 pgListen.listenTo("new_contest")
 
