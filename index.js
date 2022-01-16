@@ -431,12 +431,16 @@ pgListen.notifications.on("new_question", e => {
 
     if (e !== undefined && e.published__c && !e.islocked__c) {
         console.log('send socket question');
+        const sockets = await io.in(e).fetchSockets();
+        console.log(sockets);
         io.to(e.contest__c).emit("new_question", e)
     }
 
     if(e.correct_answer__c !== null && e !== undefined) {
         console.log('e.correct_answer__c' + e.correct_answer__c);
         console.log('here');
+        const sockets = await io.in(e).fetchSockets();
+        console.log(sockets);
         io.to(e.contest__c).emit("cor_question", e)
     }
     
