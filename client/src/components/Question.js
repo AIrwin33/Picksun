@@ -285,11 +285,11 @@ const Question = (props) => {
 
                             <Col>
                                 <div class="font14">
-                                    {partAnswer.selection_value__c !== null &&
+                                    {partAnswer.selection_value__c != null &&
                                     <span class="proxima" >My Pick: {partAnswer.selection_value__c}</span>
                                     }
                                     {partAnswer.selection_value__c == null &&
-                                    <span class="proxima">My Pick: Did Not Answer </span>
+                                    <span class="proxima">Did Not Answer </span>
                                     }
                                 </div>
                             </Col>

@@ -431,7 +431,6 @@ pgListen.notifications.on("new_question", e => {
 
     if (e !== undefined && e.published__c && !e.islocked__c) {
         console.log('send socket question');
-
         const sockets = io.in('a00170000085kfoAAA').fetchSockets();
         console.log(sockets);
         for(let soc in sockets){
