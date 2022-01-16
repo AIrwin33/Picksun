@@ -426,27 +426,17 @@ pgListen.notifications.on("new_contest", e => {
 })
 
 pgListen.notifications.on("new_question", e => {
-    console.log(e.correct_answer__c);
-    console.log('listener on');
 
     if (e !== undefined && e.published__c && !e.islocked__c) {
         console.log('send socket question');
-        const sockets = io.in('a00170000085kfoAAA').fetchSockets();
-        console.log(sockets);
-        for(let soc in sockets){
-            console.log(soc.id);
-        }
+
         io.emit("new_question", e)
     }
 
     if(e.correct_answer__c !== null && e !== undefined) {
         console.log('e.correct_answer__c' + e.correct_answer__c);
         console.log('here');
-        const sockets = io.in('a00170000085kfoAAA').fetchSockets();
-        console.log(sockets);
-        for(let soc in sockets){
-            console.log(soc.id);
-        }
+
         io.emit("cor_question", e)
     }
     
