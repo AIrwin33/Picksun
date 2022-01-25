@@ -25,7 +25,6 @@ const Contest = ({match}) => {
     const [participations, setParticipations] = useState([]);
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
-
     const [newQuestion, setNewQuestion] = useState()
     const [newCorrectQuestion, setNewCorrectQuestion] = useState()
     const socket = React.useContext(SocketContext)
@@ -59,8 +58,6 @@ const Contest = ({match}) => {
             getContestParticipations(contestRec);
             setTimeout(
                 function() {
-                    console.log('end of timeout');
-                    
                     setLoaded(true);
                 },
                 1000
@@ -166,8 +163,6 @@ const Contest = ({match}) => {
                 console.log('reconnect fired!');
             });
  
-            // console.log('before emit contest');
-            // socket.emit("set_contest_room", match.params.id);
         });
     }, [socket]);
     return ((
