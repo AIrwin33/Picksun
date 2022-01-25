@@ -63,7 +63,7 @@ const Contest = ({match}) => {
                     
                     setLoaded(true);
                 },
-                2000
+                1000
             );
 
         } catch (error) {

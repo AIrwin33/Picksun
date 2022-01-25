@@ -137,21 +137,12 @@ const Question = (props) => {
         handleExistingPartAnswer();
         setTimeout(
             function() {
-               
 
-                //TODO - Task 2 change to socket maybe?
                 updateAllPartAnswers();
             
                 },
                 1500
         );
-
-        // socket.on('connect', () => {
-        //     socket.emit('update_all_part_answers', props.partsfid);
-        //     socket.on("updateAllPartAnswers", (data) => {
-        //         setAllpartanswers(data);
-        //     })
-        // })
         
     }, [props.ques]);
 

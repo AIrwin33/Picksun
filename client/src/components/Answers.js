@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Carousel, Col, Button, Container, Modal, Row, Image} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 
 import knockout from "../assets/knockedout.png";
 import "./Answers.css";
@@ -7,7 +7,6 @@ import "./Answers.css";
 const Answers = (props) => {
 
     const [answers, setAnswers] = useState([]);
-
 
     const getWrongTotal = async (infoWrong, infoTotal) => {
         var ans = [];

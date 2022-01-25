@@ -110,11 +110,11 @@
 }
 
 .gameBanner {
-    color: white;
-    background-color: red;
+    background-color: white;
+    color: Black;
     opacity: 50%;
-    border-radius: 5px;
-    border: 1px solid red;
+    border-radius: 20px;
+    border: 1px solid black;
     padding-top:8px;
 }
 
