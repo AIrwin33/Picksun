@@ -89,23 +89,26 @@ const Question = (props) => {
         try {
             const partsfid = props.partsfid;
             const questid = props.ques.sfid;
+            
+                if(partsfid != undefined){
 
-            const response = await fetch(
-                `/existingpartanswer/` + partsfid + `/question/` + questid,
-                {
-                    method: "GET",
-                    headers: {jwt_token: localStorage.token}
+                const response = await fetch(
+                    `/existingpartanswer/` + partsfid + `/question/` + questid,
+                    {
+                        method: "GET",
+                        headers: {jwt_token: localStorage.token}
+                    }
+                    );
+                    
+                    const parseRes = await response.json();
+                    setPartAnswer(parseRes);
+                    var partRes = parseRes
+                    
+                    
+                    if (partRes.status__c === 'Submitted') {
+                        setDisabledQuestion(true);
+                    }
                 }
-            );
-
-            const parseRes = await response.json();
-            setPartAnswer(parseRes);
-            var partRes = parseRes
-
-
-            if (partRes.status__c === 'Submitted') {
-                setDisabledQuestion(true);
-            }
 
            
         } catch (err) {
