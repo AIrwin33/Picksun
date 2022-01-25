@@ -28,7 +28,6 @@ const Questions = (props) => {
     const [questionNum, setQuestionNum] = useState(1);
     const [selectedCount, setSelectedCount] = useState(0);
     const [subSegmentCount, setSubsegmentCount] = useState(0);
-    const [subsegplusone, setSubSegPlusOne] = useState(0);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [publishedQuestions, setPublishedQuestions] = useState(0);
     const [placeFin, setPlaceFinish] = useState(0);
@@ -370,8 +369,6 @@ const Questions = (props) => {
             
             $('.timerdiv').addClass('hiddenTimer');
             $('.carousel-control-next-icon').removeClass('active');
-            setIndex(subsegplusone);
-            setQuestionNum(1);
             setQuestions(parseData);
             setShowWaiting(false);
             setReview(true);
@@ -464,17 +461,6 @@ const Questions = (props) => {
             console.log('err' + err.message);
         }
     }
-
-    const handleSubsegmentCount = async (subseg) => {
-        var minussubseg = questions.length - subseg;
-        setSubSegPlusOne(minussubseg);
-        setIndex(minussubseg);
-        setSubsegmentCount(subseg);
-        if(minussubseg > 1){
-            setQuestionNum(subseg + 1);
-        }
-    }
-
     //add warning styling if the timer reaches 10 seconds
     const warningText = async () => {
         $('.timerdiv').addClass('warning');
@@ -516,15 +502,9 @@ const Questions = (props) => {
                 doGetParticipationWrongAnswers();
 
                 //if there is already a segment published, include old questions
-                if (question.subsegment__c > 1) {
-
-                    $('.timerdiv').removeClass('warning');
-                    tiRef.current.reset();
-                    tiRef.current.start();
-                }
                 var newquestionids = [];
                 for (var i = 0; i < allquestions.length; i++) {
-                    if (allquestions[i].subsegment__c === question.subsegment__c) {
+                    // if (allquestions[i].subsegment__c === question.subsegment__c) {
                         //if the question is already there
                         if (newquestions.length > i) {
                             if (newquestions[i].sfid === question.sfid) {
@@ -542,7 +522,7 @@ const Questions = (props) => {
                             }
 
                         }
-                    }
+                    // }
                 }
                 
                 setPublishedQuestions(newquestions.length);
@@ -563,58 +543,11 @@ const Questions = (props) => {
                 
                 tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
                 setQuestions(tempQuestions);
-                setIndex(subsegplusone);
                 setTimer();
             }
 
         }
 
-    }
-    const addCorrectQuestion = question => {
-
-        //TODO Task 1 - debug why this part isn't running in Mobile
-        // var tempQuestions = questions;
-        // tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
-
-        // setQuestionNum(1);
-        
-        // setQuestions(tempQuestions);
-        
-        // setTimeout(
-        //     function() {
-        //         //TODO - Task 2, update to socket maybe?
-        //     doGetParticipationWrongAnswers();
-            
-        //         },
-        //         5000
-        // );
-
-        // socket.on('connect', () => {
-        //     socket.emit('get_wrong_answers', props.partsfid);
-        //     socket.on("getWrongAnswers", (data) => {
-        //         console.log(data);
-        //         //setAllpartanswers(data);
-        //         setTimeout(
-        //             function() {
-        //                 checkFinished();
-        //             },
-        //             2000
-        //         );
-        //         if (data.status__c === 'Knocked Out') {
-        //             console.log('player is knocked out');
-        //             handleKnockout();
-
-        //         }
-        //         if (data.status__c === 'Inactive') {
-        //             console.log('status inactive');
-        //             setInactive(true);
-
-        //         }
-        //         props.updatepart(data);
-        //     })
-        // })
-        
-        
     }
 
     return (

@@ -113,46 +113,6 @@ const Question = (props) => {
         }
 
     }
-    
-    const handleSubsegmentCount = async (subseg) => {
-        try {
-            var conid = props.contest.sfid
-            const body = {conid, subseg};
-            const res = await fetch(`/countsubsegment`, {
-                method: "POST",
-                headers: {
-                    jwt_token: localStorage.token,
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify(body)
-            });
-
-            const parseData = await res.json();
-            props.getsubcount(parseData);
-        }
-        catch (err) {
-            console.log('err subsegment' + err.message);
-        }
-    }
-
-    const markBarCorrect =  async (an) => {
-        
-        var text = '';
-        if(an.question__c === props.ques.sfid){
-            text += ' selected';
-        }
-        if(an.validated__c){
-            if(an.incorrect__c){
-                console.log('incorrect');
-                text += ' incorrect';
-            }else{
-                console.log('incorrect');
-                text += ' correct';
-            }
-        }
-        console.log('text' + text);
-        return text;
-    }
 
     //show info modal on question
     const handleInfoShow = async () => {
