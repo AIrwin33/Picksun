@@ -118,6 +118,21 @@
     padding-top:8px;
 }
 
+.liveBtn {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    animation-name: live;
+    animation-duration: 4s;
+    border-radius: 50%;
+ 
+}
+
+@keyframes live {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+
 @media only screen and (max-width: 600px) {
     .questionTextDiv {
         height: 15vh;

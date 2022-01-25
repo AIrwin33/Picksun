@@ -679,7 +679,9 @@ const Questions = (props) => {
                             </Timer>
                             {review &&
                                         <div className="gameBanner font16 text-center">
-                                            <h3 class="text-center">Contest Live</h3>
+                                            <div className="liveBtn">
+                                            </div>
+                                            <h3 className="text-center">Live</h3>
                                         </div>
                                         }
                         </div>

@@ -262,7 +262,7 @@ const Contest = ({match}) => {
                                 <Col lg={6} sm={10} className=''>
                                     <TwitterTimelineEmbed
                                         sourceType="profile"
-                                        screenName="playpickfun"
+                                        screenName="pickfungames"
                                         options={{height: 400}}
                                     />
                                 </Col>
