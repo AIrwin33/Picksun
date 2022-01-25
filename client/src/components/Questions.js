@@ -1,5 +1,5 @@
-import React, {useEffect, useState, useRef} from 'react';
-import {Carousel, Col, Button, Container, Modal, Row, Image} from "react-bootstrap";
+import React, {useEffect, useState} from 'react';
+import {Carousel, Col, Button, Modal, Row, Image} from "react-bootstrap";
 
 import Question from './Question.js';
 import Answers from './Answers.js';
@@ -35,10 +35,7 @@ const Questions = (props) => {
     const [showAnswer, setShowAnswer] = useState(false);
     const [counter, setCounter] = useState(undefined);
     const [answerList, setAnswerList] = useState([]);
-    const [knockedOut, setKnockedOut] = useState(false);
-    const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
-    const [openedtimer, setOpenedTimer] = useState(0);
     const [showSubmitCount, setShowSubmitCount] = useState(0);
     const [showSubmitModal, setShowSubmitModal] = useState(false);
     const [showEnd, setShowEnd] = useState(false);
@@ -54,7 +51,6 @@ const Questions = (props) => {
     const [contestFinishedText, setContestFinishedText] = useState([]);
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
-    const tiRef = useRef(null);
     const [newQuestion, setNewQuestion] = useState()
     const [newCorrectQuestion, setNewCorrectQuestion] = useState()
 
@@ -420,9 +416,6 @@ const Questions = (props) => {
 
     const updateAnswerList = async (childData) => {
         try {
-
-            
-
             //if the answer list is empty, add the answered question from the Question JS
             if (answerList.length < 1) {
             //     console.log('starting answer list');
@@ -431,10 +424,6 @@ const Questions = (props) => {
             var addTo = true;
             //if answer list contains the question answer already, then replace it, otherwise add it
             for (var i = 0; i < answerList.length; i++) {
-               
-
-
-
                 if (childData.question__c === answerList[i].question__c) {
                     //replace existing question
                     
@@ -552,7 +541,6 @@ const Questions = (props) => {
 
     return (
         <>
-
             {/* Show timer and answer count */}
                 {questions.length > 0 &&
                 <Row className="questionRow m-2 p-2">

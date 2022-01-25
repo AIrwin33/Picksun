@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Col, Row, Button, Image, Modal} from "react-bootstrap";
-
 import {v4 as uuidv4} from 'uuid';
 import "./Question.css";
 import info from '../assets/infoicon.png';
@@ -151,139 +150,139 @@ const Question = (props) => {
         <>
 
                 
-                <div className="infoDiv mb-4">
-                    <a src="#" className="float-right" onClick={handleInfoShow} >
-                        <Image src={info} width="22"></Image>
-                    </a>
-                    <Modal className="modalDiv" show={showInfo} onHide={handleInfoClose}>
-                        <Modal.Header closeButton>
-                        <Modal.Title className="aptifer font16 modalHeader">How To Pick Fun</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body className="proxima font12 modalBody">
-                            <span>
-                                Pick an answer for each question. You’ll know you have unanswered questions when the countdown timer and bouncing ball image are present.
-                            </span> <br/>
-                            <span>
-                                Before the countdown timer reaches zero, click ‘Submit Answers.’ The ‘Submit Answer’ button becomes clickable once you’ve picked answers for all available questions.
-                            </span><br/>
-                            <span>
-                                Review your answers and results using left / right toggles.
-                            </span><br/>
-                            <span>
-                                Keep your phone nearby when playing! Questions are published live in small batches.
-                            </span><br/>
-                            <span>
-                                Keep track of how many answers you’ve gotten wrong + how many left until you’re knocked by looking at the ‘Wrong Answers’ indicator. When all circles (Knockout Limit) are filled in, you’ll be removed from the contest.
-                            </span><br/>
-                            <span>
-                                Click ‘Participants’ to see who else is still alive in the contest.
-                            </span><br/>
-                            <span>
-                                Access Twitter to communicate with us before, during or after contests.
-                            </span><br/>
-                            <span>
-                                You’ll receive a prompt if you get knocked out and notification if you’re one of the winners. We’ll follow up with winners directly.
-                            </span>
+        <div className="infoDiv mb-4">
+            <a src="#" className="float-right" onClick={handleInfoShow} >
+                <Image src={info} width="22"></Image>
+            </a>
+            <Modal className="modalDiv" show={showInfo} onHide={handleInfoClose}>
+                <Modal.Header closeButton>
+                <Modal.Title className="aptifer font16 modalHeader">How To Pick Fun</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="proxima font12 modalBody">
+                    <span>
+                        Pick an answer for each question. You’ll know you have unanswered questions when the countdown timer and bouncing ball image are present.
+                    </span> <br/>
+                    <span>
+                        Before the countdown timer reaches zero, click ‘Submit Answers.’ The ‘Submit Answer’ button becomes clickable once you’ve picked answers for all available questions.
+                    </span><br/>
+                    <span>
+                        Review your answers and results using left / right toggles.
+                    </span><br/>
+                    <span>
+                        Keep your phone nearby when playing! Questions are published live in small batches.
+                    </span><br/>
+                    <span>
+                        Keep track of how many answers you’ve gotten wrong + how many left until you’re knocked by looking at the ‘Wrong Answers’ indicator. When all circles (Knockout Limit) are filled in, you’ll be removed from the contest.
+                    </span><br/>
+                    <span>
+                        Click ‘Participants’ to see who else is still alive in the contest.
+                    </span><br/>
+                    <span>
+                        Access Twitter to communicate with us before, during or after contests.
+                    </span><br/>
+                    <span>
+                        You’ll receive a prompt if you get knocked out and notification if you’re one of the winners. We’ll follow up with winners directly.
+                    </span>
 
-                            
-
-                        </Modal.Body>
-                        <Modal.Footer>
-                        <Button className="aptifer modalBtn" variant="secondary" onClick={handleInfoClose}>
-                            Close
-                        </Button>
-                        </Modal.Footer>
-                    </Modal>
-                </div>
-                <Row>
-
-                    <div className="questionTextDiv aptifer">
-                        <h4>{props.questionNum}) {quest.question_text__c}</h4>
-                    </div>
-                </Row>
-                <Row>
-                    <Col>
-                        <div className="counterDiv font16 aptifer">
-                            Question: {props.questionNum} of {props.totalQuestions}
-                        </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={1}> 
-                    </Col>
-                    <Col sm={10}>
-                        <div className={`btn-group m-2 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
-                            aria-label="Basic example" data-toggle="buttons">
-                            <button type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_a__c && disabledQuestion ? "selectedQuestion" : ""}`}
-                                    onClick={handleRadioChange}>{quest.answer_a__c}</button>
-                            <button type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_b__c && disabledQuestion ? "selectedQuestion" : ""}`}
-                                    onClick={handleRadioChange}>{quest.answer_b__c}</button>
-                            {quest.answer_c__c !== null &&
-                            <button type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_c__c && disabledQuestion ? "selectedQuestion" : ""}`}
-                            onClick={handleRadioChange}>{quest.answer_c__c}</button>
-                        }
-                            {quest.answer_d__c !== null &&
-                            <button type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_d__c && disabledQuestion ? "selectedQuestion" : ""}`}
-                            onClick={handleRadioChange}>{quest.answer_d__c}</button>
-                        }
-                        </div>
-                    </Col>
-                    <Col sm={1}> 
-                    </Col>
-                </Row>
-                
-                {disabledQuestion ?
-                    <div>
-                        <Row className="mt-2">   
-
-                            <Col>
-                                <div class="font14">
-                                    {partAnswer.selection_value__c != null &&
-                                    <span class="proxima" >My Pick: {partAnswer.selection_value__c}</span>
-                                    }
-                                    {partAnswer.selection_value__c == null &&
-                                    <span class="proxima">Did Not Answer </span>
-                                    }
-                                </div>
-                            </Col>
-                            {props.ques.correct_answer__c !== null &&
-                            <Col>
-                                <div className='answerBanner font14'>
-                                    {partAnswer.selection__c == props.ques.correct_answer__c && 
-                                        <img alt="correct answer" width="20" src={correctLogo}/>
-                                    }
-
-                                    {partAnswer.selection__c != props.ques.correct_answer__c && 
-                                        <img alt="incorrect answer" width="20" src={incorrectLogo}/>
-                                    }
-                                    <span class="proxima" >Answer: {props.ques.correct_answer_value__c}</span>
-                                </div>
-                            </Col>
-                            }
-
-                            {props.ques.correct_answer__c === null &&
-                             <Col>
-                                <div class="font14">
-                                    <span class="proxima">Answer: Stay Tuned</span>
-                                </div>
-                            </Col>
-                            }
-                        </Row>
-
-                        
-                    </div> : null
-                }
-
-                {allpartanswers.length > 0 &&
                     
-                    <div className="answerMain">
-                    {allpartanswers.map(answer => {
-                        return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? ' selected ' : ''}  ${answer.correct__c === true ? 'correct' : ''} ${answer.incorrect__c === true ? 'incorrect' : ''}`}>
+
+                </Modal.Body>
+                <Modal.Footer>
+                <Button className="aptifer modalBtn" variant="secondary" onClick={handleInfoClose}>
+                    Close
+                </Button>
+                </Modal.Footer>
+            </Modal>
+        </div>
+        <Row>
+
+            <div className="questionTextDiv aptifer">
+                <h4>{props.questionNum}) {quest.question_text__c}</h4>
+            </div>
+        </Row>
+        <Row>
+            <Col>
+                <div className="counterDiv font16 aptifer">
+                    Question: {props.questionNum} of {props.totalQuestions}
+                </div>
+            </Col>
+        </Row>
+        <Row>
+            <Col sm={1}> 
+            </Col>
+            <Col sm={10}>
+                <div className={`btn-group m-2 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
+                    aria-label="Basic example" data-toggle="buttons">
+                    <button type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_a__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                            onClick={handleRadioChange}>{quest.answer_a__c}</button>
+                    <button type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_b__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                            onClick={handleRadioChange}>{quest.answer_b__c}</button>
+                    {quest.answer_c__c !== null &&
+                    <button type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_c__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                    onClick={handleRadioChange}>{quest.answer_c__c}</button>
+                }
+                    {quest.answer_d__c !== null &&
+                    <button type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_d__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                    onClick={handleRadioChange}>{quest.answer_d__c}</button>
+                }
+                </div>
+            </Col>
+            <Col sm={1}> 
+            </Col>
+        </Row>
+        
+        {disabledQuestion ?
+            <div>
+                <Row className="mt-2">   
+
+                    <Col>
+                        <div class="font14">
+                            {partAnswer.selection_value__c != null &&
+                            <span class="proxima" >My Pick: {partAnswer.selection_value__c}</span>
+                            }
+                            {partAnswer.selection_value__c == null &&
+                            <span class="proxima">Did Not Answer </span>
+                            }
                         </div>
-                        
-                    })}
-                    </div>
-                }       
+                    </Col>
+                    {props.ques.correct_answer__c !== null &&
+                    <Col>
+                        <div className='answerBanner font14'>
+                            {partAnswer.selection__c == props.ques.correct_answer__c && 
+                                <img alt="correct answer" width="20" src={correctLogo}/>
+                            }
+
+                            {partAnswer.selection__c != props.ques.correct_answer__c && 
+                                <img alt="incorrect answer" width="20" src={incorrectLogo}/>
+                            }
+                            <span class="proxima" >Answer: {props.ques.correct_answer_value__c}</span>
+                        </div>
+                    </Col>
+                    }
+
+                    {props.ques.correct_answer__c === null &&
+                        <Col>
+                        <div class="font14">
+                            <span class="proxima">Answer: Stay Tuned</span>
+                        </div>
+                    </Col>
+                    }
+                </Row>
+
+                
+            </div> : null
+        }
+
+        {allpartanswers.length > 0 &&
+            
+            <div className="answerMain">
+            {allpartanswers.map(answer => {
+                return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? ' selected ' : ''}  ${answer.correct__c === true ? 'correct' : ''} ${answer.incorrect__c === true ? 'incorrect' : ''}`}>
+                </div>
+                
+            })}
+            </div>
+        }       
                 
             {/* end div wrapper */}
         </>
