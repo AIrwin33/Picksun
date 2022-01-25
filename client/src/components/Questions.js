@@ -553,7 +553,6 @@ const Questions = (props) => {
                             <Timer initialTime={counter}
                                    direction="backward"
                                    lastUnit="s"
-                                   ref={tiRef}
                                    checkpoints={[
                                        {
                                            time: 0,
@@ -648,8 +647,8 @@ const Questions = (props) => {
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
-                                            isKnockedOut={knockedOut} participation_id={props.participation_id}
-                                            contestfinished={finished} partsfid={props.partsfid}/>
+                                            participation_id={props.participation_id}
+                                            partsfid={props.partsfid}/>
                             </Carousel.Item>
                         })}
                     </Carousel>
