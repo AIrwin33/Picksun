@@ -89,7 +89,7 @@ const Question = (props) => {
         try {
             const partsfid = props.partsfid;
             const questid = props.ques.sfid;
-            
+
                 if(partsfid != undefined){
 
                 const response = await fetch(
@@ -131,7 +131,6 @@ const Question = (props) => {
     useEffect(() => {
 
         setQuest(props.ques);
-        handleSubsegmentCount(props.ques.subsegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true) {
             setDisabledQuestion(true);
         }

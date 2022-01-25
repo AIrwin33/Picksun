@@ -480,7 +480,7 @@ const Questions = (props) => {
         if(newCorrectQuestion !== props.newCorrectQuestion && props.newCorrectQuestion !== undefined) {
             console.log('new correct question');
             setNewQuestion(props.newCorrectQuestion);
-            addCorrectQuestion(props.newCorrectQuestion);
+            //addCorrectQuestion(props.newCorrectQuestion);
         }
         if(props.newCorrectQuestion === undefined && props.newQuestion === undefined){
             console.log('resetting');
@@ -660,7 +660,6 @@ const Questions = (props) => {
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             selectedCount={selectedCount}
-                                            getsubcount={handleSubsegmentCount}
                                             isKnockedOut={knockedOut} participation_id={props.participation_id}
                                             contestfinished={finished} partsfid={props.partsfid}/>
                             </Carousel.Item>
