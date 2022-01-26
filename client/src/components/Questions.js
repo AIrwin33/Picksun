@@ -416,7 +416,7 @@ const Questions = (props) => {
     const handleSubsegmentCount = async (subseg) => {
         var minussubseg = questions.length - subseg;
         setSubSegPlusOne(minussubseg);
-        setIndex(minussubseg);
+        //setIndex(minussubseg);
         setSubsegmentCount(subseg);
         if(minussubseg > 1){
             setQuestionNum(subseg + 1);
@@ -621,14 +621,14 @@ const Questions = (props) => {
                             {review &&
                                         <div className="gameBanner font16 text-center">
                                             <Row>
-                                                <Col xs={4}>
+                                                <Col xs={2} lg={4}>
                                                 <div className="liveBtnLeft float-right">
                                                 </div>
                                                 </Col>
-                                                <Col xs={4}>
+                                                <Col xs={6} lg={4}>
                                                 <h3 className="text-center">Live</h3>
                                                 </Col>
-                                                <Col xs={4}>
+                                                <Col xs={2} lg={4}>
                                                 <div className="liveBtnRight float-left">
                                                 </div>
                                                 </Col>
