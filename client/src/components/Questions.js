@@ -284,7 +284,7 @@ const Questions = (props) => {
             }
             
             if(ko){
-                
+                setPlaceFinish("Knocked Out");
             }
             else{
                 if (placefinish === 1) {
@@ -664,7 +664,7 @@ const Questions = (props) => {
             {/* show questions or no question text */}
             {!isShowWaiting &&
             <Row className="questionRow m-2 p-2 justify-content-center">
-                {showEndBanner &&
+                {showEndBanner && placeFin &&
                 <Col sm={12} lg={12} className="endtextbanner text-center font16">
                     <span class="proxima">Thanks For Playing</span><br/>
                     <span class="proxima">Place Finish: {placeFin}</span>
@@ -692,10 +692,6 @@ const Questions = (props) => {
                         {props.contestQuestionText}
                     </div>
                     }
-
-                    
-                
-
                     
                 </Col>
             </Row>
