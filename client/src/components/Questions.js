@@ -411,7 +411,6 @@ const Questions = (props) => {
             console.log('handle submit answers err : ' + err.message);
         }
     }
-
     
 
     const updateAnswerList = async (childData) => {
@@ -444,12 +443,14 @@ const Questions = (props) => {
             console.log(subSegmentCount);
             console.log(questions.length);
 
-            setAnswerListShow(true);
-            if(answerList.length === questions.length){
-                setShowSubmitModal(true);
-            }
+            setAnswerListShow(true);            
+            if(answerList.length === subSegmentCount){
+                setAnswerListShow(true);
+                if(showSubmitCount === 0){
+                    setShowSubmitModal(true);
+                }
                 
-            
+            }
         } catch (err) {
             console.log('err' + err.message);
         }
