@@ -621,15 +621,15 @@ const Questions = (props) => {
                             {review &&
                                         <div className="gameBanner font16 text-center">
                                             <Row>
-                                                <Col xs={3} lg={4} className="float-right">
-                                                <div className="liveBtnLeft ">
+                                                <Col xs={3} lg={4} className="">
+                                                <div className="liveBtnLeft m-auto">
                                                 </div>
                                                 </Col>
                                                 <Col xs={5} lg={4}>
                                                     <h3 >Live</h3>
                                                 </Col>
-                                                <Col xs={3} lg={4} className="float-left">
-                                                <div className="liveBtnRight ">
+                                                <Col xs={3} lg={4} className="">
+                                                <div className="liveBtnRight m-auto">
                                                 </div>
                                                 </Col>
                                             </Row>
