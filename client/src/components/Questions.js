@@ -28,6 +28,7 @@ const Questions = (props) => {
     const [questionNum, setQuestionNum] = useState(1);
     const [selectedCount, setSelectedCount] = useState(0);
     const [subSegmentCount, setSubsegmentCount] = useState(0);
+    const [subsegplusone, setSubSegPlusOne] = useState(0);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
     const [publishedQuestions, setPublishedQuestions] = useState(0);
     const [placeFin, setPlaceFinish] = useState(0);
