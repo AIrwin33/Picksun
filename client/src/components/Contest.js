@@ -90,18 +90,9 @@ const Contest = ({match}) => {
             setParticipations(activeParts);
             getParticipationByContest(contestRec);
 
-            if(activeParts.length === 1){
-                setWinner();
-            }
-
         } catch (err) {
             console.error(err.message);
         }
-    }
-
-    const setWinner = async () => {
-        console.log('setting winner');
-        setWinnerBeforeEnd(true);
     }
 
     const getParticipationByContest = async (contestRec) => {
@@ -220,7 +211,6 @@ const Contest = ({match}) => {
                                     <Questions tabset={tabset} updatepart={updateparts} sport={sport} contestid={contest.sfid} 
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}
-                                               winnerbeforeend={winnerBeforeEnd}
                                                partsfid={participation.sfid} newQuestion={newQuestion} newCorrectQuestion={newCorrectQuestion}
                                                />
                                     }
