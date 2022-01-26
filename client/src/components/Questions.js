@@ -194,11 +194,11 @@ const Questions = (props) => {
                 handleKnockout();
                 
             }
-            if (parseData.status__c === 'Inactive') {
-                console.log('status inactive');
-                setInactive(true);
+            // if (parseData.status__c === 'Inactive') {
+            //     console.log('status inactive');
+            //     setInactive(true);
                 
-            }
+            // }
             props.updatepart(parseData);
 
         } catch (err) {
@@ -476,7 +476,6 @@ const Questions = (props) => {
         console.log('questions use effect');
         getQuestions();
         getAllQuestions();
-        console.log(props.winnerbeforeend);
         if(props.winnerbeforeend){
             console.log('winner before end');
         }
