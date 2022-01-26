@@ -233,12 +233,12 @@ const Contest = ({match}) => {
                                         <Col xs={1}>
                                         
                                         </Col>
-                                        <Col xs={10} className="pr-0 pl-0">
+                                        <Col xs={10} className="nopadding">
                                             <div className="text-center">
                                                 <span class="aptifer">Participants Remaining: {activeParts}/{allParts}</span>
                                             </div>
                                         </Col>
-                                        <Col xs={1} className="pr-0 pl-0">
+                                        <Col xs={1} className="nopadding">
                                         <div className="infoDiv mb-4 justify-content-end">
                                             <a src="#" className="" onClick={handleInfoShow} >
                                                 <Image src={info} width="22"></Image>
