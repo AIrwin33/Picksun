@@ -439,13 +439,16 @@ const Questions = (props) => {
             }
 
             setAnswerList(answerList);
-            if(answerList.length === subSegmentCount){
-                setAnswerListShow(true);
-                if(showSubmitCount === 0){
-                    setShowSubmitModal(true);
-                }
-                
+            console.log('update answers');
+            console.log(answerList.length);
+            console.log(subSegmentCount);
+
+            setAnswerListShow(true);
+            if(showSubmitCount === 0){
+                setShowSubmitModal(true);
             }
+                
+            
         } catch (err) {
             console.log('err' + err.message);
         }
