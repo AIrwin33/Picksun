@@ -454,8 +454,9 @@ const Questions = (props) => {
             console.log(subSegmentCount);
             console.log(questions.length);
 
-            setAnswerListShow(true);            
+                      
             if(answerList.length === subSegmentCount){
+                
                 setAnswerListShow(true);
                 if(showSubmitCount === 0){
                     setShowSubmitModal(true);
