@@ -233,7 +233,7 @@ const Contest = ({match}) => {
                                         <Col xs={1}>
                                         
                                         </Col>
-                                        <Col xs={10} className="nopadding">
+                                        <Col xs={9} className="nopadding">
                                             <div className="text-center">
                                                 <span class="aptifer">Participants Remaining: {activeParts}/{allParts}</span>
                                             </div>
