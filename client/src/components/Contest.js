@@ -25,6 +25,7 @@ const Contest = ({match}) => {
     const [participations, setParticipations] = useState([]);
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
+    const [winnerBeforeEnd, setWinnerBeforeEnd] = useState(false);
     const [newQuestion, setNewQuestion] = useState()
     const [newCorrectQuestion, setNewCorrectQuestion] = useState()
     const socket = React.useContext(SocketContext)
@@ -84,13 +85,23 @@ const Contest = ({match}) => {
                     activeParts.push(parseData[i]);
                 }
             }
+
             setActiveParts(activeParts.length);
             setParticipations(activeParts);
             getParticipationByContest(contestRec);
 
+            if(activeParts.length === 1){
+                setWinner();
+            }
+
         } catch (err) {
             console.error(err.message);
         }
+    }
+
+    const setWinner = async () => {
+        console.log('setting winner');
+        setWinnerBeforeEnd(true);
     }
 
     const getParticipationByContest = async (contestRec) => {
@@ -209,6 +220,7 @@ const Contest = ({match}) => {
                                     <Questions tabset={tabset} updatepart={updateparts} sport={sport} contestid={contest.sfid} 
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}
+                                               winnerbeforeend={winnerBeforeEnd}
                                                partsfid={participation.sfid} newQuestion={newQuestion} newCorrectQuestion={newCorrectQuestion}
                                                />
                                     }

@@ -456,7 +456,7 @@ const Questions = (props) => {
 
                       
             if(answerList.length === subSegmentCount){
-                
+
                 setAnswerListShow(true);
                 if(showSubmitCount === 0){
                     setShowSubmitModal(true);
@@ -476,6 +476,10 @@ const Questions = (props) => {
         console.log('questions use effect');
         getQuestions();
         getAllQuestions();
+        console.log(props.winnerbeforeend);
+        if(props.winnerbeforeend){
+            console.log('winner before end');
+        }
         
         if(newQuestion !== props.newQuestion && props.newQuestion !== undefined) {
             console.log('in set new question');
