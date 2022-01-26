@@ -228,8 +228,9 @@ const Contest = ({match}) => {
                                 </Col>
                                 <Col lg={6} sm={10} >
                                     <Row className="colCard justify-content-center "> 
+
                                         <span class="aptifer">Participants Remaining: {activeParts}/{allParts}</span>
-                                        <div className="infoDiv mb-4">
+                                        <div className="infoDiv mb-4 float-right">
                                             <a src="#" className="float-right" onClick={handleInfoShow} >
                                                 <Image src={info} width="22"></Image>
                                             </a>

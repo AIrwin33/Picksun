@@ -603,9 +603,19 @@ const Questions = (props) => {
                             </Timer>
                             {review &&
                                         <div className="gameBanner font16 text-center">
-                                            <div className="liveBtn">
-                                            </div>
-                                            <h3 className="text-center">Live</h3>
+                                            <Row>
+                                                <Col xs={3}>
+                                                <div className="liveBtn">
+                                                </div>
+                                                </Col>
+                                                <Col xs={6}>
+                                                <h3 className="text-center">Live</h3>
+                                                </Col>
+                                                <Col xs={3}>
+                                                </Col>
+                                            </Row>
+                                            
+                                            
                                         </div>
                                         }
                         </div>

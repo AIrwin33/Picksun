@@ -114,8 +114,7 @@
     color: Black;
     opacity: 50%;
     border-radius: 20px;
-    border: 1px solid black;
-    padding-top:8px;
+    border: 2px solid black;
 }
 
 .liveBtn {
