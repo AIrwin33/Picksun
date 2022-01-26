@@ -227,11 +227,16 @@ const Contest = ({match}) => {
 
                                 </Col>
                                 <Col lg={6} sm={10} >
-                                    <Row className="colCard justify-content-center "> 
-                                        <div className="justify-content-center">
-                                            <span class="aptifer">Participants Remaining: {activeParts}/{allParts}</span>
-                                        </div>
+                                    <Row className="colCard "> 
+                                        <Col xs={4}>
                                         
+                                        </Col>
+                                        <Col xs={4}>
+                                            <div className="justify-content-center">
+                                                <span class="aptifer">Participants Remaining: {activeParts}/{allParts}</span>
+                                            </div>
+                                        </Col>
+                                        <Col xs={4}>
                                         <div className="infoDiv mb-4 justify-content-end">
                                             <a src="#" className="" onClick={handleInfoShow} >
                                                 <Image src={info} width="22"></Image>
@@ -276,6 +281,7 @@ const Contest = ({match}) => {
                                                 </Modal.Footer>
                                             </Modal>
                                         </div>
+                                        </Col>
                                     </Row>
                                     {participations.map(part => {
                                         return <Row key={part.id} className="colCard ">
