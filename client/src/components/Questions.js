@@ -622,11 +622,11 @@ const Questions = (props) => {
                                         <div className="gameBanner font16 text-center">
                                             <Row>
                                                 <Col xs={3} lg={4} className="m-auto">
-                                                <div className="liveBtnLeft">
+                                                <div className="liveBtnLeft float-right">
                                                 </div>
                                                 </Col>
-                                                <Col xs={5} lg={4}>
-                                                    <h3 >Live</h3>
+                                                <Col xs={6} lg={4}>
+                                                    <h3 className="liveBtnMiddle">Live</h3>
                                                 </Col>
                                                 <Col xs={3} lg={4} className="m-auto">
                                                 <div className="liveBtnRight ">

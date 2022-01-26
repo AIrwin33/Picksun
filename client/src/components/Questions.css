@@ -143,6 +143,10 @@
  
 }
 
+.liveBtnMiddle {
+    margin-top:0.4rem !important;
+}
+
 @keyframes live {
   from {opacity:1;}
   to {opacity: 0;}
