@@ -228,10 +228,12 @@ const Contest = ({match}) => {
                                 </Col>
                                 <Col lg={6} sm={10} >
                                     <Row className="colCard justify-content-center "> 
-
-                                        <span class="aptifer">Participants Remaining: {activeParts}/{allParts}</span>
-                                        <div className="infoDiv mb-4 float-right">
-                                            <a src="#" className="float-right" onClick={handleInfoShow} >
+                                        <div className="justify-content-center">
+                                            <span class="aptifer">Participants Remaining: {activeParts}/{allParts}</span>
+                                        </div>
+                                        
+                                        <div className="infoDiv mb-4 justify-content-end">
+                                            <a src="#" className="" onClick={handleInfoShow} >
                                                 <Image src={info} width="22"></Image>
                                             </a>
                                             <Modal className="modalDiv" show={showInfo} onHide={handleInfoClose}>
