@@ -605,13 +605,15 @@ const Questions = (props) => {
                                         <div className="gameBanner font16 text-center">
                                             <Row>
                                                 <Col xs={4}>
-                                                <div className="liveBtn float-right">
+                                                <div className="liveBtnLeft float-right">
                                                 </div>
                                                 </Col>
                                                 <Col xs={4}>
                                                 <h3 className="text-center">Live</h3>
                                                 </Col>
                                                 <Col xs={4}>
+                                                <div className="liveBtnRight float-left">
+                                                </div>
                                                 </Col>
                                             </Row>
                                             
