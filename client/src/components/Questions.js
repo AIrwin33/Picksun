@@ -411,6 +411,16 @@ const Questions = (props) => {
             console.log('handle submit answers err : ' + err.message);
         }
     }
+
+    const handleSubsegmentCount = async (subseg) => {
+        var minussubseg = questions.length - subseg;
+        setSubSegPlusOne(minussubseg);
+        setIndex(minussubseg);
+        setSubsegmentCount(subseg);
+        if(minussubseg > 1){
+            setQuestionNum(subseg + 1);
+        }
+    }
     
 
     const updateAnswerList = async (childData) => {
