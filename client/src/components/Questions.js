@@ -442,9 +442,10 @@ const Questions = (props) => {
             console.log('update answers');
             console.log(answerList.length);
             console.log(subSegmentCount);
+            console.log(questions.length);
 
             setAnswerListShow(true);
-            if(showSubmitCount === 0){
+            if(answerList.length === questions.length){
                 setShowSubmitModal(true);
             }
                 
