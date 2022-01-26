@@ -218,28 +218,6 @@ const Questions = (props) => {
             console.log('end of contest');
             handleContestEnd();
         }else{
-            //handle remaining
-            handleCheckRemainingParts();
-        }
-    }
-
-    const handleCheckRemainingParts = async () => {
-        const res = await fetch(`/contestparticipations/` + props.contestid, {
-            method: "GET",
-            headers: {jwt_token: localStorage.token}
-        });
-
-        const parseData = await res.json();
-        
-        var i;
-        var activeParts = [];
-        for (i = 0; i < parseData.length; i++) {
-            if (parseData[i].status__c === 'Active') {
-                activeParts.push(parseData[i]);
-            }
-        }
-        if(activeParts.length === 1){
-            console.log('no more parts');
         }
     }
 
