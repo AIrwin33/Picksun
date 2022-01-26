@@ -232,7 +232,7 @@ const Contest = ({match}) => {
                                         
                                         </Col>
                                         <Col xs={10}>
-                                            <div className="justify-content-center">
+                                            <div className="text-center">
                                                 <span class="aptifer">Participants Remaining: {activeParts}/{allParts}</span>
                                             </div>
                                         </Col>
