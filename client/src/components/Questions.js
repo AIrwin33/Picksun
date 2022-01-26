@@ -617,7 +617,7 @@ const Questions = (props) => {
                                     </React.Fragment>
                                 )}
                             </Timer>
-                            {review &&
+                            {review && !showContestFinished &&
                                         <div className="gameBanner font16 text-center">
                                             <Row>
                                                 <Col xs={3} lg={4} className="m-auto">
