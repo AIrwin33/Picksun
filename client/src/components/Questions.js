@@ -217,6 +217,7 @@ const Questions = (props) => {
             console.log('end of contest');
             setShowContestFinished(true);
             handleContestEnd();
+            handleEndShow();
         }else{
         }
     }
@@ -292,7 +293,7 @@ const Questions = (props) => {
                     handleContestWon(winningParts.length);
                 }else {
                     console.log('hanlde end show in contest end place finish not 1' + placefinish);
-                    handleEndShow();
+                    
                     setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
                 }
             }
@@ -323,7 +324,6 @@ const Questions = (props) => {
             );
             console.log('hanlde end show in handle contest won');
             
-            handleEndShow();
             setShowContestWon(true);
 
             if(winnercount === 1){
