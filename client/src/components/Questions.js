@@ -593,7 +593,7 @@ const Questions = (props) => {
                             </Timer>
                             {review && !showContestFinished &&
                                 <div className="gameBanner font16 text-center">
-                                    <Row>
+                                    <Row className="rowHeight">
                                         <Col xs={3} lg={4} className="m-auto">
                                         <div className="liveBtnLeft float-right">
                                         </div>

@@ -115,6 +115,9 @@
     opacity: 50%;
     border-radius: 20px;
     border: 2px solid black;
+}
+
+.rowHeight {
     height:2.5rem;
 }
 
@@ -128,7 +131,7 @@
     animation-iteration-count: infinite;
     border-radius: 50%;
     animation-direction: normal;
-    margin-top:7px;
+    
  
 }
 
@@ -142,7 +145,7 @@
     animation-iteration-count: infinite;
     border-radius: 50%;
     animation-direction: reverse;
-    margin-top:7px;
+  
 }
 
 @keyframes live {
