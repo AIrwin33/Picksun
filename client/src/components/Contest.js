@@ -25,10 +25,10 @@ const Contest = ({match}) => {
     const [participations, setParticipations] = useState([]);
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
-    const [winnerBeforeEnd, setWinnerBeforeEnd] = useState(false);
-    const [newQuestion, setNewQuestion] = useState()
-    const [newCorrectQuestion, setNewCorrectQuestion] = useState()
-    const socket = React.useContext(SocketContext)
+    const [newQuestion, setNewQuestion] = useState();
+    const [newCorrectQuestion, setNewCorrectQuestion] = useState();
+    const socket = React.useContext(SocketContext);
+
     const getContest = async () => {
         try {
             const res = await fetch(`/contestdetail/${match.params.id}`, {
@@ -121,43 +121,28 @@ const Contest = ({match}) => {
     }
 
     const tabset = useCallback(() => {
-        //updates participations in the contest as they are updated from questions.
-        //passed up from questions js when answers are marked
         setKey('Participants');
     })
 
     const updateparts = useCallback(() => {
         console.log('update parts in contest');
-        //updates participations in the contest as they are updated from questions.
-        //passed up from questions js when answers are marked
         getContestParticipations(contest);
     })
     useEffect(() => {
         getContest().then(r =>  {
             console.log('here in contest', contest);
             socket.on("connect", () => {
-                console.log('reconnectings')
-                console.log('socket id::' + socket.id); 
+
               });
 
             socket.on("new_question", question => {
-                console.log("new question");
-                console.log('socket id::' + socket.id); 
-                
                 setNewQuestion(question);
 
             })
             socket.on("cor_question", question => {
-
-                //Does not hit this when running into issues in mobile
-                console.log("new correct question");
-                console.log('socket id::' + socket.id); 
                 setNewCorrectQuestion(question);
             })
             socket.on("new_contest", contest => {
-                console.log('new_contest' + contest);
-                console.log('socket id::' + socket.id); 
-                
                 setContest(contest);
             });
 

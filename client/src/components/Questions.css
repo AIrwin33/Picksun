@@ -115,6 +115,7 @@
     opacity: 50%;
     border-radius: 20px;
     border: 2px solid black;
+    height:2.5rem;
 }
 
 .liveBtnLeft {
@@ -127,6 +128,7 @@
     animation-iteration-count: infinite;
     border-radius: 50%;
     animation-direction: normal;
+    margin-top:7px;
  
 }
 
@@ -140,11 +142,7 @@
     animation-iteration-count: infinite;
     border-radius: 50%;
     animation-direction: reverse;
- 
-}
-
-.liveBtnMiddle {
-    margin-top:0.4rem !important;
+    margin-top:7px;
 }
 
 @keyframes live {

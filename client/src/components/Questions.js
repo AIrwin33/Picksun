@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Carousel, Col, Button, Modal, Row, Image} from "react-bootstrap";
-
 import Question from './Question.js';
 import Answers from './Answers.js';
 
@@ -343,7 +342,6 @@ const Questions = (props) => {
     }
 
     const setTimer = () => {
-        
         var timerMilli = props.contest.question_timer__c * 1000;
         setCounter(timerMilli);
     }
@@ -365,11 +363,9 @@ const Questions = (props) => {
             const parseData = await res.json();
             
             $('.timerdiv').addClass('hiddenTimer');
-            $('.carousel-control-next-icon').removeClass('active');
             setQuestions(parseData);
             setShowWaiting(false);
             setReview(true);
-
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
@@ -416,7 +412,6 @@ const Questions = (props) => {
     const handleSubsegmentCount = async (subseg) => {
         var minussubseg = questions.length - subseg;
         setSubSegPlusOne(minussubseg);
-        //setIndex(minussubseg);
         setSubsegmentCount(subseg);
         if(minussubseg > 1){
             setQuestionNum(subseg + 1);
@@ -448,15 +443,8 @@ const Questions = (props) => {
                 answerList.push(childData);
             }
 
-            setAnswerList(answerList);
-            console.log('update answers');
-            console.log(answerList.length);
-            console.log(subSegmentCount);
-            console.log(questions.length);
-
-                      
+            setAnswerList(answerList);       
             if(answerList.length === subSegmentCount){
-
                 setAnswerListShow(true);
                 if(showSubmitCount === 0){
                     setShowSubmitModal(true);
@@ -476,9 +464,6 @@ const Questions = (props) => {
         console.log('questions use effect');
         getQuestions();
         getAllQuestions();
-        if(props.winnerbeforeend){
-            console.log('winner before end');
-        }
         
         if(newQuestion !== props.newQuestion && props.newQuestion !== undefined) {
             console.log('in set new question');
@@ -489,19 +474,15 @@ const Questions = (props) => {
         if(newCorrectQuestion !== props.newCorrectQuestion && props.newCorrectQuestion !== undefined) {
             console.log('new correct question');
             setNewQuestion(props.newCorrectQuestion);
-            //addCorrectQuestion(props.newCorrectQuestion);
         }
         if(props.newCorrectQuestion === undefined && props.newQuestion === undefined){
-            console.log('resetting');
-            
             setReview(true);
             setShowAnswer(true);
         }
         
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
-        //make sure sfid is being returned
-        console.log('question in add new question' + question);
+       
         var questionidsIndex = questionids.indexOf(question.sfid);
         if (questionidsIndex === -1) {
             if (questions.length > 0 && questions.length === allquestions.length) {
@@ -510,28 +491,23 @@ const Questions = (props) => {
                 console.log('call parts answers in add new question');
                 doGetParticipationWrongAnswers();
 
-                //if there is already a segment published, include old questions
                 var newquestionids = [];
                 for (var i = 0; i < allquestions.length; i++) {
-                    // if (allquestions[i].subsegment__c === question.subsegment__c) {
-                        //if the question is already there
-                        if (newquestions.length > i) {
-                            if (newquestions[i].sfid === question.sfid) {
-                                newquestions.splice(i, 1, question);
-                                    continue;
-                                }
-
-                        }
-                        if (allquestions[i].sfid === question.sfid) {
-                            if (allquestions.length === newquestions.length) {
-                                break;
-                            } else {
-                                newquestions.push(question);
-                                newquestionids.push(question.sfid);
+                    if (newquestions.length > i) {
+                        if (newquestions[i].sfid === question.sfid) {
+                            newquestions.splice(i, 1, question);
+                                continue;
                             }
 
+                    }
+                    if (allquestions[i].sfid === question.sfid) {
+                        if (allquestions.length === newquestions.length) {
+                            break;
+                        } else {
+                            newquestions.push(question);
+                            newquestionids.push(question.sfid);
                         }
-                    // }
+                    }
                 }
                 
                 setPublishedQuestions(newquestions.length);
@@ -546,10 +522,8 @@ const Questions = (props) => {
             if(question.islocked__c){
                 console.log('question is locked, dont do anything');
             }else{
-                console.log('call parts answers in add new question else');
                 doGetParticipationWrongAnswers();
                 const tempQuestions = questions;
-                
                 tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
                 setQuestions(tempQuestions);
                 setTimer();
@@ -618,24 +592,22 @@ const Questions = (props) => {
                                 )}
                             </Timer>
                             {review && !showContestFinished &&
-                                        <div className="gameBanner font16 text-center">
-                                            <Row>
-                                                <Col xs={3} lg={4} className="m-auto">
-                                                <div className="liveBtnLeft float-right">
-                                                </div>
-                                                </Col>
-                                                <Col xs={6} lg={4}>
-                                                    <h3 className="liveBtnMiddle">Live</h3>
-                                                </Col>
-                                                <Col xs={3} lg={4} className="m-auto">
-                                                <div className="liveBtnRight ">
-                                                </div>
-                                                </Col>
-                                            </Row>
-                                            
-                                            
+                                <div className="gameBanner font16 text-center">
+                                    <Row>
+                                        <Col xs={3} lg={4} className="m-auto">
+                                        <div className="liveBtnLeft float-right">
                                         </div>
-                                        }
+                                        </Col>
+                                        <Col xs={6} lg={4}>
+                                            <h3 className="liveBtnMiddle">Live</h3>
+                                        </Col>
+                                        <Col xs={3} lg={4} className="m-auto">
+                                        <div className="liveBtnRight ">
+                                        </div>
+                                        </Col>
+                                    </Row>
+                                </div>
+                                }
                         </div>
                     </Col>
                     }
