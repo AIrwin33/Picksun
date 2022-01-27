@@ -322,6 +322,7 @@ const Questions = (props) => {
                 }
             );
             console.log('hanlde end show in handle contest won');
+            setShowContestFinished(true);
             handleEndShow();
             setShowContestWon(true);
 
