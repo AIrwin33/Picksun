@@ -121,6 +121,10 @@
     height:2.5rem;
 }
 
+.liveBtnMiddle {
+    margin-top:0.4rem;
+}
+
 .liveBtnLeft {
     width: 20px;
     height: 20px;
@@ -131,7 +135,7 @@
     animation-iteration-count: infinite;
     border-radius: 50%;
     animation-direction: normal;
-    
+    margin-top:0.6rem;
  
 }
 
@@ -145,7 +149,7 @@
     animation-iteration-count: infinite;
     border-radius: 50%;
     animation-direction: reverse;
-  
+    margin-top:0.6rem;
 }
 
 @keyframes live {

@@ -594,14 +594,14 @@ const Questions = (props) => {
                             {review && !showContestFinished &&
                                 <div className="gameBanner font16 text-center">
                                     <Row className="rowHeight">
-                                        <Col xs={3} lg={4} className="m-auto">
+                                        <Col xs={3} lg={4} >
                                         <div className="liveBtnLeft float-right">
                                         </div>
                                         </Col>
                                         <Col xs={6} lg={4}>
                                             <h3 className="liveBtnMiddle">Live</h3>
                                         </Col>
-                                        <Col xs={3} lg={4} className="m-auto">
+                                        <Col xs={3} lg={4} >
                                         <div className="liveBtnRight ">
                                         </div>
                                         </Col>
