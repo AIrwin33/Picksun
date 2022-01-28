@@ -115,6 +115,8 @@
     opacity: 50%;
     border-radius: 20px;
     border: 2px solid black;
+    margin: 5px;
+    height:2.5rem;
 }
 
 .rowHeight {
