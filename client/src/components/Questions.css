@@ -133,7 +133,7 @@
     background-color: red;
     opacity: 1;
     animation-name: live;
-    animation-duration: 4s;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
     border-radius: 50%;
     animation-direction: normal;
@@ -147,7 +147,7 @@
     background-color: red;
     opacity: 1;
     animation-name: live;
-    animation-duration: 4s;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
     border-radius: 50%;
     animation-direction: reverse;
