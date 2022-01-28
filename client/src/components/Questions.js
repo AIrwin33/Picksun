@@ -600,7 +600,7 @@ const Questions = (props) => {
                                         </div>
                                         </Col>
                                         <Col xs={6} lg={4}>
-                                            <h3 className="liveBtnMiddle">Live</h3>
+                                            <h5 className="liveBtnMiddle">Live</h5>
                                         </Col>
                                         <Col xs={3} lg={4} >
                                         <div className="liveBtnRight ">

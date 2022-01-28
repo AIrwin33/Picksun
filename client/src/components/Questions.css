@@ -126,8 +126,8 @@
 }
 
 .liveBtnLeft {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background-color: red;
     opacity: 1;
     animation-name: live;
@@ -140,8 +140,8 @@
 }
 
 .liveBtnRight {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background-color: red;
     opacity: 1;
     animation-name: live;
