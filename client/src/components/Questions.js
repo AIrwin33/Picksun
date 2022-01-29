@@ -178,12 +178,15 @@ const Questions = (props) => {
                 }
             );
             const parseData = await response.json();
+            console.log('setting participations' + parseData);
             setPartWrongAnswer(parseData);
             
 
             //set sort of timeout to check waiting for finished game
             setTimeout(
                 function() {
+                    console.log('timeout');
+                    console.log(partWrongAnswer.wrong_answers__c);
                     checkFinished();
                 },
                 1000
