@@ -9,6 +9,7 @@ const Answers = (props) => {
     const [answers, setAnswers] = useState([]);
 
     const getWrongTotal = async (infoWrong, infoTotal) => {
+        console.log('infoWrong' + infoWrong);
         var ans = [];
         for (var i = 0;i < infoTotal; i++) {
             if(i < infoWrong){
