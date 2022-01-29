@@ -162,7 +162,7 @@ const Question = (props) => {
                 updateAllPartAnswers();
             
                 },
-                2000
+                1500
         );
         
     }, [props.ques]);
