@@ -64,7 +64,7 @@ const Question = (props) => {
 
     const updateAllPartAnswers = async () => {
         try{
-            
+            console.log('in question update parts');
             const partsfid = props.partsfid;
             const body = {partsfid};
             const res = await fetch(`/existingpartanswernoquestion`, {
@@ -77,6 +77,7 @@ const Question = (props) => {
             });
 
             const parseData = await res.json();
+            console.log('parse update all part Answers' + JSON.stringify(parseData));
             setAllpartanswers(parseData);
         }catch(error){
             console.log( 'err' + error.message);
@@ -161,7 +162,7 @@ const Question = (props) => {
                 updateAllPartAnswers();
             
                 },
-                1500
+                2000
         );
         
     }, [props.ques]);

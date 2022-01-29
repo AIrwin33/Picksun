@@ -186,7 +186,6 @@ const Questions = (props) => {
             setTimeout(
                 function() {
                     console.log('timeout');
-                    console.log(partWrongAnswer.wrong_answers__c);
                     checkFinished();
                 },
                 1000
