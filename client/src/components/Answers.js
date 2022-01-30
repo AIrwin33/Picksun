@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Col, Row} from "react-bootstrap";
+import {Carousel, Col, Button, Container, Modal, Row, Image} from "react-bootstrap";
 
 import knockout from "../assets/knockedout.png";
 import "./Answers.css";
@@ -8,8 +8,8 @@ const Answers = (props) => {
 
     const [answers, setAnswers] = useState([]);
 
+
     const getWrongTotal = async (infoWrong, infoTotal) => {
-        console.log('infoWrong' + infoWrong);
         var ans = [];
         for (var i = 0;i < infoTotal; i++) {
             if(i < infoWrong){

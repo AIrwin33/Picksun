@@ -81,8 +81,8 @@ const Lobby = () => {
                 </Row>
             </Container>
 
-        </>
-    )
+            </>
+            )
     
 }
 

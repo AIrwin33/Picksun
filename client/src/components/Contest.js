@@ -1,10 +1,8 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {Row, Col, Tab, Tabs, Button, Image, Modal} from "react-bootstrap";
+import {Row, Col, Tab, Tabs, Image} from "react-bootstrap";
 import {TwitterTimelineEmbed} from 'react-twitter-embed';
 import {SocketContext} from "../socket";
 import {connect} from "react-redux";
-
-import info from '../assets/infoicon.png';
 
 import "./Contest.css";
 
@@ -16,7 +14,6 @@ import avatar from '../assets/blue_avatar_200.png';
 const Contest = ({match}) => {
     const [contest, setContest] = useState([]);
     const [isloaded, setLoaded] = useState(false);
-    const [showInfo, setShowInfo] = useState(false);
     const [home, setHomeTeam] = useState([]);
     const [away, setAwayTeam] = useState([]);
     const [sport, setSport] = useState('baseball');
@@ -25,10 +22,10 @@ const Contest = ({match}) => {
     const [participations, setParticipations] = useState([]);
     const [allParts, setAllParts] = useState();
     const [activeParts, setActiveParts] = useState([]);
-    const [newQuestion, setNewQuestion] = useState();
-    const [newCorrectQuestion, setNewCorrectQuestion] = useState();
-    const socket = React.useContext(SocketContext);
 
+    const [newQuestion, setNewQuestion] = useState()
+    const [newCorrectQuestion, setNewCorrectQuestion] = useState()
+    const socket = React.useContext(SocketContext)
     const getContest = async () => {
         try {
             const res = await fetch(`/contestdetail/${match.params.id}`, {
@@ -59,9 +56,11 @@ const Contest = ({match}) => {
             getContestParticipations(contestRec);
             setTimeout(
                 function() {
+                    console.log('end of timeout');
+                    
                     setLoaded(true);
                 },
-                1000
+                2000
             );
 
         } catch (error) {
@@ -85,7 +84,6 @@ const Contest = ({match}) => {
                     activeParts.push(parseData[i]);
                 }
             }
-
             setActiveParts(activeParts.length);
             setParticipations(activeParts);
             getParticipationByContest(contestRec);
@@ -110,46 +108,49 @@ const Contest = ({match}) => {
         }
     }
 
-    const handleInfoShow = async () => {
-
-        setShowInfo(true);
-    }
-    //close info modal on question
-    const handleInfoClose = async () => {
-
-        setShowInfo(false);
-    }
-
     const tabset = useCallback(() => {
+        //updates participations in the contest as they are updated from questions.
+        //passed up from questions js when answers are marked
         setKey('Participants');
     })
 
     const updateparts = useCallback(() => {
         console.log('update parts in contest');
+        //updates participations in the contest as they are updated from questions.
+        //passed up from questions js when answers are marked
         getContestParticipations(contest);
     })
     useEffect(() => {
         getContest().then(r =>  {
             console.log('here in contest', contest);
             socket.on("connect", () => {
-
+                console.log('socket id::' + socket.id); 
               });
 
             socket.on("new_question", question => {
-                setNewQuestion(question);
-
+                console.log("new question");
+                console.log('socket id::' + socket.id); 
+                setNewQuestion(question)
             })
             socket.on("cor_question", question => {
+
+                //Does not hit this when running into issues in mobile
+                console.log("new correct question");
+                console.log('socket id::' + socket.id); 
                 setNewCorrectQuestion(question);
             })
             socket.on("new_contest", contest => {
+                console.log('new_contest' + contest);
+                console.log('socket id::' + socket.id); 
                 setContest(contest);
             });
 
-            socket.on('disconnect', () =>{
+            socket.on('reconnect', function() {
                 console.log('reconnect fired!');
             });
  
+            console.log('before emit contest');
+            socket.emit("set_contest_room", match.params.id);
         });
     }, [socket]);
     return ((
@@ -180,7 +181,7 @@ const Contest = ({match}) => {
                     <Row className="rowBar">
                         <Col xs={1} sm={3}></Col>
                         <Col xs={10} sm={6} className="text-center ">
-                            <h4 className="whiteText fontBold aptifer">{contest.sub_title__c}</h4>
+                            <h4 className="whiteText fontBold aptifer">{contest.name}</h4>
                         </Col>
                         <Col xs={1} sm={3}>
                         </Col>
@@ -214,61 +215,8 @@ const Contest = ({match}) => {
 
                                 </Col>
                                 <Col lg={6} sm={10} >
-                                    <Row className="colCard "> 
-                                        <Col xs={1} lg={1} className="nopadding">
-                                        
-                                        </Col>
-                                        <Col xs={9} lg={10} className="nopadding">
-                                            <div className="text-center">
-                                                <span class="aptifer">Participants Remaining: {activeParts}/{allParts}</span>
-                                            </div>
-                                        </Col>
-                                        <Col xs={1} lg={1} className="nopadding">
-                                        <div className="infoDiv mb-4 justify-content-end">
-                                            <a src="#" className="" onClick={handleInfoShow} >
-                                                <Image src={info} width="22"></Image>
-                                            </a>
-                                            <Modal className="modalDiv" show={showInfo} onHide={handleInfoClose}>
-                                                <Modal.Header closeButton>
-                                                <Modal.Title className="aptifer font16 modalHeader">How To Pick Fun</Modal.Title>
-                                                </Modal.Header>
-                                                <Modal.Body className="proxima font12 modalBody">
-                                                    <span>
-                                                        Pick an answer for each question. You’ll know you have unanswered questions when the countdown timer and bouncing ball image are present.
-                                                    </span> <br/>
-                                                    <span>
-                                                        Before the countdown timer reaches zero, click ‘Submit Answers.’ The ‘Submit Answer’ button becomes clickable once you’ve picked answers for all available questions.
-                                                    </span><br/>
-                                                    <span>
-                                                        Review your answers and results using left / right toggles.
-                                                    </span><br/>
-                                                    <span>
-                                                        Keep your phone nearby when playing! Questions are published live in small batches.
-                                                    </span><br/>
-                                                    <span>
-                                                        Keep track of how many answers you’ve gotten wrong + how many left until you’re knocked by looking at the ‘Wrong Answers’ indicator. When all circles (Knockout Limit) are filled in, you’ll be removed from the contest.
-                                                    </span><br/>
-                                                    <span>
-                                                        Click ‘Participants’ to see who else is still alive in the contest.
-                                                    </span><br/>
-                                                    <span>
-                                                        Access Twitter to communicate with us before, during or after contests.
-                                                    </span><br/>
-                                                    <span>
-                                                        You’ll receive a prompt if you get knocked out and notification if you’re one of the winners. We’ll follow up with winners directly.
-                                                    </span>
-
-                                                    
-
-                                                </Modal.Body>
-                                                <Modal.Footer>
-                                                <Button className="aptifer modalBtn" variant="secondary" onClick={handleInfoClose}>
-                                                    Close
-                                                </Button>
-                                                </Modal.Footer>
-                                            </Modal>
-                                        </div>
-                                        </Col>
+                                    <Row className="colCard justify-content-center "> 
+                                        <span class="aptifer">Participants Remaining: {activeParts}/{allParts}</span>
                                     </Row>
                                     {participations.map(part => {
                                         return <Row key={part.id} className="colCard ">
@@ -310,7 +258,7 @@ const Contest = ({match}) => {
                                 <Col lg={6} sm={10} className=''>
                                     <TwitterTimelineEmbed
                                         sourceType="profile"
-                                        screenName="pickfungames"
+                                        screenName="playpickfun"
                                         options={{height: 400}}
                                     />
                                 </Col>

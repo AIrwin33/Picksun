@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {Carousel, Col, Button, Modal, Row, Image} from "react-bootstrap";
+import React, {useEffect, useState, useRef} from 'react';
+import {Carousel, Col, Button, Container, Modal, Row, Image} from "react-bootstrap";
+
 import Question from './Question.js';
 import Answers from './Answers.js';
 
@@ -35,7 +36,10 @@ const Questions = (props) => {
     const [showAnswer, setShowAnswer] = useState(false);
     const [counter, setCounter] = useState(undefined);
     const [answerList, setAnswerList] = useState([]);
+    const [knockedOut, setKnockedOut] = useState(false);
+    const [finished, setFinished] = useState(false);
     const [inactive, setInactive] = useState(false);
+    const [openedtimer, setOpenedTimer] = useState(0);
     const [showSubmitCount, setShowSubmitCount] = useState(0);
     const [showSubmitModal, setShowSubmitModal] = useState(false);
     const [showEnd, setShowEnd] = useState(false);
@@ -51,6 +55,7 @@ const Questions = (props) => {
     const [contestFinishedText, setContestFinishedText] = useState([]);
     const carouselRef = React.createRef()
     const socket = React.useContext(SocketContext);
+    const tiRef = useRef(null);
     const [newQuestion, setNewQuestion] = useState()
     const [newCorrectQuestion, setNewCorrectQuestion] = useState()
 
@@ -178,28 +183,26 @@ const Questions = (props) => {
                 }
             );
             const parseData = await response.json();
-            console.log('setting participations' + parseData);
             setPartWrongAnswer(parseData);
             
 
             //set sort of timeout to check waiting for finished game
             setTimeout(
                 function() {
-                    console.log('timeout');
                     checkFinished();
                 },
-                1000
+                2000
             );
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
                 handleKnockout();
                 
             }
-            // if (parseData.status__c === 'Inactive') {
-            //     console.log('status inactive');
-            //     setInactive(true);
+            if (parseData.status__c === 'Inactive') {
+                console.log('status inactive');
+                setInactive(true);
                 
-            // }
+            }
             props.updatepart(parseData);
 
         } catch (err) {
@@ -217,13 +220,11 @@ const Questions = (props) => {
         
         if(parseContestData.status__c === 'Finished'){
             console.log('end of contest');
-            setShowContestFinished(true);
             handleContestEnd();
-            handleEndShow();
         }else{
+            
         }
     }
-
     const handleKnockout = async () => {
         try {
             
@@ -287,7 +288,7 @@ const Questions = (props) => {
             }
             
             if(ko){
-                setPlaceFinish("Knocked Out");
+                
             }
             else{
                 if (placefinish === 1) {
@@ -295,7 +296,8 @@ const Questions = (props) => {
                     handleContestWon(winningParts.length);
                 }else {
                     console.log('hanlde end show in contest end place finish not 1' + placefinish);
-                    
+                    handleEndShow();
+                    setShowContestFinished(true);
                     setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
                 }
             }
@@ -325,7 +327,7 @@ const Questions = (props) => {
                 }
             );
             console.log('hanlde end show in handle contest won');
-            
+            handleEndShow();
             setShowContestWon(true);
 
             if(winnercount === 1){
@@ -345,6 +347,7 @@ const Questions = (props) => {
     }
 
     const setTimer = () => {
+        
         var timerMilli = props.contest.question_timer__c * 1000;
         setCounter(timerMilli);
     }
@@ -366,9 +369,13 @@ const Questions = (props) => {
             const parseData = await res.json();
             
             $('.timerdiv').addClass('hiddenTimer');
+            $('.carousel-control-next-icon').removeClass('active');
+            setIndex(subsegplusone);
+            setQuestionNum(1);
             setQuestions(parseData);
             setShowWaiting(false);
             setReview(true);
+
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
@@ -412,18 +419,13 @@ const Questions = (props) => {
         }
     }
 
-    const handleSubsegmentCount = async (subseg) => {
-        var minussubseg = questions.length - subseg;
-        setSubSegPlusOne(minussubseg);
-        setSubsegmentCount(subseg);
-        if(minussubseg > 1){
-            setQuestionNum(subseg + 1);
-        }
-    }
     
 
     const updateAnswerList = async (childData) => {
         try {
+
+            
+
             //if the answer list is empty, add the answered question from the Question JS
             if (answerList.length < 1) {
             //     console.log('starting answer list');
@@ -432,6 +434,10 @@ const Questions = (props) => {
             var addTo = true;
             //if answer list contains the question answer already, then replace it, otherwise add it
             for (var i = 0; i < answerList.length; i++) {
+               
+
+
+
                 if (childData.question__c === answerList[i].question__c) {
                     //replace existing question
                     
@@ -446,7 +452,7 @@ const Questions = (props) => {
                 answerList.push(childData);
             }
 
-            setAnswerList(answerList);       
+            setAnswerList(answerList);
             if(answerList.length === subSegmentCount){
                 setAnswerListShow(true);
                 if(showSubmitCount === 0){
@@ -458,6 +464,17 @@ const Questions = (props) => {
             console.log('err' + err.message);
         }
     }
+
+    const handleSubsegmentCount = async (subseg) => {
+        var minussubseg = questions.length - subseg;
+        setSubSegPlusOne(minussubseg);
+        setIndex(minussubseg);
+        setSubsegmentCount(subseg);
+        if(minussubseg > 1){
+            setQuestionNum(subseg + 1);
+        }
+    }
+
     //add warning styling if the timer reaches 10 seconds
     const warningText = async () => {
         $('.timerdiv').addClass('warning');
@@ -477,15 +494,19 @@ const Questions = (props) => {
         if(newCorrectQuestion !== props.newCorrectQuestion && props.newCorrectQuestion !== undefined) {
             console.log('new correct question');
             setNewQuestion(props.newCorrectQuestion);
+            addCorrectQuestion(props.newCorrectQuestion);
         }
         if(props.newCorrectQuestion === undefined && props.newQuestion === undefined){
+            console.log('resetting');
+            
             setReview(true);
             setShowAnswer(true);
         }
         
     }, [props.newQuestion, props.newCorrectQuestion]);
     const addNewQuestion = question => {
-       
+        //make sure sfid is being returned
+        console.log('question in add new question' + question);
         var questionidsIndex = questionids.indexOf(question.sfid);
         if (questionidsIndex === -1) {
             if (questions.length > 0 && questions.length === allquestions.length) {
@@ -494,21 +515,32 @@ const Questions = (props) => {
                 console.log('call parts answers in add new question');
                 doGetParticipationWrongAnswers();
 
+                //if there is already a segment published, include old questions
+                if (question.subsegment__c > 1) {
+
+                    $('.timerdiv').removeClass('warning');
+                    tiRef.current.reset();
+                    tiRef.current.start();
+                }
                 var newquestionids = [];
                 for (var i = 0; i < allquestions.length; i++) {
-                    if (newquestions.length > i) {
-                        if (newquestions[i].sfid === question.sfid) {
-                            newquestions.splice(i, 1, question);
-                                continue;
+                    if (allquestions[i].subsegment__c === question.subsegment__c) {
+                        //if the question is already there
+                        if (newquestions.length > i) {
+                            if (newquestions[i].sfid === question.sfid) {
+                                newquestions.splice(i, 1, question);
+                                    continue;
+                                }
+
+                        }
+                        if (allquestions[i].sfid === question.sfid) {
+                            if (allquestions.length === newquestions.length) {
+                                break;
+                            } else {
+                                newquestions.push(question);
+                                newquestionids.push(question.sfid);
                             }
 
-                    }
-                    if (allquestions[i].sfid === question.sfid) {
-                        if (allquestions.length === newquestions.length) {
-                            break;
-                        } else {
-                            newquestions.push(question);
-                            newquestionids.push(question.sfid);
                         }
                     }
                 }
@@ -525,19 +557,69 @@ const Questions = (props) => {
             if(question.islocked__c){
                 console.log('question is locked, dont do anything');
             }else{
+                console.log('call parts answers in add new question else');
                 doGetParticipationWrongAnswers();
                 const tempQuestions = questions;
+                
                 tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
                 setQuestions(tempQuestions);
+                setIndex(subsegplusone);
                 setTimer();
             }
 
         }
 
     }
+    const addCorrectQuestion = question => {
+
+        //TODO Task 1 - debug why this part isn't running in Mobile
+        // var tempQuestions = questions;
+        // tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
+
+        // setQuestionNum(1);
+        
+        // setQuestions(tempQuestions);
+        
+        // setTimeout(
+        //     function() {
+        //         //TODO - Task 2, update to socket maybe?
+        //     doGetParticipationWrongAnswers();
+            
+        //         },
+        //         5000
+        // );
+
+        // socket.on('connect', () => {
+        //     socket.emit('get_wrong_answers', props.partsfid);
+        //     socket.on("getWrongAnswers", (data) => {
+        //         console.log(data);
+        //         //setAllpartanswers(data);
+        //         setTimeout(
+        //             function() {
+        //                 checkFinished();
+        //             },
+        //             2000
+        //         );
+        //         if (data.status__c === 'Knocked Out') {
+        //             console.log('player is knocked out');
+        //             handleKnockout();
+
+        //         }
+        //         if (data.status__c === 'Inactive') {
+        //             console.log('status inactive');
+        //             setInactive(true);
+
+        //         }
+        //         props.updatepart(data);
+        //     })
+        // })
+        
+        
+    }
 
     return (
         <>
+
             {/* Show timer and answer count */}
                 {questions.length > 0 &&
                 <Row className="questionRow m-2 p-2">
@@ -550,6 +632,7 @@ const Questions = (props) => {
                             <Timer initialTime={counter}
                                    direction="backward"
                                    lastUnit="s"
+                                   ref={tiRef}
                                    checkpoints={[
                                        {
                                            time: 0,
@@ -594,23 +677,11 @@ const Questions = (props) => {
                                     </React.Fragment>
                                 )}
                             </Timer>
-                            {review && !showContestFinished &&
-                                <div className="gameBanner font16 text-center">
-                                    <Row className="rowHeight">
-                                        <Col xs={3} lg={4} >
-                                        <div className="liveBtnLeft float-right">
+                            {review &&
+                                        <div className="gameBanner font16 text-center">
+                                            <h3 class="text-center">Contest Live</h3>
                                         </div>
-                                        </Col>
-                                        <Col xs={6} lg={4}>
-                                            <h5 className="liveBtnMiddle">Live</h5>
-                                        </Col>
-                                        <Col xs={3} lg={4} >
-                                        <div className="liveBtnRight ">
-                                        </div>
-                                        </Col>
-                                    </Row>
-                                </div>
-                                }
+                                        }
                         </div>
                     </Col>
                     }
@@ -639,7 +710,7 @@ const Questions = (props) => {
             {/* show questions or no question text */}
             {!isShowWaiting &&
             <Row className="questionRow m-2 p-2 justify-content-center">
-                {showEndBanner && placeFin &&
+                {showEndBanner &&
                 <Col sm={12} lg={12} className="endtextbanner text-center font16">
                     <span class="proxima">Thanks For Playing</span><br/>
                     <span class="proxima">Place Finish: {placeFin}</span>
@@ -653,10 +724,10 @@ const Questions = (props) => {
                             return <Carousel.Item key={question.id} className="text-center">
                                 <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
                                             isInactive={inactive}
-                                            getsubcount={handleSubsegmentCount}
                                             selectedCount={selectedCount}
-                                            participation_id={props.participation_id}
-                                            partsfid={props.partsfid}/>
+                                            getsubcount={handleSubsegmentCount}
+                                            isKnockedOut={knockedOut} participation_id={props.participation_id}
+                                            contestfinished={finished} partsfid={props.partsfid}/>
                             </Carousel.Item>
                         })}
                     </Carousel>
@@ -667,6 +738,10 @@ const Questions = (props) => {
                         {props.contestQuestionText}
                     </div>
                     }
+
+                    
+                
+
                     
                 </Col>
             </Row>

@@ -9,6 +9,8 @@ import moment from 'moment';
 
 import "./Contests.css";
 
+
+
 const Contests = () => {
     //get contests
     const [contests, setContests] = useState([]);
@@ -53,7 +55,7 @@ const Contests = () => {
     
     
     return (
-        (
+                (
             <>
             {/* Main Body */}
             <Container id="contestsContainer">
