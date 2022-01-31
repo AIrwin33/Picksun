@@ -366,11 +366,14 @@ const Questions = (props) => {
             const parseData = await res.json();
             
             $('.timerdiv').addClass('hiddenTimer');
+            setReview(true);
             setQuestions(parseData);
             setShowWaiting(false);
             console.log('setting review true');
             console.log('show contest finished should be false ' + showContestFinished);
-            setReview(true);
+            console.log('show review' + review);
+            
+
 
         } catch (err) {
             console.log('disable questions err : ' + err.message);
