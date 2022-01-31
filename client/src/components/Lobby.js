@@ -62,8 +62,9 @@ const Lobby = () => {
                     {contests.map(contest => (
                     <Col xs={12} md={4}>
                         <div key={contest.id} className="LobbyCard mx-auto">
-                            {contest.image_url__c != null &&
+                            {contest.image_url__c !== undefined &&
                             <div>
+                              <p>{contest.image_url__c}</p>
                                 <img width="247" src={contest.image_url__c}/>
                             </div>
                             }
