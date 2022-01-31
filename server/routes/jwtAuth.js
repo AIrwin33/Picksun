@@ -6,6 +6,12 @@ const jwtGenerator = require("../utils/jwtGenerator");
 const validInfo = require("../middleware/validinfo");
 const authorization = require("../middleware/authorize");
 
+const session = require('express-session')({
+    secret: 'my-secret',
+    resave: true,
+    saveUninitialized: true
+})
+
 router.post("/register", validInfo, async (req, res) =>{
 
     try {
@@ -58,6 +64,10 @@ router.post('/login', validInfo ,async (req, res) => {
         const body = JSON.parse(JSON.stringify(req.body))
 
         const {email, password} = body;
+
+        req.session.user = {
+            username: 'OSK'
+        };
 
 
         console.log('email' + email);

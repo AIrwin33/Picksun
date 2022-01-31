@@ -67,11 +67,11 @@ const Lobby = () => {
                                 <img width="247" src={contest.image_url__c}/>
                             </div>
                             }
-                            {contest.image_url__c == null && 
+                            {/* {contest.image_url__c == null && 
                             <div>
                                 <img width="247" src={contest.image__c}/>
                             </div>
-                            }
+                            } */}
                             <p className="whiteText aptifer font16 text-center mt-1 mb-0">{contest.name}</p>
                             <p className="whiteText aptifer font12 text-center mt-1 mb-0">{contest.start_time_text__c}</p>
                             <Button className="btnRed aptifer font16 boldText" onClick={() => enterContest(contest.sfid)}>Start Picking</Button>
@@ -81,8 +81,8 @@ const Lobby = () => {
                 </Row>
             </Container>
 
-            </>
-            )
+        </>
+    )
     
 }
 

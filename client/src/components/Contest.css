@@ -40,3 +40,7 @@
     background-color:#215975;
     color:white;
 }
+
+.nopadding {
+    padding: 0px !important;
+}

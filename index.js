@@ -2,6 +2,15 @@ const express = require("express");
 const app = express();
 const http = require('http').createServer(app);
 const io = require("socket.io")(http);
+const session = require("express-session")({
+  secret: "my-secret",
+  resave: true,
+  saveUninitialized: true
+});
+
+const { v4: uuidv4 } = require('uuid');
+
+const sharedsession = require("express-socket.io-session");
 const {pool, pgListen} = require("./server/db");
 const bodyParser = require('body-parser');
 require("dotenv").config();
@@ -11,6 +20,13 @@ const cors = require("cors");
 app.set('port', (process.env.PORT || 5000));
 app.use(cors());
 app.use(express.json());
+
+// Attach session
+app.use(session);
+ 
+// Share session with io sockets
+ 
+io.use(sharedsession(session));
 const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
@@ -410,18 +426,18 @@ pgListen.notifications.on("new_contest", e => {
 })
 
 pgListen.notifications.on("new_question", e => {
-    console.log(e.correct_answer__c);
-    console.log('listener on');
 
     if (e !== undefined && e.published__c && !e.islocked__c) {
         console.log('send socket question');
-        io.to(e.contest__c).emit("new_question", e)
+
+        io.emit("new_question", e)
     }
 
     if(e.correct_answer__c !== null && e !== undefined) {
         console.log('e.correct_answer__c' + e.correct_answer__c);
         console.log('here');
-        io.to(e.contest__c).emit("cor_question", e)
+
+        io.emit("cor_question", e)
     }
     
 })
@@ -431,25 +447,23 @@ pgListen.events.on("error", (error) => {
     console.error("Fatal database connection error:", error)
     process.exit(1)
 })
-pgListen.connect()
-pgListen.listenTo("new_question")
 
-pgListen.listenTo("cor_question")
-console.log('after listen tio');
-pgListen.listenTo("new_contest")
-
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
     console.log('connect to socket');
-    console.log(socket.id);
-    socket.on("set_contest_room", e => {
-        console.log('set contest room' + e);
-        socket.join(e)
-    })
+    pgListen.listenTo("new_question");
+    pgListen.listenTo("cor_question");
+
     socket.on("disconnect", (socket) => {
         console.log('disconnect from socket');
-        console.log(socket.id);
     });
 });
+
+
+pgListen.connect();
+console.log('after listen to');
+pgListen.listenTo("new_contest")
+
+
 
 
 

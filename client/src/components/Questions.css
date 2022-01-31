@@ -110,12 +110,53 @@
 }
 
 .gameBanner {
-    color: white;
-    background-color: red;
+    background-color: white;
+    color: Black;
     opacity: 50%;
-    border-radius: 5px;
-    border: 1px solid red;
-    padding-top:8px;
+    border-radius: 20px;
+    border: 2px solid black;
+    margin: 5px;
+    height:2.5rem;
+}
+
+.rowHeight {
+    height:2.5rem;
+}
+
+.liveBtnMiddle {
+    margin-top:0.3rem;
+}
+
+.liveBtnLeft {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    opacity: 1;
+    animation-name: live;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    border-radius: 50%;
+    animation-direction: normal;
+    margin-top:0.6rem;
+ 
+}
+
+.liveBtnRight {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    opacity: 1;
+    animation-name: live;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    border-radius: 50%;
+    animation-direction: reverse;
+    margin-top:0.6rem;
+}
+
+@keyframes live {
+  from {opacity:1;}
+  to {opacity: 0;}
 }
 
 @media only screen and (max-width: 600px) {
