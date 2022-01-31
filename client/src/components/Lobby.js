@@ -65,7 +65,6 @@ const Lobby = () => {
                         <div key={contest.id} className="LobbyCard mx-auto">
                             {contest.image_url__c !== undefined &&
                             <div>
-                              <p>{contest.image_url__c}</p>
                                 <img width="247" src={contest.image_url__c}/>
                             </div>
                             }
