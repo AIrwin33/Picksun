@@ -371,8 +371,13 @@ const Questions = (props) => {
             setShowWaiting(false);
             console.log('setting review true');
             console.log('show contest finished should be false ' + showContestFinished);
-            console.log('show review' + review);
             
+            setTimeout(
+                function() {
+                    console.log('show review' + review);
+                },
+                1000
+            );
 
 
         } catch (err) {
