@@ -368,6 +368,8 @@ const Questions = (props) => {
             $('.timerdiv').addClass('hiddenTimer');
             setQuestions(parseData);
             setShowWaiting(false);
+            console.log('setting review true');
+            console.log(showContestFinished);
             setReview(true);
 
         } catch (err) {
