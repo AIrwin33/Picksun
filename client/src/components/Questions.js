@@ -369,7 +369,7 @@ const Questions = (props) => {
             setQuestions(parseData);
             setShowWaiting(false);
             console.log('setting review true');
-            console.log(showContestFinished);
+            console.log('show contest finished should be false ' + showContestFinished);
             setReview(true);
 
         } catch (err) {
