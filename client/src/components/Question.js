@@ -261,7 +261,7 @@ const Question = (props) => {
                             <span class="proxima" >My Pick: {partAnswer.selection_value__c}</span>
                             }
                             {partAnswer.selection_value__c == null &&
-                            <span class="proxima">Did Not Answer </span>
+                            <span class="proxima">My Pick: Did Not Answer </span>
                             }
                         </div>
                     </Col>
