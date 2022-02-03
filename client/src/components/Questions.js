@@ -88,7 +88,10 @@ const Questions = (props) => {
                 }
             }
             console.log('non locked questions' + nonLockedQuestionsArr.length);
-            
+            if(nonLockedQuestionsArr.length === 0){
+                setReview(true);
+                setShowAnswer(true);
+            }
             var openedtimerval;
             
             if(props.contest.opened_timer__c !== null){
@@ -491,13 +494,6 @@ const Questions = (props) => {
         if(newCorrectQuestion !== props.newCorrectQuestion && props.newCorrectQuestion !== undefined) {
             console.log('new correct question');
             setNewQuestion(props.newCorrectQuestion);
-        }
-        if(props.newCorrectQuestion === undefined && props.newQuestion === undefined){
-            console.log('undefined new questions');
-            console.log('props new question' + props.newQuestion);
-            console.log('props new correct question' + props.newCorrectQuestion);
-            setReview(true);
-            setShowAnswer(true);
         }
         
     }, [props.newQuestion, props.newCorrectQuestion]);
