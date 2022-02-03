@@ -56,7 +56,7 @@ const Questions = (props) => {
 
     const getAllQuestions = async () => {
         try {
-
+            console.log('getting all questions');
             const res = await fetch(`/allquestions/${props.contestid}`, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
@@ -72,7 +72,7 @@ const Questions = (props) => {
 
     const getQuestions = async () => {
         try {
-
+            console.log('getting questions');
             const res = await fetch(`/questions/${props.contestid}`, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
@@ -351,6 +351,8 @@ const Questions = (props) => {
 
     const disableQuestions = async () => {
         try {
+
+            console.log('in disable questions');
             handleSubmitClose();
             var conid = props.contestid
             const body = {conid};
@@ -474,7 +476,7 @@ const Questions = (props) => {
     }
 
     useEffect(() => {
-        console.log('questions use effect');
+        console.log('QUESTIONS ARE LOADING NOW');
         getQuestions();
         getAllQuestions();
         
