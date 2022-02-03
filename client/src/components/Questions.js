@@ -87,6 +87,8 @@ const Questions = (props) => {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
             }
+            console.log('non locked questions' + nonLockedQuestionsArr.length);
+            
             var openedtimerval;
             
             if(props.contest.opened_timer__c !== null){
