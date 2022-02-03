@@ -491,6 +491,9 @@ const Questions = (props) => {
             setNewQuestion(props.newCorrectQuestion);
         }
         if(props.newCorrectQuestion === undefined && props.newQuestion === undefined){
+            console.log('undefined new questions');
+            console.log('props new question' + props.newQuestion);
+            console.log('props new correct question' + props.newCorrectQuestion);
             setReview(true);
             setShowAnswer(true);
         }
