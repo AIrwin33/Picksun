@@ -192,6 +192,9 @@ const Questions = (props) => {
             const parseData = await response.json();
             console.log(JSON.stringify(parseData));
             console.log('questions submitted' + parseData.questions_submitted__c);
+            if(parseData.questions_submitted__c){
+                setShowWaiting(true);
+            }
             setPartWrongAnswer(parseData);
             
             
