@@ -390,7 +390,13 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
     try {
         const {partanswers} = req.body;
         var parts = [];
-        
+        var participationrec = partanswers[0].participation__c;
+        console.log('record' + participationrec);
+        const part = await pool.query(
+            "UPDATE salesforce.Participation__c SET questions_submitted__c = true WHERE Participation__c = $1", [participationrec]
+            );
+
+            console.log('is submitted' + part.rows[0].questions_submitted__c);
         for(var i=0; i < partanswers.length; i++){
             var answer = partanswers[i];
          
@@ -400,12 +406,9 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
             
             parts.push(partans.rows[0]);
 
-            const part = await pool.query(
-                "UPDATE salesforce.Participation__c SET questions_submitted__c = true WHERE Participation__c = $1", [answer.participation__c]
-                );
-
-                console.log(part.rows[0].questions_submitted__c);
+            
         }
+        
        
         res.json(parts);
     } catch (err) {
