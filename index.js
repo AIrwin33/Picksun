@@ -469,7 +469,7 @@ io.on("connection", async (socket) => {
 
     socket.on("disconnect", (socket) => {
         console.log('disconnect from socket');
-        socket.reconnect();
+        socket.socket.reconnect();
     });
 });
 
