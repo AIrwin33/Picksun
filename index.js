@@ -463,8 +463,9 @@ io.on("connection", async (socket) => {
     pgListen.listenTo("new_question");
     pgListen.listenTo("cor_question");
 
-    socket.on("disconnect", (socket) => {
+    socket.on("disconnect", (reason) => {
         console.log('disconnect from socket');
+        console.log('reason' + reason);
     });
 });
 
