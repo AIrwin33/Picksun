@@ -191,7 +191,7 @@ const Questions = (props) => {
             );
             const parseData = await response.json();
             console.log(JSON.stringify(parseData));
-            
+            console.log('questions submitted' + parseData.questions_submitted__c);
             setPartWrongAnswer(parseData);
             
             
@@ -199,9 +199,7 @@ const Questions = (props) => {
             //set sort of timeout to check waiting for finished game
             setTimeout(
                 function() {
-                    console.log('timeout');
-                    console.log('counter ' + counter);
-
+                   
                     checkFinished();
                 },
                 1000
