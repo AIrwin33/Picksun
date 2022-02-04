@@ -393,7 +393,7 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
         var participationrec = partanswers[0].participation__c;
         console.log('record' + participationrec);
         const part = await pool.query(
-            "UPDATE salesforce.participation__c SET Questions_Submitted__c = true WHERE id = $1", [participationrec]
+            "UPDATE salesforce.participation__c SET Questions_Submitted__c = true WHERE sfid = $1", [participationrec]
             );
 
             console.log('is submitted' + part.rows[0].questions_submitted__c);
