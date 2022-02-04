@@ -6,6 +6,8 @@ export const socket = io({
   'connect timeout': 200000,
   'reconnection': true,
   'max reconnection attempts': 10000,
+  'reconnectionDelay': 10,
+  'reconnectionDelayMax': 500,
 });
 
 export const SocketContext = React.createContext(null);

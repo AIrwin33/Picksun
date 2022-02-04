@@ -471,9 +471,9 @@ io.on("connection", async (socket) => {
         console.log('disconnect from socket');
         console.log('reason' + reason);
         if (reason === "transport close") {
-            
+
             // the disconnection was initiated by the server, you need to reconnect manually
-            socket.connect();
+            //socket.connect();
           }
     });
 });
