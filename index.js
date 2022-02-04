@@ -425,10 +425,6 @@ pgListen.events.on("reconnect", e => {
     console.log('pg Listen reconnect' + e);
 });
 
-pgListen.events.on("error", (error) => {
-    console.log('pg Listen error' + error);
-});
-
 
 pgListen.notifications.on("new_contest", e => {
     console.log(e);
@@ -469,7 +465,6 @@ io.on("connection", async (socket) => {
 
     socket.on("disconnect", (socket) => {
         console.log('disconnect from socket');
-        socket.socket.reconnect();
     });
 });
 
