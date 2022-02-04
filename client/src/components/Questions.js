@@ -122,8 +122,6 @@ const Questions = (props) => {
                         //TODO
                         //look for setting showWaiting here
                         console.log('show waiting during counter');
-
-                        console.log(JSON.stringify(partWrongAnswer));
                         if(nonLockedQuestionsArr.length === 0){
                             setShowWaiting(true);
                         }
@@ -193,7 +191,7 @@ const Questions = (props) => {
             );
             const parseData = await response.json();
             console.log(JSON.stringify(parseData));
-            console.log('counter ' + counter);
+            
             setPartWrongAnswer(parseData);
             
             
@@ -202,6 +200,8 @@ const Questions = (props) => {
             setTimeout(
                 function() {
                     console.log('timeout');
+                    console.log('counter ' + counter);
+
                     checkFinished();
                 },
                 1000
