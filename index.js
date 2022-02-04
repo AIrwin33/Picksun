@@ -459,6 +459,10 @@ pgListen.events.on("error", (error) => {
 
 io.on("connection", async (socket) => {
     console.log('connect to socket');
+
+    //send something that it knows there is a reconnect
+
+    
     //try moving this out of connection?
     pgListen.listenTo("new_question");
     pgListen.listenTo("cor_question");
