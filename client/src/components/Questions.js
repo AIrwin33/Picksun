@@ -192,7 +192,8 @@ const Questions = (props) => {
                 }
             );
             const parseData = await response.json();
-            console.log('setting participations' + parseData);
+            console.log(JSON.stringify(parseData));
+            console.log('counter ' + counter);
             setPartWrongAnswer(parseData);
             
             
