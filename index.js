@@ -462,7 +462,7 @@ io.on("connection", async (socket) => {
 
     //send something that it knows there is a reconnect
 
-    
+
     //try moving this out of connection?
     pgListen.listenTo("new_question");
     pgListen.listenTo("cor_question");
@@ -470,6 +470,11 @@ io.on("connection", async (socket) => {
     socket.on("disconnect", (reason) => {
         console.log('disconnect from socket');
         console.log('reason' + reason);
+        if (reason === "transport close") {
+            
+            // the disconnection was initiated by the server, you need to reconnect manually
+            socket.connect();
+          }
     });
 });
 
