@@ -88,9 +88,10 @@ const Questions = (props) => {
                 }
             }
             console.log('non locked questions' + nonLockedQuestionsArr.length);
+            setShowAnswer(true);
             if(nonLockedQuestionsArr.length === 0){
                 setReview(true);
-                setShowAnswer(true);
+                
             }
             var openedtimerval;
             
@@ -185,7 +186,7 @@ const Questions = (props) => {
             const parseData = await response.json();
             console.log('setting participations' + parseData);
             setPartWrongAnswer(parseData);
-            setShowAnswer(true);
+            
             
 
             //set sort of timeout to check waiting for finished game
