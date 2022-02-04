@@ -119,6 +119,12 @@ const Questions = (props) => {
                     } else {
                        
                         setCounter(diffTime);
+                        //TODO
+                        //look for setting showWaiting here
+                        if(nonLockedQuestionsArr.length === 0){
+                            console.log('show waiting during counter');
+                            setShowWaiting(true);
+                        }
                         $('.timerdiv').removeClass('hiddenTimer');
                         
                     }
@@ -484,6 +490,7 @@ const Questions = (props) => {
 
     useEffect(() => {
         console.log('QUESTIONS ARE LOADING NOW');
+        console.log('counter' + counter);
         getQuestions();
         getAllQuestions();
         

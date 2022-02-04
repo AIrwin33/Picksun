@@ -417,6 +417,19 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 
+pgListen.events.on("connected", e => {
+    console.log('connected' + e);
+});
+
+pgListen.events.on("reconnect", e => {
+    console.log('pg Listen reconnect' + e);
+});
+
+pgListen.events.on("error", (error) => {
+    console.log('pg Listen error' + error);
+});
+
+
 pgListen.notifications.on("new_contest", e => {
     console.log(e);
     console.log('in new contest');
@@ -450,31 +463,20 @@ pgListen.events.on("error", (error) => {
 
 io.on("connection", async (socket) => {
     console.log('connect to socket');
+    //try moving this out of connection?
     pgListen.listenTo("new_question");
     pgListen.listenTo("cor_question");
 
     socket.on("disconnect", (socket) => {
         console.log('disconnect from socket');
+        socket.reconnect();
     });
 });
 
 
 pgListen.connect();
 console.log('after listen to');
-pgListen.listenTo("new_contest")
-
-
-
-
-
-// socket.on('update_all_part_answers', async (partsfid) => {
-//     const participationAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 ORDER BY name ASC", [partsfid]);
-//     io.emit("updateAllPartAnswers",participationAnswer.rows)
-// });
-// socket.on('get_wrong_answers', async (partid) => {
-//     const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid]);
-//     io.emit("getWrongAnswers",participationWrongAnswer.rows[0])
-// });
+pgListen.listenTo("new_contest");
 
 io.on('connect_error', function(err) {
     console.log("client connect_error: ", err);

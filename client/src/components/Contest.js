@@ -132,14 +132,16 @@ const Contest = ({match}) => {
         getContest().then(r =>  {
             console.log('here in contest', contest);
             socket.on("connect", () => {
-
-              });
+                console.log('socket connect client side');
+            });
 
             socket.on("new_question", question => {
+                console.log('new question socket');
                 setNewQuestion(question);
 
             })
             socket.on("cor_question", question => {
+                console.log('cor question socket');
                 setNewCorrectQuestion(question);
             })
             socket.on("new_contest", contest => {
