@@ -185,6 +185,7 @@ const Questions = (props) => {
             const parseData = await response.json();
             console.log('setting participations' + parseData);
             setPartWrongAnswer(parseData);
+            setShowAnswer(true);
             
 
             //set sort of timeout to check waiting for finished game
