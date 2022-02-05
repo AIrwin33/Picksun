@@ -194,6 +194,7 @@ const Questions = (props) => {
             console.log('questions submitted' + parseData.questions_submitted__c);
             if(parseData.questions_submitted__c){
                 setShowWaiting(true);
+                setAnswerListShow(true);
             }
             setPartWrongAnswer(parseData);
             
