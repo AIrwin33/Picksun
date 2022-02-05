@@ -73,7 +73,7 @@ const Questions = (props) => {
     const getQuestions = async () => {
         try {
             console.log('getting questions');
-            setShowAnswer(true);
+            
             doGetParticipationWrongAnswers();
             const res = await fetch(`/questions/${props.contestid}`, {
                 method: "GET",
@@ -201,7 +201,7 @@ const Questions = (props) => {
             //set sort of timeout to check waiting for finished game
             setTimeout(
                 function() {
-                   
+                    setShowAnswer(true);
                     checkFinished();
                 },
                 1000
