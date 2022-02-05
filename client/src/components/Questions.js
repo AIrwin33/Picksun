@@ -187,11 +187,13 @@ const Questions = (props) => {
                 }
             );
             const parseData = await response.json();
-            
-            if(parseData.questions_submitted__c){
-                setShowWaiting(true);
-                setAnswerListShow(true);
-            }
+
+            //TODO this this runs on new correct questions
+            //fix this?
+            // if(parseData.questions_submitted__c){
+            //     setShowWaiting(true);
+            //     setAnswerListShow(true);
+            // }
             setPartWrongAnswer(parseData);
             
             
