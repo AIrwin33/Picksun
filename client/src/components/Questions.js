@@ -684,7 +684,7 @@ const Questions = (props) => {
                                             getsubcount={handleSubsegmentCount}
                                             selectedCount={selectedCount}
                                             participation_id={props.participation_id}
-                                            partsfid={props.partsfid}/>
+                                            partsfid={partWrongAnswer.sfid}/>
                             </Carousel.Item>
                         })}
                     </Carousel>
