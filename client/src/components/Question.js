@@ -156,9 +156,11 @@ const Question = (props) => {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();
-
-
-        updateAllPartAnswers();
+        console.log(props.partsfid);
+        if(props.partsfid !== null){
+            console.log(props.partsfid);
+            updateAllPartAnswers();
+        }
             
 
         
