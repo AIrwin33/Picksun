@@ -308,8 +308,12 @@ app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async 
 
 app.post("/existingpartanswernoquestion/", authorization, async (req, res) => {
     try {
+        console.log('in parts answers existing');
         const {partsfid} = req.body;
+        console.log(partsfid);
         const participationAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 ORDER BY name ASC", [partsfid]);
+        console.log(participationAnswer.rows);
+        
         res.json(participationAnswer.rows);
     } catch (err) {
         console.log('all part answer error ' + err);
