@@ -73,6 +73,8 @@ const Questions = (props) => {
     const getQuestions = async () => {
         try {
             console.log('getting questions');
+            setShowAnswer(true);
+            doGetParticipationWrongAnswers();
             const res = await fetch(`/questions/${props.contestid}`, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
@@ -88,7 +90,7 @@ const Questions = (props) => {
                 }
             }
             console.log('non locked questions' + nonLockedQuestionsArr.length);
-            setShowAnswer(true);
+            
             if(nonLockedQuestionsArr.length === 0){
                 setReview(true);
                 
@@ -136,7 +138,7 @@ const Questions = (props) => {
             
             //set question num
             setPublishedQuestions(parseData.length);
-            doGetParticipationWrongAnswers();
+            
         } catch (err) {
             console.error('get questions error' + err.message);
         }
