@@ -64,6 +64,7 @@ const Question = (props) => {
 
     const updateAllPartAnswers = async () => {
         try{
+            console.log('update all part answers in question js');
             const partsfid = props.partsfid;
             const body = {partsfid};
             const res = await fetch(`/existingpartanswernoquestion`, {
@@ -154,14 +155,11 @@ const Question = (props) => {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();
-        setTimeout(
-            function() {
 
-                updateAllPartAnswers();
+
+        updateAllPartAnswers();
             
-                },
-                2000
-        );
+
         
     }, [props.ques]);
 
