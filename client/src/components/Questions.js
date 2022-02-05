@@ -121,12 +121,7 @@ const Questions = (props) => {
                     } else {
                        
                         setCounter(diffTime);
-                        //TODO
-                        //look for setting showWaiting here
-                        console.log('show waiting during counter');
-                        if(nonLockedQuestionsArr.length === 0){
-                            setShowWaiting(true);
-                        }
+
                         $('.timerdiv').removeClass('hiddenTimer');
                         
                     }
