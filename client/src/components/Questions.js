@@ -492,8 +492,7 @@ const Questions = (props) => {
     }
 
     useEffect(() => {
-        console.log('QUESTIONS ARE LOADING NOW');
-        console.log('counter' + counter);
+
         getQuestions();
         getAllQuestions();
         
@@ -671,7 +670,7 @@ const Questions = (props) => {
                 </Col>
                 }
                 <Col  sm={12} lg={12}>
-                    {questions.length > 0 &&
+                    {questions.length > 0 && showAnswer &&
                     <Carousel className="carouselDiv" ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}
                               data-slide-to={index}>
                         {questions.map(question => {
