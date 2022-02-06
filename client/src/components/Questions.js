@@ -542,7 +542,14 @@ const Questions = (props) => {
                 setPublishedQuestions(newquestions.length);
                 setQuestionIds(newquestionids);
                 setQuestions(newquestions);
-                doGetParticipationWrongAnswers();
+                
+                setTimeout(
+                    function() {
+                        console.log('timeout part answers');
+                        doGetParticipationWrongAnswers();
+                    },
+                    2000
+                );
                 setTimer();
                 $('.timerdiv').removeClass('hiddenTimer');
                 resetLogic();
@@ -552,7 +559,14 @@ const Questions = (props) => {
             if(question.islocked__c){
                 console.log('question is locked, dont do anything');
             }else{
-                doGetParticipationWrongAnswers();
+                setTimeout(
+                    function() {
+                        console.log('timeout part answers');
+                        doGetParticipationWrongAnswers();
+                    },
+                    2000
+                );
+                
                 const tempQuestions = questions;
                 tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] = question;
                 setQuestions(tempQuestions);
