@@ -174,6 +174,7 @@ const Questions = (props) => {
     const doGetParticipationWrongAnswers = async () => {
         try {
             console.log('part answers method');
+
             const partid = props.participation_id;
             const body = {partid};
             const response = await fetch(
@@ -517,7 +518,7 @@ const Questions = (props) => {
             } else {
                 var newquestions = questions;
                 console.log('call parts answers in add new question');
-                doGetParticipationWrongAnswers();
+                
 
                 var newquestionids = [];
                 for (var i = 0; i < allquestions.length; i++) {
@@ -541,6 +542,7 @@ const Questions = (props) => {
                 setPublishedQuestions(newquestions.length);
                 setQuestionIds(newquestionids);
                 setQuestions(newquestions);
+                doGetParticipationWrongAnswers();
                 setTimer();
                 $('.timerdiv').removeClass('hiddenTimer');
                 resetLogic();
