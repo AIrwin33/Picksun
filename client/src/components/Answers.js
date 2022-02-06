@@ -9,7 +9,7 @@ const Answers = (props) => {
     const [answers, setAnswers] = useState([]);
 
     const getWrongTotal = async (infoWrong, infoTotal) => {
-        console.log('infoWrong' + infoWrong);
+        
         var ans = [];
         for (var i = 0;i < infoTotal; i++) {
             if(i < infoWrong){
@@ -32,7 +32,7 @@ const Answers = (props) => {
     }
 
     useEffect(() => {
-        console.log('props wrong' + props.wrong);
+        
         getWrongTotal(props.wrong, props.total);   
 
     }, [props]);
