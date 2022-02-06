@@ -159,7 +159,7 @@ const Question = (props) => {
         console.log(props.partsfid);
         if(props.partsfid !== null){
             console.log(props.partsfid);
-            updateAllPartAnswers();
+            //updateAllPartAnswers();
         }
             
 
