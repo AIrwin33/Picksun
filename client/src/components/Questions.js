@@ -194,6 +194,7 @@ const Questions = (props) => {
             //     setShowWaiting(true);
             //     setAnswerListShow(true);
             // }
+            console.log('parts list' +JSON.stringify(parseData));
             setPartWrongAnswer(parseData);
             
             
