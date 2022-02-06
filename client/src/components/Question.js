@@ -294,7 +294,7 @@ const Question = (props) => {
             </div> : null
         }
 
-        {allpartanswers.length > 0 &&
+        {/* {allpartanswers.length > 0 &&
             
             <div className="answerMain">
             {allpartanswers.map(answer => {
@@ -303,7 +303,7 @@ const Question = (props) => {
                 
             })}
             </div>
-        }       
+        }        */}
                 
             {/* end div wrapper */}
         </>
