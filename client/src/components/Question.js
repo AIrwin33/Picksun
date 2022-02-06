@@ -161,6 +161,7 @@ const Question = (props) => {
             console.log(props.partsfid);
             setTimeout(
                 function() {
+                    console.log('timeout part answers');
                     updateAllPartAnswers();
                 },
                 2000
