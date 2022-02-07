@@ -191,20 +191,11 @@ const Questions = (props) => {
             );
             const parseData = await response.json();
 
-            //TODO this this runs on new correct questions
-            //fix this?
-            // if(parseData.questions_submitted__c){
-            //     setShowWaiting(true);
-            //     setAnswerListShow(true);
-            // }
-
-            console.log('were questions submitted' + partWrongAnswer.questions_submitted__c);
-            console.log('what is counter' + counter);
-                        if(parseData.questions_submitted__c){
-                            console.log('is true');
-                            //     setShowWaiting(true);
-                            //     setAnswerListShow(true);
-                        }
+            if(parseData.questions_submitted__c && counter > 0){
+                console.log('is true');
+                //     setShowWaiting(true);
+                //     setAnswerListShow(true);
+            }
             console.log('parts list' +JSON.stringify(parseData));
             setPartWrongAnswer(parseData);
             
