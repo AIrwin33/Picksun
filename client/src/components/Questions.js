@@ -117,10 +117,12 @@ const Questions = (props) => {
                         
                         setCounter(0);
                         $('.timerdiv').removeClass('hiddenTimer');
+
                         
                     } else {
                        
                         setCounter(diffTime);
+                        
 
                         $('.timerdiv').removeClass('hiddenTimer');
                         
@@ -195,6 +197,14 @@ const Questions = (props) => {
             //     setShowWaiting(true);
             //     setAnswerListShow(true);
             // }
+
+            console.log('were questions submitted' + partWrongAnswer.questions_submitted__c);
+            console.log('what is counter' + counter);
+                        if(parseData.questions_submitted__c){
+                            console.log('is true');
+                            //     setShowWaiting(true);
+                            //     setAnswerListShow(true);
+                        }
             console.log('parts list' +JSON.stringify(parseData));
             setPartWrongAnswer(parseData);
             
@@ -213,11 +223,6 @@ const Questions = (props) => {
                 handleKnockout();
                 
             }
-            // if (parseData.status__c === 'Inactive') {
-            //     console.log('status inactive');
-            //     setInactive(true);
-                
-            // }
             props.updatepart(parseData);
 
         } catch (err) {
