@@ -190,12 +190,8 @@ const Questions = (props) => {
                 }
             );
             const parseData = await response.json();
-
-            if(parseData.questions_submitted__c && counter > 0){
-                console.log('is true');
-                //     setShowWaiting(true);
-                //     setAnswerListShow(true);
-            }
+            console.log('counter' + counter);
+           
             console.log('parts list' +JSON.stringify(parseData));
             setPartWrongAnswer(parseData);
             
@@ -204,6 +200,11 @@ const Questions = (props) => {
             //set sort of timeout to check waiting for finished game
             setTimeout(
                 function() {
+                    if(parseData.questions_submitted__c && counter > 0){
+                        console.log('is true');
+                        //     setShowWaiting(true);
+                        //     setAnswerListShow(true);
+                    }
                     setShowAnswer(true);
                     checkFinished();
                 },

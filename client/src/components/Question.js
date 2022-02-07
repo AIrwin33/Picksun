@@ -156,9 +156,7 @@ const Question = (props) => {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();
-        console.log(props.partsfid);
         if(props.partsfid !== null){
-            console.log(props.partsfid);
             setTimeout(
                 function() {
                     console.log('timeout part answers');
