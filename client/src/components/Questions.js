@@ -210,7 +210,7 @@ const Questions = (props) => {
                     setShowAnswer(true);
                     checkFinished();
                 },
-                1000
+                2000
             );
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
