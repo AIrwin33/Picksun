@@ -120,7 +120,7 @@ const Questions = (props) => {
 
                         
                     } else {
-                       
+                       console.log('setting timer');
                         setCounter(diffTime);
                         
 
