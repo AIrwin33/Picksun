@@ -324,20 +324,20 @@ app.post("/existingpartanswernoquestion/", authorization, async (req, res) => {
 
 //REFACTOR - keep this?
 
-app.post("/wronganswer", authorization, async (req, res) => {
-    try {
-        const {partid} = req.body;
-        const wronganswercounter = await pool.query(
-            "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1",
-            [partid]
-        );
+// app.post("/wronganswer", authorization, async (req, res) => {
+//     try {
+//         const {partid} = req.body;
+//         const wronganswercounter = await pool.query(
+//             "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1",
+//             [partid]
+//         );
 
-        res.json(wronganswercounter.rows[0]);
-    } catch (err) {
-        console.log('wrong answer error ' + err);
-    }
+//         res.json(wronganswercounter.rows[0]);
+//     } catch (err) {
+//         console.log('wrong answer error ' + err);
+//     }
 
-});
+// });
 
 app.post("/clearcounter", authorization, async (req, res) => {
     try {

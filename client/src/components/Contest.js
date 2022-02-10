@@ -111,12 +111,10 @@ const Contest = ({match}) => {
     }
 
     const handleInfoShow = async () => {
-
         setShowInfo(true);
     }
-    //close info modal on question
-    const handleInfoClose = async () => {
 
+    const handleInfoClose = async () => {
         setShowInfo(false);
     }
 
