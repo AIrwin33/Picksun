@@ -489,7 +489,8 @@ const Questions = (props) => {
         console.log(partWrongAnswer.questions_submitted__c);
         if(counter > 0 && partWrongAnswer.questions_submitted__c){
             setShowWaiting(true);
-            setAnswerListShow(true);
+            setAnswerListShow(false);
+            setShowAnswer(true);
         }
      }, [counter,partWrongAnswer]);
 
