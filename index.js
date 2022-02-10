@@ -300,6 +300,8 @@ app.post("/participationswronganswer", async (req, res) => {
 
 });
 
+//Get participation answers based on participations and questions
+
 app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async (req, res) => {
     try {
         const {partsfid, questid} = req.params;

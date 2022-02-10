@@ -3,7 +3,7 @@ import {Col, Row, Button, Image, Modal} from "react-bootstrap";
 import {v4 as uuidv4} from 'uuid';
 import "./Question.css";
 import info from '../assets/infoicon.png';
-import {SocketContext} from "../socket";
+//import {SocketContext} from "../socket";
 
 import correctLogo from '../assets/correctIcon.png';
 import incorrectLogo from '../assets/incorrectIcon.png';
@@ -15,7 +15,7 @@ const Question = (props) => {
     const [showInfo, setShowInfo] = useState(false);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
     const [allpartanswers, setAllpartanswers] = useState([]);
-    const socket = React.useContext(SocketContext);
+    //const socket = React.useContext(SocketContext);
 
     const handleRadioChange = async (event) => {
         var tgt = $(event.target);
@@ -64,7 +64,6 @@ const Question = (props) => {
 
     const updateAllPartAnswers = async () => {
         try{
-            console.log('update all part answers in question js');
             const partsfid = props.partsfid;
             const body = {partsfid};
             const res = await fetch(`/existingpartanswernoquestion`, {
@@ -77,7 +76,6 @@ const Question = (props) => {
             });
 
             const parseData = await res.json();
-            console.log('part answers' + JSON.stringify(parseData));
             setAllpartanswers(parseData);
         }catch(error){
             console.log( 'err' + error.message);
@@ -90,27 +88,26 @@ const Question = (props) => {
             const partsfid = props.partsfid;
             const questid = props.ques.sfid;
 
-                if(partsfid != undefined){
+            if(partsfid != undefined){
 
-                const response = await fetch(
-                    `/existingpartanswer/` + partsfid + `/question/` + questid,
-                    {
-                        method: "GET",
-                        headers: {jwt_token: localStorage.token}
-                    }
-                    );
-                    
-                    const parseRes = await response.json();
-                    setPartAnswer(parseRes);
-                    var partRes = parseRes
-                    
-                    
-                    if (partRes.status__c === 'Submitted') {
-                        setDisabledQuestion(true);
-                    }
+            const response = await fetch(
+                `/existingpartanswer/` + partsfid + `/question/` + questid,
+                {
+                    method: "GET",
+                    headers: {jwt_token: localStorage.token}
                 }
-
-           
+                );
+                
+                const parseRes = await response.json();
+                setPartAnswer(parseRes);
+                var partRes = parseRes
+                
+                console.log('partres' + partRes.status__c);
+                console.log(parseRes.status__c);
+                if (parseRes.status__c === 'Submitted') {
+                    setDisabledQuestion(true);
+                }
+            }
         } catch (err) {
             console.error(err.message);
         }
@@ -163,19 +160,13 @@ const Question = (props) => {
                     updateAllPartAnswers();
                 },
                 2000
-            );
-            
+            );   
         }
-            
-
-        
     }, [props.ques]);
 
 
     return (
         <>
-
-                
         <div className="infoDiv mb-4">
             <a src="#" className="float-right" onClick={handleInfoShow} >
                 <Image src={info} width="22"></Image>
