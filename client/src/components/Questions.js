@@ -552,9 +552,7 @@ const Questions = (props) => {
                 setQuestions(tempQuestions);
                 setTimer();
             }
-
         }
-
     }
 
     return (
@@ -565,9 +563,7 @@ const Questions = (props) => {
                     {/* slide for questions */}
                     {questions.length !== 0 &&
                     <Col xs={6} className="justify-content-start no-padding">
-                    
                         <div key={counter}>
-
                             <Timer initialTime={counter}
                                    direction="backward"
                                    lastUnit="s"

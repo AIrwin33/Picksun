@@ -264,29 +264,6 @@ app.post("/countsubsegment/", authorization, async (req, res) => {
     }
 });
 
-//create participation answers
-
-//not needed, moved to apex logic
-
-// app.post("/answers", async (req, res) => {
-//     try {
-
-//         const {partid, question_sfid, eventVal, eventLabel, expartid} = req.body;
-//         const participation = await pool.query(
-//             "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1",
-//             [expartid]
-//         );
-//         const newParticipationAnswer = await pool.query(
-//             "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES($1,$2,$3,$4,$5, gen_random_uuid()) RETURNING *",
-//             [participation.rows[0].sfid, question_sfid, eventVal, eventLabel, 'Submitted']
-//         );
-//         res.json(newParticipationAnswer.rows[0]);
-//     } catch (err) {
-//         console.log('error answers' + err.message);
-//     }
-// });
-
-
 //Get Participation for wrong answer count
 
 app.post("/participationswronganswer", async (req, res) => {
@@ -328,35 +305,6 @@ app.post("/existingpartanswernoquestion/", authorization, async (req, res) => {
     }
 
 });
-
-//REFACTOR - keep this?
-
-// app.post("/wronganswer", authorization, async (req, res) => {
-//     try {
-//         const {partid} = req.body;
-//         const wronganswercounter = await pool.query(
-//             "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1",
-//             [partid]
-//         );
-
-//         res.json(wronganswercounter.rows[0]);
-//     } catch (err) {
-//         console.log('wrong answer error ' + err);
-//     }
-
-// });
-
-// app.post("/clearcounter", authorization, async (req, res) => {
-//     try {
-//         const {conid} = req.body;
-//         const clearcounter = await pool.query("UPDATE salesforce.contest__c SET Opened_Timer__c = null WHERE sfid = $1 RETURNING *",
-//             [conid]);
-//         res.json(clearcounter.rows[0]);
-//     } catch (err) {
-//         console.log('clear counter error ' + err);
-//     }
-
-// });
 
 //Get Remaining participations at end of contest
 
