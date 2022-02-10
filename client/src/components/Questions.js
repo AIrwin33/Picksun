@@ -486,8 +486,10 @@ const Questions = (props) => {
 
     useEffect(() => {
         console.log('Do something after counter has changed', counter);
-        setShowWaiting(true);
-        setAnswerListShow(true);
+        if(counter > 0){
+            setShowWaiting(true);
+            setAnswerListShow(true);
+        }
      }, [counter]);
 
     useEffect(() => {
