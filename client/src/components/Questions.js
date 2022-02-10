@@ -200,14 +200,6 @@ const Questions = (props) => {
             //set sort of timeout to check waiting for finished game
             setTimeout(
                 function() {
-                    console.log('counter' + counter);
-                    console.log(parseData.questions_submitted__c);
-                    if(parseData.questions_submitted__c && counter > 0){
-                        console.log('is true');
-                        //     setShowWaiting(true);
-                        //     setAnswerListShow(true);
-                    }
-                    setShowAnswer(true);
                     checkFinished();
                 },
                 2000
@@ -494,6 +486,8 @@ const Questions = (props) => {
 
     useEffect(() => {
         console.log('Do something after counter has changed', counter);
+        setShowWaiting(true);
+        setAnswerListShow(true);
      }, [counter]);
 
     useEffect(() => {
