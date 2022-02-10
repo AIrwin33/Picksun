@@ -25,7 +25,6 @@ app.use(express.json());
 app.use(session);
  
 // Share session with io sockets
- 
 io.use(sharedsession(session));
 const authorization = require("./server/middleware/authorize");
 const PORT = process.env.PORT || 5000;
@@ -36,7 +35,6 @@ const path = require("path");
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 //PG Promise setup
-
 const promise = require('bluebird'); // or any other Promise/A+ compatible library;
 
 const initOptions = {
@@ -196,6 +194,9 @@ app.get("/participationbycontest/:contest_id", authorization, async (req, res) =
     }
 });
 
+
+//Get published contest questions
+
 app.get("/questions/:contest_id", authorization, async (req, res) => {
     try {
         const {contest_id} = req.params;
@@ -207,6 +208,8 @@ app.get("/questions/:contest_id", authorization, async (req, res) => {
         console.log('error contest questions :: ' + error.message);
     }
 });
+
+//Get all contest questions
 
 app.get("/allquestions/:contest_id", authorization, async (req, res) => {
     try {
@@ -230,7 +233,6 @@ app.post("/disablequestions/", authorization, async (req, res) => {
         const allContestQuestions = await pool.query("UPDATE salesforce.question__c SET islocked__c = true WHERE published__c = true AND contest__c = $1 RETURNING *", [conid]
         );
 
-        
         var idlist = [];
         for(var i = 0; i < allContestQuestions.rows.length; i++){
             idlist.push(allContestQuestions.rows[i].sfid);
@@ -246,6 +248,7 @@ app.post("/disablequestions/", authorization, async (req, res) => {
 });
 
 //get subsegment question count
+//this isn't needed for MVP
 
 app.post("/countsubsegment/", authorization, async (req, res) => {
     try {
@@ -261,25 +264,27 @@ app.post("/countsubsegment/", authorization, async (req, res) => {
     }
 });
 
-//create participation answers?
+//create participation answers
 
-app.post("/answers", async (req, res) => {
-    try {
+//not needed, moved to apex logic
 
-        const {partid, question_sfid, eventVal, eventLabel, expartid} = req.body;
-        const participation = await pool.query(
-            "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1",
-            [expartid]
-        );
-        const newParticipationAnswer = await pool.query(
-            "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES($1,$2,$3,$4,$5, gen_random_uuid()) RETURNING *",
-            [participation.rows[0].sfid, question_sfid, eventVal, eventLabel, 'Submitted']
-        );
-        res.json(newParticipationAnswer.rows[0]);
-    } catch (err) {
-        console.log('error answers' + err.message);
-    }
-});
+// app.post("/answers", async (req, res) => {
+//     try {
+
+//         const {partid, question_sfid, eventVal, eventLabel, expartid} = req.body;
+//         const participation = await pool.query(
+//             "SELECT * FROM salesforce.participation__c WHERE externalid__c = $1",
+//             [expartid]
+//         );
+//         const newParticipationAnswer = await pool.query(
+//             "INSERT INTO salesforce.participation_answers__c (participation__c, question__c, selection__c, selection_value__c, status__c, ExternalId__c) VALUES($1,$2,$3,$4,$5, gen_random_uuid()) RETURNING *",
+//             [participation.rows[0].sfid, question_sfid, eventVal, eventLabel, 'Submitted']
+//         );
+//         res.json(newParticipationAnswer.rows[0]);
+//     } catch (err) {
+//         console.log('error answers' + err.message);
+//     }
+// });
 
 
 //Get Participation for wrong answer count
@@ -339,17 +344,17 @@ app.post("/existingpartanswernoquestion/", authorization, async (req, res) => {
 
 // });
 
-app.post("/clearcounter", authorization, async (req, res) => {
-    try {
-        const {conid} = req.body;
-        const clearcounter = await pool.query("UPDATE salesforce.contest__c SET Opened_Timer__c = null WHERE sfid = $1 RETURNING *",
-            [conid]);
-        res.json(clearcounter.rows[0]);
-    } catch (err) {
-        console.log('clear counter error ' + err);
-    }
+// app.post("/clearcounter", authorization, async (req, res) => {
+//     try {
+//         const {conid} = req.body;
+//         const clearcounter = await pool.query("UPDATE salesforce.contest__c SET Opened_Timer__c = null WHERE sfid = $1 RETURNING *",
+//             [conid]);
+//         res.json(clearcounter.rows[0]);
+//     } catch (err) {
+//         console.log('clear counter error ' + err);
+//     }
 
-});
+// });
 
 //Get Remaining participations at end of contest
 
@@ -441,8 +446,6 @@ pgListen.events.on("reconnect", e => {
 
 
 pgListen.notifications.on("new_contest", e => {
-    console.log(e);
-    console.log('in new contest');
     if(e.status__c === 'Finished'){
         io.to(e.contest__c).emit("new_contest", e)
     }
@@ -451,15 +454,10 @@ pgListen.notifications.on("new_contest", e => {
 pgListen.notifications.on("new_question", e => {
 
     if (e !== undefined && e.published__c && !e.islocked__c) {
-        console.log('send socket question');
-
         io.emit("new_question", e)
     }
 
     if(e.correct_answer__c !== null && e !== undefined) {
-        console.log('e.correct_answer__c' + e.correct_answer__c);
-        console.log('here');
-
         io.emit("cor_question", e)
     }
     
@@ -472,23 +470,12 @@ pgListen.events.on("error", (error) => {
 })
 
 io.on("connection", async (socket) => {
-    console.log('connect to socket');
-
-    //send something that it knows there is a reconnect
-
-
-    //try moving this out of connection?
+    
     pgListen.listenTo("new_question");
     pgListen.listenTo("cor_question");
 
     socket.on("disconnect", (reason) => {
-        console.log('disconnect from socket');
-        console.log('reason' + reason);
-        if (reason === "transport close") {
 
-            // the disconnection was initiated by the server, you need to reconnect manually
-            //socket.connect();
-          }
     });
 });
 
