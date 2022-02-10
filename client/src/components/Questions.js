@@ -56,7 +56,6 @@ const Questions = (props) => {
 
     const getAllQuestions = async () => {
         try {
-            console.log('getting all questions');
             const res = await fetch(`/allquestions/${props.contestid}`, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
@@ -72,8 +71,6 @@ const Questions = (props) => {
 
     const getQuestions = async () => {
         try {
-            console.log('getting questions');
-            
             doGetParticipationWrongAnswers();
             const res = await fetch(`/questions/${props.contestid}`, {
                 method: "GET",
@@ -89,7 +86,6 @@ const Questions = (props) => {
                     nonLockedQuestionsArr.push(parseData[i]);
                 }
             }
-            console.log('non locked questions' + nonLockedQuestionsArr.length);
             
             if(nonLockedQuestionsArr.length === 0){
                 setReview(true);
@@ -114,26 +110,18 @@ const Questions = (props) => {
                     var diffTime = moment(closedTimerInt).diff(currtime);
                     
                     if (diffTime < 0) {
-                        
                         setCounter(0);
                         $('.timerdiv').removeClass('hiddenTimer');
-
-                        
                     } else {
-                       console.log('setting timer');
                         setCounter(diffTime);
-                        
-
                         $('.timerdiv').removeClass('hiddenTimer');
-                        
                     }
                 } else {
                     
                 }
             }
             setQuestions(parseData);
-            
-            //set question num
+            //set question count
             setPublishedQuestions(parseData.length);
             
         } catch (err) {
@@ -145,7 +133,7 @@ const Questions = (props) => {
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
         setQuestionNum(selectedIndex + 1);
-      };
+    };
 
     const resetLogic = async () => {
         setSubmitted(false);
@@ -156,26 +144,22 @@ const Questions = (props) => {
 
     //close info modal on question
     const handleSubmitClose = async () => {
-
         setShowSubmitModal(false);
         setShowSubmitCount(1);
     }
 
     const handleEndShow = async () => {
-
         setShowEnd(true);
         setShowEndBanner(true);
     }
     //close info modal on question
     const handleEndClose = async () => {
-
         setShowEnd(false);
     }
 
 
     const doGetParticipationWrongAnswers = async () => {
         try {
-            console.log('part answers method');
 
             const partid = props.participation_id;
             const body = {partid};
@@ -190,13 +174,9 @@ const Questions = (props) => {
                 }
             );
             const parseData = await response.json();
-            
-           
+        
             console.log('parts list' +JSON.stringify(parseData));
             setPartWrongAnswer(parseData);
-            
-            
-
             //set sort of timeout to check waiting for finished game
             setTimeout(
                 function() {
@@ -235,7 +215,6 @@ const Questions = (props) => {
 
     const handleKnockout = async () => {
         try {
-            
             
             if(placeFin === 'Knocked Out'){
                 console.log('already DNF, dont show');
@@ -333,7 +312,6 @@ const Questions = (props) => {
                     body: JSON.stringify(body)
                 }
             );
-            console.log('hanlde end show in handle contest won');
             
             setShowContestWon(true);
 
@@ -694,11 +672,13 @@ const Questions = (props) => {
                               data-slide-to={index}>
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
-                                <Question addAnswer={updateAnswerList} ques={question} contest={props.contest} questionNum={questionNum} totalQuestions={publishedQuestions}
+                                <Question addAnswer={updateAnswerList} 
+                                            ques={question} 
+                                            contest={props.contest} 
+                                            questionNum={questionNum} 
+                                            totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             getsubcount={handleSubsegmentCount}
-                                            selectedCount={selectedCount}
-                                            participation_id={props.participation_id}
                                             partsfid={partWrongAnswer.sfid}/>
                             </Carousel.Item>
                         })}
