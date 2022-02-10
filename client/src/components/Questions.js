@@ -491,7 +491,7 @@ const Questions = (props) => {
             setShowWaiting(true);
             setAnswerListShow(false);
             setShowAnswer(true);
-            setReview(true);
+            setSubmitted(true);
         }
      }, [counter,partWrongAnswer]);
 
