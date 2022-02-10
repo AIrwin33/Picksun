@@ -35,7 +35,6 @@ const Contest = ({match}) => {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
             });
-
             const parseData = await res.json();
             setContest(parseData);
             getEvent(parseData);
@@ -128,18 +127,14 @@ const Contest = ({match}) => {
     })
     useEffect(() => {
         getContest().then(r =>  {
-            console.log('here in contest', contest);
             socket.on("connect", () => {
-                console.log('socket connect client side');
             });
 
             socket.on("new_question", question => {
-                console.log('new question socket');
                 setNewQuestion(question);
 
             })
             socket.on("cor_question", question => {
-                console.log('cor question socket');
                 setNewCorrectQuestion(question);
             })
             socket.on("new_contest", contest => {
