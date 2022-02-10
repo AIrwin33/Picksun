@@ -212,7 +212,6 @@ const Question = (props) => {
             </Modal>
         </div>
         <Row>
-
             <div className="questionTextDiv aptifer">
                 <h4>{props.questionNum}) {quest.question_text__c}</h4>
             </div>
@@ -291,17 +290,14 @@ const Question = (props) => {
         }
 
         {allpartanswers.length > 0 &&
-            
             <div className="answerMain">
             {allpartanswers.map(answer => {
                 return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? ' selected ' : ''}  ${answer.correct__c === true ? 'correct' : ''} ${answer.incorrect__c === true ? 'incorrect' : ''}`}>
                 </div>
-                
             })}
             </div>
-        }       
-                
-            {/* end div wrapper */}
+        }              
+        {/* end div wrapper */}
         </>
     ) 
 }
