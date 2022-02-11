@@ -161,7 +161,7 @@ const Questions = (props) => {
 
     const doGetParticipationWrongAnswers = async () => {
         try {
-            console.log('getting participation answers');
+            
             const partid = props.participation_id;
             const body = {partid};
             const response = await fetch(
@@ -178,7 +178,7 @@ const Questions = (props) => {
         
             console.log('parts list' +JSON.stringify(parseData));
             setPartWrongAnswer(parseData);
-            showAnswer(true);
+            
             //set sort of timeout to check waiting for finished game
             // setTimeout(
             //     function() {
