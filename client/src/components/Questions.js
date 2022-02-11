@@ -178,7 +178,7 @@ const Questions = (props) => {
         
             console.log('parts list' +JSON.stringify(parseData));
             setPartWrongAnswer(parseData);
-            
+            showAnswer(true);
             //set sort of timeout to check waiting for finished game
             // setTimeout(
             //     function() {
@@ -191,7 +191,7 @@ const Questions = (props) => {
             //     handleKnockout();
                 
             // }
-            // props.updatepart(parseData);
+            props.updatepart(parseData);
 
         } catch (err) {
             console.error(err.message);
