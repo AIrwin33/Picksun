@@ -269,7 +269,10 @@ app.post("/countsubsegment/", authorization, async (req, res) => {
 app.post("/participationswronganswer", async (req, res) => {
     try {
         const {partid} = req.body;
+        console.log('partid::' + partid);
         const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid]);
+        
+        console.log('row' + participationWrongAnswer.rows[0]);
         res.json(participationWrongAnswer.rows[0]);
     } catch (err) {
         console.log('participations wrong answer error ' + err);

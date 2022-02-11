@@ -180,18 +180,18 @@ const Questions = (props) => {
             setPartWrongAnswer(parseData);
             showAnswer(true);
             //set sort of timeout to check waiting for finished game
-            setTimeout(
-                function() {
-                    checkFinished();
-                },
-                2000
-            );
-            if (parseData.status__c === 'Knocked Out') {
-                console.log('player is knocked out');
-                handleKnockout();
+            // setTimeout(
+            //     function() {
+            //         checkFinished();
+            //     },
+            //     2000
+            // );
+            // if (parseData.status__c === 'Knocked Out') {
+            //     console.log('player is knocked out');
+            //     handleKnockout();
                 
-            }
-            props.updatepart(parseData);
+            // }
+            // props.updatepart(parseData);
 
         } catch (err) {
             console.error(err.message);
