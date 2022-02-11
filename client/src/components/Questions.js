@@ -462,16 +462,16 @@ const Questions = (props) => {
         $('.timerdiv').addClass('warning');
     }
 
-    useEffect(() => {
-        console.log('Do something after counter has changed', counter);
-        console.log(partWrongAnswer.questions_submitted__c);
-        if(counter > 0 && partWrongAnswer.questions_submitted__c){
-            setShowWaiting(true);
-            setAnswerListShow(false);
-            setShowAnswer(true);
-            setSubmitted(true);
-        }
-     }, [counter,partWrongAnswer]);
+    // useEffect(() => {
+    //     console.log('Do something after counter has changed', counter);
+    //     console.log(partWrongAnswer.questions_submitted__c);
+    //     if(counter > 0 && partWrongAnswer.questions_submitted__c){
+    //         setShowWaiting(true);
+    //         setAnswerListShow(false);
+    //         setShowAnswer(true);
+    //         setSubmitted(true);
+    //     }
+    //  }, [counter,partWrongAnswer]);
 
     useEffect(() => {
 
