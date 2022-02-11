@@ -120,6 +120,7 @@ const Questions = (props) => {
                     
                 }
             }
+
             setQuestions(parseData);
             //set question count
             setPublishedQuestions(parseData.length);
@@ -160,7 +161,7 @@ const Questions = (props) => {
 
     const doGetParticipationWrongAnswers = async () => {
         try {
-
+            console.log('getting participation answers');
             const partid = props.participation_id;
             const body = {partid};
             const response = await fetch(
@@ -177,6 +178,7 @@ const Questions = (props) => {
         
             console.log('parts list' +JSON.stringify(parseData));
             setPartWrongAnswer(parseData);
+            showAnswer(true);
             //set sort of timeout to check waiting for finished game
             setTimeout(
                 function() {
@@ -298,20 +300,6 @@ const Questions = (props) => {
 
     const handleContestWon = async (winnercount) => {
         try {
-            // const contestid = props.contest.sfid;
-            // const partsfid = props.partsfid;
-            // const body = {contestid, partsfid};
-            // const response = await fetch(
-            //     "/contestwon",
-            //     {
-            //         method: "POST",
-            //         headers: {
-            //             jwt_token: localStorage.token,
-            //             "Content-type": "application/json"
-            //         },
-            //         body: JSON.stringify(body)
-            //     }
-            // );
             
             setShowContestWon(true);
 
