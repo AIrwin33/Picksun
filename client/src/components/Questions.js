@@ -32,7 +32,7 @@ const Questions = (props) => {
     const [publishedQuestions, setPublishedQuestions] = useState(0);
     const [placeFin, setPlaceFinish] = useState(0);
     const [review, setReview] = useState(false);
-    const [showAnswer, setShowAnswer] = useState(false);
+    const [showAnswer, setShowAnswer] = useState(true);
     const [counter, setCounter] = useState(undefined);
     const [answerList, setAnswerList] = useState([]);
     const [inactive, setInactive] = useState(false);
@@ -178,7 +178,7 @@ const Questions = (props) => {
         
             console.log('parts list' +JSON.stringify(parseData));
             setPartWrongAnswer(parseData);
-            showAnswer(true);
+            //showAnswer(true);
             //set sort of timeout to check waiting for finished game
             // setTimeout(
             //     function() {
