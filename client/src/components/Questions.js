@@ -178,19 +178,18 @@ const Questions = (props) => {
         
             console.log('parts list' +JSON.stringify(parseData));
             setPartWrongAnswer(parseData);
-            //showAnswer(true);
             //set sort of timeout to check waiting for finished game
-            // setTimeout(
-            //     function() {
-            //         checkFinished();
-            //     },
-            //     2000
-            // );
-            // if (parseData.status__c === 'Knocked Out') {
-            //     console.log('player is knocked out');
-            //     handleKnockout();
+            setTimeout(
+                function() {
+                    checkFinished();
+                },
+                2000
+            );
+            if (parseData.status__c === 'Knocked Out') {
+                console.log('player is knocked out');
+                handleKnockout();
                 
-            // }
+            }
             props.updatepart(parseData);
 
         } catch (err) {
