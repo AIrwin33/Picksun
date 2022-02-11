@@ -298,20 +298,20 @@ const Questions = (props) => {
 
     const handleContestWon = async (winnercount) => {
         try {
-            const contestid = props.contest.sfid;
-            const partsfid = props.partsfid;
-            const body = {contestid, partsfid};
-            const response = await fetch(
-                "/contestwon",
-                {
-                    method: "POST",
-                    headers: {
-                        jwt_token: localStorage.token,
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(body)
-                }
-            );
+            // const contestid = props.contest.sfid;
+            // const partsfid = props.partsfid;
+            // const body = {contestid, partsfid};
+            // const response = await fetch(
+            //     "/contestwon",
+            //     {
+            //         method: "POST",
+            //         headers: {
+            //             jwt_token: localStorage.token,
+            //             "Content-type": "application/json"
+            //         },
+            //         body: JSON.stringify(body)
+            //     }
+            // );
             
             setShowContestWon(true);
 
