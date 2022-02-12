@@ -161,8 +161,9 @@ const Questions = (props) => {
 
     const doGetParticipationWrongAnswers = async () => {
         try {
-            
+            console.log('do get part answers');
             const partid = props.participation_id;
+            console.log(props.participation_id);
             const body = {partid};
             const response = await fetch(
                 "/participationswronganswer",

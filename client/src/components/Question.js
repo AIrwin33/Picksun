@@ -64,7 +64,9 @@ const Question = (props) => {
 
     const updateAllPartAnswers = async () => {
         try{
+            console.log('update all part answers in question js')
             const partsfid = props.partsfid;
+            console.log(props.partsfid);
             const body = {partsfid};
             const res = await fetch(`/existingpartanswernoquestion`, {
                 method: "POST",
@@ -156,7 +158,7 @@ const Question = (props) => {
         if(props.partsfid !== null){
             setTimeout(
                 function() {
-                    console.log('timeout part answers');
+                    
                     updateAllPartAnswers();
                 },
                 2000
