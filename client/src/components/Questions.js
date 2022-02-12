@@ -285,7 +285,7 @@ const Questions = (props) => {
                 }else {
                     console.log('hanlde end show in contest end place finish not 1' + placefinish);
                     
-                    setContestFinishedText('Bummer...you didnt get knocked out but there are others who answered more questions correctly than you');
+                    setContestFinishedText('Close but no cigar. You survived but someone scored better than you - better luck next time. Thanks for picking!');
                 }
             }
             
@@ -304,12 +304,12 @@ const Questions = (props) => {
 
             if(winnercount === 1){
                 console.log('single winner');
-                setContestWonText("Congratulations, You Won");
+                setContestWonText("WOW!! Congratulations - you won the entire prize pot! We’ll contact you soon to arrange payment. Thanks for picking!");
 
             }else{
 
                 console.log('miltiple winner');
-                setContestWonText("Congratulations, You Won with some other folks");
+                setContestWonText("Nice! You tied for part of the prize with some other people. We’ll contact you soon to arrange payment. Thanks for picking!");
             }
 
         } catch (err) {
