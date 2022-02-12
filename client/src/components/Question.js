@@ -177,32 +177,26 @@ const Question = (props) => {
                 </Modal.Header>
                 <Modal.Body className="proxima font12 modalBody">
                     <span>
-                        Pick an answer for each question. You’ll know you have unanswered questions when the countdown timer and bouncing ball image are present.
+                        - Pick an answer for each question.
                     </span> <br/>
                     <span>
-                        Before the countdown timer reaches zero, click ‘Submit Answers.’ The ‘Submit Answer’ button becomes clickable once you’ve picked answers for all available questions.
+                        - Click ‘Submit Answers’ before countdown timer reaches zero
                     </span><br/>
                     <span>
-                        Review your answers and results using left / right toggles.
+                        - Your picks are graded in real-time when the correct answer becomes known in the live event
                     </span><br/>
                     <span>
-                        Keep your phone nearby when playing! Questions are published live in small batches.
+                        - If or when you reach the limit for wrong answers - the Knockout Limit - you’re removed from the contest
                     </span><br/>
                     <span>
-                        Keep track of how many answers you’ve gotten wrong + how many left until you’re knocked by looking at the ‘Wrong Answers’ indicator. When all circles (Knockout Limit) are filled in, you’ll be removed from the contest.
+                        - Click Participants to keep track of how your competitors are doing
                     </span><br/>
                     <span>
-                        Click ‘Participants’ to see who else is still alive in the contest.
+                        - Click Twitter for contest updates
                     </span><br/>
                     <span>
-                        Access Twitter to communicate with us before, during or after contests.
-                    </span><br/>
-                    <span>
-                        You’ll receive a prompt if you get knocked out and notification if you’re one of the winners. We’ll follow up with winners directly.
+                        - Visit our website for details on scoring &amp; prizes (https://www.pick.fun/rules)
                     </span>
-
-                    
-
                 </Modal.Body>
                 <Modal.Footer>
                 <Button className="aptifer modalBtn" variant="secondary" onClick={handleInfoClose}>
