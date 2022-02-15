@@ -32,7 +32,7 @@ const Answers = (props) => {
     }
 
     useEffect(() => {
-        
+        console.log(props.wrong);
         getWrongTotal(props.wrong, props.total);   
 
     }, [props]);
