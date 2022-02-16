@@ -15,6 +15,7 @@ const Question = (props) => {
     const [showInfo, setShowInfo] = useState(false);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
     const [allpartanswers, setAllpartanswers] = useState([]);
+    const [updatedParts, setUpdatedParts] = useState(false);
     //const socket = React.useContext(SocketContext);
 
     const handleRadioChange = async (event) => {
@@ -150,7 +151,16 @@ const Question = (props) => {
     }
 
     useEffect(() => {
+        console.log('parts answers updates');
+        setUpdatedParts(true);
 
+    }, [allpartanswers]);
+
+    useEffect(() => {
+        if(props.showAnswers){
+            console.log('setting show updated parts as false');
+            setUpdatedParts(false);
+        }
         setQuest(props.ques);
         handleSubsegmentCount(props.ques.subsegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true) {
@@ -166,7 +176,7 @@ const Question = (props) => {
                 2000
             );   
         }
-    }, [props.ques]);
+    }, [props.ques,props.showAnswers]);
 
 
     return (
@@ -287,7 +297,7 @@ const Question = (props) => {
             </div> : null
         }
 
-        {allpartanswers.length > 0 &&
+        {allpartanswers.length > 0 && updatedParts &&
             <div className="answerMain">
             {allpartanswers.map(answer => {
                 return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? ' selected ' : ''}  ${answer.correct__c === true ? 'correct' : ''} ${answer.incorrect__c === true ? 'incorrect' : ''}`}>
