@@ -168,13 +168,14 @@ const Question = (props) => {
         }
         handleExistingPartAnswer();
         if(props.partsfid !== null){
-            setTimeout(
-                function() {
+            updateAllPartAnswers();
+            // setTimeout(
+            //     function() {
                     
-                    updateAllPartAnswers();
-                },
-                2000
-            );   
+                    
+            //     },
+            //     2000
+            // );   
         }
     }, [props.ques,props.showAnswers]);
 
