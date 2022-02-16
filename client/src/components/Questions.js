@@ -663,7 +663,8 @@ const Questions = (props) => {
                                             totalQuestions={publishedQuestions}
                                             isInactive={inactive}
                                             getsubcount={handleSubsegmentCount}
-                                            partsfid={partWrongAnswer.sfid}/>
+                                            partsfid={partWrongAnswer.sfid}
+                                            showAnswers={showAnswer}/>
                             </Carousel.Item>
                         })}
                     </Carousel>
