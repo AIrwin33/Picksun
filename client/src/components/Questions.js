@@ -184,7 +184,7 @@ const Questions = (props) => {
                 function() {
                     checkFinished();
                 },
-                2000
+                5000
             );
             if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');

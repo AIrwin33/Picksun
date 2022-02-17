@@ -174,7 +174,7 @@ const Question = (props) => {
                     updateAllPartAnswers();
                     
                 },
-                1500
+                3000
             );   
         }
     }, [props.ques,props.showAnswers]);
