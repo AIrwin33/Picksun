@@ -453,8 +453,8 @@ const Questions = (props) => {
 
     useEffect(() => {
         console.log('part wrong answer is updated');
-        console.log('partWrongAnswer' + partWrongAnswer);
-    }, [partWrongAnswer]);
+        console.log('partWrongAnswer' + partWrongAnswer.wrong_answers_allowed__c);
+    }, [partWrongAnswer.wrong_answers_allowed__c]);
 
     useEffect(() => {
 
