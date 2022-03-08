@@ -452,6 +452,11 @@ const Questions = (props) => {
     }
 
     useEffect(() => {
+        console.log('part wrong answer is updated');
+        console.log('partWrongAnswer' + partWrongAnswer);
+    }, [partWrongAnswer]);
+
+    useEffect(() => {
 
         getQuestions();
         getAllQuestions();
