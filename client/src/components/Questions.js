@@ -280,11 +280,12 @@ const Questions = (props) => {
                 setPlaceFinish("Knocked Out");
             }
             else{
+                console.log('placefinish' + placefinish);
                 if (placefinish === 1) {
                     console.log('handling contest won');
                     handleContestWon(winningParts.length);
-                }else {
-                    console.log('hanlde end show in contest end place finish not 1' + placefinish);
+                }else if(placefinish > 1) {
+                    console.log('handle end show in contest end place finish not 1' + placefinish);
                     
                     setContestFinishedText('Close but no cigar. You survived but someone scored better than you - better luck next time. Thanks for picking!');
                 }
@@ -450,17 +451,6 @@ const Questions = (props) => {
         $('.timerdiv').addClass('warning');
     }
 
-    // useEffect(() => {
-    //     console.log('Do something after counter has changed', counter);
-    //     console.log(partWrongAnswer.questions_submitted__c);
-    //     if(counter > 0 && partWrongAnswer.questions_submitted__c){
-    //         setShowWaiting(true);
-    //         setAnswerListShow(false);
-    //         setShowAnswer(true);
-    //         setSubmitted(true);
-    //     }
-    //  }, [counter,partWrongAnswer]);
-
     useEffect(() => {
 
         getQuestions();
@@ -516,7 +506,7 @@ const Questions = (props) => {
                         console.log('timeout part answers');
                         doGetParticipationWrongAnswers();
                     },
-                    2000
+                    2500
                 );
                 setTimer();
                 $('.timerdiv').removeClass('hiddenTimer');
