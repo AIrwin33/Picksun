@@ -288,6 +288,8 @@ const Questions = (props) => {
                     console.log('handle end show in contest end place finish not 1' + placefinish);
                     
                     setContestFinishedText('Close but no cigar. You survived but someone scored better than you - better luck next time. Thanks for picking!');
+                }else{
+                    console.log('blank');
                 }
             }
             
