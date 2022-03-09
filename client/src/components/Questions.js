@@ -207,6 +207,8 @@ const Questions = (props) => {
         const parseContestData = await res.json();
         
         if(parseContestData.status__c === 'Finished'){
+
+            //reaching this part but not running knocked out
             console.log('end of contest');
             setShowContestFinished(true);
             handleContestEnd();
@@ -688,6 +690,7 @@ const Questions = (props) => {
                     <Row>
                         <div className="font16">
                             <span>{contestKnockoutText}</span>
+                            <span>Your Rank: {placeFin}</span>
                         </div>
                     </Row>
                     }
