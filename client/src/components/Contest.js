@@ -126,10 +126,11 @@ const Contest = ({match}) => {
         getContestParticipations(contest);
     })
 
-    const handleCalloutParent = async (childData) => { {
+    const handleCalloutParent = async (childData) => { 
         console.log('knockoutcallback in contest js');
         
-    })
+    };
+    
     useEffect(() => {
         getContest().then(r =>  {
             socket.on("connect", () => {
