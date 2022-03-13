@@ -126,7 +126,7 @@ const Contest = ({match}) => {
         getContestParticipations(contest);
     })
 
-    const handleCalloutParent = useCallback(() => {
+    const handleCalloutParent = async (childData) => { {
         console.log('knockoutcallback in contest js');
         
     })
