@@ -125,6 +125,11 @@ const Contest = ({match}) => {
         console.log('update parts in contest');
         getContestParticipations(contest);
     })
+
+    const handleCalloutParent = useCallback(() => {
+        console.log('knockoutcallback in contest js');
+        
+    })
     useEffect(() => {
         getContest().then(r =>  {
             socket.on("connect", () => {
@@ -191,6 +196,7 @@ const Contest = ({match}) => {
                                     <Questions tabset={tabset} updatepart={updateparts} sport={sport} contestid={contest.sfid} 
                                                contestQuestionText={contest.no_questions_text__c} contest={contest}
                                                participation_id={participation.externalid__c}
+                                               knockoutcalloutparent={handleCalloutParent}
                                                partsfid={participation.sfid} newQuestion={newQuestion} newCorrectQuestion={newCorrectQuestion}
                                                />
                                     }

@@ -82,10 +82,13 @@ const Question = (props) => {
             console.log('part answers' + JSON.stringify(parseData));
             console.log('current part answers' + allpartanswers);
             setAllpartanswers(parseData);
+            
+            props.knockoutcalloutchild(parseData)
         }catch(error){
             console.log( 'err' + error.message);
         }
     }
+
 
 
     const handleExistingPartAnswer = async () => {

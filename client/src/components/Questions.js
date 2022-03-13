@@ -413,6 +413,10 @@ const Questions = (props) => {
         }
     }
     
+    const handleKnockoutChild = async (childData) => {
+        console.log('knockout callout in Questions js');
+        props.knockoutcalloutparent(childData);
+    }
 
     const updateAnswerList = async (childData) => {
         try {
@@ -656,6 +660,7 @@ const Questions = (props) => {
                         {questions.map(question => {
                             return <Carousel.Item key={question.id} className="text-center">
                                 <Question addAnswer={updateAnswerList} 
+                                            knockoutcalloutchild={handleKnockoutChild}
                                             ques={question} 
                                             contest={props.contest} 
                                             questionNum={questionNum} 
@@ -689,7 +694,7 @@ const Questions = (props) => {
                     {(props.isKnockedOut === true || showKnockOut === true) &&
                     <Row>
                         <div className="font16">
-                            <span>{contestKnockoutText}</span>
+                            <span>{contestKnockoutText}</span><br/>
                             <span>Your Rank: {placeFin}</span>
                         </div>
                     </Row>
