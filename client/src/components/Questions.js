@@ -418,7 +418,7 @@ const Questions = (props) => {
     
     const handleKnockoutChild = async (childData) => {
         console.log('knockout callout in Questions js');
-        props.knockoutcalloutparent(childData);
+        
     }
 
     const updateAnswerList = async (childData) => {
