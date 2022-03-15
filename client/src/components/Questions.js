@@ -180,17 +180,19 @@ const Questions = (props) => {
             console.log('parts list' +JSON.stringify(parseData));
             setPartWrongAnswer(parseData);
             //set sort of timeout to check waiting for finished game
+                console.log('status' + parseData.status__c);
+            if (parseData.status__c === 'Knocked Out') {
+                console.log('player is knocked out');
+                handleKnockout();
+                
+            }
             setTimeout(
                 function() {
                     checkFinished();
                 },
                 5000
             );
-            if (parseData.status__c === 'Knocked Out') {
-                console.log('player is knocked out');
-                handleKnockout();
-                
-            }
+            
             props.updatepart(parseData);
 
         } catch (err) {
@@ -209,6 +211,7 @@ const Questions = (props) => {
         if(parseContestData.status__c === 'Finished'){
 
             //reaching this part but not running knocked out
+            console.log('not running knocked out');
             console.log('end of contest');
             setShowContestFinished(true);
             handleContestEnd();
