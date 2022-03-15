@@ -420,7 +420,7 @@ const Questions = (props) => {
         console.log('knockout callout in Questions js');
         console.log(childData);
         console.log(childData.wrong_answers__c);
-        console.log(partWrongAnswer);
+        console.log(partWrongAnswer.wrong_answers__c);
     }
 
     const updateAnswerList = async (childData) => {
