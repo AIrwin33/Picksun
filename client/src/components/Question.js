@@ -62,31 +62,6 @@ const Question = (props) => {
         }
     }
 
-
-    const updateAllPartAnswers = async () => {
-        try{
-            const partsfid = props.partsfid;
-            const body = {partsfid};
-            const res = await fetch(`/existingpartanswernoquestion`, {
-                method: "POST",
-                headers: {
-                    jwt_token: localStorage.token,
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify(body)
-            });
-            
-            const parseData = await res.json();
-            setAllpartanswers(parseData);
-            
-            
-        }catch(error){
-            console.log( 'err' + error.message);
-        }
-    }
-
-
-
     const handleExistingPartAnswer = async () => {
         try {
             const partsfid = props.partsfid;
