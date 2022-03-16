@@ -83,7 +83,7 @@ const Question = (props) => {
             console.log('current part answers' + allpartanswers);
             setAllpartanswers(parseData);
             
-            props.knockoutcalloutchild()
+            
         }catch(error){
             console.log( 'err' + error.message);
         }
@@ -156,6 +156,7 @@ const Question = (props) => {
     useEffect(() => {
         console.log('parts answers updates');
         setUpdatedParts(true);
+        props.knockoutcalloutchild();
 
     }, [allpartanswers]);
 

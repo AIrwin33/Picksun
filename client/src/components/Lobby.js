@@ -19,7 +19,7 @@ const Lobby = () => {
              });
        
              const parseData = await res.json();
-             console.log('contests' + JSON.stringify(parseData));
+             
              setContests(parseData);
            } catch (err) {
              console.error(err.message);
