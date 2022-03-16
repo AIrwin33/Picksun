@@ -108,10 +108,6 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
-                var partRes = parseRes
-                
-                console.log('partres' + partRes.status__c);
-                console.log(parseRes.status__c);
                 if (parseRes.status__c === 'Submitted') {
                     setDisabledQuestion(true);
                 }
@@ -171,15 +167,15 @@ const Question = (props) => {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();
-        console.log(props.ques.correct_answer__c);
-        if(props.partsfid !== null){
+        console.log('correct answer' + props.ques.correct_answer__c);
+        if(props.partsfid !== null && props.ques.correct_answer__c !== null){
             setTimeout(
                 function() {
                     
                     updateAllPartAnswers();
                     
                 },
-                4000
+                2000
             );   
         }
     }, [props.ques,props.showAnswers]);
