@@ -79,8 +79,6 @@ const Question = (props) => {
             });
             
             const parseData = await res.json();
-            console.log('part answers' + JSON.stringify(parseData));
-            console.log('current part answers' + allpartanswers);
             setAllpartanswers(parseData);
             
             
