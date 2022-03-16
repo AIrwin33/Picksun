@@ -416,10 +416,8 @@ const Questions = (props) => {
         }
     }
     
-    const handleKnockoutChild = async (childData) => {
+    const handleKnockoutChild = async () => {
         console.log('knockout callout in Questions js');
-        console.log(childData);
-        console.log(childData.wrong_answers__c);
         console.log(partWrongAnswer.wrong_answers__c);
     }
 
