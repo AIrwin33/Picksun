@@ -29,6 +29,7 @@ const Questions = (props) => {
     const [subSegmentCount, setSubsegmentCount] = useState(0);
     const [subsegplusone, setSubSegPlusOne] = useState(0);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
+    const [allpartanswers, setAllpartanswers] = useState([]);
     const [publishedQuestions, setPublishedQuestions] = useState(0);
     const [placeFin, setPlaceFinish] = useState(0);
     const [review, setReview] = useState(false);
@@ -181,7 +182,7 @@ const Questions = (props) => {
             setPartWrongAnswer(parseData);
             //set sort of timeout to check waiting for finished game
             console.log('status' + parseData.status__c);
-            
+            updateAllPartAnswers();
             setTimeout(
                 function() {
                     checkFinished();
@@ -462,6 +463,28 @@ const Questions = (props) => {
         $('.timerdiv').addClass('warning');
     }
 
+    const updateAllPartAnswers = async () => {
+        try{
+            const partsfid = props.partsfid;
+            const body = {partsfid};
+            const res = await fetch(`/existingpartanswernoquestion`, {
+                method: "POST",
+                headers: {
+                    jwt_token: localStorage.token,
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+            
+            const parseData = await res.json();
+            setAllpartanswers(parseData);
+            
+            
+        }catch(error){
+            console.log( 'err' + error.message);
+        }
+    }
+
     useEffect(() => {
         console.log('part wrong answer is updated');
         console.log('partWrongAnswer' + partWrongAnswer.wrong_answers__c);
@@ -671,6 +694,7 @@ const Questions = (props) => {
                                             isInactive={inactive}
                                             getsubcount={handleSubsegmentCount}
                                             partsfid={partWrongAnswer.sfid}
+                                            allpartanswers={allpartanswers}
                                             showAnswers={showAnswer}/>
                             </Carousel.Item>
                         })}

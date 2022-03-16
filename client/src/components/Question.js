@@ -14,7 +14,7 @@ const Question = (props) => {
     const [quest, setQuest] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
-    const [allpartanswers, setAllpartanswers] = useState([]);
+    // const [allpartanswers, setAllpartanswers] = useState([]);
     const [updatedParts, setUpdatedParts] = useState(false);
     //const socket = React.useContext(SocketContext);
 
@@ -65,9 +65,7 @@ const Question = (props) => {
 
     const updateAllPartAnswers = async () => {
         try{
-            console.log('update all part answers in question js')
             const partsfid = props.partsfid;
-            console.log(props.partsfid);
             const body = {partsfid};
             const res = await fetch(`/existingpartanswernoquestion`, {
                 method: "POST",
@@ -147,12 +145,14 @@ const Question = (props) => {
         setShowInfo(false);
     }
 
-    useEffect(() => {
-        console.log('parts answers updates');
-        setUpdatedParts(true);
-        props.knockoutcalloutchild();
+    // useEffect(() => {
+    //     console.log('parts answers updates');
+        
+    //     setUpdatedParts(true);
+        
+    //     props.knockoutcalloutchild();
 
-    }, [allpartanswers]);
+    // }, [props.allpartanswers]);
 
     useEffect(() => {
         if(props.showAnswers){
@@ -165,17 +165,7 @@ const Question = (props) => {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();
-        console.log('correct answer' + props.ques.correct_answer__c);
-        if(props.partsfid !== null && props.ques.correct_answer__c !== null){
-            setTimeout(
-                function() {
-                    
-                    updateAllPartAnswers();
-                    
-                },
-                2000
-            );   
-        }
+
     }, [props.ques,props.showAnswers]);
 
 
@@ -297,9 +287,9 @@ const Question = (props) => {
             </div> : null
         }
 
-        {allpartanswers.length > 0 && updatedParts &&
+        {props.allpartanswers.length > 0 && updatedParts &&
             <div className="answerMain">
-            {allpartanswers.map(answer => {
+            {props.allpartanswers.map(answer => {
                 return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? ' selected ' : ''}  ${answer.correct__c === true ? 'correct' : ''} ${answer.incorrect__c === true ? 'incorrect' : ''}`}>
                 </div>
             })}
