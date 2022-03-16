@@ -171,6 +171,7 @@ const Question = (props) => {
             setDisabledQuestion(true);
         }
         handleExistingPartAnswer();
+        console.log(props.ques.correct_answer__c);
         if(props.partsfid !== null){
             setTimeout(
                 function() {
@@ -178,7 +179,7 @@ const Question = (props) => {
                     updateAllPartAnswers();
                     
                 },
-                3000
+                4000
             );   
         }
     }, [props.ques,props.showAnswers]);
