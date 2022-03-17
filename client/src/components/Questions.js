@@ -182,6 +182,11 @@ const Questions = (props) => {
             setPartWrongAnswer(parseData);
             //set sort of timeout to check waiting for finished game
             console.log('status' + parseData.status__c);
+            if (partWrongAnswer.status__c === 'Knocked Out') {
+                console.log('player is knocked out');
+                handleKnockout();
+                
+            }
             updateAllPartAnswers();
             setTimeout(
                 function() {
@@ -208,11 +213,7 @@ const Questions = (props) => {
         if(parseContestData.status__c === 'Finished'){
 
             //reaching this part but not running knocked out
-            if (partWrongAnswer.status__c === 'Knocked Out') {
-                console.log('player is knocked out');
-                handleKnockout();
-                
-            }
+            
             console.log('end of contest');
             setShowContestFinished(true);
             handleContestEnd();
