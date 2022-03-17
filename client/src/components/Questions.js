@@ -182,7 +182,7 @@ const Questions = (props) => {
             setPartWrongAnswer(parseData);
             //set sort of timeout to check waiting for finished game
             console.log('status' + parseData.status__c);
-            if (partWrongAnswer.status__c === 'Knocked Out') {
+            if (parseData.status__c === 'Knocked Out') {
                 console.log('player is knocked out');
                 handleKnockout();
                 
