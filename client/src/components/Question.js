@@ -120,14 +120,10 @@ const Question = (props) => {
         setShowInfo(false);
     }
 
-    // useEffect(() => {
-    //     console.log('parts answers updates');
-        
-    //     setUpdatedParts(true);
-        
-    //     props.knockoutcalloutchild();
+    useEffect(() => {
+        console.log('parts answers updates');
 
-    // }, [props.allpartanswers]);
+    }, [props.allpartanswers]);
 
     useEffect(() => {
         if(props.showAnswers){
@@ -262,7 +258,7 @@ const Question = (props) => {
             </div> : null
         }
 
-        {props.allpartanswers.length > 0 &&
+        {props.allpartanswers.length > 0 && 
             <div className="answerMain">
             {props.allpartanswers.map(answer => {
                 return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? ' selected ' : ''}  ${answer.correct__c === true ? 'correct' : ''} ${answer.incorrect__c === true ? 'incorrect' : ''}`}>
