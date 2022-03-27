@@ -73,6 +73,7 @@ const Questions = (props) => {
     const getQuestions = async () => {
         try {
             doGetParticipationWrongAnswers();
+            updateAllPartAnswers();
             const res = await fetch(`/questions/${props.contestid}`, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
@@ -187,7 +188,7 @@ const Questions = (props) => {
                 handleKnockout();
                 
             }
-            updateAllPartAnswers();
+            
             setTimeout(
                 function() {
                     checkFinished();
@@ -478,6 +479,7 @@ const Questions = (props) => {
             });
             
             const parseData = await res.json();
+            console.log('all part answers' + parseData);
             setAllpartanswers(parseData);
             
             
@@ -495,6 +497,7 @@ const Questions = (props) => {
 
         getQuestions();
         getAllQuestions();
+        
         
         if(newQuestion !== props.newQuestion && props.newQuestion !== undefined) {
             console.log('in set new question');
