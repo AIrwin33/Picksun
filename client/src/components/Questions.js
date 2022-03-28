@@ -467,6 +467,7 @@ const Questions = (props) => {
 
     const updateAllPartAnswers = async () => {
         try{
+            console.log('updating parts answers');
             const partsfid = props.partsfid;
             const body = {partsfid};
             const res = await fetch(`/existingpartanswernoquestion`, {
