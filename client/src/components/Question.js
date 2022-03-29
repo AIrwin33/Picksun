@@ -15,7 +15,8 @@ const Question = (props) => {
     const [showInfo, setShowInfo] = useState(false);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
     const [partanswersupdated, setUpdated] = useState(false);
-    // const [allpartanswers, setAllpartanswers] = useState([]);
+
+    const [allpartanswers, setAllpartanswers] = useState([]);
     const [updatedParts, setUpdatedParts] = useState(false);
     //const socket = React.useContext(SocketContext);
 
@@ -80,6 +81,7 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
+                updateAllPartAnswers();
                 if (parseRes.status__c === 'Submitted') {
                     setDisabledQuestion(true);
                 }
@@ -88,6 +90,30 @@ const Question = (props) => {
             console.error(err.message);
         }
 
+    }
+
+    const updateAllPartAnswers = async () => {
+        try{
+            console.log('updating parts answers');
+            const partsfid = props.partsfid;
+            const body = {partsfid};
+            const res = await fetch(`/existingpartanswernoquestion`, {
+                method: "POST",
+                headers: {
+                    jwt_token: localStorage.token,
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(body)
+            });
+            
+            const parseData = await res.json();
+            console.log('all part answers' + JSON.stringify(parseData));
+            setAllpartanswers(parseData);
+            
+            
+        }catch(error){
+            console.log( 'err' + error.message);
+        }
     }
     const handleSubsegmentCount = async (subseg) => {
         try {
@@ -228,6 +254,8 @@ const Question = (props) => {
                             }
                         </div>
                     </Col>
+
+                    {/* look here for more info */}
                     {props.ques.correct_answer__c !== null &&
                     <Col>
                         <div className='answerBanner font14'>
@@ -256,7 +284,7 @@ const Question = (props) => {
             </div> : null
         }
 
-        {props.allpartanswers.length > 0 && partanswersupdated &&
+        {allpartanswers.length > 0 &&
             <div className="answerMain">
             {props.allpartanswers.map(answer => {
                 return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? ' selected ' : ''}  ${answer.correct__c === true ? 'correct' : ''} ${answer.incorrect__c === true ? 'incorrect' : ''}`}>

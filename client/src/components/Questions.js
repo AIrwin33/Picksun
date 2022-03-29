@@ -29,7 +29,7 @@ const Questions = (props) => {
     const [subSegmentCount, setSubsegmentCount] = useState(0);
     const [subsegplusone, setSubSegPlusOne] = useState(0);
     const [partWrongAnswer, setPartWrongAnswer] = useState([]);
-    const [allpartanswers, setAllpartanswers] = useState([]);
+    
     const [publishedQuestions, setPublishedQuestions] = useState(0);
     const [placeFin, setPlaceFinish] = useState(0);
     const [review, setReview] = useState(false);
@@ -72,7 +72,7 @@ const Questions = (props) => {
 
     const getQuestions = async () => {
         try {
-            updateAllPartAnswers();
+            
             doGetParticipationWrongAnswers();
             
             const res = await fetch(`/questions/${props.contestid}`, {
@@ -466,35 +466,6 @@ const Questions = (props) => {
         $('.timerdiv').addClass('warning');
     }
 
-    const updateAllPartAnswers = async () => {
-        try{
-            console.log('updating parts answers');
-            const partsfid = props.partsfid;
-            const body = {partsfid};
-            const res = await fetch(`/existingpartanswernoquestion`, {
-                method: "POST",
-                headers: {
-                    jwt_token: localStorage.token,
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify(body)
-            });
-            
-            const parseData = await res.json();
-            console.log('all part answers' + JSON.stringify(parseData));
-            setAllpartanswers(parseData);
-            
-            
-        }catch(error){
-            console.log( 'err' + error.message);
-        }
-    }
-
-    useEffect(() => {
-        console.log('part wrong answer is updated');
-        console.log('partWrongAnswer' + partWrongAnswer.wrong_answers__c);
-    }, [partWrongAnswer.wrong_answers__c]);
-
     useEffect(() => {
         
         getQuestions();
@@ -700,7 +671,6 @@ const Questions = (props) => {
                                             isInactive={inactive}
                                             getsubcount={handleSubsegmentCount}
                                             partsfid={partWrongAnswer.sfid}
-                                            allpartanswers={allpartanswers}
                                             showAnswers={showAnswer}/>
                             </Carousel.Item>
                         })}
