@@ -480,7 +480,7 @@ const Questions = (props) => {
             });
             
             const parseData = await res.json();
-            console.log('all part answers' + parseData);
+            console.log('all part answers' + JSON.stringify(parseData));
             setAllpartanswers(parseData);
             
             
