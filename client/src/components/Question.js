@@ -14,6 +14,7 @@ const Question = (props) => {
     const [quest, setQuest] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
+    const [partanswersupdated, setUpdated] = useState(false);
     // const [allpartanswers, setAllpartanswers] = useState([]);
     const [updatedParts, setUpdatedParts] = useState(false);
     //const socket = React.useContext(SocketContext);
@@ -123,6 +124,7 @@ const Question = (props) => {
     useEffect(() => {
         console.log('parts answers updates');
         console.log(props.allpartanswers.length);
+        setUpdated(true);
     }, [props.allpartanswers]);
 
     useEffect(() => {
@@ -258,7 +260,7 @@ const Question = (props) => {
             </div> : null
         }
 
-        {props.allpartanswers.length > 0 && 
+        {props.allpartanswers.length > 0 && partanswersupdated &&
             <div className="answerMain">
             {props.allpartanswers.map(answer => {
                 return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? ' selected ' : ''}  ${answer.correct__c === true ? 'correct' : ''} ${answer.incorrect__c === true ? 'incorrect' : ''}`}>
