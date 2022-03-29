@@ -122,7 +122,7 @@ const Question = (props) => {
 
     useEffect(() => {
         console.log('parts answers updates');
-
+        console.log(props.allpartanswers.length);
     }, [props.allpartanswers]);
 
     useEffect(() => {
