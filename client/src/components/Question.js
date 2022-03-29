@@ -148,12 +148,6 @@ const Question = (props) => {
     }
 
     useEffect(() => {
-        console.log('parts answers updates');
-        console.log(props.allpartanswers.length);
-        setUpdated(true);
-    }, [props.allpartanswers]);
-
-    useEffect(() => {
         setQuest(props.ques);
         handleSubsegmentCount(props.ques.subsegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true) {
