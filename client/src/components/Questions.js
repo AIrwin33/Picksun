@@ -73,7 +73,7 @@ const Questions = (props) => {
     const getQuestions = async () => {
         try {
             doGetParticipationWrongAnswers();
-            updateAllPartAnswers();
+            
             const res = await fetch(`/questions/${props.contestid}`, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
@@ -495,7 +495,7 @@ const Questions = (props) => {
     }, [partWrongAnswer.wrong_answers__c]);
 
     useEffect(() => {
-
+        updateAllPartAnswers();
         getQuestions();
         getAllQuestions();
         
