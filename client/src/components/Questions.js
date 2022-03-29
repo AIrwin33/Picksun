@@ -72,6 +72,7 @@ const Questions = (props) => {
 
     const getQuestions = async () => {
         try {
+            updateAllPartAnswers();
             doGetParticipationWrongAnswers();
             
             const res = await fetch(`/questions/${props.contestid}`, {
@@ -495,7 +496,7 @@ const Questions = (props) => {
     }, [partWrongAnswer.wrong_answers__c]);
 
     useEffect(() => {
-        updateAllPartAnswers();
+        
         getQuestions();
         getAllQuestions();
         
