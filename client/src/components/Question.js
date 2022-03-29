@@ -128,10 +128,6 @@ const Question = (props) => {
     }, [props.allpartanswers]);
 
     useEffect(() => {
-        if(props.showAnswers){
-            console.log('setting show updated parts as false');
-            setUpdatedParts(false);
-        }
         setQuest(props.ques);
         handleSubsegmentCount(props.ques.subsegment__c);
         if (props.ques.islocked__c === true || props.isInactive === true) {
