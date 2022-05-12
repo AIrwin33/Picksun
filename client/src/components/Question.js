@@ -17,7 +17,7 @@ const Question = (props) => {
     const [partanswersupdated, setUpdated] = useState(false);
 
     const [allpartanswers, setAllpartanswers] = useState([]);
-    const [updatedParts, setUpdatedParts] = useState(false);
+   
     //const socket = React.useContext(SocketContext);
 
     const handleRadioChange = async (event) => {
@@ -81,7 +81,7 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
-                setTimeout(() => {updateAllPartAnswers();}, 2000);
+                updateAllPartAnswers();
                 
                 if (parseRes.status__c === 'Submitted') {
                     setDisabledQuestion(true);
@@ -109,7 +109,7 @@ const Question = (props) => {
             
             const parseData = await res.json();
             console.log('all part answers' + JSON.stringify(parseData));
-            setAllpartanswers(parseData => ([parseData, ...allpartanswers]));
+            setAllpartanswers(parseData => ([...parseData, ...allpartanswers]));
             
             
         }catch(error){
@@ -150,11 +150,13 @@ const Question = (props) => {
 
     useEffect(() => {
         console.log('part answers updated in use effect');
+        setUpdated(true);
     }, [allpartanswers]);
 
     useEffect(() => {
         setQuest(props.ques);
         handleSubsegmentCount(props.ques.subsegment__c);
+        setUpdated(false);
         if (props.ques.islocked__c === true || props.isInactive === true) {
             setDisabledQuestion(true);
         }
@@ -283,7 +285,7 @@ const Question = (props) => {
             </div> : null
         }
 
-        {allpartanswers.length > 0 &&
+        {allpartanswers.length > 0 && partanswersupdated &&
             <div className="answerMain">
             {allpartanswers.map(answer => {
                 return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? ' selected ' : ''}  ${answer.correct__c === true ? 'correct' : ''} ${answer.incorrect__c === true ? 'incorrect' : ''}`}>
