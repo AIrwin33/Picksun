@@ -285,7 +285,7 @@ const Question = (props) => {
             </div> : null
         }
 
-        {allpartanswers.length > 0 && partanswersupdated &&
+        {allpartanswers.length > 0 && 
             <div className="answerMain">
             {allpartanswers.map(answer => {
                 return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? ' selected ' : ''}  ${answer.correct__c === true ? 'correct' : ''} ${answer.incorrect__c === true ? 'incorrect' : ''}`}>
