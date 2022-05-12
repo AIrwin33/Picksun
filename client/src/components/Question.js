@@ -151,7 +151,7 @@ const Question = (props) => {
 
     useEffect(() => {
         console.log('part answers updated in use effect');
-
+        
     }, [allpartanswers]);
 
     useEffect(() => {
