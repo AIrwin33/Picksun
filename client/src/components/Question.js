@@ -93,7 +93,7 @@ const Question = (props) => {
 
     }
 
-    const updateAllPartAnswers = () => {
+    const updateAllPartAnswers = async () => {
         try{
             console.log('updating parts answers');
             const partsfid = props.partsfid;
@@ -110,6 +110,7 @@ const Question = (props) => {
             const parseData = await res.json();
             console.log('all part answers' + JSON.stringify(parseData));
             setAllpartanswers(parseData);
+            //setAllpartanswers(prevMovies => ([...prevMovies, ...result]));
             
             
         }catch(error){
