@@ -93,7 +93,7 @@ const Question = (props) => {
 
     }
 
-    const updateAllPartAnswers = async () => {
+    const updateAllPartAnswers = () => {
         try{
             console.log('updating parts answers');
             const partsfid = props.partsfid;
@@ -109,7 +109,7 @@ const Question = (props) => {
             
             const parseData = await res.json();
             console.log('all part answers' + JSON.stringify(parseData));
-            setAllpartanswers(parseData => ([...parseData, ...allpartanswers]));
+            setAllpartanswers(parseData);
             
             
         }catch(error){
@@ -150,7 +150,7 @@ const Question = (props) => {
 
     useEffect(() => {
         console.log('part answers updated in use effect');
-        setUpdated(true);
+
     }, [allpartanswers]);
 
     useEffect(() => {
