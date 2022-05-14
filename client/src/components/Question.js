@@ -81,7 +81,14 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
-                updateAllPartAnswers();
+                setTimeout(
+                    function() {
+                        console.log('update all part answers in timeout');
+                        updateAllPartAnswers();
+                    },
+                    2500
+                );
+                
                 
                 if (parseRes.status__c === 'Submitted') {
                     setDisabledQuestion(true);
@@ -151,7 +158,7 @@ const Question = (props) => {
 
     useEffect(() => {
         console.log('part answers updated in use effect');
-        
+
     }, [allpartanswers]);
 
     useEffect(() => {
