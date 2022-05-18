@@ -86,7 +86,7 @@ const Question = (props) => {
                         console.log('update all part answers in timeout');
                         updateAllPartAnswers();
                     },
-                    2500
+                    4000
                 );
                 
                 
@@ -117,7 +117,7 @@ const Question = (props) => {
             const parseData = await res.json();
             console.log('all part answers' + JSON.stringify(parseData));
             setAllpartanswers(parseData);
-            //setAllpartanswers(prevMovies => ([...prevMovies, ...result]));
+        
             
             
         }catch(error){
@@ -158,7 +158,7 @@ const Question = (props) => {
 
     useEffect(() => {
         console.log('part answers updated in use effect');
-
+        console.log(allpartanswers);
     }, [allpartanswers]);
 
     useEffect(() => {
