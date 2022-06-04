@@ -181,6 +181,7 @@ const Questions = (props) => {
             const parseData = await response.json();
         
             console.log('parts list' +JSON.stringify(parseData));
+            console.log('parse wrong answers' + parseData.wrong_answers__c);
             setPartWrongAnswer(parseData);
             //set sort of timeout to check waiting for finished game
             console.log('status' + parseData.status__c);
