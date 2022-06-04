@@ -539,7 +539,7 @@ const Questions = (props) => {
                         console.log('timeout part answers');
                         doGetParticipationWrongAnswers();
                     },
-                    3000
+                    2500
                 );
                 
                 const tempQuestions = questions;
