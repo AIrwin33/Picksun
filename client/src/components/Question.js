@@ -81,13 +81,14 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
-                setTimeout(
-                    function() {
-                        console.log('update all part answers in timeout');
-                        updateAllPartAnswers();
-                    },
-                    4000
-                );
+                console.log(parseRes.Validated__c);
+                // setTimeout(
+                //     function() {
+                //         console.log('update all part answers in timeout');
+                //         updateAllPartAnswers();
+                //     },
+                //     4000
+                // );
                 
                 
                 if (parseRes.status__c === 'Submitted') {
@@ -159,7 +160,8 @@ const Question = (props) => {
     useEffect(() => {
         console.log('part answers updated in use effect');
         console.log(allpartanswers);
-    }, [allpartanswers]);
+        updateAllPartAnswers();
+    }, [partAnswer.Validated__c]);
 
     useEffect(() => {
         setQuest(props.ques);
