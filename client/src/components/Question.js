@@ -160,7 +160,7 @@ const Question = (props) => {
 
     useEffect(() => {
         console.log('part answers updated in use effect');
-        console.log(partAnswer);
+        console.log(partAnswer.validated__c);
         updateAllPartAnswers();
     }, [partAnswer.validated__c]);
 
