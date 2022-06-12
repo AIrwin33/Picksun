@@ -81,7 +81,7 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
-                console.log('part answer' + parseRes);
+                console.log('part answer' + JSON.stringify(parseRes));
                 console.log(parseRes.validated__c);
                 // setTimeout(
                 //     function() {
