@@ -86,7 +86,7 @@ const Question = (props) => {
                         console.log('update all part answers in timeout');
                         updateAllPartAnswers();
                     },
-                    3500
+                    4000
                 );
                 
                 
