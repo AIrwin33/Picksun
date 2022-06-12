@@ -82,8 +82,9 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
+                console.log('parse res' + JSON.stringify(parseRes));
                 console.log('is validated' + parseRes.validated__c);
-                if(parseRes.validated__c) {
+                if(parseRes.validated__c ) {
                     updateAllPartAnswers();
                 }
                 
@@ -153,12 +154,6 @@ const Question = (props) => {
         setShowInfo(false);
     }
 
-    // useEffect(() => {
-    //     console.log('part answers updated in use effect');
-    //     console.log(partAnswer.validated__c);
-    //     updateAllPartAnswers();
-    // }, [partAnswer.validated__c]);
-
     useEffect(() => {
         setQuest(props.ques);
         handleSubsegmentCount(props.ques.subsegment__c);
@@ -171,7 +166,6 @@ const Question = (props) => {
             function() {
                 console.log('update this part answers in timeout');
                 handleThisPartAnswer();
-                //updateAllPartAnswers();
             },
             5000
         );
