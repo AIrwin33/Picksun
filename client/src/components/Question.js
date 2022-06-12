@@ -64,7 +64,7 @@ const Question = (props) => {
         }
     }
 
-    const handleExistingPartAnswer = async () => {
+    const handleThisPartAnswer = async () => {
         try {
             const partsfid = props.partsfid;
             const questid = props.ques.sfid;
@@ -173,7 +173,14 @@ const Question = (props) => {
             setDisabledQuestion(true);
         }
         updateAllPartAnswers();
-        handleExistingPartAnswer();
+            setTimeout(
+            function() {
+                console.log('update this part answers in timeout');
+                handleThisPartAnswer();
+            },
+            4000
+        );
+      
 
     }, [props.ques,props.showAnswers]);
 
