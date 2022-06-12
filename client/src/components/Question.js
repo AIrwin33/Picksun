@@ -82,6 +82,7 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
+                console.log('is validated' + parseRes.validated__c);
                 
                 if (parseRes.status__c === 'Submitted') {
                     setDisabledQuestion(true);
