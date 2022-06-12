@@ -83,6 +83,9 @@ const Question = (props) => {
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
                 console.log('is validated' + parseRes.validated__c);
+                if(parseRes.validated__c) {
+                    updateAllPartAnswers();
+                }
                 
                 if (parseRes.status__c === 'Submitted') {
                     setDisabledQuestion(true);
@@ -150,11 +153,11 @@ const Question = (props) => {
         setShowInfo(false);
     }
 
-    useEffect(() => {
-        console.log('part answers updated in use effect');
-        console.log(partAnswer.validated__c);
-        updateAllPartAnswers();
-    }, [partAnswer.validated__c]);
+    // useEffect(() => {
+    //     console.log('part answers updated in use effect');
+    //     console.log(partAnswer.validated__c);
+    //     updateAllPartAnswers();
+    // }, [partAnswer.validated__c]);
 
     useEffect(() => {
         setQuest(props.ques);
@@ -168,9 +171,9 @@ const Question = (props) => {
             function() {
                 console.log('update this part answers in timeout');
                 handleThisPartAnswer();
-                updateAllPartAnswers();
+                //updateAllPartAnswers();
             },
-            4000
+            5000
         );
       
 
