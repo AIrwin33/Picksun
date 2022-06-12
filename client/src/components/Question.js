@@ -81,7 +81,8 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
-                console.log(parseRes.Validated__c);
+                console.log('part answer' + parseRes);
+                console.log(parseRes.validated__c);
                 // setTimeout(
                 //     function() {
                 //         console.log('update all part answers in timeout');
@@ -159,9 +160,9 @@ const Question = (props) => {
 
     useEffect(() => {
         console.log('part answers updated in use effect');
-        console.log(allpartanswers);
+        console.log(partAnswer);
         updateAllPartAnswers();
-    }, [partAnswer.Validated__c]);
+    }, [partAnswer.validated__c]);
 
     useEffect(() => {
         setQuest(props.ques);
