@@ -83,7 +83,7 @@ const Question = (props) => {
                 setPartAnswer(parseRes);
                 console.log('part answer' + JSON.stringify(parseRes));
                 console.log(parseRes.validated__c);
-                updateAllPartAnswers();
+                //updateAllPartAnswers();
                 // setTimeout(
                 //     function() {
                 //         console.log('update all part answers in timeout');
@@ -159,11 +159,11 @@ const Question = (props) => {
         setShowInfo(false);
     }
 
-    // useEffect(() => {
-    //     console.log('part answers updated in use effect');
-    //     console.log(partAnswer.validated__c);
-    //     updateAllPartAnswers();
-    // }, [partAnswer.validated__c]);
+    useEffect(() => {
+        console.log('part answers updated in use effect');
+        console.log(partAnswer.validated__c);
+        updateAllPartAnswers();
+    }, [partAnswer.validated__c]);
 
     useEffect(() => {
         setQuest(props.ques);
@@ -172,6 +172,7 @@ const Question = (props) => {
         if (props.ques.islocked__c === true || props.isInactive === true) {
             setDisabledQuestion(true);
         }
+        updateAllPartAnswers();
         handleExistingPartAnswer();
 
     }, [props.ques,props.showAnswers]);
