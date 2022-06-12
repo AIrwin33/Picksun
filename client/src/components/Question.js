@@ -65,6 +65,7 @@ const Question = (props) => {
     }
 
     const handleThisPartAnswer = async () => {
+        console.log('handle this');
         try {
             const partsfid = props.partsfid;
             const questid = props.ques.sfid;
@@ -81,17 +82,6 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
-                console.log('part answer' + JSON.stringify(parseRes));
-                console.log(parseRes.validated__c);
-                //updateAllPartAnswers();
-                // setTimeout(
-                //     function() {
-                //         console.log('update all part answers in timeout');
-                //         
-                //     },
-                //     4000
-                // );
-                
                 
                 if (parseRes.status__c === 'Submitted') {
                     setDisabledQuestion(true);
@@ -104,6 +94,7 @@ const Question = (props) => {
     }
 
     const updateAllPartAnswers = async () => {
+        console.log('handle all');
         try{
             console.log('updating parts answers');
             const partsfid = props.partsfid;
@@ -118,7 +109,6 @@ const Question = (props) => {
             });
             
             const parseData = await res.json();
-            console.log('all part answers' + JSON.stringify(parseData));
             setAllpartanswers(parseData);
         
             
