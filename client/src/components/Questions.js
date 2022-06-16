@@ -518,6 +518,9 @@ const Questions = (props) => {
                 setQuestionIds(newquestionids);
                 setQuestions(newquestions);
                 setIndex(0);
+                console.log('index' + index);
+                setQuestionNum(1);
+                console.log('question num' +questionNum);
                 setTimeout(
                     function() {
                         console.log('timeout part answers');
