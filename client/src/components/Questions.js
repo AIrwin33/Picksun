@@ -359,6 +359,10 @@ const Questions = (props) => {
             setReview(true);
             setQuestions(parseData);
             setShowWaiting(false);
+            setIndex(0);
+            console.log('index' + index);
+            setQuestionNum(1);
+            console.log('question num' +questionNum);
             console.log('setting review true');
             console.log('show contest finished should be false ' + showContestFinished);
             
@@ -517,10 +521,7 @@ const Questions = (props) => {
                 setPublishedQuestions(newquestions.length);
                 setQuestionIds(newquestionids);
                 setQuestions(newquestions);
-                setIndex(0);
-                console.log('index' + index);
-                setQuestionNum(1);
-                console.log('question num' +questionNum);
+                
                 setTimeout(
                     function() {
                         console.log('timeout part answers');
