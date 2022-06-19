@@ -360,11 +360,8 @@ const Questions = (props) => {
             setQuestions(parseData);
             setShowWaiting(false);
             setIndex(0);
-            console.log('index' + index);
             setQuestionNum(1);
-            console.log('question num' +questionNum);
-            console.log('setting review true');
-            console.log('show contest finished should be false ' + showContestFinished);
+ 
             
             setTimeout(
                 function() {
