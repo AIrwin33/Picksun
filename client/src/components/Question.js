@@ -167,7 +167,7 @@ const Question = (props) => {
                 console.log('update this part answers in timeout');
                 handleThisPartAnswer();
             },
-            3000
+            1000
         );
       
 
