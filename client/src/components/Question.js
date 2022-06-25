@@ -14,7 +14,11 @@ const Question = (props) => {
     const [quest, setQuest] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
+    const [partanswersupdated, setUpdated] = useState(false);
+
     const [allpartanswers, setAllpartanswers] = useState([]);
+   
+    //const socket = React.useContext(SocketContext);
 
     const handleRadioChange = async (event) => {
         var tgt = $(event.target);
