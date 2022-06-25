@@ -14,11 +14,7 @@ const Question = (props) => {
     const [quest, setQuest] = useState([]);
     const [showInfo, setShowInfo] = useState(false);
     const [disabledQuestion, setDisabledQuestion] = useState(false);
-    const [partanswersupdated, setUpdated] = useState(false);
-
     const [allpartanswers, setAllpartanswers] = useState([]);
-   
-    //const socket = React.useContext(SocketContext);
 
     const handleRadioChange = async (event) => {
         var tgt = $(event.target);
@@ -82,10 +78,11 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
-                console.log('parse res' + JSON.stringify(parseRes));
-                console.log('is validated' + parseRes.validated__c);
+                
                 if(parseRes.validated__c ) {
                     updateAllPartAnswers();
+                    console.log('validated question, will update');
+                    console.log('parse res' + JSON.stringify(parseRes));
                 }
                 
                 if (parseRes.status__c === 'Submitted') {
@@ -155,21 +152,20 @@ const Question = (props) => {
     }
 
     useEffect(() => {
+        console.log('use effect correct answer');
+        console.log('value' + props.ques.correct_answer__c);
+        handleThisPartAnswer()
+    },[props.ques.correct_answer__c]);
+
+    useEffect(() => {
         setQuest(props.ques);
         handleSubsegmentCount(props.ques.subsegment__c);
         setUpdated(false);
         if (props.ques.islocked__c === true || props.isInactive === true) {
             setDisabledQuestion(true);
+            handleThisPartAnswer();
         }
         updateAllPartAnswers();
-            setTimeout(
-            function() {
-                console.log('update this part answers in timeout');
-                handleThisPartAnswer();
-            },
-            500
-        );
-      
 
     }, [props.ques,props.showAnswers]);
 
@@ -256,10 +252,10 @@ const Question = (props) => {
 
                     <Col>
                         <div class="font14">
-                            {partAnswer.selection_value__c != null &&
+                            {partAnswer.selection_value__c !== null &&
                             <span class="proxima" >My Pick: {partAnswer.selection_value__c}</span>
                             }
-                            {partAnswer.selection_value__c == null &&
+                            {partAnswer.selection_value__c === null &&
                             <span class="proxima">My Pick: Did Not Answer </span>
                             }
                         </div>

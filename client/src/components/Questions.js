@@ -361,14 +361,6 @@ const Questions = (props) => {
             setShowWaiting(false);
             setIndex(0);
             setQuestionNum(1);
- 
-            
-            setTimeout(
-                function() {
-                    console.log('show review' + review);
-                },
-                1000
-            );
 
 
         } catch (err) {
@@ -524,7 +516,7 @@ const Questions = (props) => {
                         console.log('timeout part answers');
                         doGetParticipationWrongAnswers();
                     },
-                    5000
+                    4000
                 );
                 setTimer();
                 $('.timerdiv').removeClass('hiddenTimer');
@@ -540,7 +532,7 @@ const Questions = (props) => {
                         console.log('timeout part answers');
                         doGetParticipationWrongAnswers();
                     },
-                    5000
+                    4000
                 );
                 
                 const tempQuestions = questions;
