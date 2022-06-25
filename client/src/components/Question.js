@@ -158,7 +158,14 @@ const Question = (props) => {
     useEffect(() => {
         console.log('use effect correct answer');
         console.log('value' + props.ques.correct_answer__c);
-        handleThisPartAnswer()
+        setTimeout(
+            function() {
+                console.log('timeout THIS part answers');
+                handleThisPartAnswer()
+            },
+            1000
+        );
+       
     },[props.ques.correct_answer__c]);
 
     useEffect(() => {
