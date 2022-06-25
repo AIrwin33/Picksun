@@ -82,7 +82,7 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
-                
+                console.log('IS VALIDATED' + parseRes.validated__c);
                 if(parseRes.validated__c ) {
                     updateAllPartAnswers();
                     console.log('validated question, will update');
