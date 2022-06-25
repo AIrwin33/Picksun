@@ -516,7 +516,7 @@ const Questions = (props) => {
                         console.log('timeout part answers');
                         doGetParticipationWrongAnswers();
                     },
-                    4000
+                    3000
                 );
                 setTimer();
                 $('.timerdiv').removeClass('hiddenTimer');
@@ -532,7 +532,7 @@ const Questions = (props) => {
                         console.log('timeout part answers');
                         doGetParticipationWrongAnswers();
                     },
-                    4000
+                    3000
                 );
                 
                 const tempQuestions = questions;
