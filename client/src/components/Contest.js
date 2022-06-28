@@ -270,7 +270,8 @@ const Contest = ({match}) => {
                                         </Col>
                                     </Row>
                                     {contest.status__c === 'Finished' &&
-                                        allParts.map(part => {
+                                        <div>
+                                            {allParts.map(part => {
                                             return <Row key={part.id} className="colCard ">
                                                 <Col xs={2} className="text-center"> <Image src={avatar} roundedCircle
                                                                                         height="50"></Image> </Col>
@@ -290,7 +291,9 @@ const Contest = ({match}) => {
                                                     </Row>
                                                 </Col>
                                             </Row>
-                                        })
+                                        })}
+                                        </div>
+                                        
                                     }
                                     {participations.map(part => {
                                         return <Row key={part.id} className="colCard ">
