@@ -133,7 +133,9 @@ const Contest = ({match}) => {
 
     const updateparts = useCallback(() => {
         console.log('update parts in contest');
+        console.log(contest.status__c);
         getContestParticipations(contest);
+        
     })
     
     useEffect(() => {
@@ -160,7 +162,7 @@ const Contest = ({match}) => {
     }, [socket]);
 
     useEffect(() => {
-        console.log(contest.status__c);
+        console.log('contest status' + contest.status__c);
         getContestParticipations(contest);
     }, [contest])
     
