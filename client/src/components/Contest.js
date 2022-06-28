@@ -158,6 +158,12 @@ const Contest = ({match}) => {
  
         });
     }, [socket]);
+
+    useEffect(() => {
+        console.log(contest.status__c);
+        getContestParticipations(contest);
+    }, [contest])
+    
     return ((
             <>
                 {/* Main Body */}
