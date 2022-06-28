@@ -24,7 +24,7 @@ const Contest = ({match}) => {
     const [participation, setParticipation] = useState([]);
     const [participations, setParticipations] = useState([]);
     const [allParts, setAllParts] = useState();
-    const [allPartList, setAllPartsList] = useState([]);
+    const [allPartsList, setAllPartsList] = useState([]);
     const [activeParts, setActiveParts] = useState([]);
     const [newQuestion, setNewQuestion] = useState();
     const [newCorrectQuestion, setNewCorrectQuestion] = useState();
@@ -272,7 +272,7 @@ const Contest = ({match}) => {
                                     </Row>
                                     {contest.status__c === 'Finished' &&
                                         <div>
-                                            {allParts.map(part => {
+                                            {allPartsList.map(part => {
                                             return <Row key={part.id} className="colCard ">
                                                 <Col xs={2} className="text-center"> <Image src={avatar} roundedCircle
                                                                                         height="50"></Image> </Col>
