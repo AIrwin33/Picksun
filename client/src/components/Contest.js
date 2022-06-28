@@ -23,7 +23,7 @@ const Contest = ({match}) => {
     const [key, setKey] = useState('Questions');
     const [participation, setParticipation] = useState([]);
     const [participations, setParticipations] = useState([]);
-    const [allParts, setAllParts] = useState();
+    const [allParts, setAllParts] = useState([]);
     const [activeParts, setActiveParts] = useState([]);
     const [newQuestion, setNewQuestion] = useState();
     const [newCorrectQuestion, setNewCorrectQuestion] = useState();
@@ -79,13 +79,22 @@ const Contest = ({match}) => {
             setAllParts(parseData.length);
             var i;
             var activeParts = [];
+            var endParts = [];
             for (i = 0; i < parseData.length; i++) {
                 if (parseData[i].status__c === 'Active') {
                     activeParts.push(parseData[i]);
                 }
             }
+            if(contestRec.status__c === 'Finished'){
+                for (i = 0; i < parseData.length; i++) {
+                    if (parseData[i].status__c !== 'Active') {
+                        endParts.push(parseData[i]);
+                    }
+                }
+            }
 
             setActiveParts(activeParts.length);
+            setAllParts(endParts);
             setParticipations(activeParts);
             getParticipationByContest(contestRec);
 
@@ -260,6 +269,32 @@ const Contest = ({match}) => {
                                         </div>
                                         </Col>
                                     </Row>
+                                    {contestRec.status__c === 'Finished' &&
+                                        allParts.map(part => {
+                                            return <Row key={part.id} className="colCard ">
+                                                <Col xs={2} className="text-center"> <Image src={avatar} roundedCircle
+                                                                                        height="50"></Image> </Col>
+                                                <Col xs={10}>
+                                                    <Row>
+                                                        <span className="fontBold proxima">{part.participant_name__c}</span>
+                                                        {part.sfid === participation.sfid &&
+                                                        <div className="yourpart ml-3 proxima">
+                                                            You
+                                                        </div>
+                                                        }
+                                                    </Row>
+                                                    <Row>
+                                                        <Col sm={12} lg={6} class="proxima">
+                                                            Wrong Answers: {part.wrong_answers__c}
+                                                        </Col>
+                                                        <Col sm={12} lg={6} class="proxima">
+                                                            Wrong Answers Allowed: {part.wrong_answers_allowed__c}
+                                                        </Col>
+                                                    </Row>
+                                                </Col>
+                                            </Row>
+                                        })
+                                    }
                                     {participations.map(part => {
                                         return <Row key={part.id} className="colCard ">
 
