@@ -269,7 +269,7 @@ const Contest = ({match}) => {
                                         </div>
                                         </Col>
                                     </Row>
-                                    {contestRec.status__c === 'Finished' &&
+                                    {contest.status__c === 'Finished' &&
                                         allParts.map(part => {
                                             return <Row key={part.id} className="colCard ">
                                                 <Col xs={2} className="text-center"> <Image src={avatar} roundedCircle
@@ -284,11 +284,8 @@ const Contest = ({match}) => {
                                                         }
                                                     </Row>
                                                     <Row>
-                                                        <Col sm={12} lg={6} class="proxima">
-                                                            Wrong Answers: {part.wrong_answers__c}
-                                                        </Col>
-                                                        <Col sm={12} lg={6} class="proxima">
-                                                            Wrong Answers Allowed: {part.wrong_answers_allowed__c}
+                                                        <Col sm={12} lg={12} class="proxima">
+                                                            Rank: {part.place_finish__c}
                                                         </Col>
                                                     </Row>
                                                 </Col>
