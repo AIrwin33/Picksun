@@ -23,7 +23,8 @@ const Contest = ({match}) => {
     const [key, setKey] = useState('Questions');
     const [participation, setParticipation] = useState([]);
     const [participations, setParticipations] = useState([]);
-    const [allParts, setAllParts] = useState([]);
+    const [allParts, setAllParts] = useState();
+    const [allPartList, setAllPartsList] = useState([]);
     const [activeParts, setActiveParts] = useState([]);
     const [newQuestion, setNewQuestion] = useState();
     const [newCorrectQuestion, setNewCorrectQuestion] = useState();
@@ -94,7 +95,7 @@ const Contest = ({match}) => {
             }
 
             setActiveParts(activeParts.length);
-            setAllParts(endParts);
+            setAllPartsList(endParts);
             setParticipations(activeParts);
             getParticipationByContest(contestRec);
 
