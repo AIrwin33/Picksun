@@ -272,8 +272,7 @@ const Contest = ({match}) => {
                                     </Row>
                                     {contest.status__c === 'Finished' &&
                                         <div>
-                                            <p>this</p>
-                                            {/* {allParts.map(part => {
+                                            {allParts.map(part => {
                                             return <Row key={part.id} className="colCard ">
                                                 <Col xs={2} className="text-center"> <Image src={avatar} roundedCircle
                                                                                         height="50"></Image> </Col>
@@ -293,42 +292,46 @@ const Contest = ({match}) => {
                                                     </Row>
                                                 </Col>
                                             </Row>
-                                        })} */}
+                                        })}
                                         </div>
                                         
                                     }
-                                    {participations.map(part => {
-                                        return <Row key={part.id} className="colCard ">
+                                    {contest.status__c !== 'Finished' &&
+                                        <div>
+                                        {participations.map(part => {
+                                            return <Row key={part.id} className="colCard ">
 
-                                            <Col xs={2} className="text-center"> <Image src={avatar} roundedCircle
-                                                                                    height="50"></Image> </Col>
-                                            <Col xs={10}>
-                                                <Row>
-                                                    <span className="fontBold proxima">{part.participant_name__c}</span>
-                                                    {part.sfid === participation.sfid &&
-                                                    <div className="yourpart ml-3 proxima">
-                                                        You
-                                                    </div>
-                                                    }
-                                                </Row>
-                                                <Row>
-                                                    <Col sm={12} lg={6} class="proxima">
-                                                        Wrong Answers: {part.wrong_answers__c}
-                                                    </Col>
-                                                    <Col sm={12} lg={6} class="proxima">
-                                                        Wrong Answers Allowed: {part.wrong_answers_allowed__c}
-                                                    </Col>
-                                                </Row>
-                                            </Col>
-                                        </Row>
-                                    })}
+                                                <Col xs={2} className="text-center"> <Image src={avatar} roundedCircle
+                                                                                        height="50"></Image> </Col>
+                                                <Col xs={10}>
+                                                    <Row>
+                                                        <span className="fontBold proxima">{part.participant_name__c}</span>
+                                                        {part.sfid === participation.sfid &&
+                                                        <div className="yourpart ml-3 proxima">
+                                                            You
+                                                        </div>
+                                                        }
+                                                    </Row>
+                                                    <Row>
+                                                        <Col sm={12} lg={6} class="proxima">
+                                                            Wrong Answers: {part.wrong_answers__c}
+                                                        </Col>
+                                                        <Col sm={12} lg={6} class="proxima">
+                                                            Wrong Answers Allowed: {part.wrong_answers_allowed__c}
+                                                        </Col>
+                                                    </Row>
+                                                </Col>
+                                            </Row>
+                                            })}
+                                        </div>
+                                    }
                                 </Col>
                                 <Col lg={3} sm={1}>
 
                                 </Col>
                             </Row>
                             
-                        </Tab>
+                            </Tab>
                         <Tab eventKey="Chat" title="Twitter" className="aptifer pb-4 pt-4">
                             <Row>
                                 <Col lg={3} sm={1}>
