@@ -295,7 +295,7 @@ const Contest = ({match}) => {
                                                     </Row>
                                                     <Row>
                                                         <Col sm={12} lg={12} class="proxima">
-                                                            Rank: {part.place_finish__c}
+                                                            Rank: {part.placefinish__c}
                                                         </Col>
                                                     </Row>
                                                 </Col>
