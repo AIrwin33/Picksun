@@ -56,7 +56,7 @@ const TopPanel = (props) => {
                 <li className="menu__item"><a className="menu__link" href="/Lobby">Lobby</a></li>
                 <li className="menu__item"><a className="menu__link" href="/Contests">My Contests</a></li>
                 <li className="menu__item"><a className="menu__link" href="/Profile">Profile</a></li>
-                <li className="menu__item"><a className="menu__link" href="https://pick.fun">Rules</a></li>
+                <li className="menu__item"><a className="menu__link" href="https://pick.fun/rules">Rules</a></li>
               </ul>
             </aside>
             <Navbar.Brand   className="nav-logo ml-auto">
