@@ -93,6 +93,7 @@ const Contest = ({match}) => {
                     }
                 }
             }
+            endParts.sort((a, b) => (a.PlaceFinish__c < b.PlaceFinish__c) ? 1 : -1)
 
             setActiveParts(activeParts.length);
             setAllPartsList(endParts);
