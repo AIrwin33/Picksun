@@ -294,7 +294,7 @@ const Questions = (props) => {
                 if (placefinish === 1) {
                     console.log('handling contest won');
                     handleContestWon(winningParts.length);
-                }else if(placefinish > 1) {
+                }else if(placefinish > 1 && !ko) {
                     console.log('handle end show in contest end place finish not 1' + placefinish);
                     
                     setContestFinishedText('Close but no cigar. You survived but someone scored better than you - better luck next time. Thanks for picking!');
