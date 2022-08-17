@@ -286,21 +286,20 @@ const Questions = (props) => {
                 setPlaceFinish(placefinish);
             }
             
+            
+            if (placefinish === 1) {
+                console.log('handling contest won');
+                handleContestWon(winningParts.length);
+            }
+            if(placefinish > 1 && !ko) {
+                console.log('handle end show in contest end place finish not 1' + placefinish);
+                
+                setContestFinishedText('Close but no cigar. You survived but someone scored better than you - better luck next time. Thanks for picking!');
+            }
+            console.log('is knocked out' + ko);
             if(ko){
                 setPlaceFinish("Knocked Out");
-            }
-            else{
-                console.log('placefinish' + placefinish);
-                if (placefinish === 1) {
-                    console.log('handling contest won');
-                    handleContestWon(winningParts.length);
-                }else if(placefinish > 1 && !ko) {
-                    console.log('handle end show in contest end place finish not 1' + placefinish);
-                    
-                    setContestFinishedText('Close but no cigar. You survived but someone scored better than you - better luck next time. Thanks for picking!');
-                }else{
-                    console.log('blank');
-                }
+                setContestKnockoutText(props.contest.knockout_text__c);
             }
             
 
