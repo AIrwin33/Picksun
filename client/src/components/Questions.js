@@ -270,6 +270,7 @@ const Questions = (props) => {
             for (var k = 0; k < parseRes.length; k++) {
                 if(parseRes[k].sfid === props.partsfid){
                     placefinish = parseRes[k].placefinish__c;
+                    console.log('ending parts' + parseRes[k]);
                     if(parseRes[k].status__c === 'Knocked Out'){
                         ko = true;
 
@@ -298,8 +299,7 @@ const Questions = (props) => {
             }
             console.log('is knocked out' + ko);
             if(ko){
-                setPlaceFinish("Knocked Out");
-                setContestKnockoutText(props.contest.knockout_text__c);
+                setContestFinishedText(props.contest.knockout_text__c);
             }
             
 
