@@ -33,7 +33,7 @@ const Landing = (props) => {
                     <div className="justify-content-start">
                     <span className="whiteText proxima">- Pick answers to questions about what will happen in your favorite live event</span><br/>
                     <span className="whiteText proxima">- Questions are graded in real-time</span><br/>
-                    <span className="whiteText proxima">- You are removed from the contest when / if your number of wrong answers <br/>reaches a given ‘knockout limit’
+                    <span className="whiteText proxima">- You are removed from the contest when / if your number of wrong answers reaches a given ‘knockout limit’
 </span><br/>
                     <span className="whiteText proxima">- Last player remaining wins the prize. If multiple participants survive, player with the fewest number of wrong answers wins the prize. Prize is split if there’s a tie.</span><br/><br/><br/>
                     </div>
