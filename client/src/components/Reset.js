@@ -7,9 +7,6 @@ import {
     Form
 } from "react-bootstrap";
 import "./Reset.css";
-
-import { crypto } from "crypto";
-
 import { toast } from "react-toastify";
 
 

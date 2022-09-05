@@ -8,7 +8,7 @@ import {SocketContext, socket} from './socket';
 import './App.css';
 import Login from './components/Login';
 import Register from './components/Register';
-import Resetpassword from './components/Reset';
+import Reset from './components/Reset';
 import Lobby from './components/Lobby';
 import Profile from './components/Profile';
 import Contests from './components/Contests';
@@ -101,7 +101,7 @@ function App() {
                                            <Register {...props} setAuth={setAuth}/>
                                        }
                                 />
-                                 <Route path="/Resetpassword"
+                                <Route path="/Resetpassword"
                                        render={props =>
                                            <Reset {...props}/>
                                        }
