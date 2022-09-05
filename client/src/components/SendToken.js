@@ -8,7 +8,6 @@ import {
 } from "react-bootstrap";
 import "./SendToken.css";
 
-import { send } from 'emailjs-com';
 
 import { toast } from "react-toastify";
 
