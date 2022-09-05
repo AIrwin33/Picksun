@@ -7,7 +7,6 @@ import {
     Form
 } from "react-bootstrap";
 import "./Reset.css";
-
 import { toast } from "react-toastify";
 
 
