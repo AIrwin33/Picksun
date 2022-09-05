@@ -16,6 +16,7 @@ import Questions from './components/Questions';
 import TopPanel from './components/TopPanel';
 import Landing from './components/Landing';
 import backtotop from './assets/backtotop.png';
+import SendToken from "./components/SendToken";
 
 
 function App() {
@@ -99,6 +100,16 @@ function App() {
                                            <Register {...props} setAuth={setAuth}/>
                                        }
                                 />
+                                 <Route path="/Resetpassword"
+                                       render={props =>
+                                           <Reset {...props}/>
+                                       }
+                                />
+                                <Route path="/Sendtoken"
+                                       render={props =>
+                                           <SendToken {...props}/>
+                                       }
+                                />
                                 <Route path="/Lobby"
                                        render={props =>
                                            isAuthenticated ? (
@@ -162,8 +173,7 @@ function App() {
                                     <Col md="4">
                                     </Col>
                                     <Col md="4 text-center">
-                                            <p className="proxima whiteText mt-2">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
-        sit amet, consectetur adipiscing elit. </p>
+                                            <p className="proxima whiteText mt-2">© 2022 PickFun. All rights reserved. </p>
                                     </Col>
                                     <Col md="4">
                                     </Col>
