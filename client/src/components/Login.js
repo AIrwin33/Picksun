@@ -66,7 +66,7 @@ const Login = ({ setAuth }) => {
     }
 
     const forgotPassword = () => {
-        console.log('forgot password');
+      window.location = "/Resetpassword";
     }
     return (
         <>
