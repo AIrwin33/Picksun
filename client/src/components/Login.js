@@ -66,7 +66,7 @@ const Login = ({ setAuth }) => {
     }
 
     const forgotPassword = () => {
-      window.location = "/Sendtoken";
+        console.log('forgot password');
     }
     return (
         <>

@@ -8,14 +8,40 @@ import {
 } from "react-bootstrap";
 import "./SendToken.css";
 
+
 import { toast } from "react-toastify";
 
 
-const onSubmitForm = () => {
-    console.log('sending email');
-}
 
-const SendToken = (props) => {
+
+const SendToken = () => {
+
+    const [toSend, setToSend] = useState({
+        from_name: '',
+        to_name: '',
+        message: '',
+        reply_to: '',
+      });
+
+    const onChange = e =>
+      setToSend({ ...toSend, [e.target.name]: e.target.value });
+
+    
+    const onSubmitForm = () => {
+        console.log('sending email');
+        send(
+            'SERVICE ID',
+            'TEMPLATE ID',
+            toSend,
+            'User ID'
+          )
+            .then((response) => {
+              console.log('SUCCESS!', response.status, response.text);
+            })
+            .catch((err) => {
+              console.log('FAILED...', err);
+            });
+    }
 
     return (
         <>
@@ -33,7 +59,7 @@ const SendToken = (props) => {
 
                     <Form.Group>
                         <Form.Label className="textWhite proxima font16">Email</Form.Label>
-                        <Form.Control className="proxima" type="text" name="email" placeholder="email" onChange={e => onChange(e)} />
+                        <Form.Control className="proxima" type="text" name="email" placeholder="email" onChange={e => onChange(e)}/>
                     </Form.Group>
 
                     <Button variant="primary" type="submit" className="btnRed float-right aptifer font20">
