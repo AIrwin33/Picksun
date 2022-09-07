@@ -33,13 +33,10 @@ const Reset = ({ setAuth }) => {
             if(password !== confirmpassword){
                 setErrorMsg('Passwords do not match');
             }else{
-
-            
-
                 const body = { email,password,confirmpassword };
                 console.log('body' + JSON.stringify(body));
                 const response = await fetch(
-                "/auth/resetpassword",
+                "/resetpassword",
                 {
                     method: "POST",
                     headers: {

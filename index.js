@@ -53,6 +53,43 @@ app.use("/auth", require("./server/routes/jwtAuth"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+
+app.post("/resetpassword", async (req, res) => {
+    try {
+        const body = JSON.parse(JSON.stringify(req.body))
+
+        const {email, password, confirmpassword} = body;
+        //step two: does the user already exist? throw error
+
+        const user = await pool.query("SELECT * from salesforce.participant__c where email__c = $1 ", [email]);
+        console.log('user' + user.rows.length);
+        if(user.rows.length === 0){
+            return res.status(401).send("User Doesn't Exist");
+        }else{
+            const salt = await bcrypt.genSalt(10);
+
+            const bcryptPassword = await bcrypt.hash(password, salt);
+
+            //step four: enter new user in db
+            console.log('after bcrypt');
+
+            const newParticipant = await pool.query
+            ("Update INTO salesforce.participant__c (email__c, participant_password__c, member_since__c) Values ($1,$2,$3) RETURNING *", [email,  bcryptPassword, 2022]);
+            //step five: generate token
+            console.log('generating new participant');
+            console.log('part id' + JSON.stringify(newParticipant.rows[0].externalid__c));
+            const token = jwtGenerator(newParticipant.rows[0].externalid__c);
+
+            return res.json({ token });
+        }
+        
+
+    }catch(error){
+        console.log(error.message);
+        res.status(500).send("server error");
+    }
+})
+
 //GET ALL PARTICIPANTS
 
 app.get("/participants", async (req, res) => {

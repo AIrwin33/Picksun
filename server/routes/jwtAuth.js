@@ -52,7 +52,7 @@ router.post("/register", validInfo, async (req, res) =>{
     }
 });
 
-router.post("/resetpassword", validInfo, async (req, res) => {
+router.post("/resetpassword", async (req, res) => {
     try {
         const body = JSON.parse(JSON.stringify(req.body))
 
