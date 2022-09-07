@@ -102,7 +102,7 @@ function App() {
                                 />
                                 <Route path="/Reset"
                                        render={props =>
-                                           <Reset {...props}/>
+                                           <Reset {...props} setAuth={setAuth}/>
                                        }
                                 />
                                 <Route path="/Lobby"

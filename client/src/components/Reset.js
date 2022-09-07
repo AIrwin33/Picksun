@@ -12,8 +12,8 @@ import { toast } from "react-toastify";
 
 
 
-const Reset = () => {
-
+const Reset = ({ setAuth }) => {
+    const [errorMsg, setErrorMsg] = useState();
     const [inputs, setInputs] = useState({
         email:"",
         password: ""
