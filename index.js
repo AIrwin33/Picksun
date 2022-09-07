@@ -8,6 +8,8 @@ const session = require("express-session")({
   saveUninitialized: true
 });
 
+const bcrypt = require("bcrypt");
+
 const { v4: uuidv4 } = require('uuid');
 
 const sharedsession = require("express-socket.io-session");
@@ -64,7 +66,7 @@ app.post("/resetpassword", async (req, res) => {
         const user = await pool.query("SELECT * from salesforce.participant__c where email__c = $1 ", [email]);
         console.log('user' + user.rows.length);
         if(user.rows.length === 0){
-            return res.status(401).send("User Doesn't Exist");
+            return res.json.status(401).send("User Doesn't Exist");
         }else{
             const salt = await bcrypt.genSalt(10);
 
@@ -86,7 +88,7 @@ app.post("/resetpassword", async (req, res) => {
 
     }catch(error){
         console.log(error.message);
-        res.status(500).send("server error");
+        
     }
 })
 
