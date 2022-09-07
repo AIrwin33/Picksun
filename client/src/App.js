@@ -168,8 +168,7 @@ function App() {
                                     <Col md="4">
                                     </Col>
                                     <Col md="4 text-center">
-                                            <p className="proxima whiteText mt-2">© 2021 PickFun. All rights reserved. Lorem ipsum dolor
-        sit amet, consectetur adipiscing elit. </p>
+                                            <p className="proxima whiteText mt-2">© 2022 PickFun. All rights reserved. </p>
                                     </Col>
                                     <Col md="4">
                                     </Col>
