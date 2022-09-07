@@ -79,7 +79,10 @@ const Reset = ({ setAuth }) => {
                 <Col sm={{ span: 6, offset: 3 }}>
                 
                 <Form onSubmit={onSubmitForm}>
-
+                    <Form.Group>
+                        <Form.Label className="textWhite proxima font16">Email</Form.Label>
+                        <Form.Control className="proxima" type="text" name="email" placeholder="email" onChange={e => onChange(e)} />
+                    </Form.Group>
                     <Form.Group>
                         <Form.Label className="textWhite proxima font16">Password</Form.Label>
                         <Form.Control className="proxima" type="password" name="password" placeholder="password" onChange={e => onChange(e)} />
@@ -87,10 +90,6 @@ const Reset = ({ setAuth }) => {
                     <Form.Group>
                         <Form.Label className="textWhite proxima font16">Confirm Password</Form.Label>
                         <Form.Control className="proxima" type="password" name="confirmpassword" placeholder="confirm password" onChange={e => onChange(e)} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label className="textWhite proxima font16">Email</Form.Label>
-                        <Form.Control className="proxima" type="text" name="email" placeholder="email" onChange={e => onChange(e)} />
                     </Form.Group>
                     <Button variant="primary" type="submit" className="btnRed float-right aptifer font20">
                         Reset Password
