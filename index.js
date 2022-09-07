@@ -66,7 +66,7 @@ app.post("/resetpassword", async (req, res) => {
         const user = await pool.query("SELECT * from salesforce.participant__c where email__c = $1 ", [email]);
         console.log('user' + user.rows.length);
         if(user.rows.length === 0){
-            return res.json.status(401).send("User Doesn't Exist");
+            console.log('does not exist')
         }else{
             const salt = await bcrypt.genSalt(10);
 
@@ -76,13 +76,9 @@ app.post("/resetpassword", async (req, res) => {
             console.log('after bcrypt');
 
             const newParticipant = await pool.query
-            ("Update INTO salesforce.participant__c (email__c, participant_password__c, member_since__c) Values ($1,$2,$3) RETURNING *", [email,  bcryptPassword, 2022]);
+            ("Update salesforce.participant__c SET participant_password__c = $1 WHERE email = $2", [bcryptPassword, email]);
             //step five: generate token
-            console.log('generating new participant');
-            console.log('part id' + JSON.stringify(newParticipant.rows[0].externalid__c));
-            const token = jwtGenerator(newParticipant.rows[0].externalid__c);
-
-            return res.json({ token });
+            console.log('success');
         }
         
 
