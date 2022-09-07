@@ -76,7 +76,7 @@ app.post("/resetpassword", async (req, res) => {
             console.log('after bcrypt');
 
             const newParticipant = await pool.query
-            ("Update salesforce.participant__c SET participant_password__c = $1 WHERE email = $2", [bcryptPassword, email]);
+            ("Update salesforce.participant__c SET participant_password__c = $1 WHERE email__c = $2", [bcryptPassword, email]);
             //step five: generate token
             console.log('success');
         }
