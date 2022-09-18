@@ -39,7 +39,10 @@ const Contest = ({match}) => {
             });
             const parseData = await res.json();
             setContest(parseData);
-            if(parseData.islocked__c && participation.id != null){
+            console.log(participation.id);
+            console.log(parseData.islocked__c);
+            if(parseData.islocked__c && participation.id === null){
+                console.log('set toast');
                 setPlayLaterToast();
             }
             getEvent(parseData);
