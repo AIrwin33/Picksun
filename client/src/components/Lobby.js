@@ -26,10 +26,11 @@ const Lobby = () => {
            }
        };
 
-       const enterContest = async (contest_id) => {
+       const enterContest = async (contest) => {
         try {
-
-          const body = {contest_id};
+          const contest_id = contest.sfid;
+          const contest_locked = contest.islocked__c;
+          const body = {contest_id, contest_locked};
           const response = await fetch(
 
             "/participations",
@@ -75,7 +76,7 @@ const Lobby = () => {
                             } */}
                             <p className="whiteText aptifer font16 text-center mt-1 mb-0">{contest.name}</p>
                             <p className="whiteText aptifer font12 text-center mt-1 mb-0">{contest.start_time_text__c}</p>
-                            <Button className="btnRed aptifer font16 boldText" onClick={() => enterContest(contest.sfid)}>Start Picking</Button>
+                            <Button className="btnRed aptifer font16 boldText" onClick={() => enterContest(contest)}>Start Picking</Button>
                         </div>
                       </Col>
                     ))}

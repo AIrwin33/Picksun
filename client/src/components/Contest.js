@@ -17,6 +17,7 @@ const Contest = ({match}) => {
     const [contest, setContest] = useState([]);
     const [isloaded, setLoaded] = useState(false);
     const [showInfo, setShowInfo] = useState(false);
+    const [showLaterToast, setShowLaterToast] = useState(false);
     const [home, setHomeTeam] = useState([]);
     const [away, setAwayTeam] = useState([]);
     const [sport, setSport] = useState('baseball');
@@ -38,6 +39,9 @@ const Contest = ({match}) => {
             });
             const parseData = await res.json();
             setContest(parseData);
+            if(parseData.islocked__c){
+                setPlayLaterToast();
+            }
             getEvent(parseData);
 
         } catch (err) {
@@ -120,6 +124,14 @@ const Contest = ({match}) => {
         }
     }
 
+    const setPlayLaterToast = async () => {
+        setShowLaterToast(true);
+    }
+
+    const closeLaterToast = async () => {
+        setShowLaterToast(true);
+    }
+
     const handleInfoShow = async () => {
         setShowInfo(true);
     }
@@ -127,6 +139,7 @@ const Contest = ({match}) => {
     const handleInfoClose = async () => {
         setShowInfo(false);
     }
+
 
     const tabset = useCallback(() => {
         setKey('Participants');
@@ -359,6 +372,27 @@ const Contest = ({match}) => {
                             </Row>
                         </Tab>
                     </Tabs>
+                    <Modal className="modalDiv" show={showLaterToast} onHide={closeLaterToast}>
+                        <Modal.Header closeButton>
+                        <Modal.Title className="aptifer font16 modalHeader">Thanks for playing</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body className="proxima font12 modalBody">
+                            <span>
+                                The contest has already started. 
+                            </span> <br/>
+                            <span>
+                                Feel free to look around while others are playing
+                            </span><br/>
+                            <span>
+                                Check back in the Lobby and make sure to join before the start of the game
+                            </span><br/>
+                        </Modal.Body>
+                        <Modal.Footer>
+                        <Button className="aptifer modalBtn" variant="secondary" onClick={closeLaterToast}>
+                            Close
+                        </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
 
             </>
