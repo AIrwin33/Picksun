@@ -41,7 +41,7 @@ const Contest = ({match}) => {
             setContest(parseData);
             console.log(participation.id);
             console.log(parseData.islocked__c);
-            if(parseData.islocked__c && participation.id === null){
+            if(parseData.islocked__c && participation.id === undefined){
                 console.log('set toast');
                 setPlayLaterToast();
             }
