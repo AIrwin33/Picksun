@@ -132,7 +132,7 @@ const Contest = ({match}) => {
     }
 
     const closeLaterToast = async () => {
-        setShowLaterToast(true);
+        setShowLaterToast(false);
     }
 
     const handleInfoShow = async () => {
