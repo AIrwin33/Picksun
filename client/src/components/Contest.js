@@ -377,17 +377,17 @@ const Contest = ({match}) => {
                     </Tabs>
                     <Modal className="modalDiv" show={showLaterToast} onHide={closeLaterToast}>
                         <Modal.Header closeButton>
-                        <Modal.Title className="aptifer font16 modalHeader">Thanks for playing</Modal.Title>
+                        <Modal.Title className="aptifer font16 modalHeader">The contest has already started.</Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="proxima font16 modalBody">
-                            <span>
-                                The contest has already started. 
-                            </span> <br/> <br/>
                             <span>
                                 Feel free to look around while others are playing
                             </span><br/> <br/>
                             <span>
                                 Check back in the Lobby and make sure to join before the start of the game
+                            </span><br/> <br/>
+                            <span>
+                                And join another contest at start time!
                             </span><br/> <br/>
                         </Modal.Body>
                         <Modal.Footer>
