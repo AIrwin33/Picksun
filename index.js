@@ -196,7 +196,7 @@ app.post("/participations", authorization, async (req, res) => {
         }
         if(contest_locked){
             console.log('locked contest');
-            return res.status(401).send("Already Exists");
+            return res.json({ a: 1 });
         }else{
             const newParticipation = await pool.query(
                 "INSERT INTO salesforce.participation__c (Contest__c, Participant__r__ExternalId__c,Status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *",
