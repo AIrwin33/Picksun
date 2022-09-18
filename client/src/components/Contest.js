@@ -379,16 +379,16 @@ const Contest = ({match}) => {
                         <Modal.Header closeButton>
                         <Modal.Title className="aptifer font16 modalHeader">Thanks for playing</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body className="proxima font12 modalBody">
+                        <Modal.Body className="proxima font16 modalBody">
                             <span>
                                 The contest has already started. 
-                            </span> <br/>
+                            </span> <br/> <br/>
                             <span>
                                 Feel free to look around while others are playing
-                            </span><br/>
+                            </span><br/> <br/>
                             <span>
                                 Check back in the Lobby and make sure to join before the start of the game
-                            </span><br/>
+                            </span><br/> <br/>
                         </Modal.Body>
                         <Modal.Footer>
                         <Button className="aptifer modalBtn" variant="secondary" onClick={closeLaterToast}>
