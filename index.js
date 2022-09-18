@@ -273,7 +273,7 @@ app.post("/disablequestions/", authorization, async (req, res) => {
     try {
         const {conid} = req.body;
 
-        const lockContest = await pool.query("UPDATE salesforce.contest__c SET islocked__c = true WHERE contest__c = $1 RETURNING *", [conid]
+        const lockContest = await pool.query("UPDATE salesforce.contest__c SET islocked__c = true WHERE id = $1", [conid]
         );
         
         const allContestQuestions = await pool.query("UPDATE salesforce.question__c SET islocked__c = true WHERE published__c = true AND contest__c = $1 RETURNING *", [conid]
