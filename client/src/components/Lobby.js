@@ -30,6 +30,7 @@ const Lobby = () => {
         try {
           const contest_id = contest.sfid;
           const contest_locked = contest.islocked__c;
+          console.log(contest_locked);
           const body = {contest_id, contest_locked};
           const response = await fetch(
 
