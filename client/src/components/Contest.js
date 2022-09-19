@@ -117,11 +117,13 @@ const Contest = ({match}) => {
             });
 
             const parseData = await res.json();
+            console.log(parseData);
             if(contest.islocked__c && parseData.id === undefined){
                 console.log('set toast');
                 setPlayLaterToast();
+            }else{
+                setParticipation(parseData);
             }
-            setParticipation(parseData);
             
         } catch (err) {
             console.error(err.message);
