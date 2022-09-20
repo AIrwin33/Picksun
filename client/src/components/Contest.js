@@ -123,7 +123,7 @@ const Contest = ({match}) => {
             
         } catch (err) {
             console.error(err.message);
-            if(contest.islocked__c){
+            if(contestRec.islocked__c){
                 setPlayLaterToast();
             }
         }
