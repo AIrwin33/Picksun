@@ -194,7 +194,9 @@ app.post("/participations", authorization, async (req, res) => {
             res.json(part.rows[0]);
             return res.status(401).send("Already Exists");
         }
-        if(contest_locked){
+
+        const con = await pool.query("SELECT * FROM salesforce.contest__c WHERE sfic = $1", [contest_id]);
+        if(con.islocked__c){
             console.log('locked contest');
             return res.json({ a: 1 });
         }else{
