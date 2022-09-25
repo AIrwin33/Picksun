@@ -196,7 +196,7 @@ app.post("/participations", authorization, async (req, res) => {
         }
 
         const con = await pool.query("SELECT * FROM salesforce.contest__c WHERE sfid = $1", [contest_id]);
-        console.log('con' + con.rows[0].islocked__c);
+        console.log('con' + JSON.stringify(con.rows[0]).islocked__c);
         if(con.rows[0].islocked__c){
             console.log('locked contest');
             return res.json({ a: 1 });
