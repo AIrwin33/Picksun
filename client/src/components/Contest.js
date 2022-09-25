@@ -379,7 +379,7 @@ const Contest = ({match}) => {
                     </Tabs>
                     <Modal className="modalDiv" show={showLaterToast} onHide={closeLaterToast}>
                         <Modal.Header closeButton>
-                        <Modal.Title className="aptifer font16 modalHeader">Sorrt, it is too late for you to enter this contest</Modal.Title>
+                        <Modal.Title className="aptifer font16 modalHeader">Sorry, it is too late for you to enter this contest</Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="proxima font16 modalBody">
                             <span>
