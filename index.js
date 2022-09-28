@@ -149,7 +149,7 @@ app.get("/mycontests", authorization, async (req, res) => {
 app.get("/allcontests", authorization, async (req, res) => {
     try {
         //gets all contests in the future
-        const allContests = await pool.query("SELECT * FROM salesforce.contest__c WHERE status__c != 'Finished' AND start_time__c > now()");
+        const allContests = await pool.query("SELECT * FROM salesforce.contest__c WHERE status__c != 'Finished' AND start_time__c > now() ORDER BY start_time__c ASC");
         res.json(allContests.rows);
 
     } catch (err) {
