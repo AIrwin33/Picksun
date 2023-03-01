@@ -11,8 +11,6 @@ const session = require("express-session")({
 const bcrypt = require("bcrypt");
 const jwtGenerator = require("./server/utils/jwtGenerator");
 
-const { v4: uuidv4 } = require('uuid');
-
 const sharedsession = require("express-socket.io-session");
 const {pool, pgListen} = require("./server/db");
 const bodyParser = require('body-parser');
@@ -452,7 +450,8 @@ pgListen.events.on("reconnect", e => {
 
 
 pgListen.notifications.on("new_contest", e => {
-    if(e.status__c === 'Finished'){
+    console.log('pg listen');
+    if(e.status__c !== 'Finished'){
         io.to(e.contest__c).emit("new_contest", e)
     }
 })
@@ -476,7 +475,7 @@ pgListen.events.on("error", (error) => {
 })
 
 io.on("connection", async (socket) => {
-    
+    console.log('socket connection');
     pgListen.listenTo("new_question");
     pgListen.listenTo("cor_question");
 
