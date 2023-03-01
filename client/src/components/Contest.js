@@ -160,16 +160,20 @@ const Contest = ({match}) => {
     useEffect(() => {
         getContest().then(r =>  {
             socket.on("connect", () => {
+                console.log('connecting');
             });
 
             socket.on("new_question", question => {
+                console.log('new question');
                 setNewQuestion(question);
 
             })
             socket.on("cor_question", question => {
+                console.log('cor question');
                 setNewCorrectQuestion(question);
             })
             socket.on("new_contest", contest => {
+                console.log('new contest')
                 setContest(contest);
             });
 
