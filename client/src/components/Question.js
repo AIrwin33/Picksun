@@ -65,7 +65,6 @@ const Question = (props) => {
     }
 
     const handleThisPartAnswer = async () => {
-        console.log('handle this');
         try {
             const partsfid = props.partsfid;
             const questid = props.ques.sfid;
@@ -82,11 +81,9 @@ const Question = (props) => {
                 
                 const parseRes = await response.json();
                 setPartAnswer(parseRes);
-                console.log('IS VALIDATED' + parseRes.validated__c);
+               
                 if(parseRes.validated__c ) {
                     updateAllPartAnswers();
-                    console.log('validated question, will update');
-                    console.log('parse res' + JSON.stringify(parseRes));
                 }
                 
                 if (parseRes.status__c === 'Submitted') {
@@ -100,9 +97,7 @@ const Question = (props) => {
     }
 
     const updateAllPartAnswers = async () => {
-        console.log('handle all');
         try{
-            console.log('updating parts answers');
             const partsfid = props.partsfid;
             const body = {partsfid};
             const res = await fetch(`/existingpartanswernoquestion`, {
