@@ -452,17 +452,20 @@ pgListen.events.on("reconnect", e => {
 pgListen.notifications.on("new_contest", e => {
     console.log('pg listen');
     if(e.status__c !== 'Finished'){
+        console.log('calling new contest');
         io.to(e.contest__c).emit("new_contest", e)
     }
 })
 
 pgListen.notifications.on("new_question", e => {
-
+    console.log('calling new question');
     if (e !== undefined && e.published__c && !e.islocked__c) {
+        console.log('entered new question emit');
         io.emit("new_question", e)
     }
 
     if(e.correct_answer__c !== null && e !== undefined) {
+        console.log('entered correct question emit');
         io.emit("cor_question", e)
     }
     
