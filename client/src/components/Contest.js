@@ -158,6 +158,7 @@ const Contest = ({match}) => {
     })
     
     useEffect(() => {
+        console.log('socket' + socket);
         getContest().then(r =>  {
             socket.on("connect", () => {
                 console.log('connecting');
