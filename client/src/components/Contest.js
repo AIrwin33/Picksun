@@ -110,6 +110,7 @@ const Contest = ({match}) => {
     }
 
     const getParticipationByContest = async (contestRec) => {
+        console.log(contestRec.sfid);
         try {
             const res = await fetch(`/participationbycontest/` + contestRec.sfid, {
                 method: "GET",
