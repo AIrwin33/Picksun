@@ -165,6 +165,8 @@ const Contest = ({match}) => {
                 console.log('connecting');
             });
             console.log('here');
+            console.log(socket);
+            console.log(socket.id);
             socket.on("new_question", question => {
                 console.log('new question');
                 setNewQuestion(question);
