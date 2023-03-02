@@ -181,10 +181,6 @@ const Contest = ({match}) => {
                 setContest(contest);
             });
 
-            socket.emit("test", value =>{
-                console.log('this');
-            });
-
             socket.on('disconnect', () =>{
                 console.log('reconnect fired!');
             });
