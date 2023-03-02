@@ -440,6 +440,8 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 
+pgListen.connect();
+
 pgListen.events.on("connected", e => {
     console.log('connected' + e);
 });
@@ -496,7 +498,7 @@ io.on("connection", async (socket) => {
 });
 
 
-pgListen.connect();
+
 console.log('after listen to');
 pgListen.listenTo("new_contest");
 pgListen.listenTo("new_question");
