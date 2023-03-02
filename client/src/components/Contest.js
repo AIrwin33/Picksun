@@ -169,14 +169,20 @@ const Contest = ({match}) => {
                 console.log('new question');
                 setNewQuestion(question);
 
-            })
+            });
+            console.log('before correct question');
             socket.on("cor_question", question => {
                 console.log('cor question');
                 setNewCorrectQuestion(question);
-            })
+            });
+            console.log('before new contest');
             socket.on("new_contest", contest => {
                 console.log('new contest')
                 setContest(contest);
+            });
+
+            socket.on("test", value =>{
+                console.log('this');
             });
 
             socket.on('disconnect', () =>{

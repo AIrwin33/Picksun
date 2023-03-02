@@ -458,6 +458,11 @@ pgListen.notifications.on("new_contest", e => {
     }
 })
 
+pgListen.notifications.on('test', e =>){
+    console.log('on e');
+    io.emit("test", e)
+}
+
 pgListen.notifications.on("new_question", e => {
     console.log('emit' + e);
     console.log('calling new question');
