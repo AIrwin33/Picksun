@@ -181,7 +181,7 @@ const Contest = ({match}) => {
                 setContest(contest);
             });
 
-            socket.on("test", value =>{
+            socket.emit("test", value =>{
                 console.log('this');
             });
 
