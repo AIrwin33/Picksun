@@ -160,6 +160,7 @@ const Contest = ({match}) => {
     useEffect(() => {
         console.log('socket' + socket);
         getContest().then(r =>  {
+            console.log(r);
             socket.on("connect", () => {
                 console.log('connecting');
             });
