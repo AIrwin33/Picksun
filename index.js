@@ -488,6 +488,7 @@ io.on("connection", async (socket) => {
     console.log('socket connection');
     pgListen.listenTo("new_question");
     pgListen.listenTo("cor_question");
+    pgListen.listenTo("new_contest");
     console.log('listening');
     // socket.on("disconnect", (reason) => {
 
@@ -498,6 +499,8 @@ io.on("connection", async (socket) => {
 pgListen.connect();
 console.log('after listen to');
 pgListen.listenTo("new_contest");
+pgListen.listenTo("new_question");
+pgListen.listenTo("cor_question");
 
 io.on('connect_error', function(err) {
     console.log("client connect_error: ", err);
