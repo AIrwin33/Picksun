@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
 
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'dist', 'index.html')) // relative path
+        res.sendFile(path.join(__dirname, 'dist/pickfun', 'index.html')) // relative path
     })
 }
 
