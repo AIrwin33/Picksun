@@ -6,7 +6,7 @@ const setupSocketIO = require('./socket');
 // const ParticipantsRoutes = require('./router/participants')
 // const ProfileRoutes = require('./router/profile')
 // const auth = require('./router/auth')
-//const path = require('path');
+const path = require('path');
 
 // serve static files
 app.use(express.static('public'));
