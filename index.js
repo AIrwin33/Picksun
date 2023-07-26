@@ -6,7 +6,7 @@ const setupSocketIO = require('./socket');
 // const ParticipantsRoutes = require('./router/participants')
 // const ProfileRoutes = require('./router/profile')
 // const auth = require('./router/auth')
-const path = require('path');
+//const path = require('path');
 
 // serve static files
 app.use(express.static('public'));
@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
 
   app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'client', 'index.html')) // relative path
+      res.sendFile(path.join(__dirname, 'dist', 'index.html')) // relative path
   })
 }
 
