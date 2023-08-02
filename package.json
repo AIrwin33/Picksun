@@ -11,8 +11,7 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm start --prefix client",
-    "build": "vite build ./client",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --prefix client --legacy-peer-deps && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -45,8 +44,6 @@
   "devDependencies": {
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "@vitejs/plugin-react": "^4.0.0",
-    "react-scripts": "^5.0.1",
-    "vite": "^4.3.2"
+    "react-scripts": "^5.0.1"
   }
 }
