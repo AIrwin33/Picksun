@@ -16,17 +16,20 @@ app.use(express.static('public'));
 // app.use('/profile',ProfileRoutes)
 // app.use('/auth',auth)
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/public'))
+if (true) {
+    // app.use(express.static('client/public'));
+    app.use(express.static(path.join(__dirname, '/client/build')));
 
-  app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'client','index.html')) // relative path
-  })
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+        // res.sendFile(path.join(__dirname, 'client','index.html')) // relative path
+    });
+} else {
+    app.get('/', (req, res) => {
+        res.send('server is listening');
+    });
 }
 
-app.get('/', (req, res) => {
-res.send('server is listening')
-});
 
 
 
