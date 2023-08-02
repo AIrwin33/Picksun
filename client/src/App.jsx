@@ -69,8 +69,8 @@ function App () {
 
             <Routes>
               <Route
-                path='/Login'
-                render={props => <Login {...props} setAuth={setAuth} />}
+              path='/Login'
+              element={<Login setAuth={setAuth} />}
               />
               <Route
                 path='/Register'
