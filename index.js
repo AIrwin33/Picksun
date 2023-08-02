@@ -16,7 +16,7 @@ app.use(express.static('public'));
 // app.use('/profile',ProfileRoutes)
 // app.use('/auth',auth)
 
-if (true) {
+if (process.env.NODE_ENV==="production") {
     // app.use(express.static('client/public'));
     app.use(express.static(path.join(__dirname, '/client/build')));
 
