@@ -78,7 +78,7 @@ function App () {
               />
               <Route
                 path='/Resetpassword'
-                element={<Reset {...props} />}
+                element={<Reset />}
               />
               <Route
                 path='/Lobby'
