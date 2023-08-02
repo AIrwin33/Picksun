@@ -74,15 +74,15 @@ function App () {
               />
               <Route
                 path='/Register'
-                render={props => <Register {...props} setAuth={setAuth} />}
+                element={<Register setAuth={setAuth} />}
               />
               <Route
                 path='/Resetpassword'
-                render={props => <Reset {...props} />}
+                element={<Reset {...props} />}
               />
               <Route
                 path='/Lobby'
-                render={props =>
+                element={props =>
                   isAuthenticated ? (
                     <Lobby {...props} />
                   ) : (
@@ -92,7 +92,7 @@ function App () {
               />
               <Route
                 path='/Contests'
-                render={props =>
+                element={props =>
                   isAuthenticated ? (
                     <Contests {...props} />
                   ) : (
@@ -102,7 +102,7 @@ function App () {
               />
               <Route
                 path='/Profile'
-                render={props =>
+                element={props =>
                   isAuthenticated ? (
                     <Profile
                       {...props}
@@ -116,7 +116,7 @@ function App () {
               />
               <Route
                 path='/Contest/:id'
-                render={props =>
+                element={props =>
                   isAuthenticated ? (
                     <Contest {...props} setAuth={setAuth} />
                   ) : (
@@ -126,7 +126,7 @@ function App () {
               />
               <Route
                 path='/Questions/:contestid'
-                render={props =>
+                element={props =>
                   isAuthenticated ? (
                     <Questions {...props} />
                   ) : (
