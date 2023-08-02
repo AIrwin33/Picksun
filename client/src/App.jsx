@@ -9,16 +9,16 @@ import {
 import { SocketContext, socket } from './socket'
 
 import './App.css'
-import Login from './components/Login'
-import Register from './components/Register'
-import Reset from './components/Reset'
-import Lobby from './components/Lobby'
-import Profile from './components/Profile'
-import Contests from './components/Contests'
-import Contest from './components/Contest'
-import Questions from './components/Questions'
-import TopPanel from './components/TopPanel'
-import Landing from './components/Landing'
+import Login from './components/Login.jsx'
+import Register from './components/Register.jsx'
+import Reset from './components/Reset.jsx'
+import Lobby from './components/Lobby.jsx'
+import Profile from './components/Profile.jsx'
+import Contests from './components/Contests.jsx'
+import Contest from './components/Contest.jsx'
+import Questions from './components/Questions.jsx'
+import TopPanel from './components/TopPanel.jsx'
+import Landing from './components/Landing.jsx'
 
 function App () {
   const [isProfile, setIsProfile] = useState(false)
