@@ -36,7 +36,8 @@ function App () {
         headers: header
       })
 
-      const parseRes = await res.json()
+      const parseRes = await res.json();
+      console.log(parseRes);
       parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false)
     } catch (err) {
       console.error(err.message)
