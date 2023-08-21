@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const setupSocketIO = require('./socket');
-const ContestRoutes = require('/server/routes/contest')
-const ParticipantsRoutes = require('/server/routes/participants')
+// const ContestRoutes = require('/server/routes/contest')
+// const ParticipantsRoutes = require('/server/routes/participants')
 const ProfileRoutes = require('/server/routes/profile')
 const auth = require('/server/routes/auth')
 const path = require('path');
@@ -11,8 +11,8 @@ const path = require('path');
 // serve static files
 app.use(express.static('public'));
 // create a route
-app.use(ContestRoutes)
-app.use(ParticipantsRoutes)
+// app.use(ContestRoutes)
+// app.use(ParticipantsRoutes)
 app.use(ProfileRoutes)
 app.use(auth)
 
