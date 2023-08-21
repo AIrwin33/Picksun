@@ -3,8 +3,8 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const {pool} = require("../db");
 const jwtGenerator = require("../utils/jwt");
-const validInfo = require("../utils/validinfo");
-const authorization = require("../utils/authorize");
+const validInfo = require("../utils/validinfo.js");
+const authorization = require("../utils/authorize.js");
 
 const session = require('express-session')({
     secret: 'my-secret',
