@@ -2,19 +2,19 @@ const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
 const setupSocketIO = require('./socket');
-const ContestRoutes = require('/server/routes/contest.js')
-const ParticipantsRoutes = require('/server/routes/participants.js')
-const ProfileRoutes = require('/server/routes/profile.js')
-const auth = require('/server/routes/auth.js')
+const ContestRoutes = require('/server/routes/contest')
+const ParticipantsRoutes = require('/server/routes/participants')
+const ProfileRoutes = require('/server/routes/profile')
+const auth = require('/server/routes/auth')
 const path = require('path');
 
 // serve static files
 app.use(express.static('public'));
 // create a route
-app.use('/contest',ContestRoutes)
-app.use('/participants',ParticipantsRoutes)
-app.use('/profile',ProfileRoutes)
-app.use('/auth',auth)
+app.use(ContestRoutes)
+app.use(ParticipantsRoutes)
+app.use(ProfileRoutes)
+app.use(auth)
 
 if (process.env.NODE_ENV==="production") {
     // app.use(express.static('client/public'));
