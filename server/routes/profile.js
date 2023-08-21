@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const authorization = require("../utils/authorize");
+const authorization = require("..utils/authorize.js");
 
 router.get("/", (req, res) => {
   res.send({ response: "I am alive" }).status(200);
