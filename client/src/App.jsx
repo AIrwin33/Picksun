@@ -18,7 +18,7 @@ import Contests from './components/Contests.jsx'
 import Contest from './components/Contest.jsx'
 import Questions from './components/Questions.jsx'
 import TopPanel from './components/TopPanel.jsx'
-import Landing from './components/Landing'
+import Landing from './components/Landing.jsx'
 
 function App () {
   const [isProfile, setIsProfile] = useState(false)
