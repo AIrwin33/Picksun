@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.status(200).send({ response: "I am alive" });
-});
+
 router.get("/", async (req, res) => {
     try {
         const allParticipants = await pool.query("SELECT * FROM salesforce.participant__c");

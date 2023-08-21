@@ -3,9 +3,6 @@ const router = express.Router();
 
 const authorization = require("../utils/authorize");
 
-router.get("/", (req, res) => {
-  res.send({ response: "I am alive" }).status(200);
-});
 router.get("/mycontests", authorization, async (req, res) => {
     try {
         //get all participations based on external ID
