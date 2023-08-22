@@ -135,7 +135,7 @@ function App () {
                   )
                 }
               />
-              <Route path='/' element={<Landing {...props}/>} />
+              <Route path='/' element={<Landing />} />
             </Routes>
 
             <div className='footer'>
