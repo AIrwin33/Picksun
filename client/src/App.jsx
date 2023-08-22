@@ -22,7 +22,7 @@ import Landing from './components/Landing.jsx'
 
 function App () {
   const [isProfile, setIsProfile] = useState(false)
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   //check if the user is authenticated
   const checkAuthenticated = async () => {
     try {
@@ -48,7 +48,7 @@ function App () {
     console.log(isAuthenticated)
     checkAuthenticated()
 
-  }, [])
+  }, [props])
 
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
@@ -89,7 +89,7 @@ function App () {
                   isAuthenticated ? (
                     <Lobby {...props} />
                   ) : (
-                    <Navigate to='/Login' />
+                    <Login setAuth={setAuth} /> 
                   )
                 }
               />
