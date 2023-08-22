@@ -31,7 +31,7 @@ function App () {
         'Content-type': 'application/json',
         jwt_token: localStorage.token
       }
-      const res = await fetch('/server/routes/auth/verify', {
+      const res = await fetch('/auth/verify', {
         method: 'POST',
         headers: header
       })
@@ -45,7 +45,9 @@ function App () {
   }
 
   useEffect(() => {
+    console.log(isAuthenticated)
     checkAuthenticated()
+    
   }, [])
 
   const [isAuthenticated, setIsAuthenticated] = useState(true)
