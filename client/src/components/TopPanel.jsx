@@ -11,7 +11,7 @@ const TopPanel = props => {
 
   const getProfile = async () => {
     try {
-      const res = await fetch('/server/routes/profile.js', {
+      const res = await fetch('profile/profile', {
         method: 'POST',
         headers: { jwt_token: localStorage.token }
       })

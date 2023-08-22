@@ -47,10 +47,10 @@ function App () {
   useEffect(() => {
     console.log(isAuthenticated)
     checkAuthenticated()
-    
+
   }, [])
 
-  const [isAuthenticated, setIsAuthenticated] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const setProfile = boolean => {
     //set if the page is the profile or not for CSS changes
