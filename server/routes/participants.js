@@ -3,7 +3,7 @@ const router = express.Router();
 const {pool} = require("../db.js");
 
 
-router.get("/", async (req, res) => {
+router.get("/participants", async (req, res) => {
     try {
         const allParticipants = await pool.query("SELECT * FROM salesforce.participant__c");
         res.json(allParticipants.rows)
