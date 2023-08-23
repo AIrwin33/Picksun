@@ -69,7 +69,7 @@ function App () {
               <TopPanel profile={isProfile} />
             </div>
 
-            <Routes>
+            <Switch>
               <Route
               path='/Login'
               element={<Login setAuth={setAuth} />}
@@ -137,7 +137,7 @@ function App () {
                 }
               />
               <Route path='/' element={<Landing />} />
-            </Routes>
+            </Switch>
 
             <div className='footer'>
               <Row className='justify-content-md-center'>
