@@ -38,17 +38,17 @@ function App () {
 
       const parseRes = await res.json();
       console.log(parseRes);
-      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false)
+      parseRes === true ? setAuth(true) : setAuth(false)
     } catch (err) {
       console.error(err.message)
     }
   }
 
   useEffect(() => {
-    console.log(isAuthenticated)
+    console.log(isAuthenticated);
     checkAuthenticated()
 
-  }, [props])
+  }, [])
 
   const setProfile = boolean => {
     //set if the page is the profile or not for CSS changes
