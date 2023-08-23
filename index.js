@@ -12,6 +12,7 @@ const session = require("express-session")({
     saveUninitialized: true
   });
 
+const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 app.set('port', (process.env.PORT || 5000));
 app.use(cors());
