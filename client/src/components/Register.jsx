@@ -28,7 +28,7 @@ const Register = ({ setAuth }) => {
     e.preventDefault();
     try {
       const body = { email, password, name };
-
+      console.log(body);
       const response = await fetch(
         "/auth/register",
         {
