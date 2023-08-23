@@ -1,57 +1,25 @@
-const express = require("express");
+const express = require('express');
+const router = express.Router();
 const app = express();
+const cors = require('cors');
 const http = require('http').createServer(app);
-const io = require("socket.io")(http);
+const setupSocketIO = require('./socket');
+const authorization = require("./server/utils/authorize");
 const session = require("express-session")({
-  secret: "my-secret",
-  resave: true,
-  saveUninitialized: true
-});
+    secret: "my-secret",
+    resave: true,
+    saveUninitialized: true
+  });
 
-const { v4: uuidv4 } = require('uuid');
-
-const sharedsession = require("express-socket.io-session");
-const {pool, pgListen} = require("./server/db");
-const bodyParser = require('body-parser');
-require("dotenv").config();
-//middleware
-const cors = require("cors");
-
+const path = require('path');
 app.set('port', (process.env.PORT || 5000));
 app.use(cors());
 app.use(express.json());
-
-// Attach session
 app.use(session);
- 
-// Share session with io sockets
-io.use(sharedsession(session));
-const authorization = require("./server/middleware/authorize");
-const PORT = process.env.PORT || 5000;
-const path = require("path");
-
-
-
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
-
-//PG Promise setup
-const promise = require('bluebird'); // or any other Promise/A+ compatible library;
-
-const initOptions = {
-    promiseLib: promise, // overriding the default (ES6 Promise);
-    schema: ['public', 'salesforce']
-};
-
-
-const pgp = require('pg-promise')(initOptions);
-pgp.pg.defaults.ssl = false;
-
-// ROUTES
-app.use(express.static(path.join(__dirname, "/public")));
-app.use("/auth", require("./server/routes/jwtAuth"));
-//GET ALL PARTICIPANTS
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+// serve static files
+app.use(express.static('public'));
+// create a route
+app.use("/auth",require('./server/routes/jwtAuth'));
 
 
 
