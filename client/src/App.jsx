@@ -87,7 +87,7 @@ function App () {
                     isAuthenticated ? (
                         <Lobby {...props}  />
                     ) : (
-                        <Redirect to="/Login"/>
+                        <Login/>
                     )
                 }
               />
