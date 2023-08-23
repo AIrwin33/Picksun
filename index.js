@@ -8,6 +8,7 @@ const authorization = require("./server/utils/authorize");
 
 const path = require('path');
 app.use(cors());
+app.use(express.json());
 // serve static files
 app.use(express.static('public'));
 // create a route
