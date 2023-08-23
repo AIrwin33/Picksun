@@ -21,19 +21,7 @@ app.use(express.static('public'));
 // create a route
 app.use("/auth",require('./server/routes/jwtAuth'));
 
-if (process.env.NODE_ENV==="production") {
-    // app.use(express.static('client/public'));
-    app.use(express.static(path.join(__dirname, '/client/build')));
 
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-        // res.sendFile(path.join(__dirname, 'client','index.html')) // relative path
-    });
-} else {
-    app.get('/', (req, res) => {
-        res.send('server is listening');
-    });
-}
 
 app.post("/profile", authorization, async (req, res) => {
     try {
@@ -221,6 +209,19 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
 
 });
 
+if (process.env.NODE_ENV==="production") {
+    // app.use(express.static('client/public'));
+    app.use(express.static(path.join(__dirname, '/client/build')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+        // res.sendFile(path.join(__dirname, 'client','index.html')) // relative path
+    });
+} else {
+    app.get('/', (req, res) => {
+        res.send('server is listening');
+    });
+}
 // set up Socket.IO
 setupSocketIO(http);
 
