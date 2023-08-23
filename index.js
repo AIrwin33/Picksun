@@ -4,6 +4,7 @@ const app = express();
 const cors = require('cors');
 const http = require('http').createServer(app);
 const setupSocketIO = require('./socket');
+const {pool, pgListen} = require("./server/db");
 const authorization = require("./server/utils/authorize");
 const session = require("express-session")({
     secret: "my-secret",
