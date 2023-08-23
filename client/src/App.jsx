@@ -1,12 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import {
-  BrowserRouter as Router,
-  Navigate,
-  Route,
-  Routes,
-  Switch
-} from 'react-router-dom'
+import {BrowserRouter as Router, Navigate, Route, Routes, Switch} from 'react-router-dom'
 import { SocketContext, socket } from './socket'
 
 import './App.css'
