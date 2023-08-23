@@ -31,6 +31,7 @@ function App () {
         'Content-type': 'application/json',
         jwt_token: localStorage.token
       }
+      console.log('header' + header);
       const res = await fetch('/auth/verify', {
         method: 'POST',
         headers: header
