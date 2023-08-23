@@ -83,12 +83,12 @@ function App () {
               />
               <Route
                 path='/Lobby'
-                element={props =>
-                  isAuthenticated ? (
-                    <Lobby {...props} />
-                  ) : (
-                    <Login setAuth={setAuth} /> 
-                  )
+                  render={props =>
+                    isAuthenticated ? (
+                        <Lobby {...props}  />
+                    ) : (
+                        <Redirect to="/Login"/>
+                    )
                 }
               />
               <Route
