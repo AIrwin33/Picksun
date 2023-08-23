@@ -78,6 +78,7 @@ const Profile = (props) => {
     }
 
     useEffect(() => {
+        console.log('getting profile');
         getProfile();
         //set profile to true for changing background color
         props.setProfile(true);

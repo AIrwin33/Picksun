@@ -52,6 +52,7 @@ const Lobby = () => {
            
        };
      useEffect(() => {
+       console.log('getting all contests');
        getAllContests();
        }, []);
         return (
