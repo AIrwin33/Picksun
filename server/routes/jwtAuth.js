@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const {pool} = require("../db.js");
-const jwtGenerator = require("../utils/jwt");
+const jwtGenerator = require("../utils/jwtGenerator");
 const validInfo = require("../utils/validinfo");
 const authorization = require("../utils/authorize");
 

@@ -1,41 +1,16 @@
 const jwt = require("jsonwebtoken");
-const getToken = (user) => {
-  return jwt.sign(
-    {
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-    },
-    config.JWT_SECRET,
-    {
-      expiresIn: '48h',
-    }
-  );
-};
+require("dotenv").config();
 
-const isAuth = (req, res, next) => {
-  const token = req.headers.authorization;
+function jwtGenerator(participant_id) {
+    console.log('jwt generator' + participant_id);
+    console.log('secret key ' + process.env.jwtSecret)
+    const payload = {
+        user: {
+            id: participant_id
+        }
+    };
 
-  if (token) {
-    const onlyToken = token.slice(7, token.length);
-    jwt.verify(onlyToken, config.JWT_SECRET, (err, decode) => {
-      if (err) {
-        return res.status(401).send({ message: 'Invalid Token' });
-      }
-      req.user = decode;
-      next();
-      return;
-    });
-  } else {
-    return res.status(401).send({ message: 'Token is not supplied.' });
-  }
-};
+    return jwt.sign(payload, process.env.jwtSecret, {expiresIn: "3h"});
+}
 
-const isAdmin = (req, res, next) => {
-  console.log(req.user);
-  if (req.user && req.user.isAdmin) {
-    return next();
-  }
-  return res.status(401).send({ message: 'Admin Token is not valid.' });
-};
+module.exports = jwtGenerator;
