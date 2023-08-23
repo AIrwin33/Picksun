@@ -21,8 +21,8 @@ app.use(express.static('public'));
 // create a route
 app.use("/auth",require('./server/routes/jwtAuth'));
 app.use("/profile", require('./server/routes/profile'));
-// app.use(require('./server/routes/contest'));
-// app.use(require('./server/routes/participants'));
+app.use("/contest", require('./server/routes/contest'));
+app.use("/parts", require('./server/routes/participants'));
 
 if (process.env.NODE_ENV==="production") {
     // app.use(express.static('client/public'));
