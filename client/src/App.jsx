@@ -79,9 +79,9 @@ function App () {
               />
               <Route
                 path='/Lobby'
-                element={props =>
+                element={
                   isAuthenticated ? (
-                    <Lobby {...props} />
+                    <Lobby  />
                   ) : (
                     <Navigate to='/Login' />
                   )
@@ -103,9 +103,9 @@ function App () {
               />
               <Route
                 path='/Contest/:id'
-                element={props =>
+                element={
                   isAuthenticated ? (
-                    <Contest {...props} setAuth={setAuth} />
+                    <Contest setAuth={setAuth} />
                   ) : (
                     <Navigate to='/Login' />
                   )
