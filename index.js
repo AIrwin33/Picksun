@@ -8,10 +8,10 @@ const path = require('path');
 // serve static files
 app.use(express.static('public'));
 // create a route
-app.use(require('./server/routes/auth'));
-app.use(require('./server/routes/profile'))
-app.use(require('./server/routes/contest'))
-app.use(require('./server/routes/participants'))
+app.use("/auth",require('./server/routes/auth'));
+// app.use(require('./server/routes/profile'))
+// app.use(require('./server/routes/contest'))
+// app.use(require('./server/routes/participants'))
 
 if (process.env.NODE_ENV==="production") {
     // app.use(express.static('client/public'));
