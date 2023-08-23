@@ -4,7 +4,8 @@ import {
   BrowserRouter as Router,
   Navigate,
   Route,
-  Routes
+  Routes,
+  Switch
 } from 'react-router-dom'
 import { SocketContext, socket } from './socket'
 
