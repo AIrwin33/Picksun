@@ -22,7 +22,7 @@ const Login = () => {
     try {
       const body = { email, password }
       console.log('body' + JSON.stringify(body))
-      const response = await fetch('/auth/login', {
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

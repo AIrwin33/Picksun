@@ -33,6 +33,15 @@ if (process.env.NODE_ENV==="production") {
 // set up Socket.IO
 setupSocketIO(http);
 
+router.post("/profile", authorization, async (req, res) => {
+    try {
+        const participant = await pool.query("SELECT * FROM salesforce.participant__c WHERE ExternalId__c = $1", [req.user.id]);
+        res.json(participant.rows[0]);
+    } catch (err) {
+        console.log('err profile::' + err);
+    }
+});
+
 // start the server
 const port = process.env.PORT || 5000;
 http.listen(port, () => {
