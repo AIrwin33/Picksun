@@ -23,7 +23,7 @@ app.use("/auth",require('./server/routes/jwtAuth'));
 
 
 
-app.post("/profile", authorization, async (req, res) => {
+app.post("/myprofile", authorization, async (req, res) => {
     try {
         console.log('in profile');
         const participant = await pool.query("SELECT * FROM salesforce.participant__c WHERE ExternalId__c = $1", [req.user.id]);

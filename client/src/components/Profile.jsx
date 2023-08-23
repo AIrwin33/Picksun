@@ -36,7 +36,7 @@ const Profile = (props) => {
 
     const getProfile = async () => {
       try {
-        const res = await fetch("/profile", {
+        const res = await fetch("/myprofile", {
           method: "POST",
           headers: { jwt_token: localStorage.token }
         });
