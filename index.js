@@ -11,7 +11,7 @@ app.use(cors());
 // serve static files
 app.use(express.static('public'));
 // create a route
-app.use("/auth",require('./server/routes/auth'));
+app.use("/auth",require('./server/routes/jwtAuth'));
 app.use("/profile", require('./server/routes/profile'))
 // app.use(require('./server/routes/contest'))
 // app.use(require('./server/routes/participants'))
