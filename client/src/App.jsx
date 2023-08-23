@@ -84,12 +84,12 @@ function App () {
               />
               <Route
                 path='/Lobby'
-                  render={props =>
-                    isAuthenticated ? (
-                        <Lobby {...props}  />
-                    ) : (
-                        <Login/>
-                    )
+                render={props =>
+                  isAuthenticated ? (
+                    <Lobby {...props} />
+                  ) : (
+                    <Navigate to='/Login' />
+                  )
                 }
               />
               <Route
@@ -104,7 +104,7 @@ function App () {
               />
               <Route
                 path='/Profile'
-                element={props =>
+                render={props =>
                   isAuthenticated ? (
                     <Profile
                       {...props}
