@@ -16,7 +16,8 @@ const TopPanel = props => {
         headers: { jwt_token: localStorage.token }
       })
 
-      const parseData = await res.json()
+      const parseData = await res.json();
+      console.log(parseData.name);
       setIsAuthenticated(true)
       setName(parseData.name)
     } catch (err) {
