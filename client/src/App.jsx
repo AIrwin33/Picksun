@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import {BrowserRouter as Router, Navigate, Route, Routes, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom'
 import { SocketContext, socket } from './socket'
 
 import './App.css'
@@ -64,7 +64,7 @@ function App () {
               <TopPanel profile={isProfile} />
             </div>
 
-            <Switch>
+            <Routes>
               <Route
               path='/Login'
               element={<Login setAuth={setAuth} />}
@@ -99,7 +99,7 @@ function App () {
               />
               <Route
                 path='/Profile'
-                render={props =>
+                element={props =>
                   isAuthenticated ? (
                     <Profile
                       {...props}
@@ -132,7 +132,7 @@ function App () {
                 }
               />
               <Route path='/' element={<Landing />} />
-            </Switch>
+            </Routes>
 
             <div className='footer'>
               <Row className='justify-content-md-center'>
