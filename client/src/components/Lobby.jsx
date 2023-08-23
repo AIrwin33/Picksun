@@ -31,7 +31,6 @@ const Lobby = () => {
           console.log(contest_id);
           const body = {contest_id};
           const response = await fetch(
-
             "/participations",
             {
               method: "POST",
