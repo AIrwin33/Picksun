@@ -80,11 +80,7 @@ function App () {
               <Route
                 path='/Lobby'
                 element={
-                  isAuthenticated ? (
                     <Lobby  />
-                  ) : (
-                    <Navigate to='/Login' />
-                  )
                 }
               />
               <Route
