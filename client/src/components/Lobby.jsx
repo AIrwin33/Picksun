@@ -28,7 +28,7 @@ const Lobby = () => {
 
        const enterContest = async (contest_id) => {
         try {
-
+          console.log(contest_id);
           const body = {contest_id};
           const response = await fetch(
 
