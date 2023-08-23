@@ -3,7 +3,7 @@ const router = express.Router();
 const app = express();
 const http = require('http').createServer(app);
 const setupSocketIO = require('./socket');
-const authorization = require("/server/utils/authorize");
+const authorization = require("./server/utils/authorize");
 
 const path = require('path');
 
