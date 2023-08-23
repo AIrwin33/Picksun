@@ -99,14 +99,7 @@ function App () {
               />
               <Route
                 path='/Profile'
-                element={props =>
-                    <Profile
-                      {...props}
-                      setProfile={setProfile}
-                      setAuth={setAuth}
-                    />
-                  
-                }
+                element={<Profile setProfile={setProfile} setAuth={setAuth}/>}
               />
               <Route
                 path='/Contest/:id'

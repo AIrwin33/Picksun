@@ -6,6 +6,7 @@ const authorization = require("../utils/authorize");
 
 router.post("/", authorization, async (req, res) => {
     try {
+        console.log('in profile');
         const participant = await pool.query("SELECT * FROM salesforce.participant__c WHERE ExternalId__c = $1", [req.user.id]);
         res.json(participant.rows[0]);
     } catch (err) {
