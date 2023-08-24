@@ -59,7 +59,7 @@ app.put("/participant/:id", async (req, res) => {
     }
 });
 
-app.post("/participations", async (req, res) => {
+app.post("/participations", authorization, async (req, res) => {
     try {
         //request user expires, find another way
         console.log(req.user);
