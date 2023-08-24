@@ -3,7 +3,7 @@ const router = express.Router();
 const app = express();
 const cors = require('cors');
 const http = require('http').createServer(app);
-import {setupSocketIO} from "./client/src/socket";
+//const setupSocketIO = require('./client/src/socket');
 const {pool, pgListen} = require("./server/db");
 const authorization = require("./server/utils/authorize");
 const session = require("express-session")({
@@ -230,7 +230,7 @@ if (process.env.NODE_ENV==="production") {
     });
 }
 // set up Socket.IO
-setupSocketIO(http);
+//setupSocketIO(http);
 
 // start the server
 const port = process.env.PORT || 5000;
