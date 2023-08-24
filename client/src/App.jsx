@@ -108,11 +108,9 @@ function App () {
               <Route
                 path='/Questions/:contestid'
                 element={props =>
-                  isAuthenticated ? (
-                    <Questions {...props} />
-                  ) : (
-                    <Navigate to='/Login' />
-                  )
+
+                    <Questions  />
+                  
                 }
               />
               <Route path='/' element={<Landing />} />
