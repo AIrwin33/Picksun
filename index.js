@@ -3,7 +3,7 @@ const router = express.Router();
 const app = express();
 const cors = require('cors');
 const http = require('http').createServer(app);
-const socketIo = require('socket.io')(http);
+const socketIO = require('socket.io')(http);
 const {pool, pgListen} = require("./server/db");
 const authorization = require("./server/utils/authorize");
 const session = require("express-session")({
@@ -232,12 +232,12 @@ if (process.env.NODE_ENV==="production") {
 // set up Socket.IO
 
 
-socketIo.on('connection', (socket) => {
+socketIO.on('connection', (socket) => {
     console.log('a user connected');
 
     socket.on('chat message', (msg) => {
       console.log('message: ' + msg);
-      socketIo.emit('chat message', msg);
+      socketIO.emit('chat message', msg);
     });
 
     socket.on('disconnect', () => {
