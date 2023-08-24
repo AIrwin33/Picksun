@@ -34,10 +34,7 @@ const Lobby = () => {
             "/participations",
             {
               method: "POST",
-              headers: {
-                "Content-type": "application/json",
-                jwt_token: localStorage.token
-              },
+              headers: { jwt_token: localStorage.token },
               body: JSON.stringify(body)
             }
           );
