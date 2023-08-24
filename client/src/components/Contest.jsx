@@ -31,6 +31,7 @@ const Contest = ({match}) => {
 
     const getContest = async () => {
         try {
+            console.log(match.params.id);
             const res = await fetch(`/contestdetail/${match.params.id}`, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
