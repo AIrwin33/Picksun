@@ -100,8 +100,8 @@ function App () {
               />
               <Route
                 path='/Contest/:id'
-                element={props =>
-                    <Contest setAuth={setAuth} {...props}/>
+                element={
+                    <Contest setAuth={setAuth} />
                 }
               />
               <Route
