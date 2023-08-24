@@ -62,7 +62,7 @@ app.put("/participant/:id", async (req, res) => {
 app.post("/participations", async (req, res) => {
     try {
         //request user expires, find another way
-        console.log(req.user.id);
+        console.log(req.user);
         const {contest_id} = req.body;
         console.log(req.user.id);
         const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND participant__r__externalid__c = $2", [contest_id, req.user.id]);
