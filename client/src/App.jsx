@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom'
-import { SocketContext, socket } from './socket'
+import { SocketContext, socket } from '../src/socket'
 
 import './App.css'
 import Login from './components/Login.jsx'
@@ -55,7 +55,6 @@ function App () {
     setIsAuthenticated(boolean)
   }
 
-  const data = useSelector((state) => state.show.value);
 
   return (
     <SocketContext.Provider value={socket}>
