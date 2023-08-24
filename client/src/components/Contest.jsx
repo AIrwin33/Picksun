@@ -2,7 +2,6 @@ import React, {useEffect, useState, useCallback, useMemo} from 'react';
 import {Row, Col, Tab, Tabs, Button, Image, Modal} from "react-bootstrap";
 import {TwitterTimelineEmbed} from 'react-twitter-embed';
 import {SocketContext} from "../socket";
-import {connect} from "react-redux";
 
 import info from '../assets/infoicon.png';
 
@@ -367,4 +366,4 @@ const Contest = ({match}) => {
     )
 }
 
-export default connect()(Contest);
+export default (Contest);
