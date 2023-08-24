@@ -6,18 +6,18 @@ const http = require('http').createServer(app);
 const setupSocketIO = require('./socket');
 const {pool, pgListen} = require("./server/db");
 const authorization = require("./server/utils/authorize");
-const session = require("express-session")({
-    secret: "my-secret",
-    resave: true,
-    saveUninitialized: true
-  });
+// const session = require("express-session")({
+//     secret: "my-secret",
+//     resave: true,
+//     saveUninitialized: true
+//   });
 
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 app.set('port', (process.env.PORT || 5000));
 app.use(cors());
 app.use(express.json());
-app.use(session);
+
 // serve static files
 app.use(express.static('public'));
 // create a route
