@@ -2,8 +2,11 @@ const express = require('express');
 const router = express.Router();
 const app = express();
 const cors = require('cors');
-const http = require('http').createServer(app);
-const setupSocketIO = require('/socket');
+import { createServer } from 'http';
+import { Server } from 'socket.io'; //replaces (import socketIo from 'socket.io')
+
+const httpServer = createServer(app);
+const io = new Server(httpServer, { cors: { origin: '*' } });
 const {pool, pgListen} = require("./server/db");
 const authorization = require("./server/utils/authorize");
 const session = require("express-session")({
@@ -215,6 +218,19 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
     }
 
 });
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+
+    socket.on('chat message', (msg) => {
+      console.log('message: ' + msg);
+      io.emit('chat message', msg);
+    });
+
+    socket.on('disconnect', () => {
+      console.log('user disconnected');
+    });
+  });
 
 if (process.env.NODE_ENV==="production") {
     // app.use(express.static('client/public'));
