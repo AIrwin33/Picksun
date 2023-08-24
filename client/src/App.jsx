@@ -100,11 +100,9 @@ function App () {
               <Route
                 path='/Contest/:id'
                 element={
-                  isAuthenticated ? (
+
                     <Contest setAuth={setAuth} />
-                  ) : (
-                    <Navigate to='/Login' />
-                  )
+                  
                 }
               />
               <Route
