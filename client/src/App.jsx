@@ -55,6 +55,8 @@ function App () {
     setIsAuthenticated(boolean)
   }
 
+  const data = useSelector((state) => state.show.value);
+
   return (
     <SocketContext.Provider value={socket}>
       <Fragment>
