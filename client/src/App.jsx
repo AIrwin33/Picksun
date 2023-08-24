@@ -79,9 +79,13 @@ function App () {
               />
               <Route
                 path='/Lobby'
-                element={
-                    <Lobby  />
-                }
+                element={props =>
+                  isAuthenticated ? (
+                      <Lobby {...props}  />
+                  ) : (
+                      <Redirect to="/Login"/>
+                  )
+              }
               />
               <Route
                 path='/Contests'
