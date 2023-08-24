@@ -2,6 +2,7 @@ import React, {useEffect, useState, useCallback} from 'react';
 import {Row, Col, Tab, Tabs, Button, Image, Modal} from "react-bootstrap";
 import {TwitterTimelineEmbed} from 'react-twitter-embed';
 import {SocketContext} from "../socket";
+import {connect} from "react-redux";
 
 import info from '../assets/infoicon.png';
 
