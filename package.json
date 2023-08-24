@@ -35,8 +35,6 @@
     "pg": "^8.8.0",
     "pg-listen": "^1.7.0",
     "pg-promise": "^10.11.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.0.5",
     "socket.io": "^4.6.1",
     "socket.io-client": "^4.6.1",
     "uuid": "^8.3.2",

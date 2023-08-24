@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom'
-import { useSelector, useDispatch, Provider } from 'react-redux';
 import { SocketContext, socket } from '../src/socket'
 
 import './App.css'
