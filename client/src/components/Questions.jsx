@@ -6,14 +6,14 @@ import { useMemo } from 'react';
 console.log(useMemo);
 import Timer from 'react-compound-timer'
 
-import Question from './Question.jsx'
-import Answers from './Answers.jsx'
+import Question from './Question'
+import Answers from './Answers'
 
 import baseball from '../assets/Baseballspinning.gif'
 import football from '../assets/football.gif'
 import basketball from '../assets/basketball.gif'
 import hourglass from '../assets/hourglass.png'
-import { SocketContext } from '../socket.js'
+import { SocketContext } from '../socket'
 
 import './Questions.css'
 
