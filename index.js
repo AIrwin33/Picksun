@@ -3,7 +3,7 @@ const router = express.Router();
 const app = express();
 const cors = require('cors');
 const http = require('http').createServer(app);
-const setupSocketIO = require('/socket');
+const socketIo = require('socket.io')
 const {pool, pgListen} = require("./server/db");
 const authorization = require("./server/utils/authorize");
 const session = require("express-session")({
@@ -230,7 +230,20 @@ if (process.env.NODE_ENV==="production") {
     });
 }
 // set up Socket.IO
-setupSocketIO(http);
+    const io = socketIO(http);
+
+  io.on('connection', (socket) => {
+    console.log('a user connected');
+
+    socket.on('chat message', (msg) => {
+      console.log('message: ' + msg);
+      io.emit('chat message', msg);
+    });
+
+    socket.on('disconnect', () => {
+      console.log('user disconnected');
+    });
+  });
 
 // start the server
 const port = process.env.PORT || 5000;
