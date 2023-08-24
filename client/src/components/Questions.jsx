@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { Carousel, Col, Button, Modal, Row, Image } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import { useMemo } from 'react';
-console.log(useMemo);
 import Timer from 'react-compound-timer'
 
 import Question from './Question'

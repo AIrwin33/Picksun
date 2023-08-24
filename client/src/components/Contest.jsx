@@ -1,10 +1,8 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState, useCallback, useMemo} from 'react';
 import {Row, Col, Tab, Tabs, Button, Image, Modal} from "react-bootstrap";
 import {TwitterTimelineEmbed} from 'react-twitter-embed';
 import {SocketContext} from "../socket";
 import {connect} from "react-redux";
-import { useMemo } from 'react';
-console.log(useMemo);
 
 import info from '../assets/infoicon.png';
 
