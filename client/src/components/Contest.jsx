@@ -2,6 +2,9 @@ import React, {useEffect, useState, useCallback, useMemo} from 'react';
 import {Row, Col, Tab, Tabs, Button, Image, Modal} from "react-bootstrap";
 import {TwitterTimelineEmbed} from 'react-twitter-embed';
 import {SocketContext} from "../socket";
+import { useParams } from 'react-router-dom';
+
+
 
 import info from '../assets/infoicon.png';
 
@@ -12,7 +15,8 @@ import Questions from './Questions';
 import avatar from '../assets/blue_avatar_200.png';
 
 
-const Contest = ({match}) => {
+const Contest = () => {
+    const {id} = useParams();
     const [contest, setContest] = useState([]);
     const [isloaded, setLoaded] = useState(false);
     const [showInfo, setShowInfo] = useState(false);
@@ -31,8 +35,8 @@ const Contest = ({match}) => {
 
     const getContest = async () => {
         try {
-            console.log(match.params.id);
-            const res = await fetch(`/contestdetail/${match.params.id}`, {
+            console.log(id);
+            const res = await fetch(`/contestdetail/${id}`, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
             });
