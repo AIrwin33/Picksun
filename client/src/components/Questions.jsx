@@ -486,7 +486,7 @@ const Questions = props => {
         setPublishedQuestions(newquestions.length)
         setQuestionIds(newquestionids)
         setQuestions(newquestions)
-
+        console.log('set q')
         setTimeout(function () {
           console.log('timeout part answers')
           doGetParticipationWrongAnswers()
