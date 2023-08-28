@@ -47,6 +47,7 @@ const Questions = props => {
   const [contestWonText, setContestWonText] = useState([])
   const [showContestFinished, setShowContestFinished] = useState(false)
   const [contestFinishedText, setContestFinishedText] = useState([])
+  const carouselRef = React.createRef()
   const socket = React.useContext(SocketContext)
   const [newQuestion, setNewQuestion] = useState()
   const [newCorrectQuestion, setNewCorrectQuestion] = useState()
@@ -112,7 +113,7 @@ const Questions = props => {
           var diffTime = moment(closedTimerInt).diff(currtime)
           console.log(diffTime);
           if(diffTime > 0){
-            setShowTImer(true);
+            setShowTImer(true)
           }
         } else {
         }
