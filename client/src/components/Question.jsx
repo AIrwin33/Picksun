@@ -168,208 +168,135 @@ const Question = props => {
 
   return (
     <>
-      <div className='infoDiv mb-4'>
-        <a src='#' className='float-right' onClick={handleInfoShow}>
-          <Image src={info} width='22'></Image>
+    <div className="infoDiv mb-4">
+        <a src="#" className="float-right" onClick={handleInfoShow} >
+            <Image src={info} width="22"></Image>
         </a>
-        <Modal className='modalDiv' show={showInfo} onHide={handleInfoClose}>
-          <Modal.Header closeButton>
-            <Modal.Title className='aptifer font16 modalHeader'>
-              How To Pick Fun
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body className='proxima font12 modalBody'>
-            <span>- Pick an answer for each question.</span> <br />
-            <span>
-              - Click ‘Submit Answers’ before countdown timer reaches zero
-            </span>
-            <br />
-            <span>
-              - Your picks are graded in real-time when the correct answer
-              becomes known in the live event
-            </span>
-            <br />
-            <span>
-              - If or when you reach the limit for wrong answers - the Knockout
-              Limit - you’re removed from the contest
-            </span>
-            <br />
-            <span>
-              - Click Participants to keep track of how your competitors are
-              doing
-            </span>
-            <br />
-            <span>- Click Twitter for contest updates</span>
-            <br />
-            <span>
-              - Visit our website for details on scoring &amp; prizes
-              (https://www.pick.fun/rules)
-            </span>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              className='aptifer modalBtn'
-              variant='secondary'
-              onClick={handleInfoClose}
-            >
-              Close
+        <Modal className="modalDiv" show={showInfo} onHide={handleInfoClose}>
+            <Modal.Header closeButton>
+            <Modal.Title className="aptifer font16 modalHeader">How To Pick Fun</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="proxima font12 modalBody">
+                <span>
+                    - Pick an answer for each question.
+                </span> <br/>
+                <span>
+                    - Click ‘Submit Answers’ before countdown timer reaches zero
+                </span><br/>
+                <span>
+                    - Your picks are graded in real-time when the correct answer becomes known in the live event
+                </span><br/>
+                <span>
+                    - If or when you reach the limit for wrong answers - the Knockout Limit - you’re removed from the contest
+                </span><br/>
+                <span>
+                    - Click Participants to keep track of how your competitors are doing
+                </span><br/>
+                <span>
+                    - Click Twitter for contest updates
+                </span><br/>
+                <span>
+                    - Visit our website for details on scoring &amp; prizes (https://www.pick.fun/rules)
+                </span>
+            </Modal.Body>
+            <Modal.Footer>
+            <Button className="aptifer modalBtn" variant="secondary" onClick={handleInfoClose}>
+                Close
             </Button>
-          </Modal.Footer>
+            </Modal.Footer>
         </Modal>
-      </div>
-      <Row>
-        <div className='questionTextDiv aptifer'>
-          <h4>
-            {props.questionNum}) {quest.question_text__c}
-          </h4>
+    </div>
+    <Row>
+        <div className="questionTextDiv aptifer">
+            <h4>{props.questionNum}) {quest.question_text__c}</h4>
         </div>
-      </Row>
-      <Row>
+    </Row>
+    <Row>
         <Col>
-          <div className='counterDiv font16 aptifer'>
-            Question: {props.questionNum} of {props.totalQuestions}
-          </div>
+            <div className="counterDiv font16 aptifer">
+                Question: {props.questionNum} of {props.totalQuestions}
+            </div>
         </Col>
-      </Row>
-      <Row>
-        <Col sm={1}></Col>
+    </Row>
+    <Row>
+        <Col sm={1}> 
+        </Col>
         <Col sm={10}>
-          <div
-            className={`btn-group m-2 ${
-              disabledQuestion === true ? 'disabledBtnGroup' : ''
-            }`}
-            role='group'
-            aria-label='Basic example'
-            data-toggle='buttons'
-          >
-            <button
-              type='radio'
-              value='A'
-              className={`btn btn-primary questionButton font20 fontBold proxima ${
-                partAnswer.selection_value__c === quest.answer_a__c &&
-                disabledQuestion
-                  ? 'selectedQuestion'
-                  : ''
-              }`}
-              onClick={handleRadioChange}
-            >
-              {quest.answer_a__c}
-            </button>
-            <button
-              type='radio'
-              value='B'
-              className={`btn btn-primary questionButton font20 fontBold proxima ${
-                partAnswer.selection_value__c === quest.answer_b__c &&
-                disabledQuestion
-                  ? 'selectedQuestion'
-                  : ''
-              }`}
-              onClick={handleRadioChange}
-            >
-              {quest.answer_b__c}
-            </button>
-            {quest.answer_c__c !== null && (
-              <button
-                type='radio'
-                value='C'
-                className={`btn btn-primary questionButton font20 fontBold proxima ${
-                  partAnswer.selection_value__c === quest.answer_c__c &&
-                  disabledQuestion
-                    ? 'selectedQuestion'
-                    : ''
-                }`}
-                onClick={handleRadioChange}
-              >
-                {quest.answer_c__c}
-              </button>
-            )}
-            {quest.answer_d__c !== null && (
-              <button
-                type='radio'
-                value='D'
-                className={`btn btn-primary questionButton font20 fontBold proxima ${
-                  partAnswer.selection_value__c === quest.answer_d__c &&
-                  disabledQuestion
-                    ? 'selectedQuestion'
-                    : ''
-                }`}
-                onClick={handleRadioChange}
-              >
-                {quest.answer_d__c}
-              </button>
-            )}
-          </div>
+            <div className={`btn-group m-2 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
+                aria-label="Basic example" data-toggle="buttons">
+                <button type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_a__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                        onClick={handleRadioChange}>{quest.answer_a__c}</button>
+                <button type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_b__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                        onClick={handleRadioChange}>{quest.answer_b__c}</button>
+                {quest.answer_c__c !== null &&
+                <button type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_c__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                onClick={handleRadioChange}>{quest.answer_c__c}</button>
+            }
+                {quest.answer_d__c !== null &&
+                <button type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_d__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                onClick={handleRadioChange}>{quest.answer_d__c}</button>
+            }
+            </div>
         </Col>
-        <Col sm={1}></Col>
-      </Row>
-
-      {disabledQuestion ? (
+        <Col sm={1}> 
+        </Col>
+    </Row>
+    
+    {disabledQuestion ?
         <div>
-          <Row className='mt-2'>
-            <Col>
-              <div class='font14'>
-                {partAnswer.selection_value__c !== null && (
-                  <span class='proxima'>
-                    My Pick: {partAnswer.selection_value__c}
-                  </span>
-                )}
-                {partAnswer.selection_value__c === null && (
-                  <span class='proxima'>My Pick: Did Not Answer </span>
-                )}
-              </div>
-            </Col>
+            <Row className="mt-2">   
 
-            {/* look here for more info */}
-            {props.ques.correct_answer__c !== null && (
-              <Col>
-                <div className='answerBanner font14'>
-                  {partAnswer.selection__c == props.ques.correct_answer__c && (
-                    <img alt='correct answer' width='20' src={correctLogo} />
-                  )}
+                <Col>
+                    <div class="font14">
+                        {partAnswer.selection_value__c !== null &&
+                        <span class="proxima" >My Pick: {partAnswer.selection_value__c}</span>
+                        }
+                        {partAnswer.selection_value__c === null &&
+                        <span class="proxima">My Pick: Did Not Answer </span>
+                        }
+                    </div>
+                </Col>
 
-                  {partAnswer.selection__c != props.ques.correct_answer__c && (
-                    <img
-                      alt='incorrect answer'
-                      width='20'
-                      src={incorrectLogo}
-                    />
-                  )}
-                  <span class='proxima'>
-                    Answer: {props.ques.correct_answer_value__c}
-                  </span>
-                </div>
-              </Col>
-            )}
+                {/* look here for more info */}
+                {props.ques.correct_answer__c !== null &&
+                <Col>
+                    <div className='answerBanner font14'>
+                        {partAnswer.selection__c == props.ques.correct_answer__c && 
+                            <img alt="correct answer" width="20" src={correctLogo}/>
+                        }
 
-            {props.ques.correct_answer__c === null && (
-              <Col>
-                <div class='font14'>
-                  <span class='proxima'>Answer: Stay Tuned</span>
-                </div>
-              </Col>
-            )}
-          </Row>
+                        {partAnswer.selection__c != props.ques.correct_answer__c && 
+                            <img alt="incorrect answer" width="20" src={incorrectLogo}/>
+                        }
+                        <span class="proxima" >Answer: {props.ques.correct_answer_value__c}</span>
+                    </div>
+                </Col>
+                }
+
+                {props.ques.correct_answer__c === null &&
+                    <Col>
+                    <div class="font14">
+                        <span class="proxima">Answer: Stay Tuned</span>
+                    </div>
+                </Col>
+                }
+            </Row>
+
+            
+        </div> : null
+    }
+
+    {allpartanswers.length > 0 && 
+        <div className="answerMain">
+        {allpartanswers.map(answer => {
+            return <div className={`answerDiv  ${answer.question__c === props.ques.sfid ? ' selected ' : ''}  ${answer.correct__c === true ? 'correct' : ''} ${answer.incorrect__c === true ? 'incorrect' : ''}`}>
+            </div>
+        })}
         </div>
-      ) : null}
-
-      {allpartanswers.length > 0 && (
-        <div className='answerMain'>
-          {allpartanswers.map(answer => {
-            return (
-              <div
-                className={`answerDiv  ${
-                  answer.question__c === props.ques.sfid ? ' selected ' : ''
-                }  ${answer.correct__c === true ? 'correct' : ''} ${
-                  answer.incorrect__c === true ? 'incorrect' : ''
-                }`}
-              ></div>
-            )
-          })}
-        </div>
-      )}
-      {/* end div wrapper */}
+    }              
+    {/* end div wrapper */}
     </>
-  )
+) 
 }
 
 export default Question

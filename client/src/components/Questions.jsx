@@ -56,7 +56,7 @@ const Questions = props => {
       console.log('get all questions');
       console.log(props);
       console.log(props.contestid);
-      const res = await fetch(`/allquestions/`+props.contestid, {
+      const res = await fetch(`/allquestions/` + props.contestid, {
         method: 'GET',
         headers: { jwt_token: localStorage.token }
       })
@@ -514,280 +514,256 @@ const Questions = props => {
   return (
     <>
       {/* Show timer and answer count */}
-      {questions.length > 0 && (
-        <Row className='questionRow m-2 p-2'>
+      {questions.length > 0 &&
+        <Row className="questionRow m-2 p-2">
           {/* slide for questions */}
-          {questions.length !== 0 && (
-            <Col xs={6} className='justify-content-start no-padding'>
+          {questions.length !== 0 &&
+            <Col xs={6} className="justify-content-start no-padding">
               <div key={counter}>
-                <Timer
-                  initialTime={counter}
-                  direction='backward'
-                  lastUnit='s'
+                <Timer initialTime={counter}
+                  direction="backward"
+                  lastUnit="s"
                   checkpoints={[
                     {
                       time: 0,
-                      callback: () => disableQuestions()
+                      callback: () => disableQuestions(),
                     },
                     {
                       time: 10000,
-                      callback: () => warningText()
+                      callback: () => warningText(),
                     }
                   ]}
                 >
-                  {({
-                    start,
-                    resume,
-                    pause,
-                    stop,
-                    reset,
-                    getTimerState,
-                    getTime,
-                    setTime,
-                    timerState
-                  }) => (
+                  {({ start, resume, pause, stop, reset, getTimerState, getTime, setTime, timerState }) => (
+
                     <React.Fragment>
+
                       {/* on timer state of stopped, call the disable function and show answer*/}
-                      {counter > 0 && (
-                        <div className='timerdiv font16'>
-                          {props.sport == 'Baseball' && (
+                      {counter > 0 &&
+                        <div className="timerdiv font16">
+                          {props.sport == 'Baseball' &&
                             <Image width='20' src={baseball} />
-                          )}
-                          {props.sport == 'Football' && (
+                          }
+                          {props.sport == 'Football' &&
                             <Image width='20' src={football} />
-                          )}
-                          {props.sport == 'Basketball' && (
+                          }
+                          {props.sport == 'Basketball' &&
                             <Image width='20' src={basketball} />
-                          )}
+                          }
                           <Timer.Seconds /> Seconds
-                          {props.sport == 'Baseball' && (
+                                        {props.sport == 'Baseball' &&
                             <Image width='20' src={baseball} />
-                          )}
-                          {props.sport == 'Football' && (
+                          }
+                          {props.sport == 'Football' &&
                             <Image width='20' src={football} />
-                          )}
-                          {props.sport == 'Basketball' && (
+                          }
+                          {props.sport == 'Basketball' &&
                             <Image width='20' src={basketball} />
-                          )}
+                          }
                         </div>
-                      )}
+                      }
+
+
                     </React.Fragment>
                   )}
                 </Timer>
-                {review && !showContestFinished && (
-                  <div className='gameBanner font16 text-center'>
-                    <Row className='rowHeight'>
-                      <Col xs={3} lg={4}>
-                        <div className='liveBtnLeft float-right'></div>
+                {review && !showContestFinished &&
+                  <div className="gameBanner font16 text-center">
+                    <Row className="rowHeight">
+                      <Col xs={3} lg={4} >
+                        <div className="liveBtnLeft float-right">
+                        </div>
                       </Col>
                       <Col xs={6} lg={4}>
-                        <h5 className='liveBtnMiddle'>Live</h5>
+                        <h5 className="liveBtnMiddle">Live</h5>
                       </Col>
-                      <Col xs={3} lg={4}>
-                        <div className='liveBtnRight '></div>
+                      <Col xs={3} lg={4} >
+                        <div className="liveBtnRight ">
+                        </div>
                       </Col>
                     </Row>
                   </div>
-                )}
+                }
               </div>
             </Col>
-          )}
+          }
 
-          {partWrongAnswer.wrong_answers_allowed__c && showAnswer && (
-            <Col xs={6} className='justify-content-start no-padding'>
-              <Answers
-                wrong={partWrongAnswer.wrong_answers__c}
-                total={partWrongAnswer.wrong_answers_allowed__c}
-              />
+          {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
+            <Col xs={6} className="justify-content-start no-padding" >
+              <Answers wrong={partWrongAnswer.wrong_answers__c} total={partWrongAnswer.wrong_answers_allowed__c} />
             </Col>
-          )}
+          }
         </Row>
-      )}
-      {isShowWaiting && (
-        <Row className='questionRow m-2 p-2'>
+      }
+      {isShowWaiting &&
+        <Row className="questionRow m-2 p-2">
           <Col>
-            <div className='proxima font16 text-center'>
-              <img width='30' src={hourglass} />
+            <div className="proxima font16 text-center">
+              <img width="30" src={hourglass} />
 
-              <span>{props.contest.waiting_text__c}</span>
+              <span>
+                {props.contest.waiting_text__c}
+
+              </span>
             </div>
           </Col>
         </Row>
-      )}
+      }
       {/* show questions or no question text */}
-      {!isShowWaiting && (
-        <Row className='questionRow m-2 p-2 justify-content-center'>
-          {showEndBanner && placeFin && (
-            <Col sm={12} lg={12} className='endtextbanner text-center font16'>
-              <span class='proxima'>Thanks For Playing</span>
-              <br />
-              <span class='proxima'>Place Finish: {placeFin}</span>
+      {!isShowWaiting &&
+        <Row className="questionRow m-2 p-2 justify-content-center">
+          {showEndBanner && placeFin &&
+            <Col sm={12} lg={12} className="endtextbanner text-center font16">
+              <span class="proxima">Thanks For Playing</span><br />
+              <span class="proxima">Place Finish: {placeFin}</span>
             </Col>
-          )}
+          }
           <Col sm={12} lg={12}>
-            {questions.length > 0 && showAnswer && (
-              <Carousel
-                className='carouselDiv'
-                ref={carouselRef}
-                activeIndex={index}
-                onSelect={handleSelect}
-                interval={null}
-                data-slide-to={index}
-              >
+            {questions.length > 0 && showAnswer &&
+              <Carousel className="carouselDiv" ref={carouselRef} activeIndex={index} onSelect={handleSelect} interval={null}
+                data-slide-to={index}>
                 {questions.map(question => {
-                  return (
-                    <Carousel.Item key={question.id} className='text-center'>
-                      <Question
-                        addAnswer={updateAnswerList}
-                        knockoutcalloutchild={handleKnockoutChild}
-                        ques={question}
-                        contest={props.contest}
-                        questionNum={questionNum}
-                        totalQuestions={publishedQuestions}
-                        isInactive={inactive}
-                        getsubcount={handleSubsegmentCount}
-                        partsfid={partWrongAnswer.sfid}
-                        showAnswers={showAnswer}
-                      />
-                    </Carousel.Item>
-                  )
+                  return <Carousel.Item key={question.id} className="text-center">
+                    <Question addAnswer={updateAnswerList}
+                      knockoutcalloutchild={handleKnockoutChild}
+                      ques={question}
+                      contest={props.contest}
+                      questionNum={questionNum}
+                      totalQuestions={publishedQuestions}
+                      isInactive={inactive}
+                      getsubcount={handleSubsegmentCount}
+                      partsfid={partWrongAnswer.sfid}
+                      showAnswers={showAnswer} />
+                  </Carousel.Item>
                 })}
               </Carousel>
-            )}
+            }
 
-            {questions.length === 0 && (
-              <div className='greyDiv text-center proxima font16'>
+            {questions.length === 0 &&
+              <div className="greyDiv text-center proxima font16">
                 {props.contestQuestionText}
               </div>
-            )}
+            }
+
           </Col>
         </Row>
-      )}
+      }
 
-      <Modal className='modalDiv' show={showEnd} onHide={handleEndClose}>
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body className='proxima font12 modalBody'>
-          <div className='m-3 justify-content-start p-3'>
-            {(props.isKnockedOut === true || showKnockOut === true) && (
+
+      <Modal className="modalDiv" show={showEnd} onHide={handleEndClose}>
+        <Modal.Header closeButton>
+        </Modal.Header>
+        <Modal.Body className="proxima font12 modalBody">
+          <div
+            className="m-3 justify-content-start p-3">
+            {(props.isKnockedOut === true || showKnockOut === true) &&
               <Row>
-                <div className='font16'>
-                  <span>{contestKnockoutText}</span>
-                  <br />
+                <div className="font16">
+                  <span>{contestKnockoutText}</span><br />
                   <span>Your Rank: {placeFin}</span>
                 </div>
               </Row>
-            )}
+            }
 
-            {(props.isContestWon == true || showContestWon == true) && (
+            {(props.isContestWon == true || showContestWon == true) &&
               <Row>
-                <div className='font16'>
+                <div className="font16">
                   <span>{contestWonText}</span>
                 </div>
               </Row>
-            )}
+            }
 
-            {(props.isContestFinished == true || showContestFinished == true) &&
-              (props.isKnockedOut == false || showKnockOut == false) && (
-                <Row>
-                  <div className='font16'>
-                    <span>{contestFinishedText}</span>
-                    <br />
-                    <span>Your Rank: {placeFin}</span>
-                  </div>
-                </Row>
-              )}
+            {(props.isContestFinished == true || showContestFinished == true) && (props.isKnockedOut == false || showKnockOut == false) &&
+              <Row>
+                <div className="font16">
+                  <span>{contestFinishedText}</span><br />
+                  <span>Your Rank: {placeFin}</span>
+                </div>
+              </Row>
+            }
           </div>
+
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            className='aptifer modalBtn'
-            variant='secondary'
-            onClick={handleEndClose}
-          >
+          <Button className="aptifer modalBtn" variant="secondary" onClick={handleEndClose}>
             Close
-          </Button>
+            </Button>
         </Modal.Footer>
       </Modal>
 
-      <Modal
-        className='modalDiv'
-        show={showSubmitModal}
-        onHide={handleSubmitClose}
-      >
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body className='proxima font12 modalBody'>
+      <Modal className="modalDiv" show={showSubmitModal} onHide={handleSubmitClose}>
+        <Modal.Header closeButton>
+        </Modal.Header>
+        <Modal.Body className="proxima font12 modalBody">
           <Row>
-            <Col className='d-flex justify-content-center'>
-              <div className='font16 mb-3'>
+            <Col className="d-flex justify-content-center">
+              <div className="font16 mb-3">
+
                 Submit your Questions here or close the popup to change them
-              </div>
+                            </div>
             </Col>
           </Row>
           <Row>
-            <Col className='d-flex justify-content-center'>
-              <div className='d-flex justify-content-center'>
+            <Col className="d-flex justify-content-center">
+              <div className="d-flex justify-content-center">
                 <button
-                  className={`btn btn-primary submitButton ${
-                    answerListShow === false ? 'disabledSubmit' : ''
-                  }`}
-                  onClick={handleSubmitAnswers}
-                >
-                  submit answers
-                </button>
+                  className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
+                  onClick={handleSubmitAnswers}>submit answers
+                                </button>
               </div>
             </Col>
           </Row>
+
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            className='aptifer modalBtn'
-            variant='secondary'
-            onClick={handleSubmitClose}
-          >
+          <Button className="aptifer modalBtn" variant="secondary" onClick={handleSubmitClose}>
             Close
-          </Button>
+            </Button>
         </Modal.Footer>
       </Modal>
 
       {/* showing submit answers button */}
-      {!review && !submitted && questions.length > 0 && (
-        <Row className='questionRow m-2 p-2 justify-content-center'>
-          <Col xs={2} lg={4}>
-            {counter > 0 && answerListShow && props.sport === 'Basketball' && (
-              <Image width='35' src={basketball} className='float-right' />
-            )}
-            {counter > 0 && answerListShow && props.sport === 'Baseball' && (
-              <Image width='35' src={baseball} className='float-right' />
-            )}
-            {counter > 0 && answerListShow && props.sport === 'Football' && (
-              <Image width='35' src={football} className='float-right' />
-            )}
+      {!review && !submitted && questions.length > 0 &&
+        <Row className="questionRow m-2 p-2 justify-content-center">
+          <Col xs={2} lg={4} >
+            {counter > 0 && answerListShow && props.sport === 'Basketball' &&
+
+              <Image width='35' src={basketball} className="float-right" />
+            }
+            {counter > 0 && answerListShow && props.sport === 'Baseball' &&
+
+              <Image width='35' src={baseball} className="float-right" />
+            }
+            {counter > 0 && answerListShow && props.sport === 'Football' &&
+
+              <Image width='35' src={football} className="float-right" />
+            }
+
           </Col>
           <Col xs={6} lg={4}>
             <button
-              className={`btn btn-primary submitButton ${
-                answerListShow === false ? 'disabledSubmit' : ''
-              }`}
-              onClick={handleSubmitAnswers}
-            >
-              submit answers
-            </button>
+              className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
+              onClick={handleSubmitAnswers}>submit answers
+                    </button>
           </Col>
-          <Col xs={2} lg={4}>
-            {counter > 0 && answerListShow && props.sport === 'Basketball' && (
-              <Image width='35' src={basketball} className='float-left' />
-            )}
+          <Col xs={2} lg={4} >
+            {counter > 0 && answerListShow && props.sport === 'Basketball' &&
 
-            {counter > 0 && answerListShow && props.sport === 'Baseball' && (
-              <Image width='35' src={baseball} className='float-left' />
-            )}
+              <Image width='35' src={basketball} className="float-left" />
+            }
 
-            {counter > 0 && answerListShow && props.sport === 'Football' && (
-              <Image width='35' src={football} className='float-left' />
-            )}
+            {counter > 0 && answerListShow && props.sport === 'Baseball' &&
+
+              <Image width='35' src={baseball} className="float-left" />
+            }
+
+            {counter > 0 && answerListShow && props.sport === 'Football' &&
+
+              <Image width='35' src={football} className="float-left" />
+            }
           </Col>
         </Row>
-      )}
+      }
     </>
   )
 }
