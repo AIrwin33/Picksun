@@ -56,7 +56,7 @@ const Questions = props => {
       console.log('get all questions');
       console.log(props);
       console.log(props.contestid);
-      const res = await fetch(`/allquestions/${props.contestid}`, {
+      const res = await fetch(`/allquestions/` + props.contestid, {
         method: 'GET',
         headers: { jwt_token: localStorage.token }
       })
@@ -75,7 +75,7 @@ const Questions = props => {
       console.log(props.contestid);
       doGetParticipationWrongAnswers()
 
-      const res = await fetch(`/questions/${props.contestid}`, {
+      const res = await fetch(`/questions/` + props.contestid, {
         method: 'GET',
         headers: { jwt_token: localStorage.token }
       })
