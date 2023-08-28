@@ -164,6 +164,27 @@ app.get("/participationbycontest/:contest_id", authorization, async (req, res) =
         console.log('err participation by contest' + err);
     }
 });
+
+app.post("/disablequestions/", authorization, async (req, res) => {
+    try {
+        const {conid} = req.body;
+        
+        const allContestQuestions = await pool.query("UPDATE salesforce.question__c SET islocked__c = true WHERE published__c = true AND contest__c = $1 RETURNING *", [conid]
+        );
+
+        var idlist = [];
+        for(var i = 0; i < allContestQuestions.rows.length; i++){
+            idlist.push(allContestQuestions.rows[i].sfid);
+        }
+        
+        const selectQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE sfid = ANY ($1) ORDER BY Name ASC", [idlist]);
+       
+        res.json(selectQuestions.rows)
+
+    } catch (error) {
+        console.log('error disable questions :: ' + error.message);
+    }
+});
 app.post("/countsubsegment/", authorization, async (req, res) => {
     try {
         const {conid, subseg} = req.body;
