@@ -150,13 +150,16 @@ const Contest = () => {
         console.log('in contest');
         getContest().then(r =>  {
             socket.on("connect", () => {
+                console.log('check connect');
             });
 
             socket.on("new_question", question => {
+                console.log('check new question');
                 setNewQuestion(question);
 
             })
             socket.on("cor_question", question => {
+                console.log('check cor question');
                 setNewCorrectQuestion(question);
             })
             socket.on("new_contest", contest => {
