@@ -112,15 +112,15 @@ const Questions = props => {
 
           if (diffTime < 0) {
               setCounter(0);
-              document.getElementById("timerid").classList.remove("hiddenTimer");
+              document.getElementsByClassName("timerdiv").classList.remove("hiddenTimer");
           } else {
               setCounter(diffTime);
-              document.getElementById("timerid").classList.add("hiddenTimer");
+              document.getElementsByClassName("timerdiv").classList.add("hiddenTimer");
           }
         } else {
         }
       }
-
+      console.log(document.getElementsByClassName("timerdiv"));
       setQuestions(parseData)
       //set question count
       setPublishedQuestions(parseData.length)
