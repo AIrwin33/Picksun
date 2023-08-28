@@ -30,17 +30,17 @@ const Lobby = () => {
         try {
           console.log(contest_id);
           const body = {contest_id};
-          const response = await fetch(
-            "/participations",
-            {
-              method: "POST",
-              headers: { jwt_token: localStorage.token },
-              body: JSON.stringify(body)
-            }
-          );
-          const parseRes = await response.json();
+          // const response = await fetch(
+          //   "/participations",
+          //   {
+          //     method: "POST",
+          //     headers: { jwt_token: localStorage.token },
+          //     body: JSON.stringify(body)
+          //   }
+          // );
+          // const parseRes = await response.json();
           
-            window.location = "/Contest/" + contest_id;
+          //   window.location = "/Contest/" + contest_id;
           
         } catch (err) {
           console.error(err.message);
