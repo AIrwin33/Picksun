@@ -3,6 +3,7 @@ import { Carousel, Col, Button, Modal, Row, Image } from 'react-bootstrap'
 
 import moment from 'moment'
 import Timer from 'react-compound-timer'
+import $ from 'jquery';
 
 import Question from './Question'
 import Answers from './Answers'
@@ -110,13 +111,13 @@ const Questions = props => {
           var closedTimerInt = millival + parseInt(openedtimerval)
           var diffTime = moment(closedTimerInt).diff(currtime)
 
-          // if (diffTime < 0) {
-          //     setCounter(0);
-          //     $('.timerdiv').removeClass('hiddenTimer');
-          // } else {
-          //     setCounter(diffTime);
-          //     $('.timerdiv').removeClass('hiddenTimer');
-          // }
+          if (diffTime < 0) {
+              setCounter(0);
+              $('.timerdiv').removeClass('hiddenTimer');
+          } else {
+              setCounter(diffTime);
+              $('.timerdiv').removeClass('hiddenTimer');
+          }
         } else {
         }
       }

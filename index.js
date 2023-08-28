@@ -202,6 +202,17 @@ app.get("/questions/:contest_id", authorization, async (req, res) => {
     }
 });
 
+app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async (req, res) => {
+    try {
+        const {partsfid, questid} = req.params;
+        const participationExistAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 AND question__c = $2 ", [partsfid, questid]);
+        res.json(participationExistAnswer.rows[0]);
+    } catch (err) {
+        console.log('existing part answer error ' + err);
+    }
+
+});
+
 app.post("/existingpartanswernoquestion/", authorization, async (req, res) => {
     try {
         console.log('in parts answers existing');
