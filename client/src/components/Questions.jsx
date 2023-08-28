@@ -112,8 +112,9 @@ const Questions = props => {
           var closedTimerInt = millival + parseInt(openedtimerval)
           var diffTime = moment(closedTimerInt).diff(currtime)
           console.log(diffTime);
+          setShowTimer(true);
           if(diffTime > 0){
-            setShowTImer(true)
+            
           }
         } else {
         }
