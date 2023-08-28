@@ -208,7 +208,7 @@ const Contest = () => {
                         </Col>
                     </Row>
                     <Tabs activeKey={key} onSelect={(k) => setKey(k)} fill className="ml-2 mr-2">
-                        <Tab eventKey="Questions" title="Questions" className="aptifer pb-4 pt-4">
+                        <Tab eventKey="Questions" title="Questions" className="aptifer pb-4 pt-4 tabwidth">
                             <Row>
                                 <Col lg={3} sm={1}>
 
@@ -227,7 +227,7 @@ const Contest = () => {
                                 </Col>
                             </Row>
                         </Tab>
-                        <Tab eventKey="Participants" title="Participants" className="pb-4 pt-4 aptifer">
+                        <Tab eventKey="Participants" title="Participants" className="pb-4 pt-4 aptifer tabwidth">
 
                             {/* loop through participations */}
 
@@ -348,7 +348,7 @@ const Contest = () => {
                             </Row>
                             
                             </Tab>
-                        <Tab eventKey="Chat" title="Twitter" className="aptifer pb-4 pt-4">
+                        <Tab eventKey="Chat" title="Twitter" className="aptifer pb-4 pt-4 tabwidth">
                             <Row>
                                 <Col lg={3} sm={1}>
 
