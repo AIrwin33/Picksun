@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo, useRef } from 'react'
 import { Carousel, Col, Button, Modal, Row, Image } from 'react-bootstrap'
 
 import moment from 'moment'
@@ -35,7 +35,8 @@ const Questions = props => {
   const [inactive, setInactive] = useState(false)
   const [showSubmitCount, setShowSubmitCount] = useState(0)
   const [showSubmitModal, setShowSubmitModal] = useState(false)
-  const [showEnd, setShowEnd] = useState(false)
+  const [showEnd, setShowEnd] = useState(false);
+  const [showTimer, setShowTImer] = useState(false);
   const [showEndBanner, setShowEndBanner] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [isShowWaiting, setShowWaiting] = useState(false)
@@ -46,7 +47,6 @@ const Questions = props => {
   const [contestWonText, setContestWonText] = useState([])
   const [showContestFinished, setShowContestFinished] = useState(false)
   const [contestFinishedText, setContestFinishedText] = useState([])
-  const carouselRef = React.createRef()
   const socket = React.useContext(SocketContext)
   const [newQuestion, setNewQuestion] = useState()
   const [newCorrectQuestion, setNewCorrectQuestion] = useState()
@@ -94,13 +94,14 @@ const Questions = props => {
         setReview(true)
       }
       var openedtimerval
-
+      console.log('this');
       if (props.contest.opened_timer__c !== null) {
         const res = await fetch(`/contestdetail/` + props.contestid, {
           method: 'GET',
           headers: { jwt_token: localStorage.token }
         })
-        const parseContestData = await res.json()
+        const parseContestData = await res.json();
+        console.log(parseContestData.opened_timer__c);
         openedtimerval = parseContestData.opened_timer__c
         //if there are questions that aren't locked, then set the timing based on how much time is left
         if (nonLockedQuestionsArr.length > 0 && openedtimerval !== null) {
@@ -109,18 +110,14 @@ const Questions = props => {
           var currtime = moment().valueOf()
           var closedTimerInt = millival + parseInt(openedtimerval)
           var diffTime = moment(closedTimerInt).diff(currtime)
-
-          if (diffTime < 0) {
-              setCounter(0);
-              document.getElementsByClassName("timerdiv").classList.remove("hiddenTimer");
-          } else {
-              setCounter(diffTime);
-              document.getElementsByClassName("timerdiv").classList.add("hiddenTimer");
+          console.log(diffTime);
+          if(diffTime > 0){
+            setShowTImer(true);
           }
         } else {
         }
       }
-      console.log(document.getElementsByClassName("timerdiv"));
+      //console.log(document.getElementsByClassName("timerdiv"));
       setQuestions(parseData)
       //set question count
       setPublishedQuestions(parseData.length)
@@ -539,8 +536,8 @@ const Questions = props => {
                     <React.Fragment>
 
                       {/* on timer state of stopped, call the disable function and show answer*/}
-                      {counter > 0 &&
-                        <div className="timerdiv font16" id="timerid"> 
+                      {counter > 0 && showTimer &&
+                        <div className="timerdiv font16"> 
                           {props.sport == 'Baseball' &&
                             <Image width='20' src={baseball} />
                           }
