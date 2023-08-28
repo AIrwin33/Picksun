@@ -48,3 +48,8 @@
 .nav-link {
     width:100%;
 }
+
+.nav-link active {
+    background-color: #495057;
+    color: #fff;
+}
