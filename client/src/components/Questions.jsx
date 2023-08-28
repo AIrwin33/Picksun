@@ -36,7 +36,7 @@ const Questions = props => {
   const [showSubmitCount, setShowSubmitCount] = useState(0)
   const [showSubmitModal, setShowSubmitModal] = useState(false)
   const [showEnd, setShowEnd] = useState(false);
-  const [showTimer, setShowTImer] = useState(false);
+  const [showTimer, setShowTimer] = useState(false);
   const [showEndBanner, setShowEndBanner] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [isShowWaiting, setShowWaiting] = useState(false)
@@ -130,6 +130,7 @@ const Questions = props => {
 
   // select a question and increment/decrement the question number on the screen
   const handleSelect = (selectedIndex, e) => {
+    console.log(selectedIndex);
     setIndex(selectedIndex)
     setQuestionNum(selectedIndex + 1)
   }
@@ -309,7 +310,9 @@ const Questions = props => {
   }
 
   const setTimer = () => {
+    console.log('setting timer');
     var timerMilli = props.contest.question_timer__c * 1000
+    console.log('timerMilli' + timerMilli);
     setCounter(timerMilli)
   }
 
@@ -516,10 +519,10 @@ const Questions = props => {
       {questions.length > 0 &&
         <Row className="questionRow m-2 p-2">
           {/* slide for questions */}
-          {questions.length !== 0 &&
+          {questions.length !== 0 && showTimer &&
             <Col xs={6} className="justify-content-start no-padding">
               <div key={counter}>
-                <Timer initialTime={counter}
+                <Timer initialTime={counter} 
                   direction="backward"
                   lastUnit="s"
                   checkpoints={[
@@ -538,7 +541,7 @@ const Questions = props => {
                     <React.Fragment>
 
                       {/* on timer state of stopped, call the disable function and show answer*/}
-                      {counter > 0 && showTimer &&
+                      {counter > 0 && 
                         <div className="timerdiv font16"> 
                           {props.sport == 'Baseball' &&
                             <Image width='20' src={baseball} />
