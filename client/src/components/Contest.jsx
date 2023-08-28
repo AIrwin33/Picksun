@@ -51,6 +51,7 @@ const Contest = () => {
 
     const getEvent = async (contestRec) => {
         try {
+            console.log(contestRec.event__c);
             const res = await fetch(`/event/` + contestRec.event__c, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
