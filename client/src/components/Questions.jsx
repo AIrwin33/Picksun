@@ -3,7 +3,6 @@ import { Carousel, Col, Button, Modal, Row, Image } from 'react-bootstrap'
 
 import moment from 'moment'
 import Timer from 'react-compound-timer'
-import $ from 'jquery';
 
 import Question from './Question'
 import Answers from './Answers'
@@ -113,10 +112,10 @@ const Questions = props => {
 
           if (diffTime < 0) {
               setCounter(0);
-              $('.timerdiv').removeClass('hiddenTimer');
+              document.getElementById("timerdiv").classList.remove("hiddenTimer");
           } else {
               setCounter(diffTime);
-              $('.timerdiv').removeClass('hiddenTimer');
+              document.getElementById("timerdiv").classList.add("hiddenTimer");
           }
         } else {
         }
