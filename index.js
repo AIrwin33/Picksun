@@ -177,6 +177,31 @@ app.post("/countsubsegment/", authorization, async (req, res) => {
         console.log('error disable questions :: ' + error.message);
     }
 });
+
+app.get("/allquestions/:contest_id", authorization, async (req, res) => {
+    try {
+        const {contest_id} = req.params;
+        
+        const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 ORDER BY Name ASC", [contest_id]);
+        res.json(allContestQuestions.rows)
+
+    } catch (error) {
+        console.log('error contest questions :: ' + error.message);
+    }
+});
+
+app.get("/questions/:contest_id", authorization, async (req, res) => {
+    try {
+        const {contest_id} = req.params;
+        
+        const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY Name ASC", [contest_id]);
+        res.json(allContestQuestions.rows)
+
+    } catch (error) {
+        console.log('error contest questions :: ' + error.message);
+    }
+});
+
 app.post("/contestwon", authorization, async (req, res) => {
     try {
         const contestwoncount = await pool.query(
