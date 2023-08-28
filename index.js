@@ -73,11 +73,12 @@ app.post("/participations", authorization, async (req, res) => {
             return res.status(401).send("Already Exists");
         }
         console.log('here');
+        console.log(contest_id);
         const newParticipation = await pool.query(
             "INSERT INTO salesforce.participation__c (Contest__c, Participant__r__ExternalId__c,Status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *",
             [contest_id, req.user.id, 'Active']
         );
-       
+            console.log(newParticipation.rows[0]);
         res.json(newParticipation.rows[0]);
     } catch (err) {
         console.log('error participations' + err.message);
