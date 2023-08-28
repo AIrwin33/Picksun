@@ -13,7 +13,7 @@ import "./Contest.css";
 import Questions from './Questions';
 
 import avatar from '../assets/blue_avatar_200.png';
-import {connect} from "react-redux";
+// import {connect} from "react-redux";
 
 
 const Contest = () => {
@@ -378,4 +378,4 @@ const Contest = () => {
     )
 }
 
-export default connect()(Contest);
+export default (Contest);

@@ -120,7 +120,8 @@ const Questions = props => {
         }
       }
       //console.log(document.getElementsByClassName("timerdiv"));
-      setQuestions(parseData)
+      setQuestions(parseData);
+      setTimer()
       //set question count
       setPublishedQuestions(parseData.length)
     } catch (err) {
