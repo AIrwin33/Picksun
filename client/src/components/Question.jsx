@@ -165,7 +165,7 @@ const Question = props => {
     console.log(props.ques);
     setIsAdmin(props.isAdmin);
     setQuest(props.ques)
-    handleSubsegmentCount(props.ques.subsegment__c)
+    //handleSubsegmentCount(props.ques.subsegment__c)
     setUpdated(false)
     if (props.ques.islocked__c === true || props.isInactive === true) {
       setDisabledQuestion(true)
@@ -289,20 +289,22 @@ const Question = props => {
                 </Col>
                 }
             </Row>
-            {isAdmin &&
-            <Row className="questionRow m-2 p-2 justify-content-center">
-
-                <Col xs={6} lg={4}>
-                    <button
-                    className="btn btn-primary submitButton"
-                    onClick={handleMarkCorrect}>Mark Correct
-                            </button>
-                </Col>
-            </Row>
-            }
+            
             
         </div> : null
     }
+
+    {isAdmin &&
+      <Row className="questionRow m-2 p-2 justify-content-center">
+
+          <Col xs={6} lg={4}>
+              <button
+              className="btn btn-primary submitButton"
+              onClick={handleMarkCorrect}>Mark Correct
+                      </button>
+          </Col>
+      </Row>
+      }
 
     {allpartanswers.length > 0 && 
         <div className="answerMain">
