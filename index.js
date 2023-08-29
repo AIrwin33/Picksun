@@ -301,6 +301,30 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
 
 });
 
+
+app.post("/publishcontest", authorization, async (req, res) => {
+    try {
+        const {contest_id} = req.body;
+        const time = new Date();
+
+        const pubquest = await pool.query(
+            "UPDATE salesforce.Question__c SET published = true WHERE contest__c = $1", [question.sfid]
+        );
+        
+        
+
+        const pubcon = await pool.query(
+            "UPDATE salesforce.Contest__c SET Opened_Timer__c = $1 WHERE sfid = $2", [contest_id, time]
+            );
+        
+       
+        res.json(pubcon);
+    } catch (err) {
+        console.log('error on submit answer' + err);
+    }
+
+});
+
 if (process.env.NODE_ENV==="production") {
     // app.use(express.static('client/public'));
     app.use(express.static(path.join(__dirname, '/client/build')));
