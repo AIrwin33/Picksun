@@ -112,7 +112,8 @@ const Admin = (props) => {
                     <Question ques={question}
                       questionNum={questionNum}
                       isInactive={inactive}
-                      showAnswers={showAnswer} />
+                      showAnswers={showAnswer}
+                      isAdmin={true} />
                   </Carousel.Item>
                 })}
               </Carousel>

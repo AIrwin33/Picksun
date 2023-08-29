@@ -13,6 +13,7 @@ const Question = props => {
   const [quest, setQuest] = useState([])
   const [showInfo, setShowInfo] = useState(false)
   const [disabledQuestion, setDisabledQuestion] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false);
   const [partanswersupdated, setUpdated] = useState(false)
 
   const [allpartanswers, setAllpartanswers] = useState([])
@@ -156,6 +157,7 @@ const Question = props => {
   }, [props.ques.correct_answer__c])
 
   useEffect(() => {
+    setIsAdmin(props.isAdmin);
     setQuest(props.ques)
     handleSubsegmentCount(props.ques.subsegment__c)
     setUpdated(false)
@@ -281,7 +283,17 @@ const Question = props => {
                 </Col>
                 }
             </Row>
+            {isAdmin &&
+            <Row className="questionRow m-2 p-2 justify-content-center">
 
+                <Col xs={6} lg={4}>
+                    <button
+                    className="btn btn-primary submitButton"
+                    onClick={handleMarkCorrect}>Mark Correct
+                            </button>
+                </Col>
+            </Row>
+            }
             
         </div> : null
     }
