@@ -107,7 +107,13 @@ const Admin = (props) => {
               <Carousel fade className="carouselDiv" defaultActiveIndex={0} activeIndex={index} onSelect={handleSelect} interval={null}>
                 {questions.map(question => {
                   return <Carousel.Item key={question.id} className="text-center">
-                    <Question  />
+                    <Question ques={question}
+                      contest={props.contest}
+                      questionNum={questionNum}
+                      totalQuestions={publishedQuestions}
+                      isInactive={inactive}
+                      partsfid={partWrongAnswer.sfid}
+                      showAnswers={showAnswer} />
                   </Carousel.Item>
                 })}
               </Carousel>
