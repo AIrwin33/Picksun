@@ -308,7 +308,7 @@ app.post("/publishcontest", authorization, async (req, res) => {
         const time = new Date();
 
         const pubquest = await pool.query(
-            "UPDATE salesforce.Question__c SET published = true WHERE contest__c = $1", [question.sfid]
+            "UPDATE salesforce.Question__c SET published = true WHERE contest__c = $1", [contest_id]
         );
         
         

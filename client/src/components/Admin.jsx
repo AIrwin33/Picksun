@@ -34,7 +34,7 @@ const Admin = (props) => {
                 },
                 body: JSON.stringify(body)
             })
-            console.log('published')
+            console.log('published');
             const parseData = await res.json();
             console.log(parseData);
           } catch (err) {
