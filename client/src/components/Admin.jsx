@@ -112,6 +112,7 @@ const Admin = (props) => {
                     <Question ques={question}
                       questionNum={questionNum}
                       isInactive={inactive}
+                      totalQuestions={8}
                       showAnswers={showAnswer}
                       isAdmin={true} />
                   </Carousel.Item>

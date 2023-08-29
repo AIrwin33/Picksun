@@ -157,6 +157,8 @@ const Question = props => {
   }, [props.ques.correct_answer__c])
 
   useEffect(() => {
+    console.log(props.isAdmin);
+    console.log(props.ques);
     setIsAdmin(props.isAdmin);
     setQuest(props.ques)
     handleSubsegmentCount(props.ques.subsegment__c)
