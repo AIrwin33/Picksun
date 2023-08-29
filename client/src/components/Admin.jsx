@@ -43,6 +43,9 @@ const Admin = (props) => {
 
     }
 
+    const handleMarkCorrect = async () => {
+        console.log('mark correct')
+    }
     useEffect(() => {
         console.log('getting all contests in admin');
         getAllContests();
@@ -97,7 +100,7 @@ const Admin = (props) => {
             <Col xs={6} lg={4}>
                 <button
                 className="btn btn-primary submitButton"
-                onClick={handleSubmitAnswers}>Mark Correct
+                onClick={handleMarkCorrect}>Mark Correct
                         </button>
             </Col>
         </Row>
