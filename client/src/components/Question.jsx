@@ -147,6 +147,10 @@ const Question = props => {
     setShowInfo(false)
   }
 
+  const handleMarkCorrect = async () => {
+    console.log('mark correct')
+  }
+
   useEffect(() => {
     console.log('use effect correct answer')
     console.log('value' + props.ques.correct_answer__c)

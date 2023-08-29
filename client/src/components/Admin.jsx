@@ -68,9 +68,7 @@ const Admin = (props) => {
           }
     }
 
-    const handleMarkCorrect = async () => {
-        console.log('mark correct')
-    }
+    
 
     const handleSelect = (selectedIndex, e) => {
         console.log(selectedIndex);
@@ -121,15 +119,6 @@ const Admin = (props) => {
             }
 
           </Col>
-        </Row>
-        <Row className="questionRow m-2 p-2 justify-content-center">
-
-            <Col xs={6} lg={4}>
-                <button
-                className="btn btn-primary submitButton"
-                onClick={handleMarkCorrect}>Mark Correct
-                        </button>
-            </Col>
         </Row>
         </>
     )
