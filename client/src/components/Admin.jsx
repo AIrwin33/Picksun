@@ -50,7 +50,7 @@ const Admin = (props) => {
 
     const handleGetQuestions = async (contest_idtwo) => {
         try {
-
+            console.log(contest_idtwo);
             const res = await fetch(`/allquestions/` + contest_idtwo, {
               method: 'GET',
               headers: { jwt_token: localStorage.token }
