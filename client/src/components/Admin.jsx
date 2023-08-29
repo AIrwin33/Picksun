@@ -4,6 +4,9 @@ import Carousel from 'react-bootstrap/Carousel';
 
 import "./Admin.css";
 
+import Question from './Question'
+import Answers from './Answers'
+
 
 const Admin = (props) => {
     const [contests, setContests] = useState([]);
