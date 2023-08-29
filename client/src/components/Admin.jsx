@@ -6,6 +6,7 @@ import "./Admin.css";
 
 const Admin = (props) => {
     const [contests, setContests] = useState([]);
+    const [questions, setQuestions] = useState([])
      const getAllContests = async () => {
          try {
              const res = await fetch("/allcontests", {
@@ -70,7 +71,7 @@ const Admin = (props) => {
 
         <Row className="questionRow m-2 p-2 justify-content-center">
           <Col sm={12} lg={12}>
-            {questions.length > 0 && showAnswer &&
+            {questions.length > 0 && 
               <Carousel fade className="carouselDiv" ref={carouselRef} defaultActiveIndex={0} activeIndex={index} onSelect={handleSelect} interval={null}>
                 {questions.map(question => {
                   return <Carousel.Item key={question.id} className="text-center">
