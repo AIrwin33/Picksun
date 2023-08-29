@@ -73,7 +73,7 @@ const Admin = (props) => {
           <Col sm={12} lg={12}>
             {questions.length > 0 && 
               <Carousel fade className="carouselDiv" ref={carouselRef} defaultActiveIndex={0} activeIndex={index} onSelect={handleSelect} interval={null}>
-                {questions.map(question => {
+                {/* {questions.map(question => {
                   return <Carousel.Item key={question.id} className="text-center">
                     <Question addAnswer={updateAnswerList}
                       knockoutcalloutchild={handleKnockoutChild}
@@ -86,7 +86,7 @@ const Admin = (props) => {
                       partsfid={partWrongAnswer.sfid}
                       showAnswers={showAnswer} />
                   </Carousel.Item>
-                })}
+                })} */}
               </Carousel>
             }
 
