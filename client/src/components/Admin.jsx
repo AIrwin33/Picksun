@@ -13,6 +13,8 @@ const Admin = (props) => {
     const [questions, setQuestions] = useState([]);
     const [index, setIndex] = useState(0)
     const [questionids, setQuestionIds] = useState([])
+    const [inactive, setInactive] = useState(false)
+    const [showAnswer, setShowAnswer] = useState(true)
     const [questionNum, setQuestionNum] = useState(1)
      const getAllContests = async () => {
          try {
@@ -108,11 +110,8 @@ const Admin = (props) => {
                 {questions.map(question => {
                   return <Carousel.Item key={question.id} className="text-center">
                     <Question ques={question}
-                      contest={props.contest}
                       questionNum={questionNum}
-                      totalQuestions={publishedQuestions}
                       isInactive={inactive}
-                      partsfid={partWrongAnswer.sfid}
                       showAnswers={showAnswer} />
                   </Carousel.Item>
                 })}
