@@ -102,20 +102,11 @@ const Admin = (props) => {
           <Col sm={12} lg={12}>
             {questions.length > 0 && 
               <Carousel fade className="carouselDiv" defaultActiveIndex={0} activeIndex={index} onSelect={handleSelect} interval={null}>
-                {/* {questions.map(question => {
+                {questions.map(question => {
                   return <Carousel.Item key={question.id} className="text-center">
-                    <Question addAnswer={updateAnswerList}
-                      knockoutcalloutchild={handleKnockoutChild}
-                      ques={question}
-                      contest={props.contest}
-                      questionNum={questionNum}
-                      totalQuestions={publishedQuestions}
-                      isInactive={inactive}
-                      getsubcount={handleSubsegmentCount}
-                      partsfid={partWrongAnswer.sfid}
-                      showAnswers={showAnswer} />
+                    <Question  />
                   </Carousel.Item>
-                })} */}
+                })}
               </Carousel>
             }
 
