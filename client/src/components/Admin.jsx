@@ -96,8 +96,8 @@ const Admin = (props) => {
 
             <Col xs={6} lg={4}>
                 <button
-                className={`btn btn-primary submitButton ${answerListShow === false ? "disabledSubmit" : ""}`}
-                onClick={handleSubmitAnswers}>submit answers
+                className="btn btn-primary submitButton"
+                onClick={handleSubmitAnswers}>Mark Correct
                         </button>
             </Col>
         </Row>
