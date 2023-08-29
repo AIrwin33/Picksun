@@ -14,6 +14,7 @@ import Contest from './components/Contest.jsx'
 import Questions from './components/Questions.jsx'
 import TopPanel from './components/TopPanel.jsx'
 import Landing from './components/Landing.jsx'
+import Admin from './components/Admin.jsx'
 
 function App () {
   const [isProfile, setIsProfile] = useState(false)
@@ -97,6 +98,12 @@ function App () {
               <Route
                 path='/Profile'
                 element={<Profile setProfile={setProfile} setAuth={setAuth}/>}
+              />
+              <Route
+                path='/Admin'
+                element={
+                    <Admin />
+                }
               />
               <Route
                 path='/Contest/:id'
