@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Col, Row} from "react-bootstrap";
+import {Button, Col, Row} from "react-bootstrap";
 
 import "./Admin.css";
 
