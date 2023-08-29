@@ -36,11 +36,27 @@ const Admin = (props) => {
             })
             console.log('published');
             const parseData = await res.json();
+            handleGetQuestions(contest_id);
             console.log(parseData);
           } catch (err) {
             console.error(err.message);
           }
 
+    }
+
+    const handleGetQuestions = async (contest_idtwo) => {
+        try {
+
+            const res = await fetch(`/allquestions/` + contest_idtwo, {
+              method: 'GET',
+              headers: { jwt_token: localStorage.token }
+            })
+      
+            const parseData = await res.json()
+            setQuestions(parseData)
+          } catch (err) {
+            console.error('get questions error' + err.message)
+          }
     }
 
     const handleMarkCorrect = async () => {
