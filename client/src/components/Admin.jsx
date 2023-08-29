@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Col, Row} from "react-bootstrap";
+import Carousel from 'react-bootstrap/Carousel';
 
 import "./Admin.css";
 
