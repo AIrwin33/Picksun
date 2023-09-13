@@ -21,27 +21,27 @@ const Question = props => {
   //const socket = React.useContext(SocketContext);
 
   const handleRadioChange = async event => {
-    // var tgt = $(event.target);
-    // var children = $(event.target).parent().children();
+    var tgt = $(event.target);
+    var children = $(event.target).parent().children();
 
-    // $(children).removeClass('sel');
-    // $(tgt).addClass('sel');
+    $(children).removeClass('sel');
+    $(tgt).addClass('sel');
 
-    // var label = '';
-    // if (event.target.value == 'A') {
-    //     label = quest.answer_a__c;
-    // }
-    // if (event.target.value == 'B') {
-    //     label = quest.answer_b__c;
-    // }
-    // if (event.target.value == 'C') {
-    //     label = quest.answer_c__c;
-    // }
-    // if (event.target.value == 'D') {
-    //     label = quest.answer_d__c;
-    // }
+    var label = '';
+    if (event.target.value == 'A') {
+        label = quest.answer_a__c;
+    }
+    if (event.target.value == 'B') {
+        label = quest.answer_b__c;
+    }
+    if (event.target.value == 'C') {
+        label = quest.answer_c__c;
+    }
+    if (event.target.value == 'D') {
+        label = quest.answer_d__c;
+    }
 
-    handleUpdateQuestionValue(event.target.value, 'label')
+    handleUpdateQuestionValue(event.target.value, label)
   }
   const handleUpdateQuestionValue = async (eventVal, eventLabel) => {
     try {
