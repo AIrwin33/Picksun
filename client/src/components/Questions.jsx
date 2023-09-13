@@ -523,8 +523,9 @@ const Questions = props => {
       {questions.length > 0 &&
         <Row className="questionRow m-2 p-2">
           {/* slide for questions */}
-          {questions.length !== 0 && showTimer &&
+          
             <Col xs={6} className="justify-content-start no-padding">
+            {questions.length !== 0 && showTimer &&
               <div key={counter}>
                 <Timer initialTime={counter} 
                   direction="backward"
@@ -591,8 +592,8 @@ const Questions = props => {
                   </div>
                 }
               </div>
+              }
             </Col>
-          }
 
           {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
             <Col xs={6} className="justify-content-start no-padding" >
