@@ -525,7 +525,7 @@ const Questions = props => {
           {/* slide for questions */}
           
             <Col xs={6} className="justify-content-start no-padding">
-            {questions.length !== 0 && showTimer &&
+            {showTimer &&
               <div key={counter}>
                 <Timer initialTime={counter} 
                   direction="backward"
