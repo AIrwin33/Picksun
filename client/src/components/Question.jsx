@@ -118,25 +118,7 @@ const Question = props => {
       console.log('err' + error.message)
     }
   }
-  const handleSubsegmentCount = async subseg => {
-    try {
-      var conid = props.contest.sfid
-      const body = { conid, subseg }
-      const res = await fetch(`/countsubsegment`, {
-        method: 'POST',
-        headers: {
-          jwt_token: localStorage.token,
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(body)
-      })
 
-      const parseData = await res.json()
-      props.getsubcount(parseData)
-    } catch (err) {
-      console.log('err subsegment' + err.message)
-    }
-  }
 
   //show info modal on question
   const handleInfoShow = async () => {
@@ -147,9 +129,49 @@ const Question = props => {
     setShowInfo(false)
   }
 
-  const handleMarkCorrect = async () => {
+  const handleMarkCorrect = async (event) => {
     console.log('mark correct')
+
+    // get clicked value
+
+    var answer = event.currentTarget();
+
+
+    console.log('answer' + answer);
+    var answerval;
+    if(answer == 'A'){
+        answerval = quest.Answer_A__c;
+    }
+    if(answer == 'B'){
+        answerval = quest.Answer_B__c;
+    }
+    if(answer == 'C'){
+        answerval = quest.Answer_C__c;
+    }
+    if(answer == 'D'){
+        answerval = quest.Answer_D__c;
+    }
+
+      var questsfid = props.quest.sfid
+      const body = { questsfid, answer, answerval }
+      const res = await fetch(`/markcorrect/`, {
+        method: 'POST',
+        headers: {
+          jwt_token: localStorage.token,
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      })
+
+      const parseData = await res.json()
+      console.log(parseData);
+     
   }
+  
+  
+
+
+  
 
   useEffect(() => {
     console.log('use effect correct answer')
