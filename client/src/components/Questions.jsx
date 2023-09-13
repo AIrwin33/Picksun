@@ -95,7 +95,7 @@ const Questions = props => {
       if (nonLockedQuestionsArr.length === 0) {
         setReview(true)
       }
-      var openedtimerval
+      var openedtimerval;
       console.log('this');
       if (props.contest.opened_timer__c !== null) {
         const res = await fetch(`/contestdetail/` + props.contestid, {
@@ -112,7 +112,7 @@ const Questions = props => {
           var currtime = moment().valueOf()
           var closedTimerInt = millival + parseInt(openedtimerval)
           var diffTime = moment(closedTimerInt).diff(currtime)
-          console.log(diffTime);
+          console.log('before set timer' + diffTime);
           setShowTimer(true);
           if(diffTime > 0){
             
