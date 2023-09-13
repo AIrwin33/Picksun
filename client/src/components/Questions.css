@@ -12,6 +12,8 @@
     align-items: center;
 }
 
+
+
 .no-padding {
     padding-left:0px !important;
     padding-right:0px !important;
@@ -78,6 +80,10 @@
 }
 
 .carousel-indicators {
+    visibility: hidden;
+}
+
+.visually-hidden {
     visibility: hidden;
 }
 .disabledSubmit {
