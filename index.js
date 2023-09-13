@@ -311,10 +311,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
             }
      
 
-            
-            
-            
-        }
+
 
         //increment participant wrong answer count
 
