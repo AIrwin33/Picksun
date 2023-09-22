@@ -2,6 +2,8 @@ import { Fragment, useEffect, useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom'
 import { SocketContext, socket } from '../src/socket'
+import {Provider} from "react-redux";
+import {configureStore} from "redux";
 
 import './App.css'
 import Login from './components/Login.jsx'
@@ -19,6 +21,18 @@ import Admin from './components/Admin.jsx'
 function App () {
   const [isProfile, setIsProfile] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  const Initval = {
+    questions: []
+}
+
+  function reducer(state = Initval, action) {
+    console.log(action);
+    return state;
+}
+
+  const store = configureStore(reducer);
+  store.dispatch({type: "INCREMENT!"});
   //check if the user is authenticated
   const checkAuthenticated = async () => {
     try {
@@ -58,6 +72,7 @@ function App () {
 
 
   return (
+    <Provider store={store}>
     <SocketContext.Provider value={socket}>
       <Fragment>
         <Router>
@@ -137,6 +152,7 @@ function App () {
         </Router>
       </Fragment>
     </SocketContext.Provider>
+    </Provider>
   )
 }
 
