@@ -103,7 +103,7 @@ const Questions = props => {
         })
         const parseContestData = await res.json();
         console.log(parseContestData.opened_timer__c);
-        openedtimerval = parseContestData.opened_timer__c
+        openedtimerval = parseContestData.opened_timer__c;
         //if there are questions that aren't locked, then set the timing based on how much time is left
         if (nonLockedQuestionsArr.length > 0 && openedtimerval !== null) {
           var questime = props.contest.question_timer__c
@@ -114,9 +114,14 @@ const Questions = props => {
           console.log('before set timer' + diffTime);
           setShowTimer(true);
           if(diffTime > 0){
-            
+            setCounter(0);
+            document.getElementsByClassName('timerdiv').removeClass('hiddenTimer');
+          } else {
+            setCounter(diffTime);
+            document.getElementsByClassName('timerdiv').removeClass('hiddenTimer');
           }
-        } else {
+        }
+        else {
         }
       }
       //console.log(document.getElementsByClassName("timerdiv"));
@@ -335,7 +340,7 @@ const Questions = props => {
 
       const parseData = await res.json()
 
-      //   $('.timerdiv').addClass('hiddenTimer')
+      document.getElementsByClassName('timerdiv').addClass('hiddenTimer');
       setReview(true)
       setQuestions(parseData)
       setShowWaiting(false)
