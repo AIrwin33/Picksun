@@ -132,11 +132,11 @@ const Questions = props => {
   }
 
   // select a question and increment/decrement the question number on the screen
-  const handleSelect = (selectedIndex, e) => {
-    console.log(selectedIndex);
-    setIndex(selectedIndex)
-    setQuestionNum(selectedIndex + 1)
-  }
+  // const handleSelect = (selectedIndex, e) => {
+  //   console.log(selectedIndex);
+  //   setIndex(selectedIndex)
+  //   setQuestionNum(selectedIndex + 1)
+  // }
 
   const resetLogic = async () => {
     setSubmitted(false)
