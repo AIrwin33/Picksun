@@ -138,7 +138,10 @@ const Questions = props => {
 
   // select a question and increment/decrement the question number on the screen
   const handleSelect = (selectedIndex, e) => {
-
+    console.log('in active index handle select');
+    console.log(document.getElementsByClassName('carouselDiv').activeIndex);
+    setIndex(selectedIndex);
+    console.log(document.getElementsByClassName('carouselDiv').activeIndex);
     setQuestionNum(selectedIndex + 1)
   }
 
@@ -445,7 +448,7 @@ const Questions = props => {
   }
   //add warning styling if the timer reaches 10 seconds
   const warningText = async () => {
-    // $('.timerdiv').addClass('warning')
+    document.getElementsByClassName('timerdiv').addClass('warning');
   }
 
   useEffect(() => {
@@ -631,7 +634,7 @@ const Questions = props => {
           }
           <Col sm={12} lg={12}>
             {questions.length > 0 && showAnswer &&
-              <Carousel className="carouselDiv" interval={null} ref={carouselRef} onSelect={handleSelect} >
+              <Carousel className="carouselDiv" interval={null} ref={carouselRef} activeIndex={index} onSelect={handleSelect} >
                 {questions.map(question => {
                   return <Carousel.Item key={question.id} className="text-center">
                     <Question addAnswer={updateAnswerList}
