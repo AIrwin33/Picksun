@@ -452,18 +452,77 @@ if (process.env.NODE_ENV==="production") {
 // set up Socket.IO
 
 
-socketIO.on('connection', (socket) => {
-    console.log('a user connected');
+pgListen.connect();
 
-    socket.on('chat message', (msg) => {
-      console.log('message: ' + msg);
-      socketIO.emit('chat message', msg);
-    });
+pgListen.events.on("connected", e => {
+    console.log('connected' + e);
+});
 
-    socket.on('disconnect', () => {
-      console.log('user disconnected');
-    });
-  });
+pgListen.events.on("reconnect", e => {
+    console.log('pg Listen reconnect' + e);
+});
+
+
+pgListen.notifications.on("new_contest", (e) => {
+    console.log('pg listen');
+    console.log('emit'+e);
+    if(e.status__c !== 'Finished'){
+        console.log('calling new contest');
+        socketIO.to(e.contest__c).emit("new_contest", e)
+    }
+})
+
+pgListen.notifications.on('test', e =>{
+    console.log('on e');
+    socketIO.emit("test", e)
+});
+
+pgListen.notifications.on("new_question", (e) => {
+    console.log('emit' + e);
+    console.log('calling new question');
+    if (e !== undefined && e.published__c && !e.islocked__c) {
+        console.log('entered new question emit');
+        socketIO.emit("new_question", e)
+    }
+
+    if(e.correct_answer__c !== null && e !== undefined) {
+        console.log('entered correct question emit');
+        socketIO.emit("cor_question", e)
+    }
+    
+})
+
+
+pgListen.events.on("error", (error) => {
+    console.error("Fatal database connection error:", error)
+    process.exit(1)
+})
+
+socketIO.on("connection", async (socket) => {
+    console.log('socket connection');
+    pgListen.listenTo("new_question");
+    pgListen.listenTo("cor_question");
+    pgListen.listenTo("new_contest");
+    console.log('listening');
+    // socket.on("disconnect", (reason) => {
+
+    // });
+});
+
+
+
+console.log('after listen to');
+pgListen.listenTo("new_contest");
+pgListen.listenTo("new_question");
+pgListen.listenTo("cor_question");
+
+socketIO.on('connect_error', function(err) {
+    console.log("client connect_error: ", err);
+});
+
+socketIO.on('connect_timeout', function(err) {
+    console.log("client connect_timeout: ", err);
+});
 
 // start the server
 const port = process.env.PORT || 5000;
