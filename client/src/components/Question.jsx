@@ -24,14 +24,13 @@ const Question = props => {
   const handleRadioChange = async () => {
 
 
-    // this still needs to be replaced on Jquery
 
     var tgt = radioRef.current;
-    console.log(typeof tgt);
+    console.log(tgt);
     var children = radioRef.current.parentNode.childNodes;
-    console.log(typeof children);
-    tgt.add('sel');
-    children.remove('sel');
+    console.log(children);
+    tgt.classList.add('sel');
+    children.classList.remove('sel');
     
 
     var label = '';

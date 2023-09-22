@@ -27,7 +27,7 @@
     padding-right: 0.5em;
 }
 
-.sel {
+.questionButton.sel {
     background-color: #0069d9;
     border: 1px solid #d4d4d4;
     color:white;
