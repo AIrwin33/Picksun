@@ -25,10 +25,10 @@ const Question = props => {
 
 
 
-    var tgt = radioRef.current;
+    var tgt = event.target;
     console.log(tgt);
     var children = document.getElementsByClassName('questionButton');
-
+    console.log(children);
     children[0].classList.remove('sel');
     children[1].classList.remove('sel');
     children[2].classList.remove('sel');
