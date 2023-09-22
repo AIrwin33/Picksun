@@ -28,9 +28,11 @@ const Question = props => {
     var tgt = radioRef.current;
     console.log(tgt);
     var children = document.getElementsByClassName('questionButton');
-    console.log(tgt.parentNode.children);
-    console.log(children);
-    children.classList.remove('sel');
+
+    children[0].classList.remove('sel');
+    children[1].classList.remove('sel');
+    children[2].classList.remove('sel');
+    children[3].classList.remove('sel');
     tgt.classList.add('sel');
     
 
