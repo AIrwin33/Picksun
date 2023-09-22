@@ -8,6 +8,7 @@ import info from '../assets/infoicon.png'
 
 import correctLogo from '../assets/correctIcon.png'
 import incorrectLogo from '../assets/incorrectIcon.png'
+import { Children } from 'react'
 
 const Question = props => {
   const [partAnswer, setPartAnswer] = useState([])
@@ -29,10 +30,10 @@ const Question = props => {
     console.log(tgt);
     var children = document.getElementsByClassName('questionButton');
     console.log(children);
-    children[0].classList.remove('sel');
-    children[1].classList.remove('sel');
-    children[2].classList.remove('sel');
-    children[3].classList.remove('sel');
+    for (let i = 0; i < children.length; i++) {
+      children[i].classList.remove('sel');
+    }
+   
     tgt.classList.add('sel');
     
 
