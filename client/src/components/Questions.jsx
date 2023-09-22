@@ -115,10 +115,10 @@ const Questions = props => {
           setShowTimer(true);
           if(diffTime > 0){
             setCounter(0);
-            document.getElementsByClassName('timerdiv').removeClass('hiddenTimer');
+            document.getElementsByClassName('timerdiv').classList.remove('hiddenTimer');
           } else {
             setCounter(diffTime);
-            document.getElementsByClassName('timerdiv').removeClass('hiddenTimer');
+            document.getElementsByClassName('timerdiv').classList.remove('hiddenTimer');
           }
         }
         else {
@@ -343,7 +343,7 @@ const Questions = props => {
 
       const parseData = await res.json()
 
-      document.getElementsByClassName('timerdiv').addClass('hiddenTimer');
+      document.getElementsByClassName('timerdiv').classList.add('hiddenTimer');
       setReview(true)
       setQuestions(parseData)
       setShowWaiting(false)
@@ -503,7 +503,7 @@ const Questions = props => {
           doGetParticipationWrongAnswers()
         }, 5000)
         setTimer()
-        // $('.timerdiv').removeClass('hiddenTimer')
+        document.getElementsByClassName('timerdiv').classList.remove('hiddenTimer');
         resetLogic()
       }
     } else {
