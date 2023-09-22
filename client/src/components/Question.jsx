@@ -11,7 +11,6 @@ import incorrectLogo from '../assets/incorrectIcon.png'
 
 const Question = props => {
   const [partAnswer, setPartAnswer] = useState([])
-  const [sel, setSelected] = useState(false);
   const [quest, setQuest] = useState([])
   const [showInfo, setShowInfo] = useState(false)
   const [disabledQuestion, setDisabledQuestion] = useState(false)
@@ -23,8 +22,17 @@ const Question = props => {
   //const socket = React.useContext(SocketContext);
 
   const handleRadioChange = async (event) => {
+
+
+
+    var tgt = radioRef.current;
+    console.log(tgt);
+    var children = document.getElementsByClassName('questionButton');
+
+    console.log(children.classList);
+    children.classList.remove('sel');
+    tgt.classList.add('sel');
     
-    setSelected(true);
 
     var label = '';
     if (event.target.value == 'A') {
@@ -254,16 +262,16 @@ const Question = props => {
         <Col sm={10}>
             <div className={`btn-group m-2 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
                 aria-label="Basic example" data-toggle="buttons">
-                <button ref={radioRef} type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_a__c && disabledQuestion ? "selectedQuestion" : ""} ${sel ? "sel" : ""}`}
+                <button ref={radioRef} type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_a__c && disabledQuestion ? "selectedQuestion" : ""}`}
                         onClick={handleRadioChange}>{quest.answer_a__c}</button>
-                <button ref={radioRef} type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_b__c && disabledQuestion ? "selectedQuestion" : ""} ${sel ? "sel" : ""}`}
+                <button ref={radioRef} type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_b__c && disabledQuestion ? "selectedQuestion" : ""}`}
                         onClick={handleRadioChange}>{quest.answer_b__c}</button>
                 {quest.answer_c__c !== null &&
-                <button ref={radioRef} type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_c__c && disabledQuestion ? "selectedQuestion" : ""} ${sel ? "sel" : ""}`}
+                <button ref={radioRef} type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_c__c && disabledQuestion ? "selectedQuestion" : ""}`}
                 onClick={handleRadioChange}>{quest.answer_c__c}</button>
             }
                 {quest.answer_d__c !== null &&
-                <button ref={radioRef} type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_d__c && disabledQuestion ? "selectedQuestion" : ""} ${sel ? "sel" : ""}`}
+                <button ref={radioRef} type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_d__c && disabledQuestion ? "selectedQuestion" : ""}`}
                 onClick={handleRadioChange}>{quest.answer_d__c}</button>
             }
             </div>
