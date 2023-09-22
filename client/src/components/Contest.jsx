@@ -3,6 +3,7 @@ import {Row, Col, Tab, Tabs, Button, Image, Modal} from "react-bootstrap";
 import {TwitterTimelineEmbed} from 'react-twitter-embed';
 import {SocketContext} from "../socket";
 import { useParams } from 'react-router-dom';
+import {connect} from "react-redux";
 
 
 
@@ -13,7 +14,7 @@ import "./Contest.css";
 import Questions from './Questions';
 
 import avatar from '../assets/blue_avatar_200.png';
-// import {connect} from "react-redux";
+
 
 
 const Contest = () => {
@@ -378,4 +379,4 @@ const Contest = () => {
     )
 }
 
-export default (Contest);
+export default connect()(Contest);
