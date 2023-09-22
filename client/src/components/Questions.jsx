@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo, useRef } from 'react'
-import { Col, Button, Modal, Row, Image } from 'react-bootstrap'
-import Carousel from 'react-bootstrap/Carousel';
+import { Col, Button, Modal, Row, Image, Carousel } from 'react-bootstrap'
 
 import moment from 'moment'
 import Timer from 'react-compound-timer'
