@@ -44,7 +44,8 @@ const Question = props => {
     if (event.target.value == 'D') {
         label = quest.answer_d__c;
     }
-
+    console.log(event.target.value);
+    console.log(label);
     handleUpdateQuestionValue(event.target.value, label);
   }
   const handleUpdateQuestionValue = async (eventVal, eventLabel) => {
