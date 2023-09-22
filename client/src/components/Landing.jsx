@@ -64,7 +64,7 @@ const Landing = props => {
               <span className='whiteText proxima'>- Free prizes</span>
               <br />
             </div>
-            <Link className='btn btn-primary mt-3' label='lets go!' to='/Lobby'>
+            <Link className='btn btn-primary mt-3' label='lets go!' to='/Login'>
               Let's Go!
             </Link>
           </Col>
