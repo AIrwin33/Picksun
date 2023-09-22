@@ -27,10 +27,11 @@ const Question = props => {
 
     var tgt = radioRef.current;
     console.log(tgt);
-    var children = radioRef.current.parentNode.childNodes;
+    var children = document.getElementsByClassName('questionButton');
     console.log(children);
-    tgt.classList.add('sel');
+    
     children.classList.remove('sel');
+    tgt.classList.add('sel');
     
 
     var label = '';
