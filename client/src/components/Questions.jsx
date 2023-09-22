@@ -406,7 +406,7 @@ const Questions = props => {
     try {
       //if the answer list is empty, add the answered question from the Question JS
       if (answerList.length < 1) {
-        //     console.log('starting answer list');
+            console.log('starting answer list');
         answerList.push(childData)
       }
       var addTo = true
@@ -426,8 +426,9 @@ const Questions = props => {
         answerList.push(childData)
       }
 
-      setAnswerList(answerList)
-      if (answerList.length === subSegmentCount) {
+      setAnswerList(answerList);
+      console.log(answerList.length);
+      if (answerList.length === 8) {
         setAnswerListShow(true)
         if (showSubmitCount === 0) {
           setShowSubmitModal(true)
