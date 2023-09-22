@@ -26,12 +26,12 @@ const Question = props => {
     // this still needs to be replaced on Jquery
 
     var tgt = event.target;
-    console.log(tgt);
+    console.log(typeof tgt);
     var children = tgt.parentNode.childNodes;
-    console.log(children);
-
-    children.removeClass('sel');
+    console.log(typeof children);
     tgt.addClass('sel');
+    children.removeClass('sel');
+    
 
     var label = '';
     if (event.target.value == 'A') {
