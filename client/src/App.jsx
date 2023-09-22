@@ -3,7 +3,6 @@ import { Row, Col } from 'react-bootstrap'
 import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom'
 import { SocketContext, socket } from '../src/socket'
 import {Provider} from "react-redux";
-import configureStore from "redux";
 
 import './App.css'
 import Login from './components/Login.jsx'
@@ -17,6 +16,7 @@ import Questions from './components/Questions.jsx'
 import TopPanel from './components/TopPanel.jsx'
 import Landing from './components/Landing.jsx'
 import Admin from './components/Admin.jsx'
+import { legacy_createStore as createStore} from 'redux'
 
 function App () {
   const [isProfile, setIsProfile] = useState(false)
@@ -31,7 +31,7 @@ function App () {
     return state;
 }
 
-  const store = configureStore(reducer);
+  const store = createStore(reducer);
   store.dispatch({type: "INCREMENT!"});
   //check if the user is authenticated
   const checkAuthenticated = async () => {
