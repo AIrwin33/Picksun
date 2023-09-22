@@ -30,8 +30,8 @@ const Question = props => {
     var children = tgt.parentNode.childNodes;
     console.log(children);
 
-    children.classList.removeClass('sel');
-    tgt.classList.addClass('sel');
+    children.removeClass('sel');
+    tgt.addClass('sel');
 
     var label = '';
     if (event.target.value == 'A') {
