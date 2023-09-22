@@ -5,6 +5,7 @@ import './Question.css'
 import info from '../assets/infoicon.png'
 //import {SocketContext} from "../socket";
 
+
 import correctLogo from '../assets/correctIcon.png'
 import incorrectLogo from '../assets/incorrectIcon.png'
 
@@ -15,22 +16,22 @@ const Question = props => {
   const [disabledQuestion, setDisabledQuestion] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false);
   const [partanswersupdated, setUpdated] = useState(false)
-
+  const radioRef = React.useRef(null);
   const [allpartanswers, setAllpartanswers] = useState([])
 
   //const socket = React.useContext(SocketContext);
 
-  const handleRadioChange = async event => {
+  const handleRadioChange = async () => {
 
 
     // this still needs to be replaced on Jquery
 
-    var tgt = event.target;
+    var tgt = radioRef.current;
     console.log(typeof tgt);
-    var children = tgt.parentNode.childNodes;
+    var children = radioRef.current.parentNode.childNodes;
     console.log(typeof children);
-    tgt.addClass('sel');
-    children.removeClass('sel');
+    tgt.add('sel');
+    children.remove('sel');
     
 
     var label = '';
@@ -261,16 +262,16 @@ const Question = props => {
         <Col sm={10}>
             <div className={`btn-group m-2 ${disabledQuestion === true ? "disabledBtnGroup" : ""}`} role="group"
                 aria-label="Basic example" data-toggle="buttons">
-                <button type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_a__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                <button ref={radioRef} type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_a__c && disabledQuestion ? "selectedQuestion" : ""}`}
                         onClick={handleRadioChange}>{quest.answer_a__c}</button>
-                <button type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_b__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                <button ref={radioRef} type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_b__c && disabledQuestion ? "selectedQuestion" : ""}`}
                         onClick={handleRadioChange}>{quest.answer_b__c}</button>
                 {quest.answer_c__c !== null &&
-                <button type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_c__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                <button ref={radioRef} type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_c__c && disabledQuestion ? "selectedQuestion" : ""}`}
                 onClick={handleRadioChange}>{quest.answer_c__c}</button>
             }
                 {quest.answer_d__c !== null &&
-                <button type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_d__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                <button ref={radioRef} type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_d__c && disabledQuestion ? "selectedQuestion" : ""}`}
                 onClick={handleRadioChange}>{quest.answer_d__c}</button>
             }
             </div>

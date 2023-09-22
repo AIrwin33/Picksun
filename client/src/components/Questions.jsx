@@ -625,7 +625,7 @@ const Questions = props => {
           }
           <Col sm={12} lg={12}>
             {questions.length > 0 && showAnswer &&
-              <Carousel className="carouselDiv" interval={null} onSelect={handleSelect} >
+              <Carousel className="carouselDiv" interval={null} ref={carouselRef} onSelect={handleSelect} >
                 {questions.map(question => {
                   return <Carousel.Item key={question.id} className="text-center">
                     <Question addAnswer={updateAnswerList}
