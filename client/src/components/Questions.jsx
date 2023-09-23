@@ -141,6 +141,7 @@ const Questions = props => {
     console.log('in active index handle select');
     console.log(document.getElementsByClassName('carouselDiv').activeIndex);
     setIndex(selectedIndex);
+    console.log('index' + index);
     console.log(document.getElementsByClassName('carouselDiv').activeIndex);
     setQuestionNum(selectedIndex + 1)
   }
