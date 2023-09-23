@@ -115,10 +115,10 @@ const Questions = props => {
           setShowTimer(true);
           if(diffTime > 0){
             setCounter(0);
-            document.getElementsByClassName('timerdiv').classList.remove('hiddenTimer');
+            //document.getElementsByClassName('timerdiv').classList.remove('hiddenTimer');
           } else {
             setCounter(diffTime);
-            document.getElementsByClassName('timerdiv').classList.remove('hiddenTimer');
+            //document.getElementsByClassName('timerdiv').classList.remove('hiddenTimer');
           }
         }
         else {
@@ -555,7 +555,7 @@ const Questions = props => {
 
                       {/* on timer state of stopped, call the disable function and show answer*/}
                       {counter > 0 && 
-                        <div className="timerdiv font16"> 
+                        <div className="timerdiv font16 hiddenTimer"> 
                           {props.sport == 'Baseball' &&
                             <Image width='20' src={baseball} />
                           }
