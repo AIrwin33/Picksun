@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom'
-import { SocketProvider } from './SocketContext'
+import { SocketProvider } from '../src/socket'
 import {Provider} from "react-redux";
 import { legacy_createStore as createStore} from 'redux'
 
@@ -74,7 +74,7 @@ function App () {
 
 
   return (
-
+    <Provider store={store}>
     <SocketProvider>
       <Fragment>
         <Router>
@@ -154,6 +154,7 @@ function App () {
         </Router>
       </Fragment>
     </SocketProvider>
+    </Provider>
   )
 }
 
