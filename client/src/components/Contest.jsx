@@ -33,7 +33,7 @@ const Contest = () => {
     const [activeParts, setActiveParts] = useState([]);
     const [newQuestion, setNewQuestion] = useState();
     const [newCorrectQuestion, setNewCorrectQuestion] = useState();
-    const { socket } = useContext(SocketContext);
+    const socket = useContext(SocketContext);
 
     const getContest = async () => {
         try {
