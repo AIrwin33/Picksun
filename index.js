@@ -484,16 +484,13 @@ pgListen.events.on("error", (error) => {
     process.exit(1)
 })
 
-io.sockets.on("connection", async (socket) => {
-    console.log('connected and listening');
-    await pgListen.listenTo("new_question");
-    await pgListen.listenTo("cor_question");
 
-});
 
 
 console.log('after listen to');
 pgListen.listenTo("new_contest");
+pgListen.listenTo("new_question");
+pgListen.listenTo("cor_question");
 
 io.on('connect_error', function(err) {
     console.log("client connect_error: ", err);
