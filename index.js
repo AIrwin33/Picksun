@@ -525,7 +525,7 @@ socketIO.on('connect_timeout', function(err) {
 });
 
 // start the server
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5432;
 http.listen(port, () => {
   console.log('listening on *:' + port);
 });

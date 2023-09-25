@@ -504,7 +504,7 @@ const Questions = props => {
           doGetParticipationWrongAnswers()
         }, 5000)
         setTimer()
-        document.getElementsByClassName('timerdiv').classList.remove('hiddenTimer');
+        //document.getElementsByClassName('timerdiv').classList.remove('hiddenTimer');
         resetLogic()
       }
     } else {
