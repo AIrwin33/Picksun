@@ -59,7 +59,7 @@ function App () {
   useEffect(() => {
     console.log(isAuthenticated);
     checkAuthenticated();
-    console.log('socket in app' + JSON.stringify(socket));
+    console.log('socket in app' + socket);
 
   }, [])
 
