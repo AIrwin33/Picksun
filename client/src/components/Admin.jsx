@@ -112,7 +112,8 @@ const Admin = (props) => {
                       isInactive={inactive}
                       totalQuestions={8}
                       showAnswers={showAnswer}
-                      isAdmin={true} />
+                      isAdmin={true}
+                      />
                   </Carousel.Item>
                 })}
               </Carousel>

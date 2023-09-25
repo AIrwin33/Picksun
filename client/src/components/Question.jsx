@@ -18,9 +18,8 @@ const Question = props => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [partanswersupdated, setUpdated] = useState(false)
   const radioRef = React.useRef(null);
-  const [allpartanswers, setAllpartanswers] = useState([])
-
-  //const socket = React.useContext(SocketContext);
+  const [allpartanswers, setAllpartanswers] = useState([]);
+  const [selectAnswer, setSelectAnswer] = useState();
 
   const handleRadioChange = async (event) => {
 
@@ -52,7 +51,11 @@ const Question = props => {
     }
     console.log(event.target.value);
     console.log(label);
-    handleUpdateQuestionValue(event.target.value, label);
+    if(!props.isAdmin){
+      handleUpdateQuestionValue(event.target.value, label);
+    }else{
+      setSelectAnswer(event.target.value);
+    }
   }
   const handleUpdateQuestionValue = async (eventVal, eventLabel) => {
     try {
@@ -69,6 +72,7 @@ const Question = props => {
       }
 
       //add answer to client side answer list in Questions JS before submitting
+
       props.addAnswer(answer)
     } catch (err) {
       console.error(err.message)
@@ -145,21 +149,18 @@ const Question = props => {
 
     // get clicked value
 
-    var answer = event.currentTarget();
-
-
-    console.log('answer' + answer);
+    
     var answerval;
-    if(answer == 'A'){
+    if(selectAnswer == 'A'){
         answerval = quest.Answer_A__c;
     }
-    if(answer == 'B'){
+    if(selectAnswer == 'B'){
         answerval = quest.Answer_B__c;
     }
-    if(answer == 'C'){
+    if(selectAnswer == 'C'){
         answerval = quest.Answer_C__c;
     }
-    if(answer == 'D'){
+    if(selectAnswer == 'D'){
         answerval = quest.Answer_D__c;
     }
 
