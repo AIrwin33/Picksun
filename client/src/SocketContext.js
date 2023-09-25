@@ -21,7 +21,7 @@ export const SocketProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-
+      console.log('socket in socket context' + socket);
   }, [socket]);
   return (
     <SocketContext.Provider value={{ socket }}>
