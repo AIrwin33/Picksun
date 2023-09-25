@@ -7,7 +7,6 @@ const SocketContext = createContext({
 const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:3000';
 
 export const SocketProvider = ({ children }) => {
-  const authCtx = useContext(AuthContext);
 
   const [socket, setSocket] = useState(null);
 
