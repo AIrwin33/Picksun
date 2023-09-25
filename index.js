@@ -476,6 +476,10 @@ io.on("connection", (socket) => {
             socket.broadcast.to(data.contest__c).emit("new_contest", )
         }
     });
+
+    socket.on('disconnect', () => {
+        console.log(`disconnect: ${socket.id}`);
+      });
 });
     
 
