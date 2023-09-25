@@ -149,39 +149,39 @@ const Contest = () => {
         
     })
 
-    const socketUpdates = async (socket) => {
+    const socketUpdates = async (socketio) => {
 
-        const socket = io('https://play.pick.fun', {
+        const socketio = io('https://play.pick.fun', {
             rejectUnauthorized: false
         });
-        console.log('is socket connected' + socket.connected);
+        console.log('is socket connected' + socketio.connected);
 
-        socket.on("connect", function(data) {
+        socketio.on("connect", function(data) {
             console.log('check connect');
-            console.log(socket.connected);
+            console.log(socketio.connected);
         });
 
-        socket.on("new_question", question => {
+        socketio.on("new_question", question => {
             console.log('check new question');
             setNewQuestion(question);
         })
-        socket.on("cor_question", question => {
+        socketio.on("cor_question", question => {
             console.log('check cor question');
             setNewCorrectQuestion(question);
         })
-        socket.on("new_contest", contest => {
+        socketio.on("new_contest", contest => {
             setContest(contest);
         });
 
-        socket.on('disconnect', () =>{
-            socket.close();
+        socketio.on('disconnect', () =>{
+            socketio.close();
         });
 
-        socket.on("connect_error", (err) => {
+        socketio.on("connect_error", (err) => {
             console.log(`connect_error due to ${err.message}`);
-            socket.close();
+            socketio.close();
           });
-        return socket.disconnect()
+        return socketio.disconnect()
     }
     
     useEffect(() => {
