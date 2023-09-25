@@ -58,7 +58,8 @@ function App () {
 
   useEffect(() => {
     console.log(isAuthenticated);
-    checkAuthenticated()
+    checkAuthenticated();
+    console.log('socket in app' + socket);
 
   }, [])
 
