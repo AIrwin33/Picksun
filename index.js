@@ -448,57 +448,50 @@ if (process.env.NODE_ENV==="production") {
 // set up Socket.IO
 
 
-pgListen.connect();
 
 
-pgListen.events.on("connected", e => {
-    console.log('connected' + e);
+
+io.on("connection", (socket) => {
+    console.log('connected' + socket);
 });
-
-pgListen.events.on("reconnect", e => {
-    console.log('pg Listen reconnect' + e);
-});
-
-
-pgListen.notifications.on("new_contest", e => {
-    if(e.status__c === 'Finished'){
-        io.to(e.contest__c).emit("new_contest", e)
-    }
-})
-
-pgListen.notifications.on("new_question", e => {
-
-    if (e !== undefined && e.published__c && !e.islocked__c) {
-        io.emit("new_question", e)
-    }
-
-    if(e.correct_answer__c !== null && e !== undefined) {
-        io.emit("cor_question", e)
-    }
     
-})
+
+// pgListen.events.on("reconnect", e => {
+//     console.log('pg Listen reconnect' + e);
+// });
 
 
-pgListen.events.on("error", (error) => {
-    console.error("Fatal database connection error:", error)
-    process.exit(1)
-})
+// pgListen.notifications.on("new_contest", e => {
+//     if(e.status__c === 'Finished'){
+//         io.to(e.contest__c).emit("new_contest", e)
+//     }
+// })
+
+// pgListen.notifications.on("new_question", e => {
+
+//     if (e !== undefined && e.published__c && !e.islocked__c) {
+//         io.emit("new_question", e)
+//     }
+
+//     if(e.correct_answer__c !== null && e !== undefined) {
+//         io.emit("cor_question", e)
+//     }
+    
+// })
+
+
+// pgListen.events.on("error", (error) => {
+//     console.error("Fatal database connection error:", error)
+//     process.exit(1)
+// })
 
 
 
 
-console.log('after listen to');
-pgListen.listenTo("new_contest");
-pgListen.listenTo("new_question");
-pgListen.listenTo("cor_question");
-
-io.on('connect_error', function(err) {
-    console.log("client connect_error: ", err);
-});
-
-io.on('connect_timeout', function(err) {
-    console.log("client connect_timeout: ", err);
-});
+// console.log('after listen to');
+// pgListen.listenTo("new_contest");
+// pgListen.listenTo("new_question");
+// pgListen.listenTo("cor_question");
 
 const port = process.env.PORT || 5432;
 http.listen(port, () => {
