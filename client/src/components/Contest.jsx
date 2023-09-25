@@ -149,7 +149,7 @@ const Contest = () => {
         
     })
 
-    const socketUpdates = async (socketio) => {
+    const socketUpdates = async () => {
 
         const socketio = io('https://play.pick.fun', {
             rejectUnauthorized: false
@@ -186,7 +186,7 @@ const Contest = () => {
     
     useEffect(() => {
         getContest();
-        socketUpdates(socket);
+        socketUpdates();
     }, []);
 
     useEffect(() => {
