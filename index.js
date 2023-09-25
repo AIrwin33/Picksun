@@ -473,14 +473,11 @@ io.on("connection", (socket) => {
 
     socket.on("new_contest", function(data) {
         if(data.status__c === 'Finished'){
-            socket.broadcast.to(data.contest__c).emit("new_contest", data)
+            socket.broadcast.to(data.contest__c).emit("new_contest", )
         }
     });
 });
     
-
-
-
 
 
 

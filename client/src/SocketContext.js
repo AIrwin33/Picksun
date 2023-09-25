@@ -13,7 +13,7 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     
     setSocket((URL,{
-      'connect timeout': 2000,
+      'connect timeout': 20000,
       'reconnection': true,
       'max reconnection attempts': 10000,
       'reconnectionDelay': 10,
