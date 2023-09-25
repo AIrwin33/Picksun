@@ -19,12 +19,10 @@ export const SocketProvider = ({ children }) => {
       'reconnectionDelay': 10,
       'reconnectionDelayMax': 500,
     } ));
-  }, []);
-
-  useEffect(() => {
-      console.log(URL);
-      console.log('socket in socket context' + socket);
+    console.log(socket);
   }, [socket]);
+
+
   return (
     <SocketContext.Provider value={{ socket }}>
       {children}
