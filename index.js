@@ -448,7 +448,7 @@ if (process.env.NODE_ENV==="production") {
 // set up Socket.IO
 
 
-pgListen.connect();
+await pgListen.connect();
 
 
 pgListen.events.on("connected", e => {
@@ -484,10 +484,10 @@ pgListen.events.on("error", (error) => {
     process.exit(1)
 })
 
-io.on("connection", async (socket) => {
+io.sockets.on("connection", async (socket) => {
     console.log('connected and listening');
-    pgListen.listenTo("new_question");
-    pgListen.listenTo("cor_question");
+    await pgListen.listenTo("new_question");
+    await pgListen.listenTo("cor_question");
 
 });
 
