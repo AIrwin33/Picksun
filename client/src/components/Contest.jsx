@@ -94,7 +94,7 @@ const Contest = () => {
                     activeParts.push(parseData[i]);
                 }
             }
-            if(contestRec.status__c === 'Finished'){
+            if(contest.status__c === 'Finished'){
                 for (i = 0; i < parseData.length; i++) {
                     if (parseData[i].status__c !== 'Active') {
                         endParts.push(parseData[i]);
