@@ -347,10 +347,8 @@ const Questions = props => {
       setReview(true);
       setQuestions(parseData);
       setShowWaiting(false);
-      setIndex(0);
-      setQuestionNum(1);
-      console.log('is review after disable questions' + review);
-      console.log('contest finished' +isContestFinished);
+      // setIndex(0);
+      // setQuestionNum(1);
     } catch (err) {
       console.log('disable questions err : ' + err.message)
     }
