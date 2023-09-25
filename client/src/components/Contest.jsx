@@ -35,7 +35,9 @@ const Contest = () => {
     const [activeParts, setActiveParts] = useState([]);
     const [newQuestion, setNewQuestion] = useState();
     const [newCorrectQuestion, setNewCorrectQuestion] = useState();
-    var socket = io('https://cryptic-citadel-94967');
+    var socket = io('https://play.pick.fun', {
+        rejectUnauthorized: false
+    });
     const getContest = async () => {
         try {
             console.log(id);
