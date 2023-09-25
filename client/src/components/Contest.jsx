@@ -163,16 +163,14 @@ const Contest = () => {
         socket.on("new_question", question => {
             console.log('check new question');
             setNewQuestion(question);
-            
-
         })
-        // socket.on("cor_question", question => {
-        //     console.log('check cor question');
-        //     setNewCorrectQuestion(question);
-        // })
-        // socket.on("new_contest", contest => {
-        //     setContest(contest);
-        // });
+        socket.on("cor_question", question => {
+            console.log('check cor question');
+            setNewCorrectQuestion(question);
+        })
+        socket.on("new_contest", contest => {
+            setContest(contest);
+        });
 
         socket.on('disconnect', () =>{
             socket.close();
@@ -182,7 +180,7 @@ const Contest = () => {
             console.log(`connect_error due to ${err.message}`);
             socket.close();
           });
-    }, []);
+    }, [contest]);
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
