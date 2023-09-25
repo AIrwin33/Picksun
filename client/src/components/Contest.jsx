@@ -63,7 +63,7 @@ const Contest = () => {
             setSport(parseData[0].sport__c);
             setHomeTeam(parseData[0]);
             setAwayTeam(parseData[1]);
-            getContestParticipations(contestRec);
+            getContestParticipations();
             setTimeout(
                 function() {
                     setLoaded(true);
@@ -76,10 +76,10 @@ const Contest = () => {
         }
     }
 
-    const getContestParticipations = async (contestRec) => {
+    const getContestParticipations = async () => {
         try {
-            console.log('contest' + contestRec);
-            const res = await fetch(`/contestparticipations/` + contestRec.sfid, {
+            console.log('contest' + contest);
+            const res = await fetch(`/contestparticipations/` + contest.sfid, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
             });
@@ -106,17 +106,17 @@ const Contest = () => {
             setActiveParts(activeParts.length);
             setAllPartsList(endParts);
             setParticipations(activeParts);
-            getParticipationByContest(contestRec);
+            getParticipationByContest();
 
         } catch (err) {
             console.error(err.message);
         }
     }
 
-    const getParticipationByContest = async (contestRec) => {
+    const getParticipationByContest = async () => {
         try {
-            console.log('contestRec.sfid' + contestRec.sfid);
-            const res = await fetch(`/participationbycontest/` + contestRec.sfid, {
+
+            const res = await fetch(`/participationbycontest/` + contest.sfid, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
             });
