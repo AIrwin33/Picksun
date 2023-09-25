@@ -448,6 +448,7 @@ if (process.env.NODE_ENV==="production") {
 // set up Socket.IO
 
 
+pgListen.connect();
 
 
 pgListen.events.on("connected", e => {
@@ -494,7 +495,6 @@ io.on("connection", async (socket) => {
 });
 
 
-pgListen.connect();
 console.log('after listen to');
 pgListen.listenTo("new_contest");
 
