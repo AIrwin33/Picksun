@@ -149,8 +149,14 @@ const Contest = () => {
         
     })
 
-    const socketUpdates = async () => {
+    // const socketUpdates = async () => {
 
+        
+    // }
+    
+    useEffect(() => {
+        getContest();
+        //socketUpdates();
         const socketio = io('https://play.pick.fun', {
             rejectUnauthorized: false
         });
@@ -182,17 +188,12 @@ const Contest = () => {
             socketio.close();
           });
         return socketio.disconnect()
-    }
-    
-    useEffect(() => {
-        getContest();
-        //socketUpdates();
-    }, []);
+    });
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
         getContestParticipations(contest);
-        socketUpdates();
+        //socketUpdates();
     }, [contest])
     
     return ((
