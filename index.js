@@ -461,7 +461,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("new_question", function(data) {
-
+        console.log('new questions' + data);
         if (data !== undefined && data.published__c && !data.islocked__c) {
             socket.emit("new_question", data)
         }
