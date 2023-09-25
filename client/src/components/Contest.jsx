@@ -180,6 +180,7 @@ const Contest = () => {
             console.log(`connect_error due to ${err.message}`);
             socket.close();
           });
+        return () => socket.emit('end');
     }
     
     useEffect(() => {
