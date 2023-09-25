@@ -510,6 +510,7 @@ io.on('connect_timeout', function(err) {
     console.log("client connect_timeout: ", err);
 });
 
-http.listen(PORT, () => {
-    console.log(`Server is starting on port ${PORT}`);
+const port = process.env.PORT || 5432;
+http.listen(port, () => {
+  console.log('listening on *:' + port);
 });
