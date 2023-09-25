@@ -10,24 +10,7 @@ export const SocketProvider = ({ children }) => {
 
   const [socket, setSocket] = useState(null);
 
-  useEffect(() => {
-    
-    setSocket((URL,{
-      'connect timeout': 20000,
-      'reconnection': true,
-      'max reconnection attempts': 10000,
-      'reconnectionDelay': 10,
-      'reconnectionDelayMax': 500,
-    } ));
-    console.log(socket);
-  }, [socket]);
-
-
-  return (
-    <SocketContext.Provider value={{ socket }}>
-      {children}
-    </SocketContext.Provider>
-  );
+  
 };
 
 export default SocketContext;

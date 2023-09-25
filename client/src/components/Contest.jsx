@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useCallback, useMemo, useContext} from 'react';
 import {Row, Col, Tab, Tabs, Button, Image, Modal} from "react-bootstrap";
 import {TwitterTimelineEmbed} from 'react-twitter-embed';
-import SocketContext from "../SocketContext";
+//import SocketContext from "../SocketContext";
 import { useParams } from 'react-router-dom';
 import {connect} from "react-redux";
 
