@@ -3,7 +3,7 @@ const router = express.Router();
 const app = express();
 const cors = require('cors');
 const http = require('http').createServer(app);
-const socketIO = require('socket.io')(http);
+const io = require('socket.io')(http);
 const {pool, pgListen} = require("./server/db");
 const authorization = require("./server/utils/authorize");
 const session = require("express-session")({
@@ -452,7 +452,7 @@ if (process.env.NODE_ENV==="production") {
 // set up Socket.IO
 
 
-pgListen.connect();
+
 
 pgListen.events.on("connected", e => {
     console.log('connected' + e);
@@ -463,31 +463,20 @@ pgListen.events.on("reconnect", e => {
 });
 
 
-pgListen.notifications.on("new_contest", (e) => {
-    console.log('pg listen');
-    console.log('emit'+e);
-    if(e.status__c !== 'Finished'){
-        console.log('calling new contest');
-        socketIO.to(e.contest__c).emit("new_contest", e)
+pgListen.notifications.on("new_contest", e => {
+    if(e.status__c === 'Finished'){
+        io.to(e.contest__c).emit("new_contest", e)
     }
 })
 
-pgListen.notifications.on('test', e =>{
-    console.log('on e');
-    socketIO.emit("test", e)
-});
+pgListen.notifications.on("new_question", e => {
 
-pgListen.notifications.on("new_question", (e) => {
-    console.log('emit' + e);
-    console.log('calling new question');
     if (e !== undefined && e.published__c && !e.islocked__c) {
-        console.log('entered new question emit');
-        socketIO.emit("new_question", e)
+        io.emit("new_question", e)
     }
 
     if(e.correct_answer__c !== null && e !== undefined) {
-        console.log('entered correct question emit');
-        socketIO.emit("cor_question", e)
+        io.emit("cor_question", e)
     }
     
 })
@@ -498,34 +487,29 @@ pgListen.events.on("error", (error) => {
     process.exit(1)
 })
 
-socketIO.on("connection", async (socket) => {
-    console.log('socket connection');
+io.on("connection", async (socket) => {
+    
     pgListen.listenTo("new_question");
     pgListen.listenTo("cor_question");
-    pgListen.listenTo("new_contest");
-    console.log('listening');
-    // socket.on("disconnect", (reason) => {
 
-    // });
+    socket.on("disconnect", (reason) => {
+
+    });
 });
 
 
-
+pgListen.connect();
 console.log('after listen to');
 pgListen.listenTo("new_contest");
-pgListen.listenTo("new_question");
-pgListen.listenTo("cor_question");
 
-socketIO.on('connect_error', function(err) {
+io.on('connect_error', function(err) {
     console.log("client connect_error: ", err);
 });
 
-socketIO.on('connect_timeout', function(err) {
+io.on('connect_timeout', function(err) {
     console.log("client connect_timeout: ", err);
 });
 
-// start the server
-const port = process.env.PORT || 5432;
-http.listen(port, () => {
-  console.log('listening on *:' + port);
+http.listen(PORT, () => {
+    console.log(`Server is starting on port ${PORT}`);
 });
