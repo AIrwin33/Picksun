@@ -11,7 +11,7 @@ import baseball from '../assets/Baseballspinning.gif'
 import football from '../assets/football.gif'
 import basketball from '../assets/basketball.gif'
 import hourglass from '../assets/hourglass.png'
-import SocketContext  from '../SocketContext'
+//import SocketContext  from '../SocketContext'
 
 import './Questions.css'
 
@@ -48,7 +48,6 @@ const Questions = props => {
   const [showContestFinished, setShowContestFinished] = useState(false)
   const [contestFinishedText, setContestFinishedText] = useState([])
   const carouselRef = React.createRef()
-  const socket = React.useContext(SocketContext)
   const [newQuestion, setNewQuestion] = useState()
   const [newCorrectQuestion, setNewCorrectQuestion] = useState()
 
