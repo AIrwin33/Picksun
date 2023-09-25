@@ -152,7 +152,7 @@ const Contest = () => {
         console.log('in contest');
         console.log('is socket connected' + socket);
         getContest()
-        socket.on("connect", (socket) => {
+        socket.on("connect", () => {
             console.log('check connect');
         });
 

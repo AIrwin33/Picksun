@@ -453,45 +453,36 @@ if (process.env.NODE_ENV==="production") {
 
 io.on("connection", (socket) => {
     console.log('connected' + socket);
+
+    socket.on("new_contest", e => {
+        if(e.status__c === 'Finished'){
+            socket.broadcast.to(e.contest__c).emit("new_contest", e);
+        }
+    });
+
+    socket.on("new_question", e => {
+
+        if (e !== undefined && e.published__c && !e.islocked__c) {
+            socket.emit("new_question", e)
+        }
+    
+        if(e.correct_answer__c !== null && e !== undefined) {
+            socket.emit("cor_question", e)
+        }
+    });
+
+    socket.on("new_contest", e => {
+        if(e.status__c === 'Finished'){
+            socket.broadcast.to(e.contest__c).emit("new_contest", e)
+        }
+    });
 });
     
 
-// pgListen.events.on("reconnect", e => {
-//     console.log('pg Listen reconnect' + e);
-// });
-
-
-// pgListen.notifications.on("new_contest", e => {
-//     if(e.status__c === 'Finished'){
-//         io.to(e.contest__c).emit("new_contest", e)
-//     }
-// })
-
-// pgListen.notifications.on("new_question", e => {
-
-//     if (e !== undefined && e.published__c && !e.islocked__c) {
-//         io.emit("new_question", e)
-//     }
-
-//     if(e.correct_answer__c !== null && e !== undefined) {
-//         io.emit("cor_question", e)
-//     }
-    
-// })
-
-
-// pgListen.events.on("error", (error) => {
-//     console.error("Fatal database connection error:", error)
-//     process.exit(1)
-// })
 
 
 
 
-// console.log('after listen to');
-// pgListen.listenTo("new_contest");
-// pgListen.listenTo("new_question");
-// pgListen.listenTo("cor_question");
 
 const port = process.env.PORT || 5432;
 http.listen(port, () => {
