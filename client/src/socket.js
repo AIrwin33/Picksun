@@ -1,5 +1,5 @@
 import {io} from "socket.io-client";
-import React from "react";
+import React, {useEffect, useState, useCallback, useMemo, createContext, useContext} from "react";
 
 
 const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:3000';
@@ -12,4 +12,6 @@ export const socket = io(URL,{
   'reconnectionDelayMax': 500,
 } );
 
-export const SocketContext = React.createContext(null);
+export const SocketContext = React.createContext({
+  socket: socket
+});
