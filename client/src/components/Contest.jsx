@@ -186,7 +186,7 @@ const Contest = () => {
     useEffect(() => {
         getContest();
         socketUpdates(socket);
-    }, [socket.id]);
+    }, [socket]);
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
