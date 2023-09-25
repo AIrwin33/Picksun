@@ -183,6 +183,9 @@ const Contest = () => {
         //     });
         //     socket.off('foo', );
         //   };
+        socket.on("connect_error", (err) => {
+            console.log(`connect_error due to ${err.message}`);
+          });
     }, [contest]);
 
     useEffect(() => {
