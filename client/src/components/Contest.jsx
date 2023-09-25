@@ -150,11 +150,11 @@ const Contest = () => {
         getContestParticipations(contest);
         
     })
-    
-    useEffect(() => {
+
+    const socketUpdates = async (socket) => {
         console.log('in contest');
         console.log('is socket connected' + socket.connected);
-        getContest()
+
         socket.on("connect", function(data) {
             console.log('check connect');
             console.log(socket.connected);
@@ -180,7 +180,12 @@ const Contest = () => {
             console.log(`connect_error due to ${err.message}`);
             socket.close();
           });
-    }, [contest]);
+    }
+    
+    useEffect(() => {
+        getContest();
+        socketUpdates(socket);
+    }, [socket]);
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
