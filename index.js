@@ -448,7 +448,7 @@ if (process.env.NODE_ENV==="production") {
 // set up Socket.IO
 
 
-await pgListen.connect();
+pgListen.connect();
 
 
 pgListen.events.on("connected", e => {
