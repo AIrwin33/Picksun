@@ -155,9 +155,10 @@ const Contest = () => {
         console.log('in contest');
         console.log('is socket connected' + socket.connected);
         getContest()
-        // socket.on("connect", function(data) {
-        //     console.log('check connect');
-        // });
+        socket.on("connect", function(data) {
+            console.log('check connect');
+            console.log(socket.connected);
+        });
 
         // socket.on("new_question", question => {
         //     console.log('check new question');
@@ -175,14 +176,7 @@ const Contest = () => {
         // socket.on('disconnect', () =>{
         //     console.log('reconnect fired!');
         // });
- 
-        // return () => {
-        //     socket.off('connect', );
-        //     socket.off('disconnect', () => {
-        //         setIsConnected(false)
-        //     });
-        //     socket.off('foo', );
-        //   };
+
         socket.on("connect_error", (err) => {
             console.log(`connect_error due to ${err.message}`);
           });
