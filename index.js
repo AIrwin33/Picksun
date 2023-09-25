@@ -454,26 +454,26 @@ if (process.env.NODE_ENV==="production") {
 io.on("connection", (socket) => {
     console.log('connected' + socket);
 
-    socket.on("new_contest", e => {
-        if(e.status__c === 'Finished'){
-            socket.broadcast.to(e.contest__c).emit("new_contest", e);
+    socket.on("new_contest", function(data) {
+        if(data.status__c === 'Finished'){
+            socket.broadcast.to(data.contest__c).emit("new_contest", data);
         }
     });
 
-    socket.on("new_question", e => {
+    socket.on("new_question", function(data) {
 
-        if (e !== undefined && e.published__c && !e.islocked__c) {
-            socket.emit("new_question", e)
+        if (data !== undefined && data.published__c && !data.islocked__c) {
+            socket.emit("new_question", data)
         }
     
-        if(e.correct_answer__c !== null && e !== undefined) {
-            socket.emit("cor_question", e)
+        if(data.correct_answer__c !== null && data !== undefined) {
+            socket.emit("cor_question", data)
         }
     });
 
-    socket.on("new_contest", e => {
-        if(e.status__c === 'Finished'){
-            socket.broadcast.to(e.contest__c).emit("new_contest", e)
+    socket.on("new_contest", function(data) {
+        if(data.status__c === 'Finished'){
+            socket.broadcast.to(data.contest__c).emit("new_contest", data)
         }
     });
 });
