@@ -74,7 +74,7 @@ function App () {
 
   return (
     <Provider store={store}>
-    <SocketContext.Provider value={socket}>
+    <SocketContext.Provider value={{ socket }}>
       <Fragment>
         <Router>
           <div>
