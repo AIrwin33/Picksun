@@ -153,40 +153,40 @@ const Contest = () => {
         console.log('in contest');
         console.log('is socket connected' + socket);
         getContest()
-        socket.on("connect", function(data) {
-            console.log('check connect');
-        });
+        // socket.on("connect", function(data) {
+        //     console.log('check connect');
+        // });
 
-        socket.on("new_question", question => {
-            console.log('check new question');
-            setNewQuestion(question);
+        // socket.on("new_question", question => {
+        //     console.log('check new question');
+        //     setNewQuestion(question);
 
-        })
-        socket.on("cor_question", question => {
-            console.log('check cor question');
-            setNewCorrectQuestion(question);
-        })
-        socket.on("new_contest", contest => {
-            setContest(contest);
-        });
+        // })
+        // socket.on("cor_question", question => {
+        //     console.log('check cor question');
+        //     setNewCorrectQuestion(question);
+        // })
+        // socket.on("new_contest", contest => {
+        //     setContest(contest);
+        // });
 
-        socket.on('disconnect', () =>{
-            console.log('reconnect fired!');
-        });
+        // socket.on('disconnect', () =>{
+        //     console.log('reconnect fired!');
+        // });
  
-        return () => {
-            socket.off('connect', );
-            socket.off('disconnect', () => {
-                setIsConnected(false)
-            });
-            socket.off('foo', );
-          };
-    }, [socket]);
+        // return () => {
+        //     socket.off('connect', );
+        //     socket.off('disconnect', () => {
+        //         setIsConnected(false)
+        //     });
+        //     socket.off('foo', );
+        //   };
+    }, [contest]);
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
         getContestParticipations(contest);
-    }, [contest])
+    }, [contest.status__c])
     
     return ((
             <>
