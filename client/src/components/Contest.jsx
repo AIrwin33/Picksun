@@ -151,7 +151,7 @@ const Contest = () => {
     
     useEffect(() => {
         console.log('in contest');
-        console.log('is socket connected' + socket);
+        console.log('is socket connected' + socket.connected);
         getContest()
         // socket.on("connect", function(data) {
         //     console.log('check connect');
