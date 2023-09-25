@@ -174,7 +174,13 @@ const Contest = () => {
             console.log('reconnect fired!');
         });
  
-
+        return () => {
+            socket.off('connect', );
+            socket.off('disconnect', () => {
+                setIsConnected(false)
+            });
+            socket.off('foo', );
+          };
     }, [socket]);
 
     useEffect(() => {
