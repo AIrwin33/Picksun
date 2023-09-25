@@ -115,10 +115,10 @@ const Questions = props => {
           setShowTimer(true);
           if(diffTime > 0){
             setCounter(0);
-            //document.getElementsByClassName('timerdiv').classList.remove('hiddenTimer');
+           
           } else {
             setCounter(diffTime);
-            //document.getElementsByClassName('timerdiv').classList.remove('hiddenTimer');
+            
           }
         }
         else {
@@ -343,8 +343,8 @@ const Questions = props => {
       })
 
       const parseData = await res.json()
-
-      document.getElementsByClassName('timerdiv').classList.add('hiddenTimer');
+      setShowTimer(false);
+      //document.getElementsByClassName('timerdiv').classList.add('hiddenTimer');
       setReview(true)
       setQuestions(parseData)
       setShowWaiting(false)
@@ -554,8 +554,8 @@ const Questions = props => {
                     <React.Fragment>
 
                       {/* on timer state of stopped, call the disable function and show answer*/}
-                      {counter > 0 && 
-                        <div className="timerdiv font16 hiddenTimer"> 
+                      {counter > 0 &&
+                        <div className="timerdiv font16"> 
                           {props.sport == 'Baseball' &&
                             <Image width='20' src={baseball} />
                           }
