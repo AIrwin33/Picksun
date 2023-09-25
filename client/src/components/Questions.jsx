@@ -344,12 +344,14 @@ const Questions = props => {
 
       const parseData = await res.json()
       setShowTimer(false);
-      //document.getElementsByClassName('timerdiv').classList.add('hiddenTimer');
-      setReview(true)
-      setQuestions(parseData)
-      setShowWaiting(false)
-      setIndex(0)
-      setQuestionNum(1)
+      
+      setReview(true);
+      setQuestions(parseData);
+      setShowWaiting(false);
+      setIndex(0);
+      setQuestionNum(1);
+      console.log('is review after disable questions' + review);
+      console.log('contest finished' +isContestFinished);
     } catch (err) {
       console.log('disable questions err : ' + err.message)
     }
@@ -533,7 +535,6 @@ const Questions = props => {
           {/* slide for questions */}
           
             <Col xs={6} className="justify-content-start no-padding">
-            {showTimer &&
               <div key={counter}>
                 <Timer initialTime={counter} 
                   direction="backward"
@@ -554,7 +555,7 @@ const Questions = props => {
                     <React.Fragment>
 
                       {/* on timer state of stopped, call the disable function and show answer*/}
-                      {counter > 0 &&
+                      {counter > 0 && showTimer &&
                         <div className="timerdiv font16"> 
                           {props.sport == 'Baseball' &&
                             <Image width='20' src={baseball} />
