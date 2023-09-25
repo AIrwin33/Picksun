@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useCallback, useMemo, useContext} from 'react';
 import {Row, Col, Tab, Tabs, Button, Image, Modal} from "react-bootstrap";
 import {TwitterTimelineEmbed} from 'react-twitter-embed';
-import {SocketContext} from "../socket.js";
+import {SocketContext} from "../socket";
 import { useParams } from 'react-router-dom';
 import {connect} from "react-redux";
 
@@ -33,7 +33,7 @@ const Contest = () => {
     const [activeParts, setActiveParts] = useState([]);
     const [newQuestion, setNewQuestion] = useState();
     const [newCorrectQuestion, setNewCorrectQuestion] = useState();
-    const socket = React.useContext(SocketContext);
+    const { socket } = useContext(SocketContext);
 
     const getContest = async () => {
         try {
