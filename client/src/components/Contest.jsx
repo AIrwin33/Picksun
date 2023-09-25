@@ -33,7 +33,7 @@ const Contest = () => {
     const [activeParts, setActiveParts] = useState([]);
     const [newQuestion, setNewQuestion] = useState();
     const [newCorrectQuestion, setNewCorrectQuestion] = useState();
-    const socket = useContext(SocketContext);
+    var socket = io('https://cryptic-citadel-94967');
 
     const getContest = async () => {
         try {
