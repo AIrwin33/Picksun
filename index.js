@@ -487,15 +487,15 @@ pgListen.events.on("error", (error) => {
     process.exit(1)
 })
 
-io.on("connection", async (socket) => {
+// io.on("connection", async (socket) => {
     
-    pgListen.listenTo("new_question");
-    pgListen.listenTo("cor_question");
+//     pgListen.listenTo("new_question");
+//     pgListen.listenTo("cor_question");
 
-    socket.on("disconnect", (reason) => {
+//     socket.on("disconnect", (reason) => {
 
-    });
-});
+//     });
+// });
 
 
 pgListen.connect();
