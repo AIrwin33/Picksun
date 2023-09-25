@@ -4,7 +4,7 @@ const SocketContext = createContext({
   socket: undefined
 });
 
-const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:3000';
+const URL = process.env.NODE_ENV === 'production' ? 'https://cryptic-citadel-94967.herokuapp.com' : 'http://localhost:3000';
 
 export const SocketProvider = ({ children }) => {
 
