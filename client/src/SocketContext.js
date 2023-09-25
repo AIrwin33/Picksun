@@ -11,6 +11,7 @@ export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
+    
     setSocket((URL,{
       'connect timeout': 2000,
       'reconnection': true,
@@ -21,6 +22,7 @@ export const SocketProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+      console.log(URL);
       console.log('socket in socket context' + socket);
   }, [socket]);
   return (

@@ -152,26 +152,26 @@ const Contest = () => {
         console.log('in contest');
         console.log('is socket connected' + socket);
         getContest()
-        socket.on("connect", () => {
+        socket.io.on("connect", () => {
             console.log('check connect');
         });
 
-        socket.on("new_question", question => {
-            console.log('check new question');
-            setNewQuestion(question);
+        // socket.on("new_question", question => {
+        //     console.log('check new question');
+        //     setNewQuestion(question);
 
-        })
-        socket.on("cor_question", question => {
-            console.log('check cor question');
-            setNewCorrectQuestion(question);
-        })
-        socket.on("new_contest", contest => {
-            setContest(contest);
-        });
+        // })
+        // socket.on("cor_question", question => {
+        //     console.log('check cor question');
+        //     setNewCorrectQuestion(question);
+        // })
+        // socket.on("new_contest", contest => {
+        //     setContest(contest);
+        // });
 
-        socket.on('disconnect', () =>{
-            console.log('reconnect fired!');
-        });
+        // socket.on('disconnect', () =>{
+        //     console.log('reconnect fired!');
+        // });
  
 
     }, [socket]);
