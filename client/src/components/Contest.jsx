@@ -174,7 +174,7 @@ const Contest = () => {
             });
  
         });
-    }, [socket]);
+    }, []);
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);

@@ -601,7 +601,7 @@ const Questions = props => {
                   </div>
                 }
               </div>
-              }
+              
             </Col>
 
           {partWrongAnswer.wrong_answers_allowed__c && showAnswer &&
