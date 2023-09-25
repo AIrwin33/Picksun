@@ -186,12 +186,13 @@ const Contest = () => {
     
     useEffect(() => {
         getContest();
-        socketUpdates();
+        //socketUpdates();
     }, []);
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
         getContestParticipations(contest);
+        socketUpdates();
     }, [contest])
     
     return ((
