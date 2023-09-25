@@ -28,8 +28,7 @@ app.use("/auth",require('./server/routes/jwtAuth'));
 
 app.post("/myprofile", authorization, async (req, res) => {
     try {
-        console.log('in profile');
-        console.log(req.user.id);
+    
         const participant = await pool.query("SELECT * FROM salesforce.participant__c WHERE ExternalId__c = $1", [req.user.id]);
         res.json(participant.rows[0]);
     } catch (err) {
@@ -63,24 +62,22 @@ app.put("/participant/:id", async (req, res) => {
 app.post("/participations", authorization, async (req, res) => {
     try {
         //request user expires, find another way
-        console.log(req.user);
+
         const {contest_id} = req.body;
-        console.log(contest_id);
-        console.log(req.user.id);
+
         const part = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 AND participant__r__externalid__c = $2", [contest_id, req.user.id]);
-        console.log(part.rows.length);
+
         
         if (part.rows.length != 0) {
             res.json(part.rows[0]);
             return res.status(401).send("Already Exists");
         }
-        console.log('here');
-        console.log(contest_id);
+
         const newParticipation = await pool.query(
             "INSERT INTO salesforce.participation__c (Contest__c, Participant__r__ExternalId__c,Status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *",
             [contest_id, req.user.id, 'Active']
         );
-            console.log(newParticipation.rows[0]);
+
         res.json(newParticipation.rows[0]);
     } catch (err) {
         console.log('error participations' + err.message);
@@ -90,10 +87,10 @@ app.post("/participations", authorization, async (req, res) => {
 app.post("/participationswronganswer", async (req, res) => {
     try {
         const {partid} = req.body;
-        console.log('partid::' + partid);
+
         const participationWrongAnswer = await pool.query("SELECT * FROM salesforce.participation__c WHERE externalid__c = $1", [partid]);
         
-        console.log('row' + participationWrongAnswer.rows[0]);
+
         res.json(participationWrongAnswer.rows[0]);
     } catch (err) {
         console.log('participations wrong answer error ' + err);
@@ -324,9 +321,9 @@ app.post("/markcorrect", authorization, async (req, res) => {
 app.get("/questions/:contest_id", authorization, async (req, res) => {
     try {
         const {contest_id} = req.params;
-        console.log(contest_id)
+
         const allContestQuestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND published__c = true ORDER BY Name ASC", [contest_id]);
-        console.log(allContestQuestions.rows);
+
         res.json(allContestQuestions.rows)
 
     } catch (error) {
@@ -347,12 +344,12 @@ app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async 
 
 app.post("/existingpartanswernoquestion/", authorization, async (req, res) => {
     try {
-        console.log('in parts answers existing');
+
         const {partsfid} = req.body;
-        console.log(partsfid);
+
         const participationAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 ORDER BY name ASC", [partsfid]);
         if(participationAnswer.rows.length === 0 ){
-            console.log('no rows');
+
         }
         res.json(participationAnswer.rows);
     } catch (err) {
@@ -386,7 +383,6 @@ app.post("/submitpartanswers", authorization, async (req, res) => {
         const {partanswers} = req.body;
         var parts = [];
         var participationrec = partanswers[0].participation__c;
-        console.log('record' + participationrec);
         
         for(var i=0; i < partanswers.length; i++){
             var answer = partanswers[i];
