@@ -74,7 +74,7 @@ function App () {
 
 
   return (
-    <Provider store={store}>
+
     <SocketProvider>
       <Fragment>
         <Router>
@@ -154,7 +154,6 @@ function App () {
         </Router>
       </Fragment>
     </SocketProvider>
-    </Provider>
   )
 }
 
