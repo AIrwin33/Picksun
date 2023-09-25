@@ -35,9 +35,7 @@ const Contest = () => {
     const [activeParts, setActiveParts] = useState([]);
     const [newQuestion, setNewQuestion] = useState();
     const [newCorrectQuestion, setNewCorrectQuestion] = useState();
-    var socket = io('https://play.pick.fun', {
-        rejectUnauthorized: false
-    });
+    
     const getContest = async () => {
         try {
             console.log(id);
@@ -152,7 +150,10 @@ const Contest = () => {
     })
 
     const socketUpdates = async (socket) => {
-        console.log('in contest');
+
+        const socket = io('https://play.pick.fun', {
+            rejectUnauthorized: false
+        });
         console.log('is socket connected' + socket.connected);
 
         socket.on("connect", function(data) {
@@ -180,13 +181,13 @@ const Contest = () => {
             console.log(`connect_error due to ${err.message}`);
             socket.close();
           });
-        return () => socket.emit('end');
+        return socket.disconnect()
     }
     
     useEffect(() => {
         getContest();
         socketUpdates(socket);
-    }, [socket]);
+    }, []);
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
