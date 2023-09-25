@@ -5,6 +5,8 @@ import SocketContext from "../SocketContext";
 import { useParams } from 'react-router-dom';
 import {connect} from "react-redux";
 
+import io from 'socket.io-client';
+
 
 
 import info from '../assets/infoicon.png';
@@ -152,7 +154,7 @@ const Contest = () => {
         console.log('in contest');
         console.log('is socket connected' + socket);
         getContest()
-        socket.io.on("connect", () => {
+        socket.on("connect", function(data) {
             console.log('check connect');
         });
 
