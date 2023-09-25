@@ -185,12 +185,12 @@ const Contest = () => {
     useEffect(() => {
         getContest();
         socketUpdates(socket);
-    }, [socket]);
+    }, [socket.id]);
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
         getContestParticipations(contest);
-    }, [contest.status__c])
+    }, [contest])
     
     return ((
             <>
