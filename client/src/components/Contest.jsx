@@ -35,7 +35,13 @@ const Contest = () => {
     const [activeParts, setActiveParts] = useState([]);
     const [newQuestion, setNewQuestion] = useState();
     const [newCorrectQuestion, setNewCorrectQuestion] = useState();
-    var socket = io('https://cryptic-citadel-94967');
+    var socket = io('https://cryptic-citadel-94967',{
+        'connect timeout': 20000,
+        'reconnection': true,
+        'max reconnection attempts': 10000,
+        'reconnectionDelay': 10,
+        'reconnectionDelayMax': 500,
+      });
 
     const getContest = async () => {
         try {
