@@ -23,12 +23,6 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
 
-    if(socket){
-        socket?.emit("join_room", {
-          
-        });
-    }
-
   }, [socket]);
   return (
     <SocketContext.Provider value={{ socket }}>
