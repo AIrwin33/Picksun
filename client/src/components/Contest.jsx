@@ -35,7 +35,9 @@ const Contest = () => {
     const [activeParts, setActiveParts] = useState([]);
     const [newQuestion, setNewQuestion] = useState();
     const [newCorrectQuestion, setNewCorrectQuestion] = useState();
-    
+    const socketio = io('https://play.pick.fun', {
+            rejectUnauthorized: false
+        });
     const getContest = async () => {
         try {
             console.log(id);
@@ -157,9 +159,7 @@ const Contest = () => {
     useEffect(() => {
         getContest();
         //socketUpdates();
-        const socketio = io('https://play.pick.fun', {
-            rejectUnauthorized: false
-        });
+        
         console.log('is socket connected' + socketio.connected);
 
         socketio.on("connect", function(data) {
@@ -188,7 +188,7 @@ const Contest = () => {
             socketio.close();
           });
         return socketio.disconnect()
-    },[]);
+    },[socket]);
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
