@@ -187,17 +187,17 @@ const Questions = props => {
       console.log('parse wrong answers' + parseData.wrong_answers__c)
       setPartWrongAnswer(parseData)
       //set sort of timeout to check waiting for finished game
-      console.log('status' + parseData.status__c)
-      if (parseData.status__c === 'Knocked Out') {
-        console.log('player is knocked out')
-        handleKnockout()
-      }
+      // console.log('status' + parseData.status__c)
+      // if (parseData.status__c === 'Knocked Out') {
+      //   console.log('player is knocked out')
+      //   handleKnockout()
+      // }
 
-      setTimeout(function () {
-        checkFinished()
-      }, 5000)
+      // setTimeout(function () {
+      //   checkFinished()
+      // }, 5000)
 
-      props.updatepart(parseData)
+      // props.updatepart(parseData)
     } catch (err) {
       console.error(err.message)
     }
