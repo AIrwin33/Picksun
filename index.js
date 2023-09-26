@@ -223,7 +223,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
         const selectedpartanswers = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE question__c = $1", [questsfid]);
         var incorrectlist;
         var partidlist = [];
-        console.log(selectedpartanswers.rows);
+
         console.log('check 1');
         for(var i=0; i < selectedpartanswers.length; i++){
             if(selectedpartanswers[i].selection__c == selectanswer){
@@ -234,17 +234,19 @@ app.post("/markcorrect", authorization, async (req, res) => {
                 selectedpartanswers[i].incorrect__c = true;
                 selectedpartanswers[i].status__c = 'Did Not Answer';
                 incorrectlist.add(selectedpartanswers[i]);
+                console.log(selectedpartanswers[i].participation__c);
                 partidlist.add(selectedpartanswers[i].participation__c);
             }else{
                 selectedpartanswers[i].validated__c = true;
                 selectedpartanswers[i].incorrect__c = true;
                 incorrectlist.add(selectedpartanswers[i]);
+                console.log(selectedpartanswers[i].participation__c);
                 partidlist.add(selectedpartanswers[i].participation__c);
             }
         }
         console.log('check 2');
         res.json(selectedpartanswers.rows);
-        console.log('parts id list' + partidlist);
+
         const incorrectparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE Id = ANY $1", [partidlist]);
         
         for(var i=0; i < incorrectparts.length; i++){
