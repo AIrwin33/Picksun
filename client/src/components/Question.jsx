@@ -147,7 +147,7 @@ const Question = props => {
   const handleMarkCorrect = async (event) => {
     console.log('mark correct')
 
-    // get clicked value
+
 
     
     var answerval;
@@ -165,7 +165,7 @@ const Question = props => {
     }
 
       var questsfid = props.ques.sfid
-      const body = { questsfid, answer, answerval }
+      const body = { questsfid, selectAnswer, answerval }
       const res = await fetch(`/markcorrect/`, {
         method: 'POST',
         headers: {
