@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 
 import io from 'socket.io-client';
 
-const socket = io('https://play.pick.fun', {
+const socketio = io('https://play.pick.fun', {
             rejectUnauthorized: false
         });
 
@@ -188,7 +188,7 @@ const Contest = () => {
             socketio.close();
           });
         return socketio.disconnect()
-    },[socket]);
+    },[socketio]);
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
