@@ -214,14 +214,12 @@ app.post("/markcorrect", authorization, async (req, res) => {
 
         const {questsfid, selectanswer, answerval, con} = req.body;
         //update question correct answer
-        console.log(questsfid);
         console.log(selectanswer);
         console.log(questsfid);
         const updatequestion = await pool.query(
             "UPDATE salesforce.question__c SET correct_answer__c = $1, correct_answer_value__c = $2 WHERE sfid = $3 RETURNING *",
             [selectanswer, answerval, questsfid]
         );
-        console.log('questionsfid' + questionsfid);
         const selectedpartanswers = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE question__c = $1", [questsfid]);
         var incorrectlist;
         var partidlist = [];
