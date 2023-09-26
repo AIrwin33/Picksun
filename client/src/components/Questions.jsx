@@ -348,6 +348,7 @@ const Questions = props => {
       setReview(true);
       setQuestions(parseData);
       setShowWaiting(false);
+      setWarning(false);
       // setIndex(0);
       // setQuestionNum(1);
     } catch (err) {

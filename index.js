@@ -74,8 +74,8 @@ app.post("/participations", authorization, async (req, res) => {
         }
 
         const newParticipation = await pool.query(
-            "INSERT INTO salesforce.participation__c (Contest__c, Participant__r__ExternalId__c,Status__c, externalid__c) VALUES($1,$2,$3, gen_random_uuid()) RETURNING *",
-            [contest_id, req.user.id, 'Active']
+            "INSERT INTO salesforce.participation__c (Contest__c, Participant__r__ExternalId__c,Status__c, externalid__c, wrong_answers_allowed__c, wrong_answers__c) VALUES($1,$2,$3, gen_random_uuid(), $4, $5) RETURNING *",
+            [contest_id, req.user.id, 'Active', 4, 0]
         );
 
         res.json(newParticipation.rows[0]);
