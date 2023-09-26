@@ -224,28 +224,28 @@ app.post("/markcorrect", authorization, async (req, res) => {
         console.log(updatequestion.rows);
         const selectedpartanswers = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE question__c = $1", [questsfid]);
         var incorrectlist = [];
-        var partidlist = [];
+        var partidlist;
         console.log(selectedpartanswers.rows);
         console.log('check 1');
         for(var i=0; i < selectedpartanswers.length; i++){
-            console.log(selectedpartanswers[i].status__c);
-            if(selectedpartanswers[i].selection__c == selectanswer){
-                selectedpartanswers[i].validated__c = true;
-                selectedpartanswers[i].correct__c = true;
-            }else if(selectedpartanswers[i].status__c === 'Not Submitted'){
-                selectedpartanswers[i].validated__c = true;
-                selectedpartanswers[i].incorrect__c = true;
-                selectedpartanswers[i].status__c = 'Did Not Answer';
-                incorrectlist.push(selectedpartanswers[i]);
-                console.log(selectedpartanswers[i].participation__c);
-                partidlist.push(selectedpartanswers[i].participation__c);
+            console.log(selectedpartanswers.rows[i].status__c);
+            if(selectedpartanswers.rows[i].selection__c == selectanswer){
+                selectedpartanswers.rows[i].validated__c = true;
+                selectedpartanswers.rows[i].correct__c = true;
+            }else if(selectedpartanswers.rows[i].status__c === 'Not Submitted'){
+                selectedpartanswers.rows[i].validated__c = true;
+                selectedpartanswers.rows[i].incorrect__c = true;
+                selectedpartanswers.rows[i].status__c = 'Did Not Answer';
+                incorrectlist.push(selectedpartanswers.rows[i]);
+                console.log(selectedpartanswers.rows[i].participation__c);
+                partidlist.push(selectedpartanswers.rows[i].participation__c);
                 console.log(partidlist);
             }else{
-                selectedpartanswers[i].validated__c = true;
-                selectedpartanswers[i].incorrect__c = true;
-                incorrectlist.push(selectedpartanswers[i]);
-                console.log(selectedpartanswers[i].participation__c);
-                partidlist.push(selectedpartanswers[i].participation__c);
+                selectedpartanswers.rows[i].validated__c = true;
+                selectedpartanswers.rows[i].incorrect__c = true;
+                incorrectlist.push(selectedpartanswers.rows[i]);
+                console.log(selectedpartanswers.rows[i].participation__c);
+                partidlist.push(selectedpartanswers.rows[i].participation__c);
             }
         }
         console.log('check 2');
