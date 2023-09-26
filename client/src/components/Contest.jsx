@@ -7,7 +7,9 @@ import {connect} from "react-redux";
 
 import io from 'socket.io-client';
 
-
+const socket = io('https://play.pick.fun', {
+            rejectUnauthorized: false
+        });
 
 import info from '../assets/infoicon.png';
 
@@ -35,9 +37,7 @@ const Contest = () => {
     const [activeParts, setActiveParts] = useState([]);
     const [newQuestion, setNewQuestion] = useState();
     const [newCorrectQuestion, setNewCorrectQuestion] = useState();
-    const socketio = io('https://play.pick.fun', {
-            rejectUnauthorized: false
-        });
+    
     const getContest = async () => {
         try {
             console.log(id);
