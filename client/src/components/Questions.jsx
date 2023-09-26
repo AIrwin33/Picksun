@@ -349,8 +349,7 @@ const Questions = props => {
       setQuestions(parseData);
       setShowWaiting(false);
       setWarning(false);
-      // setIndex(0);
-      // setQuestionNum(1);
+
     } catch (err) {
       console.log('disable questions err : ' + err.message)
     }
