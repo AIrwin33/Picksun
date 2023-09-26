@@ -149,11 +149,12 @@ const Question = props => {
 
 
 
-    
+    console.log(quest);
     var answerval = '';
     console.log(selectanswer);
-    if(selectanswer === 'A'){
+    if(selectanswer === "A"){
         answerval = quest.Answer_A__c;
+        console.log(answerval);
     }
     if(selectanswer === 'B'){
         answerval = quest.Answer_B__c;
