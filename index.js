@@ -233,16 +233,16 @@ app.post("/markcorrect", authorization, async (req, res) => {
                 selectedpartanswers[i].validated__c = true;
                 selectedpartanswers[i].incorrect__c = true;
                 selectedpartanswers[i].status__c = 'Did Not Answer';
-                incorrectlist.add(selectedpartanswers[i]);
+                incorrectlist.push(selectedpartanswers[i]);
                 console.log(selectedpartanswers[i].participation__c);
-                partidlist.add(selectedpartanswers[i].participation__c);
+                partidlist.push(selectedpartanswers[i].participation__c);
                 console.log(partidlist);
             }else{
                 selectedpartanswers[i].validated__c = true;
                 selectedpartanswers[i].incorrect__c = true;
-                incorrectlist.add(selectedpartanswers[i]);
+                incorrectlist.push(selectedpartanswers[i]);
                 console.log(selectedpartanswers[i].participation__c);
-                partidlist.add(selectedpartanswers[i].participation__c);
+                partidlist.push(selectedpartanswers[i].participation__c);
             }
         }
         console.log('check 2');
