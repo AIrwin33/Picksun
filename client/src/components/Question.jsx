@@ -152,16 +152,16 @@ const Question = props => {
     
     var answerval;
     if(selectAnswer == 'A'){
-        answerval = ques.Answer_A__c;
+        answerval = quest.Answer_A__c;
     }
     if(selectAnswer == 'B'){
-        answerval = ques.Answer_B__c;
+        answerval = quest.Answer_B__c;
     }
     if(selectAnswer == 'C'){
-        answerval = ques.Answer_C__c;
+        answerval = quest.Answer_C__c;
     }
     if(selectAnswer == 'D'){
-        answerval = ques.Answer_D__c;
+        answerval = quest.Answer_D__c;
     }
 
       var questsfid = props.ques.sfid
