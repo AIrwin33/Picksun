@@ -221,10 +221,11 @@ app.post("/markcorrect", authorization, async (req, res) => {
             "UPDATE salesforce.question__c SET correct_answer__c = $1, correct_answer_value__c = $2 WHERE sfid = $3 RETURNING *",
             [selectanswer, answerval, questsfid]
         );
+        console.log(updatequestion.rows);
         const selectedpartanswers = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE question__c = $1", [questsfid]);
         var incorrectlist = [];
         var partidlist = [];
-        console.log(selectedpartanswers);
+        console.log(selectedpartanswers.rows);
         console.log('check 1');
         for(var i=0; i < selectedpartanswers.length; i++){
             if(selectedpartanswers[i].selection__c == selectanswer){
@@ -266,7 +267,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
         const allcontestquestions = await pool.query("SELECT * FROM salesforce.question__c WHERE Contest__c = $1 AND Correct_Answer__c != ''", [con.sfid]);
         const activeparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE status__c = 'Active' AND Contest__c = $1", [con.sfid]);
 
-            if(con.Number_of_Questions__c == allcontestquestions.rows.size() || (activeparts.rows.size() == 1)){
+            if(con.Number_of_Questions__c == allcontestquestions.rows || (activeparts.rows.length == 1)){
                 console.log('check 4');
                 system.debug('in finish con');
                 finishContest(con);
