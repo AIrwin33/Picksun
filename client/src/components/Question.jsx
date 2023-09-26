@@ -150,7 +150,7 @@ const Question = props => {
 
 
     
-    var answerval;
+    var answerval = '';
     if(selectanswer == 'A'){
         answerval = quest.Answer_A__c;
     }
@@ -166,6 +166,7 @@ const Question = props => {
 
       var questsfid = quest.sfid;
       var con = props.contest;
+      console.log(answerval)
       console.log(questsfid);
       const body = { questsfid, selectanswer, answerval, con }
       const res = await fetch(`/markcorrect/`, {

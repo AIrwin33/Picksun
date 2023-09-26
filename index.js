@@ -228,10 +228,11 @@ app.post("/markcorrect", authorization, async (req, res) => {
         console.log(selectedpartanswers.rows);
         console.log('check 1');
         for(var i=0; i < selectedpartanswers.length; i++){
+            console.log(selectedpartanswers[i].status__c);
             if(selectedpartanswers[i].selection__c == selectanswer){
                 selectedpartanswers[i].validated__c = true;
                 selectedpartanswers[i].correct__c = true;
-            }else if(selectedpartanswers[i].status__c == 'Not Submitted'){
+            }else if(selectedpartanswers[i].status__c === 'Not Submitted'){
                 selectedpartanswers[i].validated__c = true;
                 selectedpartanswers[i].incorrect__c = true;
                 selectedpartanswers[i].status__c = 'Did Not Answer';
