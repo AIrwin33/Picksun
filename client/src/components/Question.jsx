@@ -151,16 +151,17 @@ const Question = props => {
 
     
     var answerval = '';
-    if(selectanswer == 'A'){
+    console.log(selectanswer);
+    if(selectanswer === 'A'){
         answerval = quest.Answer_A__c;
     }
-    if(selectanswer == 'B'){
+    if(selectanswer === 'B'){
         answerval = quest.Answer_B__c;
     }
-    if(selectanswer == 'C'){
+    if(selectanswer === 'C'){
         answerval = quest.Answer_C__c;
     }
-    if(selectanswer == 'D'){
+    if(selectanswer === 'D'){
         answerval = quest.Answer_D__c;
     }
 
