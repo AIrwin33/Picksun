@@ -221,7 +221,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
             [selectanswer, answerval, questsfid]
         );
         const selectedpartanswers = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE question__c = $1", [questsfid]);
-        var incorrectlist;
+        var incorrectlist = [];
         var partidlist = [];
 
         console.log('check 1');
@@ -236,6 +236,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                 incorrectlist.add(selectedpartanswers[i]);
                 console.log(selectedpartanswers[i].participation__c);
                 partidlist.add(selectedpartanswers[i].participation__c);
+                console.log(partidlist);
             }else{
                 selectedpartanswers[i].validated__c = true;
                 selectedpartanswers[i].incorrect__c = true;
@@ -246,8 +247,8 @@ app.post("/markcorrect", authorization, async (req, res) => {
         }
         console.log('check 2');
         res.json(selectedpartanswers.rows);
-
-        const incorrectparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE Id = ANY $1", [partidlist]);
+        console.log(partidlist);
+        const incorrectparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE sfid = ANY $1", [partidlist]);
         
         for(var i=0; i < incorrectparts.length; i++){
             for(var k=0; k < incorrectlist.length; k++){
