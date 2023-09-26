@@ -241,7 +241,8 @@ app.post("/markcorrect", authorization, async (req, res) => {
         }
         console.log('check 2');
         res.json(selectedpartanswers.rows);
-        const incorrectparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE Id IN $1", [partidlist]);
+        console.log('parts id list' + partidlist);
+        const incorrectparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE Id = ANY $1", [partidlist]);
         
         for(var i=0; i < incorrectparts.length; i++){
             for(var k=0; k < incorrectlist.length; k++){
