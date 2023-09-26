@@ -220,7 +220,8 @@ app.post("/markcorrect", authorization, async (req, res) => {
         );
         const selectedpartanswers = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE Question__c = $1", [questionsfid]);
         var incorrectlist;
-        var partidlist;
+        var partidlist = [];
+        console.log(selectedpartanswers.rows);
         console.log('check 1');
         for(var i=0; i < selectedpartanswers.length; i++){
             if(selectedpartanswers[i].selection__c == answer){
