@@ -30,6 +30,7 @@ const Questions = props => {
   const [placeFin, setPlaceFinish] = useState(0)
   const [review, setReview] = useState(false)
   const [showAnswer, setShowAnswer] = useState(true)
+  const [showWarning, setWarning] = useState(false);
   const [counter, setCounter] = useState(undefined)
   const [answerList, setAnswerList] = useState([])
   const [inactive, setInactive] = useState(false)
@@ -137,11 +138,11 @@ const Questions = props => {
 
   // select a question and increment/decrement the question number on the screen
   const handleSelect = (selectedIndex, e) => {
-    // console.log('in active index handle select');
-    // console.log(document.getElementsByClassName('carouselDiv').activeIndex);
-    // setIndex(selectedIndex);
-    // console.log('index' + index);
-    // console.log(document.getElementsByClassName('carouselDiv').activeIndex);
+    console.log('in active index handle select');
+    console.log(document.getElementsByClassName('carouselDiv').activeIndex);
+    setIndex(selectedIndex);
+    console.log('index' + index);
+    console.log(document.getElementsByClassName('carouselDiv').activeIndex);
     setQuestionNum(selectedIndex + 1)
   }
 
@@ -448,7 +449,8 @@ const Questions = props => {
   }
   //add warning styling if the timer reaches 10 seconds
   const warningText = async () => {
-    document.getElementsByClassName('timerdiv').addClass('warning');
+    setWarning(true);
+    setShowTimer(false);
   }
 
   useEffect(() => {
@@ -554,6 +556,29 @@ const Questions = props => {
                       {/* on timer state of stopped, call the disable function and show answer*/}
                       {counter > 0 && showTimer &&
                         <div className="timerdiv font16"> 
+                          {props.sport == 'Baseball' &&
+                            <Image width='20' src={baseball} />
+                          }
+                          {props.sport == 'Football' &&
+                            <Image width='20' src={football} />
+                          }
+                          {props.sport == 'Basketball' &&
+                            <Image width='20' src={basketball} />
+                          }
+                          <Timer.Seconds /> Seconds
+                                        {props.sport == 'Baseball' &&
+                            <Image width='20' src={baseball} />
+                          }
+                          {props.sport == 'Football' &&
+                            <Image width='20' src={football} />
+                          }
+                          {props.sport == 'Basketball' &&
+                            <Image width='20' src={basketball} />
+                          }
+                        </div>
+                      }
+                      {counter > 0 && showWarning &&
+                      <div className="timerdiv font16 warning"> 
                           {props.sport == 'Baseball' &&
                             <Image width='20' src={baseball} />
                           }
