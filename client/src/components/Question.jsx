@@ -19,7 +19,7 @@ const Question = props => {
   const [partanswersupdated, setUpdated] = useState(false)
   const radioRef = React.useRef(null);
   const [allpartanswers, setAllpartanswers] = useState([]);
-  const [selectAnswer, setSelectAnswer] = useState();
+  const [selectanswer, setSelectAnswer] = useState();
 
   const handleRadioChange = async (event) => {
 
@@ -151,16 +151,16 @@ const Question = props => {
 
     
     var answerval;
-    if(selectAnswer == 'A'){
+    if(selectanswer == 'A'){
         answerval = quest.Answer_A__c;
     }
-    if(selectAnswer == 'B'){
+    if(selectanswer == 'B'){
         answerval = quest.Answer_B__c;
     }
-    if(selectAnswer == 'C'){
+    if(selectanswer == 'C'){
         answerval = quest.Answer_C__c;
     }
-    if(selectAnswer == 'D'){
+    if(selectanswer == 'D'){
         answerval = quest.Answer_D__c;
     }
 
