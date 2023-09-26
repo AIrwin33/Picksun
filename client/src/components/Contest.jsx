@@ -188,7 +188,7 @@ const Contest = () => {
             socketio.close();
           });
         return socketio.disconnect()
-    });
+    },[]);
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
