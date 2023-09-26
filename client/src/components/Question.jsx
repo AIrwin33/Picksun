@@ -152,19 +152,19 @@ const Question = props => {
     
     var answerval;
     if(selectAnswer == 'A'){
-        answerval = quest.Answer_A__c;
+        answerval = ques.Answer_A__c;
     }
     if(selectAnswer == 'B'){
-        answerval = quest.Answer_B__c;
+        answerval = ques.Answer_B__c;
     }
     if(selectAnswer == 'C'){
-        answerval = quest.Answer_C__c;
+        answerval = ques.Answer_C__c;
     }
     if(selectAnswer == 'D'){
-        answerval = quest.Answer_D__c;
+        answerval = ques.Answer_D__c;
     }
 
-      var questsfid = props.quest.sfid
+      var questsfid = props.ques.sfid
       const body = { questsfid, answer, answerval }
       const res = await fetch(`/markcorrect/`, {
         method: 'POST',
