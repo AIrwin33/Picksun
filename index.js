@@ -227,7 +227,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
         var partidlist = [];
         
         console.log('check 1');
-        for(var i=0; i < selectedpartanswers.length; i++){
+        for(var i=0; i < selectedpartanswers.rows.length; i++){
             console.log('i' + i);
             console.log(selectedpartanswers.rows[0]);
             console.log(selectedpartanswers.rows[i]);
@@ -267,10 +267,10 @@ app.post("/markcorrect", authorization, async (req, res) => {
             }
         }
         console.log('check 3');
-        const allcontestquestions = await pool.query("SELECT * FROM salesforce.question__c WHERE Contest__c = $1 AND Correct_Answer__c != ''", [con.sfid]);
-        const activeparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE status__c = 'Active' AND Contest__c = $1", [con.sfid]);
-
-            if(con.Number_of_Questions__c == allcontestquestions.rows || (activeparts.rows.length == 1)){
+        const allcontestquestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND correct_answer__c != ''", [con.sfid]);
+        const activeparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE status__c = 'Active' AND contest__c = $1", [con.sfid]);
+        console.log(activeparts.rows.length);
+            if(con.Number_of_Questions__c == allcontestquestions.rows.length || (activeparts.rows.length == 1)){
                 console.log('check 4');
                 system.debug('in finish con');
                 finishContest(con);
