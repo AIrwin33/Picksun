@@ -212,20 +212,20 @@ app.get("/allquestions/:contest_id", authorization, async (req, res) => {
 app.post("/markcorrect", authorization, async (req, res) => {
     try {
 
-        const {questionsfid,answer,answerval,conallowed} = req.body;
+        const {questsfid, selectanswer, answerval, con} = req.body;
         //update question correct answer
         const updatequestion = await pool.query(
             "UPDATE salesforce.question__c SET correct_answer__c = $1, correct_answer_value__c = $2 WHERE Id = $3",
-            [answer, answerval, questionsfid]
+            [selectanswer, answerval, questsfid]
         );
         console.log('questionsfid' + questionsfid);
-        const selectedpartanswers = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE question__c = $1", [questionsfid]);
+        const selectedpartanswers = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE question__c = $1", [questsfid]);
         var incorrectlist;
         var partidlist = [];
         console.log(selectedpartanswers.rows);
         console.log('check 1');
         for(var i=0; i < selectedpartanswers.length; i++){
-            if(selectedpartanswers[i].selection__c == answer){
+            if(selectedpartanswers[i].selection__c == selectanswer){
                 selectedpartanswers[i].validated__c = true;
                 selectedpartanswers[i].correct__c = true;
             }else if(partAnswer.status__c == 'Not Submitted'){

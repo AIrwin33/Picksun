@@ -164,8 +164,10 @@ const Question = props => {
         answerval = quest.Answer_D__c;
     }
 
-      var questsfid = props.ques.sfid
-      const body = { questsfid, selectAnswer, answerval }
+      var questsfid = quest.sfid;
+      var con = props.contest;
+      console.log(questsfid);
+      const body = { questsfid, selectanswer, answerval, con }
       const res = await fetch(`/markcorrect/`, {
         method: 'POST',
         headers: {

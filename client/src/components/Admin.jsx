@@ -10,6 +10,7 @@ import Answers from './Answers'
 
 const Admin = (props) => {
     const [contests, setContests] = useState([]);
+    const [contest, setContest] = useState([]);
     const [questions, setQuestions] = useState([]);
     const [index, setIndex] = useState(0)
     const [questionids, setQuestionIds] = useState([])
@@ -47,6 +48,7 @@ const Admin = (props) => {
             const parseData = await res.json();
             handleGetQuestions(contest_id);
             console.log(parseData);
+            setContest(parseData);
           } catch (err) {
             console.error(err.message);
           }
@@ -113,6 +115,7 @@ const Admin = (props) => {
                       totalQuestions={8}
                       showAnswers={showAnswer}
                       isAdmin={true}
+                      contest={contest}
                       />
                   </Carousel.Item>
                 })}
