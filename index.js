@@ -447,7 +447,7 @@ app.post("/publishcontest", authorization, async (req, res) => {
             "UPDATE salesforce.Contest__c SET Opened_Timer__c = $1 WHERE sfid = $2", [contest_id, time]
             );
         
-        io.emit("new_contest", pubcon);
+        io.broadcast.emit("new_contest", pubcon);
         res.json(pubcon);
     } catch (err) {
         console.log('error on submit answer' + err);
