@@ -270,7 +270,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
         console.log('check 2');
         res.json(selectedpartanswers.rows);
         console.log(partidlist);
-        io.emit("cor_question", updatequestion);
+        
         const incorrectparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE sfid = ANY ($1)", [partidlist]);
         
         for(var i=0; i < incorrectparts.length; i++){
@@ -336,7 +336,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                     console.log('check 6');
                 }
             }
-
+        io.emit("cor_question", updatequestion);
     } catch (error) {
         console.log('error mark correct :: ' + error.message);
     }
