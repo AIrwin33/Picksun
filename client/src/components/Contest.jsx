@@ -155,7 +155,7 @@ const Contest = () => {
     })
 
     
-    useEffect(() => {
+    const socketUpdates = async () => {
         getContest();
         
         console.log('is socket connected' + socketio.connected);
@@ -186,13 +186,13 @@ const Contest = () => {
             socketio.close();
           });
         return () => socketio.disconnect()
-    },[]);
+    }
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
         getContestParticipations(contest);
-        //socketUpdates();
-    }, [contest])
+        socketUpdates();
+    }, [])
     
     return ((
             <>
