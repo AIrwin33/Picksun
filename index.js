@@ -444,7 +444,7 @@ app.post("/publishcontest", authorization, async (req, res) => {
         //io.emit("new_question", pubquest);
 
         const pubcon = await pool.query(
-            "UPDATE salesforce.Contest__c SET Opened_Timer__c = $1 WHERE sfid = $2", [contest_id, time]
+            "UPDATE salesforce.Contest__c SET Opened_Timer__c = $1 WHERE sfid = $2 RETURNING *", [contest_id, time]
             );
         
         io.broadcast.emit("new_contest", pubcon);
