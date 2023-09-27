@@ -179,8 +179,8 @@ const Contest = () => {
         })
         socketio.on("new_contest", contest => {
             console.log('check here');
-            console.log('this contest' + contest);
-            setContest(contest);
+            console.log('this contest' + JSON.stringify(contest));
+            //setContest(JSON.stringify(contest));
         });
 
         socketio.on('disconnect', () =>{
