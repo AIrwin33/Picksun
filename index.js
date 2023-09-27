@@ -239,6 +239,8 @@ app.post("/markcorrect", authorization, async (req, res) => {
             [selectanswer, answerval, questsfid]
         );
         console.log(updatequestion.rows);
+
+        io.emit("cor_question", updatequestion);
         const selectedpartanswers = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE question__c = $1", [questsfid]);
         var incorrectlist = [];
         var partidlist = [];
@@ -438,10 +440,10 @@ app.post("/publishcontest", authorization, async (req, res) => {
         const time = new Date();
 
         const pubquest = await pool.query(
-            "UPDATE salesforce.Question__c SET published__c = true WHERE contest__c = $1", [contest_id]
+            "UPDATE salesforce.Question__c SET published__c = true WHERE contest__c = $1 RETURNING *", [contest_id]
         );
         
-        //io.emit("new_question", pubquest);
+        io.emit("new_question", pubquest);
 
         const pubcon = await pool.query(
             "UPDATE salesforce.Contest__c SET Opened_Timer__c = $1 WHERE sfid = $2 RETURNING *", [time, contest_id]

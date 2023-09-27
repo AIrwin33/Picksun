@@ -457,6 +457,8 @@ const Questions = props => {
     getQuestions()
     getAllQuestions()
 
+    
+
     if (newQuestion !== props.newQuestion && props.newQuestion !== undefined) {
       console.log('in set new question')
       setNewQuestion(props.newQuestion)
