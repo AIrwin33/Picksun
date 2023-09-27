@@ -247,9 +247,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
         
         console.log('check 1');
         for(var i=0; i < selectedpartanswers.rows.length; i++){
-            console.log('i' + i);
-            console.log(selectedpartanswers.rows[0]);
-            console.log(selectedpartanswers.rows[i]);
+
             if(selectedpartanswers.rows[i].selection__c == selectanswer){
                 selectedpartanswers.rows[i].validated__c = true;
                 selectedpartanswers.rows[i].correct__c = true;

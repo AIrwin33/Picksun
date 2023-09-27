@@ -469,7 +469,8 @@ const Questions = props => {
       props.newCorrectQuestion !== undefined
     ) {
       console.log('new correct question')
-      setNewQuestion(props.newCorrectQuestion)
+      setNewQuestion(props.newCorrectQuestion);
+      doGetParticipationWrongAnswers();
     }
   }, [props.newQuestion, props.newCorrectQuestion])
   const addNewQuestion = question => {
@@ -502,10 +503,7 @@ const Questions = props => {
         setQuestionIds(newquestionids)
         setQuestions(newquestions)
         console.log('set q')
-        setTimeout(function () {
-          console.log('timeout part answers')
-          doGetParticipationWrongAnswers()
-        }, 5000)
+        d
         setTimer()
 
         resetLogic()
