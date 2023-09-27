@@ -51,7 +51,7 @@ const Contest = () => {
             const parseData = await res.json();
             setContest(parseData);
             getEvent(parseData);
-
+            getContestParticipations(parseData);
         } catch (err) {
             console.error(err.message);
         }
@@ -188,7 +188,7 @@ const Contest = () => {
     useEffect(() => {
         console.log('use effect');
         getContest();
-        getContestParticipations(contest);
+        
         socketUpdates();
         
     },[]);
