@@ -477,27 +477,27 @@ if (process.env.NODE_ENV==="production") {
 io.on("connection", (socket) => {
     console.log('connected' + socket);
 
-    socket.on("new_contest", function(data) {
-        console.log('does this show up' + data);
-        if(data.status__c === 'Finished'){
-            socket.broadcast.to(data.contest__c).emit("new_contest", data);
-        }
-    });
+    // socket.on("new_contest", function(data) {
+    //     console.log('does this show up' + data);
+    //     if(data.status__c === 'Finished'){
+    //         socket.broadcast.to(data.contest__c).emit("new_contest", data);
+    //     }
+    // });
 
-    socket.on("new_question", function(data) {
-        console.log('new questions' + data);
-        if (data !== undefined && data.published__c && !data.islocked__c) {
-            socket.broadcast.to(data.contest__c).emit("new_question", data);
-        }
+    // socket.on("new_question", function(data) {
+    //     console.log('new questions' + data);
+    //     if (data !== undefined && data.published__c && !data.islocked__c) {
+    //         socket.broadcast.to(data.contest__c).emit("new_question", data);
+    //     }
     
-        if(data.correct_answer__c !== null && data !== undefined) {
-            socket.emit("cor_question", data)
-        }
-    });
+    //     if(data.correct_answer__c !== null && data !== undefined) {
+    //         socket.emit("cor_question", data)
+    //     }
+    // });
 
-    socket.on('disconnect', () => {
-        console.log(`disconnect: ${socket.id}`);
-      });
+    // socket.on('disconnect', () => {
+    //     console.log(`disconnect: ${socket.id}`);
+    //   });
 });
     
 

@@ -178,6 +178,8 @@ const Contest = () => {
             setNewCorrectQuestion(question);
         })
         socketio.on("new_contest", contest => {
+            console.log('check here');
+            console.log('this contest' + contest);
             setContest(contest);
         });
 
