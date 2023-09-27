@@ -186,6 +186,7 @@ const Contest = () => {
     }
     
     useEffect(() => {
+        console.log('use effect');
         getContest();
         getContestParticipations(contest);
         socketUpdates();
