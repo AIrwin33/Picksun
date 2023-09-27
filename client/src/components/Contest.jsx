@@ -160,7 +160,7 @@ const Contest = () => {
     
     useEffect(() => {
         console.log('use effect');
-        
+        getContest();
         
         console.log('is socket connected' + socketio.connected);
 
