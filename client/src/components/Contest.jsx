@@ -154,11 +154,7 @@ const Contest = () => {
         
     })
 
-    
     const socketUpdates = async () => {
-        getContest();
-        getContestParticipations();
-        
         console.log('is socket connected' + socketio.connected);
 
         socketio.on("connect", function(data) {
@@ -188,11 +184,18 @@ const Contest = () => {
           });
         return () => socketio.disconnect()
     }
-
+    
     useEffect(() => {
-        
+        getContest();
+        getContestParticipations(contest);
         socketUpdates();
-    }, [])
+        
+    },[]);
+
+    // useEffect(() => {
+    //     console.log('contest status' + contest.status__c);
+        
+    // }, [contest])
     
     return ((
             <>
