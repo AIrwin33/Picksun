@@ -503,7 +503,7 @@ const Questions = props => {
         setQuestionIds(newquestionids)
         setQuestions(newquestions)
         console.log('set q')
-        d
+        
         setTimer()
 
         resetLogic()
@@ -512,10 +512,10 @@ const Questions = props => {
       if (question.islocked__c) {
         console.log('question is locked, dont do anything')
       } else {
-        setTimeout(function () {
-          console.log('timeout part answers')
-          doGetParticipationWrongAnswers()
-        }, 5000)
+
+
+        doGetParticipationWrongAnswers()
+
 
         const tempQuestions = questions
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] =

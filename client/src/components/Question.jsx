@@ -115,7 +115,8 @@ const Question = props => {
   const updateAllPartAnswers = async () => {
     console.log('handle all')
     try {
-      console.log('updating parts answers')
+      console.log('updating parts answers');
+      console.log(props.partsfid);
       const partsfid = props.partsfid
       const body = { partsfid }
       const res = await fetch(`/existingpartanswernoquestion`, {
