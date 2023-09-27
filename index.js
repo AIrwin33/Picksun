@@ -444,10 +444,10 @@ app.post("/publishcontest", authorization, async (req, res) => {
         //io.emit("new_question", pubquest);
 
         const pubcon = await pool.query(
-            "UPDATE salesforce.Contest__c SET Opened_Timer__c = $1 WHERE sfid = $2 RETURNING *", [contest_id, time]
+            "UPDATE salesforce.Contest__c SET Opened_Timer__c = $1 WHERE sfid = $2 RETURNING *", [time, contest_id]
             );
         
-        io.emit("new_contest", pubcon);
+        io.emit("new_contest", pubcon.rows[0]);
         res.json(pubcon);
     } catch (err) {
         console.log('error on submit answer' + err);
