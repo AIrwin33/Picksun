@@ -206,13 +206,14 @@ const Question = props => {
     console.log(props.ques);
     setIsAdmin(props.isAdmin);
     setQuest(props.ques)
-    //handleSubsegmentCount(props.ques.subsegment__c)
+   
     setUpdated(false)
     if (props.ques.islocked__c === true || props.isInactive === true) {
       setDisabledQuestion(true)
       handleThisPartAnswer()
+      updateAllPartAnswers();
     }
-    updateAllPartAnswers()
+    
   }, [props.ques, props.showAnswers])
 
   return (
