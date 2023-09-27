@@ -191,7 +191,7 @@ const Contest = () => {
           });
         return () => socketio.disconnect()
         
-    },[contest]);
+    },[]);
 
     // useEffect(() => {
     //     console.log('contest status' + contest.status__c);
