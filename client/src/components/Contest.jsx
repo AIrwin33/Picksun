@@ -120,8 +120,9 @@ const Contest = () => {
 
     const getParticipationByContest = async () => {
         try {
-            console.log('ready'+ contest.sfid);
-            const res = await fetch(`/participationbycontest/` + contest.sfid, {
+            console.log('ready'+ contest);
+            console.log('${id}' + id);
+            const res = await fetch(`/participationbycontest/${id}`, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
             });
