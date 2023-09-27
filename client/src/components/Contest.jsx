@@ -1,15 +1,19 @@
-import React, {useEffect, useState, useCallback, useMemo, useContext} from 'react';
-import {Row, Col, Tab, Tabs, Button, Image, Modal} from "react-bootstrap";
-import {TwitterTimelineEmbed} from 'react-twitter-embed';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Button, Col, Image, Modal, Row, Tab, Tabs } from "react-bootstrap";
+import { TwitterTimelineEmbed } from 'react-twitter-embed';
 //import SocketContext from "../SocketContext";
+import { connect } from "react-redux";
 import { useParams } from 'react-router-dom';
-import {connect} from "react-redux";
 
 import io from 'socket.io-client';
 
-const socketio = io('https://play.pick.fun', {
-            rejectUnauthorized: false
-        });
+// TODO: add this env variables
+const env = process.env.NODE_ENV || 'development';
+const socketUrl = env === 'development' ? 'http://localhost:5432' : 'https://play.pick.fun';
+
+const socketio = io(socketUrl, {
+    rejectUnauthorized: false
+});
 
 import info from '../assets/infoicon.png';
 
@@ -187,8 +191,8 @@ const Contest = () => {
             console.log(`connect_error due to ${err.message}`);
             socketio.close();
           });
-        return socketio.disconnect()
-    },[socketio]);
+        return () => socketio.disconnect()
+    },[]);
 
     useEffect(() => {
         console.log('contest status' + contest.status__c);
