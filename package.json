@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "server": "nodemon index.js",
+    "server": "npx nodemon index.js",
     "client": "npm start --prefix client",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --force --prefix client && npm run build --prefix client"
   },
