@@ -51,7 +51,6 @@ const Contest = () => {
             const parseData = await res.json();
             setContest(parseData);
             getEvent(parseData);
-            getContestParticipations(parseData);
         } catch (err) {
             console.error(err.message);
         }

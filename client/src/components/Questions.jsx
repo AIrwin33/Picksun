@@ -456,8 +456,8 @@ const Questions = props => {
   useEffect(() => {
     getQuestions()
     getAllQuestions()
+    console.log(props.newQuestion);
 
-    
 
     if (newQuestion !== props.newQuestion && props.newQuestion !== undefined) {
       console.log('in set new question')
@@ -507,7 +507,7 @@ const Questions = props => {
           doGetParticipationWrongAnswers()
         }, 5000)
         setTimer()
-        //document.getElementsByClassName('timerdiv').classList.remove('hiddenTimer');
+
         resetLogic()
       }
     } else {
