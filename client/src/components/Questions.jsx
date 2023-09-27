@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, useRef } from 'react'
-import { Col, Button, Modal, Row, Image, Carousel } from 'react-bootstrap'
-
+import { Col, Button, Modal, Row, Image } from 'react-bootstrap'
+import Carousel from 'react-bootstrap/Carousel';
 import moment from 'moment'
 import Timer from 'react-compound-timer'
 
@@ -666,7 +666,7 @@ const Questions = props => {
                       ques={question}
                       contest={props.contest}
                       questionNum={questionNum}
-                      totalQuestions={publishedQuestions}
+                      totalQuestions={8}
                       isInactive={inactive}
                       getsubcount={handleSubsegmentCount}
                       partsfid={partWrongAnswer.sfid}

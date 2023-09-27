@@ -270,10 +270,11 @@ app.post("/markcorrect", authorization, async (req, res) => {
         const allcontestquestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND correct_answer__c != ''", [con.sfid]);
         const activeparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE status__c = 'Active' AND contest__c = $1", [con.sfid]);
         console.log(activeparts.rows.length);
+        console.log(allcontestquestions.rows.length);
             if(con.Number_of_Questions__c == allcontestquestions.rows.length || (activeparts.rows.length == 1)){
                 console.log('check 4');
                 system.debug('in finish con');
-                finishContest(con);
+                //finishContest(con);
                 const con = await pool.query("UPDATE salesforce.contest__c SET status__c = 'Finished' WHERE Id = $1", [con.sfid]);
 
                 const finishedparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 ORDER BY Wrong_Answers__c ASC", [con.sfid]);
@@ -285,7 +286,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                 for(var i=0; i < finishedparts.length; i++){
                     if(index > 0 && indexless >= 0){
                         if(finishedParts[index].wrong_answers__c > finishedparts[indexless].wrong_answers__c){
-                            system.debug('increment place');
+                            console.log('increment place');
                             place = place + 1;
                         }
                     }
@@ -305,7 +306,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                     }
                 }
                 if(participantid != null){
-                    System.debug('part:::' + participantId);
+                    console.log('part:::' + participantId);
                     var winval;
                     const contestswon = await pool.query("SELECT * FROM salesforce.participant__c WHERE Id = $1", [participantId]).contests_won__c;
                     if(contestswon == null){
@@ -316,17 +317,8 @@ app.post("/markcorrect", authorization, async (req, res) => {
                     const winningpart = await pool.query("UPDATE salesforce.participant__c SET status = 'Finished', Contests_Won__c = $1 WHERE Id = $2", [winval, participantId]);
                     console.log('check 6');
                 }
-
-                //update finished parts
-
             }
-     
 
-        
-
-        //increment participant wrong answer count
-
-        //finish contest?
     } catch (error) {
         console.log('error mark correct :: ' + error.message);
     }
