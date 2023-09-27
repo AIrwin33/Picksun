@@ -478,7 +478,7 @@ io.on("connection", (socket) => {
     console.log('connected' + socket);
 
     socket.on("new_contest", function(data) {
-        console.log(data);
+        console.log('does this show up' + data);
         if(data.status__c === 'Finished'){
             socket.broadcast.to(data.contest__c).emit("new_contest", data);
         }
