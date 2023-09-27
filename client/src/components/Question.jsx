@@ -211,7 +211,7 @@ const Question = props => {
     if (props.ques.islocked__c === true || props.isInactive === true) {
       setDisabledQuestion(true)
       handleThisPartAnswer()
-      updateAllPartAnswers();
+
     }
     
   }, [props.ques, props.showAnswers])

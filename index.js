@@ -240,7 +240,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
         );
         console.log(updatequestion.rows);
 
-        io.emit("cor_question", updatequestion);
+        
         const selectedpartanswers = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE question__c = $1", [questsfid]);
         var incorrectlist = [];
         var partidlist = [];
@@ -270,6 +270,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
         console.log('check 2');
         res.json(selectedpartanswers.rows);
         console.log(partidlist);
+        io.emit("cor_question", updatequestion);
         const incorrectparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE sfid = ANY ($1)", [partidlist]);
         
         for(var i=0; i < incorrectparts.length; i++){
