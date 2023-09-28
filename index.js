@@ -438,7 +438,7 @@ app.post("/publishcontest", authorization, async (req, res) => {
     try {
         const {contest_id} = req.body;
         const time = new Date();
-
+        const epochtime = epoch(time);
         const pubquest = await pool.query(
             "UPDATE salesforce.Question__c SET published__c = true WHERE contest__c = $1 RETURNING *", [contest_id]
         );
@@ -446,7 +446,7 @@ app.post("/publishcontest", authorization, async (req, res) => {
         io.emit("new_question", pubquest);
 
         const pubcon = await pool.query(
-            "UPDATE salesforce.Contest__c SET Opened_Timer__c = $1 WHERE sfid = $2 RETURNING *", [time, contest_id]
+            "UPDATE salesforce.Contest__c SET opened_timer__c = $1 WHERE sfid = $2 RETURNING *", [epochtime, contest_id]
             );
         
         io.emit("new_contest", pubcon.rows[0]);
