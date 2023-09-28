@@ -129,6 +129,7 @@ const Question = props => {
       })
 
       const parseData = await res.json()
+      console.log('all part answers' + parseData);
       setAllpartanswers(parseData)
     } catch (error) {
       console.log('err' + error.message)
