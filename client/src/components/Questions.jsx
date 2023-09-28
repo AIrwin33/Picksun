@@ -96,6 +96,7 @@ const Questions = props => {
       }
       var openedtimerval;
       console.log('this');
+      console.log(props.contest.opened_timer__c);
       if (props.contest.opened_timer__c !== null) {
         const res = await fetch(`/contestdetail/` + props.contestid, {
           method: 'GET',
