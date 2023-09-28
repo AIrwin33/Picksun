@@ -71,10 +71,7 @@ const Questions = props => {
 
   const getQuestions = async () => {
     try {
-      console.log('get all questions');
-      console.log(props);
-      console.log(props.contestid);
-      doGetParticipationWrongAnswers()
+      //doGetParticipationWrongAnswers()
 
       const res = await fetch(`/questions/` + props.contestid, {
         method: 'GET',
@@ -125,7 +122,6 @@ const Questions = props => {
         else {
         }
       }
-      //console.log(document.getElementsByClassName("timerdiv"));
       setQuestions(parseData);
       if( parseData.length > 0 ){
         setTimer();
