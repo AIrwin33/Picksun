@@ -213,7 +213,7 @@ const Question = props => {
       handleThisPartAnswer()
 
     }
-    
+    updateAllPartAnswers();
   }, [props.ques, props.showAnswers])
 
   return (
