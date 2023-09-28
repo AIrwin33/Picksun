@@ -438,7 +438,7 @@ app.post("/publishcontest", authorization, async (req, res) => {
     try {
         const {contest_id} = req.body;
         const time = new Date();
-        const epochtime = epoch(time);
+        const epochtime = Date.parse(time);
         const pubquest = await pool.query(
             "UPDATE salesforce.Question__c SET published__c = true WHERE contest__c = $1 RETURNING *", [contest_id]
         );
