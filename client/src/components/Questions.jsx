@@ -542,6 +542,7 @@ const Questions = props => {
           
             <Col xs={6} className="justify-content-start no-padding">
               <div key={counter}>
+                {counter > 0 &&
                 <Timer initialTime={counter} 
                   direction="backward"
                   lastUnit="s"
@@ -561,7 +562,7 @@ const Questions = props => {
                     <React.Fragment>
 
                       {/* on timer state of stopped, call the disable function and show answer*/}
-                      {counter > 0 && showTimer &&
+                       {showTimer &&
                         <div className="timerdiv font16"> 
                           {props.sport == 'Baseball' &&
                             <Image width='20' src={baseball} />
@@ -584,7 +585,7 @@ const Questions = props => {
                           }
                         </div>
                       }
-                      {counter > 0 && showWarning &&
+                      {showWarning &&
                       <div className="timerdiv font16 warning"> 
                           {props.sport == 'Baseball' &&
                             <Image width='20' src={baseball} />
@@ -612,6 +613,7 @@ const Questions = props => {
                     </React.Fragment>
                   )}
                 </Timer>
+                }
                 {review && !showContestFinished &&
                   <div className="gameBanner font16 text-center">
                     <Row className="rowHeight">
