@@ -180,7 +180,10 @@ const Contest = () => {
         socketio.on("new_contest", contest => {
             console.log('check here');
             console.log('this contest' + JSON.stringify(contest));
-            getContest();
+            setTimeout(
+                getContest(), 1000
+
+            );
         });
 
         socketio.on('disconnect', () =>{
