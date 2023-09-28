@@ -153,10 +153,6 @@ const Contest = () => {
         getContestParticipations(contest);
         
     })
-
-    const socketUpdates = async () => {
-        
-    }
     
     useEffect(() => {
         console.log('use effect');

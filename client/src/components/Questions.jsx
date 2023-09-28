@@ -456,8 +456,12 @@ const Questions = props => {
   }
 
   useEffect(() => {
-    getQuestions()
-    getAllQuestions()
+    if(props.contest.opened_timer__c){
+      console.log('has opened timer');
+      getQuestions();
+      getAllQuestions();
+    }
+    
     console.log(props.newQuestion);
     console.log('props contest' + JSON.stringify(props.contest));
 
@@ -475,7 +479,7 @@ const Questions = props => {
       setNewQuestion(props.newCorrectQuestion);
       doGetParticipationWrongAnswers();
     }
-  }, [props.newQuestion, props.newCorrectQuestion])
+  }, [props.newQuestion, props.newCorrectQuestion,props.contest.opened_timer__c])
   const addNewQuestion = question => {
     var questionidsIndex = questionids.indexOf(question.sfid)
     if (questionidsIndex === -1) {
