@@ -459,7 +459,7 @@ const Questions = props => {
     getQuestions()
     getAllQuestions()
     console.log(props.newQuestion);
-    console.log('props contest' + props.contest);
+    console.log('props contest' + JSON.stringify(props.contest));
 
 
     if (newQuestion !== props.newQuestion && props.newQuestion !== undefined) {
