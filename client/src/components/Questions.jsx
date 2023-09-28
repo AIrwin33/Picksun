@@ -239,6 +239,7 @@ const Questions = props => {
 
   const handleContestEnd = async () => {
     try {
+      console.log('contest has ended, handle it');
       //check if there are other participations active
       const response = await fetch(
         `/allendingparticipations/` + props.contest.sfid,
@@ -273,7 +274,7 @@ const Questions = props => {
           winningParts.push(parseRes[k])
         }
       }
-
+      console.log('placeFinish' + placefinish);
       if (placeFin === 0) {
         setPlaceFinish(placefinish)
       }
