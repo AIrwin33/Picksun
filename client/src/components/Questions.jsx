@@ -475,7 +475,7 @@ const Questions = props => {
       console.log(props.newCorrectQuestion);
       setNewQuestion(props.newCorrectQuestion);
       setTimeout(
-        doGetParticipationWrongAnswers(), 2000
+        doGetParticipationWrongAnswers(), 5000
       );
       
     }

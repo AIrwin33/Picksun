@@ -208,7 +208,6 @@ const Question = props => {
         console.log('timeout THIS part answers')
         handleThisPartAnswer()
       }, 2000)
-      //handleThisPartAnswer()
 
     }
   }, [props.ques, props.showAnswers])
