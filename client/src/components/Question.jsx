@@ -96,7 +96,7 @@ const Question = props => {
 
         const parseRes = await response.json()
         setPartAnswer(parseRes)
-        console.log('IS VALIDATED' + parseRes);
+        console.log('IS VALIDATED' + JSON.stringify(parseRes));
         if (parseRes.validated__c) {
           updateAllPartAnswers()
           console.log('validated question, will update')

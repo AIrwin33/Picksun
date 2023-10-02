@@ -357,6 +357,7 @@ app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async 
     try {
         const {partsfid, questid} = req.params;
         const participationExistAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 AND question__c = $2 ", [partsfid, questid]);
+        console.log(participationExistAnswer.rows[0]);
         res.json(participationExistAnswer.rows[0]);
     } catch (err) {
         console.log('existing part answer error ' + err);
@@ -373,7 +374,7 @@ app.post("/existingpartanswernoquestion/", authorization, async (req, res) => {
         if(participationAnswer.rows.length === 0 ){
 
         }
-        console.log(participationAnswer.rows);
+
         res.json(participationAnswer.rows);
     } catch (err) {
         console.log('all part answer error ' + err);
