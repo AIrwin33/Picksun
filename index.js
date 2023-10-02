@@ -283,7 +283,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                     
                     incorrectparts.rows[i].wrong_answers__c += 1;
                     console.log(incorrectparts.rows[i].wrong_answers__c);
-                    if(incorrectparts.rows[i].wrong_answers__c == conallowed.wrong_answers_allowed__c){
+                    if(incorrectparts.rows[i].wrong_answers__c == con.wrong_answers_allowed__c){
                         incorrectparts.rows[i].status__c = 'Knocked Out';
                       
                   }
