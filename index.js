@@ -266,6 +266,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                 console.log(selectedpartanswers.rows[i].participation__c);
                 partidlist.push(selectedpartanswers.rows[i].participation__c);
             }
+            console.log('parts id list' + partidlist);
         }
         console.log('check 2');
         res.json(selectedpartanswers.rows);
@@ -284,55 +285,56 @@ app.post("/markcorrect", authorization, async (req, res) => {
                 }
             }
         }
+        console.log(incorrectparts.rows);
         console.log('check 3');
-        const allcontestquestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND correct_answer__c != ''", [con.sfid]);
+        const allcontestquestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1", [con.sfid]);
         const activeparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE status__c = 'Active' AND contest__c = $1", [con.sfid]);
-        console.log(activeparts.rows.length);
-        console.log(allcontestquestions.rows.length);
-            if(con.Number_of_Questions__c == allcontestquestions.rows.length || (activeparts.rows.length == 1)){
+        console.log(activeparts.rows);
+        console.log(allcontestquestions.rows);
+            if((con.Number_of_Questions__c == allcontestquestions.rows.length) || activeparts.rows.length == 1){
                 console.log('check 4');
-                system.debug('in finish con');
-                //finishContest(con);
-                const con = await pool.query("UPDATE salesforce.contest__c SET status__c = 'Finished' WHERE Id = $1", [con.sfid]);
+                // system.debug('in finish con');
+                // //finishContest(con);
+                // const con = await pool.query("UPDATE salesforce.contest__c SET status__c = 'Finished' WHERE Id = $1", [con.sfid]);
 
-                const finishedparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 ORDER BY Wrong_Answers__c ASC", [con.sfid]);
-                var place = 1;
-                var index = 0;
-                var indexless = index - 1;
-                var participantid;
-                console.log('check 5');
-                for(var i=0; i < finishedparts.length; i++){
-                    if(index > 0 && indexless >= 0){
-                        if(finishedParts[index].wrong_answers__c > finishedparts[indexless].wrong_answers__c){
-                            console.log('increment place');
-                            place = place + 1;
-                        }
-                    }
+                // const finishedparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 ORDER BY Wrong_Answers__c ASC", [con.sfid]);
+                // var place = 1;
+                // var index = 0;
+                // var indexless = index - 1;
+                // var participantid;
+                // console.log('check 5');
+                // for(var i=0; i < finishedparts.length; i++){
+                //     if(index > 0 && indexless >= 0){
+                //         if(finishedParts[index].wrong_answers__c > finishedparts[indexless].wrong_answers__c){
+                //             console.log('increment place');
+                //             place = place + 1;
+                //         }
+                //     }
 
-                    finishedparts[i].placeFinish__c = place;
-                    if(finishedparts[i].Status__c == 'Knocked Out'){
+                //     finishedparts[i].placeFinish__c = place;
+                //     if(finishedparts[i].Status__c == 'Knocked Out'){
                         
-                    }else{
-                        finishedparts[i].Status__c = 'Inactive';
-                    }
+                //     }else{
+                //         finishedparts[i].Status__c = 'Inactive';
+                //     }
                     
-                    index = index + 1;
-                    indexless = indexless + 1;
+                //     index = index + 1;
+                //     indexless = indexless + 1;
                     
-                    if(finishedparts[i].placefinish__c == 1){
-                        participantid = finishedparts[i].participant__c;
-                        console.log('part:::' + participantId);
-                        var winval;
-                        const contestswon = await pool.query("SELECT * FROM salesforce.participant__c WHERE Id = $1", [participantId]).contests_won__c;
-                        if(contestswon == null){
-                            winval = 0;
-                        }
-                        winval = contestswon + 1;
+                //     if(finishedparts[i].placefinish__c == 1){
+                //         participantid = finishedparts[i].participant__c;
+                //         console.log('part:::' + participantId);
+                //         var winval;
+                //         const contestswon = await pool.query("SELECT * FROM salesforce.participant__c WHERE Id = $1", [participantId]).contests_won__c;
+                //         if(contestswon == null){
+                //             winval = 0;
+                //         }
+                //         winval = contestswon + 1;
 
-                        const winningpart = await pool.query("UPDATE salesforce.participant__c SET status = 'Finished', Contests_Won__c = $1 WHERE Id = $2", [winval, participantId]);
-                        console.log('check 6');
-                        }
-                }
+                //         const winningpart = await pool.query("UPDATE salesforce.participant__c SET status = 'Finished', Contests_Won__c = $1 WHERE Id = $2", [winval, participantId]);
+                //         console.log('check 6');
+                //         }
+                //}
             }
         io.emit("cor_question", updatequestion);
     } catch (error) {
