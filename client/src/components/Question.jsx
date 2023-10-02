@@ -198,6 +198,7 @@ const Question = props => {
   useEffect(() => {
     console.log(props.isAdmin);
     console.log(props.ques);
+    console.log(allpartanswers.length);
     setIsAdmin(props.isAdmin);
     setQuest(props.ques)
    
@@ -210,7 +211,7 @@ const Question = props => {
       }, 2000)
 
     }
-  }, [props.ques, props.showAnswers])
+  }, [])
 
   return (
     <>

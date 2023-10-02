@@ -71,7 +71,7 @@ const Questions = props => {
 
   const getQuestions = async () => {
     try {
-      doGetParticipationWrongAnswers()
+      //doGetParticipationWrongAnswers()
 
       const res = await fetch(`/questions/` + props.contestid, {
         method: 'GET',
