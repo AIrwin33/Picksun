@@ -274,16 +274,17 @@ app.post("/markcorrect", authorization, async (req, res) => {
         console.log(partidlist);
         
         const incorrectparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE sfid = ANY ($1)", [partidlist]);
-        
-        for(var i=0; i < incorrectparts.length; i++){
+        console.log(incorrectparts.rows);
+        console.log(incorrectlist);
+        for(var i=0; i < incorrectparts.rows.length; i++){
             for(var k=0; k < incorrectlist.length; k++){
-                console.log(incorrectparts[i].wrong_answers__c);
-                if(incorrectparts[i].sfid == incorrectlist[k].participation__c){
+                console.log(incorrectparts.rows[i].wrong_answers__c);
+                if(incorrectparts.rows[i].sfid == incorrectlist[k].participation__c){
                     
-                    incorrectparts[i].wrong_answers__c += 1;
-                    console.log(incorrectparts[i].wrong_answers__c);
-                    if(incorrectparts[i].wrong_answers__c == conallowed.wrong_answers_allowed__c){
-                        incorrectparts[i].status__c = 'Knocked Out';
+                    incorrectparts.rows[i].wrong_answers__c += 1;
+                    console.log(incorrectparts.rows[i].wrong_answers__c);
+                    if(incorrectparts.rows[i].wrong_answers__c == conallowed.wrong_answers_allowed__c){
+                        incorrectparts.rows[i].status__c = 'Knocked Out';
                       
                   }
                 }
