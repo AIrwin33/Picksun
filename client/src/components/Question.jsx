@@ -211,7 +211,12 @@ const Question = props => {
       }, 2000)
 
     }
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    console.log('handle correct answer');
+    handleThisPartAnswer();
+  }, [props.ques.correct_answer__c]);
 
   return (
     <>
