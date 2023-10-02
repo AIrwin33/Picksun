@@ -71,7 +71,6 @@ const Questions = props => {
 
   const getQuestions = async () => {
     try {
-      //doGetParticipationWrongAnswers()
 
       const res = await fetch(`/questions/` + props.contestid, {
         method: 'GET',
@@ -456,6 +455,7 @@ const Questions = props => {
       console.log('has opened timer');
       getQuestions();
       getAllQuestions();
+      doGetParticipationWrongAnswers()
     }
     
     console.log(props.newQuestion);
