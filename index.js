@@ -266,6 +266,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
             console.log('parts id list' + partidlist);
         }
         console.log('check 2');
+        console.log(selectedpartanswers.rows);
         res.json(selectedpartanswers.rows);
 
         
