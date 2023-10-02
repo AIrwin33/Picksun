@@ -471,9 +471,13 @@ const Questions = props => {
       newCorrectQuestion !== props.newCorrectQuestion &&
       props.newCorrectQuestion !== undefined
     ) {
-      console.log('new correct question')
+      console.log('new correct question');
+      console.log(props.newCorrectQuestion);
       setNewQuestion(props.newCorrectQuestion);
-      doGetParticipationWrongAnswers();
+      setTimeout(
+        doGetParticipationWrongAnswers(), 2000
+      );
+      
     }
   }, [props.newQuestion, props.newCorrectQuestion,props.contest.opened_timer__c])
   const addNewQuestion = question => {
