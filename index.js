@@ -247,7 +247,8 @@ app.post("/markcorrect", authorization, async (req, res) => {
         
         console.log('check 1');
         for(var i=0; i < selectedpartanswers.rows.length; i++){
-
+            console.log(selectedpartanswers.rows[i].selection__c);
+            console.log(selectanswer);
             if(selectedpartanswers.rows[i].selection__c == selectanswer){
                 selectedpartanswers.rows[i].validated__c = true;
                 selectedpartanswers.rows[i].correct__c = true;
@@ -276,8 +277,11 @@ app.post("/markcorrect", authorization, async (req, res) => {
         
         for(var i=0; i < incorrectparts.length; i++){
             for(var k=0; k < incorrectlist.length; k++){
+                console.log(incorrectparts[i].wrong_answers__c);
                 if(incorrectparts[i].sfid == incorrectlist[k].participation__c){
-                    incorrectparts[i].Wrong_Answers__c += 1;
+                    
+                    incorrectparts[i].wrong_answers__c += 1;
+                    console.log(incorrectparts[i].wrong_answers__c);
                     if(incorrectparts[i].wrong_answers__c == conallowed.wrong_answers_allowed__c){
                         incorrectparts[i].status__c = 'Knocked Out';
                       
