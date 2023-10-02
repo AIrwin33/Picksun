@@ -181,10 +181,11 @@ const Questions = props => {
 
       console.log('parts list' + JSON.stringify(parseData))
       console.log('parse wrong answers' + parseData.wrong_answers__c)
-      setPartWrongAnswer(parseData)
+      setPartWrongAnswer(parseData);
       //set sort of timeout to check waiting for finished game
       console.log('status' + parseData.status__c)
-      console.log(partWrongAnswer.wrong_answers_allowed__c)
+      console.log(partWrongAnswer.wrong_answers_allowed__c);
+      console.log(partWrongAnswer.wrong_answers__c);
       if (parseData.status__c === 'Knocked Out') {
         console.log('player is knocked out')
         handleKnockout()

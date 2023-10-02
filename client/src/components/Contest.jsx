@@ -194,10 +194,6 @@ const Contest = () => {
         
     },[]);
 
-    // useEffect(() => {
-    //     console.log('contest status' + contest.status__c);
-        
-    // }, [contest])
     
     return ((
             <>
