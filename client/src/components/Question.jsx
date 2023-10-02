@@ -215,7 +215,11 @@ const Question = props => {
 
   useEffect(() => {
     console.log('handle correct answer');
-    handleThisPartAnswer();
+    console.log(allpartanswers.length);
+    setTimeout(function () {
+      console.log('timeout THIS part answers')
+      handleThisPartAnswer()
+    }, 2000)
   }, [props.ques.correct_answer__c]);
 
   return (
