@@ -35,7 +35,7 @@ const Answers = (props) => {
         console.log('props wrong' + props.wrong);
         getWrongTotal(props.wrong, props.total);   
 
-    }, [props.wrong]);
+    }, []);
 
     return (
         <>
