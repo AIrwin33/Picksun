@@ -193,14 +193,7 @@ const Question = props => {
 
   
 
-  useEffect(() => {
-    console.log('use effect correct answer')
-    console.log('value' + props.ques.correct_answer__c)
-    setTimeout(function () {
-      console.log('timeout THIS part answers')
-      handleThisPartAnswer()
-    }, 2000)
-  }, [props.ques.correct_answer__c])
+
 
   useEffect(() => {
     console.log(props.isAdmin);
@@ -211,7 +204,11 @@ const Question = props => {
     setUpdated(false)
     if (props.ques.islocked__c === true || props.isInactive === true) {
       setDisabledQuestion(true)
-      handleThisPartAnswer()
+      setTimeout(function () {
+        console.log('timeout THIS part answers')
+        handleThisPartAnswer()
+      }, 2000)
+      //handleThisPartAnswer()
 
     }
   }, [props.ques, props.showAnswers])
