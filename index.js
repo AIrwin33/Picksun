@@ -231,14 +231,11 @@ app.post("/markcorrect", authorization, async (req, res) => {
 
         const {questsfid, selectanswer, answerval, con} = req.body;
         //update question correct answer
-        console.log(selectanswer);
-        console.log(answerval);
-        console.log(questsfid);
+
         const updatequestion = await pool.query(
             "UPDATE salesforce.question__c SET correct_answer__c = $1, correct_answer_value__c = $2 WHERE sfid = $3 RETURNING *",
             [selectanswer, answerval, questsfid]
         );
-        console.log(updatequestion.rows);
 
         
         const selectedpartanswers = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE question__c = $1", [questsfid]);
@@ -247,8 +244,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
         
         console.log('check 1');
         for(var i=0; i < selectedpartanswers.rows.length; i++){
-            console.log(selectedpartanswers.rows[i].selection__c);
-            console.log(selectanswer);
+
             if(selectedpartanswers.rows[i].selection__c == selectanswer){
                 selectedpartanswers.rows[i].validated__c = true;
                 selectedpartanswers.rows[i].correct__c = true;
@@ -271,11 +267,10 @@ app.post("/markcorrect", authorization, async (req, res) => {
         }
         console.log('check 2');
         res.json(selectedpartanswers.rows);
-        console.log(partidlist);
+
         
         const incorrectparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE sfid = ANY ($1)", [partidlist]);
-        console.log(incorrectparts.rows);
-        console.log(incorrectlist);
+
         for(var i=0; i < incorrectparts.rows.length; i++){
             for(var k=0; k < incorrectlist.length; k++){
                 console.log(incorrectparts.rows[i].wrong_answers__c);
@@ -290,7 +285,6 @@ app.post("/markcorrect", authorization, async (req, res) => {
                 }
             }
         }
-        console.log(incorrectparts.rows);
         console.log('check 3');
         const allcontestquestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1", [con.sfid]);
         const activeparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE status__c = 'Active' AND contest__c = $1", [con.sfid]);
@@ -364,7 +358,7 @@ app.get("/existingpartanswer/:partsfid/question/:questid", authorization, async 
     try {
         const {partsfid, questid} = req.params;
         const participationExistAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 AND question__c = $2 ", [partsfid, questid]);
-
+        console.log(JSON.stringify(participationExistAnswer.rows[0]));
         res.json(participationExistAnswer.rows[0]);
     } catch (err) {
         console.log('existing part answer error ' + err);
@@ -376,7 +370,7 @@ app.post("/existingpartanswernoquestion/", authorization, async (req, res) => {
     try {
 
         const {partsfid} = req.body;
-        console.log(partsfid);
+
         const participationAnswer = await pool.query("SELECT * FROM salesforce.participation_answers__c WHERE participation__c = $1 ORDER BY name ASC", [partsfid]);
         if(participationAnswer.rows.length === 0 ){
 
