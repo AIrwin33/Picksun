@@ -309,7 +309,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                         }
                     }
 
-                    finishedparts[i].PlaceFinish__c = place;
+                    finishedparts[i].placeFinish__c = place;
                     if(finishedparts[i].Status__c == 'Knocked Out'){
                         
                     }else{
@@ -321,19 +321,17 @@ app.post("/markcorrect", authorization, async (req, res) => {
                     
                     if(finishedparts[i].placefinish__c == 1){
                         participantid = finishedparts[i].participant__c;
-                    }
-                }
-                if(participantid != null){
-                    console.log('part:::' + participantId);
-                    var winval;
-                    const contestswon = await pool.query("SELECT * FROM salesforce.participant__c WHERE Id = $1", [participantId]).contests_won__c;
-                    if(contestswon == null){
-                        winval = 0;
-                    }
-                    winval = contestswon + 1;
+                        console.log('part:::' + participantId);
+                        var winval;
+                        const contestswon = await pool.query("SELECT * FROM salesforce.participant__c WHERE Id = $1", [participantId]).contests_won__c;
+                        if(contestswon == null){
+                            winval = 0;
+                        }
+                        winval = contestswon + 1;
 
-                    const winningpart = await pool.query("UPDATE salesforce.participant__c SET status = 'Finished', Contests_Won__c = $1 WHERE Id = $2", [winval, participantId]);
-                    console.log('check 6');
+                        const winningpart = await pool.query("UPDATE salesforce.participant__c SET status = 'Finished', Contests_Won__c = $1 WHERE Id = $2", [winval, participantId]);
+                        console.log('check 6');
+                        }
                 }
             }
         io.emit("cor_question", updatequestion);
