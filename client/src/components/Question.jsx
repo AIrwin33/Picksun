@@ -96,7 +96,7 @@ const Question = props => {
 
         const parseRes = await response.json()
         setPartAnswer(parseRes)
-        console.log('IS VALIDATED' + parseRes.validated__c)
+        console.log('IS VALIDATED' + parseRes);
         if (parseRes.validated__c) {
           updateAllPartAnswers()
           console.log('validated question, will update')
@@ -199,7 +199,7 @@ const Question = props => {
     setTimeout(function () {
       console.log('timeout THIS part answers')
       handleThisPartAnswer()
-    }, 1000)
+    }, 2000)
   }, [props.ques.correct_answer__c])
 
   useEffect(() => {
@@ -214,7 +214,6 @@ const Question = props => {
       handleThisPartAnswer()
 
     }
-    //updateAllPartAnswers();
   }, [props.ques, props.showAnswers])
 
   return (
