@@ -170,7 +170,7 @@ const Question = props => {
     }
 
       var questsfid = quest.sfid;
-      var con = props.contest;
+      var con = props.cont;
       console.log('contest id' + con.sfid);
       console.log(answerval)
       console.log(questsfid);
@@ -200,6 +200,7 @@ const Question = props => {
     console.log(props.isAdmin);
     console.log(props.ques);
     console.log(allpartanswers.length);
+    console.log(props.cont);
     setIsAdmin(props.isAdmin);
     setQuest(props.ques)
    

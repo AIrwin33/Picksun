@@ -290,8 +290,11 @@ app.post("/markcorrect", authorization, async (req, res) => {
                       
                   }
                 }
+                const incorrectrows = await pool.query("UPDATE salesforce.participation__c SET wrong_answers__c = $1 WHERE id = $2 RETURNING *", [incorrectparts.rows[i].wrong_answers__c, incorrectparts.rows[i].id]);
+                console.log('incorrectrows' + incorrectrows.rows);
             }
         }
+
         console.log('check 3');
         console.log(con.sfid);
         const allcontestquestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1", [con.sfid]);
@@ -457,7 +460,7 @@ app.post("/publishcontest", authorization, async (req, res) => {
             );
         
         io.emit("new_contest", pubcon.rows[0]);
-        res.json(pubcon);
+        res.json(pubcon.rows[0]);
     } catch (err) {
         console.log('error on submit answer' + err);
     }

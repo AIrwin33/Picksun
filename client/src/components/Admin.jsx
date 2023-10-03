@@ -115,7 +115,7 @@ const Admin = (props) => {
                       totalQuestions={8}
                       showAnswers={showAnswer}
                       isAdmin={true}
-                      contest={contest}
+                      cont={contest}
                       />
                   </Carousel.Item>
                 })}
