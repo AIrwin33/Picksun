@@ -264,7 +264,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                 partidlist.push(selectedpartanswers.rows[i].participation__c);
             }
             console.log('parts id list' + partidlist);
-            const selectedpartanswers2 = await pool.query("UPDATE FROM salesforce.participation__c SET validated__c = $1, incorrect__c = $2, status__c = $3 WHERE id = $4", [selectedpartanswers.rows[i].validated__c, selectedpartanswers.rows[i].incorrect__c, selectedpartanswers.rows[i].status__c, selectedpartanswers.rows[i].id]);
+            const selectedpartanswers2 = await pool.query("UPDATE salesforce.participation__c SET validated__c = $1, incorrect__c = $2, status__c = $3 WHERE id = $4", [selectedpartanswers.rows[i].validated__c, selectedpartanswers.rows[i].incorrect__c, selectedpartanswers.rows[i].status__c, selectedpartanswers.rows[i].id]);
             console.log(selectedpartanswers2.rows);
         }
         console.log('check 2');
