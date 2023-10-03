@@ -171,6 +171,7 @@ const Question = props => {
 
       var questsfid = quest.sfid;
       var con = props.contest;
+      console.log('contest id' + con.sfid);
       console.log(answerval)
       console.log(questsfid);
       const body = { questsfid, selectanswer, answerval, con }
