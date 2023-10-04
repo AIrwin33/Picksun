@@ -113,10 +113,10 @@ const Questions = props => {
           setShowTimer(true);
           console.log(diffTime > 0);
           if(diffTime > 0){
-            setCounter(0);
+            setCounter(diffTime);
            
           } else {
-            setCounter(diffTime);
+            setCounter(0);
             
           }
         }
