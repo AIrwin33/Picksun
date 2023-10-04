@@ -83,7 +83,6 @@ const Contest = () => {
 
     const getContestParticipations = async () => {
         try {
-            console.log('contest' + contest);
             const res = await fetch(`/contestparticipations/` + contest.sfid, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
@@ -120,8 +119,6 @@ const Contest = () => {
 
     const getParticipationByContest = async () => {
         try {
-            console.log('ready'+ contest);
-            console.log('${id}' + id);
             const res = await fetch(`/participationbycontest/${id}`, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
@@ -148,8 +145,7 @@ const Contest = () => {
     })
 
     const updateparts = useCallback(() => {
-        console.log('update parts in contest');
-        console.log(contest.status__c);
+
         getContestParticipations(contest);
         
     })
@@ -272,7 +268,7 @@ const Contest = () => {
                                                 <Image src={info} width="22"></Image>
                                             </a>
                                             <Modal className="modalDiv" show={showInfo} onHide={handleInfoClose}>
-                                                <Modal.Header closeButton>
+                                                <Modal.Header>
                                                 <Modal.Title className="aptifer font16 modalHeader">How To Pick Fun</Modal.Title>
                                                 </Modal.Header>
                                                 <Modal.Body className="proxima font12 modalBody">

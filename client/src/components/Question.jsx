@@ -231,7 +231,7 @@ const Question = props => {
             <Image src={info} width="22"></Image>
         </a>
         <Modal className="modalDiv" show={showInfo} onHide={handleInfoClose}>
-            <Modal.Header closeButton>
+            <Modal.Header >
             <Modal.Title className="aptifer font16 modalHeader">How To Pick Fun</Modal.Title>
             </Modal.Header>
             <Modal.Body className="proxima font12 modalBody">

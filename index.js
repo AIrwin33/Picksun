@@ -345,7 +345,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                         }
                 }
             }
-        io.emit("cor_question", updatequestion);
+        io.sockets.emit("cor_question", updatequestion);
     } catch (error) {
         console.log('error mark correct :: ' + error.message);
     }
@@ -453,13 +453,13 @@ app.post("/publishcontest", authorization, async (req, res) => {
             "UPDATE salesforce.Question__c SET published__c = true WHERE contest__c = $1 RETURNING *", [contest_id]
         );
         
-        io.emit("new_question", pubquest);
+        io.sockets.emit("new_question", pubquest);
 
         const pubcon = await pool.query(
             "UPDATE salesforce.Contest__c SET opened_timer__c = $1 WHERE sfid = $2 RETURNING *", [epochtime, contest_id]
             );
         
-        io.emit("new_contest", pubcon.rows[0]);
+        io.sockets.emit("new_contest", pubcon.rows[0]);
         res.json(pubcon.rows[0]);
     } catch (err) {
         console.log('error on submit answer' + err);
@@ -480,36 +480,10 @@ if (process.env.NODE_ENV==="production") {
         res.send('server is listening');
     });
 }
-// set up Socket.IO
-
-
-
 
 
 io.on("connection", (socket) => {
     console.log('connected' + socket);
-
-    // socket.on("new_contest", function(data) {
-    //     console.log('does this show up' + data);
-    //     if(data.status__c === 'Finished'){
-    //         socket.broadcast.to(data.contest__c).emit("new_contest", data);
-    //     }
-    // });
-
-    // socket.on("new_question", function(data) {
-    //     console.log('new questions' + data);
-    //     if (data !== undefined && data.published__c && !data.islocked__c) {
-    //         socket.broadcast.to(data.contest__c).emit("new_question", data);
-    //     }
-    
-    //     if(data.correct_answer__c !== null && data !== undefined) {
-    //         socket.emit("cor_question", data)
-    //     }
-    // });
-
-    // socket.on('disconnect', () => {
-    //     console.log(`disconnect: ${socket.id}`);
-    //   });
 });
     
 

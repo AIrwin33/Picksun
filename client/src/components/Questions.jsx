@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo, useRef } from 'react'
-import { Col, Button, Modal, Row, Image } from 'react-bootstrap'
+import { Col, Button, Row, Image } from 'react-bootstrap'
 import Carousel from 'react-bootstrap/Carousel';
+import Modal from 'react-bootstrap/Modal';
 import moment from 'moment'
 import Timer from 'react-compound-timer'
 
@@ -319,12 +320,12 @@ const Questions = props => {
     }
   }
 
-  const setTimer = () => {
-    console.log('setting timer');
-    var timerMilli = props.contest.question_timer__c * 1000
-    console.log('timerMilli' + timerMilli);
-    setCounter(timerMilli)
-  }
+  // const setTimer = () => {
+  //   console.log('setting timer');
+  //   var timerMilli = props.contest.question_timer__c * 1000
+  //   console.log('timerMilli' + timerMilli);
+  //   setCounter(timerMilli)
+  // }
 
   const disableQuestions = async () => {
     try {
@@ -699,7 +700,7 @@ const Questions = props => {
 
 
       <Modal className="modalDiv" show={showEnd} onHide={handleEndClose}>
-        <Modal.Header closeButton>
+        <Modal.Header >
         </Modal.Header>
         <Modal.Body className="proxima font12 modalBody">
           <div
@@ -740,7 +741,7 @@ const Questions = props => {
       </Modal>
 
       <Modal className="modalDiv" show={showSubmitModal} onHide={handleSubmitClose}>
-        <Modal.Header closeButton>
+        <Modal.Header >
         </Modal.Header>
         <Modal.Body className="proxima font12 modalBody">
           <Row>
