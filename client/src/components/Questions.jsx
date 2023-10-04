@@ -124,7 +124,7 @@ const Questions = props => {
       }
       setQuestions(parseData);
       if( parseData.length > 0 ){
-        setTimer();
+        //setTimer();
       }
       //set question count
       setPublishedQuestions(parseData.length)
@@ -514,7 +514,7 @@ const Questions = props => {
         setQuestions(newquestions)
         console.log('set q')
         
-        setTimer()
+        //setTimer()
 
         resetLogic()
       }
@@ -531,7 +531,7 @@ const Questions = props => {
         tempQuestions[tempQuestions.map(r => r.sfid).indexOf(question.sfid)] =
           question
         setQuestions(tempQuestions)
-        setTimer()
+        //setTimer()
       }
     }
   }
