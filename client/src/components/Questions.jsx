@@ -109,8 +109,9 @@ const Questions = props => {
           var currtime = moment().valueOf()
           var closedTimerInt = millival + parseInt(openedtimerval)
           var diffTime = moment(closedTimerInt).diff(currtime)
-          console.log('before set timer' + diffTime);
+          console.log('before set timer' + typeof diffTime);
           setShowTimer(true);
+          console.log(diffTime > 0);
           if(diffTime > 0){
             setCounter(0);
            
