@@ -3,12 +3,8 @@ import { Col, Row, Button, Image, Modal } from 'react-bootstrap'
 import { v4 as uuidv4 } from 'uuid'
 import './Question.css'
 import info from '../assets/infoicon.png'
-//import {SocketContext} from "../socket";
-
-
 import correctLogo from '../assets/correctIcon.png'
 import incorrectLogo from '../assets/incorrectIcon.png'
-import { Children } from 'react'
 
 const Question = props => {
   const [partAnswer, setPartAnswer] = useState([])
@@ -26,9 +22,7 @@ const Question = props => {
 
 
     var tgt = event.target;
-    console.log(tgt);
     var children = document.getElementsByClassName('questionButton');
-    console.log(children);
     for (let i = 0; i < children.length; i++) {
       children[i].classList.remove('sel');
     }
@@ -49,8 +43,6 @@ const Question = props => {
     if (event.target.value == 'D') {
         label = quest.answer_d__c;
     }
-    console.log(event.target.value);
-    console.log(label);
     if(!props.isAdmin){
       handleUpdateQuestionValue(event.target.value, label);
     }else{
@@ -80,7 +72,6 @@ const Question = props => {
   }
 
   const handleThisPartAnswer = async () => {
-    console.log('handle this')
     try {
       const partsfid = props.partsfid
       const questid = props.ques.sfid
@@ -96,11 +87,9 @@ const Question = props => {
 
         const parseRes = await response.json()
         setPartAnswer(parseRes)
-        console.log('IS VALIDATED' + JSON.stringify(parseRes));
+
         if (parseRes.validated__c) {
           updateAllPartAnswers()
-          console.log('validated question, will update')
-          console.log('parse res' + JSON.stringify(parseRes))
         }
 
         if (parseRes.status__c === 'Submitted') {
@@ -113,10 +102,9 @@ const Question = props => {
   }
 
   const updateAllPartAnswers = async () => {
-    console.log('handle all')
+
     try {
-      console.log('updating parts answers');
-      console.log(props.partsfid);
+
       const partsfid = props.partsfid
       const body = { partsfid }
       const res = await fetch(`/existingpartanswernoquestion`, {
@@ -129,7 +117,6 @@ const Question = props => {
       })
 
       const parseData = await res.json()
-      console.log('all part answers' + JSON.stringify(parseData));
       setAllpartanswers(parseData)
     } catch (error) {
       console.log('err' + error.message)
@@ -148,14 +135,7 @@ const Question = props => {
 
   const handleMarkCorrect = async (event) => {
     console.log('mark correct')
-
-
-
-    console.log(quest);
     var answerval = '';
-    console.log(selectanswer);
-    console.log(quest.answer_a__c);
-    console.log(quest.answer_b__c);
     if(selectanswer === 'A'){
         answerval = quest.answer_a__c;
     }
@@ -171,9 +151,6 @@ const Question = props => {
 
       var questsfid = quest.sfid;
       var con = props.cont;
-      console.log('contest id' + con.sfid);
-      console.log(answerval)
-      console.log(questsfid);
       const body = { questsfid, selectanswer, answerval, con }
       const res = await fetch(`/markcorrect/`, {
         method: 'POST',
@@ -197,10 +174,6 @@ const Question = props => {
 
 
   useEffect(() => {
-    console.log(props.isAdmin);
-    console.log(props.ques);
-    console.log(allpartanswers.length);
-    console.log(props.cont);
     setIsAdmin(props.isAdmin);
     setQuest(props.ques)
    
@@ -208,18 +181,16 @@ const Question = props => {
     if (props.ques.islocked__c === true || props.isInactive === true) {
       setDisabledQuestion(true)
       setTimeout(function () {
-        console.log('timeout THIS part answers')
+
         handleThisPartAnswer()
-      }, 5000)
+      }, 3000)
 
     }
   }, []);
 
   useEffect(() => {
-    console.log('handle correct answer');
-    console.log(allpartanswers.length);
+
     setTimeout(function () {
-      console.log('timeout THIS part answers')
       handleThisPartAnswer()
     }, 2000)
   }, [props.ques.correct_answer__c]);
