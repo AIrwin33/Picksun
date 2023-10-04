@@ -83,6 +83,7 @@ const Contest = () => {
 
     const getContestParticipations = async () => {
         try {
+            console.log('getting contest participations');
             const res = await fetch(`/contestparticipations/` + contest.sfid, {
                 method: "GET",
                 headers: {jwt_token: localStorage.token}
@@ -90,6 +91,7 @@ const Contest = () => {
 
             const parseData = await res.json();
             setAllParts(parseData.length);
+            console.log(parseData);
             var i;
             var activeParts = [];
             var endParts = [];
@@ -105,6 +107,8 @@ const Contest = () => {
                     }
                 }
             }
+
+            activeParts
             endParts.sort((a, b) => (a.PlaceFinish__c < b.PlaceFinish__c) ? 1 : -1)
 
             setActiveParts(activeParts.length);
