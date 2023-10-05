@@ -17,16 +17,6 @@ const Question = props => {
   const [selectanswer, setSelectAnswer] = useState();
 
   const handleRadioChange = async (event) => {
-
-
-
-    var tgt = event.target;
-    var children = document.getElementsByClassName('questionButton');
-    // for (let i = 0; i < children.length; i++) {
-    //   children[i].classList.remove('sel');
-    // }
-   
-    tgt.classList.add('sel');
     
 
     var label = '';
