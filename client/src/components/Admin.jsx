@@ -76,6 +76,7 @@ const Admin = (props) => {
         console.log(selectedIndex);
         console.log(e.target);
         var children = document.getElementsByClassName('questionButton');
+        console.log(children);
         for (let i = 0; i < children.length; i++) {
           children[i].classList.remove('sel');
         }
@@ -111,7 +112,7 @@ const Admin = (props) => {
         <Row className="questionRow m-2 p-2 justify-content-center">
           <Col sm={12} lg={12}>
             {questions.length > 0 && 
-              <Carousel fade className="carouselDiv" defaultActiveIndex={0} activeIndex={index} onSelect={handleSelect} interval={null}>
+              <Carousel className="carouselDiv" activeIndex={index} onSelect={handleSelect} interval={null}>
                 {questions.map(question => {
                   return <Carousel.Item key={question.id} className="text-center">
                     <Question ques={question}
