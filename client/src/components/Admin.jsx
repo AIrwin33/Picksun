@@ -106,7 +106,7 @@ const Admin = (props) => {
         <Row className="questionRow m-2 p-2 justify-content-center">
           <Col sm={12} lg={12}>
             {questions.length > 0 && 
-              <Carousel className="carouselDiv" activeIndex={index} onSelect={handleSelect} interval={null}>
+              <Carousel className="carouselDiv" slide={false} activeIndex={index} onSelect={handleSelect} interval={null}>
                 {questions.map(question => {
                   return <Carousel.Item key={question.id} className="text-center">
                     <Question ques={question}
