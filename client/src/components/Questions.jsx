@@ -670,7 +670,7 @@ const Questions = props => {
           <Col sm={12} lg={12}>
             {questions.length > 0 && showAnswer &&
               <Carousel className="carouselDiv" interval={null} ref={carouselRef} activeIndex={index} onSelect={handleSelect} >
-                {questions.map(question => {
+                {questions.map((question, index) => {
                   return <Carousel.Item key={question.id} className="text-center">
                     <Question addAnswer={updateAnswerList}
                       knockoutcalloutchild={handleKnockoutChild}
