@@ -13,7 +13,6 @@ const Question = props => {
   const [disabledQuestion, setDisabledQuestion] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false);
   const [partanswersupdated, setUpdated] = useState(false)
-  const radioRef = React.useRef(null);
   const [allpartanswers, setAllpartanswers] = useState([]);
   const [selectanswer, setSelectAnswer] = useState();
 
@@ -23,9 +22,9 @@ const Question = props => {
 
     var tgt = event.target;
     var children = document.getElementsByClassName('questionButton');
-    for (let i = 0; i < children.length; i++) {
-      children[i].classList.remove('sel');
-    }
+    // for (let i = 0; i < children.length; i++) {
+    //   children[i].classList.remove('sel');
+    // }
    
     tgt.classList.add('sel');
     
@@ -239,7 +238,7 @@ const Question = props => {
     </div>
     <Row>
         <div className="questionTextDiv aptifer">
-            <h4>{props.text}</h4>
+            <h4>{props.questionNum}) {props.ques.question_text__c}</h4>
         </div>
     </Row>
     <Row>
@@ -255,16 +254,16 @@ const Question = props => {
         <Col sm={10}>
             <div className={`btn-group m-2 ${disabledQuestion === true && !isAdmin ? "disabledBtnGroup" : ""}`} role="group"
                 aria-label="Basic example" data-toggle="buttons">
-                <button ref={radioRef} type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_a__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                <button type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_a__c && disabledQuestion ? "selectedQuestion" : ""}`}
                         onClick={handleRadioChange}>{quest.answer_a__c}</button>
-                <button ref={radioRef} type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_b__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                <button type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_b__c && disabledQuestion ? "selectedQuestion" : ""}`}
                         onClick={handleRadioChange}>{quest.answer_b__c}</button>
                 {quest.answer_c__c !== null &&
-                <button ref={radioRef} type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_c__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                <button type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_c__c && disabledQuestion ? "selectedQuestion" : ""}`}
                 onClick={handleRadioChange}>{quest.answer_c__c}</button>
             }
                 {quest.answer_d__c !== null &&
-                <button ref={radioRef} type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_d__c && disabledQuestion ? "selectedQuestion" : ""}`}
+                <button type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_d__c && disabledQuestion ? "selectedQuestion" : ""}`}
                 onClick={handleRadioChange}>{quest.answer_d__c}</button>
             }
             </div>
