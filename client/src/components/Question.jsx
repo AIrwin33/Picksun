@@ -43,6 +43,7 @@ const Question = props => {
     if (event.target.value == 'D') {
         label = quest.answer_d__c;
     }
+    
     if(!props.isAdmin){
       handleUpdateQuestionValue(event.target.value, label);
     }else{

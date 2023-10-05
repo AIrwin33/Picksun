@@ -137,11 +137,9 @@ const Questions = props => {
   // select a question and increment/decrement the question number on the screen
   const handleSelect = (selectedIndex, e) => {
     console.log('in active index handle select');
-    console.log(document.getElementsByClassName('carouselDiv').activeIndex);
+    console.log(e.target);
     setIndex(selectedIndex);
-    console.log('index' + index);
-    console.log(document.getElementsByClassName('carouselDiv').activeIndex);
-    setQuestionNum(selectedIndex + 1)
+    setQuestionNum(selectedIndex + 1);
   }
 
   const resetLogic = async () => {
