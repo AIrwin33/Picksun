@@ -74,6 +74,11 @@ const Admin = (props) => {
 
     const handleSelect = (selectedIndex, e) => {
         console.log(selectedIndex);
+        console.log(e.target);
+        var children = document.getElementsByClassName('questionButton');
+        for (let i = 0; i < children.length; i++) {
+          children[i].classList.remove('sel');
+        }
         setIndex(selectedIndex)
         setQuestionNum(selectedIndex + 1)
       }
