@@ -177,7 +177,7 @@ const Question = props => {
   useEffect(() => {
     setIsAdmin(props.isAdmin);
     setQuest(props.ques)
-    
+
    
     setUpdated(false)
     if (props.ques.islocked__c === true || props.isInactive === true) {
