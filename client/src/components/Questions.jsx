@@ -457,6 +457,7 @@ const Questions = props => {
   }
 
   useEffect(() => {
+    console.log(props.contest);
     if(props.contest.opened_timer__c){
       console.log('has opened timer');
       getQuestions();
