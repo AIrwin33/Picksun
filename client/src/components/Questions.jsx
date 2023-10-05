@@ -135,7 +135,7 @@ const Questions = props => {
   }
 
   // select a question and increment/decrement the question number on the screen
-  const handleSelect = (selectedIndex, e) => {
+  const handleSelect = (selectedIndex) => {
 
     setIndex(selectedIndex);
     setQuestionNum(selectedIndex + 1);
@@ -670,7 +670,7 @@ const Questions = props => {
           <Col sm={12} lg={12}>
             {questions.length > 0 && showAnswer &&
               <Carousel className="carouselDiv" interval={null} ref={carouselRef} activeIndex={index} onSelect={handleSelect} >
-                {questions.map((question, index) => {
+                {questions.map((question => {
                   return <Carousel.Item key={question.id} className="text-center">
                     <Question addAnswer={updateAnswerList}
                       knockoutcalloutchild={handleKnockoutChild}

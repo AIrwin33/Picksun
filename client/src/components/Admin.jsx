@@ -72,7 +72,8 @@ const Admin = (props) => {
 
     
 
-    const handleSelect = (selectedIndex, e) => {
+    const handleSelect = (selectedIndex) => {
+
         setIndex(selectedIndex)
         setQuestionNum(selectedIndex + 1)
       }
@@ -106,7 +107,7 @@ const Admin = (props) => {
           <Col sm={12} lg={12}>
             {questions.length > 0 && 
               <Carousel className="carouselDiv" activeIndex={index} onSelect={handleSelect} interval={null}>
-                {questions.map((question, index) => {
+                {questions.map(question => {
                   return <Carousel.Item key={question.id} className="text-center">
                     <Question ques={question}
                       text={question.question_text__c}
