@@ -136,12 +136,7 @@ const Questions = props => {
 
   // select a question and increment/decrement the question number on the screen
   const handleSelect = (selectedIndex, e) => {
-    console.log('in active index handle select');
-    console.log(e.target);
-    var children = document.getElementsByClassName('questionButton');
-    for (let i = 0; i < children.length; i++) {
-      children[i].classList.remove('sel');
-    }
+
     setIndex(selectedIndex);
     setQuestionNum(selectedIndex + 1);
   }
