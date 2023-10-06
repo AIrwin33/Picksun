@@ -160,20 +160,20 @@ const Contest = () => {
         
         console.log('is socket connected' + socketio.connected);
 
-        socketio.onAny("connect", function(data) {
+        socketio.on("connect", function(data) {
             console.log('check connect');
             console.log(socketio.connected);
         });
 
-        socketio.onAny("new_question", question => {
+        socketio.on("new_question", question => {
             console.log('check new question');
             setNewQuestion(question);
         })
-        socketio.onAny("cor_question", question => {
+        socketio.on("cor_question", question => {
             console.log('check cor question');
             setNewCorrectQuestion(question);
         })
-        socketio.onAny("new_contest", contest => {
+        socketio.on("new_contest", contest => {
             console.log('check here');
             console.log('this contest' + JSON.stringify(contest));
             setTimeout(
