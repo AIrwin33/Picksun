@@ -303,6 +303,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
         const activeparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE status__c = 'Active' AND contest__c = $1", [con.sfid]);
         console.log(con.number_of_questions__c);
         console.log(allcontestquestions.rows.length);
+        console.log(activeparts.rows.length);
             if((con.number_of_questions__c == allcontestquestions.rows.length) || activeparts.rows.length == 1){
                 console.log('check 4');
 
