@@ -299,7 +299,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
 
         console.log('check 3');
         console.log(con.sfid);
-        const allcontestquestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND correct_answer__c != null", [con.sfid]);
+        const allcontestquestions = await pool.query("SELECT * FROM salesforce.question__c WHERE contest__c = $1 AND correct_answer__c IS NOT NULL", [con.sfid]);
         const activeparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE status__c = 'Active' AND contest__c = $1", [con.sfid]);
         console.log(con.number_of_questions__c);
         console.log(allcontestquestions.rows.length);
