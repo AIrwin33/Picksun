@@ -348,7 +348,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                         }
                 }
             }
-        //io.to("contestroom").emit("cor_question", updatequestion);
+        io.to("contestroom").emit("cor_question", updatequestion);
     } catch (error) {
         console.log('error mark correct :: ' + error.message);
     }
@@ -456,13 +456,13 @@ app.post("/publishcontest", authorization, async (req, res) => {
             "UPDATE salesforce.Question__c SET published__c = true WHERE contest__c = $1 RETURNING *", [contest_id]
         );
         
-        //io.to("contestroom").emit("new_question", pubquest);
+        io.to("contestroom").emit("new_question", pubquest);
 
         const pubcon = await pool.query(
             "UPDATE salesforce.Contest__c SET opened_timer__c = $1 WHERE sfid = $2 RETURNING *", [epochtime, contest_id]
             );
         
-        //io.to("contestroom").emit("new_contest", pubcon.rows[0]);
+        io.to("contestroom").emit("new_contest", pubcon.rows[0]);
         res.json(pubcon.rows[0]);
     } catch (err) {
         console.log('error on submit answer' + err);
@@ -487,6 +487,7 @@ if (process.env.NODE_ENV==="production") {
 
 io.on("connection", (socket) => {
     console.log('connected' + socket);
+    socket.join("contestroom");
 });
     
 

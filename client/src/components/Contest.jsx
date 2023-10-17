@@ -160,10 +160,8 @@ const Contest = () => {
         
         console.log('is socket connected' + socketio.connected);
 
-        socketio.on("connect", function(data) {
-            console.log('check connect');
-            console.log(socketio.connected);
-            socketio.join("contestroom");
+        socketio.on("connect", function(socket) {
+            
         });
 
         socketio.on("new_question", question => {
