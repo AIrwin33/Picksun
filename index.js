@@ -315,26 +315,26 @@ app.post("/markcorrect", authorization, async (req, res) => {
                 var indexless = index - 1;
                 var participantid;
                 console.log('check 5');
-                for(var i=0; i < finishedparts.length; i++){
+                for(var i=0; i < finishedparts.rows.length; i++){
                     if(index > 0 && indexless >= 0){
-                        if(finishedParts[index].wrong_answers__c > finishedparts[indexless].wrong_answers__c){
+                        if(finishedparts.rows[index].wrong_answers__c > finishedparts.rows[indexless].wrong_answers__c){
                             console.log('increment place');
                             place = place + 1;
                         }
                     }
 
-                    finishedparts[i].placeFinish__c = place;
-                    if(finishedparts[i].Status__c == 'Knocked Out'){
+                    finishedparts.rows[i].placeFinish__c = place;
+                    if(finishedparts.rows[i].Status__c == 'Knocked Out'){
                         
                     }else{
-                        finishedparts[i].Status__c = 'Inactive';
+                        finishedparts.rows[i].Status__c = 'Inactive';
                     }
                     
                     index = index + 1;
                     indexless = indexless + 1;
                     
-                    if(finishedparts[i].placefinish__c == 1){
-                        participantid = finishedparts[i].participant__c;
+                    if(finishedparts.rows[i].placefinish__c == 1){
+                        participantid = finishedparts.rows[i].participant__c;
                         console.log('part:::' + participantId);
                         var winval;
                         const contestswon = await pool.query("SELECT * FROM salesforce.participant__c WHERE Id = $1", [participantId]).contests_won__c;
