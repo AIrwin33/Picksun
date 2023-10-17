@@ -307,7 +307,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
             if((con.number_of_questions__c == allcontestquestions.rows.length) || activeparts.rows.length == 1){
                 console.log('check 4');
 
-                const cont = await pool.query("UPDATE salesforce.contest__c SET status__c = 'Finished' WHERE Id = $1", [con.sfid]);
+                const cont = await pool.query("UPDATE salesforce.contest__c SET status__c = 'Finished' WHERE sfid = $1", [con.sfid]);
 
                 const finishedparts = await pool.query("SELECT * FROM salesforce.participation__c WHERE contest__c = $1 ORDER BY Wrong_Answers__c ASC", [con.sfid]);
                 var place = 1;
