@@ -228,6 +228,22 @@ app.get("/allquestions/:contest_id", authorization, async (req, res) => {
     }
 });
 
+app.get("/allendingparticipations/:contest_id", authorization, async (req, res) => {
+    try {
+        const {contest_id} = req.params;
+        const contestwoncount = await pool.query(
+            "SELECT * FROM salesforce.participation__c WHERE contest__c = $1 ORDER BY wrong_answers__c ASC",
+            [contest_id]
+        );
+        if (contestwoncount.rows.length === 0) {
+        } else {
+            res.json(contestwoncount.rows);
+        }
+    } catch (err) {
+        console.log('all remaining parts error::' + err);
+    }
+});
+
 app.post("/markcorrect", authorization, async (req, res) => {
     try {
 
