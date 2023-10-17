@@ -258,7 +258,9 @@ const Questions = props => {
       //TODO - andrew make sure that ko is showing up for already knocked out participants
       for (var k = 0; k < parseRes.length; k++) {
         if (parseRes[k].sfid === props.partsfid) {
-          placefinish = parseRes[k].placefinish__c
+          console.log('in here');
+          console.log(parseRes[k]);
+          placefinish = parseRes[k].placefinish__c;
           console.log('ending parts' + parseRes[k])
           if (parseRes[k].status__c === 'Knocked Out') {
             ko = true
