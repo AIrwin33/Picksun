@@ -341,16 +341,16 @@ app.post("/markcorrect", authorization, async (req, res) => {
                         }
                     }
 
-                    finishedparts.rows[i].placeFinish__c = place;
+                    finishedparts.rows[i].placefinish__c = place;
                     if(finishedparts.rows[i].Status__c == 'Knocked Out'){
                         
                     }else{
                         finishedparts.rows[i].Status__c = 'Inactive';
                     }
-                    
+                    console.log(finishedparts.rows[i].placefinish__c);
                     index = index + 1;
                     indexless = indexless + 1;
-                    
+                    const allfinishedparts = await pool.query("UPDATE salesforce.participation__c SET placefinish__c = $1 WHERE id = $2 RETURNING *", [finishedparts.rows[i].placefinish__c, finishedparts.rows[i].id]);
                     if(finishedparts.rows[i].placefinish__c == 1){
                         participantid = finishedparts.rows[i].participant__c;
                         console.log('part:::' + participantId);
@@ -361,7 +361,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                         }
                         winval = contestswon + 1;
 
-                        const winningpart = await pool.query("UPDATE salesforce.participant__c SET status = 'Finished', Contests_Won__c = $1 WHERE Id = $2", [winval, participantId]);
+                        const winningpart = await pool.query("UPDATE salesforce.participant__c SET status = 'Finished', contests_won__c = $1 WHERE sfid = $2", [winval, participantId]);
                         console.log('check 6');
                         }
                 }
