@@ -315,6 +315,8 @@ app.post("/markcorrect", authorization, async (req, res) => {
                 var indexless = index - 1;
                 var participantid;
                 console.log('check 5');
+                console.log(finishedparts.rows.length);
+                console.log(finishedparts.rows)
                 for(var i=0; i < finishedparts.rows.length; i++){
                     if(index > 0 && indexless >= 0){
                         if(finishedparts.rows[index].wrong_answers__c > finishedparts.rows[indexless].wrong_answers__c){
