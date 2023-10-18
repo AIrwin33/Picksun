@@ -355,13 +355,13 @@ app.post("/markcorrect", authorization, async (req, res) => {
                         participantid = finishedparts.rows[i].participant__c;
                         console.log('part:::' + participantid);
                         var winval;
-                        const contestswon = await pool.query("SELECT * FROM salesforce.participant__c WHERE Id = $1", [participantId]).contests_won__c;
+                        const contestswon = await pool.query("SELECT * FROM salesforce.participant__c WHERE Id = $1", [participantid]).contests_won__c;
                         if(contestswon == null){
                             winval = 0;
                         }
                         winval = contestswon + 1;
 
-                        const winningpart = await pool.query("UPDATE salesforce.participant__c SET status = 'Finished', contests_won__c = $1 WHERE sfid = $2", [winval, participantId]);
+                        const winningpart = await pool.query("UPDATE salesforce.participant__c SET status = 'Finished', contests_won__c = $1 WHERE sfid = $2", [winval, participantid]);
                         console.log('check 6');
                         }
                 }
