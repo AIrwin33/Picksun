@@ -353,7 +353,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                     const allfinishedparts = await pool.query("UPDATE salesforce.participation__c SET placefinish__c = $1 WHERE id = $2 RETURNING *", [finishedparts.rows[i].placefinish__c, finishedparts.rows[i].id]);
                     if(finishedparts.rows[i].placefinish__c == 1){
                         participantid = finishedparts.rows[i].participant__c;
-                        console.log('part:::' + participantId);
+                        console.log('part:::' + participantid);
                         var winval;
                         const contestswon = await pool.query("SELECT * FROM salesforce.participant__c WHERE Id = $1", [participantId]).contests_won__c;
                         if(contestswon == null){
