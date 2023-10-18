@@ -361,7 +361,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                         }
                         winval = contestswon + 1;
 
-                        const winningpart = await pool.query("UPDATE salesforce.participant__c SET status = 'Finished', contests_won__c = $1 WHERE sfid = $2", [winval, participantid]);
+                        const winningpart = await pool.query("UPDATE salesforce.participant__c SET contests_won__c = $1 WHERE sfid = $2", [winval, participantid]);
                         console.log('check 6');
                         }
                 }
