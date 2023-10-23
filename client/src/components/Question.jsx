@@ -77,7 +77,7 @@ const Question = props => {
 
         const parseRes = await response.json()
         setPartAnswer(parseRes)
-        updateAllPartAnswers();
+        
         if (parseRes.status__c === 'Submitted') {
           setDisabledQuestion(true)
         }
@@ -176,7 +176,9 @@ const Question = props => {
   }, []);
 
   useEffect(() => {
-    handleThisPartAnswer()
+    console.log(correct_answer__c);
+    handleThisPartAnswer();
+    updateAllPartAnswers();
     // setTimeout(function () {
       
     // })
