@@ -77,11 +77,7 @@ const Question = props => {
 
         const parseRes = await response.json()
         setPartAnswer(parseRes)
-
-        if (parseRes.validated__c) {
-          updateAllPartAnswers()
-        }
-
+        updateAllPartAnswers();
         if (parseRes.status__c === 'Submitted') {
           setDisabledQuestion(true)
         }
