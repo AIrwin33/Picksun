@@ -174,16 +174,16 @@ const Question = props => {
       setTimeout(function () {
 
         handleThisPartAnswer()
-      }, 3000)
+      }, 2000)
 
     }
   }, []);
 
   useEffect(() => {
-
-    setTimeout(function () {
-      handleThisPartAnswer()
-    }, 2000)
+    handleThisPartAnswer()
+    // setTimeout(function () {
+      
+    // })
   }, [props.ques.correct_answer__c]);
 
   return (
