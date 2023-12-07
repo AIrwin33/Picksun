@@ -96,10 +96,13 @@ const Contest = () => {
             var activeParts = [];
             var endParts = [];
             for (i = 0; i < parseData.length; i++) {
+                console.log(parseData[i]);
                 if (parseData[i].status__c === 'Active') {
+                    console.log(parseData[i].participant_name__c);
                     activeParts.push(parseData[i]);
                 }
             }
+            console.log(activeParts);
             if(contest.status__c === 'Finished'){
                 for (i = 0; i < parseData.length; i++) {
                     if (parseData[i].status__c !== 'Active') {
