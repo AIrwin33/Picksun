@@ -176,7 +176,7 @@ const Question = props => {
   }, []);
 
   useEffect(() => {
-    console.log(props.ques.orrect_answer__c);
+    console.log(props.ques.correct_answer__c);
     handleThisPartAnswer();
     updateAllPartAnswers();
     // setTimeout(function () {
