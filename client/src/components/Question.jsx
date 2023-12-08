@@ -103,7 +103,7 @@ const Question = props => {
       })
 
       const parseData = await res.json()
-      setAllpartanswers(parseData)
+      setAllpartanswers(parseData);
     } catch (error) {
       console.log('err' + error.message)
     }
@@ -153,12 +153,6 @@ const Question = props => {
   }
   
   
-
-
-  
-
-
-
   useEffect(() => {
     setIsAdmin(props.isAdmin);
     setQuest(props.ques)
@@ -182,7 +176,7 @@ const Question = props => {
     // setTimeout(function () {
       
     // })
-  }, [props.ques.correct_answer__c]);
+  }, [props.ques.correct_answer__c, questionNum]);
 
   return (
     <>
