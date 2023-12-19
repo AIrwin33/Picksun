@@ -176,7 +176,7 @@ const Question = props => {
     // setTimeout(function () {
       
     // })
-  }, [props.ques.correct_answer__c, props.questionNum]);
+  }, [props.ques.correct_answer__c, props.questionNum, props.updateanswers]);
 
   return (
     <>
