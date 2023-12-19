@@ -173,9 +173,8 @@ const Question = props => {
     console.log(props.ques.correct_answer__c);
     handleThisPartAnswer();
     updateAllPartAnswers();
-    // setTimeout(function () {
-      
-    // })
+    console.log(props.tempanswerlist);
+
   }, [props.ques.correct_answer__c, props.questionNum, props.updateanswers]);
 
   return (

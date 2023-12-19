@@ -686,7 +686,8 @@ const Questions = props => {
                       getsubcount={handleSubsegmentCount}
                       partsfid={partWrongAnswer.sfid}
                       showAnswers={showAnswer} 
-                      updateanswers={doupdateanswers}/>
+                      updateanswers={doupdateanswers}
+                      tempanswerlist={answerList}/>
                   </Carousel.Item>
                 })}
               </Carousel>
