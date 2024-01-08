@@ -19,7 +19,7 @@ const Question = props => {
 
   const handleRadioChange = async (event) => {
     
-
+    settempselection(null);
     var label = '';
     if (event.target.value == 'A') {
         label = quest.answer_a__c;
