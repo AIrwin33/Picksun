@@ -154,7 +154,7 @@ const Question = props => {
   }
 
   const updateTempSelectedAnswer = async (event) => {
-
+    settempselection(null);
     for (var k = 0; props.tempanswerlist.length > k; k++) {
       //if questions match
       if(props.ques.sfid == props.tempanswerlist[k].question__c){
