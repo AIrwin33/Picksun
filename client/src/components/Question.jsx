@@ -171,6 +171,7 @@ const Question = props => {
 
   useEffect(() => {
     console.log(props.ques.correct_answer__c);
+    console.log(props.ques);
     handleThisPartAnswer();
     updateAllPartAnswers();
     console.log('templ aswer list' + props.tempanswerlist);
