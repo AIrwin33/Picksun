@@ -15,6 +15,7 @@ const Question = props => {
   const [partanswersupdated, setUpdated] = useState(false)
   const [allpartanswers, setAllpartanswers] = useState([]);
   const [selectanswer, setSelectAnswer] = useState();
+  const [tempselection, settempselection] = useState();
 
   const handleRadioChange = async (event) => {
     
@@ -151,6 +152,17 @@ const Question = props => {
       console.log(parseData);
      
   }
+
+  const updateTempSelectedAnswer = async (event) => {
+
+    for (var k = 0; props.tempanswerlist.length > k; k++) {
+      //if questions match
+      if(props.ques.sfid == props.tempanswerlist[k].question__c){
+        settempselection(props.tempanswerlist[k].selection_value__c);
+      }
+    }
+
+  }
   
   
   useEffect(() => {
@@ -175,7 +187,9 @@ const Question = props => {
     handleThisPartAnswer();
     updateAllPartAnswers();
     console.log('templ aswer list' + JSON.stringify(props.tempanswerlist));
-
+    if(props.tempanswerlist.length > 0){
+      updateTempSelectedAnswer();
+    }
   }, [props.ques.correct_answer__c, props.questionNum, props.updateanswers, props.tempanswerlist]);
 
   return (
@@ -236,16 +250,16 @@ const Question = props => {
         <Col sm={10}>
             <div className={`btn-group m-2 ${disabledQuestion === true && !isAdmin ? "disabledBtnGroup" : ""}`} role="group"
                 aria-label="Basic example" data-toggle="buttons">
-                <button type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_a__c ? "selectedQuestion" : ""}`}
+                <button type="radio" value="A" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_a__c ? "selectedQuestion" : ""} ${tempselection === quest.answer_a__c ? "tempSelectedQuestion" :""}`}
                         onClick={handleRadioChange}>{quest.answer_a__c}</button>
-                <button type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_b__c ? "selectedQuestion" : ""}`}
+                <button type="radio" value="B" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_b__c ? "selectedQuestion" : ""} ${tempselection === quest.answer_b__c ? "tempSelectedQuestion" :""}`}
                         onClick={handleRadioChange}>{quest.answer_b__c}</button>
                 {quest.answer_c__c !== null &&
-                <button type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_c__c ? "selectedQuestion" : ""}`}
+                <button type="radio" value="C" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_c__c ? "selectedQuestion" : ""} ${tempselection === quest.answer_c__c ? "tempSelectedQuestion" :""}`}
                 onClick={handleRadioChange}>{quest.answer_c__c}</button>
             }
                 {quest.answer_d__c !== null &&
-                <button type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_d__c ? "selectedQuestion" : ""}`}
+                <button type="radio" value="D" className={`btn btn-primary questionButton font20 fontBold proxima ${partAnswer.selection_value__c === quest.answer_d__c ? "selectedQuestion" : ""} ${tempselection === quest.answer_d__c ? "tempSelectedQuestion" :""}`}
                 onClick={handleRadioChange}>{quest.answer_d__c}</button>
             }
             </div>
