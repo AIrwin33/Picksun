@@ -186,11 +186,15 @@ const Question = props => {
     console.log(props.ques);
     handleThisPartAnswer();
     updateAllPartAnswers();
+    
+  }, [props.ques.correct_answer__c, props.questionNum, props.updateanswers]);
+
+  useEffect(() => {
     console.log('templ aswer list' + JSON.stringify(props.tempanswerlist));
     if(props.tempanswerlist.length > 0 && !isAdmin && props.tempanswerlist != null){
       updateTempSelectedAnswer();
     }
-  }, [props.ques.correct_answer__c, props.questionNum, props.updateanswers, props.tempanswerlist]);
+  }, [props.tempanswerlist]);
 
   return (
     <>
