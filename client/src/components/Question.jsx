@@ -191,7 +191,7 @@ const Question = props => {
 
   useEffect(() => {
     console.log('templ aswer list' + JSON.stringify(props.tempanswerlist));
-    if(props.tempanswerlist.length > 0 && !isAdmin && props.tempanswerlist != null){
+    if(!isAdmin){
       updateTempSelectedAnswer();
     }
   }, [props.tempanswerlist]);
