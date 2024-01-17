@@ -13,7 +13,7 @@ const Question = props => {
   const [disabledQuestion, setDisabledQuestion] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false);
   const [partanswersupdated, setUpdated] = useState(false)
-  const [allpartanswers, setallpartanswers] = useState();
+  const [allpartanswers, setallpartanswers] = useState([]);
   const [selectanswer, setSelectAnswer] = useState();
   const [tempselection, settempselection] = useState();
 
