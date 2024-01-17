@@ -52,7 +52,7 @@ const Questions = props => {
   const carouselRef = React.createRef()
   const [newQuestion, setNewQuestion] = useState()
   const [newCorrectQuestion, setNewCorrectQuestion] = useState()
-  const [doupdateanswers, setDoupdateanswers] = useState(false);
+  const [doupdateanswers, setdoupdateanswers] = useState(false);
 
   const getAllQuestions = async () => {
     try {
@@ -455,7 +455,7 @@ const Questions = props => {
   }
 
   useEffect(() => {
-    setDoupdateanswers(false);
+    setdoupdateanswers(false);
     console.log(props.contest);
     if(props.contest.opened_timer__c){
       console.log('has opened timer');
@@ -479,7 +479,8 @@ const Questions = props => {
     ) {
       console.log('new correct question');
       console.log(props.newCorrectQuestion);
-      setDoupdateanswers(true);
+      setdoupdateanswers(true);
+      console.log('do update' + doupdateanswers);
       setNewQuestion(props.newCorrectQuestion);
 
       doGetParticipationWrongAnswers();

@@ -194,6 +194,7 @@ const Question = props => {
     console.log(props.ques);
     handleThisPartAnswer();
     console.log('not in timeout');
+    console.log('update answers' + props.updateanswers);
     updateAllPartAnswers();
     
     
