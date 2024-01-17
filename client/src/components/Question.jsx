@@ -102,7 +102,8 @@ const Question = props => {
         body: JSON.stringify(body)
       })
 
-      const parseData = await res.json()
+      const parseData = await res.json();
+      console.log('update part answers' + JSON.stringify(parseData));
       setAllpartanswers(parseData);
     } catch (error) {
       console.log('err' + error.message)
