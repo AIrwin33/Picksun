@@ -191,14 +191,8 @@ const Question = props => {
     handleThisPartAnswer();
     updateAllPartAnswers();
     
-  }, [props.ques.correct_answer__c, props.questionNum, props.updateanswers], [props.tempanswerlist]);
+  }, [props.ques.correct_answer__c, props.questionNum, props.updateanswers, props.tempanswerlist]);
 
-  // useEffect(() => {
-  //   console.log('templ aswer list' + JSON.stringify(props.tempanswerlist));
-  //   console.log(isAdmin);
-  //   console.log(props.isAdmin);
-    
-  // }, );
 
   return (
     <>
