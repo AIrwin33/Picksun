@@ -479,11 +479,12 @@ const Questions = props => {
     ) {
       console.log('new correct question');
       console.log(props.newCorrectQuestion);
+      console.log('answers true' + doupdateanswers);
       setdoupdateanswers(true);
       setNewQuestion(props.newCorrectQuestion);
       setTimeout(function () {
         doGetParticipationWrongAnswers()
-      }, 5000);
+      }, 3000);
       
     }
   }, [props.newQuestion, props.newCorrectQuestion,props.contest.opened_timer__c])
