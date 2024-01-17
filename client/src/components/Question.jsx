@@ -193,6 +193,7 @@ const Question = props => {
     console.log(props.ques.correct_answer__c);
     console.log(props.ques);
     handleThisPartAnswer();
+    updateAllPartAnswers();
     
     
   }, [props.ques.correct_answer__c, props.questionNum, props.updateanswers, props.tempanswerlist]);
