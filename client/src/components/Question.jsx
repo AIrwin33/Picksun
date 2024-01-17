@@ -175,7 +175,7 @@ const Question = props => {
       console.log('setting disabled?');
       setDisabledQuestion(true)
       setTimeout(function () {
-
+        console.log('in timeout');
         handleThisPartAnswer();
         updateAllPartAnswers();
       }, 2000)
@@ -193,6 +193,7 @@ const Question = props => {
     console.log(props.ques.correct_answer__c);
     console.log(props.ques);
     handleThisPartAnswer();
+    console.log('not in timeout');
     updateAllPartAnswers();
     
     
