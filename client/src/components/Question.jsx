@@ -186,10 +186,10 @@ const Question = props => {
     console.log(props.ques);
     handleThisPartAnswer();
     updateAllPartAnswers();
-    console.log('templ aswer list' + JSON.stringify(props.tempanswerlist));
-    if(props.isAdmin != true){
-      updateTempSelectedAnswer();
-    }
+    // console.log('templ aswer list' + JSON.stringify(props.tempanswerlist));
+    // if(props.isAdmin != true){
+    //   updateTempSelectedAnswer();
+    // }
   }, [props.ques.correct_answer__c, props.questionNum, props.updateanswers, props.tempanswerlist]);
 
   return (
