@@ -478,11 +478,11 @@ const Questions = props => {
     ) {
       console.log('new correct question');
       console.log(props.newCorrectQuestion);
-      
+      setDoupdateanswers(true);
       setNewQuestion(props.newCorrectQuestion);
       setTimeout(function () {
         doGetParticipationWrongAnswers();
-        setDoupdateanswers(true);
+        
       }, 5000);
       
     }
