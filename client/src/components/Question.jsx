@@ -13,7 +13,7 @@ const Question = props => {
   const [disabledQuestion, setDisabledQuestion] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false);
   const [partanswersupdated, setUpdated] = useState(false)
-  const [allpartanswers, setAllpartanswers] = useState([]);
+  const [allpartanswers, setallpartanswers] = useState([]);
   const [selectanswer, setSelectAnswer] = useState();
   const [tempselection, settempselection] = useState();
 
@@ -104,7 +104,7 @@ const Question = props => {
       })
 
       const parseData = await res.json()
-      setAllpartanswers(parseData);
+      setallpartanswers(parseData);
     } catch (error) {
       console.log('err' + error.message)
     }
@@ -187,9 +187,9 @@ const Question = props => {
     handleThisPartAnswer();
     updateAllPartAnswers();
     // console.log('templ aswer list' + JSON.stringify(props.tempanswerlist));
-    // if(props.isAdmin != true){
-    //   updateTempSelectedAnswer();
-    // }
+    if(props.isAdmin != true){
+      updateTempSelectedAnswer();
+    }
   }, [props.ques.correct_answer__c, props.questionNum, props.updateanswers, props.tempanswerlist]);
 
   return (
