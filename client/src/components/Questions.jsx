@@ -52,7 +52,7 @@ const Questions = props => {
   const carouselRef = React.createRef()
   const [newQuestion, setNewQuestion] = useState()
   const [newCorrectQuestion, setNewCorrectQuestion] = useState()
-  const [doupdateanswers, setdoupdateanswers] = useState(false);
+  const [doupdateanswers, setDoupdateanswers] = useState(false);
 
   const getAllQuestions = async () => {
     try {
@@ -345,7 +345,7 @@ const Questions = props => {
 
       const parseData = await res.json()
       setShowTimer(false);
-      console.log(JSON.stringify(parseData));
+      
       setReview(true);
       setQuestions(parseData);
       setShowWaiting(false);
@@ -455,7 +455,6 @@ const Questions = props => {
   }
 
   useEffect(() => {
-    setdoupdateanswers(false);
     console.log(props.contest);
     if(props.contest.opened_timer__c){
       console.log('has opened timer');
@@ -479,15 +478,14 @@ const Questions = props => {
     ) {
       console.log('new correct question');
       console.log(props.newCorrectQuestion);
-      setdoupdateanswers(true);
-      console.log('do update' + doupdateanswers);
+      setDoupdateanswers(true);
       setNewQuestion(props.newCorrectQuestion);
-
-      doGetParticipationWrongAnswers();
-
+      setTimeout(function () {
+        doGetParticipationWrongAnswers()
+      }, 5000);
       
     }
-  }, [props.newQuestion, props.newCorrectQuestion, props.contest.opened_timer__c])
+  }, [props.newQuestion, props.newCorrectQuestion,props.contest.opened_timer__c])
   const addNewQuestion = question => {
     var questionidsIndex = questionids.indexOf(question.sfid)
     if (questionidsIndex === -1) {

@@ -13,11 +13,12 @@ const Question = props => {
   const [disabledQuestion, setDisabledQuestion] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false);
   const [partanswersupdated, setUpdated] = useState(false)
-  const [allpartanswers, setallpartanswers] = useState([]);
+  const [allpartanswers, setAllpartanswers] = useState([]);
   const [selectanswer, setSelectAnswer] = useState();
   const [tempselection, settempselection] = useState();
 
   const handleRadioChange = async (event) => {
+    
     settempselection(null);
     var label = '';
     if (event.target.value == 'A') {
@@ -102,9 +103,8 @@ const Question = props => {
         body: JSON.stringify(body)
       })
 
-      const parseData = await res.json();
-      console.log('update part answers' + JSON.stringify(parseData));
-      setallpartanswers(parseData);
+      const parseData = await res.json()
+      setAllpartanswers(parseData);
     } catch (error) {
       console.log('err' + error.message)
     }
@@ -172,34 +172,25 @@ const Question = props => {
    
     setUpdated(false)
     if (props.ques.islocked__c === true || props.isInactive === true) {
-      console.log('setting disabled?');
       setDisabledQuestion(true)
       setTimeout(function () {
-        console.log('in timeout');
-        handleThisPartAnswer();
-        updateAllPartAnswers();
+
+        handleThisPartAnswer()
       }, 2000)
 
     }
   }, []);
 
   useEffect(() => {
-    console.log(props.isAdmin);
-    console.log('temp answer list' + props.tempanswerlist);
-    if(props.isAdmin != true){
-      console.log('in here');
-      updateTempSelectedAnswer();
-    }
     console.log(props.ques.correct_answer__c);
     console.log(props.ques);
     handleThisPartAnswer();
-    console.log('not in timeout');
-    console.log('update answers' + props.updateanswers);
     updateAllPartAnswers();
-    
-    
+    console.log('templ aswer list' + JSON.stringify(props.tempanswerlist));
+    if(props.tempanswerlist.length > 0 && !isAdmin && props.tempanswerlist != null){
+      updateTempSelectedAnswer();
+    }
   }, [props.ques.correct_answer__c, props.questionNum, props.updateanswers, props.tempanswerlist]);
-
 
   return (
     <>
