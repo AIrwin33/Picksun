@@ -184,7 +184,7 @@ const Question = props => {
   useEffect(() => {
     console.log(props.isAdmin);
     console.log('temp answer list' + props.tempanswerlist);
-    if(props.isAdmin == false){
+    if(props.isAdmin != true){
       console.log('in here');
       updateTempSelectedAnswer();
     }
