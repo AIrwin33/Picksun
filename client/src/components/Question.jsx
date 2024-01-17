@@ -171,6 +171,7 @@ const Question = props => {
    
     setUpdated(false)
     if (props.ques.islocked__c === true || props.isInactive === true) {
+      console.log('setting disabled?');
       setDisabledQuestion(true)
       setTimeout(function () {
 
