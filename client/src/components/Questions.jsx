@@ -474,7 +474,6 @@ const Questions = props => {
       addNewQuestion(props.newQuestion)
     }
     if (
-      newCorrectQuestion !== props.newCorrectQuestion &&
       props.newCorrectQuestion !== undefined
     ) {
       console.log('new correct question');
