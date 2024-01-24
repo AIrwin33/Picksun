@@ -310,7 +310,7 @@ app.post("/markcorrect", authorization, async (req, res) => {
                       console.log('part is knocked out');
                     }
                 }
-                const incorrectrows = await pool.query("UPDATE salesforce.participation__c SET wrong_answers__c = $1 WHERE id = $2 RETURNING *", [incorrectparts.rows[i].wrong_answers__c, incorrectparts.rows[i].id]);
+                const incorrectrows = await pool.query("UPDATE salesforce.participation__c SET wrong_answers__c = $1, status__c = $2 WHERE id = $3 RETURNING *", [incorrectparts.rows[i].wrong_answers__c, incorrectparts.rows[i].status__c, incorrectparts.rows[i].id]);
                 console.log('incorrectrows' + incorrectrows.rows);
             }
         }
@@ -344,10 +344,10 @@ app.post("/markcorrect", authorization, async (req, res) => {
                     }
 
                     finishedparts.rows[i].placefinish__c = place;
-                    if(finishedparts.rows[i].Status__c == 'Knocked Out'){
+                    if(finishedparts.rows[i].status__c == 'Knocked Out'){
                         
                     }else{
-                        finishedparts.rows[i].Status__c = 'Inactive';
+                        finishedparts.rows[i].status__c = 'Inactive';
                     }
                     console.log(finishedparts.rows[i].placefinish__c);
                     index = index + 1;
