@@ -182,14 +182,12 @@ const Questions = props => {
       setPartWrongAnswer(parseData);
       
 
-      setTimeout(function () {
-        console.log(partWrongAnswer.status__c);
+      console.log(partWrongAnswer.status__c);
         if (partWrongAnswer.status__c === 'Knocked Out') {
           console.log('player is knocked out')
           handleKnockout()
         }
-        checkFinished()
-      }, 5000)
+      checkFinished()
 
       props.updatepart(parseData)
     } catch (err) {
@@ -470,12 +468,13 @@ const Questions = props => {
       props.newCorrectQuestion !== undefined
     ) {
       setdoupdateanswers(doupdateanswers + 1);
+      setNewQuestion(props.newCorrectQuestion);
       setTimeout(function () {
        
-        setNewQuestion(props.newCorrectQuestion);
+        
         console.log('before do parts answers in timeout'); 
         doGetParticipationWrongAnswers()
-      }, 3000);
+      }, 5000);
       
     }
   }, [props.newQuestion, props.newCorrectQuestion,props.contest.opened_timer__c])
