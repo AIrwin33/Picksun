@@ -52,7 +52,7 @@ const Questions = props => {
   const carouselRef = React.createRef()
   const [newQuestion, setNewQuestion] = useState()
   const [newCorrectQuestion, setNewCorrectQuestion] = useState()
-  const [doupdateanswers, setdoupdateanswers] = useState(false);
+  const [doupdateanswers, setdoupdateanswers] = useState(0);
 
   const getAllQuestions = async () => {
     try {
@@ -178,14 +178,8 @@ const Questions = props => {
         body: JSON.stringify(body)
       })
       const parseData = await response.json()
-
-      console.log('parts list' + JSON.stringify(parseData))
-      console.log('parse wrong answers' + parseData.wrong_answers__c)
+      console.log(parseData.status__c);
       setPartWrongAnswer(parseData);
-      //set sort of timeout to check waiting for finished game
-      console.log('status' + parseData.status__c)
-      console.log(partWrongAnswer.wrong_answers_allowed__c);
-      console.log(partWrongAnswer.wrong_answers__c);
       if (parseData.status__c === 'Knocked Out') {
         console.log('player is knocked out')
         handleKnockout()
@@ -455,17 +449,14 @@ const Questions = props => {
   }
 
   useEffect(() => {
-    console.log(props.contest);
-    setdoupdateanswers(false);
+
     if(props.contest.opened_timer__c){
       console.log('has opened timer');
       getQuestions();
       getAllQuestions();
       doGetParticipationWrongAnswers()
     }
-    
-    console.log(props.newQuestion);
-    console.log('props contest' + JSON.stringify(props.contest));
+
 
 
     if (newQuestion !== props.newQuestion && props.newQuestion !== undefined) {
@@ -476,12 +467,11 @@ const Questions = props => {
     if (
       props.newCorrectQuestion !== undefined
     ) {
-      console.log('new correct question');
-      console.log(props.newCorrectQuestion);
-      console.log('answers true' + doupdateanswers);
-      setdoupdateanswers(true);
-      setNewQuestion(props.newCorrectQuestion);
+      setdoupdateanswers(doupdateanswers + 1);
       setTimeout(function () {
+       
+        setNewQuestion(props.newCorrectQuestion);
+        console.log('before do parts answers in timeout');
         doGetParticipationWrongAnswers()
       }, 3000);
       
