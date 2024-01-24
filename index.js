@@ -305,8 +305,8 @@ app.post("/markcorrect", authorization, async (req, res) => {
                     console.log(incorrectparts.rows[i].wrong_answers__c);
                     if(incorrectparts.rows[i].wrong_answers__c == con.wrong_answers_allowed__c){
                         incorrectparts.rows[i].status__c = 'Knocked Out';
-                      
-                  }
+                      console.log('part is knocked out');
+                    }
                 }
                 const incorrectrows = await pool.query("UPDATE salesforce.participation__c SET wrong_answers__c = $1 WHERE id = $2 RETURNING *", [incorrectparts.rows[i].wrong_answers__c, incorrectparts.rows[i].id]);
                 console.log('incorrectrows' + incorrectrows.rows);

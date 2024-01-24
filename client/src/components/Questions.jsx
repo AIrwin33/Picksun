@@ -178,14 +178,16 @@ const Questions = props => {
         body: JSON.stringify(body)
       })
       const parseData = await response.json()
-      console.log(parseData.status__c);
+      
       setPartWrongAnswer(parseData);
-      if (parseData.status__c === 'Knocked Out') {
-        console.log('player is knocked out')
-        handleKnockout()
-      }
+      
 
       setTimeout(function () {
+        console.log(partWrongAnswer.status__c);
+        if (partWrongAnswer.status__c === 'Knocked Out') {
+          console.log('player is knocked out')
+          handleKnockout()
+        }
         checkFinished()
       }, 5000)
 
@@ -471,7 +473,7 @@ const Questions = props => {
       setTimeout(function () {
        
         setNewQuestion(props.newCorrectQuestion);
-        console.log('before do parts answers in timeout');
+        console.log('before do parts answers in timeout'); 
         doGetParticipationWrongAnswers()
       }, 3000);
       
