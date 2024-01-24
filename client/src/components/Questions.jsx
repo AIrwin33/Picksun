@@ -182,7 +182,7 @@ const Questions = props => {
       setPartWrongAnswer(parseData);
       
 
-      console.log(partWrongAnswer.status__c);
+      console.log(parseData.status__c);
         if (partWrongAnswer.status__c === 'Knocked Out') {
           console.log('player is knocked out')
           handleKnockout()
