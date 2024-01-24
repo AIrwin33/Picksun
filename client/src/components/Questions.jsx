@@ -474,7 +474,7 @@ const Questions = props => {
         
         console.log('before do parts answers in timeout'); 
         doGetParticipationWrongAnswers()
-      }, 5000);
+      }, 3000);
       
     }
   }, [props.newQuestion, props.newCorrectQuestion,props.contest.opened_timer__c])
