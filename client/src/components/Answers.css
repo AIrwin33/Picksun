@@ -1,0 +1,17 @@
+.circle {
+    border: 2px solid black;
+    border-radius: 15px;
+    width:15px;
+    height:15px;
+    margin-left:2px;
+    display: inline-block;
+}
+
+.circle.wrong {
+    background-color: red;
+    border-radius: 15px;
+    width:15px;
+    height:15px;
+    margin-left:2px;
+    display: inline-block;
+}

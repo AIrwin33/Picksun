@@ -1,0 +1,143 @@
+.questionRow {
+    background-color: #d4d4d4;
+    border-radius: 5px;
+}
+
+.questionButton {
+    background-color: #215975;
+    border: 1px solid #d4d4d4;
+    color:white;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.questionButton.focus{
+    background-color: white;
+    border: 1px solid #d4d4d4;
+    color:#215975;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.questionButton.active{
+    background-color: #215975;
+    border: 1px solid #d4d4d4;
+    color:white;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.questionButton:checked {
+    background-color: #0069d9;
+    border: 1px solid #d4d4d4;
+    color:white;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.disabledBtnGroup > .questionButton.selectedQuestion {
+    background-color: #262626;
+    color:white;
+}
+
+.timer {
+    border-radius: 10px;
+}
+
+.questionTextDiv {
+    height:20vh;
+}
+
+.carousel {
+    position:inherit;
+}
+
+.carousel-control-next {
+    bottom:-100px;
+    right:-25px  !important;
+}
+
+.carousel-control-prev {
+    bottom:-100px;
+    left:-15px !important;
+}
+
+.carousel-indicators li {
+    background-color:grey;
+    visibility: hidden;
+}
+
+.answerBanner {
+    background-color:  #215975;
+    border-radius:5px;
+    color: white;
+}
+
+.disabledBtnGroup {
+pointer-events: none;
+
+}
+
+.disabledBtnGroup > .questionButton{
+
+background-color: #d4d4d4;
+color:black;
+border-radius: 1px;
+border: 1px solid black;
+}
+
+.nextDiv {
+    border: 1px solid white;
+    background-color: #215975;
+    color: white;
+    border-radius: 5px;
+}
+
+.nextDiv span {
+    padding: 3px;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.modal-header {
+    background-color: #262626;
+    color: white;
+}
+
+.modal-body {
+    background-color: #262626;
+    color:white;
+}
+
+.modalBtn {
+    background-color: #d4d4d4;
+    border: 2px solid #262626;
+    border-radius: 3px;
+    color: #262626;
+}
+
+.answerMain {
+    display:inline-flex;
+}
+
+.answerDiv {
+    opacity: 0.5;
+    margin: 2px;
+    width:30px;
+    height: 5px;
+    background-color: #215975;
+}
+
+.answerDiv.selected {
+    opacity: 1;
+}
+
+.answerDiv.correct {
+    background-color: green;
+}
+
+.answerDiv.incorrect {
+    background-color: red;
+}

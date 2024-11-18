@@ -1,0 +1,57 @@
+#contestContainer {
+    background-color: #262626;
+    min-height: 100vh;
+}
+
+.list-group-item {
+    background-color: transparent;
+    border: 0px;
+}
+
+.headerRow {
+    background-color: #215975;
+    color:white;
+    margin-left:0px;
+    margin-right:0px;
+}
+
+.scoreboard {
+    border: 1px solid white;
+    border-radius: 1px; 
+    padding:0.1em;
+    margin:0.25em;
+}
+
+.rowBar {
+    margin-top:1em; 
+}
+
+.colCard{
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin: 5px 30px 5px 30px;
+    padding:5px;
+    background-color: lightgrey;
+}
+
+.yourpart {
+    border: 1px solid grey;
+    border-radius: 1px;
+    background-color:#215975;
+    color:white;
+}
+
+.nopadding {
+    padding: 0px !important;
+}
+
+.nav-link {
+    width:100%;
+    background-color: #262626;
+    color: #fff;
+}
+
+.nav-link active {
+    background-color: #495057;
+    color: #fff;
+}

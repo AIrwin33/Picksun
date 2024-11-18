@@ -1,0 +1,104 @@
+.App {
+  text-align: center;
+  
+}
+
+.container {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.footer {
+  background-color: #181818;
+  background-repeat:no-repeat;
+  background-position: center center;
+}
+
+@font-face {
+  font-family: aptifer-reg;
+  src: url("assets/aptifer-slab-regular.ttf");
+}
+
+@font-face {
+  font-family: proxima-reg;
+  src: url("assets/ProximaNova-Regular.ttf");
+}
+
+.aptifer {
+  font-family: aptifer-reg;
+}
+
+.proxima {
+  font-family: proxima-reg;
+}
+
+.whiteText {
+  color:white;
+}
+
+.greyText {
+  color:grey;
+}
+
+.fontBold {
+  font-weight: bold;
+}
+
+.font12 {
+  font-size: 12px;
+}
+
+.font14 {
+  font-size: 14px;
+}
+
+.font16 {
+  font-size: 16px;
+}
+
+.font20 {
+  font-size: 20px;
+}
+
+.row {
+  margin-left:0px;
+  margin-right:0px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
