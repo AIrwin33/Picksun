@@ -10,8 +10,7 @@
   "scripts": {
     "start": "node index.js",
     "server": "npx nodemon index.js",
-    "client": "npm start --prefix client",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true cd client && npm install --force  && npm run build"
+    "client": "npm start --prefix client"
   },
   "repository": {
     "type": "git",
