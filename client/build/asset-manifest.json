@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.17b4629b.css",
+    "main.js": "/static/js/main.27a5ca7a.js",
+    "static/media/basketball.gif": "/static/media/basketball.3128e94564be29e7e19e.gif",
+    "static/media/football.gif": "/static/media/football.f33030a2c564cf4243e4.gif",
+    "static/media/aptifer-slab-regular.ttf": "/static/media/aptifer-slab-regular.4563b39cd775244f819c.ttf",
+    "static/media/ProximaNova-Regular.ttf": "/static/media/ProximaNova-Regular.f8070a824d3aba8dc775.ttf",
+    "static/media/Baseballspinning.gif": "/static/media/Baseballspinning.e6b230657a4c7410342e.gif",
+    "index.html": "/index.html",
+    "main.17b4629b.css.map": "/static/css/main.17b4629b.css.map",
+    "main.27a5ca7a.js.map": "/static/js/main.27a5ca7a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.17b4629b.css",
+    "static/js/main.27a5ca7a.js"
+  ]
+}
