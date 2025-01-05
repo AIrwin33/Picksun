@@ -13,8 +13,13 @@ const publicUrl = env === 'development' ? 'http://localhost:3000' : process.env.
 const io = new Server(server, {
     cors: {
         origin: publicUrl,
+        origin: [
+            publicUrl || 'https://play.pick.fun',
+            'https://cryptic-citadel-94967.herokuapp.com'
+        ],
     }
 });
+
 
 
 
