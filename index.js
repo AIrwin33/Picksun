@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const router = express.Router();
 const app = express();
@@ -11,9 +12,10 @@ const env = process.env.NODE_ENV || 'development';
 const publicUrl = env === 'development' ? 'http://localhost:3000' : process.env.PUBLIC_URL;
 
 const io = new Server(server, {
-    cors: {
-        origin: publicUrl,
-    }
+    origin: [
+        publicUrl || 'https://play.pick.fun',
+        'https://cryptic-citadel-94967.herokuapp.com'
+    ],
 });
 
 
